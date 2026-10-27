@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f1e9">
+<title>Mijn kookboek</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#28362b;background:#f6f1e9}*{box-sizing:border-box}body{margin:0}header{background:#283f31;color:#fff;padding:28px max(20px,calc((100vw - 900px)/2))}header h1{margin:0;font-size:clamp(28px,5vw,42px)}header p{margin:8px 0 0;color:#e3eadf}main{max-width:900px;margin:32px auto;padding:0 20px 60px}.panel{background:#fff;border:1px solid #e4dfd4;border-radius:18px;padding:clamp(20px,4vw,36px);box-shadow:0 8px 24px #3333 0}.eyebrow{color:#ae6a3d;text-transform:uppercase;letter-spacing:.12em;font-weight:750;font-size:12px}h2{font-size:clamp(27px,4vw,38px);line-height:1.16;margin:12px 0}h3{margin:32px 0 16px;font-size:23px}p{line-height:1.65}small,.muted{color:#667269}.meta{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.chip{border:1px solid #dce3d9;border-radius:20px;padding:7px 12px;background:#f2f6ef;font-size:14px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}button,a.btn{font:inherit;cursor:pointer;display:inline-block;text-decoration:none;background:#2e533c;color:white;border:0;border-radius:10px;padding:12px 16px;font-weight:650}.secondary{background:#edece6!important;color:#28362b!important}ul{padding-left:0;list-style:none}.ingredients li{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #eee}.ingredients strong{white-space:nowrap;text-align:right}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}.step{display:flex;gap:16px;margin:0 0 24px}.number{flex:0 0 34px;width:34px;height:34px;border-radius:50%;background:#e9eee6;display:grid;place-items:center;font-weight:750}.step h4{margin:2px 0 7px;font-size:17px}.step p{margin:0}.step small{display:block;margin-bottom:9px}.shopping label{display:block;padding:10px 0;border-bottom:1px solid #eee;cursor:pointer}.shopping input{accent-color:#2e533c;margin-right:9px}.shopping input:checked+span{text-decoration:line-through;color:#889188}.note{padding:15px 18px;background:#f5f0e7;border-left:3px solid #b67b46;border-radius:8px;margin-top:20px}footer{margin-top:28px;text-align:center;color:#657266;font-size:13px}@media print{header,.actions,.shopping,footer{display:none!important}body{background:white}.panel{border:0;box-shadow:none;padding:0}main{margin:0;max-width:none}.step{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><h1>Mijn kookboek</h1><p>Mijn favoriete recepten, op één plek bewaard.</p></header>
+<main><article id="recipe" class="panel"><p>Recept laden…</p></article><footer>Mijn kookboek · Recepten om te bewaren, koken en delen</footer></main>
+<script>
+const el=document.getElementById('recipe');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function list(items){return '<ul class="ingredients">'+items.map(i=>'<li><span>'+esc(i.name)+'</span><strong>'+esc(i.quantity)+'</strong></li>').join('')+'</ul>'}
+function render(r){
+document.title=r.title+' | Mijn kookboek';
+const shareText=r.title+'\n\nIngrediënten:\n'+r.ingredients.map(x=>'- '+x.quantity+' '+x.name).join('\n')+'\n\nKruiden:\n'+r.herbs.map(x=>'- '+x.quantity+' '+x.name).join('\n')+'\n\nBereiding:\n'+r.steps.map((x,i)=>(i+1)+'. '+x.title+': '+x.body).join('\n\n')+'\n\n'+r.portions_note;
+el.innerHTML='<div class="eyebrow">'+esc(r.category)+'</div><h2>'+esc(r.title)+'</h2><p>'+esc(r.description)+'</p><div class="meta"><span class="chip">🍽 '+r.portions+' porties</span><span class="chip">⏱ '+r.total_minutes+' minuten</span><span class="chip">'+esc(r.difficulty)+'</span></div><div class="actions"><button id="whatsapp">Deel via WhatsApp</button><button class="secondary" id="copy">Kopieer recept</button><button class="secondary" id="print">Print recept</button></div><div class="grid"><section><h3>Ingrediënten</h3>'+list(r.ingredients)+'</section><section><h3>Kruiden</h3>'+list(r.herbs)+'</section></div><h3>Bereiding</h3>'+r.steps.map((x,i)=>'<div class="step"><span class="number">'+(i+1)+'</span><div><h4>'+esc(x.title)+'</h4><small>'+esc(x.duration)+'</small><p>'+esc(x.body)+'</p></div></div>').join('')+'<h3>Kooktips</h3><ul>'+r.tips.map(t=>'<li style="padding:7px 0">• '+esc(t)+'</li>').join('')+'</ul><div class="note">'+esc(r.portions_note)+'</div><section class="shopping"><h3>Boodschappenlijst</h3><p class="muted">Standaardvoorraad is niet aangevinkt als boodschappenitem. Controleer zelf je voorraad.</p>'+r.ingredients.filter(x=>x.buy).map(i=>'<label><input type="checkbox"><span>'+esc(i.name)+' — '+esc(i.quantity)+'</span></label>').join('')+'</section>';
+document.getElementById('whatsapp').onclick=()=>{location.href='https://wa.me/?text='+encodeURIComponent(shareText)};
+document.getElementById('copy').onclick=async()=>{try{await navigator.clipboard.writeText(shareText);document.getElementById('copy').textContent='Gekopieerd'}catch(e){window.prompt('Kopieer het recept:',shareText)}};
+document.getElementById('print').onclick=()=>window.print();
+}
+fetch('recepten.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(recipes=>render(recipes[0])).catch(()=>el.textContent='Het recept kon niet worden geladen.');
+</script>
+</body></html>
