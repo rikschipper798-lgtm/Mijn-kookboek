@@ -140,5 +140,2796 @@
       "Voeg pastakookwater alleen toe als de saus te dik is."
     ],
     "portions_note": "Voor 2 personen: kook 180–200 g pasta en gebruik ongeveer de helft van de saus. De overgebleven saus kun je zonder pasta invriezen."
+  },
+  {
+    "id": "gnocchi",
+    "title": "Gnocchi uit de oven met kip en mozzarella",
+    "subtitle": "Gnocchi met kip, verse tomaten, paprika, courgette, basilicum en een laag gesmolten mozzarella.",
+    "category": "Pasta",
+    "kind": "Ovenschotel",
+    "cuisine": "Italiaans",
+    "minutes": 50,
+    "prep": 20,
+    "cook": 30,
+    "servings": 4,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": true,
+    "date": "2026-10-20",
+    "tags": [
+      "Pasta",
+      "Kip",
+      "Ovenschotel",
+      "Italiaans"
+    ],
+    "ingredients": [
+      {
+        "name": "Gnocchi",
+        "qty": 800,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Kipdijfilet",
+        "qty": 400,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Verse tomaten",
+        "qty": 600,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Paprika",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 3,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Verse rode peper",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Verse basilicum",
+        "qty": 15,
+        "unit": "g",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Mozzarella",
+        "qty": 125,
+        "unit": "g",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Parmezaanse kaas",
+        "qty": 50,
+        "unit": "g",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Kookroom",
+        "qty": 100,
+        "unit": "ml",
+        "group": "Saus & kruiden",
+        "optional": true
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 2,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      }
+    ],
+    "steps": [
+      "Verwarm de oven voor op 220 °C boven-/onderwarmte (200 °C hetelucht). Snijd de kip, paprika, courgette en tomaten. Snipper ui en knoflook en hak de rode peper fijn.",
+      "Verhit een scheut olijfolie en bak de kip in een ruime koekenpan rondom goudbruin. Schep eventueel uit de pan.",
+      "Fruit de ui en paprika 3 minuten in dezelfde pan. Voeg courgette, knoflook en rode peper toe en bak nog 2–3 minuten.",
+      "Voeg tomaat, oregano, gerookt paprikapoeder, zwarte peper en zout toe. Laat 8–10 minuten zacht pruttelen, zodat de saus indikt.",
+      "Doe de kip terug in de pan. Voeg eventueel de kookroom toe wanneer je een zachtere, romige saus wilt.",
+      "Bereid de gnocchi volgens de verpakking of bak deze kort in een aparte pan; schep daarna door de saus.",
+      "Scheur het grootste deel van de basilicum en meng dit door de gnocchi. Proef en stel de kruiden bij.",
+      "Schep alles in een ovenschaal en verdeel mozzarella en Parmezaanse kaas erover.",
+      "Bak 10–15 minuten, totdat de kaas gesmolten en licht goudbruin is. Garneer met de resterende basilicum."
+    ],
+    "tips": "Laat de verse tomaten voldoende inkoken voordat de gnocchi erbij gaat. Voeg de basilicum pas aan het einde toe; kookroom is optioneel.",
+    "review": false
+  },
+  {
+    "id": "bolognese",
+    "title": "Romige bolognese met veel groenten",
+    "subtitle": "Een romige pastasaus met rundergehakt, wortel, paprika, courgette en champignons.",
+    "category": "Pasta",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Italiaans",
+    "minutes": 55,
+    "prep": 20,
+    "cook": 35,
+    "servings": 4,
+    "servingUnit": "personen",
+    "heat": "Mild pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-10-18",
+    "tags": [
+      "Pasta",
+      "Rundvlees",
+      "Groenterijk",
+      "Italiaans"
+    ],
+    "ingredients": [
+      {
+        "name": "Rundergehakt",
+        "qty": 500,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Pasta",
+        "qty": 375,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 3,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Wortel",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Champignons",
+        "qty": 250,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Verse tomaten",
+        "qty": 3,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Basilico pastasaus",
+        "qty": 400,
+        "unit": "g",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 2,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Kookroom",
+        "qty": 100,
+        "unit": "ml",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Basilicum",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Tijm",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Rozemarijn",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Laurierblad",
+        "qty": 1,
+        "unit": "blad",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Nootmuskaat",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Saus & kruiden",
+        "optional": true
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Peper en zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Saus & kruiden"
+      }
+    ],
+    "steps": [
+      "Snipper ui en knoflook; snijd wortels, paprika, courgette, champignons en verse tomaten in kleine stukken.",
+      "Verhit de olijfolie in een grote pan. Bak het gehakt op vrij hoog vuur bruin en rul en haal het indien nodig even uit de pan.",
+      "Bak de ui en wortel circa 4 minuten; voeg de paprika toe en bak mee.",
+      "Voeg courgette en champignons toe en laat het vocht zoveel mogelijk verdampen.",
+      "Doe knoflook en tomatenpuree erbij. Bak de tomatenpuree 1 minuut mee om de smaak te verdiepen.",
+      "Roer oregano, basilicum, paprikapoeder, tijm, rozemarijn en eventueel chili door de groenten.",
+      "Voeg de verse tomaten, Basilico-saus, het gehakt en de laurier toe.",
+      "Laat de saus 15–20 minuten rustig pruttelen; roer af en toe. Laat inkoken als hij nog waterig is.",
+      "Voeg de kookroom toe en breng op smaak met een klein beetje nootmuskaat, peper en zout.",
+      "Kook intussen de pasta in ruim water volgens de aanwijzingen op de verpakking.",
+      "Verwijder het laurierblad. Voeg zonodig een beetje pastawater toe om de saus mooi te binden.",
+      "Meng de pasta met de saus of schep de saus erover. Serveer direct."
+    ],
+    "tips": "Bak de champignons tot het vrijgekomen vocht grotendeels verdampt is. Voeg de kookroom pas na het inkoken van de saus toe.",
+    "review": false
+  },
+  {
+    "id": "piripiri",
+    "title": "Kip piri piri met rijst",
+    "subtitle": "Kruidig gemarineerde kip met rijst en gebakken groenten.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Portugees geïnspireerd",
+    "minutes": 35,
+    "prep": 15,
+    "cook": 20,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-10-16",
+    "tags": [
+      "Kip",
+      "Rijst",
+      "Binnen 40 min"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipfilet",
+        "qty": 350,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Rijst",
+        "qty": 165,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 2.5,
+        "unit": "el",
+        "group": "Marinade"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "el",
+        "group": "Marinade"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Marinade"
+      },
+      {
+        "name": "Rode peper",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Marinade"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Honing",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Marinade"
+      }
+    ],
+    "steps": [
+      "Meng olijfolie, citroensap, fijngehakte knoflook en rode peper met paprikapoeders, oregano, chili, tomatenpuree, honing, zout en peper.",
+      "Houd ongeveer een derde van de marinade apart vóórdat de rauwe kip erbij komt. Bewaar dit deel voor de saus.",
+      "Meng de resterende marinade door de kip en laat bij voorkeur minimaal 30 minuten gekoeld intrekken.",
+      "Kook de rijst volgens de verpakking. Snijd ondertussen paprika, ui en courgette.",
+      "Bak de kip op middelhoog vuur rondom bruin en vervolgens helemaal gaar. Controleer vooral dikke stukken voordat je serveert.",
+      "Bak in een tweede pan de ui en groenten enkele minuten, zodat ze nog enige beet hebben.",
+      "Voeg de apart gehouden marinade aan de pan met kip toe en laat minstens 1 minuut meekoken.",
+      "Serveer de kip en groenten met de rijst en lepel de warme saus erover."
+    ],
+    "tips": "Houd een deel van de marinade apart vóór deze met rauwe kip in aanraking komt. Voeg voor een mildere smaak iets minder chili toe.",
+    "review": false,
+    "marinateMinutes": 30
+  },
+  {
+    "id": "bruschetta",
+    "title": "Bruschetta met tomaat en basilicum",
+    "subtitle": "Geroosterd stokbrood met verse tomaat, basilicum, knoflook en olijfolie.",
+    "category": "Borrelhapjes",
+    "kind": "Borrelhap",
+    "cuisine": "Italiaans",
+    "minutes": 30,
+    "prep": 15,
+    "cook": 10,
+    "servings": 20,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-10-14",
+    "tags": [
+      "Borrel",
+      "Vegetarisch",
+      "Italiaans",
+      "Binnen 30 min"
+    ],
+    "ingredients": [
+      {
+        "name": "Stokbrood",
+        "qty": 4,
+        "unit": "stuks",
+        "group": "Basis"
+      },
+      {
+        "name": "Rijpe tomaten",
+        "qty": 1100,
+        "unit": "g",
+        "group": "Topping"
+      },
+      {
+        "name": "Verse basilicum",
+        "qty": 1,
+        "unit": "plantje",
+        "group": "Topping"
+      },
+      {
+        "name": "Extra vierge olijfolie",
+        "qty": 85,
+        "unit": "ml",
+        "group": "Topping"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 4,
+        "unit": "teentjes",
+        "group": "Afwerking"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Afwerking"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Afwerking"
+      }
+    ],
+    "steps": [
+      "Snijd de rijpe tomaten in kleine blokjes. Verwijder desgewenst het grootste deel van de natte zaadlijsten.",
+      "Scheur de blaadjes van één basilicumplantje fijn en meng deze met de tomaten en extra vierge olijfolie.",
+      "Voeg naar smaak peper toe. Voeg het zout pas vlak voor serveren toe, zodat het tomatenmengsel niet onnodig veel vocht verliest.",
+      "Verwarm de oven voor op 200 °C. Snijd vier stokbroden in plakjes van circa 1,5–2 cm.",
+      "Rooster het stokbrood 6–10 minuten tot het krokant en goudbruin is.",
+      "Wrijf de warme broodjes licht in met een gehalveerd teentje knoflook; de knoflook gaat niet in de tomatentopping.",
+      "Laat overtollig tomatenvocht achter in de kom en beleg de broodjes vlak voor het uitserveren."
+    ],
+    "tips": "Voor 20 personen is 1,0–1,2 kg tomaat voldoende; één basilicumplantje is genoeg. Beleg het brood vlak voor het serveren.",
+    "review": false
+  },
+  {
+    "id": "gyros",
+    "title": "Flatbread met gyros en frisse groenten",
+    "subtitle": "Warm flatbread met kipgyros, knapperige groenten en frisse yoghurtsaus.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Grieks geïnspireerd",
+    "minutes": 30,
+    "prep": 15,
+    "cook": 15,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-10-12",
+    "tags": [
+      "Kip",
+      "Wraps",
+      "Binnen 30 min"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipgyros",
+        "qty": 350,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Flatbread",
+        "qty": 4,
+        "unit": "stuks",
+        "group": "Basis"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Komkommer",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Verse tomaten",
+        "qty": 200,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Griekse yoghurt",
+        "qty": 120,
+        "unit": "g",
+        "group": "Saus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Saus"
+      }
+    ],
+    "steps": [
+      "Snijd de rode ui, komkommer, tomaten en paprika in kleine stukken.",
+      "Meng de Griekse yoghurt met citroensap en knoflookpoeder tot een frisse saus.",
+      "Verhit olijfolie in een koekenpan. Bak de kipgyros goudbruin en volledig gaar.",
+      "Warm de flatbreads volgens de verpakking in de oven of koekenpan.",
+      "Verdeel de saus, gyros en groenten over de warme flatbreads. Serveer direct."
+    ],
+    "tips": "Verwarm het flatbread kort zodat het soepel blijft. Schep koude groenten en yoghurtsaus pas na het bakken van de gyros op het brood.",
+    "review": false,
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+  },
+  {
+    "id": "goulash",
+    "title": "Rundergoulash met rijst",
+    "subtitle": "Langzaam gestoofd rundvlees met paprika, tomaat en kruiden, geserveerd met rijst.",
+    "category": "Rundvlees",
+    "kind": "Stoofgerecht",
+    "cuisine": "Hongaars geïnspireerd",
+    "minutes": 190,
+    "prep": 20,
+    "cook": 170,
+    "servings": 4,
+    "servingUnit": "personen",
+    "heat": "Mild pittig",
+    "difficulty": "Gemiddeld",
+    "date": "2026-10-10",
+    "tags": [
+      "Rundvlees",
+      "Stoofgerecht"
+    ],
+    "ingredients": [
+      {
+        "name": "Runderstoofvlees",
+        "qty": 750,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Witte of basmatirijst",
+        "qty": 300,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Ui",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Rode paprika",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 3,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Verse tomaat",
+        "qty": 1,
+        "unit": "grote",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 2,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Runderbouillon",
+        "qty": 600,
+        "unit": "ml",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Bloem",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 2,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Laurierblad",
+        "qty": 2,
+        "unit": "blaadjes",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 4,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Komijnzaad",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Marjoraan",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Tijm",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Balsamico",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus & kruiden",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Dep het stoofvlees droog en snijd in flinke stukken. Snipper de ui en knoflook; snijd de paprika en tomaat.",
+      "Verhit de olie in een stoofpan en bak het vlees in porties goudbruin. Haal uit de pan.",
+      "Bak de ui een paar minuten op matig vuur. Voeg knoflook en paprika toe en bak kort mee.",
+      "Voeg tomatenpuree, gewone en gerookte paprikapoeder, komijn, marjoraan, tijm en chili toe. Bak al roerend 1 minuut mee.",
+      "Strooi de bloem over het groentemengsel en roer door.",
+      "Doe het vlees terug in de pan, voeg tomaat, runderbouillon, laurier, peper en zout toe en roer goed los.",
+      "Laat 2½–3 uur heel zacht sudderen met de deksel schuin op de pan, tot het vlees gaar is. Roer regelmatig en voeg water toe als de saus te dik wordt.",
+      "Proef de goulash; voeg eventueel een beetje balsamico toe voor een frisse tegenhanger.",
+      "Kook kort voor serveren 300 g rijst volgens de verpakking en serveer met de goulash."
+    ],
+    "tips": "Laat het vlees heel zacht sudderen tot het gemakkelijk uit elkaar valt. Serveer met rijst, niet met aardappelen.",
+    "review": false
+  },
+  {
+    "id": "arayes",
+    "title": "Arayes met kruidig rundergehakt",
+    "subtitle": "Knapperige pitabroodjes gevuld met kruidig rundergehakt en een frisse yoghurtsaus.",
+    "category": "Rundvlees",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Midden-Oosters",
+    "minutes": 45,
+    "prep": 20,
+    "cook": 25,
+    "servings": 3,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Rundvlees",
+      "Pita",
+      "Midden-Oosters"
+    ],
+    "ingredients": [
+      {
+        "name": "Rundergehakt",
+        "qty": 450,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Pitabroodjes",
+        "qty": 6,
+        "unit": "stuks",
+        "group": "Basis"
+      },
+      {
+        "name": "Ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Vulling"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Vulling"
+      },
+      {
+        "name": "Rode peper",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Vulling"
+      },
+      {
+        "name": "Courgette",
+        "qty": 0.25,
+        "unit": "stuk",
+        "group": "Vulling"
+      },
+      {
+        "name": "Tomaat",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Vulling"
+      },
+      {
+        "name": "Peterselie",
+        "qty": 2,
+        "unit": "el",
+        "group": "Vulling"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 1,
+        "unit": "el",
+        "group": "Vulling"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Vulling"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Vulling"
+      },
+      {
+        "name": "Komijn",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Korianderblad (gedroogd)",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Kaneel",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden",
+        "optional": true
+      },
+      {
+        "name": "Yoghurt (naturel)",
+        "qty": 250,
+        "unit": "g",
+        "group": "Saus"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 1,
+        "unit": "teentje",
+        "group": "Saus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus"
+      }
+    ],
+    "steps": [
+      "Rasp de courgette fijn en druk het vocht eruit. Snijd ui, knoflook, rode peper, tomaat en peterselie fijn.",
+      "Meng rundergehakt met de groenten, tomatenpuree, citroensap, olijfolie en alle genoemde kruiden. Kneed kort door elkaar.",
+      "Laat de vulling indien mogelijk 15–30 minuten in de koelkast rusten.",
+      "Snijd de pita's voorzichtig open en verdeel een dunne laag gehakt van ongeveer 0,5–1 cm over de binnenkant.",
+      "Bak de gevulde broodjes in een licht ingevette koekenpan circa 2 minuten per kant, tot ze kleur krijgen.",
+      "Zet ze daarna 8–10 minuten in een oven van 200 °C. Draai halverwege om en zorg dat de gehaktvulling volledig gaar wordt.",
+      "Roer de yoghurt met knoflook, citroen, olie en peper en zout tot een frisse saus. Serveer apart."
+    ],
+    "tips": "Verdeel het gehakt in een dunne, gelijkmatige laag. Bak de pita’s na het aanbraden door tot de vulling helemaal gaar is.",
+    "review": false,
+    "marinateMinutes": 15
+  },
+  {
+    "id": "hamburgers",
+    "title": "Zelfgemaakte gekruide hamburgers",
+    "subtitle": "Sappige hamburgers met een eigen kruidenmix, zonder mosterdpoeder of worcestersaus.",
+    "category": "Rundvlees",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Amerikaans",
+    "minutes": 30,
+    "prep": 20,
+    "cook": 10,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Rundvlees",
+      "Burger",
+      "Binnen 30 min"
+    ],
+    "ingredients": [
+      {
+        "name": "Rundergehakt",
+        "qty": 300,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Komijn",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Olie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Bereiding"
+      },
+      {
+        "name": "Hamburgerbroodjes",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Serveren",
+        "optional": true
+      },
+      {
+        "name": "Cheddar",
+        "qty": 2,
+        "unit": "plakken",
+        "group": "Serveren",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Meng het gehakt voorzichtig met komijn, de twee paprikapoeders, knoflookpoeder, uienpoeder, peper en zout. Kneed niet langer dan nodig.",
+      "Verdeel in twee porties van 150 gram en vorm burgers van circa 1,5–2 cm dik. Druk met je duim een klein kuiltje in het midden.",
+      "Laat de burgers bij voorkeur 15–30 minuten afgedekt in de koelkast opstijven.",
+      "Verhit een koekenpan of grillpan op middelhoog tot hoog vuur met een klein beetje olie.",
+      "Bak de hamburgers circa 3–4 minuten per kant en controleer of het gehakt volledig gaar is. De exacte baktijd hangt af van de dikte.",
+      "Leg eventueel in de laatste minuut een plak cheddar op elke burger en serveer op broodjes met garnituur naar keuze."
+    ],
+    "tips": "Meng het gehakt niet te lang: zo blijven de burgers mals. Bak gehakt volledig gaar en laat de kaas op het einde smelten.",
+    "review": false,
+    "restMinutes": 15
+  },
+  {
+    "id": "shawarma",
+    "title": "Krokante kipshawarmawraps",
+    "subtitle": "Krokant gebakken wraps met gekruide kip, sla, rode ui, augurk en knoflooksaus.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Midden-Oosters geïnspireerd",
+    "minutes": 35,
+    "prep": 20,
+    "cook": 15,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Kip",
+      "Wraps",
+      "Crispy"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipdijfilet",
+        "qty": 350,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Grote wraps of platbroden",
+        "qty": 4,
+        "unit": "stuks",
+        "group": "Basis"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Augurken",
+        "qty": 5,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Sla",
+        "qty": 50,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Komijn",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Korianderblad",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Kurkuma",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Kaneel",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 1,
+        "unit": "teentje",
+        "group": "Marinade"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "el",
+        "group": "Marinade"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Marinade"
+      },
+      {
+        "name": "Mayonaise",
+        "qty": 3,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 1,
+        "unit": "teentje",
+        "group": "Saus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Water",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Mozzarella",
+        "qty": 50,
+        "unit": "g",
+        "group": "Extra",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Snijd de kipdij in dunne reepjes. Meng met de kruiden, geperste knoflook, citroensap en olijfolie.",
+      "Laat de gekruide kip bij voorkeur 15–30 minuten afgedekt in de koelkast marineren.",
+      "Meng voor de saus mayonaise, knoflook, citroensap en water. Breng op smaak met peper en eventueel een snuf zout.",
+      "Snijd rode ui en augurken fijn en maak de sla schoon.",
+      "Bak de kip in een hete koekenpan 7–9 minuten, tot hij rondom bruin en helemaal gaar is.",
+      "Verdeel saus, sla, kip, rode ui en augurk over de wraps. Voeg desgewenst mozzarella toe.",
+      "Vouw de wraps stevig dicht en bak ze circa 2 minuten per kant in een licht ingevette pan, tot ze goudbruin en krokant zijn."
+    ],
+    "tips": "Gebruik geen zoete vanillekwark in de saus. De wraps worden extra knapperig als je ze na het vullen kort bakt in een droge pan.",
+    "review": false
+  },
+  {
+    "id": "kiprijst",
+    "title": "Kruidige kip met rijst en groenten",
+    "subtitle": "Een goed gekruide wokmaaltijd met kip, rijst, veel groenten en een hartige saus.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Aziatisch geïnspireerd",
+    "minutes": 40,
+    "prep": 20,
+    "cook": 20,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Kip",
+      "Rijst",
+      "Wok",
+      "Groenterijk"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipdijfilet",
+        "qty": 300,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Rijst",
+        "qty": 170,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Wortel",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Verse tomaten",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Rode peper",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Sojasaus",
+        "qty": 1,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Ketjap",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Komijn",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Bereiding"
+      }
+    ],
+    "steps": [
+      "Snijd kipdijfilet in blokjes. Maak paprika, courgette, wortel, tomaten, rode ui, knoflook en een halve peper schoon en snijd klein.",
+      "Kook de rijst volgens de verpakking en laat na het afgieten uitdampen.",
+      "Meng de kip met paprikapoeder, gerookt paprikapoeder, komijn, oregano, knoflookpoeder en peper.",
+      "Verhit de helft van de olie in een wok en bak de kip rondom bruin. Haal uit de pan.",
+      "Bak rode ui en wortel een paar minuten in de overige olie. Voeg paprika en courgette toe en bak verder.",
+      "Voeg knoflook en rode peper toe en roer 30 seconden door.",
+      "Bak de tomatenpuree een minuut mee om de zuren af te ronden.",
+      "Doe de tomaten erbij en laat ze zacht worden tot een lichte saus.",
+      "Meng sojasaus, ketjap en citroensap erdoor.",
+      "Doe de kip terug in de wok en laat nog enkele minuten pruttelen, totdat de kip volledig gaar is.",
+      "Proef en breng waar nodig bij met peper en zout.",
+      "Serveer met de rijst of schep de rijst kort door het gerecht."
+    ],
+    "tips": "Gebruik een halve rode peper voor een gemiddelde pittigheid. Voeg de sojasaus en ketjap pas na het fruiten van de groenten toe.",
+    "review": false,
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+  },
+  {
+    "id": "traybake",
+    "title": "Kipschnitzel met rösti en ovengroenten",
+    "subtitle": "Krokante kipschnitzels uit de pan met geroosterde groenten en rösti uit de oven.",
+    "category": "Kip",
+    "kind": "Oven & pan",
+    "cuisine": "Nederlands geïnspireerd",
+    "minutes": 55,
+    "prep": 15,
+    "cook": 40,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Kip",
+      "Rösti",
+      "Ovenschotel",
+      "Groenten"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipschnitzels",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Basis"
+      },
+      {
+        "name": "Rösti rondjes",
+        "qty": 325,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Wortel",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomaten",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Rode peper",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Tijm",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Honing",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Dressing"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Dressing"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 2,
+        "unit": "el",
+        "group": "Bereiding"
+      }
+    ],
+    "steps": [
+      "Verwarm de heteluchtoven voor op 210 °C en bekleed een ruime bakplaat met bakpapier.",
+      "Snijd paprika, courgette, wortel, tomaten, rode ui en een halve rode peper in stukken.",
+      "Meng wortel en paprika met wat olijfolie, gerookt paprikapoeder, knoflookpoeder, tijm en peper. Verdeel op de bakplaat en rooster circa 10 minuten.",
+      "Leg de rösti bij de wortel en paprika, schep de groenten om en rooster alles nog 10 minuten.",
+      "Voeg courgette, rode ui en rode peper toe en rooster nog 15–18 minuten. Voeg de tomaten in de laatste 8 minuten toe.",
+      "Dep de kipschnitzels droog en kruid met peper en oregano. Gebruik naar wens een beetje extra gerookt paprikapoeder.",
+      "Verhit een deel van de olijfolie in een koekenpan en bak de schnitzels tijdens de laatste 8–10 ovenminuten ongeveer 4–5 minuten per kant, tot ze goudbruin en volledig gaar zijn.",
+      "Meng de honing en het citroensap met een klein scheutje warm bakvocht en verdeel vlak voor serveren over de groenten.",
+      "Schep groenten en rösti op de borden en serveer de kipschnitzels erbij."
+    ],
+    "tips": "Bak de kipschnitzels apart in de koekenpan voor een krokante korst. Voeg de tomaten pas laat toe aan de ovengroenten.",
+    "review": false,
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+  },
+  {
+    "id": "italiaanse-kip",
+    "title": "Italiaanse kip met courgette en basilicumpasta",
+    "subtitle": "Pasta met kipdijfilet, courgette, cherrytomaten, basilicum en Parmezaanse kaas.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Italiaans",
+    "minutes": 40,
+    "prep": 20,
+    "cook": 20,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Kip",
+      "Pasta",
+      "Italiaans"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipdijfilet",
+        "qty": 350,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Pasta",
+        "qty": 190,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Courgette",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Cherrytomaten",
+        "qty": 250,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 1,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Verse basilicum",
+        "qty": 12,
+        "unit": "g",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Parmezaanse kaas",
+        "qty": 35,
+        "unit": "g",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Saus & kruiden",
+        "optional": true
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Balsamico",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 2,
+        "unit": "el",
+        "group": "Saus & kruiden"
+      },
+      {
+        "name": "Pastawater",
+        "qty": 75,
+        "unit": "ml",
+        "group": "Saus & kruiden"
+      }
+    ],
+    "steps": [
+      "Kook de pasta in lichtgezouten water en houd ongeveer 75 ml pastawater apart voordat je afgiet.",
+      "Snijd kip, courgette, ui en knoflook. Halveer de cherrytomaten.",
+      "Bak de kipdij in wat olie goudbruin en gaar en schep tijdelijk uit de pan.",
+      "Rooster de courgette in dezelfde pan op vrij hoog vuur zodat hij licht kleurt. Voeg ui en knoflook toe.",
+      "Bak de tomatenpuree en oregano kort mee en doe vervolgens de tomaten en paprikapoeder erbij.",
+      "Voeg pastawater, citroensap en balsamico toe en laat kort inkoken. Breng desgewenst op smaak met een klein snufje chilipoeder.",
+      "Schep de kip en pasta erbij en roer door tot alles met saus bedekt is.",
+      "Zet het vuur uit, voeg basilicum en Parmezaanse kaas toe en serveer meteen."
+    ],
+    "tips": "Bewaar wat pastawater om de saus te binden. Voeg verse basilicum en Parmezaanse kaas pas toe als het vuur uitstaat.",
+    "review": false,
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+  },
+  {
+    "id": "wrap-pizza",
+    "title": "Snelle wrap-pizza met groenten",
+    "subtitle": "Een knapperige wrap als pizzabodem, belegd met tomaat, paprika, rode ui en kaas.",
+    "category": "Vegetarisch",
+    "kind": "Lunch",
+    "cuisine": "Italiaans geïnspireerd",
+    "minutes": 18,
+    "prep": 8,
+    "cook": 10,
+    "servings": 1,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Vegetarisch",
+      "Lunch",
+      "Pizza"
+    ],
+    "ingredients": [
+      {
+        "name": "Wrap",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Basis"
+      },
+      {
+        "name": "Tomatenpuree of pastasaus",
+        "qty": 2,
+        "unit": "el",
+        "group": "Basis"
+      },
+      {
+        "name": "Paprika",
+        "qty": 0.25,
+        "unit": "stuk",
+        "group": "Topping"
+      },
+      {
+        "name": "Tomaat",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Topping"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 0.25,
+        "unit": "stuk",
+        "group": "Topping"
+      },
+      {
+        "name": "Geraspte kaas",
+        "qty": 45,
+        "unit": "g",
+        "group": "Topping"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      }
+    ],
+    "steps": [
+      "Verwarm de oven voor op 200 °C.",
+      "Leg de wrap op een met bakpapier beklede bakplaat. Bak 2 minuten voor voor een extra stevige bodem (optioneel).",
+      "Bestrijk dun met tomatenpuree of pastasaus.",
+      "Verdeel fijn gesneden paprika, tomaat en rode ui erover en bestrooi met kaas en oregano.",
+      "Bak 7–10 minuten, totdat de randjes krokant zijn en de kaas gesmolten is."
+    ],
+    "tips": "Bak de lege wrap 2 minuten voor als je een extra krokante bodem wilt. Beleg niet te dik, zodat de wrap niet slap wordt.",
+    "review": false,
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+  },
+  {
+    "id": "varkenshaas",
+    "title": "Varkenshaas met champignon-pepersaus",
+    "subtitle": "Malse varkenshaas met romige champignon-pepersaus, krieltjes en groenten.",
+    "category": "Varkensvlees",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Nederlands",
+    "minutes": 60,
+    "prep": 20,
+    "cook": 40,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Varkensvlees",
+      "Oven",
+      "Hoofdgerecht"
+    ],
+    "ingredients": [
+      {
+        "name": "Varkenshaas",
+        "qty": 375,
+        "unit": "g",
+        "group": "Vlees"
+      },
+      {
+        "name": "Kastanjechampignons",
+        "qty": 200,
+        "unit": "g",
+        "group": "Saus"
+      },
+      {
+        "name": "Sjalot",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Saus"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Saus"
+      },
+      {
+        "name": "Kookroom",
+        "qty": 125,
+        "unit": "ml",
+        "group": "Saus"
+      },
+      {
+        "name": "Runderbouillon",
+        "qty": 100,
+        "unit": "ml",
+        "group": "Saus"
+      },
+      {
+        "name": "Dijonmosterd",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Balsamico",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Tijm",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Grofgemalen zwarte peper",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Boter",
+        "qty": 15,
+        "unit": "g",
+        "group": "Saus"
+      },
+      {
+        "name": "Krieltjes",
+        "qty": 475,
+        "unit": "g",
+        "group": "Krieltjes"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Krieltjes"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Krieltjes"
+      },
+      {
+        "name": "Rozemarijn",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Krieltjes"
+      },
+      {
+        "name": "Tijm",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Krieltjes"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Krieltjes"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Krieltjes"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Krieltjes"
+      },
+      {
+        "name": "Wortels",
+        "qty": 250,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Sperziebonen",
+        "qty": 200,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Honing",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Groenten"
+      }
+    ],
+    "steps": [
+      "Verwarm de heteluchtoven voor op 200 °C. Halveer de krieltjes en kook ze 7–8 minuten voor. Giet af en laat droogstomen.",
+      "Meng de krieltjes met olijfolie, gerookt paprikapoeder, knoflookpoeder, rozemarijn, tijm, zout en peper. Verdeel op een hete bakplaat en rooster 30–35 minuten; schep halverwege om.",
+      "Snijd de wortels en voeg ze circa 25 minuten voor het einde toe aan de oven, met een klein beetje olie en honing.",
+      "Maak de sperziebonen schoon en kook ze in de laatste 12–15 minuten beetgaar.",
+      "Dep de varkenshaas droog en kruid met peper en zout. Verhit boter in een koekenpan en bak het vlees rondom 4–5 minuten bruin.",
+      "Laat het vlees op matig vuur verder garen tot een veilige en gewenste kerntemperatuur (richtwaarde 63–65 °C). Haal uit de pan en laat 5–7 minuten rusten.",
+      "Bak de sjalot en kastanjechampignons in dezelfde pan. Voeg knoflook, tijm en peper toe.",
+      "Roer Dijonmosterd en balsamico erdoor, schenk de bouillon en kookroom erbij en laat 3–5 minuten zacht inkoken.",
+      "Snijd de varkenshaas in plakken en serveer met krieltjes, groenten en saus."
+    ],
+    "tips": "Kook de krieltjes kort voor en laat de varkenshaas na het bakken 5 minuten rusten. Laat de champignon-pepersaus rustig inkoken.",
+    "review": false,
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+  },
+  {
+    "id": "vlaams-stoofvlees",
+    "title": "Vlaams stoofvlees met La Trappe Dubbel",
+    "subtitle": "Langzaam gestoofd rundvlees met donker bier, mosterd, friet en frisse salade.",
+    "category": "Rundvlees",
+    "kind": "Stoofgerecht",
+    "cuisine": "Vlaams",
+    "minutes": 225,
+    "prep": 20,
+    "cook": 205,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Stoofgerecht",
+      "Rundvlees",
+      "Bier"
+    ],
+    "ingredients": [
+      {
+        "name": "Runderriblappen",
+        "qty": 550,
+        "unit": "g",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Ui",
+        "qty": 250,
+        "unit": "g",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 1,
+        "unit": "teentje",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "La Trappe Dubbel",
+        "qty": 300,
+        "unit": "ml",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Runderbouillon",
+        "qty": 75,
+        "unit": "ml",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Bruin brood",
+        "qty": 1,
+        "unit": "snee",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Franse mosterd",
+        "qty": 1,
+        "unit": "el",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Laurierblad",
+        "qty": 2,
+        "unit": "blaadjes",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Tijm",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Balsamico",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Appelstroop",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Stoofvlees",
+        "optional": true
+      },
+      {
+        "name": "Boter",
+        "qty": 25,
+        "unit": "g",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Zout en peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Stoofvlees"
+      },
+      {
+        "name": "Diepvrieskrulfriet",
+        "qty": 475,
+        "unit": "g",
+        "group": "Friet"
+      },
+      {
+        "name": "Gemengde sla",
+        "qty": 75,
+        "unit": "g",
+        "group": "Salade"
+      },
+      {
+        "name": "Cherrytomaten",
+        "qty": 125,
+        "unit": "g",
+        "group": "Salade"
+      },
+      {
+        "name": "Komkommer",
+        "qty": 0.33,
+        "unit": "stuk",
+        "group": "Salade"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 0.25,
+        "unit": "stuk",
+        "group": "Salade"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Dressing"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Dressing"
+      },
+      {
+        "name": "Mosterd",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Dressing"
+      },
+      {
+        "name": "Honing",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Dressing"
+      }
+    ],
+    "steps": [
+      "Dep het rundvlees droog, snijd in blokken en kruid met zout en peper.",
+      "Verhit olijfolie en een deel van de boter. Braad het vlees in porties goed bruin. Haal uit de pan.",
+      "Voeg de rest van de boter toe en karamelliseer de uien ongeveer 20 minuten op laag tot matig vuur. Voeg de knoflook de laatste minuut toe.",
+      "Doe het vlees terug in de pan. Voeg La Trappe Dubbel, runderbouillon, laurier en tijm toe.",
+      "Besmeer een snee bruin brood met de Franse mosterd en leg met de mosterdzijde op het stoofvlees.",
+      "Stoof 2½–3½ uur heel zacht met de deksel schuin op de pan; roer na circa 45 minuten het brood door de saus. Vul zo nodig wat water bij.",
+      "Voeg tegen het einde balsamico en eventueel een beetje appelstroop toe. Proef en corrigeer de smaak.",
+      "Bereid kort voor serveren de krulfriet volgens de aanwijzingen op de verpakking.",
+      "Meng de sla, cherrytomaten, komkommer en rode ui. Klop de dressing van olijfolie, citroen, mosterd en honing en schep vlak voor serveren door de salade.",
+      "Serveer het stoofvlees met krulfriet en salade."
+    ],
+    "tips": "Stoof op heel laag vuur en roer het met mosterd besmeerde brood na ongeveer 45 minuten door de saus.",
+    "review": false
+  },
+  {
+    "id": "zalm",
+    "title": "Ovenzalm met citroen en dille",
+    "subtitle": "Zalm met dille en citroen, geserveerd met geglaceerde wortels en rustieke friet.",
+    "category": "Vis",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Nederlands geïnspireerd",
+    "minutes": 35,
+    "prep": 20,
+    "cook": 15,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Vis",
+      "Zalm",
+      "Airfryer",
+      "Oven"
+    ],
+    "ingredients": [
+      {
+        "name": "Zalmfilets",
+        "qty": 330,
+        "unit": "g",
+        "group": "Zalm"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Zalm"
+      },
+      {
+        "name": "Dille",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Zalm"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Zalm"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Zalm"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Zalm"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Zalm"
+      },
+      {
+        "name": "Wortels",
+        "qty": 400,
+        "unit": "g",
+        "group": "Wortels"
+      },
+      {
+        "name": "Boter",
+        "qty": 10,
+        "unit": "g",
+        "group": "Wortels"
+      },
+      {
+        "name": "Honing",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Wortels"
+      },
+      {
+        "name": "Tijm",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Wortels"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Wortels"
+      },
+      {
+        "name": "Peper en zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Wortels"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Wortels"
+      },
+      {
+        "name": "Lamb Weston Rustic Fries",
+        "qty": 400,
+        "unit": "g",
+        "group": "Friet"
+      }
+    ],
+    "steps": [
+      "Verwarm de oven voor op 200 °C boven-/onderwarmte (190 °C hetelucht). Verwarm de airfryer alvast voor indien de verpakking dat voorschrijft.",
+      "Schil en snijd de wortels in gelijke stukken. Kook ze ongeveer 8 minuten voor en giet af.",
+      "Leg de zalmfilets in een ovenschaal. Bestrijk met olijfolie en bestrooi met dille, knoflookpoeder, peper en zout.",
+      "Schuif de zalm ongeveer 14 minuten in de oven, afhankelijk van de dikte. Controleer de gaarheid; laat daarna 2 minuten rusten.",
+      "Bereid ondertussen 400 gram rustieke frieten in de airfryer op circa 180 °C gedurende ongeveer 15 minuten, of volgens de verpakking. Schud na ongeveer 4, 8 en 12 minuten.",
+      "Verhit de boter en bak de voorgekookte wortels 2 minuten. Voeg tijm en knoflookpoeder toe.",
+      "Voeg honing toe en laat de wortels nog kort glanzen. Eindig met een beetje citroensap en peper en zout.",
+      "Besprenkel de zalm pas na het bakken met de 2 theelepels citroensap. Serveer met de wortels en frieten."
+    ],
+    "tips": "Voeg het citroensap bij de zalm pas na het garen toe. De honing is uitsluitend bedoeld voor de wortels.",
+    "review": false
+  },
+  {
+    "id": "stokbrood",
+    "title": "Zelfgebakken stokbrood met nachtrijs",
+    "subtitle": "Twee knapperige stokbroden met een luchtige binnenkant dankzij een koude nachtrijs.",
+    "category": "Brood & basis",
+    "kind": "Basisrecept",
+    "cuisine": "Frans",
+    "minutes": 900,
+    "prep": 20,
+    "cook": 880,
+    "servings": 2,
+    "servingUnit": "stokbroden",
+    "heat": "Niet pittig",
+    "difficulty": "Gemiddeld",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Brood",
+      "Basisrecept",
+      "Bakken"
+    ],
+    "ingredients": [
+      {
+        "name": "Tarwebloem",
+        "qty": 350,
+        "unit": "g",
+        "group": "Deeg"
+      },
+      {
+        "name": "Water",
+        "qty": 245,
+        "unit": "ml",
+        "group": "Deeg"
+      },
+      {
+        "name": "Instantgist",
+        "qty": 2,
+        "unit": "g",
+        "group": "Deeg"
+      },
+      {
+        "name": "Zout",
+        "qty": 7,
+        "unit": "g",
+        "group": "Deeg"
+      },
+      {
+        "name": "Heet water voor stoom",
+        "qty": 150,
+        "unit": "ml",
+        "group": "Oven"
+      }
+    ],
+    "steps": [
+      "Meng 350 gram tarwebloem met 245 ml water, 2 gram instantgist en 7 gram zout tot een samenhangend deeg. Het deeg mag iets plakkerig zijn.",
+      "Laat 20 minuten afgedekt rusten. Rek en vouw het deeg enkele keren voorzichtig op zichzelf.",
+      "Laat weer 20 minuten rusten en herhaal het vouwen.",
+      "Zet het afgedekte deeg minimaal 8 uur en bij voorkeur 10–14 uur in de koelkast.",
+      "Haal het deeg uit de koelkast. Verdeel in twee porties en druk elk deel uit tot een rechthoek van ongeveer 20–24 bij 12–15 cm.",
+      "Vouw de lange boven- en onderrand elk ongeveer een derde naar het midden. Vouw vervolgens het deeg in de lengte dubbel en knijp de naad dicht.",
+      "Rol voorzichtig tot twee stokbroden van circa 25–30 cm en leg met de naad naar beneden op bakpapier.",
+      "Laat 40–60 minuten afgedekt narijzen. Verwarm de oven met een metalen opvangschaal voor tot 240 °C boven-/onderwarmte (220 °C hetelucht).",
+      "Snijd 2–3 schuine inkepingen in ieder stokbrood. Schuif de broden in de oven en giet ongeveer 150 ml heet water in de hete metalen schaal voor stoom. Pas op voor hete stoom.",
+      "Bak 20–25 minuten goudbruin en krokant. Laat minstens 15 minuten afkoelen op een rooster."
+    ],
+    "tips": "De aangegeven totale tijd is inclusief de koude nachtrijs; de actieve bereiding kost veel minder tijd. Gebruik een metalen schaal voor stoom.",
+    "review": false,
+    "activeMinutes": 40
+  },
+  {
+    "id": "pasta-basilico",
+    "title": "Pasta basilico met gehakt",
+    "subtitle": "Pasta met rundergehakt, verse groenten en een kruidige basilicotomatensaus.",
+    "category": "Pasta",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Italiaans",
+    "minutes": 40,
+    "prep": 20,
+    "cook": 20,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Pasta",
+      "Rundvlees",
+      "Italiaans"
+    ],
+    "ingredients": [
+      {
+        "name": "Pasta",
+        "qty": 190,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Rundergehakt",
+        "qty": 275,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomaat",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Grand’Italia Basilico pastasaus",
+        "qty": 400,
+        "unit": "g",
+        "group": "Saus"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 1,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Oregano",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Basilicum",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Kruiden"
+      }
+    ],
+    "steps": [
+      "Snijd ui, paprika, courgette en tomaat in kleine blokjes en hak de knoflook.",
+      "Verhit olijfolie en bak het gehakt rul en goed bruin.",
+      "Voeg ui en paprika toe en bak enkele minuten. Bak daarna courgette mee tot deze lichte kleur krijgt.",
+      "Voeg knoflook en tomatenpuree toe en bak kort mee.",
+      "Voeg de gesneden tomaten, de pot Basilico-saus en de kruiden toe. Laat 15–20 minuten op laag vuur pruttelen.",
+      "Kook ondertussen de pasta al dente. Bewaar eventueel 50–100 ml pastawater.",
+      "Meng de pasta door de saus en voeg zo nodig een scheutje pastawater toe voor een mooie binding."
+    ],
+    "tips": "Laat de verse tomaten even meekoken met de saus. Voeg zo nodig wat pastawater toe om de pasta en saus te verbinden.",
+    "review": false,
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+  },
+  {
+    "id": "krokante-kip-rijst",
+    "title": "Groenterijst met krokante kip",
+    "subtitle": "Gebakken rijst met groenten en hartige saus, geserveerd met krokant gepaneerde kip.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Aziatisch geïnspireerd",
+    "minutes": 45,
+    "prep": 20,
+    "cook": 25,
+    "servings": 4,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Kip",
+      "Rijst",
+      "Krokant"
+    ],
+    "ingredients": [
+      {
+        "name": "Rijst",
+        "qty": 300,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Kipfilet",
+        "qty": 550,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Paprika",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Bloem",
+        "qty": 3,
+        "unit": "el",
+        "group": "Krokant laagje"
+      },
+      {
+        "name": "Paneermeel",
+        "qty": 5,
+        "unit": "el",
+        "group": "Krokant laagje"
+      },
+      {
+        "name": "Eieren",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Krokant laagje"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Ketjap",
+        "qty": 2,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Sojasaus",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Honing",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 2,
+        "unit": "el",
+        "group": "Bereiding"
+      }
+    ],
+    "steps": [
+      "Kook de rijst en laat uitdampen; afgekoelde rijst bakt later mooier op.",
+      "Snijd kip in stukken. Kruid met paprikapoeder, knoflookpoeder, peper en een beetje zout.",
+      "Haal de kip eerst door bloem, daarna door losgeklopt ei en als laatste door paneermeel.",
+      "Bak de kip op matig vuur in olie krokant en volledig gaar; werk zo nodig in porties. Bewaar apart.",
+      "Snijd ondertussen ui, paprika, courgette en knoflook.",
+      "Bak de ui en paprika in een wok, voeg courgette toe en bak door. Voeg knoflook in de laatste minuut toe.",
+      "Schep de rijst bij de groenten en bak een paar minuten mee.",
+      "Roer ketjap, sojasaus en honing erdoor. Proef en pas de smaak aan.",
+      "Serveer de krokante kip bovenop de groenterijst zodat het korstje krokant blijft."
+    ],
+    "tips": "Laat gekookte rijst eerst uitdampen en leg de kip pas bij het serveren op de rijst, zodat het paneerlaagje krokant blijft.",
+    "review": false,
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+  },
+  {
+    "id": "kipwraps",
+    "title": "Kruidige kipwraps met groenten",
+    "subtitle": "Knapperig gegrilde wraps gevuld met kip, groenten en een kruidige tomatensaus.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Wereldkeuken",
+    "minutes": 35,
+    "prep": 20,
+    "cook": 15,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Kip",
+      "Wraps",
+      "Groenten"
+    ],
+    "ingredients": [
+      {
+        "name": "Grote wraps",
+        "qty": 4,
+        "unit": "stuks",
+        "group": "Basis"
+      },
+      {
+        "name": "Kipdijfilet",
+        "qty": 300,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 0.75,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomaat",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Water",
+        "qty": 25,
+        "unit": "ml",
+        "group": "Saus"
+      },
+      {
+        "name": "Honing",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Komijn",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Bereiding"
+      }
+    ],
+    "steps": [
+      "Snijd kipdijfilet in reepjes en meng met paprikapoeders, oregano, komijn, knoflookpoeder, uienpoeder, chili, peper en zout.",
+      "Snijd paprika, courgette, rode ui, tomaat en knoflook fijn.",
+      "Verhit olie in een pan en bak de kip rondom bruin. Haal uit de pan.",
+      "Fruit rode ui en paprika enkele minuten. Voeg de courgette toe en bak mee.",
+      "Voeg knoflook en tomatenpuree toe en bak 1 minuut mee.",
+      "Roer tomaat, water, honing en citroensap erdoor en doe de kip terug in de pan.",
+      "Laat ongeveer 4–5 minuten pruttelen zodat de saus indikt en de kip helemaal gaar is.",
+      "Verwarm de wraps. Vul met het kip-groentemengsel, vouw ze strak op en gril ze desgewenst kort in een droge pan."
+    ],
+    "tips": "Rooster de kruiden kort in de pan voor meer smaak. Laat de saus inkoken voordat je de wraps vult.",
+    "review": false
+  },
+  {
+    "id": "pesto",
+    "title": "Zelfgemaakte basilicumpesto",
+    "subtitle": "Een frisse, romige pesto van basilicum, pijnboompitten, Parmezaan en olijfolie.",
+    "category": "Brood & basis",
+    "kind": "Basisrecept",
+    "cuisine": "Italiaans",
+    "minutes": 15,
+    "prep": 15,
+    "cook": 0,
+    "servings": 4,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-25",
+    "tags": [
+      "Basisrecept",
+      "Italiaans",
+      "Saus"
+    ],
+    "ingredients": [
+      {
+        "name": "Verse basilicumblaadjes",
+        "qty": 45,
+        "unit": "g",
+        "group": "Pesto"
+      },
+      {
+        "name": "Pijnboompitten",
+        "qty": 30,
+        "unit": "g",
+        "group": "Pesto"
+      },
+      {
+        "name": "Parmezaanse kaas",
+        "qty": 45,
+        "unit": "g",
+        "group": "Pesto"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 1,
+        "unit": "teentje",
+        "group": "Pesto"
+      },
+      {
+        "name": "Extra vierge olijfolie",
+        "qty": 90,
+        "unit": "ml",
+        "group": "Pesto"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Pesto"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Pesto",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Rooster de pijnboompitten kort in een droge koekenpan op laag vuur en laat afkoelen.",
+      "Was en droog de basilicumblaadjes voorzichtig.",
+      "Doe basilicum, pijnboompitten, Parmezaanse kaas en knoflook in een hoge beker of keukenmachine.",
+      "Pulseer kort en schenk terwijl je mixt geleidelijk de olijfolie erbij tot een grove smeuïge pesto ontstaat.",
+      "Breng op smaak met een snuf zout en eventueel wat citroensap.",
+      "Meng door warme pasta met een scheut pastawater of gebruik als smaakmaker bij brood of groenten."
+    ],
+    "tips": "Rooster de pijnboompitten licht en maal de pesto kort om de frisse basilicumsmaak te behouden. Voeg de olie geleidelijk toe.",
+    "review": false
   }
 ]
