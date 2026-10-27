@@ -280,7 +280,9 @@
       "Bak 10–15 minuten, totdat de kaas gesmolten en licht goudbruin is. Garneer met de resterende basilicum."
     ],
     "tips": "Laat de verse tomaten voldoende inkoken voordat de gnocchi erbij gaat. Voeg de basilicum pas aan het einde toe; kookroom is optioneel.",
-    "review": false
+    "review": false,
+    "image": "images/gnocchi.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "bolognese",
@@ -453,7 +455,9 @@
       "Meng de pasta met de saus of schep de saus erover. Serveer direct."
     ],
     "tips": "Bak de champignons tot het vrijgekomen vocht grotendeels verdampt is. Voeg de kookroom pas na het inkoken van de saus toe.",
-    "review": false
+    "review": false,
+    "image": "images/bolognese.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "piripiri",
@@ -591,7 +595,9 @@
     ],
     "tips": "Houd een deel van de marinade apart vóór deze met rauwe kip in aanraking komt. Voeg voor een mildere smaak iets minder chili toe.",
     "review": false,
-    "marinateMinutes": 30
+    "marinateMinutes": 30,
+    "image": "images/piripiri.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "bruschetta",
@@ -668,7 +674,9 @@
       "Laat overtollig tomatenvocht achter in de kom en beleg de broodjes vlak voor het uitserveren."
     ],
     "tips": "Voor 20 personen is 1,0–1,2 kg tomaat voldoende; één basilicumplantje is genoeg. Beleg het brood vlak voor het serveren.",
-    "review": false
+    "review": false,
+    "image": "images/bruschetta.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "gyros",
@@ -761,7 +769,9 @@
     ],
     "tips": "Verwarm het flatbread kort zodat het soepel blijft. Schep koude groenten en yoghurtsaus pas na het bakken van de gyros op het brood.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
+    "image": "images/gyros.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "goulash",
@@ -1086,7 +1096,9 @@
     ],
     "tips": "Verdeel het gehakt in een dunne, gelijkmatige laag. Bak de pita’s na het aanbraden door tot de vulling helemaal gaar is.",
     "review": false,
-    "marinateMinutes": 15
+    "marinateMinutes": 15,
+    "image": "images/arayes.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "hamburgers",
@@ -1189,7 +1201,9 @@
     ],
     "tips": "Meng het gehakt niet te lang: zo blijven de burgers mals. Bak gehakt volledig gaar en laat de kaas op het einde smelten.",
     "review": false,
-    "restMinutes": 15
+    "restMinutes": 15,
+    "image": "images/hamburgers.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "shawarma",
@@ -1369,7 +1383,9 @@
       "Vouw de wraps stevig dicht en bak ze circa 2 minuten per kant in een licht ingevette pan, tot ze goudbruin en krokant zijn."
     ],
     "tips": "Gebruik geen zoete vanillekwark in de saus. De wraps worden extra knapperig als je ze na het vullen kort bakt in een droge pan.",
-    "review": false
+    "review": false,
+    "image": "images/shawarma.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "kiprijst",
@@ -1812,7 +1828,9 @@
     ],
     "tips": "Bewaar wat pastawater om de saus te binden. Voeg verse basilicum en Parmezaanse kaas pas toe als het vuur uitstaat.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
+    "image": "images/italiaanse-kip.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "wrap-pizza",
@@ -2235,7 +2253,9 @@
       "Serveer het stoofvlees met krulfriet en salade."
     ],
     "tips": "Stoof op heel laag vuur en roer het met mosterd besmeerde brood na ongeveer 45 minuten door de saus.",
-    "review": false
+    "review": false,
+    "image": "images/vlaams-stoofvlees.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "zalm",
@@ -2431,7 +2451,9 @@
     ],
     "tips": "De aangegeven totale tijd is inclusief de koude nachtrijs; de actieve bereiding kost veel minder tijd. Gebruik een metalen schaal voor stoom.",
     "review": false,
-    "activeMinutes": 40
+    "activeMinutes": 40,
+    "image": "images/stokbrood.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "pasta-basilico",
@@ -2551,7 +2573,9 @@
     ],
     "tips": "Laat de verse tomaten even meekoken met de saus. Voeg zo nodig wat pastawater toe om de pasta en saus te verbinden.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
+    "image": "images/pasta-basilico.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "krokante-kip-rijst",
@@ -2853,7 +2877,9 @@
       "Verwarm de wraps. Vul met het kip-groentemengsel, vouw ze strak op en gril ze desgewenst kort in een droge pan."
     ],
     "tips": "Rooster de kruiden kort in de pan voor meer smaak. Laat de saus inkoken voordat je de wraps vult.",
-    "review": false
+    "review": false,
+    "image": "images/kipwraps.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "pesto",
@@ -2930,6 +2956,8 @@
       "Meng door warme pasta met een scheut pastawater of gebruik als smaakmaker bij brood of groenten."
     ],
     "tips": "Rooster de pijnboompitten licht en maal de pesto kort om de frisse basilicumsmaak te behouden. Voeg de olie geleidelijk toe.",
-    "review": false
+    "review": false,
+    "image": "images/pesto.webp",
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   }
 ]
