@@ -1,0 +1,144 @@
+[
+  {
+    "id": "pasta-rundergehakt-groenten",
+    "title": "Pasta met rundergehakt, groenten en basilico-tomatensaus",
+    "description": "Rijkgevulde pasta met mooi bruin gebakken rundergehakt, veel groenten en een volle, kruidige tomatensaus.",
+    "category": "Pasta",
+    "portions": 4,
+    "total_minutes": 45,
+    "difficulty": "Eenvoudig",
+    "added_on": "2026-10-27",
+    "ingredients": [
+      {
+        "name": "Pasta (penne of fusilli)",
+        "quantity": "320 g",
+        "buy": false
+      },
+      {
+        "name": "Rundergehakt",
+        "quantity": "500 g",
+        "buy": true
+      },
+      {
+        "name": "Grand'Italia Basilico pastasaus",
+        "quantity": "500 g",
+        "buy": true
+      },
+      {
+        "name": "Tomatenpuree",
+        "quantity": "1 klein potje (70 g)",
+        "buy": false
+      },
+      {
+        "name": "Courgette",
+        "quantity": "1 kleine (ca. 200 g)",
+        "buy": true
+      },
+      {
+        "name": "Rode paprika",
+        "quantity": "2 stuks",
+        "buy": true
+      },
+      {
+        "name": "Wortel",
+        "quantity": "1 middelgrote",
+        "buy": true
+      },
+      {
+        "name": "Ui",
+        "quantity": "1 middelgrote",
+        "buy": true
+      },
+      {
+        "name": "Verse tomaten",
+        "quantity": "2 middelgrote",
+        "buy": true
+      },
+      {
+        "name": "Verse rode peper",
+        "quantity": "1 stuk",
+        "buy": true
+      },
+      {
+        "name": "Knoflook",
+        "quantity": "3 teentjes",
+        "buy": true
+      },
+      {
+        "name": "Olijfolie",
+        "quantity": "1 el",
+        "buy": false
+      }
+    ],
+    "herbs": [
+      {
+        "name": "Oregano",
+        "quantity": "1½ tl"
+      },
+      {
+        "name": "Gedroogde basilicum",
+        "quantity": "½ tl"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "quantity": "¾ tl"
+      },
+      {
+        "name": "Tijm",
+        "quantity": "¼ tl"
+      },
+      {
+        "name": "Zwarte peper",
+        "quantity": "½ tl"
+      },
+      {
+        "name": "Zout",
+        "quantity": "naar smaak"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Groenten voorbereiden",
+        "duration": "5–7 minuten",
+        "body": "Snipper de ui en hak de knoflook fijn. Snijd de paprika's, courgette en tomaten in kleine blokjes. Schil de wortel en rasp grof of snijd fijn. Verwijder de zaadlijsten uit de rode peper en hak deze fijn."
+      },
+      {
+        "title": "Gehakt goed bruin bakken",
+        "duration": "6–8 minuten",
+        "body": "Verhit 1 el olijfolie in een grote hapjespan op middelhoog tot hoog vuur. Bak het gehakt rul en goudbruin. Laat het eerst ongeveer 2 minuten liggen voordat je het omschept, zodat een bruin korstje ontstaat. Bak eventueel in twee porties. Schep het gehakt uit de pan en laat het bakvet achter."
+      },
+      {
+        "title": "Groenten bakken",
+        "duration": "8 minuten",
+        "body": "Bak de ui en wortel 3 minuten in het achtergebleven bakvet. Voeg de paprika's en courgette toe en bak nog 5 minuten. Roer regelmatig zodat de groenten licht kleuren en wat vocht verdampt."
+      },
+      {
+        "title": "Smaakbasis opbouwen",
+        "duration": "4 minuten",
+        "body": "Voeg de knoflook en verse rode peper toe en bak 30 seconden. Voeg de volledige 70 g tomatenpuree toe en bak 1–2 minuten al roerend, zonder te laten aanbranden. Voeg de verse tomaten toe en bak nog ongeveer 2 minuten."
+      },
+      {
+        "title": "Saus maken en inkoken",
+        "duration": "12–15 minuten",
+        "body": "Doe het gebakken gehakt terug in de pan en voeg de 500 g Basilico pastasaus toe. Roer oregano, basilicum, gerookt paprikapoeder, tijm en zwarte peper erdoor. Laat 12–15 minuten zonder deksel zachtjes pruttelen en roer af en toe. Proef, voeg zout naar smaak toe en laat zo nodig iets langer inkoken."
+      },
+      {
+        "title": "Pasta koken",
+        "duration": "tijdens het inkoken",
+        "body": "Breng een grote pan gezouten water aan de kook. Kook 320 g pasta volgens de verpakking al dente. Bewaar 100 ml kookwater voordat je de pasta afgiet."
+      },
+      {
+        "title": "Pasta en saus samenvoegen",
+        "duration": "2 minuten",
+        "body": "Meng de afgegoten pasta door de saus en verwarm 1–2 minuten samen op laag vuur. Voeg alleen als de saus te dik is 2–3 eetlepels pastakookwater toe. Schep goed om en serveer direct."
+      }
+    ],
+    "tips": [
+      "Bak het gehakt echt bruin voor meer hartige smaak.",
+      "Bak de tomatenpuree kort mee voor een vollere, minder rauwe tomatensmaak.",
+      "Laat de saus zonder deksel inkoken omdat de groenten veel vocht afgeven.",
+      "Voeg pastakookwater alleen toe als de saus te dik is."
+    ],
+    "portions_note": "Voor 2 personen: kook 180–200 g pasta en gebruik ongeveer de helft van de saus. De overgebleven saus kun je zonder pasta invriezen."
+  }
+]
