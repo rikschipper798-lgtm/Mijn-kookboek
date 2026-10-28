@@ -242,13 +242,13 @@ function timeBadges(r){
 }
 function timeBreakdown(r){
  if(!number(r.coldRiseMinutes))return '';
- const early=number(r.initialRestMinutes),cold=number(r.coldRiseMinutes),proof=number(r.finalProofMinutes),cool=number(r.coolMinutes);
- const typical=number(r.prep)+early+cold+proof+number(r.cook)+cool;
+ const early=number(r.initialRestMinutes),cold=number(r.coldRiseMinutes),bench=number(r.benchRestMinutes),proof=number(r.finalProofMinutes),cool=number(r.coolMinutes);
+ const typical=number(r.prep)+early+cold+bench+proof+number(r.cook)+cool;
  const preferredMin=number(r.coldRiseRecommendedMinMinutes),preferredMax=number(r.coldRiseRecommendedMaxMinutes);
  const min=number(r.coldRiseMinimumMinutes),proofMin=number(r.finalProofMinMinutes),proofMax=number(r.finalProofMaxMinutes);
  const coldRange=preferredMin&&preferredMax?rangeTime(preferredMin,preferredMax):niceTime(cold);
  const proofRange=proofMin&&proofMax?rangeTime(proofMin,proofMax):niceTime(proof);
- const parts=[['Actieve voorbereiding',niceTime(number(r.prep))],['Eerste rust (2 × 20 min)',niceTime(early)],['Nachtrijs in de koelkast',coldRange+(min?' (minimaal '+niceTime(min)+')':'')],['Narijzen',proofRange],['Bakken in de oven',niceTime(number(r.cook))],['Afkoelen',niceTime(cool)]];
+ const parts=[['Actieve voorbereiding',niceTime(number(r.prep))],['Eerste rust (2 × 20 min)',niceTime(early)],['Nachtrijs in de koelkast',coldRange+(min?' (minimaal '+niceTime(min)+')':'')],...(bench?[['Tussenrust bij het vormen',niceTime(bench)]]:[]),['Narijzen',proofRange],['Bakken in de oven',niceTime(number(r.cook))],['Afkoelen',niceTime(cool)]];
  return '<section class="time-breakdown"><h3>Tijdsverdeling</h3><dl>'+parts.map(([label,value])=>'<div><dt>'+safe(label)+'</dt><dd>'+safe(value)+'</dd></div>').join('')+'</dl><p>De totale tijd is circa '+safe(niceTime(typical))+', bij '+safe(niceTime(cold))+' nachtrijs en '+safe(niceTime(proof))+' narijzen. Bij langer of korter rijzen verandert de werkelijke tijd. Deze perioden zijn al in de totale tijd opgenomen.</p></section>';
 }
 function imageKind(r){
