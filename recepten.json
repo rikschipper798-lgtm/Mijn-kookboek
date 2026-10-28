@@ -1186,13 +1186,13 @@
   {
     "id": "goulash",
     "title": "Rundergoulash met rijst",
-    "subtitle": "Langzaam gestoofd rundvlees met paprika, tomaat en kruiden, geserveerd met rijst.",
+    "subtitle": "Mals gestoofd rundvlees met een geconcentreerde paprikasaus, marjoraan, komijnzaad en twee soorten paprika, geserveerd met rijst.",
     "category": "Rundvlees",
     "kind": "Stoofgerecht",
     "cuisine": "Hongaars geïnspireerd",
-    "minutes": 190,
-    "prep": 20,
-    "cook": 170,
+    "minutes": 225,
+    "prep": 25,
+    "cook": 200,
     "servings": 4,
     "servingUnit": "personen",
     "heat": "Mild pittig",
@@ -1247,7 +1247,7 @@
       },
       {
         "name": "Runderbouillon",
-        "qty": 600,
+        "qty": 450,
         "unit": "ml",
         "group": "Saus & kruiden"
       },
@@ -1277,13 +1277,13 @@
       },
       {
         "name": "Gerookt paprikapoeder",
-        "qty": 2,
+        "qty": 1,
         "unit": "tl",
         "group": "Saus & kruiden"
       },
       {
         "name": "Komijnzaad",
-        "qty": 1,
+        "qty": 0.5,
         "unit": "tl",
         "group": "Saus & kruiden"
       },
@@ -1295,7 +1295,7 @@
       },
       {
         "name": "Tijm",
-        "qty": 1,
+        "qty": 0.5,
         "unit": "tl",
         "group": "Saus & kruiden"
       },
@@ -1326,17 +1326,17 @@
       }
     ],
     "steps": [
-      "Dep het stoofvlees droog en snijd in flinke stukken. Snipper de ui en knoflook; snijd de paprika en tomaat.",
-      "Verhit de olie in een stoofpan en bak het vlees in porties goudbruin. Haal uit de pan.",
-      "Bak de ui een paar minuten op matig vuur. Voeg knoflook en paprika toe en bak kort mee.",
-      "Voeg tomatenpuree, gewone en gerookte paprikapoeder, komijn, marjoraan, tijm en chili toe. Bak al roerend 1 minuut mee.",
-      "Strooi de bloem over het groentemengsel en roer door.",
-      "Doe het vlees terug in de pan, voeg tomaat, runderbouillon, laurier, peper en zout toe en roer goed los.",
-      "Laat 2½–3 uur heel zacht sudderen met de deksel schuin op de pan, tot het vlees gaar is. Roer regelmatig en voeg water toe als de saus te dik wordt.",
-      "Proef de goulash; voeg eventueel een beetje balsamico toe voor een frisse tegenhanger.",
-      "Kook kort voor serveren 300 g rijst volgens de verpakking en serveer met de goulash."
+      "Dep de 750 g runderstoofvlees goed droog en snijd in blokken van circa 3–4 cm. Snipper de 2 uien, hak 3 teentjes knoflook fijn en snijd de grote tomaat in blokjes. Snijd de eerste rode paprika in kleine stukken en de tweede in wat grovere repen; houd ze apart. Kneus de ½ tl komijnzaad eventueel licht met een vijzel.",
+      "Verhit de 2 el olijfolie in een zware stoofpan op middelhoog tot hoog vuur. Bak het rundvlees in twee porties in totaal circa 12–15 minuten goudbruin. Draai het pas als het makkelijk loslaat; haal het vervolgens uit de pan.",
+      "Verlaag naar middelhoog vuur en bak de gesnipperde uien 8–10 minuten in het achtergebleven bakvet tot ze zacht, licht goudbruin en zoetig worden. Voeg de eerste fijngesneden rode paprika toe en bak 3 minuten mee. Voeg de knoflook en 2 el tomatenpuree toe en bak al roerend nog 1 minuut.",
+      "Strooi 1½ el bloem over de groenten en roer circa 1 minuut mee. Zet het vuur laag en voeg 4 tl gewoon paprikapoeder, 1 tl gerookt paprikapoeder, ½ tl gekneusd komijnzaad, 1½ tl marjoraan, ½ tl tijm en ½ tl chilipoeder toe. Roer 20–30 seconden, maar laat het paprikapoeder niet donker of bitter worden; schenk direct een klein scheutje van de 450 ml runderbouillon erbij en roer de aanbaksels los.",
+      "Doe het vlees met zijn vrijgekomen sappen terug in de pan en voeg de grote tomaat, de resterende bouillon, 2 laurierblaadjes en 1 tl zwarte peper toe. Voeg eerst ongeveer ½ tl van de ¾ tl zout toe; proef aan het einde of het restant nodig is, afhankelijk van de bouillon. Roer alles goed door. Het vlees hoeft niet volledig onder te staan, maar er moet voldoende vocht onderin de pan aanwezig zijn.",
+      "Breng tegen de kook aan, zet dan het vuur zeer laag en laat met deksel schuin op de pan circa 2½–3 uur heel zacht stoven. Roer af en toe en controleer het vocht. Voeg zo nodig steeds 50–100 ml heet water toe zodat de saus niet droogkookt. Het vlees moet met een vork gemakkelijk uit elkaar te trekken zijn.",
+      "Voeg de tweede paprika circa 30 minuten vóór het einde van het stoven toe, zodra het vlees bijna zacht is. Laat meekoken tot de paprika zacht is maar nog enige structuur heeft en het vlees volledig mals is. Verwijder de laurierblaadjes. Is de saus te dun, laat dan enkele minuten zonder deksel inkoken; is hij te dik, voeg een scheutje water toe.",
+      "Proef de goulash op zout, rook, pittigheid en frisheid. Voeg desgewenst het resterende zout toe en eventueel 1 tl balsamico als de saus wat vlak of zwaar smaakt. Voeg de balsamico alleen naar smaak toe.",
+      "Kook in de laatste 15 minuten van het stoven de 300 g witte rijst of basmatirijst volgens de verpakking. Laat kort uitstomen en serveer met de warme goulash."
     ],
-    "tips": "Laat het vlees heel zacht sudderen tot het gemakkelijk uit elkaar valt. Serveer met rijst, niet met aardappelen.",
+    "tips": "Braad het vlees in porties voor diepe smaak en laat de uien 8–10 minuten rustig kleuren. Verlaag het vuur vóór je paprikapoeder toevoegt en blus na 20–30 seconden af: verbrand paprikapoeder wordt bitter. Start met 450 ml bouillon; controleer tijdens het stoven geregeld en vul zo nodig met heet water aan. Voeg de tweede rode paprika pas circa 30 minuten vóór het einde toe voor wat beet. De totale tijd is een richtlijn (ongeveer 3 uur en 45 minuten); het soort stoofvlees bepaalt of het na 2½ uur al mals is of langer nodig heeft. Bij minder zacht vlees langer stoven, niet hoger verhitten.",
     "review": false,
     "image": "images/goulash.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
