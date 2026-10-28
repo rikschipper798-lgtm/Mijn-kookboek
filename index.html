@@ -52,6 +52,14 @@ h3{font-family:Georgia,serif;font-size:24px;font-weight:500;margin:26px 0 13px}
 .basket-recipe{display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid var(--line);padding:8px 0}
 .basket-recipe .btn{padding:8px 12px}
 .scale-note{font-size:13px;color:#735631;background:#fbf5e8;padding:10px 13px;border-radius:8px;line-height:1.5}
+.time-breakdown{padding:15px 18px;background:#f3f5ee;border:1px solid #dce4d7;border-radius:12px;margin:15px 0 25px}
+.time-breakdown h3{font-size:22px;margin:0 0 10px}
+.time-breakdown dl{margin:0}
+.time-breakdown dl>div{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:7px 0;border-bottom:1px solid #dfe6d9}
+.time-breakdown dt{color:#526352}
+.time-breakdown dd{margin:0;text-align:right;font-weight:650}
+.time-breakdown p{font-size:13px;line-height:1.5;color:#586959;margin:12px 0 0}
+@media(max-width:500px){.time-breakdown dl>div{align-items:flex-start;flex-direction:column;gap:2px}.time-breakdown dd{text-align:left}}
 .servings button:disabled{opacity:.4;cursor:not-allowed}
 @media(max-width:650px){.basket-recipe{align-items:flex-start;flex-direction:column}}
 
@@ -107,13 +115,30 @@ function unitLabel(r,n){
 }
 function portionsLabel(r,n){return fmt(n)+' '+unitLabel(r,n)}
 function timeInfo(r){
+ // De standaardduur bevat alle bereidingsstappen, ook de rijstijden van brood.
+ // Alleen expliciete externe marineer- en rustperiodes komen bovenop die duur.
  const base=duration(r),marinate=number(r.marinateMinutes),rest=number(r.restMinutes);
- return {total:base+marinate+rest,base,marinate,rest,active:number(r.activeMinutes)};
+ return {total:base+marinate+rest,base,marinate,rest,active:number(r.activeMinutes),coldRise:number(r.coldRiseMinutes),finalProof:number(r.finalProofMinutes),estimated:Boolean(r.totalTimeEstimated)};
 }
 function niceTime(n){if(!n)return '–';return n<60?n+' min':Math.floor(n/60)+' uur'+(n%60?' '+n%60+' min':'')}
+function rangeTime(low,high){
+ if(low>=60&&high>=60&&low%60===0&&high%60===0)return low/60+'–'+high/60+' uur';
+ return low+'–'+high+' min';
+}
 function timeBadges(r){
  const t=timeInfo(r);
- return ['<span class="tag">'+niceTime(t.total)+' totaal</span>',t.marinate?'<span class="tag">'+t.marinate+' min marineren</span>':'',t.rest?'<span class="tag">'+t.rest+' min rusten</span>':'',t.active?'<span class="tag">'+t.active+' min actief</span>':''].join('');
+ return ['<span class="tag">'+(t.estimated?'ca. ':'')+niceTime(t.total)+' totaal</span>',t.marinate?'<span class="tag">'+t.marinate+' min marineren</span>':'',t.rest?'<span class="tag">'+t.rest+' min rusten</span>':'',t.coldRise?'<span class="tag">'+niceTime(t.coldRise)+' nachtrijs</span>':'',t.finalProof?'<span class="tag">'+niceTime(t.finalProof)+' narijzen</span>':'',t.active?'<span class="tag">'+t.active+' min actief</span>':''].join('');
+}
+function timeBreakdown(r){
+ if(!number(r.coldRiseMinutes))return '';
+ const early=number(r.initialRestMinutes),cold=number(r.coldRiseMinutes),proof=number(r.finalProofMinutes),cool=number(r.coolMinutes);
+ const typical=number(r.prep)+early+cold+proof+number(r.cook)+cool;
+ const preferredMin=number(r.coldRiseRecommendedMinMinutes),preferredMax=number(r.coldRiseRecommendedMaxMinutes);
+ const min=number(r.coldRiseMinimumMinutes),proofMin=number(r.finalProofMinMinutes),proofMax=number(r.finalProofMaxMinutes);
+ const coldRange=preferredMin&&preferredMax?rangeTime(preferredMin,preferredMax):niceTime(cold);
+ const proofRange=proofMin&&proofMax?rangeTime(proofMin,proofMax):niceTime(proof);
+ const parts=[['Actieve voorbereiding',niceTime(number(r.prep))],['Eerste rust (2 × 20 min)',niceTime(early)],['Nachtrijs in de koelkast',coldRange+(min?' (minimaal '+niceTime(min)+')':'')],['Narijzen',proofRange],['Bakken in de oven',niceTime(number(r.cook))],['Afkoelen',niceTime(cool)]];
+ return '<section class="time-breakdown"><h3>Tijdsverdeling</h3><dl>'+parts.map(([label,value])=>'<div><dt>'+safe(label)+'</dt><dd>'+safe(value)+'</dd></div>').join('')+'</dl><p>De totale tijd is circa '+safe(niceTime(typical))+', bij '+safe(niceTime(cold))+' nachtrijs en '+safe(niceTime(proof))+' narijzen. Bij langer of korter rijzen verandert de werkelijke tijd. Deze perioden zijn al in de totale tijd opgenomen.</p></section>';
 }
 function emoji(r){
  const t=(r.category+' '+r.title).toLowerCase();
@@ -183,7 +208,7 @@ function renderCards(){
  const term=el('search').value.toLowerCase().trim(),cat=el('category').value;
  const shown=recipes.filter(r=>(!cat||r.category===cat)&&(!favoriteOnly||favorites.has(r.id))&&(!term||searchable(r).includes(term)));
  el('count').textContent=shown.length+' van '+recipes.length+' recepten';
- el('cards').innerHTML=shown.map(r=>'<div class="card">'+(r.image?'<div class="card-art with-photo"><img loading="lazy" src="'+safe(r.image)+'" alt="'+safe(title(r))+'"></div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+'<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2><p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span><span class="tag">'+niceTime(timeInfo(r).total)+'</span></div><div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'">Bekijk recept</a><button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>').join('')||'<p>Geen recepten gevonden. Probeer een andere zoekterm.</p>';
+ el('cards').innerHTML=shown.map(r=>'<div class="card">'+(r.image?'<div class="card-art with-photo"><img loading="lazy" src="'+safe(r.image)+'" alt="'+safe(title(r))+'"></div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+'<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2><p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span><span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span></div><div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'">Bekijk recept</a><button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>').join('')||'<p>Geen recepten gevonden. Probeer een andere zoekterm.</p>';
  document.querySelectorAll('#cards [data-fav]').forEach(b=>b.addEventListener('click',()=>toggleFav(b.dataset.fav)));
  basketCount();
 }
@@ -250,7 +275,7 @@ function renderDetail(){
  const tips=typeof view.tips==='string'?[view.tips]:(view.tips||[]);
  const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
  const scaleNote=current!==original?'<p class="scale-note">De ingrediënten zijn aangepast. Vaste hoeveelheden in de bereidingsstappen kunnen nog uitgaan van de oorspronkelijke portie.</p>':'';
- el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button><div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2><p class="description">'+safe(description(view))+'</p>'+(view.image?'<img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'">':'')+'<div class="meta"><span class="tag">'+safe(portionsLabel(view,original))+'</span>'+timeBadges(view)+'<span class="tag">'+safe(view.difficulty||'')+'</span></div>'+choices+'<div class="actions"><button class="btn" id="copy">Kopieer recept</button><button class="btn alt" id="whatsapp">Deel via WhatsApp</button><button class="btn alt" id="print">Print</button><button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button><button class="btn alt" id="addBasket">Voeg toe aan boodschappenlijst</button><button class="btn alt" id="goBasket">Bekijk boodschappenlijst</button></div>'+(canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+scaleNote+'<div class="columns"><section><h3>Ingrediënten</h3><ul class="ingredients">'+groupedRows(items,mult)+'</ul></section><section><h3>Boodschappenlijst voor dit recept</h3><p class="count">Vink af wat je al hebt. Je keuzes blijven bewaard.</p><div class="shop">'+shoppingRows(items,mult,key)+'</div></section></div><h3>Bereiding</h3><ol class="steps">'+steps+'</ol>'+(remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'');
+ el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button><div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2><p class="description">'+safe(description(view))+'</p>'+(view.image?'<img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'">':'')+'<div class="meta"><span class="tag">'+safe(portionsLabel(view,original))+'</span>'+timeBadges(view)+'<span class="tag">'+safe(view.difficulty||'')+'</span></div>'+timeBreakdown(view)+choices+'<div class="actions"><button class="btn" id="copy">Kopieer recept</button><button class="btn alt" id="whatsapp">Deel via WhatsApp</button><button class="btn alt" id="print">Print</button><button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button><button class="btn alt" id="addBasket">Voeg toe aan boodschappenlijst</button><button class="btn alt" id="goBasket">Bekijk boodschappenlijst</button></div>'+(canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+scaleNote+'<div class="columns"><section><h3>Ingrediënten</h3><ul class="ingredients">'+groupedRows(items,mult)+'</ul></section><section><h3>Boodschappenlijst voor dit recept</h3><p class="count">Vink af wat je al hebt. Je keuzes blijven bewaard.</p><div class="shop">'+shoppingRows(items,mult,key)+'</div></section></div><h3>Bereiding</h3><ol class="steps">'+steps+'</ol>'+(remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'');
  el('back').onclick=()=>location.hash='';
  el('favorite').onclick=()=>toggleFav(r.id);
  el('detail').querySelectorAll('[data-variant]').forEach(b=>b.onclick=()=>{el('detail').dataset.variantId=b.dataset.variant;renderDetail()});
