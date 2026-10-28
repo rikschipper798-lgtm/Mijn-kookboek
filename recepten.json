@@ -654,7 +654,8 @@
         "image": "images/bolognese.webp",
         "image_source": "AI-afbeelding uit eerdere kookboekversie"
       }
-    ]
+    ],
+    "image_source": "Herkomst afbeelding uit eerdere kookboekversie niet vastgelegd"
   },
   {
     "id": "gnocchi",
@@ -1109,7 +1110,6 @@
     ],
     "tips": "Verwarm het flatbread kort zodat het soepel blijft. Schep koude groenten en yoghurtsaus pas na het bakken van de gyros op het brood.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
     "image": "images/gyros.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
@@ -1896,7 +1896,6 @@
     ],
     "tips": "Gebruik een halve rode peper voor een gemiddelde pittigheid. Voeg de sojasaus en ketjap pas na het fruiten van de groenten toe.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
     "image": "images/kiprijst.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
@@ -2039,7 +2038,6 @@
     ],
     "tips": "Bak de kipschnitzels apart in de koekenpan voor een krokante korst. Voeg de tomaten pas laat toe aan de ovengroenten.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
     "image": "images/traybake.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
@@ -2175,7 +2173,6 @@
     ],
     "tips": "Bewaar wat pastawater om de saus te binden. Voeg verse basilicum en Parmezaanse kaas pas toe als het vuur uitstaat.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
     "image": "images/italiaanse-kip.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
@@ -2253,7 +2250,6 @@
     ],
     "tips": "Bak de lege wrap 2 minuten voor als je een extra krokante bodem wilt. Beleg niet te dik, zodat de wrap niet slap wordt.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
     "image": "images/wrap-pizza.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
@@ -2425,7 +2421,6 @@
     ],
     "tips": "Kook de krieltjes kort voor en laat de varkenshaas na het bakken 5 minuten rusten. Laat de champignon-pepersaus rustig inkoken.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
     "image": "images/varkenshaas.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
@@ -2957,7 +2952,6 @@
     ],
     "tips": "Dit is de versie met kant-en-klare krokante kip voor vier personen. Bereid de kip volgens de verpakking apart en leg hem pas vlak voor het serveren op de rijst. Voor een zelfgepaneerde kipversie kies je de andere bereidingsvariant.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
     "defaultVariantLabel": "Met kant-en-klare krokante kip",
     "variants": [
       {
