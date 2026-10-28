@@ -261,6 +261,9 @@ function imageKind(r){
 function imageLabel(r){return imageKind(r)?'<span class="image-credit">'+safe(imageKind(r))+'</span>':''}
 function emoji(r){
  const t=(r.category+' '+r.title).toLowerCase();
+ if(t.includes('chocolademelk')||t.includes('warme drank'))return '☕';
+ if(t.includes('kruidenboter'))return '🧈';
+ if(t.includes('satésaus')||t.includes('sate'))return '🍗';
  if(t.includes('brood')||t.includes('bruschetta'))return '🥖';
  if(t.includes('pasta')||t.includes('gnocchi')||t.includes('bolognese'))return '🍝';
  if(t.includes('wrap')||t.includes('arayes')||t.includes('gyros'))return '🌯';
