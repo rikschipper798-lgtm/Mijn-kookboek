@@ -1001,7 +1001,7 @@
   {
     "id": "bruschetta",
     "title": "Bruschetta met tomaat en basilicum",
-    "subtitle": "Geroosterd stokbrood met verse tomaat, basilicum, knoflook en olijfolie.",
+    "subtitle": "Klassieke bruschetta voor circa 50–60 hapjes: krokant geroosterd stokbrood met goed uitgelekte tomaat, verse basilicum, knoflook en extra vierge olijfolie.",
     "category": "Borrelhapjes",
     "kind": "Borrelhap",
     "cuisine": "Italiaans",
@@ -1022,7 +1022,7 @@
     "ingredients": [
       {
         "name": "Stokbrood",
-        "qty": 4,
+        "qty": 3,
         "unit": "stuks",
         "group": "Basis"
       },
@@ -1040,9 +1040,9 @@
       },
       {
         "name": "Extra vierge olijfolie",
-        "qty": 85,
+        "qty": 65,
         "unit": "ml",
-        "group": "Topping"
+        "group": "Topping en brood"
       },
       {
         "name": "Knoflook",
@@ -1064,15 +1064,15 @@
       }
     ],
     "steps": [
-      "Snijd de rijpe tomaten in kleine blokjes. Verwijder desgewenst het grootste deel van de natte zaadlijsten.",
-      "Scheur de blaadjes van één basilicumplantje fijn en meng deze met de tomaten en extra vierge olijfolie.",
-      "Voeg naar smaak peper toe. Voeg het zout pas vlak voor serveren toe, zodat het tomatenmengsel niet onnodig veel vocht verliest.",
-      "Verwarm de oven voor op 200 °C. Snijd vier stokbroden in plakjes van circa 1,5–2 cm.",
-      "Rooster het stokbrood 6–10 minuten tot het krokant en goudbruin is.",
-      "Wrijf de warme broodjes licht in met een gehalveerd teentje knoflook; de knoflook gaat niet in de tomatentopping.",
-      "Laat overtollig tomatenvocht achter in de kom en beleg de broodjes vlak voor het uitserveren."
+      "Was de 1.100 g rijpe tomaten, verwijder de natte zaadlijsten en snijd het vruchtvlees in kleine blokjes. Laat de tomaten circa 5 minuten uitlekken in een zeef boven een kom, zodat de topping niet te nat wordt.",
+      "Verwarm ondertussen de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Snijd de 3 stokbroden in plakjes van ongeveer 1,5–2 cm. De opbrengst is afhankelijk van de lengte van het brood; mik op ongeveer 50–60 plakjes.",
+      "Verdeel 15 ml van de 65 ml extra vierge olijfolie heel dun over de snijkanten van de broodplakjes. Rooster ze op een bakplaat in circa 6–10 minuten goudbruin en knapperig. Werk zo nodig in twee rondes; houd de broodjes in het oog.",
+      "Meng de goed uitgelekte tomaten met de overige 50 ml extra vierge olijfolie en voeg zwarte peper naar smaak toe. Laat de basilicum en het zout nog even apart tot vlak voor het serveren.",
+      "Halveer de 4 teentjes knoflook. Wrijf de nog warme, geroosterde broodplakjes heel licht in met een snijvlak van de knoflook. De rauwe knoflook gaat niet rechtstreeks door het tomatenmengsel.",
+      "Scheur vlak voor het serveren de blaadjes van 1 basilicumplantje in stukjes en meng ze door de tomaten. Breng dan pas op smaak met zout en proef of de balans tussen tomaat, basilicum en olijfolie goed is.",
+      "Laat eventueel achtergebleven vocht in de kom en schep de topping pas vlak voor het uitdelen op de knapperige broodjes. Serveer meteen."
     ],
-    "tips": "Voor 20 personen is 1,0–1,2 kg tomaat voldoende; één basilicumplantje is genoeg. Beleg het brood vlak voor het serveren.",
+    "tips": "Voor een borrelhapje voor 20 personen is 1,0–1,2 kg rijpe tomaat voldoende; de huidige hoeveelheid van 1.100 g sluit aan op de eerdere kookfeedback. Eén basilicumplantje is genoeg. Drie stokbroden leveren afhankelijk van formaat en plakdikte ongeveer 50–60 hapjes op. Verwijder de natte zaadlijsten, laat de tomaten 5 minuten uitlekken en voeg basilicum en zout pas vlak voor het serveren toe. Verdeel de 65 ml olijfolie in 15 ml voor het brood en 50 ml voor de topping; beleg pas vlak voor het uitserveren.",
     "review": false,
     "image": "images/bruschetta.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
