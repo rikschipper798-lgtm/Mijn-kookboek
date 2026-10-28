@@ -1,5 +1,125 @@
 [
   {
+    "id": "gekruide-kipschnitzel",
+    "title": "Krokante, kruidige kipschnitzel",
+    "subtitle": "Zelfgemaakte kipschnitzel met een goudbruin paneerlaagje, gerookt paprikapoeder, knoflook, oregano en tijm.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Europees",
+    "minutes": 30,
+    "prep": 15,
+    "cook": 15,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild tot gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-10-28",
+    "tags": [
+      "Kip",
+      "Schnitzel",
+      "Krokant",
+      "Koekenpan"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipfilet",
+        "qty": 350,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Ei",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Paneren"
+      },
+      {
+        "name": "Bloem",
+        "qty": 3,
+        "unit": "el",
+        "group": "Paneren"
+      },
+      {
+        "name": "Paneermeel",
+        "qty": 60,
+        "unit": "g",
+        "group": "Paneren"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Tijm",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden",
+        "optional": true
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 4,
+        "unit": "el",
+        "group": "Bakken"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Serveren",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Snijd de kipfilets horizontaal open, zodat je twee grote, dunne schnitzels krijgt. Leg ze tussen twee vellen bakpapier en sla voorzichtig plat tot ongeveer 1 cm dik. Dep de kip droog.",
+      "Meng gerookt paprikapoeder, knoflookpoeder, uienpoeder, oregano, tijm, zwarte peper en zout. Voeg eventueel ¼ tl chilipoeder toe voor een pittiger resultaat.",
+      "Wrijf ongeveer de helft van de kruidenmix over beide kanten van de kip. Meng de andere helft door het paneermeel, zodat zowel het vlees als het korstje goed gekruid is.",
+      "Zet drie diepe borden klaar: één met bloem, één met losgeklopt ei en één met het gekruide paneermeel. Haal de kip achtereenvolgens door bloem, ei en paneermeel. Druk het paneermeel voorzichtig aan.",
+      "Verhit circa 4 el zonnebloemolie in een grote koekenpan op middelhoog vuur. Bak de schnitzels ongeveer 3–5 minuten per kant, afhankelijk van de dikte. Draai voorzichtig om zodra de onderkant goudbruin is. Voeg indien nodig wat extra olie toe. Controleer dat de kip volledig gaar is (kerntemperatuur 74 °C).",
+      "Laat de schnitzels kort uitlekken op een rooster of keukenpapier en serveer direct. Voeg desgewenst een paar druppels citroensap toe voor frisheid."
+    ],
+    "tips": "Voor een extra luchtige, krokante korst kun je de 60 g gewone paneermeel vervangen door panko. Houd de pan op middelhoog vuur: bij te hoge temperatuur verbrandt het paneermeel voordat de kip gaar is. De aangegeven kruiden zijn afgestemd op 300–350 g kipfilet. Serveer met aardappeltjes en groenten voor een volledige maaltijd.",
+    "review": false
+  },
+  {
     "id": "pasta-rundergehakt-groenten",
     "title": "Pasta met rundergehakt, groenten en basilico-tomatensaus",
     "description": "Rijkgevulde pasta met mooi bruin gebakken rundergehakt, veel groenten en een volle, kruidige tomatensaus.",
