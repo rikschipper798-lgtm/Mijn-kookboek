@@ -358,8 +358,8 @@
       },
       {
         "name": "Courgette",
-        "qty": 1,
-        "unit": "kleine (ca. 200 g)",
+        "qty": 200,
+        "unit": "g",
         "group": "Groenten"
       },
       {
@@ -1723,7 +1723,8 @@
     "tips": "Gebruik geen zoete vanillekwark in de saus. De wraps worden extra knapperig als je ze na het vullen kort bakt in een droge pan.",
     "review": false,
     "image": "images/shawarma.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
+    "image_source": "AI-afbeelding uit eerdere kookboekversie",
+    "marinateMinutes": 15
   },
   {
     "id": "kiprijst",
