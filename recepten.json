@@ -2719,7 +2719,7 @@
   {
     "id": "zalm",
     "title": "Ovenzalm met citroen en dille",
-    "subtitle": "Zalm met dille en citroen, geserveerd met geglaceerde wortels en rustieke friet.",
+    "subtitle": "Sappige ovenzalm met extra dille en frisse citroen, geglaceerde wortels en krokante rustieke friet uit de airfryer.",
     "category": "Vis",
     "kind": "Hoofdgerecht",
     "cuisine": "Nederlands geïnspireerd",
@@ -2747,13 +2747,13 @@
       },
       {
         "name": "Olijfolie",
-        "qty": 1,
-        "unit": "el",
+        "qty": 2,
+        "unit": "tl",
         "group": "Zalm"
       },
       {
         "name": "Dille",
-        "qty": 0.5,
+        "qty": 1,
         "unit": "tl",
         "group": "Zalm"
       },
@@ -2831,16 +2831,16 @@
       }
     ],
     "steps": [
-      "Verwarm de oven voor op 200 °C boven-/onderwarmte (190 °C hetelucht). Verwarm de airfryer alvast voor indien de verpakking dat voorschrijft.",
-      "Schil en snijd de wortels in gelijke stukken. Kook ze ongeveer 8 minuten voor en giet af.",
-      "Leg de zalmfilets in een ovenschaal. Bestrijk met olijfolie en bestrooi met dille, knoflookpoeder, peper en zout.",
-      "Schuif de zalm ongeveer 14 minuten in de oven, afhankelijk van de dikte. Controleer de gaarheid; laat daarna 2 minuten rusten.",
-      "Bereid ondertussen 400 gram rustieke frieten in de airfryer op circa 180 °C gedurende ongeveer 15 minuten, of volgens de verpakking. Schud na ongeveer 4, 8 en 12 minuten.",
-      "Verhit de boter en bak de voorgekookte wortels 2 minuten. Voeg tijm en knoflookpoeder toe.",
-      "Voeg honing toe en laat de wortels nog kort glanzen. Eindig met een beetje citroensap en peper en zout.",
-      "Besprenkel de zalm pas na het bakken met de 2 theelepels citroensap. Serveer met de wortels en frieten."
+      "Verwarm de oven voor op 200 °C boven-/onderwarmte (190 °C hetelucht). Zet een ovenschaal klaar en verwarm de airfryer voor als de verpakking van de friet dit voorschrijft.",
+      "Schil en snijd 400 g wortels in gelijkmatige, niet te dikke stukken. Kook ze circa 6–8 minuten voor in licht kokend water tot ze net wat zachter zijn, maar nog beet hebben. Giet goed af en laat uitstomen.",
+      "Dep 330 g zalmfilets droog en leg ze in de ovenschaal, met de huidzijde naar beneden als die aanwezig is. Bestrijk met in totaal 2 tl olijfolie en kruid met 1 tl gedroogde dille, ¼ tl knoflookpoeder, ¼ tl zwarte peper en ¼ tl zout. Houd de 2 tl citroensap voor de zalm apart tot na het bakken.",
+      "Start de bereiding van 400 g Lamb Weston Rustic Fries in de airfryer volgens de verpakking (richtlijn circa 180 °C, ongeveer 15 minuten). Schud de friet tijdens het bakken regelmatig, bijvoorbeeld na ongeveer 4, 8 en 12 minuten, zodat deze krokant wordt.",
+      "Zet de zalm ongeveer tegelijkertijd met de friet in de voorverwarmde oven en bak circa 12–15 minuten, afhankelijk van de dikte van de filets. Controleer tegen het einde de gaarheid; houd voor een voedselveilige bereiding 63 °C kerntemperatuur aan. Laat de zalm na de oven circa 2 minuten rusten.",
+      "Verhit tijdens de laatste circa 5 minuten van de oventijd 10 g boter in een koekenpan op middelhoog vuur. Voeg de goed uitgelekte wortels toe en bak 2–3 minuten. Schep er ½ tl tijm, ¼ tl knoflookpoeder en peper en zout naar smaak door.",
+      "Voeg 1 tl honing toe en schep de wortels nog circa 1–2 minuten om, totdat ze mooi glanzen. Zet het vuur uit en voeg 1 tl citroensap toe; proef en stel zo nodig de smaak bij.",
+      "Besprenkel de ovenzalm pas na het bakken met de apart gehouden 2 tl citroensap. Serveer direct met de geglaceerde wortels en de krokante friet."
     ],
-    "tips": "Voeg het citroensap bij de zalm pas na het garen toe. De honing is uitsluitend bedoeld voor de wortels.",
+    "tips": "Dep de zalm droog en gebruik slechts 2 tl olijfolie; de vis bevat van zichzelf al vet. Gebruik 1 tl gedroogde dille voor een duidelijke kruidensmaak. Controleer de gaarheid vanaf ongeveer 12 minuten, afhankelijk van de dikte, en houd voor een voedselveilige bereiding 63 °C kerntemperatuur aan. Voeg de 2 tl citroensap pas ná het bakken aan de zalm toe. Kook de wortels 6–8 minuten voor, laat uitlekken en glaceer ze kort in 10 g boter met 1 tl honing; de extra 1 tl citroensap hoort bij de wortels. Plan zalm en friet gelijktijdig en maak de wortels als laatste af.",
     "review": false,
     "image": "images/zalm.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
