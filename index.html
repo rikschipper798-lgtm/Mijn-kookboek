@@ -80,6 +80,10 @@ footer{text-align:center;color:#6f786f;font-size:13px;padding:0 20px 30px}
 @media print{.top,.back,.actions,.toolbar,.count,.cards,footer,.variants,.servings{display:none!important}.wrap{padding:0}.details{box-shadow:none;border:0;padding:0}.shop{display:none}}
 
 /* Visuele update: rustig redactioneel kookboek, responsive en toegankelijk. */
+.card-art img:not([src$=".svg"]),.hero-photo:not([src$=".svg"]){filter:saturate(.93) contrast(1.025)}
+.card-art img[src$=".svg"],.hero-photo[src$=".svg"]{background:#ede8dc;object-fit:cover}
+.image-credit{pointer-events:none}
+
 :root{
  --green:#244532;--leaf:#4d6b52;--clay:#ab714b;--line:#e6e4db;
  --ink:#25382c;--muted:#657469;--surface:#ffffff;--cream:#faf9f5;
@@ -251,6 +255,7 @@ function imageKind(r){
  const source=(r.image_source||'').toLowerCase();
  if(source.includes('vectorillustratie'))return 'Illustratie';
  if(source.includes('ai-afbeelding')||source.includes('ai-illustratie'))return 'AI-beeld';
+ if(source.includes('herkomst')&&source.includes('niet vastgelegd'))return 'Bron onbekend';
  return '';
 }
 function imageLabel(r){return imageKind(r)?'<span class="image-credit">'+safe(imageKind(r))+'</span>':''}
