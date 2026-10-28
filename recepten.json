@@ -2355,7 +2355,7 @@
   {
     "id": "varkenshaas",
     "title": "Varkenshaas met champignon-pepersaus",
-    "subtitle": "Malse varkenshaas met romige champignon-pepersaus, krieltjes en groenten.",
+    "subtitle": "Sappige varkenshaas met volromige champignon-pepersaus, krokant geroosterde krieltjes, honingwortels en beetgare sperziebonen.",
     "category": "Varkensvlees",
     "kind": "Hoofdgerecht",
     "cuisine": "Nederlands",
@@ -2378,6 +2378,18 @@
         "name": "Varkenshaas",
         "qty": 375,
         "unit": "g",
+        "group": "Vlees"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Vlees"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
         "group": "Vlees"
       },
       {
@@ -2420,7 +2432,8 @@
         "name": "Balsamico",
         "qty": 1,
         "unit": "tl",
-        "group": "Saus"
+        "group": "Saus",
+        "optional": true
       },
       {
         "name": "Tijm",
@@ -2486,7 +2499,7 @@
         "name": "Olijfolie",
         "qty": 1.5,
         "unit": "el",
-        "group": "Krieltjes"
+        "group": "Krieltjes & wortels"
       },
       {
         "name": "Wortels",
@@ -2508,17 +2521,17 @@
       }
     ],
     "steps": [
-      "Verwarm de heteluchtoven voor op 200 °C. Halveer de krieltjes en kook ze 7–8 minuten voor. Giet af en laat droogstomen.",
-      "Meng de krieltjes met olijfolie, gerookt paprikapoeder, knoflookpoeder, rozemarijn, tijm, zout en peper. Verdeel op een hete bakplaat en rooster 30–35 minuten; schep halverwege om.",
-      "Snijd de wortels en voeg ze circa 25 minuten voor het einde toe aan de oven, met een klein beetje olie en honing.",
-      "Maak de sperziebonen schoon en kook ze in de laatste 12–15 minuten beetgaar.",
-      "Dep de varkenshaas droog en kruid met peper en zout. Verhit boter in een koekenpan en bak het vlees rondom 4–5 minuten bruin.",
-      "Laat het vlees op matig vuur verder garen tot een veilige en gewenste kerntemperatuur (richtwaarde 63–65 °C). Haal uit de pan en laat 5–7 minuten rusten.",
-      "Bak de sjalot en kastanjechampignons in dezelfde pan. Voeg knoflook, tijm en peper toe.",
-      "Roer Dijonmosterd en balsamico erdoor, schenk de bouillon en kookroom erbij en laat 3–5 minuten zacht inkoken.",
-      "Snijd de varkenshaas in plakken en serveer met krieltjes, groenten en saus."
+      "Verwarm de oven voor op 200 °C hetelucht (220 °C boven-/onderwarmte). Halveer 475 g krieltjes en kook ze circa 7–8 minuten in water tot de buitenkant net zachter wordt. Giet af, laat 2–3 minuten droogstomen en schud de pan voorzichtig zodat de snijkanten ruw worden.",
+      "Meng de droge krieltjes met 1 el van de 1½ el olijfolie, 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ¾ tl rozemarijn, ½ tl tijm, ½ tl zout en ¼ tl zwarte peper. Spreid ze met ruimte ertussen uit op een voorverwarmde of goed hete bakplaat en rooster 30–35 minuten tot ze goudbruin en krokant zijn. Schep halverwege om.",
+      "Schrap of schil 250 g wortels en snijd in dunne staafjes. Meng met de resterende ½ el olijfolie en voeg ze tijdens de laatste circa 25 minuten naast de krieltjes toe, of gebruik een tweede bakplaat als het te vol wordt. Meng pas in de laatste 10 minuten van de oventijd 1 tl honing door de wortels om verbranden te voorkomen.",
+      "Maak 200 g sperziebonen schoon. Kook ze tijdens de laatste 12–15 minuten van de oventijd in licht kokend water totdat ze gaar zijn maar nog beet hebben; giet af.",
+      "Dep 375 g varkenshaas goed droog en bestrooi aan beide kanten met zout en zwarte peper naar smaak (apart van de kruiden voor de krieltjes). Verhit 10 g van de 15 g boter in een koekenpan op middelhoog tot hoog vuur. Braad de varkenshaas 4–5 minuten rondom bruin, verlaag daarna het vuur en gaar nog circa 6–10 minuten, afhankelijk van de dikte, tot 63–65 °C in de kern. Haal uit de pan en laat minimaal 5 minuten losjes afgedekt rusten.",
+      "Snijd intussen 200 g kastanjechampignons in plakjes, snipper 1 sjalot en hak 2 teentjes knoflook fijn. Voeg de resterende 5 g boter toe aan de pan met de aanbaksels van het vlees. Bak de champignons 5–7 minuten op vrij hoog vuur totdat het vrijgekomen vocht verdampt en de champignons goed bruin kleuren; schep niet te vaak om.",
+      "Voeg de sjalot toe en bak 2 minuten mee. Voeg de knoflook, ½ tl tijm en ¾ tl grofgemalen zwarte peper toe en bak nog 30 seconden op matig vuur. Roer 1 tl Dijonmosterd erdoor.",
+      "Schenk 100 ml runderbouillon erbij, roer de aanbaksels los en laat circa 2–3 minuten inkoken. Voeg daarna 125 ml kookroom toe en laat nog 3–5 minuten zacht pruttelen tot de champignon-pepersaus licht gebonden is. Proef eerst; voeg zo nodig 1 tl balsamico toe als frisse tegenhanger en stel de smaak bij.",
+      "Snijd de gerustte varkenshaas in plakken. Verdeel de krokante krieltjes, honingwortels en sperziebonen over twee borden. Leg de varkenshaas erbij en schep de warme champignon-pepersaus over of naast het vlees. Serveer direct."
     ],
-    "tips": "Kook de krieltjes kort voor en laat de varkenshaas na het bakken 5 minuten rusten. Laat de champignon-pepersaus rustig inkoken.",
+    "tips": "Kook de krieltjes 7–8 minuten voor, laat ze goed droogstomen en schud de pan zodat ze ruwe randjes krijgen. Verdeel de 1½ el olijfolie in 1 el voor de krieltjes en ½ el voor de wortels; voeg de 1 tl honing pas in de laatste 10 ovenminuten toe. Bak de champignons 5–7 minuten stevig bruin voordat je sjalot en knoflook toevoegt; laat de bouillon inkoken vóór de room erbij gaat. De balsamico is optioneel en gaat pas na het proeven in de saus. Gaar de varkenshaas tot 63–65 °C kerntemperatuur en laat minimaal 5 minuten rusten. Bereid vlees, saus en sperziebonen terwijl de krieltjes in de oven staan om binnen circa 60 minuten te blijven.",
     "review": false,
     "image": "images/varkenshaas.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
