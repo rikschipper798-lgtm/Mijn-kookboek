@@ -2930,13 +2930,13 @@
   {
     "id": "kipwraps",
     "title": "Kruidige kipwraps met groenten",
-    "subtitle": "Knapperig gegrilde wraps gevuld met kip, groenten en een kruidige tomatensaus.",
+    "subtitle": "Knapperig gebakken wraps met kruidige kipdij, goed aangebakken groenten en een volle, lichtzoete tomatensaus.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Wereldkeuken",
-    "minutes": 35,
-    "prep": 20,
-    "cook": 15,
+    "minutes": 40,
+    "prep": 15,
+    "cook": 25,
     "servings": 2,
     "servingUnit": "personen",
     "heat": "Gemiddeld pittig",
@@ -3001,11 +3001,12 @@
         "name": "Water",
         "qty": 25,
         "unit": "ml",
-        "group": "Saus"
+        "group": "Saus",
+        "optional": true
       },
       {
         "name": "Honing",
-        "qty": 1,
+        "qty": 0.5,
         "unit": "tl",
         "group": "Saus"
       },
@@ -3017,13 +3018,13 @@
       },
       {
         "name": "Paprikapoeder",
-        "qty": 0.5,
+        "qty": 1,
         "unit": "tl",
         "group": "Kruiden"
       },
       {
         "name": "Gerookt paprikapoeder",
-        "qty": 1,
+        "qty": 0.5,
         "unit": "tl",
         "group": "Kruiden"
       },
@@ -3077,97 +3078,18 @@
       }
     ],
     "steps": [
-      "Snijd kipdijfilet in reepjes en meng met paprikapoeders, oregano, komijn, knoflookpoeder, uienpoeder, chili, peper en zout.",
-      "Snijd paprika, courgette, rode ui, tomaat en knoflook fijn.",
-      "Verhit olie in een pan en bak de kip rondom bruin. Haal uit de pan.",
-      "Fruit rode ui en paprika enkele minuten. Voeg de courgette toe en bak mee.",
-      "Voeg knoflook en tomatenpuree toe en bak 1 minuut mee.",
-      "Roer tomaat, water, honing en citroensap erdoor en doe de kip terug in de pan.",
-      "Laat ongeveer 4–5 minuten pruttelen zodat de saus indikt en de kip helemaal gaar is.",
-      "Verwarm de wraps. Vul met het kip-groentemengsel, vouw ze strak op en gril ze desgewenst kort in een droge pan."
+      "Snijd 300 g kipdijfilet in dunne reepjes. Meng met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl oregano, ¾ tl komijn, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl chilipoeder, ½ tl zwarte peper en ½ tl zout. Schep goed om, zodat de kip aan alle kanten gekruid is.",
+      "Snijd 1 paprika in reepjes, ¾ courgette in kleine halve plakjes en 1 rode ui in dunne halve ringen. Hak 2 teentjes knoflook fijn. Verwijder de natte zaadlijsten van 1 tomaat en snijd het vruchtvlees in kleine blokjes.",
+      "Verhit ½ el van de 1 el olijfolie in een ruime koekenpan op middelhoog tot hoog vuur. Bak de kipreepjes circa 5–7 minuten, zo nodig in twee porties, tot ze rondom bruine randjes krijgen. Schep de kip tijdelijk uit de pan; ze gaart straks volledig door in de saus.",
+      "Verhit de resterende ½ el olijfolie in dezelfde pan. Bak de rode ui en paprika circa 3 minuten op middelhoog tot hoog vuur. Voeg de courgette toe en bak nog 3–4 minuten stevig mee totdat vocht verdampt en de groenten licht kleuren.",
+      "Voeg de fijngesneden knoflook en 1½ el tomatenpuree toe. Bak al roerend ongeveer 1 minuut mee, zodat de puree smaak ontwikkelt zonder te verbranden.",
+      "Voeg de tomatenblokjes en ½ tl honing toe en laat 2–3 minuten inkoken tot een stevige saus. Voeg alleen als het mengsel te droog wordt maximaal de optionele 25 ml water toe. Doe de kip terug in de pan, schep om en laat nog circa 2–3 minuten zacht pruttelen tot de kip volledig gaar is (74 °C kerntemperatuur). Proef en stel de kruiding zo nodig bij.",
+      "Zet het vuur uit en roer 1 tl citroensap door de vulling. Controleer of de saus dik genoeg is om in een wrap te blijven: laat zo nodig nog even zonder deksel inkoken.",
+      "Verdeel het kip-groentemengsel over 4 grote wraps en vouw ze stevig dicht. Bak de wraps met de naad eerst naar beneden in een droge koekenpan op middelhoog vuur circa 2 minuten per kant, tot ze goudbruin en krokant zijn. Bak indien nodig in twee porties en serveer direct."
     ],
-    "tips": "Rooster de kruiden kort in de pan voor meer smaak. Laat de saus inkoken voordat je de wraps vult.",
+    "tips": "Voor een evenwichtige smaak bevat de kip nu 1 tl gewoon paprikapoeder en ½ tl gerookt paprikapoeder; de overige kruiden blijven gelijk. Bak kip en courgette stevig aan en verwijder de natte zaadlijsten uit de tomaat, zodat de wrapvulling niet waterig wordt. Voeg de 25 ml water alleen toe als de saus te droog is. Houd de honing op ½ tl en voeg de 1 tl citroensap pas op het einde toe. Laat de saus voldoende inkoken en bak de gevouwen wraps circa 2 minuten per kant in een droge koekenpan.",
     "review": false,
     "image": "images/kipwraps.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
-  },
-  {
-    "id": "pesto",
-    "title": "Zelfgemaakte basilicumpesto",
-    "subtitle": "Een frisse, romige pesto van basilicum, pijnboompitten, Parmezaan en olijfolie.",
-    "category": "Brood & basis",
-    "kind": "Basisrecept",
-    "cuisine": "Italiaans",
-    "minutes": 15,
-    "prep": 15,
-    "cook": 0,
-    "servings": 4,
-    "servingUnit": "personen",
-    "heat": "Niet pittig",
-    "difficulty": "Makkelijk",
-    "featured": false,
-    "date": "2026-10-25",
-    "tags": [
-      "Basisrecept",
-      "Italiaans",
-      "Saus"
-    ],
-    "ingredients": [
-      {
-        "name": "Verse basilicumblaadjes",
-        "qty": 45,
-        "unit": "g",
-        "group": "Pesto"
-      },
-      {
-        "name": "Pijnboompitten",
-        "qty": 30,
-        "unit": "g",
-        "group": "Pesto"
-      },
-      {
-        "name": "Parmezaanse kaas",
-        "qty": 45,
-        "unit": "g",
-        "group": "Pesto"
-      },
-      {
-        "name": "Knoflook",
-        "qty": 1,
-        "unit": "teentje",
-        "group": "Pesto"
-      },
-      {
-        "name": "Extra vierge olijfolie",
-        "qty": 90,
-        "unit": "ml",
-        "group": "Pesto"
-      },
-      {
-        "name": "Zout",
-        "qty": null,
-        "unit": "naar smaak",
-        "group": "Pesto"
-      },
-      {
-        "name": "Citroensap",
-        "qty": 1,
-        "unit": "tl",
-        "group": "Pesto",
-        "optional": true
-      }
-    ],
-    "steps": [
-      "Rooster de pijnboompitten kort in een droge koekenpan op laag vuur en laat afkoelen.",
-      "Was en droog de basilicumblaadjes voorzichtig.",
-      "Doe basilicum, pijnboompitten, Parmezaanse kaas en knoflook in een hoge beker of keukenmachine.",
-      "Pulseer kort en schenk terwijl je mixt geleidelijk de olijfolie erbij tot een grove smeuïge pesto ontstaat.",
-      "Breng op smaak met een snuf zout en eventueel wat citroensap.",
-      "Meng door warme pasta met een scheut pastawater of gebruik als smaakmaker bij brood of groenten."
-    ],
-    "tips": "Rooster de pijnboompitten licht en maal de pesto kort om de frisse basilicumsmaak te behouden. Voeg de olie geleidelijk toe.",
-    "review": false,
-    "image": "images/pesto.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
   }
 ]
