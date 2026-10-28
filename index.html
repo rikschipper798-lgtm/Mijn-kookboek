@@ -164,8 +164,8 @@ function fmtQty(n,u){
  return hit?(whole?String(whole):'')+hit[1]:fmt(n);
 }
 function displayUnit(u,n){
- const plural={stuk:'stuks',teentje:'teentjes',plantje:'plantjes',blaadje:'blaadjes',plak:'plakken',snee:'sneetjes',blad:'bladen'};
- const singular={stuks:'stuk',teentjes:'teentje',plantjes:'plantje',blaadjes:'blaadje',plakken:'plak',sneetjes:'snee',bladen:'blad'};
+ const plural={stuk:'stuks',teentje:'teentjes',plantje:'plantjes',blaadje:'blaadjes',plak:'plakken',snee:'sneetjes',blad:'bladen',portie:'porties'};
+ const singular={stuks:'stuk',teentjes:'teentje',plantjes:'plantje',blaadjes:'blaadje',plakken:'plak',sneetjes:'snee',bladen:'blad',porties:'portie'};
  return n<=1?(singular[u]||u):(plural[u]||u);
 }
 function amount(i,mult){
@@ -192,7 +192,7 @@ function shoppingRows(list,mult,key){
 }
 function viewFor(r,variant){
  const v=(r.variants||[]).find(x=>x.id===variant);
- return v?{...r,...v,title:r.title+' — '+v.label}:{...r,title:r.variants?.length?r.title+' — Klassieke basilico':r.title};
+ return v?{...r,...v,title:r.title+' — '+v.label}:{...r,title:r.variants?.length?r.title+' — '+(r.defaultVariantLabel||'Klassieke basilico'):r.title};
 }
 function findRecipe(id){return recipes.find(r=>r.id===id||(r.aliases||[]).includes(id))}
 function basketCount(){el('basketCount').textContent=Object.keys(basket).length}
@@ -202,7 +202,7 @@ function toggleFav(id){
  if(!el('detail').hidden)renderDetail();
 }
 function searchable(r){
- return [title(r),description(r),r.category,...allIngredients(r).map(x=>x.name),...(r.variants||[]).flatMap(v=>[v.label,description(v),...allIngredients(v).map(x=>x.name)])].join(' ').toLowerCase();
+ return [title(r),description(r),r.category,r.defaultVariantLabel||'',...allIngredients(r).map(x=>x.name),...(r.variants||[]).flatMap(v=>[v.label,description(v),...allIngredients(v).map(x=>x.name)])].join(' ').toLowerCase();
 }
 function renderCards(){
  const term=el('search').value.toLowerCase().trim(),cat=el('category').value;
@@ -270,7 +270,7 @@ function renderDetail(){
  el('overview').hidden=true;el('basket').hidden=true;el('detail').hidden=false;
  const mult=current/original,items=allIngredients(view),key=listKey(r.id,variantId);
  const canScale=items.some(i=>typeof i.qty==='number');
- const choices=r.variants?.length?'<div class="variants"><strong>Bereidingsvariant</strong>'+[{id:'klassiek',label:'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
+ const choices=r.variants?.length?'<div class="variants"><strong>Bereidingsvariant</strong>'+[{id:'klassiek',label:r.defaultVariantLabel||'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
  const steps=(view.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(s):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(s.body||'')+'</div>')+'</div></li>').join('');
  const tips=typeof view.tips==='string'?[view.tips]:(view.tips||[]);
  const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
