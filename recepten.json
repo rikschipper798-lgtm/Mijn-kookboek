@@ -1979,13 +1979,13 @@
   },
   {
     "id": "traybake",
-    "title": "Kipschnitzel met rösti en ovengroenten",
-    "subtitle": "Krokante kipschnitzels uit de pan met geroosterde groenten en rösti uit de oven.",
+    "title": "Zelfgemaakte kipschnitzel met rösti en ovengroenten",
+    "subtitle": "Zelfgepaneerde, krokante kipschnitzels met panko en kruiden, apart gebakken rösti en geroosterde groenten met honing-citroendressing.",
     "category": "Kip",
     "kind": "Oven & pan",
     "cuisine": "Nederlands geïnspireerd",
-    "minutes": 55,
-    "prep": 15,
+    "minutes": 65,
+    "prep": 25,
     "cook": 40,
     "servings": 2,
     "servingUnit": "personen",
@@ -2001,120 +2001,205 @@
     ],
     "ingredients": [
       {
-        "name": "Kipschnitzels",
-        "qty": 2,
-        "unit": "stuks",
-        "group": "Basis"
-      },
-      {
-        "name": "Rösti rondjes",
-        "qty": 325,
+        "name": "Kipfilet",
+        "qty": 350,
         "unit": "g",
-        "group": "Basis"
+        "group": "Zelfgemaakte kipschnitzel"
       },
       {
-        "name": "Paprika",
+        "name": "Ei",
         "qty": 1,
         "unit": "stuk",
-        "group": "Groenten"
+        "group": "Paneren kipschnitzel"
       },
       {
-        "name": "Courgette",
-        "qty": 0.5,
-        "unit": "stuk",
-        "group": "Groenten"
+        "name": "Bloem",
+        "qty": 3,
+        "unit": "el",
+        "group": "Paneren kipschnitzel"
       },
       {
-        "name": "Wortel",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Tomaten",
-        "qty": 2,
-        "unit": "stuks",
-        "group": "Groenten"
-      },
-      {
-        "name": "Rode ui",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Rode peper",
-        "qty": 0.5,
-        "unit": "stuk",
-        "group": "Groenten"
+        "name": "Panko",
+        "qty": 60,
+        "unit": "g",
+        "group": "Paneren kipschnitzel"
       },
       {
         "name": "Gerookt paprikapoeder",
         "qty": 1,
         "unit": "tl",
-        "group": "Kruiden"
+        "group": "Kruiden kipschnitzel"
       },
       {
         "name": "Knoflookpoeder",
         "qty": 0.5,
         "unit": "tl",
-        "group": "Kruiden"
+        "group": "Kruiden kipschnitzel"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden kipschnitzel"
       },
       {
         "name": "Oregano",
         "qty": 0.5,
         "unit": "tl",
-        "group": "Kruiden"
+        "group": "Kruiden kipschnitzel"
       },
       {
         "name": "Tijm",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden kipschnitzel"
+      },
+      {
+        "name": "Gedroogde peterselie",
         "qty": 0.5,
         "unit": "tl",
-        "group": "Kruiden"
+        "group": "Kruiden kipschnitzel"
       },
       {
         "name": "Zwarte peper",
-        "qty": null,
-        "unit": "naar smaak",
-        "group": "Kruiden"
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden kipschnitzel"
       },
       {
         "name": "Zout",
-        "qty": null,
-        "unit": "naar smaak",
-        "group": "Kruiden"
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden kipschnitzel"
       },
       {
-        "name": "Honing",
-        "qty": 1,
+        "name": "Chilipoeder",
+        "qty": 0.25,
         "unit": "tl",
-        "group": "Dressing"
+        "group": "Kruiden kipschnitzel",
+        "optional": true
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 4,
+        "unit": "el",
+        "group": "Bakken kipschnitzel"
       },
       {
         "name": "Citroensap",
         "qty": 1,
         "unit": "tl",
-        "group": "Dressing"
+        "group": "Afwerking kipschnitzel"
+      },
+      {
+        "name": "Rösti rondjes",
+        "qty": 325,
+        "unit": "g",
+        "group": "Rösti"
+      },
+      {
+        "name": "Paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Ovengroenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Ovengroenten"
+      },
+      {
+        "name": "Wortel",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Ovengroenten"
+      },
+      {
+        "name": "Tomaat",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Ovengroenten"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Ovengroenten"
+      },
+      {
+        "name": "Rode peper",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Ovengroenten"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden ovengroenten"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden ovengroenten"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden ovengroenten"
+      },
+      {
+        "name": "Tijm",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden ovengroenten"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden ovengroenten"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden ovengroenten"
       },
       {
         "name": "Olijfolie",
-        "qty": 2,
+        "qty": 1,
         "unit": "el",
-        "group": "Bereiding"
+        "group": "Ovengroenten"
+      },
+      {
+        "name": "Honing",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Dressing ovengroenten"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Dressing ovengroenten"
       }
     ],
     "steps": [
-      "Verwarm de heteluchtoven voor op 210 °C en bekleed een ruime bakplaat met bakpapier.",
-      "Snijd paprika, courgette, wortel, tomaten, rode ui en een halve rode peper in stukken.",
-      "Meng wortel en paprika met wat olijfolie, gerookt paprikapoeder, knoflookpoeder, tijm en peper. Verdeel op de bakplaat en rooster circa 10 minuten.",
-      "Leg de rösti bij de wortel en paprika, schep de groenten om en rooster alles nog 10 minuten.",
-      "Voeg courgette, rode ui en rode peper toe en rooster nog 15–18 minuten. Voeg de tomaten in de laatste 8 minuten toe.",
-      "Dep de kipschnitzels droog en kruid met peper en oregano. Gebruik naar wens een beetje extra gerookt paprikapoeder.",
-      "Verhit een deel van de olijfolie in een koekenpan en bak de schnitzels tijdens de laatste 8–10 ovenminuten ongeveer 4–5 minuten per kant, tot ze goudbruin en volledig gaar zijn.",
-      "Meng de honing en het citroensap met een klein scheutje warm bakvocht en verdeel vlak voor serveren over de groenten.",
-      "Schep groenten en rösti op de borden en serveer de kipschnitzels erbij."
+      "Verwarm de oven voor op 210 °C hetelucht (230 °C boven-/onderwarmte). Bekleed twee bakplaten met bakpapier: één voor de groenten en één voor de rösti. Controleer de verpakking van de rösti op oventemperatuur en baktijd; pas zo nodig de temperatuur aan en houd de groenten goed in de gaten.",
+      "Schil of schrap 1 wortel en snijd in dunne halve plakjes. Snijd 1 paprika, ½ courgette, 1 rode ui en ½ rode peper in stukken. Snijd 1 tomaat in parten en verwijder de natste zaadlijsten. Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl oregano, ½ tl tijm en peper en zout naar smaak voor de groenten.",
+      "Meng de wortel met ongeveer ⅓ van de 1 el olijfolie en ⅓ van de groentenkruiden. Spreid op de eerste bakplaat uit en rooster 10 minuten. Voeg daarna paprika, rode ui en rode peper toe met de rest van de olijfolie en kruiden; schep om en rooster nog 10 minuten.",
+      "Voeg de courgette aan de groenten toe en rooster nog 10–12 minuten. Doe de tomatenparten pas tijdens de laatste 8 minuten erbij, zodat de groenten niet te nat worden. Rooster intussen 325 g rösti rondjes op de tweede bakplaat volgens de verpakking, bij voorkeur zo getimed dat ze tegelijk met de groenten klaar zijn. Laat rondom de rösti voldoende ruimte en draai ze wanneer de verpakking dit aangeeft.",
+      "Maak terwijl de groenten roosteren de zelfgemaakte schnitzels. Snijd 350 g kipfilet horizontaal in 2 dunne schnitzels en sla ze tussen bakpapier voorzichtig plat tot circa 1 cm dik. Dep droog. Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout; voeg eventueel ¼ tl chilipoeder toe. Wrijf de helft van deze mix over beide kanten van de kip.",
+      "Meng de overige helft van de kipkruiden met 60 g panko en ½ tl gedroogde peterselie. Zet drie borden klaar met 3 el bloem, 1 losgeklopt ei en de gekruide panko. Haal iedere schnitzel achtereenvolgens door bloem, ei en panko en druk de kruimels licht aan.",
+      "Verhit tijdens de laatste 10–12 ovenminuten circa 4 el zonnebloemolie in een ruime koekenpan op middelhoog vuur. Bak de schnitzels 3–5 minuten per kant goudbruin. Controleer of het dikste deel van de kip volledig gaar is (74 °C kerntemperatuur) en laat de schnitzels 1–2 minuten uitlekken op een rooster.",
+      "Roer 1 tl honing en 1 tl citroensap door elkaar tot een dressing. Schep de geroosterde groenten voorzichtig om met de dressing; houd de rösti apart zodat die krokant blijft. Verdeel de overige 1 tl citroensap over de twee kipschnitzels, of serveer deze ernaast.",
+      "Verdeel de groenten en de krokante rösti over twee borden en leg de warme zelfgemaakte kipschnitzels erbij. Serveer direct."
     ],
-    "tips": "Bak de kipschnitzels apart in de koekenpan voor een krokante korst. Voeg de tomaten pas laat toe aan de ovengroenten.",
+    "tips": "De kipschnitzel is volledig gebaseerd op het aparte recept ‘Krokante, kruidige kipschnitzel’, inclusief dezelfde kruidenhoeveelheden en 60 g panko. Bak de rösti op een aparte bakplaat en volg daarvoor de verpakking. Wortel krijgt het langste oventijd; paprika en ui gaan later erbij, courgette nog later en tomaat alleen de laatste 8 minuten. Verdeel de dressing uitsluitend over de groenten. Voor het bakken van de schnitzels wordt dezelfde 4 el zonnebloemolie gebruikt als in het basisrecept; de 1 el olijfolie is alleen voor de groenten. Gebruik twee ovenniveaus en wissel de bakplaten zo nodig halverwege. Controleer kip op 74 °C en serveer zodra alles klaar is.",
     "review": false,
     "image": "images/traybake.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
