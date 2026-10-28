@@ -788,11 +788,11 @@
       "Voeg tomaat, oregano, gerookt paprikapoeder, zwarte peper en zout toe. Laat 8–10 minuten zacht pruttelen, zodat de saus indikt.",
       "Doe de kip terug in de pan. Voeg eventueel de kookroom toe wanneer je een zachtere, romige saus wilt.",
       "Bereid de gnocchi volgens de verpakking of bak deze kort in een aparte pan; schep daarna door de saus.",
-      "Scheur het grootste deel van de basilicum en meng dit door de gnocchi. Proef en stel de kruiden bij.",
+      "Proef de gnocchi met de tomatensaus en kip en stel de kruiden zo nodig bij. Houd de verse basilicum nog apart; die wordt pas na het bakken toegevoegd.",
       "Schep alles in een ovenschaal en verdeel mozzarella en Parmezaanse kaas erover.",
-      "Bak 10–15 minuten, totdat de kaas gesmolten en licht goudbruin is. Garneer met de resterende basilicum."
+      "Bak 10–15 minuten, totdat de kaas gesmolten en licht goudbruin is. Haal de schaal uit de oven, scheur de verse basilicumblaadjes en verdeel ze over het gerecht. Serveer direct."
     ],
-    "tips": "Laat de verse tomaten voldoende inkoken voordat de gnocchi erbij gaat. Voeg de basilicum pas aan het einde toe; kookroom is optioneel.",
+    "tips": "Laat de verse tomaten voldoende inkoken voordat de gnocchi erbij gaat. Voeg alle verse basilicum pas ná het bakken toe voor de frisse smaak; kookroom is optioneel.",
     "review": false,
     "image": "images/gnocchi.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
@@ -2807,7 +2807,7 @@
   {
     "id": "krokante-kip-rijst",
     "title": "Groenterijst met krokante kip",
-    "subtitle": "Gebakken rijst met groenten en hartige saus, geserveerd met krokant gepaneerde kip.",
+    "subtitle": "Gebakken groenterijst met ketjap, milde kerrie en krokante kip. Kies kant-en-klare kip of de zelfgepaneerde variant.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Aziatisch geïnspireerd",
@@ -2833,9 +2833,9 @@
         "group": "Basis"
       },
       {
-        "name": "Kipfilet",
-        "qty": 550,
-        "unit": "g",
+        "name": "Kant-en-klare krokante kip",
+        "qty": 4,
+        "unit": "porties",
         "group": "Basis"
       },
       {
@@ -2852,8 +2852,8 @@
       },
       {
         "name": "Ui",
-        "qty": 1,
-        "unit": "stuk",
+        "qty": 2,
+        "unit": "stuks",
         "group": "Groenten"
       },
       {
@@ -2863,32 +2863,44 @@
         "group": "Groenten"
       },
       {
-        "name": "Bloem",
-        "qty": 3,
+        "name": "Tomatenpuree",
+        "qty": 1,
         "unit": "el",
-        "group": "Krokant laagje"
+        "group": "Saus"
       },
       {
-        "name": "Paneermeel",
-        "qty": 5,
+        "name": "Ketjap manis",
+        "qty": 2.5,
         "unit": "el",
-        "group": "Krokant laagje"
+        "group": "Saus"
       },
       {
-        "name": "Eieren",
+        "name": "Sojasaus",
         "qty": 2,
-        "unit": "stuks",
-        "group": "Krokant laagje"
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Water",
+        "qty": 50,
+        "unit": "ml",
+        "group": "Saus"
       },
       {
         "name": "Paprikapoeder",
-        "qty": 1.5,
+        "qty": 1,
         "unit": "tl",
         "group": "Kruiden"
       },
       {
-        "name": "Knoflookpoeder",
+        "name": "Milde kerrie",
         "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.25,
         "unit": "tl",
         "group": "Kruiden"
       },
@@ -2905,44 +2917,160 @@
         "group": "Kruiden"
       },
       {
-        "name": "Ketjap",
-        "qty": 2,
-        "unit": "el",
-        "group": "Saus"
-      },
-      {
-        "name": "Sojasaus",
-        "qty": 1.5,
-        "unit": "el",
-        "group": "Saus"
-      },
-      {
-        "name": "Honing",
-        "qty": 1,
+        "name": "Chilipoeder",
+        "qty": 0.25,
         "unit": "tl",
-        "group": "Saus"
+        "group": "Kruiden",
+        "optional": true
       },
       {
         "name": "Zonnebloemolie",
-        "qty": 2,
+        "qty": 1.5,
         "unit": "el",
         "group": "Bereiding"
       }
     ],
     "steps": [
-      "Kook de rijst en laat uitdampen; afgekoelde rijst bakt later mooier op.",
-      "Snijd kip in stukken. Kruid met paprikapoeder, knoflookpoeder, peper en een beetje zout.",
-      "Haal de kip eerst door bloem, daarna door losgeklopt ei en als laatste door paneermeel.",
-      "Bak de kip op matig vuur in olie krokant en volledig gaar; werk zo nodig in porties. Bewaar apart.",
-      "Snijd ondertussen ui, paprika, courgette en knoflook.",
-      "Bak de ui en paprika in een wok, voeg courgette toe en bak door. Voeg knoflook in de laatste minuut toe.",
-      "Schep de rijst bij de groenten en bak een paar minuten mee.",
-      "Roer ketjap, sojasaus en honing erdoor. Proef en pas de smaak aan.",
-      "Serveer de krokante kip bovenop de groenterijst zodat het korstje krokant blijft."
+      "Kook de rijst volgens de verpakking. Giet af, laat kort uitdampen en gebruik de rijst direct voor het wokken.",
+      "Bereid de kant-en-klare krokante kip volgens de aanwijzingen op de verpakking, bijvoorbeeld in oven of airfryer. Houd de kip apart van de saus zodat deze krokant blijft.",
+      "Snipper ondertussen de uien en knoflook. Snijd paprika en courgette in kleine stukken.",
+      "Verhit de olie in een grote wok of hapjespan. Bak de uien 2–3 minuten en voeg de paprika toe. Bak 3 minuten en voeg daarna de courgette toe.",
+      "Voeg de knoflook en tomatenpuree toe en bak al roerend ongeveer 1 minuut mee.",
+      "Roer paprikapoeder, milde kerrie en gerookt paprikapoeder door de groenten. Voeg eventueel een snufje chilipoeder toe.",
+      "Voeg ketjap manis, sojasaus en 50 ml water toe. Schep om en laat 2–3 minuten zacht inkoken.",
+      "Meng de gekookte rijst door de groenten en bak nog 2–3 minuten zodat alles warm is en de saus goed verdeeld is. Proef en voeg zo nodig peper of zout toe.",
+      "Verdeel de rijst over vier borden. Leg de krokante kip er pas vlak voor serveren bovenop, zodat het krokante laagje behouden blijft."
     ],
-    "tips": "Laat gekookte rijst eerst uitdampen en leg de kip pas bij het serveren op de rijst, zodat het paneerlaagje krokant blijft.",
+    "tips": "Dit is de versie met kant-en-klare krokante kip voor vier personen. Bereid de kip volgens de verpakking apart en leg hem pas vlak voor het serveren op de rijst. Voor een zelfgepaneerde kipversie kies je de andere bereidingsvariant.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
+    "defaultVariantLabel": "Met kant-en-klare krokante kip",
+    "variants": [
+      {
+        "id": "zelfgemaakt",
+        "label": "Zelfgepaneerde kip",
+        "subtitle": "Gebakken rijst met groenten en hartige saus, geserveerd met krokant gepaneerde kip.",
+        "minutes": 45,
+        "prep": 20,
+        "cook": 25,
+        "ingredients": [
+          {
+            "name": "Rijst",
+            "qty": 300,
+            "unit": "g",
+            "group": "Basis"
+          },
+          {
+            "name": "Kipfilet",
+            "qty": 550,
+            "unit": "g",
+            "group": "Basis"
+          },
+          {
+            "name": "Paprika",
+            "qty": 2,
+            "unit": "stuks",
+            "group": "Groenten"
+          },
+          {
+            "name": "Courgette",
+            "qty": 1,
+            "unit": "stuk",
+            "group": "Groenten"
+          },
+          {
+            "name": "Ui",
+            "qty": 1,
+            "unit": "stuk",
+            "group": "Groenten"
+          },
+          {
+            "name": "Knoflook",
+            "qty": 2,
+            "unit": "teentjes",
+            "group": "Groenten"
+          },
+          {
+            "name": "Bloem",
+            "qty": 3,
+            "unit": "el",
+            "group": "Krokant laagje"
+          },
+          {
+            "name": "Paneermeel",
+            "qty": 5,
+            "unit": "el",
+            "group": "Krokant laagje"
+          },
+          {
+            "name": "Eieren",
+            "qty": 2,
+            "unit": "stuks",
+            "group": "Krokant laagje"
+          },
+          {
+            "name": "Paprikapoeder",
+            "qty": 1.5,
+            "unit": "tl",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Knoflookpoeder",
+            "qty": 1,
+            "unit": "tl",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Zwarte peper",
+            "qty": null,
+            "unit": "naar smaak",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Zout",
+            "qty": null,
+            "unit": "naar smaak",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Ketjap",
+            "qty": 2,
+            "unit": "el",
+            "group": "Saus"
+          },
+          {
+            "name": "Sojasaus",
+            "qty": 1.5,
+            "unit": "el",
+            "group": "Saus"
+          },
+          {
+            "name": "Honing",
+            "qty": 1,
+            "unit": "tl",
+            "group": "Saus"
+          },
+          {
+            "name": "Zonnebloemolie",
+            "qty": 2,
+            "unit": "el",
+            "group": "Bereiding"
+          }
+        ],
+        "steps": [
+          "Kook de rijst en laat uitdampen; afgekoelde rijst bakt later mooier op.",
+          "Snijd kip in stukken. Kruid met paprikapoeder, knoflookpoeder, peper en een beetje zout.",
+          "Haal de kip eerst door bloem, daarna door losgeklopt ei en als laatste door paneermeel.",
+          "Bak de kip op matig vuur in olie krokant en volledig gaar; werk zo nodig in porties. Bewaar apart.",
+          "Snijd ondertussen ui, paprika, courgette en knoflook.",
+          "Bak de ui en paprika in een wok, voeg courgette toe en bak door. Voeg knoflook in de laatste minuut toe.",
+          "Schep de rijst bij de groenten en bak een paar minuten mee.",
+          "Roer ketjap, sojasaus en honing erdoor. Proef en pas de smaak aan.",
+          "Serveer de krokante kip bovenop de groenterijst zodat het korstje krokant blijft."
+        ],
+        "tips": "Laat gekookte rijst eerst uitdampen en leg de kip pas bij het serveren op de rijst, zodat het paneerlaagje krokant blijft."
+      }
+    ]
   },
   {
     "id": "kipwraps",
