@@ -18,7 +18,7 @@
 .search{flex:1;min-width:220px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:#26382b}
 select{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;color:#26382b}
 .pill{border-radius:30px;border:1px solid #c8d4c4;background:#eef3e9;color:#294935;padding:8px 13px;font-weight:650}
-.pill[aria-pressed=true]{background:#294935;color:white}
+.pill[aria-pressed=true]{background:#294935;color:white}.variants{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:18px 0}.variants strong{font-size:13px;margin-right:6px}
 .count{color:#69776b;margin:0 0 22px}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:19px}
 .card{border:1px solid var(--line);background:#fff;border-radius:17px;overflow:hidden;box-shadow:0 5px 20px #34403410;display:flex;flex-direction:column}
@@ -88,39 +88,46 @@ function portions(r){return number(r.portions||r.servings)||2}
 function duration(r){return number(r.total_minutes||r.minutes)||0}
 function emoji(r){const t=(r.category+' '+r.title).toLowerCase();if(t.includes('brood')||t.includes('bruschetta'))return '🥖';if(t.includes('pasta')||t.includes('gnocchi')||t.includes('bolognese'))return '🍝';if(t.includes('wrap')||t.includes('arayes')||t.includes('gyros'))return '🌯';if(t.includes('zalm')||t.includes('vis'))return '🐟';if(t.includes('rijst'))return '🍚';if(t.includes('stoof')||t.includes('goulash'))return '🍲';if(t.includes('burger'))return '🍔';if(t.includes('pesto'))return '🌿';return '🍽️'}
 function ingredients(r){return Array.isArray(r.ingredients)?r.ingredients:[]}
-function amount(i,mult){if(i.quantity!==undefined)return String(i.quantity);if(i.qty!==undefined){let n=Number(i.qty);return (Number.isFinite(n)?fmt(n*mult):i.qty)+(i.unit?' '+i.unit:'')}return ''}
+function amount(i,mult){if(i.qty===null)return i.unit||'naar smaak';if(i.quantity!==undefined)return String(i.quantity);if(i.qty!==undefined){let n=Number(i.qty);return (Number.isFinite(n)?fmt(n*mult):i.qty)+(i.unit?' '+i.unit:'')}return ''}
 function herbs(r){return Array.isArray(r.herbs)?r.herbs:[]}
 function toggleFav(id){if(favorites.has(id))favorites.delete(id);else favorites.add(id);saveFavorites();renderCards();if(!el('detail').hidden)renderDetail()}
 function renderCards(){
 const term=el('search').value.toLowerCase().trim(),cat=el('category').value;
-const shown=recipes.filter(r=>(!cat||r.category===cat)&&(!favoriteOnly||favorites.has(r.id))&&(!term||[r.title,description(r),r.category,...ingredients(r).map(i=>i.name)].join(' ').toLowerCase().includes(term)));
+const shown=recipes.filter(r=>(!cat||r.category===cat)&&(!favoriteOnly||favorites.has(r.id))&&(!term||[r.title,description(r),r.category,...ingredients(r).map(i=>i.name),...(r.variants||[]).map(v=>v.label)].join(' ').toLowerCase().includes(term)));
 el('count').textContent=shown.length+' van '+recipes.length+' recepten';
 el('cards').innerHTML=shown.map(r=>'<div class="card">'+(r.image?'<div class="card-art with-photo"><img loading="lazy" src="'+safe(r.image)+'" alt="'+safe(title(r))+'"></div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+'<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2><p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+portions(r)+' personen</span><span class="tag">'+(duration(r)||'–')+' min.</span></div><div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'">Bekijk recept</a><button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>').join('')||'<p>Geen recepten gevonden. Probeer een andere zoekterm.</p>';
 document.querySelectorAll('#cards [data-fav]').forEach(b=>b.addEventListener('click',()=>toggleFav(b.dataset.fav)));
 }
-function shopping(i,mult){return '<label><input type="checkbox"><span>'+safe(i.name)+' — '+safe(amount(i,mult))+'</span></label>'}
-function row(i,mult){return '<li><span>'+safe(i.name)+'</span><strong>'+safe(amount(i,mult))+'</strong></li>'}
+function shopping(i,mult){return '<label><input type="checkbox"><span>'+safe(i.name)+(i.optional?' (optioneel)':'')+' — '+safe(amount(i,mult))+'</span></label>'}
+function row(i,mult){return '<li><span>'+safe(i.name)+(i.optional?' (optioneel)':'')+'</span><strong>'+safe(amount(i,mult))+'</strong></li>'}
 function textRecipe(r,mult){
 return title(r)+'\n\nIngrediënten:\n'+ingredients(r).map(i=>'- '+amount(i,mult)+' '+i.name).join('\n')+(herbs(r).length?'\n\nKruiden:\n'+herbs(r).map(i=>'- '+amount(i,mult)+' '+i.name).join('\n'):'')+'\n\nBereiding:\n'+(r.steps||[]).map((s,i)=>(i+1)+'. '+(typeof s==='string'?s:((s.title||'')+': '+(s.body||'')))).join('\n\n');
 }
 function renderDetail(){
-const id=decodeURIComponent(location.hash.slice(8));const r=recipes.find(x=>x.id===id);if(!r){location.hash='';return}
+const id=decodeURIComponent(location.hash.slice(8));const r=recipes.find(x=>x.id===id||(x.aliases||[]).includes(id));if(!r){location.hash='';return}
+const defaultVariantId=id==='bolognese'?'romig':'klassiek';
+const variantId=el('detail').dataset.recipeId===r.id?(el('detail').dataset.variantId||defaultVariantId):defaultVariantId;
+const variant=(r.variants||[]).find(v=>v.id===variantId);
+const view=variant?{...r,...variant,title:r.title+' — '+variant.label}:{...r,title:r.variants?.length?r.title+' — Klassieke basilico':r.title};
+const variantControls=r.variants?.length?'<div class="variants"><strong>Bereidingsvariant</strong>'+[{id:'klassiek',label:'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
+
 el('overview').hidden=true;el('detail').hidden=false;
-const isNumeric=ingredients(r).some(x=>typeof x.qty==='number');const original=portions(r);
+const isNumeric=ingredients(view).some(x=>typeof x.qty==='number');const original=portions(view);
 const chosen=number(el('detail').dataset.currentServings);
 const current=el('detail').dataset.recipeId===r.id&&chosen?chosen:original;
-el('detail').dataset.recipeId=r.id;el('detail').dataset.currentServings=current;
+el('detail').dataset.recipeId=r.id;el('detail').dataset.variantId=variantId;el('detail').dataset.currentServings=current;
 const mult=current/original;
-const ingredientRows=ingredients(r).map(i=>row(i,mult)).join('');
-const herbRows=herbs(r).map(i=>row(i,mult)).join('');
-const steps=(r.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(s):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(s.body||'')+'</div>')+'</div></li>').join('');
-const tips=(typeof r.tips==='string'?[r.tips]:r.tips)||[];
-const remarks=[...tips,...(r.portions_note?[r.portions_note]:[])];
-el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2><p class="description">'+safe(description(r))+'</p>'+(r.image?'<img class="hero-photo" src="'+safe(r.image)+'" alt="'+safe(title(r))+'">':'')+'<div class="meta"><span class="tag">'+original+' personen</span><span class="tag">'+(duration(r)||'–')+' minuten</span><span class="tag">'+safe(r.difficulty||'')+'</span></div><div class="actions"><button class="btn" id="copy">Kopieer recept</button><button class="btn alt" id="whatsapp">Deel via WhatsApp</button><button class="btn alt" id="print">Print</button><button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button></div>'+(isNumeric?'<div class="servings">Aantal personen <button id="minus" aria-label="Minder personen">−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer personen">+</button></div>':'')+'<div class="columns"><section><h3>Ingrediënten</h3><ul class="ingredients">'+ingredientRows+'</ul>'+(herbRows?'<h3>Kruiden</h3><ul class="ingredients">'+herbRows+'</ul>':'')+'</section><section><h3>Boodschappenlijst</h3><p class="count">Vink de ingrediënten af die je al in huis hebt.</p><div class="shop">'+ingredients(r).map(i=>shopping(i,mult)).join('')+'</div></section></div><h3>Bereiding</h3><ol class="steps">'+steps+'</ol>'+(remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'');
+const ingredientRows=ingredients(view).map(i=>row(i,mult)).join('');
+const herbRows=herbs(view).map(i=>row(i,mult)).join('');
+const steps=(view.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(s):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(s.body||'')+'</div>')+'</div></li>').join('');
+const tips=(typeof view.tips==='string'?[view.tips]:view.tips)||[];
+const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
+el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button><div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2><p class="description">'+safe(description(view))+'</p>'+(view.image?'<img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(r))+'">':'')+'<div class="meta"><span class="tag">'+original+' personen</span><span class="tag">'+(duration(view)||'–')+' minuten</span><span class="tag">'+safe(view.difficulty||'')+'</span></div>'+variantControls+'<div class="actions"><button class="btn" id="copy">Kopieer recept</button><button class="btn alt" id="whatsapp">Deel via WhatsApp</button><button class="btn alt" id="print">Print</button><button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button></div>'+(isNumeric?'<div class="servings">Aantal personen <button id="minus" aria-label="Minder personen">−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer personen">+</button></div>':'')+'<div class="columns"><section><h3>Ingrediënten</h3><ul class="ingredients">'+ingredientRows+'</ul>'+(herbRows?'<h3>Kruiden</h3><ul class="ingredients">'+herbRows+'</ul>':'')+'</section><section><h3>Boodschappenlijst</h3><p class="count">Vink de ingrediënten af die je al in huis hebt.</p><div class="shop">'+ingredients(view).map(i=>shopping(i,mult)).join('')+'</div></section></div><h3>Bereiding</h3><ol class="steps">'+steps+'</ol>'+(remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'');
 el('back').onclick=()=>location.hash='';
 el('favorite').onclick=()=>toggleFav(r.id);
-el('copy').onclick=async()=>{const t=textRecipe(r,mult);try{await navigator.clipboard.writeText(t);el('copy').textContent='Gekopieerd'}catch(e){prompt('Kopieer recept',t)}};
-el('whatsapp').onclick=()=>{location.href='https://wa.me/?text='+encodeURIComponent(textRecipe(r,mult))};
+el('detail').querySelectorAll('[data-variant]').forEach(b=>b.onclick=()=>{el('detail').dataset.variantId=b.dataset.variant;renderDetail()});
+el('copy').onclick=async()=>{const t=textRecipe(view,mult);try{await navigator.clipboard.writeText(t);el('copy').textContent='Gekopieerd'}catch(e){prompt('Kopieer recept',t)}};
+el('whatsapp').onclick=()=>{location.href='https://wa.me/?text='+encodeURIComponent(textRecipe(view,mult))};
 el('print').onclick=()=>window.print();
 if(isNumeric){el('minus').onclick=()=>{el('detail').dataset.currentServings=Math.max(1,current-1);renderDetail()};el('plus').onclick=()=>{el('detail').dataset.currentServings=current+1;renderDetail()}}
 document.title=title(r)+' | Mijn Kookboek';
@@ -130,7 +137,7 @@ el('search').addEventListener('input',renderCards);
 el('category').addEventListener('change',renderCards);
 el('favorites').onclick=()=>{favoriteOnly=!favoriteOnly;el('favorites').setAttribute('aria-pressed',favoriteOnly);renderCards()};
 window.addEventListener('hashchange',route);
-fetch('recepten.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Kan recepten niet laden');return r.json()}).then(data=>{if(!Array.isArray(data))throw Error('Ongeldige recepten');recipes=data;[...new Set(data.map(x=>x.category||'Overig'))].sort((a,b)=>a.localeCompare(b,'nl')).forEach(c=>el('category').add(new Option(c,c)));route()}).catch(e=>{el('count').innerHTML='<span class="error">De recepten konden niet worden geladen. Probeer de pagina opnieuw.</span>';console.error(e)});
+fetch('recepten.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Kan recepten niet laden');return r.json()}).then(data=>{if(!Array.isArray(data))throw Error('Ongeldige recepten');recipes=data;if(favorites.has('bolognese')||favorites.has('pasta-basilico')){favorites.add('pasta-rundergehakt-groenten');favorites.delete('bolognese');favorites.delete('pasta-basilico');saveFavorites()}[...new Set(data.map(x=>x.category||'Overig'))].sort((a,b)=>a.localeCompare(b,'nl')).forEach(c=>el('category').add(new Option(c,c)));route()}).catch(e=>{el('count').innerHTML='<span class="error">De recepten konden niet worden geladen. Probeer de pagina opnieuw.</span>';console.error(e)});
 </script>
 </body>
 </html>
