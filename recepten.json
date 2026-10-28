@@ -2539,13 +2539,13 @@
   {
     "id": "vlaams-stoofvlees",
     "title": "Vlaams stoofvlees met La Trappe Dubbel",
-    "subtitle": "Langzaam gestoofd rundvlees met donker bier, mosterd, friet en frisse salade.",
+    "subtitle": "Mals Vlaams rundvlees gestoofd in La Trappe Dubbel met langzaam gebakken ui en mosterdbrood, geserveerd met krokante krulfriet en frisse salade.",
     "category": "Rundvlees",
     "kind": "Stoofgerecht",
     "cuisine": "Vlaams",
-    "minutes": 225,
-    "prep": 20,
-    "cook": 205,
+    "minutes": 255,
+    "prep": 25,
+    "cook": 230,
     "servings": 2,
     "servingUnit": "personen",
     "heat": "Niet pittig",
@@ -2616,7 +2616,8 @@
         "name": "Balsamico",
         "qty": 1,
         "unit": "tl",
-        "group": "Stoofvlees"
+        "group": "Stoofvlees",
+        "optional": true
       },
       {
         "name": "Appelstroop",
@@ -2699,18 +2700,18 @@
       }
     ],
     "steps": [
-      "Dep het rundvlees droog, snijd in blokken en kruid met zout en peper.",
-      "Verhit olijfolie en een deel van de boter. Braad het vlees in porties goed bruin. Haal uit de pan.",
-      "Voeg de rest van de boter toe en karamelliseer de uien ongeveer 20 minuten op laag tot matig vuur. Voeg de knoflook de laatste minuut toe.",
-      "Doe het vlees terug in de pan. Voeg La Trappe Dubbel, runderbouillon, laurier en tijm toe.",
-      "Besmeer een snee bruin brood met de Franse mosterd en leg met de mosterdzijde op het stoofvlees.",
-      "Stoof 2½–3½ uur heel zacht met de deksel schuin op de pan; roer na circa 45 minuten het brood door de saus. Vul zo nodig wat water bij.",
-      "Voeg tegen het einde balsamico en eventueel een beetje appelstroop toe. Proef en corrigeer de smaak.",
-      "Bereid kort voor serveren de krulfriet volgens de aanwijzingen op de verpakking.",
-      "Meng de sla, cherrytomaten, komkommer en rode ui. Klop de dressing van olijfolie, citroen, mosterd en honing en schep vlak voor serveren door de salade.",
-      "Serveer het stoofvlees met krulfriet en salade."
+      "Dep 550 g runderriblappen goed droog, snijd in flinke blokken van circa 3–4 cm en bestrooi met zout en peper naar smaak. Snijd 250 g ui in halve ringen en hak 1 teentje knoflook fijn.",
+      "Verhit 1 el olijfolie met circa 10 g van de 25 g boter in een zware stoofpan op middelhoog tot hoog vuur. Bak het vlees in twee porties in totaal circa 10–12 minuten rondom diepbruin; leg niet te veel vlees tegelijk in de pan, zodat het bakt in plaats van stooft. Schep de stukken uit de pan.",
+      "Verlaag het vuur naar laag tot middelhoog en voeg de resterende 15 g boter toe. Bak de 250 g ui circa 20–25 minuten, onder regelmatig omscheppen, tot de uien zacht en diep goudbruin zijn. Voeg de knoflook tijdens de laatste minuut toe en laat die niet verbranden.",
+      "Schenk eerst ongeveer 100 ml van de 300 ml La Trappe Dubbel bij de uien. Roer de aanbaksels los met een houten lepel en laat 1 minuut rustig bruisen. Doe het vlees met de vrijgekomen sappen terug in de pan en voeg de resterende 200 ml bier, 50 ml van de 75 ml runderbouillon, 2 laurierblaadjes en 1 tl tijm toe. Houd de resterende 25 ml bouillon apart om later zo nodig bij te vullen.",
+      "Besmeer 1 snee bruin brood aan één kant met 1 el Franse mosterd en leg het brood met de mosterdzijde naar beneden op het stoofvlees. Breng de vloeistof rustig tegen het kookpunt; het vlees hoeft niet volledig onder te staan, maar er moet voldoende vocht op de bodem zijn.",
+      "Zet het vuur zeer laag en laat 2½–3½ uur zacht stoven met het deksel schuin op de pan. Roer na circa 45 minuten het mosterdbrood door de saus. Controleer regelmatig dat de stoof slechts heel zacht pruttelt; voeg zo nodig de gereserveerde 25 ml bouillon en daarna kleine scheutjes heet water toe om droogkoken te voorkomen. Het vlees is klaar als het met een vork gemakkelijk uit elkaar valt; stoof anders langer.",
+      "Verwijder de laurierblaadjes. Is het vlees mals maar de saus nog dun, laat dan enkele minuten zonder deksel zacht inkoken tot de saus dik en glanzend is. Proef eerst: voeg alleen indien gewenst maximaal 1 tl balsamico toe voor frisheid of maximaal 1 tl optionele appelstroop als de biersmaak te bitter is of meer rondheid nodig heeft. Breng waar nodig op smaak met zout en peper.",
+      "Bereid tegen het einde 475 g diepvrieskrulfriet volgens de aanwijzingen op de verpakking, bij voorkeur zo dat de friet krokant en tegelijk met het stoofvlees klaar is.",
+      "Halveer 125 g cherrytomaten, snijd ⅓ komkommer in stukjes en ¼ rode ui in dunne halve ringen. Meng met 75 g gemengde sla. Klop een dressing van 1 el olijfolie, 2 tl citroensap, ½ tl mosterd en ½ tl honing en schep die pas vlak voor het serveren door de salade.",
+      "Serveer het warme, dikke stoofvlees met de knapperige krulfriet en de frisse salade. Eventuele restjes stoofvlees zijn de volgende dag opnieuw lekker; koel ze snel af, bewaar gekoeld en warm door en door op."
     ],
-    "tips": "Stoof op heel laag vuur en roer het met mosterd besmeerde brood na ongeveer 45 minuten door de saus.",
+    "tips": "Braad de 550 g runderriblappen in twee porties goed bruin en bak de 250 g ui 20–25 minuten rustig goudbruin voor een diepe smaak. Gebruik eerst 50 ml van de 75 ml bouillon; houd 25 ml achter de hand en voeg tijdens het stoven zo nodig extra heet water toe. Laat de saus aan het einde zonder deksel inkoken wanneer het vlees al mals is. Balsamico en appelstroop zijn optioneel: proef eerst de balans tussen de bitterheid van het donkere bier, de zoetheid van de uien en de mosterd. Laat stoofvlees niet hard koken. Reken circa 4 uur en 15 minuten totaal, maar langer stoven kan nodig zijn. De friet en salade maak je pas tegen het einde.",
     "review": false,
     "image": "images/vlaams-stoofvlees.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
