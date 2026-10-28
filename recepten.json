@@ -1818,7 +1818,7 @@
   {
     "id": "kiprijst",
     "title": "Kruidige kip met rijst en groenten",
-    "subtitle": "Een goed gekruide wokmaaltijd met kip, rijst, veel groenten en een hartige saus.",
+    "subtitle": "Goed aangebakken kipdij met knapperige groenten, rijst en een geconcentreerde, lichtzoete ketjap-sojasaus met frisse citroen.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Aziatisch geïnspireerd",
@@ -1894,19 +1894,19 @@
       },
       {
         "name": "Tomatenpuree",
-        "qty": 1.5,
-        "unit": "el",
-        "group": "Saus"
-      },
-      {
-        "name": "Sojasaus",
         "qty": 1,
         "unit": "el",
         "group": "Saus"
       },
       {
-        "name": "Ketjap",
+        "name": "Sojasaus",
         "qty": 1.5,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Ketjap",
+        "qty": 2,
         "unit": "el",
         "group": "Saus"
       },
@@ -1930,12 +1930,6 @@
       },
       {
         "name": "Komijn",
-        "qty": 0.5,
-        "unit": "tl",
-        "group": "Kruiden"
-      },
-      {
-        "name": "Oregano",
         "qty": 0.5,
         "unit": "tl",
         "group": "Kruiden"
@@ -1966,20 +1960,19 @@
       }
     ],
     "steps": [
-      "Snijd kipdijfilet in blokjes. Maak paprika, courgette, wortel, tomaten, rode ui, knoflook en een halve peper schoon en snijd klein.",
-      "Kook de rijst volgens de verpakking en laat na het afgieten uitdampen.",
-      "Meng de kip met paprikapoeder, gerookt paprikapoeder, komijn, oregano, knoflookpoeder en peper.",
-      "Verhit de helft van de olie in een wok en bak de kip rondom bruin. Haal uit de pan.",
-      "Bak rode ui en wortel een paar minuten in de overige olie. Voeg paprika en courgette toe en bak verder.",
-      "Voeg knoflook en rode peper toe en roer 30 seconden door.",
-      "Bak de tomatenpuree een minuut mee om de zuren af te ronden.",
-      "Doe de tomaten erbij en laat ze zacht worden tot een lichte saus.",
-      "Meng sojasaus, ketjap en citroensap erdoor.",
-      "Doe de kip terug in de wok en laat nog enkele minuten pruttelen, totdat de kip volledig gaar is.",
-      "Proef en breng waar nodig bij met peper en zout.",
-      "Serveer met de rijst of schep de rijst kort door het gerecht."
+      "Snijd 300 g kipdijfilet in hapklare stukjes. Snijd 1 paprika, ½ courgette, 1 wortel en 1 rode ui in kleine stukken. Hak 2 teentjes knoflook en ½ rode peper fijn. Snijd 2 verse tomaten in blokjes en verwijder de natste zaadlijsten.",
+      "Kook 170 g rijst volgens de aanwijzingen op de verpakking. Laat na het afgieten kort uitdampen. Bereid ondertussen de kip en groenten.",
+      "Meng de kip met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, ½ tl komijn, ½ tl knoflookpoeder en een beetje zwarte peper. Voeg nog geen zout toe: de sojasaus geeft straks al zoutigheid.",
+      "Verhit ongeveer ¾ el van de 1½ el olijfolie in een wok op middelhoog tot hoog vuur. Bak de kip in circa 5–6 minuten met goed bruine randjes; laat eerst even liggen voordat je omschept. Bak zo nodig in twee porties en schep de kip daarna uit de wok.",
+      "Verhit de resterende ¾ el olijfolie in dezelfde wok. Bak de rode ui en wortel circa 3 minuten op middelhoog tot hoog vuur. Voeg paprika en courgette toe en bak nog circa 3–4 minuten, zodat de groenten licht kleuren en eventueel vocht verdampt.",
+      "Voeg knoflook en rode peper toe en roer 30 seconden door. Schep 1 el tomatenpuree erbij en bak circa 1 minuut mee, zodat de smaak verdiept.",
+      "Voeg de uitgelekte tomatenblokjes toe en roerbak 2–3 minuten op middelhoog tot hoog vuur, tot het meeste overtollige vocht verdampt is. Zo ontstaat een lichte, geconcentreerde basis in plaats van een waterige tomatensaus.",
+      "Roer 1½ el sojasaus en 2 el ketjap door de groenten en laat ongeveer 1 minuut zachtjes pruttelen tot de saus licht glanst. Voeg alleen als de saus te stroperig wordt een klein scheutje water toe.",
+      "Doe de gebakken kip met eventuele vleessappen terug in de wok. Schep 2–3 minuten om op middelhoog vuur, zodat de kip volledig gaar is (74 °C kerntemperatuur) en de saus alles dun omhult.",
+      "Zet het vuur uit en voeg 1 tl citroensap toe. Proef de saus: is hij te zout, voeg een klein scheutje water toe; mist hij hartigheid, voeg een paar druppels sojasaus toe. Breng zo nodig met zwarte peper op smaak en voeg alleen zout toe als het echt nodig is.",
+      "Serveer de kip en groenten met de rijst of schep de rijst kort door het gerecht. Serveer direct."
     ],
-    "tips": "Gebruik een halve rode peper voor een gemiddelde pittigheid. Voeg de sojasaus en ketjap pas na het fruiten van de groenten toe.",
+    "tips": "Bak de gekruide kip op voldoende hoog vuur en schep haar eerst uit de wok, zodat de groenten kunnen kleuren zonder te stoven. Verwijder de natste zaadlijsten van de tomaten en laat het vocht verdampen voordat de soja en ketjap erbij gaan. De 1 el tomatenpuree ondersteunt nu de ketjap-sojasaus in plaats van te overheersen. De oregano is bewust weggelaten voor een duidelijke, kruidige ketjapsmaak. Voeg 1 tl citroensap pas na het bakken toe voor frisheid. Proef vóór je zout toevoegt; sojasaus is al zout.",
     "review": false,
     "image": "images/kiprijst.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
