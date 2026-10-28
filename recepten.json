@@ -1344,7 +1344,7 @@
   {
     "id": "arayes",
     "title": "Arayes met kruidig rundergehakt",
-    "subtitle": "Knapperige pitabroodjes gevuld met kruidig rundergehakt en een frisse yoghurtsaus.",
+    "subtitle": "Krokant gebakken pitabroodjes gevuld met sappig, Midden-Oosters gekruid rundergehakt en een frisse Griekse yoghurtsaus.",
     "category": "Rundvlees",
     "kind": "Hoofdgerecht",
     "cuisine": "Midden-Oosters",
@@ -1406,7 +1406,7 @@
         "group": "Vulling"
       },
       {
-        "name": "Peterselie",
+        "name": "Verse peterselie",
         "qty": 2,
         "unit": "el",
         "group": "Vulling"
@@ -1425,19 +1425,31 @@
       },
       {
         "name": "Olijfolie",
-        "qty": 1.5,
+        "qty": 0.5,
         "unit": "el",
         "group": "Vulling"
       },
       {
-        "name": "Komijn",
+        "name": "Olijfolie voor de pitabroodjes",
+        "qty": 1,
+        "unit": "el",
+        "group": "Bakken"
+      },
+      {
+        "name": "Komijnzaad",
         "qty": 1.5,
         "unit": "tl",
         "group": "Kruiden"
       },
       {
         "name": "Paprikapoeder",
-        "qty": 1.5,
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.5,
         "unit": "tl",
         "group": "Kruiden"
       },
@@ -1473,7 +1485,7 @@
         "optional": true
       },
       {
-        "name": "Yoghurt (naturel)",
+        "name": "Griekse yoghurt (naturel)",
         "qty": 250,
         "unit": "g",
         "group": "Saus"
@@ -1486,8 +1498,8 @@
       },
       {
         "name": "Citroensap",
-        "qty": 1.5,
-        "unit": "el",
+        "qty": 2,
+        "unit": "tl",
         "group": "Saus"
       },
       {
@@ -1498,17 +1510,16 @@
       }
     ],
     "steps": [
-      "Rasp de courgette fijn en druk het vocht eruit. Snijd ui, knoflook, rode peper, tomaat en peterselie fijn.",
-      "Meng rundergehakt met de groenten, tomatenpuree, citroensap, olijfolie en alle genoemde kruiden. Kneed kort door elkaar.",
-      "Laat de vulling indien mogelijk 15–30 minuten in de koelkast rusten.",
-      "Snijd de pita's voorzichtig open en verdeel een dunne laag gehakt van ongeveer 0,5–1 cm over de binnenkant.",
-      "Bak de gevulde broodjes in een licht ingevette koekenpan circa 2 minuten per kant, tot ze kleur krijgen.",
-      "Zet ze daarna 8–10 minuten in een oven van 200 °C. Draai halverwege om en zorg dat de gehaktvulling volledig gaar wordt.",
-      "Roer de yoghurt met knoflook, citroen, olie en peper en zout tot een frisse saus. Serveer apart."
+      "Verwarm de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Rooster 1½ tl komijnzaad 30–60 seconden in een droge koekenpan op middelhoog vuur tot het geurt; laat even afkoelen en kneus fijn in een vijzel. Laat het komijnzaad niet donker worden.",
+      "Rasp ¼ courgette fijn en knijp het vocht stevig uit. Verwijder de natte zaadlijsten van de tomaat en snijd het vruchtvlees klein. Snipper 1 ui, hak 2 teentjes knoflook, ½ rode peper en 2 el verse peterselie fijn.",
+      "Meng 450 g rundergehakt kort met de ui, knoflook, rode peper, courgette, tomaat, verse peterselie, 1 el tomatenpuree, 1 tl citroensap en ½ el olijfolie. Voeg 1½ tl gekneusd komijnzaad, 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl gedroogd korianderblad, ¼ tl kaneel, ongeveer ¾ tl van het zout en zwarte peper naar smaak toe. Gebruik eventueel ¼ tl chilipoeder. Kneed niet langer dan nodig om de vulling gelijkmatig te mengen.",
+      "Laat de vulling desgewenst 15–30 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 pitabroodjes voorzichtig open en verdeel de vulling over de binnenkanten in een dunne, gelijkmatige laag van circa ½ cm.",
+      "Bestrijk de buitenkant van de gevulde pitabroodjes met in totaal 1 el olijfolie. Verhit een ruime koekenpan op middelhoog vuur en bak de broodjes, eventueel in porties, circa 2–3 minuten per kant tot beide kanten goudbruin en krokant zijn.",
+      "Leg de arayes op een bakplaat en bak nog circa 8–10 minuten in het midden van de oven. Draai ze halverwege om. Controleer of de gehaktvulling in het midden volledig gaar is (minimaal 71 °C kerntemperatuur); geef ze indien nodig enkele minuten extra.",
+      "Meng ondertussen 250 g Griekse yoghurt met 1 fijngehakt teentje knoflook, 2 tl citroensap en 1 tl olijfolie. Breng de saus op smaak met de resterende circa ¼ tl zout en zwarte peper. Proef en serveer de krokante arayes direct met de koude yoghurtsaus."
     ],
-    "tips": "Verdeel het gehakt in een dunne, gelijkmatige laag. Bak de pita’s na het aanbraden door tot de vulling helemaal gaar is.",
+    "tips": "Druk het vocht uit de geraspte courgette en verwijder de natte zaadlijsten van de tomaat; een droge vulling houdt de pita krokant. Verdeel het gehakt in een dunne laag van circa ½ cm en bestrijk de buitenkant met olie. Rooster en kneus komijnzaad kort voor de beste geur. Laat de vulling desgewenst 15–30 minuten gekoeld rusten; dit is niet nodig om het recept te laten slagen en telt niet mee in de basisbereidingstijd van 45 minuten. Controleer bij rauw gehakt altijd of het midden volledig gaar is (71 °C).",
     "review": false,
-    "marinateMinutes": 15,
     "image": "images/arayes.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
