@@ -2,7 +2,7 @@
   {
     "id": "broodje-crispy-kipschnitzel-sriracha-mayo",
     "title": "Broodje crispy kipschnitzel met sriracha-mayo",
-    "subtitle": "Zelf gepaneerde, kruidige kipschnitzel op een geroosterd broodje met gebakken paprika, rode ui, frisse sla, komkommer, tomaat en huisgemaakte sriracha-mayo.",
+    "subtitle": "Een royaal broodje met krokante panko-kipschnitzel, gebakken paprika, frisse rode ui, knapperige sla en sriracha-mayo.",
     "category": "Kip",
     "kind": "Lunch of hoofdgerecht",
     "cuisine": "Amerikaans geïnspireerd",
@@ -41,7 +41,7 @@
         "group": "Zelfgemaakte schnitzel"
       },
       {
-        "name": "Paneermeel (eventueel panko)",
+        "name": "Panko",
         "qty": 60,
         "unit": "g",
         "group": "Zelfgemaakte schnitzel"
@@ -102,7 +102,7 @@
         "group": "Bakken"
       },
       {
-        "name": "Grote zachte broodjes (bijv. briochebollen of Italiaanse bollen)",
+        "name": "Briochebollen (of andere zachte broodjes)",
         "qty": 2,
         "unit": "stuks",
         "group": "Broodje en groenten"
@@ -126,14 +126,26 @@
         "group": "Broodje en groenten"
       },
       {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Frisse rode ui"
+      },
+      {
+        "name": "Zout voor de rode ui",
+        "qty": 1,
+        "unit": "snufje",
+        "group": "Frisse rode ui"
+      },
+      {
         "name": "Komkommer",
-        "qty": 0.5,
+        "qty": 0.25,
         "unit": "stuk",
         "group": "Broodje en groenten"
       },
       {
         "name": "Tomaat",
-        "qty": 1,
+        "qty": 0.5,
         "unit": "stuk",
         "group": "Broodje en groenten"
       },
@@ -165,7 +177,8 @@
         "name": "Honing",
         "qty": 0.5,
         "unit": "tl",
-        "group": "Sriracha-mayo"
+        "group": "Sriracha-mayo",
+        "optional": true
       },
       {
         "name": "Knoflookpoeder voor de saus",
@@ -175,16 +188,17 @@
       }
     ],
     "steps": [
-      "Snijd de kipfilet horizontaal tot twee dunne schnitzels. Sla ze tussen bakpapier voorzichtig plat tot ongeveer 1 cm dikte en dep droog met keukenpapier.",
-      "Meng gerookt paprikapoeder, ½ tl knoflookpoeder, uienpoeder, oregano, tijm, zwarte peper en zout. Voeg eventueel chilipoeder toe. Verdeel de helft van de mix over beide kanten van de kip en meng de andere helft door het paneermeel.",
-      "Zet drie borden klaar met respectievelijk bloem, losgeklopt ei en gekruid paneermeel. Haal de kip achtereenvolgens door de bloem, het ei en het paneermeel. Druk het korstje voorzichtig aan.",
-      "Meng mayonaise, sriracha, citroensap, honing en ⅛ tl knoflookpoeder tot een gladde saus. Proef en pas de hoeveelheid sriracha naar wens aan.",
-      "Snijd de paprika in dunne reepjes en bak 3–4 minuten in 1 tl olijfolie tot deze licht kleurt maar nog beet heeft. Snijd de rode ui in flinterdunne halve ringen; spoel ze eventueel kort af met koud water voor een mildere smaak. Snijd de komkommer en tomaat in dunne plakjes; was en droog de sla.",
-      "Verhit de zonnebloemolie in een grote koekenpan op middelhoog vuur. Bak de gepaneerde schnitzels ongeveer 3–5 minuten per kant, afhankelijk van hun dikte, tot ze goudbruin en volledig gaar zijn. Controleer op 74 °C kerntemperatuur. Laat kort uitlekken op een rooster.",
-      "Halveer de broodjes en rooster de snijkanten 1–2 minuten in een droge pan totdat ze licht goudbruin zijn.",
-      "Besmeer de onderkant van elk broodje met wat sriracha-mayo. Beleg achtereenvolgens met sla, een warme kipschnitzel, gebakken paprika, tomaat, komkommer en de dunne rode-uienringen. Verdeel de resterende sriracha-mayo erover en sluit af met de bovenkant van het broodje. Serveer direct."
+      "Snijd de 350 g kipfilet horizontaal tot twee dunne schnitzels. Leg de stukken tussen bakpapier, sla voorzichtig plat tot circa 1 cm en dep droog.",
+      "Snijd de ½ rode ui in flinterdunne halve ringen. Meng met 1 tl citroensap en 1 klein snufje zout. Laat 5–10 minuten staan terwijl je de rest voorbereidt; laat voor het beleggen uitlekken.",
+      "Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout. Voeg eventueel ¼ tl chilipoeder toe. Wrijf de helft over de kip en meng de andere helft door 60 g panko.",
+      "Zet drie diepe borden klaar met 3 el bloem, 1 losgeklopt ei en de gekruide panko. Haal de kip achtereenvolgens door bloem, ei en panko. Druk de kruimels licht aan, zonder het laagje plat te maken.",
+      "Meng 3 el mayonaise met 2 tl sriracha, 1 tl citroensap en ⅛ tl knoflookpoeder. Proef op pittigheid en frisheid. Gebruik bij brioche geen honing; voeg desgewenst ½ tl honing toe als je minder zoete broodjes gebruikt.",
+      "Snijd de ½ paprika in dunne reepjes en bak 3–4 minuten op middelhoog vuur in 1 tl olijfolie tot deze wat kleur krijgt maar nog beet heeft. Was en droog de 4 slablaadjes. Snijd ¼ komkommer en ½ tomaat in dunne plakjes; dep vooral de tomaat droog.",
+      "Verhit 4 el zonnebloemolie in een ruime koekenpan op middelhoog vuur. Bak de kipschnitzels circa 3–5 minuten per kant goudbruin en krokant. Controleer dat het dikste deel volledig gaar is (kerntemperatuur 74 °C). Laat kort uitlekken op een rooster.",
+      "Halveer de 2 broodjes en rooster de snijkanten 1–2 minuten in een droge pan tot ze licht goudbruin zijn.",
+      "Besmeer de onderste broodhelften dun met sriracha-mayo. Leg daarop droge sla en de warme krokante kipschnitzel. Verdeel de gebakken paprika, een paar plakjes komkommer en tomaat en de uitgelekte frisse rode ui erover. Schep de resterende saus op de bovenhelften en serveer meteen."
     ],
-    "tips": "Verdeel de kruiden over kip én paneermeel voor een volle smaak. Panko geeft een extra luchtig en krokant korstje. Snijd de rode ui heel dun; de fris-scherpe smaak vormt een goed contrast met de romige saus. Droog de sla en tomaat goed zodat het broodje niet zompig wordt. Voor een minder pittige saus gebruik je 1 tl sriracha in plaats van 2 tl. Werk hygiënisch met rauwe kip en gebruik schone borden en keukengerei bij het beleggen.",
+    "tips": "Panko is hier de standaard: de grotere kruimels geven een luchtiger, krokanter korstje. Marineer de rode ui tijdens het voorbereiden en laat hem goed uitlekken. Beperk komkommer en tomaat om een zompig broodje te voorkomen. Met brioche is extra honing in de saus niet nodig; bij minder zoete broodjes is ½ tl honing optioneel. Laat de kipschnitzel op een rooster uitlekken en beleg pas vlak voor het eten. Werk hygiënisch met rauwe kip en gebruik schone materialen bij het beleggen.",
     "review": false,
     "image": "images/broodje-crispy-kipschnitzel-sriracha-mayo.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor het broodje crispy kipschnitzel met rode ui"
