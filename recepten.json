@@ -1630,13 +1630,13 @@
   {
     "id": "shawarma",
     "title": "Krokante kipshawarmawraps",
-    "subtitle": "Krokant gebakken wraps met gekruide kip, sla, rode ui, augurk en knoflooksaus.",
+    "subtitle": "Krokant gebakken kipshawarmawraps met warm gekruide kipdij, rode ui, frisse sla en knoflooksaus met peterselie; zonder augurk.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Midden-Oosters geïnspireerd",
-    "minutes": 35,
-    "prep": 20,
-    "cook": 15,
+    "minutes": 40,
+    "prep": 15,
+    "cook": 25,
     "servings": 2,
     "servingUnit": "personen",
     "heat": "Gemiddeld pittig",
@@ -1668,12 +1668,6 @@
         "group": "Groenten"
       },
       {
-        "name": "Augurken",
-        "qty": 5,
-        "unit": "stuks",
-        "group": "Groenten"
-      },
-      {
         "name": "Sla",
         "qty": 50,
         "unit": "g",
@@ -1700,6 +1694,12 @@
       {
         "name": "Korianderblad",
         "qty": 0.75,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Marjoraan (gedroogd)",
+        "qty": 0.5,
         "unit": "tl",
         "group": "Marinade"
       },
@@ -1770,6 +1770,12 @@
         "group": "Saus"
       },
       {
+        "name": "Peterselie (gedroogd)",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
         "name": "Knoflook",
         "qty": 1,
         "unit": "teentje",
@@ -1796,19 +1802,18 @@
       }
     ],
     "steps": [
-      "Snijd de kipdij in dunne reepjes. Meng met de kruiden, geperste knoflook, citroensap en olijfolie.",
-      "Laat de gekruide kip bij voorkeur 15–30 minuten afgedekt in de koelkast marineren.",
-      "Meng voor de saus mayonaise, knoflook, citroensap en water. Breng op smaak met peper en eventueel een snuf zout.",
-      "Snijd rode ui en augurken fijn en maak de sla schoon.",
-      "Bak de kip in een hete koekenpan 7–9 minuten, tot hij rondom bruin en helemaal gaar is.",
-      "Verdeel saus, sla, kip, rode ui en augurk over de wraps. Voeg desgewenst mozzarella toe.",
-      "Vouw de wraps stevig dicht en bak ze circa 2 minuten per kant in een licht ingevette pan, tot ze goudbruin en krokant zijn."
+      "Snijd 350 g kipdijfilet in dunne, gelijkmatige reepjes. Meng 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl komijn, ¾ tl gedroogd korianderblad, ½ tl gedroogde marjoraan, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl kurkuma, ¼ tl kaneel, ¼ tl chilipoeder, ¾ tl zout en ½ tl zwarte peper met 1 geperst teentje knoflook, 1 el citroensap en 1 el olijfolie. Schep de kip erdoor.",
+      "Je kunt de kip direct bakken. Voor iets meer ingetrokken smaak kun je haar optioneel 15–30 minuten afgedekt in de koelkast marineren; dit is geen verplichte wachttijd.",
+      "Maak ondertussen de saus: meng 3 el mayonaise met 1 geperst teentje knoflook, 1½ tl citroensap, 1½ tl water en ¼ tl gedroogde peterselie. Proef en voeg desgewenst een beetje peper toe. Snijd ½ rode ui in dunne halve ringen, was de 50 g sla en laat goed uitlekken.",
+      "Verhit een grote koekenpan op middelhoog tot hoog vuur. Bak de kip in een niet te dikke laag, zo nodig in twee porties, ongeveer 7–9 minuten per portie tot ze duidelijke goudbruine randjes krijgt en helemaal gaar is (kerntemperatuur 74 °C). Roer niet voortdurend en voorkom dat vocht zich ophoopt, anders gaat de kip stoven.",
+      "Leg de 4 grote wraps open. Verdeel de gebakken kip, de rode ui en een dun laagje van de knoflooksaus erover, maar houd de sla en het grootste deel van de saus apart. Voeg desgewenst in totaal 50 g mozzarella toe. Vouw de wraps stevig dicht, zodat de vulling binnenblijft.",
+      "Verhit een schone, droge koekenpan op middelhoog vuur. Bak de gevouwen wraps met de vouwnaad eerst naar beneden circa 2 minuten per kant tot ze goudbruin en krokant zijn; werk zo nodig in twee rondes.",
+      "Serveer direct. Open de warme wraps aan één zijde voorzichtig om de droge sla toe te voegen, of serveer de sla ernaast zodat die fris en knapperig blijft. Lepel de overige knoflooksaus erbij of geef hem als dipsaus; zo worden de krokante wraps niet zompig."
     ],
-    "tips": "Gebruik geen zoete vanillekwark in de saus. De wraps worden extra knapperig als je ze na het vullen kort bakt in een droge pan.",
+    "tips": "De bestaande shawarmakruiden zijn behouden, met ½ tl gedroogde marjoraan als extra kruidige laag. Gedroogd korianderblad is niet hetzelfde als gemalen korianderzaad: het blad smaakt groener, terwijl gemalen zaad warmer en licht citrusachtig is en vaker in shawarmakruiden wordt gebruikt. Wie gemalen korianderzaad heeft, kan de ¾ tl korianderblad eventueel daardoor vervangen (niet allebei gebruiken). Geen augurk: het citroensap in de saus geeft voldoende frisheid. Bak de kip in porties voor bruine randjes en rooster de gevouwen wraps zonder extra olie. Voeg de sla en het grootste deel van de saus na het krokant bakken toe of serveer apart. De kip mag direct worden gebakken; 15–30 minuten marineren in de koelkast is optioneel.",
     "review": false,
     "image": "images/shawarma.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie",
-    "marinateMinutes": 15
+    "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
     "id": "kiprijst",
