@@ -311,99 +311,134 @@
   },
   {
     "id": "pasta-rundergehakt-groenten",
-    "title": "Pasta met rundergehakt, groenten en basilico-tomatensaus",
-    "description": "Rijkgevulde pasta met mooi bruin gebakken rundergehakt, veel groenten en een volle, kruidige tomatensaus.",
+    "title": "Pasta met gehakt en veel groenten",
+    "subtitle": "Kies tussen klassieke basilico-tomatensaus en romige bolognese met champignons. Beide varianten bevatten veel groenten.",
     "category": "Pasta",
-    "portions": 4,
-    "total_minutes": 45,
-    "difficulty": "Eenvoudig",
-    "added_on": "2026-10-27",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Italiaans geïnspireerd",
+    "minutes": 45,
+    "prep": 20,
+    "cook": 25,
+    "servings": 4,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-10-28",
+    "tags": [
+      "Pasta",
+      "Rundergehakt",
+      "Groenten",
+      "Basilico",
+      "Bolognese"
+    ],
     "ingredients": [
       {
         "name": "Pasta (penne of fusilli)",
-        "quantity": "320 g",
-        "buy": false
+        "qty": 320,
+        "unit": "g",
+        "group": "Basis"
       },
       {
         "name": "Rundergehakt",
-        "quantity": "500 g",
-        "buy": true
+        "qty": 500,
+        "unit": "g",
+        "group": "Basis"
       },
       {
         "name": "Grand'Italia Basilico pastasaus",
-        "quantity": "500 g",
-        "buy": true
+        "qty": 500,
+        "unit": "g",
+        "group": "Saus"
       },
       {
         "name": "Tomatenpuree",
-        "quantity": "1 klein potje (70 g)",
-        "buy": false
+        "qty": 70,
+        "unit": "g",
+        "group": "Saus"
       },
       {
         "name": "Courgette",
-        "quantity": "1 kleine (ca. 200 g)",
-        "buy": true
+        "qty": 1,
+        "unit": "kleine (ca. 200 g)",
+        "group": "Groenten"
       },
       {
         "name": "Rode paprika",
-        "quantity": "2 stuks",
-        "buy": true
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
       },
       {
         "name": "Wortel",
-        "quantity": "1 middelgrote",
-        "buy": true
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
       },
       {
         "name": "Ui",
-        "quantity": "1 middelgrote",
-        "buy": true
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
       },
       {
         "name": "Verse tomaten",
-        "quantity": "2 middelgrote",
-        "buy": true
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
       },
       {
         "name": "Verse rode peper",
-        "quantity": "1 stuk",
-        "buy": true
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
       },
       {
         "name": "Knoflook",
-        "quantity": "3 teentjes",
-        "buy": true
+        "qty": 3,
+        "unit": "teentjes",
+        "group": "Groenten"
       },
       {
         "name": "Olijfolie",
-        "quantity": "1 el",
-        "buy": false
-      }
-    ],
-    "herbs": [
+        "qty": 1,
+        "unit": "el",
+        "group": "Bereiding"
+      },
       {
         "name": "Oregano",
-        "quantity": "1½ tl"
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Kruiden"
       },
       {
         "name": "Gedroogde basilicum",
-        "quantity": "½ tl"
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
       },
       {
         "name": "Gerookt paprikapoeder",
-        "quantity": "¾ tl"
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Kruiden"
       },
       {
         "name": "Tijm",
-        "quantity": "¼ tl"
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
       },
       {
         "name": "Zwarte peper",
-        "quantity": "½ tl"
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
       },
       {
         "name": "Zout",
-        "quantity": "naar smaak"
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
       }
     ],
     "steps": [
@@ -425,17 +460,17 @@
       {
         "title": "Smaakbasis opbouwen",
         "duration": "4 minuten",
-        "body": "Voeg de knoflook en verse rode peper toe en bak 30 seconden. Voeg de volledige 70 g tomatenpuree toe en bak 1–2 minuten al roerend, zonder te laten aanbranden. Voeg de verse tomaten toe en bak nog ongeveer 2 minuten."
+        "body": "Voeg de knoflook en verse rode peper toe en bak 30 seconden. Voeg de tomatenpuree toe en bak 1–2 minuten al roerend, zonder te laten aanbranden. Voeg de verse tomaten toe en bak nog ongeveer 2 minuten."
       },
       {
         "title": "Saus maken en inkoken",
         "duration": "12–15 minuten",
-        "body": "Doe het gebakken gehakt terug in de pan en voeg de 500 g Basilico pastasaus toe. Roer oregano, basilicum, gerookt paprikapoeder, tijm en zwarte peper erdoor. Laat 12–15 minuten zonder deksel zachtjes pruttelen en roer af en toe. Proef, voeg zout naar smaak toe en laat zo nodig iets langer inkoken."
+        "body": "Doe het gebakken gehakt terug in de pan en voeg de Basilico pastasaus toe. Roer oregano, basilicum, gerookt paprikapoeder, tijm en zwarte peper erdoor. Laat 12–15 minuten zonder deksel zachtjes pruttelen en roer af en toe. Proef, voeg zout naar smaak toe en laat zo nodig iets langer inkoken."
       },
       {
         "title": "Pasta koken",
         "duration": "tijdens het inkoken",
-        "body": "Breng een grote pan gezouten water aan de kook. Kook 320 g pasta volgens de verpakking al dente. Bewaar 100 ml kookwater voordat je de pasta afgiet."
+        "body": "Breng een grote pan gezouten water aan de kook. Kook de pasta volgens de verpakking al dente. Bewaar 100 ml kookwater voordat je de pasta afgiet."
       },
       {
         "title": "Pasta en saus samenvoegen",
@@ -449,8 +484,175 @@
       "Laat de saus zonder deksel inkoken omdat de groenten veel vocht afgeven.",
       "Voeg pastakookwater alleen toe als de saus te dik is."
     ],
-    "portions_note": "Voor 2 personen: kook 180–200 g pasta en gebruik ongeveer de helft van de saus. De overgebleven saus kun je zonder pasta invriezen.",
-    "image": "images/pasta-rundergehakt-groenten.webp"
+    "review": false,
+    "image": "images/pasta-rundergehakt-groenten.webp",
+    "aliases": [
+      "pasta-basilico",
+      "bolognese"
+    ],
+    "variants": [
+      {
+        "id": "romig",
+        "label": "Romige bolognese",
+        "subtitle": "Een romige pastasaus met rundergehakt, wortel, paprika, courgette en champignons.",
+        "minutes": 55,
+        "prep": 20,
+        "cook": 35,
+        "heat": "Mild pittig",
+        "ingredients": [
+          {
+            "name": "Rundergehakt",
+            "qty": 500,
+            "unit": "g",
+            "group": "Basis"
+          },
+          {
+            "name": "Pasta",
+            "qty": 375,
+            "unit": "g",
+            "group": "Basis"
+          },
+          {
+            "name": "Ui",
+            "qty": 1,
+            "unit": "stuk",
+            "group": "Groenten"
+          },
+          {
+            "name": "Knoflook",
+            "qty": 3,
+            "unit": "teentjes",
+            "group": "Groenten"
+          },
+          {
+            "name": "Wortel",
+            "qty": 2,
+            "unit": "stuks",
+            "group": "Groenten"
+          },
+          {
+            "name": "Paprika",
+            "qty": 1,
+            "unit": "stuk",
+            "group": "Groenten"
+          },
+          {
+            "name": "Courgette",
+            "qty": 1,
+            "unit": "stuk",
+            "group": "Groenten"
+          },
+          {
+            "name": "Champignons",
+            "qty": 250,
+            "unit": "g",
+            "group": "Groenten"
+          },
+          {
+            "name": "Verse tomaten",
+            "qty": 3,
+            "unit": "stuks",
+            "group": "Groenten"
+          },
+          {
+            "name": "Basilico pastasaus",
+            "qty": 400,
+            "unit": "g",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Tomatenpuree",
+            "qty": 2,
+            "unit": "el",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Kookroom",
+            "qty": 100,
+            "unit": "ml",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Oregano",
+            "qty": 2,
+            "unit": "tl",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Basilicum",
+            "qty": 1,
+            "unit": "tl",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Gerookt paprikapoeder",
+            "qty": 1,
+            "unit": "tl",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Tijm",
+            "qty": 0.5,
+            "unit": "tl",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Rozemarijn",
+            "qty": 0.25,
+            "unit": "tl",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Laurierblad",
+            "qty": 1,
+            "unit": "blad",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Nootmuskaat",
+            "qty": 0.25,
+            "unit": "tl",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Chilipoeder",
+            "qty": 0.25,
+            "unit": "tl",
+            "group": "Saus & kruiden",
+            "optional": true
+          },
+          {
+            "name": "Olijfolie",
+            "qty": 1,
+            "unit": "el",
+            "group": "Saus & kruiden"
+          },
+          {
+            "name": "Peper en zout",
+            "qty": null,
+            "unit": "naar smaak",
+            "group": "Saus & kruiden"
+          }
+        ],
+        "steps": [
+          "Snipper ui en knoflook; snijd wortels, paprika, courgette, champignons en verse tomaten in kleine stukken.",
+          "Verhit de olijfolie in een grote pan. Bak het gehakt op vrij hoog vuur bruin en rul en haal het indien nodig even uit de pan.",
+          "Bak de ui en wortel circa 4 minuten; voeg de paprika toe en bak mee.",
+          "Voeg courgette en champignons toe en laat het vocht zoveel mogelijk verdampen.",
+          "Doe knoflook en tomatenpuree erbij. Bak de tomatenpuree 1 minuut mee om de smaak te verdiepen.",
+          "Roer oregano, basilicum, paprikapoeder, tijm, rozemarijn en eventueel chili door de groenten.",
+          "Voeg de verse tomaten, Basilico-saus, het gehakt en de laurier toe.",
+          "Laat de saus 15–20 minuten rustig pruttelen; roer af en toe. Laat inkoken als hij nog waterig is.",
+          "Voeg de kookroom toe en breng op smaak met een klein beetje nootmuskaat, peper en zout.",
+          "Kook intussen de pasta in ruim water volgens de aanwijzingen op de verpakking.",
+          "Verwijder het laurierblad. Voeg zonodig een beetje pastawater toe om de saus mooi te binden.",
+          "Meng de pasta met de saus of schep de saus erover. Serveer direct."
+        ],
+        "tips": "Bak de champignons tot het vrijgekomen vocht grotendeels verdampt is. Voeg de kookroom pas na het inkoken van de saus toe.",
+        "image": "images/bolognese.webp",
+        "image_source": "AI-afbeelding uit eerdere kookboekversie"
+      }
+    ]
   },
   {
     "id": "gnocchi",
@@ -593,181 +795,6 @@
     "tips": "Laat de verse tomaten voldoende inkoken voordat de gnocchi erbij gaat. Voeg de basilicum pas aan het einde toe; kookroom is optioneel.",
     "review": false,
     "image": "images/gnocchi.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
-  },
-  {
-    "id": "bolognese",
-    "title": "Romige bolognese met veel groenten",
-    "subtitle": "Een romige pastasaus met rundergehakt, wortel, paprika, courgette en champignons.",
-    "category": "Pasta",
-    "kind": "Hoofdgerecht",
-    "cuisine": "Italiaans",
-    "minutes": 55,
-    "prep": 20,
-    "cook": 35,
-    "servings": 4,
-    "servingUnit": "personen",
-    "heat": "Mild pittig",
-    "difficulty": "Makkelijk",
-    "date": "2026-10-18",
-    "tags": [
-      "Pasta",
-      "Rundvlees",
-      "Groenterijk",
-      "Italiaans"
-    ],
-    "ingredients": [
-      {
-        "name": "Rundergehakt",
-        "qty": 500,
-        "unit": "g",
-        "group": "Basis"
-      },
-      {
-        "name": "Pasta",
-        "qty": 375,
-        "unit": "g",
-        "group": "Basis"
-      },
-      {
-        "name": "Ui",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Knoflook",
-        "qty": 3,
-        "unit": "teentjes",
-        "group": "Groenten"
-      },
-      {
-        "name": "Wortel",
-        "qty": 2,
-        "unit": "stuks",
-        "group": "Groenten"
-      },
-      {
-        "name": "Paprika",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Courgette",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Champignons",
-        "qty": 250,
-        "unit": "g",
-        "group": "Groenten"
-      },
-      {
-        "name": "Verse tomaten",
-        "qty": 3,
-        "unit": "stuks",
-        "group": "Groenten"
-      },
-      {
-        "name": "Basilico pastasaus",
-        "qty": 400,
-        "unit": "g",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Tomatenpuree",
-        "qty": 2,
-        "unit": "el",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Kookroom",
-        "qty": 100,
-        "unit": "ml",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Oregano",
-        "qty": 2,
-        "unit": "tl",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Basilicum",
-        "qty": 1,
-        "unit": "tl",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Gerookt paprikapoeder",
-        "qty": 1,
-        "unit": "tl",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Tijm",
-        "qty": 0.5,
-        "unit": "tl",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Rozemarijn",
-        "qty": 0.25,
-        "unit": "tl",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Laurierblad",
-        "qty": 1,
-        "unit": "blad",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Nootmuskaat",
-        "qty": 0.25,
-        "unit": "tl",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Chilipoeder",
-        "qty": 0.25,
-        "unit": "tl",
-        "group": "Saus & kruiden",
-        "optional": true
-      },
-      {
-        "name": "Olijfolie",
-        "qty": 1,
-        "unit": "el",
-        "group": "Saus & kruiden"
-      },
-      {
-        "name": "Peper en zout",
-        "qty": null,
-        "unit": "naar smaak",
-        "group": "Saus & kruiden"
-      }
-    ],
-    "steps": [
-      "Snipper ui en knoflook; snijd wortels, paprika, courgette, champignons en verse tomaten in kleine stukken.",
-      "Verhit de olijfolie in een grote pan. Bak het gehakt op vrij hoog vuur bruin en rul en haal het indien nodig even uit de pan.",
-      "Bak de ui en wortel circa 4 minuten; voeg de paprika toe en bak mee.",
-      "Voeg courgette en champignons toe en laat het vocht zoveel mogelijk verdampen.",
-      "Doe knoflook en tomatenpuree erbij. Bak de tomatenpuree 1 minuut mee om de smaak te verdiepen.",
-      "Roer oregano, basilicum, paprikapoeder, tijm, rozemarijn en eventueel chili door de groenten.",
-      "Voeg de verse tomaten, Basilico-saus, het gehakt en de laurier toe.",
-      "Laat de saus 15–20 minuten rustig pruttelen; roer af en toe. Laat inkoken als hij nog waterig is.",
-      "Voeg de kookroom toe en breng op smaak met een klein beetje nootmuskaat, peper en zout.",
-      "Kook intussen de pasta in ruim water volgens de aanwijzingen op de verpakking.",
-      "Verwijder het laurierblad. Voeg zonodig een beetje pastawater toe om de saus mooi te binden.",
-      "Meng de pasta met de saus of schep de saus erover. Serveer direct."
-    ],
-    "tips": "Bak de champignons tot het vrijgekomen vocht grotendeels verdampt is. Voeg de kookroom pas na het inkoken van de saus toe.",
-    "review": false,
-    "image": "images/bolognese.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
@@ -2764,128 +2791,6 @@
     "review": false,
     "activeMinutes": 40,
     "image": "images/stokbrood.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
-  },
-  {
-    "id": "pasta-basilico",
-    "title": "Pasta basilico met gehakt",
-    "subtitle": "Pasta met rundergehakt, verse groenten en een kruidige basilicotomatensaus.",
-    "category": "Pasta",
-    "kind": "Hoofdgerecht",
-    "cuisine": "Italiaans",
-    "minutes": 40,
-    "prep": 20,
-    "cook": 20,
-    "servings": 2,
-    "servingUnit": "personen",
-    "heat": "Gemiddeld pittig",
-    "difficulty": "Makkelijk",
-    "featured": false,
-    "date": "2026-10-25",
-    "tags": [
-      "Pasta",
-      "Rundvlees",
-      "Italiaans"
-    ],
-    "ingredients": [
-      {
-        "name": "Pasta",
-        "qty": 190,
-        "unit": "g",
-        "group": "Basis"
-      },
-      {
-        "name": "Rundergehakt",
-        "qty": 275,
-        "unit": "g",
-        "group": "Basis"
-      },
-      {
-        "name": "Ui",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Paprika",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Courgette",
-        "qty": 0.5,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Tomaat",
-        "qty": 2,
-        "unit": "stuks",
-        "group": "Groenten"
-      },
-      {
-        "name": "Knoflook",
-        "qty": 2,
-        "unit": "teentjes",
-        "group": "Groenten"
-      },
-      {
-        "name": "Grand’Italia Basilico pastasaus",
-        "qty": 400,
-        "unit": "g",
-        "group": "Saus"
-      },
-      {
-        "name": "Tomatenpuree",
-        "qty": 1,
-        "unit": "el",
-        "group": "Saus"
-      },
-      {
-        "name": "Oregano",
-        "qty": 1,
-        "unit": "tl",
-        "group": "Kruiden"
-      },
-      {
-        "name": "Basilicum",
-        "qty": 0.5,
-        "unit": "tl",
-        "group": "Kruiden"
-      },
-      {
-        "name": "Gerookt paprikapoeder",
-        "qty": 0.5,
-        "unit": "tl",
-        "group": "Kruiden"
-      },
-      {
-        "name": "Zwarte peper",
-        "qty": null,
-        "unit": "naar smaak",
-        "group": "Kruiden"
-      },
-      {
-        "name": "Olijfolie",
-        "qty": 1,
-        "unit": "el",
-        "group": "Kruiden"
-      }
-    ],
-    "steps": [
-      "Snijd ui, paprika, courgette en tomaat in kleine blokjes en hak de knoflook.",
-      "Verhit olijfolie en bak het gehakt rul en goed bruin.",
-      "Voeg ui en paprika toe en bak enkele minuten. Bak daarna courgette mee tot deze lichte kleur krijgt.",
-      "Voeg knoflook en tomatenpuree toe en bak kort mee.",
-      "Voeg de gesneden tomaten, de pot Basilico-saus en de kruiden toe. Laat 15–20 minuten op laag vuur pruttelen.",
-      "Kook ondertussen de pasta al dente. Bewaar eventueel 50–100 ml pastawater.",
-      "Meng de pasta door de saus en voeg zo nodig een scheutje pastawater toe voor een mooie binding."
-    ],
-    "tips": "Laat de verse tomaten even meekoken met de saus. Voeg zo nodig wat pastawater toe om de pasta en saus te verbinden.",
-    "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
-    "image": "images/pasta-basilico.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
   {
