@@ -337,9 +337,9 @@
     "category": "Pasta",
     "kind": "Hoofdgerecht",
     "cuisine": "Italiaans geïnspireerd",
-    "minutes": 45,
+    "minutes": 55,
     "prep": 20,
-    "cook": 25,
+    "cook": 35,
     "servings": 4,
     "servingUnit": "personen",
     "heat": "Gemiddeld pittig",
@@ -433,7 +433,7 @@
       },
       {
         "name": "Gedroogde basilicum",
-        "qty": 0.5,
+        "qty": 1,
         "unit": "tl",
         "group": "Kruiden"
       },
@@ -460,6 +460,20 @@
         "qty": null,
         "unit": "naar smaak",
         "group": "Kruiden"
+      },
+      {
+        "name": "Balsamicoazijn",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Afwerking",
+        "optional": true
+      },
+      {
+        "name": "Parmezaanse kaas",
+        "qty": 30,
+        "unit": "g",
+        "group": "Afwerking",
+        "optional": true
       }
     ],
     "steps": [
@@ -480,13 +494,13 @@
       },
       {
         "title": "Smaakbasis opbouwen",
-        "duration": "4 minuten",
-        "body": "Voeg de knoflook en verse rode peper toe en bak 30 seconden. Voeg de tomatenpuree toe en bak 1–2 minuten al roerend, zonder te laten aanbranden. Voeg de verse tomaten toe en bak nog ongeveer 2 minuten."
+        "duration": "4–5 minuten",
+        "body": "Voeg de knoflook en verse rode peper toe en bak circa 30 seconden. Roer de tomatenpuree erdoor en bak die 1–2 minuten mee om de smaak te verdiepen. Voeg de oregano, 1 tl gedroogde basilicum, gerookt paprikapoeder, tijm en zwarte peper toe en roer ongeveer 30 seconden op middelhoog vuur, zonder de kruiden te laten verbranden. Voeg daarna de verse tomaten toe en bak nog circa 2 minuten."
       },
       {
         "title": "Saus maken en inkoken",
         "duration": "12–15 minuten",
-        "body": "Doe het gebakken gehakt terug in de pan en voeg de Basilico pastasaus toe. Roer oregano, basilicum, gerookt paprikapoeder, tijm en zwarte peper erdoor. Laat 12–15 minuten zonder deksel zachtjes pruttelen en roer af en toe. Proef, voeg zout naar smaak toe en laat zo nodig iets langer inkoken."
+        "body": "Doe het gebakken gehakt terug in de pan en voeg de Basilico pastasaus toe. Laat de saus 12–15 minuten zonder deksel zachtjes pruttelen; roer af en toe zodat het vocht uit de groenten verdampt. Proef en voeg zout naar smaak toe. Is de saus erg zoet of mist hij frisheid, roer er dan eventueel 1 tl balsamicoazijn door en proef opnieuw."
       },
       {
         "title": "Pasta koken",
@@ -496,13 +510,14 @@
       {
         "title": "Pasta en saus samenvoegen",
         "duration": "2 minuten",
-        "body": "Meng de afgegoten pasta door de saus en verwarm 1–2 minuten samen op laag vuur. Voeg alleen als de saus te dik is 2–3 eetlepels pastakookwater toe. Schep goed om en serveer direct."
+        "body": "Meng de afgegoten pasta door de saus en verwarm 1–2 minuten samen op laag vuur. Voeg alleen als de saus te dik is 2–3 eetlepels pastakookwater toe. Schep goed om, verdeel over vier borden en bestrooi desgewenst met in totaal 30 g Parmezaanse kaas."
       }
     ],
     "tips": [
-      "Bak het gehakt echt bruin voor meer hartige smaak.",
-      "Bak de tomatenpuree kort mee voor een vollere, minder rauwe tomatensmaak.",
+      "Bak het gehakt stevig bruin voor meer hartige smaak.",
+      "Bak de tomatenpuree eerst kort mee en rooster de gedroogde kruiden vervolgens ongeveer 30 seconden voordat je de verse tomaten toevoegt; voorkom verbranden.",
       "Laat de saus zonder deksel inkoken omdat de groenten veel vocht afgeven.",
+      "Gebruik 1 tl balsamicoazijn alleen als de saus te zoet of te vlak smaakt; proef eerst. Serveer desgewenst met 30 g Parmezaanse kaas.",
       "Voeg pastakookwater alleen toe als de saus te dik is."
     ],
     "review": false,
@@ -607,7 +622,7 @@
           },
           {
             "name": "Gerookt paprikapoeder",
-            "qty": 1,
+            "qty": 0.5,
             "unit": "tl",
             "group": "Saus & kruiden"
           },
@@ -631,7 +646,7 @@
           },
           {
             "name": "Nootmuskaat",
-            "qty": 0.25,
+            "qty": 0.125,
             "unit": "tl",
             "group": "Saus & kruiden"
           },
@@ -659,17 +674,17 @@
           "Snipper ui en knoflook; snijd wortels, paprika, courgette, champignons en verse tomaten in kleine stukken.",
           "Verhit de olijfolie in een grote pan. Bak het gehakt op vrij hoog vuur bruin en rul en haal het indien nodig even uit de pan.",
           "Bak de ui en wortel circa 4 minuten; voeg de paprika toe en bak mee.",
-          "Voeg courgette en champignons toe en laat het vocht zoveel mogelijk verdampen.",
+          "Voeg de courgette toe en bak circa 2 minuten mee. Schuif de groenten naar de rand van de pan (of haal ze tijdelijk uit de pan). Zet het vuur iets hoger en bak de 250 g champignons 5–7 minuten in het midden van de pan, bij voorkeur in een niet te dikke laag, totdat het vocht verdampt en de champignons duidelijk bruin kleuren.",
           "Doe knoflook en tomatenpuree erbij. Bak de tomatenpuree 1 minuut mee om de smaak te verdiepen.",
-          "Roer oregano, basilicum, paprikapoeder, tijm, rozemarijn en eventueel chili door de groenten.",
+          "Roer 2 tl oregano, 1 tl basilicum, ½ tl gerookt paprikapoeder, ½ tl tijm, ¼ tl rozemarijn en eventueel ¼ tl chilipoeder door de groenten en bak 30 seconden al roerend mee.",
           "Voeg de verse tomaten, Basilico-saus, het gehakt en de laurier toe.",
           "Laat de saus 15–20 minuten rustig pruttelen; roer af en toe. Laat inkoken als hij nog waterig is.",
-          "Voeg de kookroom toe en breng op smaak met een klein beetje nootmuskaat, peper en zout.",
+          "Voeg 100 ml kookroom toe nadat de saus voldoende is ingekookt. Breng op smaak met ⅛ tl nootmuskaat en peper en zout. Proef: de saus moet hartig en tomatig blijven, niet overheersend romig of kruidig.",
           "Kook intussen de pasta in ruim water volgens de aanwijzingen op de verpakking.",
           "Verwijder het laurierblad. Voeg zonodig een beetje pastawater toe om de saus mooi te binden.",
           "Meng de pasta met de saus of schep de saus erover. Serveer direct."
         ],
-        "tips": "Bak de champignons tot het vrijgekomen vocht grotendeels verdampt is. Voeg de kookroom pas na het inkoken van de saus toe.",
+        "tips": "Bak de 250 g champignons op voldoende hoog vuur tot het vocht grotendeels verdampt is en ze goudbruin kleuren. Voeg de 100 ml kookroom pas toe nadat de saus is ingekookt. Minder gerookt paprikapoeder en slechts ⅛ tl nootmuskaat houden de tomaat, het gehakt en de Italiaanse kruiden in balans.",
         "image": "images/bolognese.webp",
         "image_source": "AI-afbeelding uit eerdere kookboekversie"
       }
