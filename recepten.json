@@ -1080,7 +1080,7 @@
   {
     "id": "gyros",
     "title": "Flatbread met gyros en frisse groenten",
-    "subtitle": "Warm flatbread met kipgyros, knapperige groenten en frisse yoghurtsaus.",
+    "subtitle": "Warme flatbreads met goudbruin gebakken kipgyros, knapperige groenten en een frisse komkommer-yoghurtsaus met dille.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Grieks geïnspireerd",
@@ -1112,7 +1112,7 @@
       },
       {
         "name": "Rode ui",
-        "qty": 1,
+        "qty": 0.5,
         "unit": "stuk",
         "group": "Groenten"
       },
@@ -1124,13 +1124,13 @@
       },
       {
         "name": "Verse tomaten",
-        "qty": 200,
+        "qty": 150,
         "unit": "g",
         "group": "Groenten"
       },
       {
         "name": "Paprika",
-        "qty": 1,
+        "qty": 0.5,
         "unit": "stuk",
         "group": "Groenten"
       },
@@ -1142,8 +1142,8 @@
       },
       {
         "name": "Citroensap",
-        "qty": 1,
-        "unit": "el",
+        "qty": 2,
+        "unit": "tl",
         "group": "Saus"
       },
       {
@@ -1153,20 +1153,32 @@
         "group": "Saus"
       },
       {
+        "name": "Gedroogde dille",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Saus"
+      },
+      {
         "name": "Olijfolie",
         "qty": 1,
         "unit": "el",
-        "group": "Saus"
+        "group": "Bakken"
       }
     ],
     "steps": [
-      "Snijd de rode ui, komkommer, tomaten en paprika in kleine stukken.",
-      "Meng de Griekse yoghurt met citroensap en knoflookpoeder tot een frisse saus.",
-      "Verhit olijfolie in een koekenpan. Bak de kipgyros goudbruin en volledig gaar.",
-      "Warm de flatbreads volgens de verpakking in de oven of koekenpan.",
-      "Verdeel de saus, gyros en groenten over de warme flatbreads. Serveer direct."
+      "Was de ½ komkommer. Rasp ¼ komkommer grof voor de saus, knijp of druk het vocht er goed uit en snijd de andere ¼ in dunne plakjes. Snijd de ½ rode ui in dunne halve ringen, de ½ paprika in fijne reepjes en 150 g tomaten in kleine blokjes. Dep de tomaten indien nodig droog.",
+      "Meng 120 g Griekse yoghurt met de uitgelekte geraspte komkommer, 2 tl citroensap, ½ tl knoflookpoeder en ½ tl gedroogde dille. Voeg een klein snufje zout toe, proef en zet de saus koel weg terwijl je de gyros bakt.",
+      "Verhit 1 el olijfolie in een grote koekenpan op middelhoog tot hoog vuur. Bak de 350 g gekruide kipgyros in circa 7–9 minuten goudbruin met krokante randjes. Laat de kip eerst een paar minuten rustig liggen voordat je omschept; bak zo nodig in twee porties. Controleer dat de kip volledig gaar is (74 °C kerntemperatuur).",
+      "Verwarm ondertussen de 4 flatbreads volgens de verpakking, bij voorkeur kort in een droge koekenpan op middelhoog vuur, ongeveer 30–60 seconden per kant, tot ze warm en soepel zijn.",
+      "Verdeel de yoghurtsaus over de warme flatbreads, leg de kipgyros erop en voeg rode ui, paprika, tomaat en de komkommerplakjes toe. Serveer direct, zodat het brood warm blijft en de groenten knapperig zijn."
     ],
-    "tips": "Verwarm het flatbread kort zodat het soepel blijft. Schep koude groenten en yoghurtsaus pas na het bakken van de gyros op het brood.",
+    "tips": "Door een kwart komkommer te raspen en goed uit te knijpen krijg je een dikkere, frisse saus met dille en knoflook; gebruik de andere kwart in plakjes op het flatbread. Een halve rode ui, een halve paprika en 150 g tomaat zijn voldoende voor vier goedgevulde flatbreads. Gebruik kant-en-klaar gekruide kipgyros zonder extra kruiden toe te voegen. Bak de kip op middelhoog tot hoog vuur in 1 el olijfolie en volg bij voorgegaarde gyros de verpakking. Voeg de koude toppings pas bij het serveren toe.",
     "review": false,
     "image": "images/gyros.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
