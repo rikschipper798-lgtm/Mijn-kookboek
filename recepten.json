@@ -307,7 +307,9 @@
       "Laat de schnitzels kort uitlekken op een rooster of keukenpapier en serveer direct. Voeg desgewenst een paar druppels citroensap toe voor frisheid."
     ],
     "tips": "Voor een extra luchtige, krokante korst kun je de 60 g gewone paneermeel vervangen door panko. Houd de pan op middelhoog vuur: bij te hoge temperatuur verbrandt het paneermeel voordat de kip gaar is. De aangegeven kruiden zijn afgestemd op 300–350 g kipfilet. Serveer met aardappeltjes en groenten voor een volledige maaltijd.",
-    "review": false
+    "review": false,
+    "image": "images/gekruide-kipschnitzel.svg",
+    "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
   {
     "id": "pasta-rundergehakt-groenten",
@@ -1265,7 +1267,9 @@
       "Kook kort voor serveren 300 g rijst volgens de verpakking en serveer met de goulash."
     ],
     "tips": "Laat het vlees heel zacht sudderen tot het gemakkelijk uit elkaar valt. Serveer met rijst, niet met aardappelen.",
-    "review": false
+    "review": false,
+    "image": "images/goulash.svg",
+    "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
   {
     "id": "arayes",
@@ -1892,7 +1896,9 @@
     ],
     "tips": "Gebruik een halve rode peper voor een gemiddelde pittigheid. Voeg de sojasaus en ketjap pas na het fruiten van de groenten toe.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
+    "image": "images/kiprijst.svg",
+    "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
   {
     "id": "traybake",
@@ -2033,7 +2039,9 @@
     ],
     "tips": "Bak de kipschnitzels apart in de koekenpan voor een krokante korst. Voeg de tomaten pas laat toe aan de ovengroenten.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
+    "image": "images/traybake.svg",
+    "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
   {
     "id": "italiaanse-kip",
@@ -2245,7 +2253,9 @@
     ],
     "tips": "Bak de lege wrap 2 minuten voor als je een extra krokante bodem wilt. Beleg niet te dik, zodat de wrap niet slap wordt.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
+    "image": "images/wrap-pizza.svg",
+    "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
   {
     "id": "varkenshaas",
@@ -2415,7 +2425,9 @@
     ],
     "tips": "Kook de krieltjes kort voor en laat de varkenshaas na het bakken 5 minuten rusten. Laat de champignon-pepersaus rustig inkoken.",
     "review": false,
-    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht."
+    "imageNote": "AI-illustratie, niet de exacte uiteindelijke opmaak van het gerecht.",
+    "image": "images/varkenshaas.svg",
+    "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
   {
     "id": "vlaams-stoofvlees",
@@ -2721,7 +2733,9 @@
       "Besprenkel de zalm pas na het bakken met de 2 theelepels citroensap. Serveer met de wortels en frieten."
     ],
     "tips": "Voeg het citroensap bij de zalm pas na het garen toe. De honing is uitsluitend bedoeld voor de wortels.",
-    "review": false
+    "review": false,
+    "image": "images/zalm.svg",
+    "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
   {
     "id": "stokbrood",
@@ -3070,7 +3084,9 @@
         ],
         "tips": "Laat gekookte rijst eerst uitdampen en leg de kip pas bij het serveren op de rijst, zodat het paneerlaagje krokant blijft."
       }
-    ]
+    ],
+    "image": "images/krokante-kip-rijst.svg",
+    "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
   },
   {
     "id": "kipwraps",
