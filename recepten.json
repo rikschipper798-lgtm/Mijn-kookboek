@@ -698,9 +698,9 @@
     "category": "Pasta",
     "kind": "Ovenschotel",
     "cuisine": "Italiaans",
-    "minutes": 50,
+    "minutes": 55,
     "prep": 20,
-    "cook": 30,
+    "cook": 35,
     "servings": 4,
     "servingUnit": "personen",
     "heat": "Gemiddeld pittig",
@@ -731,6 +731,12 @@
         "qty": 600,
         "unit": "g",
         "group": "Groenten"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Saus & kruiden"
       },
       {
         "name": "Paprika",
@@ -819,17 +825,17 @@
       }
     ],
     "steps": [
-      "Verwarm de oven voor op 220 °C boven-/onderwarmte (200 °C hetelucht). Snijd de kip, paprika, courgette en tomaten. Snipper ui en knoflook en hak de rode peper fijn.",
-      "Verhit een scheut olijfolie en bak de kip in een ruime koekenpan rondom goudbruin. Schep eventueel uit de pan.",
-      "Fruit de ui en paprika 3 minuten in dezelfde pan. Voeg courgette, knoflook en rode peper toe en bak nog 2–3 minuten.",
-      "Voeg tomaat, oregano, gerookt paprikapoeder, zwarte peper en zout toe. Laat 8–10 minuten zacht pruttelen, zodat de saus indikt.",
-      "Doe de kip terug in de pan. Voeg eventueel de kookroom toe wanneer je een zachtere, romige saus wilt.",
-      "Bereid de gnocchi volgens de verpakking of bak deze kort in een aparte pan; schep daarna door de saus.",
-      "Proef de gnocchi met de tomatensaus en kip en stel de kruiden zo nodig bij. Houd de verse basilicum nog apart; die wordt pas na het bakken toegevoegd.",
-      "Schep alles in een ovenschaal en verdeel mozzarella en Parmezaanse kaas erover.",
-      "Bak 10–15 minuten, totdat de kaas gesmolten en licht goudbruin is. Haal de schaal uit de oven, scheur de verse basilicumblaadjes en verdeel ze over het gerecht. Serveer direct."
+      "Verwarm de oven voor op 220 °C boven-/onderwarmte (200 °C hetelucht). Laat de 125 g mozzarella uitlekken en dep deze droog. Snijd de 400 g kipdijfilet in hapklare stukken, snijd de 2 paprika's, de courgette en 600 g verse tomaten, snipper de ui en hak de 3 teentjes knoflook en de rode peper fijn.",
+      "Kruid de kip met 1 tl oregano, ¼ tl gerookt paprikapoeder, een beetje van de ½ tl zwarte peper en een snuf zout. Verhit 1½ el olijfolie in een ruime koekenpan op middelhoog tot hoog vuur. Bak de kip circa 5–6 minuten rondom bruin en schep uit de pan. De kip gaart straks verder in de saus en oven.",
+      "Fruit de ui en paprika in dezelfde pan circa 3 minuten op middelhoog vuur. Voeg de courgette toe en bak 2 minuten mee. Voeg de knoflook en rode peper toe en bak 30 seconden. Roer 1½ el tomatenpuree erdoor en bak die 1 minuut al roerend om de smaak te verdiepen.",
+      "Voeg de 600 g verse tomaten, de resterende 1 tl oregano, ¼ tl gerookt paprikapoeder en de resterende zwarte peper toe. Laat 10–12 minuten zonder deksel op middelhoog tot laag vuur inkoken; roer af en toe. De saus moet duidelijk dikker zijn en geen plas vocht meer vormen. Voeg zo nodig nog 2–3 minuten toe en proef of extra zout nodig is.",
+      "Bereid ondertussen de 800 g gnocchi. Gebruik bij voorkeur een soort die je volgens de verpakking direct kunt bakken: verhit ½ el olijfolie in een tweede koekenpan en bak de gnocchi in één of twee porties circa 5–8 minuten tot ze wat kleur krijgen. Vereist de verpakking koken, kook de gnocchi dan volgens de aanwijzingen en laat zeer goed uitlekken.",
+      "Roer de aangebakken kip met eventueel opgevangen vleessappen door de ingekookte tomatensaus. Laat 2–3 minuten rustig doorwarmen; voeg naar wens de optionele 100 ml kookroom toe, maar pas nadat de tomatensaus voldoende is ingedikt.",
+      "Meng de bereide gnocchi door de saus. Proef en stel zout en peper bij. Houd alle 15 g verse basilicum apart tot ná de oven. Schep het mengsel in een ovenschaal.",
+      "Scheur de goed uitgelekte 125 g mozzarella over de gnocchi en verdeel 50 g Parmezaanse kaas erover. Bak 10–15 minuten in de voorverwarmde oven tot de kaas gesmolten en licht goudbruin is en de kip volledig gaar is (74 °C kerntemperatuur).",
+      "Haal de ovenschaal uit de oven. Scheur de 15 g verse basilicumblaadjes en verdeel ze over het gerecht. Serveer direct."
     ],
-    "tips": "Laat de verse tomaten voldoende inkoken voordat de gnocchi erbij gaat. Voeg alle verse basilicum pas ná het bakken toe voor de frisse smaak; kookroom is optioneel.",
+    "tips": "Bak de 1½ el tomatenpuree kort mee voor meer diepte en laat de verse tomaten 10–12 minuten zonder deksel inkoken: zo blijft de ovenschotel minder waterig. Laat de mozzarella goed uitlekken en dep droog. Kies bij voorkeur gnocchi die je volgens de verpakking kunt aanbakken; kookgnocchi kun je ook gebruiken mits goed uitgelekt. De kookroom blijft optioneel. Voeg alle verse basilicum pas na het bakken toe. Werk schoon met rauwe kip en controleer op 74 °C kerntemperatuur.",
     "review": false,
     "image": "images/gnocchi.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
