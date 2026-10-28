@@ -206,7 +206,7 @@
   {
     "id": "gekruide-kipschnitzel",
     "title": "Krokante, kruidige kipschnitzel",
-    "subtitle": "Zelfgemaakte kipschnitzel met een goudbruin paneerlaagje, gerookt paprikapoeder, knoflook, oregano en tijm.",
+    "subtitle": "Zelfgemaakte kipschnitzel met extra krokante panko, gerookt paprikapoeder, knoflook, oregano, tijm en peterselie, fris afgewerkt met citroen.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Europees",
@@ -244,7 +244,7 @@
         "group": "Paneren"
       },
       {
-        "name": "Paneermeel",
+        "name": "Panko",
         "qty": 60,
         "unit": "g",
         "group": "Paneren"
@@ -280,6 +280,12 @@
         "group": "Kruiden"
       },
       {
+        "name": "Gedroogde peterselie",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
         "name": "Zwarte peper",
         "qty": 0.25,
         "unit": "tl",
@@ -308,19 +314,18 @@
         "name": "Citroensap",
         "qty": 1,
         "unit": "tl",
-        "group": "Serveren",
-        "optional": true
+        "group": "Serveren"
       }
     ],
     "steps": [
       "Snijd de kipfilets horizontaal open, zodat je twee grote, dunne schnitzels krijgt. Leg ze tussen twee vellen bakpapier en sla voorzichtig plat tot ongeveer 1 cm dik. Dep de kip droog.",
-      "Meng gerookt paprikapoeder, knoflookpoeder, uienpoeder, oregano, tijm, zwarte peper en zout. Voeg eventueel ¼ tl chilipoeder toe voor een pittiger resultaat.",
-      "Wrijf ongeveer de helft van de kruidenmix over beide kanten van de kip. Meng de andere helft door het paneermeel, zodat zowel het vlees als het korstje goed gekruid is.",
-      "Zet drie diepe borden klaar: één met bloem, één met losgeklopt ei en één met het gekruide paneermeel. Haal de kip achtereenvolgens door bloem, ei en paneermeel. Druk het paneermeel voorzichtig aan.",
+      "Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout. Voeg eventueel ¼ tl chilipoeder toe voor een pittiger resultaat. Houd ½ tl gedroogde peterselie apart voor de panko.",
+      "Wrijf de helft van de kruidenmix over beide kanten van de kip. Meng de andere helft samen met ½ tl gedroogde peterselie door 60 g panko, zodat zowel het vlees als het korstje goed gekruid is.",
+      "Zet drie diepe borden klaar: één met 3 el bloem, één met 1 losgeklopt ei en één met de gekruide panko. Haal de kip achtereenvolgens door bloem, ei en panko. Druk het laagje licht aan, zonder de kruimels plat te drukken.",
       "Verhit circa 4 el zonnebloemolie in een grote koekenpan op middelhoog vuur. Bak de schnitzels ongeveer 3–5 minuten per kant, afhankelijk van de dikte. Draai voorzichtig om zodra de onderkant goudbruin is. Voeg indien nodig wat extra olie toe. Controleer dat de kip volledig gaar is (kerntemperatuur 74 °C).",
-      "Laat de schnitzels kort uitlekken op een rooster of keukenpapier en serveer direct. Voeg desgewenst een paar druppels citroensap toe voor frisheid."
+      "Laat de schnitzels 1–2 minuten uitlekken op een rooster, zodat ook de onderkant krokant blijft. Verdeel bij het serveren 1 tl citroensap over de twee schnitzels of geef het citroensap ernaast om zelf te doseren. Serveer direct."
     ],
-    "tips": "Voor een extra luchtige, krokante korst kun je de 60 g gewone paneermeel vervangen door panko. Houd de pan op middelhoog vuur: bij te hoge temperatuur verbrandt het paneermeel voordat de kip gaar is. De aangegeven kruiden zijn afgestemd op 300–350 g kipfilet. Serveer met aardappeltjes en groenten voor een volledige maaltijd.",
+    "tips": "Gebruik panko in plaats van gewoon paneermeel voor een luchtiger, krokanter korstje. De ½ tl gedroogde peterselie gaat in de panko; de overige kruiden worden verdeeld over de kip en de panko. Houd de pan op middelhoog vuur, zodat het korstje goudbruin wordt voordat de kip gaar is. Controleer de kerntemperatuur (74 °C). Laat uitlekken op een rooster in plaats van keukenpapier. Serveer met 1 tl citroensap voor een frisse afwerking en combineer eventueel met aardappeltjes en groenten voor een complete maaltijd.",
     "review": false,
     "image": "images/gekruide-kipschnitzel.svg",
     "image_source": "Originele vectorillustratie voor het kookboek; geen foto van het bereide gerecht"
