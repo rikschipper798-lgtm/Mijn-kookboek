@@ -843,7 +843,7 @@
   {
     "id": "piripiri",
     "title": "Kip piri piri met rijst",
-    "subtitle": "Kruidig gemarineerde kip met rijst en gebakken groenten.",
+    "subtitle": "Pittig-frisse, goudbruin gebakken kip met paprika en courgette, rijst en een warme piri-pirisaus met citroen.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Portugees geïnspireerd",
@@ -893,14 +893,14 @@
       },
       {
         "name": "Olijfolie",
-        "qty": 2.5,
+        "qty": 1.5,
         "unit": "el",
         "group": "Marinade"
       },
       {
         "name": "Citroensap",
-        "qty": 1,
-        "unit": "el",
+        "qty": 2,
+        "unit": "tl",
         "group": "Marinade"
       },
       {
@@ -941,7 +941,7 @@
       },
       {
         "name": "Tomatenpuree",
-        "qty": 0.75,
+        "qty": 1.5,
         "unit": "tl",
         "group": "Marinade"
       },
@@ -962,19 +962,37 @@
         "qty": null,
         "unit": "naar smaak",
         "group": "Marinade"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Groenten bakken"
+      },
+      {
+        "name": "Water",
+        "qty": 2,
+        "unit": "el",
+        "group": "Saus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Afwerking"
       }
     ],
     "steps": [
-      "Meng olijfolie, citroensap, fijngehakte knoflook en rode peper met paprikapoeders, oregano, chili, tomatenpuree, honing, zout en peper.",
-      "Houd ongeveer een derde van de marinade apart vóórdat de rauwe kip erbij komt. Bewaar dit deel voor de saus.",
-      "Meng de resterende marinade door de kip en laat bij voorkeur minimaal 30 minuten gekoeld intrekken.",
-      "Kook de rijst volgens de verpakking. Snijd ondertussen paprika, ui en courgette.",
-      "Bak de kip op middelhoog vuur rondom bruin en vervolgens helemaal gaar. Controleer vooral dikke stukken voordat je serveert.",
-      "Bak in een tweede pan de ui en groenten enkele minuten, zodat ze nog enige beet hebben.",
-      "Voeg de apart gehouden marinade aan de pan met kip toe en laat minstens 1 minuut meekoken.",
-      "Serveer de kip en groenten met de rijst en lepel de warme saus erover."
+      "Meng voor de marinade 1½ el olijfolie, 2 tl citroensap, 2 fijngehakte teentjes knoflook, ½ fijngehakte rode peper, ¾ tl gerookt paprikapoeder, ¾ tl gewoon paprikapoeder, ¾ tl oregano, ¼ tl chilipoeder, 1½ tl tomatenpuree, ½ tl honing, ½ tl zout en zwarte peper naar smaak.",
+      "Schep ongeveer een derde van de marinade in een schoon, apart bakje voordat deze met rauwe kip in aanraking komt. Dek af en bewaar gekoeld: dit is de basis voor de saus.",
+      "Snijd 350 g kipfilet in gelijkmatige stukken of reepjes van circa 2–3 cm. Meng met de resterende marinade en laat minimaal 30 minuten afgedekt in de koelkast marineren.",
+      "Kook 165 g rijst volgens de verpakking. Snipper ondertussen de ui en snijd de paprika en ½ courgette in stukjes.",
+      "Verhit een koekenpan op middelhoog tot hoog vuur. Laat overtollige marinade van de kip afdruipen en bak de kip in de olie die eraan hecht circa 3 minuten zonder veel te bewegen; keer om en bak nog circa 3 minuten zodat de stukken mooi bruin kleuren. Verlaag zo nodig het vuur om aanbranden van de marinade te voorkomen.",
+      "Verhit tegelijkertijd 1 el olijfolie in een tweede ruime pan. Fruit de ui 2–3 minuten, voeg paprika en courgette toe en bak nog 4–5 minuten op middelhoog tot hoog vuur tot de groenten licht kleuren en beetgaar zijn.",
+      "Voeg het schoon apart gehouden derde deel van de marinade en 2 el water aan de kip toe. Laat 2 minuten zacht koken tot een glanzende saus en controleer of de kip helemaal gaar is (kerntemperatuur 74 °C). Voeg zo nodig een scheutje water toe als de saus te snel indikt.",
+      "Proef de saus, voeg bij het serveren nog 1 tl citroensap toe voor frisheid en verdeel de kip, groenten en rijst over twee borden. Schep de warme saus over de kip."
     ],
-    "tips": "Houd een deel van de marinade apart vóór deze met rauwe kip in aanraking komt. Voeg voor een mildere smaak iets minder chili toe.",
+    "tips": "Houd een derde van de marinade apart vóór die met rauwe kip in contact komt; bewaar dit deel afgedekt in de koelkast. Door de kip eerst zonder overtollige marinade te bakken ontstaat meer bruining. Voeg pas op het einde 2 el water en de schone marinade toe en laat 2 minuten inkoken. De laatste 1 tl citroensap gaat bij het serveren over de saus voor een frisse piri-pirismaak. Voor een mildere versie kun je de hoeveelheid chili of rode peper verminderen.",
     "review": false,
     "marinateMinutes": 30,
     "image": "images/piripiri.webp",
