@@ -3091,5 +3091,448 @@
     "review": false,
     "image": "images/kipwraps.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
+  },
+  {
+    "id": "chocolademelk",
+    "title": "Zelfgemaakte warme chocolademelk",
+    "subtitle": "Twee romige mokken warme chocolademelk van ongezoet cacaopoeder, zonder klontjes en met een naar smaak af te stellen zoetheid.",
+    "category": "Dranken",
+    "kind": "Warme drank",
+    "cuisine": "Huisgemaakt",
+    "minutes": 10,
+    "prep": 3,
+    "cook": 7,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-28",
+    "tags": [
+      "Chocolademelk",
+      "Cacao",
+      "Warme drank",
+      "Binnen 15 min"
+    ],
+    "ingredients": [
+      {
+        "name": "Melk",
+        "qty": 500,
+        "unit": "ml",
+        "group": "Basis"
+      },
+      {
+        "name": "Ongezoet cacaopoeder",
+        "qty": 18,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Suiker",
+        "qty": 16,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Kaneel",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Optioneel",
+        "optional": true
+      },
+      {
+        "name": "Pure chocolade",
+        "qty": 20,
+        "unit": "g",
+        "group": "Optioneel",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Doe 18 g ongezoet cacaopoeder en 16 g suiker in een ruime mok of kom. Voeg ongeveer 3 el (45 ml) van de koude melk toe en roer stevig tot een volledig glad, donker papje zonder klontjes.",
+      "Verwarm de resterende circa 455 ml melk in een steelpan op middellaag vuur gedurende ongeveer 3–4 minuten, tot de melk duidelijk dampt maar niet kookt. Roer af en toe om aanzetten te voorkomen.",
+      "Schenk eerst een kleine hoeveelheid warme melk bij het cacaopapje en klop glad. Voeg daarna al roerend de rest van de melk toe. Giet alles indien nodig terug in de pan.",
+      "Verwarm nog 1–2 minuten op laag vuur en blijf roeren totdat de cacao volledig is verdeeld. Voeg desgewenst ¼ tl kaneel en/of 20 g fijngehakte pure chocolade toe; roer tot de chocolade is gesmolten.",
+      "Proef vóór het serveren. Voeg voor zoetere chocolademelk naar smaak een beetje extra suiker of honing toe. Verdeel over 2 mokken en serveer warm."
+    ],
+    "tips": "Dit recept gaat uit van ongezoet bakcacaopoeder. Gebruik je instant cacaodrankpoeder (bijvoorbeeld Nesquik), neem dan de hoeveelheden op de verpakking als uitgangspunt en voeg niet automatisch de 16 g suiker toe. De eerdere bereidingsmethode met een cacaopapje is behouden; de hoeveelheden zijn nu concreet gestandaardiseerd op 500 ml melk, 18 g cacao en 16 g suiker. Voor een rijkere versie kun je 20 g pure chocolade toevoegen of een klein deel van de melk vervangen door slagroom."
+  },
+  {
+    "id": "kruidenboter",
+    "title": "Zelfgemaakte knoflook-kruidenboter (40 g)",
+    "subtitle": "Een kleine portie zachte kruidenboter met verse peterselie, knoflook, een vleugje citroen en peper.",
+    "category": "Brood & basis",
+    "kind": "Basisrecept",
+    "cuisine": "Europees",
+    "minutes": 5,
+    "prep": 5,
+    "cook": 0,
+    "restMinutes": 30,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-28",
+    "tags": [
+      "Kruidenboter",
+      "Knoflook",
+      "Bijgerecht",
+      "Saus"
+    ],
+    "ingredients": [
+      {
+        "name": "Ongezouten roomboter",
+        "qty": 40,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 0.5,
+        "unit": "teentje",
+        "group": "Smaakmakers"
+      },
+      {
+        "name": "Verse peterselie",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Smaakmakers"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Smaakmakers"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Smaakmakers"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Smaakmakers"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Optioneel",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Laat 40 g ongezouten roomboter op kamertemperatuur zacht worden, maar niet smelten. Hak 2 tl verse peterselie heel fijn en pers of rasp ½ klein teentje knoflook.",
+      "Prak de boter met een vork en meng de knoflook, peterselie, ¼ tl citroensap, ⅛ tl zout en ⅛ tl zwarte peper er volledig door. Voeg desgewenst ⅛ tl oregano toe voor een subtiele extra kruidensmaak.",
+      "Proef een klein beetje. Voeg alleen indien nodig een klein snufje zout of enkele druppels citroensap toe: de knoflook wordt tijdens het rusten iets duidelijker van smaak.",
+      "Schep de boter in een klein bakje, dek af en zet bij voorkeur 30 minuten in de koelkast zodat de smaken zich mengen. Haal ongeveer 10 minuten vóór het serveren uit de koelkast als je de boter goed smeerbaar wilt hebben."
+    ],
+    "tips": "Dit recept behoudt de oorspronkelijke kleine portie van 40 g roomboter en ½ klein teentje knoflook. Gebruik 2 tl fijngehakte verse peterselie voor een frisse kruidensmaak; als vervanger kan ½ tl gedroogde peterselie worden gebruikt. De optionele oregano kan worden vervangen door 1 tl fijngeknipte bieslook. Laat bij voorkeur 30 minuten koelen (de totale tijd is 35 minuten, exclusief eventueel 10 minuten op temperatuur laten komen). Serveer op vers stokbrood, bij een biefstuk of gegrilde groenten. Bewaar afgedekt in de koelkast en gebruik binnen 2–3 dagen."
+  },
+  {
+    "id": "kip-satesaus",
+    "title": "Kruidige kipdij met satésaus",
+    "subtitle": "Goudbruin gebakken kipdij met kerrie, paprika, komijn en ketjap, geserveerd met warme satésaus; naar wens met rijst en groenten.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Indonesisch geïnspireerd",
+    "minutes": 30,
+    "prep": 10,
+    "cook": 20,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild tot gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-28",
+    "tags": [
+      "Kip",
+      "Satésaus",
+      "Ketjap",
+      "Rijst"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipdijfilet",
+        "qty": 400,
+        "unit": "g",
+        "group": "Kip"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Ketjap manis",
+        "qty": 1,
+        "unit": "el",
+        "group": "Marinade"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Kerrie",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Komijnzaad",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Optioneel",
+        "optional": true
+      },
+      {
+        "name": "Satésaus (bereid)",
+        "qty": 120,
+        "unit": "g",
+        "group": "Serveren"
+      },
+      {
+        "name": "Rijst",
+        "qty": 150,
+        "unit": "g",
+        "group": "Optioneel bijgerecht",
+        "optional": true
+      },
+      {
+        "name": "Sperziebonen",
+        "qty": 300,
+        "unit": "g",
+        "group": "Optioneel bijgerecht",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Snijd 400 g kipdijfilet in gelijkmatige stukken of reepjes. Kneus ½ tl komijnzaad fijn met de achterkant van een lepel of een vijzel, zodat de smaak goed vrijkomt.",
+      "Meng in een kom 2 tl olijfolie met 1 el ketjap manis, 1 tl paprikapoeder, 1 tl kerrie, ½ tl gekneusd komijnzaad, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl zwarte peper en ¼ tl zout. Voeg voor wat pit optioneel ¼ tl chilipoeder toe. Schep de kip grondig door deze kruidenmix.",
+      "Je kunt de kip meteen bakken. Laat haar voor een wat diepere smaak eventueel eerst 10–20 minuten afgedekt in de koelkast marineren; dit is optioneel en komt boven op de bereidingstijd.",
+      "Kook voor een volledige maaltijd desgewenst 150 g rijst volgens de verpakking en maak 300 g sperziebonen schoon. Kook de sperziebonen in circa 10–12 minuten gaar maar nog beetgaar. Bereid dit tegelijk met de kip.",
+      "Verhit een ruime koekenpan of wok op middelhoog tot hoog vuur. Bak de gekruide kip in circa 8–10 minuten goudbruin en volledig gaar (74 °C kerntemperatuur). Leg de kip in één laag, roer niet voortdurend en bak zo nodig in twee porties; gebruik indien nodig iets minder vuur zodat de ketjap niet verbrandt.",
+      "Verwarm 120 g reeds bereide satésaus in een klein steelpannetje op laag vuur volgens de aanwijzingen van de saus. Roer regelmatig en laat niet hard koken; voeg eventueel een klein scheutje water toe als de saus te dik is.",
+      "Verdeel de gebakken kip over twee borden en lepel de warme satésaus erover of serveer apart. Geef er eventueel rijst en sperziebonen bij, zodat het een volledige maaltijd wordt."
+    ],
+    "tips": "Deze kipkruiding is gebaseerd op het eerdere recept van 9 juli 2026. De toen aangepaste versie voor 200 g kip blijft bruikbaar: neem 1 tl olie, 1½ tl ketjap, ½ tl paprikapoeder, ½ tl kerrie en van komijn, knoflookpoeder en uienpoeder elk ¼ tl; voeg peper en zout toe en gebruik circa 3–4 el bereide satésaus (of 4–5 el als je rijst erbij eet). Optioneel kun je een klein beetje sambal gebruiken in plaats van chilipoeder. Warm de saus apart en laat deze niet hard koken; zo blijft de kip goed gebakken. Voor een complete maaltijd zijn rijst en circa 300 g groenten voor twee personen aanbevolen."
+  },
+  {
+    "id": "mexicaanse-kipwraps",
+    "title": "Mexicaanse kipwraps met mais en knoflooksaus",
+    "subtitle": "Vier wraps met kruidige kipdij, gebakken paprika, mais, kaas, knapperige sla en frisse knoflook-citroensaus.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Mexicaans geïnspireerd",
+    "minutes": 40,
+    "prep": 20,
+    "cook": 20,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-10-28",
+    "tags": [
+      "Kip",
+      "Wraps",
+      "Mais",
+      "Knoflooksaus"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipdijfilet",
+        "qty": 375,
+        "unit": "g",
+        "group": "Basis"
+      },
+      {
+        "name": "Middelgrote wraps",
+        "qty": 4,
+        "unit": "stuks",
+        "group": "Basis"
+      },
+      {
+        "name": "Rode paprika",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Ui",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Mais (uitgelekt)",
+        "qty": 150,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomaat",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "IJsbergsla",
+        "qty": 70,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Geraspte kaas",
+        "qty": 80,
+        "unit": "g",
+        "group": "Topping"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Komijnzaad",
+        "qty": 0.75,
+        "unit": "tl",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kipkruiden"
+      },
+      {
+        "name": "Griekse yoghurt (naturel)",
+        "qty": 60,
+        "unit": "g",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Mayonaise",
+        "qty": 1,
+        "unit": "el",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 0.5,
+        "unit": "teentje",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Optionele afwerking",
+        "optional": true
+      }
+    ],
+    "steps": [
+      "Snijd 375 g kipdijfilet in dunne reepjes. Kneus ¾ tl komijnzaad fijn. Meng met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl oregano, ¼ tl chilipoeder, ½ tl zout, ¼ tl zwarte peper en 1 el olijfolie. Schep de kip erdoor en laat staan terwijl je de groenten snijdt.",
+      "Snijd 1 rode paprika in reepjes en snipper 1 ui. Laat 150 g mais goed uitlekken en dep zo nodig droog. Verwijder de natte zaadlijsten uit 1 tomaat en snijd het vruchtvlees klein. Was 70 g ijsbergsla, laat goed uitlekken en snijd in reepjes.",
+      "Maak de knoflooksaus: meng 60 g Griekse yoghurt, 1 el mayonaise, ½ fijngeraspt teentje knoflook en 1 tl citroensap. Proef en breng op smaak met een klein beetje zout en zwarte peper. Zet koud weg tot het serveren.",
+      "Verhit een ruime koekenpan op middelhoog tot hoog vuur en bak de kipreepjes in 6–8 minuten rondom bruin; werk indien nodig in twee porties. Schep de kip uit de pan.",
+      "Bak in dezelfde pan de paprika en ui circa 4–5 minuten tot ze licht kleuren en nog wat beet hebben. Voeg de uitgelekte mais toe en bak circa 1 minuut mee. Doe de kip terug en schep nog 1–2 minuten om, totdat de kip volledig gaar is (74 °C kerntemperatuur). Voeg eventueel ½ tl citroensap toe voor een frisse afwerking.",
+      "Verwarm 4 wraps kort in een droge koekenpan, circa 20–30 seconden per kant, zodat ze soepel worden. Verdeel de ijsbergsla, warme kip-groentevulling, tomaat, 80 g geraspte kaas en knoflooksaus over de wraps. Vouw stevig dicht en serveer direct.",
+      "Wil je de wraps liever krokant? Vul dan eerst alleen met de warme kip-groentevulling en de kaas, vouw dicht en bak 1–2 minuten per kant in een droge pan. Voeg na het bakken de sla, tomaat en knoflooksaus via de open zijkant toe, zodat alles fris en krokant blijft."
+    ],
+    "tips": "Gebaseerd op het eerdere Mexicaanse wraprecept van 8 augustus 2026, waarin voor twee personen 350–400 g kipdij, paprika, ui, mais, sla, tomaat, geraspte kaas en een saus van yoghurt en mayonaise werden gebruikt. In deze versie is 375 g kip gekozen, is het gerookte paprikapoeder teruggebracht van 1 naar ½ tl en het komijnzaad verhoogd naar ¾ tl voor een beter evenwicht. Gebruik 1 tl citroensap in de knoflooksaus in plaats van de eerder genoemde limoen. Laat mais uitlekken en voeg vochtige ingrediënten pas na krokant bakken toe. Als je geen Griekse yoghurt hebt, kun je crème fraîche gebruiken; gebruik geen gezoete vanillekwark."
   }
 ]
