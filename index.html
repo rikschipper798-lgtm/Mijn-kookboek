@@ -237,11 +237,10 @@ footer{padding-top:0;padding-bottom:38px}
 }
 
 
-/* Volledige receptkaart aanklikbaar, zonder het favorietenhartje te blokkeren. */
-.card{position:relative;cursor:pointer}
-.card-actions .btn::after{content:"";position:absolute;inset:0;z-index:1}
-.card-actions .btn:focus-visible::after{outline:3px solid #cc9364;outline-offset:-3px;border-radius:18px}
-.card-actions .fav{position:relative;z-index:2}
+/* Direct klikbare en via toetsenbord te openen receptkaarten. */
+.card[data-recipe]{cursor:pointer}
+.card[data-recipe]:focus-visible{outline:3px solid #cc9364;outline-offset:3px}
+.card[data-recipe] .card-actions .fav{position:relative;z-index:1}
 
 </style>
 </head>
@@ -395,8 +394,20 @@ function renderCards(){
  const term=el('search').value.toLowerCase().trim(),cat=el('category').value;
  const shown=recipes.filter(r=>(!cat||r.category===cat)&&(!favoriteOnly||favorites.has(r.id))&&(!quickOnly||timeInfo(r).total<=40)&&(!term||searchable(r).includes(term)));
  el('count').textContent=shown.length+' van '+recipes.length+' recepten';
- el('cards').innerHTML=shown.map(r=>'<div class="card">'+(r.image?'<div class="card-art with-photo"><img loading="lazy" decoding="async" src="'+safe(r.image)+'" alt="'+safe(title(r))+'">'+imageLabel(r)+'</div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+'<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2><p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span><span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span></div><div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a><button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen: '+safe(title(r))+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>').join('')||'<p>Geen recepten gevonden. Probeer een andere zoekterm.</p>';
+ el('cards').innerHTML=shown.map(r=>'<div class="card" data-recipe="'+safe(r.id)+'" role="link" tabindex="0" aria-label="Open recept: '+safe(title(r))+'">'+(r.image?'<div class="card-art with-photo"><img loading="lazy" decoding="async" src="'+safe(r.image)+'" alt="'+safe(title(r))+'">'+imageLabel(r)+'</div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+'<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2><p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span><span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span></div><div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a><button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen: '+safe(title(r))+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>').join('')||'<p>Geen recepten gevonden. Probeer een andere zoekterm.</p>';
  document.querySelectorAll('#cards [data-fav]').forEach(b=>b.addEventListener('click',()=>toggleFav(b.dataset.fav)));
+ // Open direct het recept bij een klik op de kaart, maar laat links en favorietenknoppen onafhankelijk werken.
+ document.querySelectorAll('#cards .card[data-recipe]').forEach(card=>{
+  card.addEventListener('click',event=>{
+   if(event.target.closest('a,button'))return;
+   location.hash='#recept/'+encodeURIComponent(card.dataset.recipe);
+  });
+  card.addEventListener('keydown',event=>{
+   if(event.target!==card || (event.key!=='Enter'&&event.key!==' '))return;
+   event.preventDefault();
+   location.hash='#recept/'+encodeURIComponent(card.dataset.recipe);
+  });
+ });
  basketCount();
 }
 function recipeText(r,mult){
