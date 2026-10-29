@@ -2929,12 +2929,12 @@
   {
     "id": "chocolademelk",
     "title": "Zelfgemaakte warme chocolademelk",
-    "subtitle": "Twee romige mokken warme chocolademelk van ongezoet cacaopoeder, zonder klontjes en met een naar smaak af te stellen zoetheid.",
+    "subtitle": "Twee romige mokken warme chocolademelk van ongezoet cacaopoeder, met een luchtige topping van zelfgeklopte slagroom.",
     "category": "Dranken",
     "kind": "Warme drank",
     "cuisine": "Huisgemaakt",
-    "minutes": 10,
-    "prep": 3,
+    "minutes": 12,
+    "prep": 5,
     "cook": 7,
     "servings": 2,
     "servingUnit": "personen",
@@ -2980,16 +2980,25 @@
         "unit": "g",
         "group": "Optioneel",
         "optional": true
+      },
+      {
+        "name": "Slagroom",
+        "qty": 75,
+        "unit": "ml",
+        "group": "Topping"
       }
     ],
     "steps": [
-      "Doe 18 g ongezoet cacaopoeder en 16 g suiker in een ruime mok of kom. Voeg ongeveer 3 el (45 ml) van de koude melk toe en roer stevig tot een volledig glad, donker papje zonder klontjes.",
+      "Maak het cacaopapje: doe 17 g ongezoet cacaopoeder en 16 g suiker in een ruime mok of kom. Houd de overige 1 g cacaopoeder apart om de slagroom straks te bestuiven. Voeg ongeveer 3 el (45 ml) van de koude melk toe en roer stevig tot een glad, donker papje zonder klontjes.",
+      "Klop 75 ml goed koude slagroom in een kleine kom tot zachte pieken: circa 1–2 minuten met een handmixer of 3–5 minuten met een garde. Zet de geklopte slagroom tot het serveren koel weg.",
       "Verwarm de resterende circa 455 ml melk in een steelpan op middellaag vuur gedurende ongeveer 3–4 minuten, tot de melk duidelijk dampt maar niet kookt. Roer af en toe om aanzetten te voorkomen.",
       "Schenk eerst een kleine hoeveelheid warme melk bij het cacaopapje en klop glad. Voeg daarna al roerend de rest van de melk toe. Giet alles indien nodig terug in de pan.",
       "Verwarm nog 1–2 minuten op laag vuur en blijf roeren totdat de cacao volledig is verdeeld. Voeg desgewenst ¼ tl kaneel en/of 20 g fijngehakte pure chocolade toe; roer tot de chocolade is gesmolten.",
-      "Proef vóór het serveren. Voeg voor zoetere chocolademelk naar smaak een beetje extra suiker of honing toe. Verdeel over 2 mokken en serveer warm."
+      "Proef de chocolademelk. Voeg voor een zoetere smaak eventueel een beetje extra suiker of honing toe. Verdeel over 2 mokken, schep op elke mok de helft van de geklopte slagroom en bestuif met de apart gehouden 1 g cacaopoeder. Serveer direct."
     ],
-    "tips": "Dit recept gaat uit van ongezoet bakcacaopoeder. Gebruik je instant cacaodrankpoeder (bijvoorbeeld Nesquik), neem dan de hoeveelheden op de verpakking als uitgangspunt en voeg niet automatisch de 16 g suiker toe. De eerdere bereidingsmethode met een cacaopapje is behouden; de hoeveelheden zijn nu concreet gestandaardiseerd op 500 ml melk, 18 g cacao en 16 g suiker. Voor een rijkere versie kun je 20 g pure chocolade toevoegen of een klein deel van de melk vervangen door slagroom."
+    "tips": "Dit recept gaat uit van ongezoet bakcacaopoeder. Gebruik je instant cacaodrankpoeder (bijvoorbeeld Nesquik), volg dan de aanwijzingen op de verpakking en voeg niet automatisch 16 g suiker toe. Een glad cacaopapje voorkomt klontjes. De slagroom is ongezoet, omdat de chocolademelk al suiker bevat; zo blijft het geheel in balans. Gebruik eventueel spuitslagroom als snelle vervanger voor de zelfgeklopte topping. Voor een rijkere chocoladesmaak kun je 20 g pure chocolade toevoegen.",
+    "image": "images/chocolademelk.webp",
+    "image_source": "AI-afbeelding speciaal gemaakt voor zelfgemaakte warme chocolademelk met slagroomtopping"
   },
   {
     "id": "kruidenboter",
