@@ -178,6 +178,56 @@ footer{padding-top:0;padding-bottom:38px}
 @media (max-width:420px){.hero-stats{gap:10px 15px}.hero-stat{font-size:12px}.hero-stat strong{font-size:20px}.cards{grid-template-columns:1fr}.intro h2{font-size:27px}}
 @media print{body{background:#fff}.top,.intro,.toolbar,.count,.cards,footer{display:none!important}.wrap{padding:0;max-width:100%}.details{border:0;box-shadow:none;padding:0}.hero-photo{max-height:190px;aspect-ratio:auto}.recipe-image-wrap .image-credit{display:none}.columns>section:nth-child(2){display:none}.steps li{break-inside:avoid}.ingredients .ingredient-heading{background:none;color:#222}}
 
+
+/* Stap 2: receptdetail met één afvinkbare lijst en compacte navigatie. */
+.top.is-subpage .top-inner{display:block;padding:14px 25px 16px}
+.top.is-subpage .hero-spotlight,.top.is-subpage .kicker,.top.is-subpage .hero-copy>p,.top.is-subpage .hero-stats{display:none}
+.top.is-subpage .top h1{font-size:clamp(27px,3vw,34px);line-height:1.2;letter-spacing:-.025em;margin:0}
+.recipe-jumps{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:15px 0 6px;padding:10px 0;background:#fff}
+.recipe-jumps span{color:var(--muted);font-size:13px}
+.recipe-jumps button{border:1px solid #d6e0d1;border-radius:9px;background:#edf3e9;color:#264934;padding:9px 14px;font-weight:700}
+.recipe-jumps button:hover{background:#dfebd8}
+.recipe-actions{border:0;margin:15px 0 22px;padding:0;gap:8px;align-items:flex-start}
+.recipe-actions .btn{font-size:13px}
+.recipe-more-actions summary{list-style:none;cursor:pointer;border:1px solid #d6e0d1;background:#f0f3eb;color:#2c5137;font-size:13px;font-weight:700;padding:12px 15px;border-radius:11px}
+.recipe-more-actions summary::-webkit-details-marker{display:none}
+.recipe-more-actions summary:after{content:' ▾'}
+.recipe-more-actions[open] summary:after{content:' ▴'}
+.recipe-secondary-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.recipe-layout{display:grid;grid-template-columns:minmax(250px,.82fr) minmax(0,1.18fr);gap:32px;align-items:start;margin-top:17px}
+.recipe-layout>section{min-width:0;scroll-margin-top:16px}
+.recipe-layout h3{margin:0 0 12px}
+.ingredient-helper{color:#66766a;font-size:13px;line-height:1.45;margin:0 0 14px}
+.recipe-ingredient-list{margin:0}
+.recipe-ingredient-list .ingredient-heading{margin-top:17px}
+.recipe-ingredient-list .ingredient-row{padding:0;display:block}
+.recipe-ingredient-list .ingredient-row label{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 0;cursor:pointer}
+.recipe-ingredient-list .ingredient-row input{width:18px;height:18px;flex:none;margin:2px 0 0;accent-color:#2c5940}
+.recipe-ingredient-list .ingredient-name{flex:1;min-width:0;line-height:1.45}
+.recipe-ingredient-list .ingredient-amount{flex:none;margin-left:6px;text-align:right;color:#304b35;font-weight:700;white-space:nowrap}
+.recipe-ingredient-list .ingredient-row input:checked~.ingredient-name{text-decoration:line-through;color:#929b91}
+.recipe-ingredient-list .ingredient-row input:checked~.ingredient-amount{color:#929b91}
+.recipe-steps{background:#f7f8f4;border:1px solid #e7ede3;border-radius:16px;padding:20px 23px 4px}
+.recipe-steps .steps{margin-top:14px}
+.recipe-steps .steps li{line-height:1.65;margin-bottom:20px}
+.recipe-steps .steps li>div{overflow-wrap:anywhere}
+@media(max-width:650px){
+.top.is-subpage .top-inner{padding:10px 17px 11px}
+.top.is-subpage .top h1{font-size:24px}
+.recipe-jumps{position:sticky;top:0;z-index:8;border-bottom:1px solid #e4e9df;margin:11px -5px 7px;padding:9px 5px;box-shadow:0 4px 10px #263a2b0a}
+.recipe-jumps span{display:none}
+.recipe-jumps button{flex:1;min-height:43px}
+.recipe-layout{grid-template-columns:1fr;gap:24px}
+.recipe-layout>section{scroll-margin-top:70px}
+.recipe-steps{padding:16px 16px 1px}
+.recipe-steps .steps li{gap:12px;margin-bottom:17px}
+.recipe-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.recipe-actions>.btn{width:100%;padding:11px 8px;min-height:46px}
+.recipe-more-actions{grid-column:1/-1}
+.recipe-more-actions summary{text-align:center;min-height:43px}
+.recipe-secondary-actions{display:grid;grid-template-columns:1fr 1fr}
+.recipe-secondary-actions .btn{min-height:43px}
+}
 </style>
 </head>
 <body>
@@ -304,13 +354,13 @@ function groups(list){
  list.forEach((item,index)=>{const g=item.group||'Overig';if(!m.has(g))m.set(g,[]);m.get(g).push({item,index})});
  return [...m];
 }
-function groupedRows(list,mult){
- return groups(list).map(([g,arr])=>'<li class="ingredient-heading">'+safe(g)+'</li>'+arr.map(({item})=>'<li><span>'+safe(item.name)+(item.optional?' <small>(optioneel)</small>':'')+'</span><strong>'+safe(amount(item,mult))+'</strong></li>').join('')).join('');
-}
 function listKey(id,variant){return id+':'+variant}
-function shoppingRows(list,mult,key){
+function checkableIngredientRows(list,mult,key){
  const state=new Set(Array.isArray(checked[key])?checked[key]:[]);
- return groups(list).map(([g,arr])=>'<div class="shop-group">'+safe(g)+'</div>'+arr.map(({item,index})=>'<label><input type="checkbox" data-item="'+index+'"'+(state.has(index)?' checked':'')+'><span>'+safe(item.name)+(item.optional?' (optioneel)':'')+' — '+safe(amount(item,mult))+'</span></label>').join('')).join('');
+ return groups(list).map(([g,items])=>'<li class="ingredient-heading">'+safe(g)+'</li>'+items.map(({item,index})=>
+  '<li class="ingredient-row"><label><input type="checkbox" data-item="'+index+'"'+(state.has(index)?' checked':'')+'>'+
+  '<span class="ingredient-name">'+safe(item.name)+(item.optional?' <small>(optioneel)</small>':'')+'</span>'+
+  '<strong class="ingredient-amount">'+safe(amount(item,mult))+'</strong></label></li>').join('')).join('');
 }
 function viewFor(r,variant){
  const v=(r.variants||[]).find(x=>x.id===variant);
@@ -397,7 +447,26 @@ function renderDetail(){
  const tips=typeof view.tips==='string'?[view.tips]:(view.tips||[]);
  const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
  const scaleNote=current!==original?'<p class="scale-note">De ingrediënten zijn aangepast. Vaste hoeveelheden in de bereidingsstappen kunnen nog uitgaan van de oorspronkelijke portie.</p>':'';
- el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button><div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2><p class="description">'+safe(description(view))+'</p>'+(view.image?'<div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div>':'')+'<div class="meta"><span class="tag">'+safe(portionsLabel(view,original))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+'</div>'+timeBreakdown(view)+choices+'<div class="actions"><button class="btn" id="copy">Kopieer recept</button><button class="btn alt" id="whatsapp">Deel via WhatsApp</button><button class="btn alt" id="print">Print</button><button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button><button class="btn alt" id="addBasket">Voeg toe aan boodschappenlijst</button><button class="btn alt" id="goBasket">Bekijk boodschappenlijst</button></div>'+(canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+scaleNote+'<div class="columns"><section><h3>Ingrediënten</h3><ul class="ingredients">'+groupedRows(items,mult)+'</ul></section><section><h3>Boodschappenlijst voor dit recept</h3><p class="count">Vink af wat je al hebt. Je keuzes blijven bewaard.</p><div class="shop">'+shoppingRows(items,mult,key)+'</div></section></div><h3>Bereiding</h3><ol class="steps">'+steps+'</ol>'+(remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'');
+ const jumpNav='<nav class="recipe-jumps" aria-label="Direct naar receptonderdelen"><span>Ga naar</span><button type="button" id="jumpIngredients">Ingrediënten</button><button type="button" id="jumpSteps">Bereiding</button></nav>';
+ const actions='<div class="actions recipe-actions">'+
+ '<button class="btn" id="addBasket">Voeg toe aan boodschappenlijst</button>'+
+ '<button class="btn alt" id="goBasket">Bekijk boodschappenlijst</button>'+
+ '<button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button>'+
+ '<details class="recipe-more-actions"><summary>Meer acties</summary><div class="recipe-secondary-actions">'+
+ '<button class="btn alt" id="copy">Kopieer recept</button>'+
+ '<button class="btn alt" id="whatsapp">Deel via WhatsApp</button>'+
+ '<button class="btn alt" id="print">Print</button>'+
+ '</div></details></div>';
+ el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button>'+
+ '<div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2><p class="description">'+safe(description(view))+'</p>'+jumpNav+
+ (view.image?'<div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div>':'')+
+ '<div class="meta"><span class="tag">'+safe(portionsLabel(view,original))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+'</div>'+
+ timeBreakdown(view)+choices+
+ (canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+
+ scaleNote+actions+
+ '<div class="recipe-layout"><section class="recipe-ingredients" id="recipeIngredients"><h3>Ingrediënten</h3><p class="ingredient-helper">Vink aan wat je al in huis hebt. Dit wordt op je apparaat onthouden.</p><ul class="ingredients recipe-ingredient-list">'+checkableIngredientRows(items,mult,key)+'</ul></section>'+
+ '<section class="recipe-steps" id="recipeSteps"><h3>Bereiding</h3><ol class="steps">'+steps+'</ol></section></div>'+
+ (remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'');
  el('back').onclick=()=>location.hash='';
  el('favorite').onclick=()=>toggleFav(r.id);
  el('detail').querySelectorAll('[data-variant]').forEach(b=>b.onclick=()=>{el('detail').dataset.variantId=b.dataset.variant;renderDetail()});
@@ -406,6 +475,12 @@ function renderDetail(){
   if(b.checked)marked.add(idx);else marked.delete(idx);
   checked[key]=[...marked];save(STORAGE.checked,checked);
  });
+ function jumpTo(elementId){
+  const element=el(elementId);
+  if(element)element.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+ }
+ el('jumpIngredients').onclick=()=>jumpTo('recipeIngredients');
+ el('jumpSteps').onclick=()=>jumpTo('recipeSteps');
  el('copy').onclick=()=>copyText(recipeText(view,mult),el('copy'));
  el('whatsapp').onclick=()=>location.href='https://wa.me/?text='+encodeURIComponent(recipeText(view,mult));
  el('print').onclick=()=>window.print();
@@ -421,6 +496,7 @@ function renderDetail(){
  document.title=title(view)+' | Mijn Kookboek';
 }
 function route(){
+ document.querySelector('.top').classList.toggle('is-subpage',location.hash.startsWith('#recept/')||location.hash==='#boodschappenlijst');
  if(location.hash==='#boodschappenlijst')renderBasket();
  else if(location.hash.startsWith('#recept/'))renderDetail();
  else{el('detail').hidden=true;el('basket').hidden=true;el('detail').dataset.recipeId='';el('detail').dataset.routeId='';el('overview').hidden=false;document.title='Mijn Kookboek — alle recepten';renderCards()}
