@@ -242,6 +242,22 @@ footer{padding-top:0;padding-bottom:38px}
 .card[data-recipe]:focus-visible{outline:3px solid #cc9364;outline-offset:3px}
 .card[data-recipe] .card-actions .fav{position:relative;z-index:1}
 
+
+/* Stap 3 — Boodschappenlijst: duidelijke receptkeuzes en afvinkbare productregels. */
+.basket-recipe-info{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}
+.basket-recipe-info strong{font-size:15px;font-weight:700}
+.basket-recipe-info>span{font-size:13px;color:var(--muted)}
+.basket-optional{display:inline-flex;align-items:center;gap:8px;margin-top:5px;font-size:13px;color:#405745;cursor:pointer}
+.basket-optional input{min-width:17px;min-height:17px;accent-color:#2c5940}
+.basket-shop{max-width:720px}
+.basket-shop label{padding:11px 0;min-height:42px}
+.basket-shop input{min-width:18px;min-height:18px}
+@media(max-width:650px){
+ .basket-recipe{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+ .basket-recipe .btn{flex:none}
+ .basket-optional{line-height:1.35}
+}
+
 </style>
 </head>
 <body>
@@ -417,43 +433,109 @@ async function copyText(text,button){
  try{await navigator.clipboard.writeText(text);if(button)button.textContent='Gekopieerd'}
  catch(e){window.prompt('Kopieer de tekst',text)}
 }
+// Houd dezelfde opslagsleutels voor bestaande boodschappen en favorieten aan.
 function normalizedUnit(u){
  return ({stuk:'stuks',teentje:'teentjes',plantje:'plantjes',blaadje:'blaadjes',plak:'plakken',snee:'sneetjes',blad:'bladen'})[u]||u||'';
 }
+function basketName(name){
+ return String(name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/\s+/g,' ').toLocaleLowerCase('nl-NL');
+}
+function basketConversion(u){
+ const unit=normalizedUnit(u).toLowerCase();
+ const units={g:['gewicht','g',1],kg:['gewicht','g',1000],ml:['volume','ml',1],l:['volume','ml',1000],tl:['volume','ml',5],el:['volume','ml',15]};
+ if(units[unit]){const [group,base,factor]=units[unit];return {group,unit:base,factor,sourceUnit:unit}}
+ return {group:'eenheid:'+unit,unit:normalizedUnit(u),factor:1,sourceUnit:unit};
+}
 function basketItems(){
- const m=new Map();
+ const combined=new Map();
  for(const entry of Object.values(basket)){
   if(!entry||!entry.id)continue;
-  const r=recipes.find(x=>x.id===entry.id);if(!r)continue;
-  const view=viewFor(r,entry.variantId),mult=Math.max(1,number(entry.servings))/portions(view);
-  for(const i of allIngredients(view)){
-   const unit=normalizedUnit(i.unit),key=i.name.trim().toLowerCase()+'|'+unit;
-   if(!m.has(key))m.set(key,{key,name:i.name,unit,qty:0,numeric:false,text:false,optional:true});
-   const v=m.get(key);v.optional=v.optional&&Boolean(i.optional);
-   if(i.qty===null){v.text=true;continue}
-   const qty=Number(i.qty);
-   if(Number.isFinite(qty)){v.qty+=qty*mult;v.numeric=true}else v.text=true;
-  }
+  const recipe=recipes.find(r=>r.id===entry.id);
+  if(!recipe)continue;
+  const view=viewFor(recipe,entry.variantId);
+  const mult=Math.max(1,number(entry.servings))/portions(view);
+  const available=new Set(Array.isArray(checked[listKey(recipe.id,entry.variantId)])?checked[listKey(recipe.id,entry.variantId)]:[]);
+  allIngredients(view).forEach((item,index)=>{
+   // De bestaande afvinklijst is geïndexeerd per ingrediënt van het gekozen recept.
+   if(available.has(index) || (item.optional&&entry.includeOptional===false))return;
+   const c=basketConversion(item.unit),key=basketName(item.name)+'|'+c.group;
+   const oldKey=item.name.trim().toLowerCase()+'|'+normalizedUnit(item.unit);
+   if(!combined.has(key))combined.set(key,{
+    key,name:item.name,unit:c.unit,qty:0,numeric:false,text:false,optional:true,
+    originalUnits:new Set(),legacyKeys:new Set()
+   });
+   const row=combined.get(key);
+   row.legacyKeys.add(oldKey);
+   row.originalUnits.add(c.sourceUnit);
+   row.optional=row.optional&&Boolean(item.optional);
+   if(item.qty===null||item.qty===undefined){row.text=true;return}
+   const qty=Number(item.qty);
+   if(Number.isFinite(qty)){row.qty+=qty*mult*c.factor;row.numeric=true}
+   else row.text=true;
+  });
  }
- return [...m.values()].sort((a,b)=>a.name.localeCompare(b.name,'nl'));
+ return [...combined.values()].sort((a,b)=>a.name.localeCompare(b.name,'nl'));
 }
-function basketAmount(i){return i.numeric?amount({qty:i.qty,unit:i.unit},1):i.text?(i.unit||'naar smaak'):''}
+function basketAmount(item){
+ if(!item.numeric)return item.text?(item.unit==='naar smaak'?'naar smaak':item.unit):'';
+ const qty=item.qty;
+ if(item.unit==='g')return qty>=1000?fmtQty(qty/1000,'kg')+' kg':fmtQty(qty,'g')+' g';
+ if(item.unit==='ml'){
+  const spoonOnly=[...item.originalUnits].every(u=>u==='el'||u==='tl');
+  if(spoonOnly){
+   const tablespoons=Math.floor((qty+1e-8)/15);
+   const tsp=(qty-tablespoons*15)/5;
+   const parts=[];
+   if(tablespoons)parts.push(fmtQty(tablespoons,'el')+' el');
+   if(tsp>1e-8)parts.push(fmtQty(tsp,'tl')+' tl');
+   return parts.join(' + ')||'0 ml';
+  }
+  return qty>=1000?fmtQty(qty/1000,'l')+' l':fmtQty(qty,'ml')+' ml';
+ }
+ return amount({qty,unit:item.unit},1);
+}
+function isBasketChecked(item){
+ if(Object.prototype.hasOwnProperty.call(basketChecked,item.key))return Boolean(basketChecked[item.key]);
+ // Eerdere lijsten gebruikten naam + oorspronkelijke eenheid als sleutel.
+ // Een samengevoegde regel telt alleen als gekocht wanneer alle vorige regels gekocht waren.
+ const oldKeys=[...item.legacyKeys];
+ return oldKeys.length>0&&oldKeys.every(key=>basketChecked[key]===true);
+}
 function renderBasket(){
  el('overview').hidden=true;el('detail').hidden=true;el('basket').hidden=false;
  document.title='Boodschappenlijst | Mijn Kookboek';
- const selected=Object.entries(basket).map(([key,e])=>{
-  const r=recipes.find(x=>x.id===e.id);
-  if(!r)return '';
-  const name=title(viewFor(r,e.variantId));
-  return '<div class="basket-recipe"><span>'+safe(name)+' — '+safe(portionsLabel(r,e.servings))+'</span><button class="btn alt" data-remove="'+safe(key)+'" aria-label="Verwijder '+safe(name)+'">Verwijder</button></div>';
+ const selected=Object.entries(basket).map(([key,entry])=>{
+  const recipe=recipes.find(r=>r.id===entry.id);
+  if(!recipe)return '';
+  const view=viewFor(recipe,entry.variantId),hasOptional=allIngredients(view).some(i=>i.optional);
+  const optional=hasOptional?'<label class="basket-optional"><input type="checkbox" data-optional="'+safe(key)+'"'+(entry.includeOptional!==false?' checked':'')+'> Optionele ingrediënten meenemen</label>':'';
+  return '<div class="basket-recipe"><div class="basket-recipe-info"><strong>'+safe(title(view))+'</strong><span>'+safe(portionsLabel(view,entry.servings))+'</span>'+optional+'</div><button class="btn alt" data-remove="'+safe(key)+'" aria-label="Verwijder '+safe(title(view))+'">Verwijder</button></div>';
  }).join('');
- const list=basketItems();
- el('basket').innerHTML='<button class="back" id="backBasket">← Alle recepten</button><h2>Boodschappenlijst</h2><p class="description">Ingrediënten van meerdere recepten worden opgeteld als naam en eenheid overeenkomen. De lijst blijft op dit apparaat bewaard.</p>'+(selected?'<h3>Gekozen recepten</h3>'+selected+'<div class="actions"><button class="btn" id="copyBasket">Kopieer boodschappen</button><button class="btn alt" id="clearBasket">Maak lijst leeg</button></div><h3>Benodigdheden</h3><div class="shop basket-shop">'+list.map(i=>'<label><input type="checkbox" data-basket-item="'+safe(i.key)+'"'+(basketChecked[i.key]?' checked':'')+'><span>'+safe(i.name)+(i.optional?' (optioneel)':'')+' — '+safe(basketAmount(i))+'</span></label>').join('')+'</div>':'<p>Je lijst is nog leeg. Open een recept en kies ‘Voeg toe aan boodschappenlijst’.</p>');
+ const items=basketItems();
+ const shopping=items.map(i=>'<label><input type="checkbox" data-basket-item="'+safe(i.key)+'"'+(isBasketChecked(i)?' checked':'')+'><span>'+safe(i.name)+(i.optional?' (optioneel)':'')+' — '+safe(basketAmount(i))+'</span></label>').join('');
+ el('basket').innerHTML=
+  '<button class="back" id="backBasket">← Alle recepten</button>'+
+  '<h2>Boodschappenlijst</h2>'+
+  '<p class="description">Ingrediënten die je bij een recept als in huis hebt afgevinkt, tellen niet mee. Gelijke producten worden waar mogelijk opgeteld; grammen en kilo’s en theelepels, eetlepels en milliliters worden omgerekend. Je lijst blijft op dit apparaat bewaard.</p>'+
+  (selected?'<h3>Gekozen recepten</h3>'+selected+
+   '<div class="actions"><button class="btn" id="copyBasket">Kopieer boodschappen</button><button class="btn alt" id="clearBasket">Maak lijst leeg</button></div>'+
+   '<h3>Benodigdheden ('+items.length+')</h3>'+
+   (items.length?'<div class="shop basket-shop">'+shopping+'</div>':'<p>Geen boodschappen nodig: de ingrediënten zijn al in huis afgevinkt of optioneel uitgesloten.</p>'):
+   '<p>Je lijst is nog leeg. Open een recept en kies ‘Voeg toe aan boodschappenlijst’.</p>');
  el('backBasket').onclick=()=>location.hash='';
  el('basket').querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{delete basket[b.dataset.remove];save(STORAGE.basket,basket);basketCount();renderBasket()});
- el('basket').querySelectorAll('[data-basket-item]').forEach(b=>b.onchange=()=>{basketChecked[b.dataset.basketItem]=b.checked;save(STORAGE.basketChecked,basketChecked)});
+ el('basket').querySelectorAll('[data-optional]').forEach(input=>input.onchange=()=>{
+  const entry=basket[input.dataset.optional];if(!entry)return;
+  entry.includeOptional=input.checked;
+  save(STORAGE.basket,basket);
+  renderBasket();
+ });
+ el('basket').querySelectorAll('[data-basket-item]').forEach(input=>input.onchange=()=>{
+  basketChecked[input.dataset.basketItem]=input.checked;
+  save(STORAGE.basketChecked,basketChecked);
+ });
  if(selected){
-  el('copyBasket').onclick=()=>copyText(list.filter(i=>!basketChecked[i.key]).map(i=>'- '+basketAmount(i)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')||'Alles afgevinkt.',el('copyBasket'));
+  el('copyBasket').onclick=()=>copyText(items.filter(i=>!isBasketChecked(i)).map(i=>'- '+basketAmount(i)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')||'Geen openstaande boodschappen.',el('copyBasket'));
   el('clearBasket').onclick=()=>{if(window.confirm('Alle recepten uit de lijst verwijderen?')){basket={};basketChecked={};save(STORAGE.basket,basket);save(STORAGE.basketChecked,basketChecked);basketCount();renderBasket()}};
  }
 }
@@ -490,7 +572,7 @@ function renderDetail(){
  timeBreakdown(view)+choices+
  (canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+
  scaleNote+actions+
- '<div class="recipe-layout"><section class="recipe-ingredients" id="recipeIngredients"><h3>Ingrediënten</h3><p class="ingredient-helper">Vink aan wat je al in huis hebt. Dit wordt op je apparaat onthouden.</p><ul class="ingredients recipe-ingredient-list">'+checkableIngredientRows(items,mult,key)+'</ul></section>'+
+ '<div class="recipe-layout"><section class="recipe-ingredients" id="recipeIngredients"><h3>Ingrediënten</h3><p class="ingredient-helper">Vink aan wat je al in huis hebt. Dit ingrediënt wordt dan voor dit recept niet op je boodschappenlijst gezet.</p><ul class="ingredients recipe-ingredient-list">'+checkableIngredientRows(items,mult,key)+'</ul></section>'+
  '<section class="recipe-steps" id="recipeSteps"><h3>Bereiding</h3><ol class="steps">'+steps+'</ol></section></div>'+
  (remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'');
  el('back').onclick=()=>location.hash='';
@@ -511,7 +593,8 @@ function renderDetail(){
  el('whatsapp').onclick=()=>location.href='https://wa.me/?text='+encodeURIComponent(recipeText(view,mult));
  el('print').onclick=()=>window.print();
  el('addBasket').onclick=()=>{
-  basket[listKey(r.id,variantId)]={id:r.id,variantId,servings:current};
+  const basketKey=listKey(r.id,variantId),previous=basket[basketKey];
+  basket[basketKey]={...previous,id:r.id,variantId,servings:current,includeOptional:previous?previous.includeOptional!==false:false};
   save(STORAGE.basket,basket);basketCount();el('addBasket').textContent='Toegevoegd / bijgewerkt';
  };
  el('goBasket').onclick=()=>location.hash='#boodschappenlijst';
