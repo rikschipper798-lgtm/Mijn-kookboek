@@ -415,6 +415,70 @@ function checkableIngredientRows(list,mult,key){
   '<span class="ingredient-name">'+safe(item.name)+(item.optional?' <small>(optioneel)</small>':'')+'</span>'+
   '<strong class="ingredient-amount">'+safe(amount(item,mult))+'</strong></label></li>').join('')).join('');
 }
+
+const STEP_FRAC={'⅛':.125,'¼':.25,'⅓':1/3,'⅜':.375,'½':.5,'⅝':.625,'⅔':2/3,'¾':.75,'⅞':.875};
+const STEP_NUMBER='(?:\\d{1,4}(?:[.,]\\d{1,3})?[⅛¼⅓⅜½⅝⅔¾⅞]?|[⅛¼⅓⅜½⅝⅔¾⅞])';
+const STEP_UNITS='(?:kg|g|ml|l|tl|el|stuks?|teentjes?|sneetjes?|snee|blaadjes?|bladen|plantjes?|plakken?|porties?|stokbroden|stokbrood|pitabroodjes|flatbreads?|wraps?|broodjes|bollen|mokken|mok)';
+const STEP_MEASURE_RX=new RegExp('(?<![\\p{L}\\p{N}.,–-])('+STEP_NUMBER+')\\s+('+STEP_UNITS+')\\b','gu');
+const STEP_PIECE_RX=new RegExp('(?<![\\p{L}\\p{N}.,–-])('+STEP_NUMBER+')\\s+((?:(?:rode|witte|verse|rijpe|grote|kleine)\\s+){0,2}(?:paprika(?:\\x27s)?|courgettes?|komkommers?|wortels?|tomaten|tomaat|uien|ui|pepers?|sjalotten?|eieren|ei))\\b','giu');
+function stepNum(raw){
+ const m=String(raw).replace(/\s+/g,'').match(/^(\d+(?:[.,]\d{1,3})?)?([⅛¼⅓⅜½⅝⅔¾⅞])?$/);
+ if(!m)return NaN;
+ return (m[1]?(/^\d{1,3}\.\d{3}$/.test(m[1])?Number(m[1].replace('.','')):Number(m[1].replace(',','.'))):0)+(STEP_FRAC[m[2]]||0);
+}
+function stepGroup(unit){
+ const u=String(unit||'').toLowerCase();
+ if(['kg','g'].includes(u))return ['mass',u==='kg'?1000:1];
+ if(['l','ml','el','tl'].includes(u))return ['liquid',{l:1000,ml:1,el:15,tl:5}[u]];
+ if(['stuks','stuk','wrap','wraps','pitabroodjes','flatbread','flatbreads','broodje','broodjes','bol','bollen','stokbroden','stokbrood','mok','mokken'].includes(u))return ['pieces',1];
+ if(['teentje','teentjes'].includes(u))return ['cloves',1];
+ if(['blaadjes','blaadje','bladen','blad'].includes(u))return ['leaves',1];
+ return [u,1];
+}
+function stepRelevant(items,qty,unit,context){
+ const [group,factor]=stepGroup(unit);
+ const found=items.filter(i=>i.qty!==null&&Number.isFinite(Number(i.qty))&&stepGroup(i.unit)[0]===group&&Number(i.qty)*stepGroup(i.unit)[1]+.0001>=qty*factor);
+ if(!found.length)return false;
+ if(/(?:kookwater|heet water|pastakookwater)/i.test(context)&&!found.some(i=>/^(?:heet\s+)?water\b/i.test(i.name)))return false;
+ return true;
+}
+function stepUnit(unit,num){
+ const forms={stuks:['stuk','stuks'],stuk:['stuk','stuks'],teentjes:['teentje','teentjes'],teentje:['teentje','teentjes'],blaadjes:['blaadje','blaadjes'],blaadje:['blaadje','blaadjes'],wraps:['wrap','wraps'],wrap:['wrap','wraps'],broodjes:['broodje','broodjes'],flatbreads:['flatbread','flatbreads'],pitabroodjes:['pitabroodje','pitabroodjes'],stokbroden:['stokbrood','stokbroden'],mokken:['mok','mokken'],bollen:['bol','bollen']};
+ return forms[unit.toLowerCase()]?(Math.abs(num-1)<.012?forms[unit.toLowerCase()][0]:forms[unit.toLowerCase()][1]):unit;
+}
+function stepNoun(phrase,num){
+ const singular={uien:'ui',tomaten:'tomaat',courgettes:'courgette',komkommers:'komkommer',wortels:'wortel',sjalotten:'sjalot',eieren:'ei',pepers:'peper'};
+ const plural={ui:'uien',tomaat:'tomaten',paprika:"paprika's",courgette:'courgettes',komkommer:'komkommers',wortel:'wortels',sjalot:'sjalotten',ei:'eieren',peper:'pepers'};
+ const words=phrase.split(/\s+/),word=words.at(-1).toLowerCase();
+ words[words.length-1]=Math.abs(num-1)<.012?(singular[word]||word):(plural[word]||word);
+ return words.join(' ');
+}
+function scaleStep(text,items,mult){
+ const original=String(text||'');
+ if(Math.abs(mult-1)<1e-9)return original;
+ const edits=[];
+ for(const m of original.matchAll(STEP_MEASURE_RX)){
+  const num=stepNum(m[1]),unit=m[2];
+  if(!Number.isFinite(num))continue;
+  const context=original.slice(Math.max(0,m.index-25),Math.min(original.length,m.index+m[0].length+36));
+  if(!stepRelevant(items,num,unit,context))continue;
+  const scaled=num*mult;
+  edits.push({start:m.index,end:m.index+m[0].length,text:fmtQty(scaled,unit)+' '+stepUnit(unit,scaled)});
+ }
+ for(const m of original.matchAll(STEP_PIECE_RX)){
+  const num=stepNum(m[1]),phrase=m[2],last=phrase.toLowerCase().split(/\s+/).at(-1);
+  const roots={uien:'ui',tomaten:'tomaat',wortels:'wortel',courgettes:'courgette',komkommers:'komkommer',pepers:'peper',sjalotten:'sjalot',eieren:'ei'};
+  const root=roots[last]||last;
+  if(!Number.isFinite(num)||!items.some(i=>i.qty!==null&&Number.isFinite(Number(i.qty))&&stepGroup(i.unit)[0]==='pieces'&&Number(i.qty)+.0001>=num&&i.name.toLowerCase().includes(root)))continue;
+  const scaled=num*mult;
+  edits.push({start:m.index,end:m.index+m[0].length,text:fmtQty(scaled,'stuk')+' '+stepNoun(phrase,scaled)});
+ }
+ edits.sort((a,b)=>b.start-a.start);
+ let result=original,last=Infinity;
+ for(const e of edits){if(e.end>last)continue;result=result.slice(0,e.start)+e.text+result.slice(e.end);last=e.start}
+ return result;
+}
+
 function viewFor(r,variant){
  const v=(r.variants||[]).find(x=>x.id===variant);
  return v?{...r,...v,title:r.title+' — '+v.label}:{...r,title:r.variants?.length?r.title+' — '+(r.defaultVariantLabel||'Klassieke basilico'):r.title};
@@ -450,7 +514,7 @@ function renderCards(){
  basketCount();
 }
 function recipeText(r,mult){
- return title(r)+'\n\nIngrediënten:\n'+allIngredients(r).map(i=>'- '+amount(i,mult)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')+'\n\nBereiding:\n'+(r.steps||[]).map((s,i)=>(i+1)+'. '+(typeof s==='string'?s:(s.title||'')+': '+(s.body||''))).join('\n\n');
+ return title(r)+'\n\nIngrediënten:\n'+allIngredients(r).map(i=>'- '+amount(i,mult)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')+'\n\nBereiding:\n'+(r.steps||[]).map((s,i)=>(i+1)+'. '+(typeof s==='string'?scaleStep(s,allIngredients(r),mult):(s.title||'')+': '+scaleStep(s.body||'',allIngredients(r),mult))).join('\n\n');
 }
 async function copyText(text,button){
  try{await navigator.clipboard.writeText(text);if(button)button.textContent='Gekopieerd'}
@@ -623,10 +687,10 @@ function renderDetail(){
  const mult=current/original,items=allIngredients(view),key=listKey(r.id,variantId);
  const canScale=items.some(i=>typeof i.qty==='number');
  const choices=r.variants?.length?'<div class="variants"><strong>Bereidingsvariant</strong>'+[{id:'klassiek',label:r.defaultVariantLabel||'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
- const steps=(view.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(s):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(s.body||'')+'</div>')+'</div></li>').join('');
+ const steps=(view.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(scaleStep(s,items,mult)):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(scaleStep(s.body||'',items,mult))+'</div>')+'</div></li>').join('');
  const tips=typeof view.tips==='string'?[view.tips]:(view.tips||[]);
  const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
- const scaleNote=current!==original?'<p class="scale-note">De ingrediënten zijn aangepast. Vaste hoeveelheden in de bereidingsstappen kunnen nog uitgaan van de oorspronkelijke portie.</p>':'';
+ const scaleNote=current!==original?'<p class="scale-note">Ingrediënten en herkenbare hoeveelheden in de bereidingsstappen zijn omgerekend naar '+safe(portionsLabel(view,current))+'. Temperaturen, tijden en afmetingen blijven gelijk. Bij grotere porties kan een grotere pan of bereiding in meerdere batches nodig zijn. Niet-herkenbare aantallen in woorden blijven ongewijzigd.</p>':'';
  const jumpNav='<nav class="recipe-jumps" aria-label="Direct naar receptonderdelen"><span>Ga naar</span><button type="button" id="jumpIngredients">Ingrediënten</button><button type="button" id="jumpSteps">Bereiding</button></nav>';
  const actions='<div class="actions recipe-actions">'+
  '<button class="btn" id="addBasket">Voeg toe aan boodschappenlijst</button>'+
