@@ -504,9 +504,39 @@ function scaleStep(text,items,mult){
   if(!/komkommer/i.test(original)||!items.some(i=>/komkommer/i.test(i.name)&&i.qty!==null&&Number(i.qty)+.0001>=stepNum(m[1])))continue;
   edits.push({start:m.index,end:m.index+m[0].length,text:m[0].slice(0,m[0].length-m[1].length)+fmtQty(stepNum(m[1])*mult,'stuk')});
  }
- edits.sort((a,b)=>b.start-a.start||b.end-a.end);
- let result=original,last=Infinity;
- for(const e of edits){if(e.end>last)continue;result=result.slice(0,e.start)+e.text+result.slice(e.end);last=e.start}
+
+ // Bij burgers blijft het gewicht per burger gelijk; alleen het aantal groeit.
+ for(const m of original.matchAll(/\b(\d+)\s+gelijke porties van\s+(\d+(?:[.,]\d+)?)\s+g\b/giu)){
+  if(!items.some(i=>/rundergehakt/i.test(i.name)))continue;
+  edits.push({start:m.index,end:m.index+m[0].length,text:fmtQty(Number(m[1])*mult,'stuk')+' gelijke porties van '+m[2]+' g'});
+ }
+ // Het aantal bruschettaplakjes is een opbrengst, geen tijdsduur.
+ for(const m of original.matchAll(/(\d+)[–-](\d+)\s+plakjes\b/giu)){
+  if(!items.some(i=>/stokbrood/i.test(i.name)))continue;
+  edits.push({start:m.index,end:m.index+m[0].length,text:fmtQty(Number(m[1])*mult,'stuk')+'–'+fmtQty(Number(m[2])*mult,'stuk')+' plakjes'});
+ }
+ // Samengestelde aantallen: laurierblaadjes, slablaadjes en basilicumplantjes.
+ for(const m of original.matchAll(/\b(\d+)\s+(basilicumplantjes?|laurierblaadjes|slablaadjes)\b/giu)){
+  const originalName=m[2].toLowerCase(),n=Number(m[1]),name=originalName.startsWith('basilicum')?'basilicum':originalName.startsWith('laurier')?'laurier':'sla';
+  if(!items.some(i=>i.name.toLowerCase().includes(name)&&i.qty!==null&&Number(i.qty)>=n))continue;
+  const next=n*mult;
+  edits.push({start:m.index,end:m.index+m[0].length,text:fmtQty(next,'stuk')+' '+(next<=1+.0001?originalName.replace(/plantjes$/,'plantje').replace(/blaadjes$/,'blaadje'):originalName.replace(/plantje$/,'plantjes').replace(/blaadje$/,'blaadjes'))});
+ }
+ for(const m of original.matchAll(/\b(twee|drie|vier)\s+gelijke stukken\b/giu)){
+  if(!items.some(i=>/tarwebloem/i.test(i.name)))continue;
+  const n={twee:2,drie:3,vier:4}[m[1].toLowerCase()];
+  edits.push({start:m.index,end:m.index+m[0].length,text:fmtQty(n*mult,'stuk')+' gelijke stukken'});
+ }
+
+ // Geef een langere, specifiekere herkenning (zoals '2 porties van 150 g') voorrang.
+ const chosen=[];
+ for(const e of edits.sort((a,b)=>(b.end-b.start)-(a.end-a.start)||a.start-b.start)){
+  if(!chosen.some(x=>e.start<x.end&&e.end>x.start))chosen.push(e);
+ }
+ let result=original;
+ for(const e of chosen.sort((a,b)=>b.start-a.start)){
+  result=result.slice(0,e.start)+e.text+result.slice(e.end);
+ }
  return result;
 }
 
