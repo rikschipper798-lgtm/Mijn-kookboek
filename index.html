@@ -281,6 +281,48 @@ footer{padding-top:0;padding-bottom:38px}
 }
 @media print{.basket-house-btn{display:none}}
 
+
+/* Stap 5: sneller zoeken, filteren en sorteren in de collectie. */
+.browse-panel{background:linear-gradient(155deg,#fff 5%,#fafbf7 100%);border:1px solid #e5eade;border-radius:20px;padding:23px 25px 20px;margin-bottom:17px;box-shadow:0 7px 25px #233b2810}
+.browse-search-row{position:relative}
+.browse-label{font-size:14px;font-weight:750;color:#2d4835;display:block;margin:0 0 9px}
+.browse-panel .search{width:100%;min-width:0;display:block;padding:15px 17px;font-size:16px;border-radius:12px}
+.browse-hint{font-size:12px;color:#69786c;line-height:1.5;margin:8px 0 0}
+.browse-suggestions{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:13px 0 20px}
+.browse-suggestions span{font-size:12px;color:#667569;margin-right:3px}
+.browse-suggestions button{background:#f0f4ed;border:1px solid #e0e8dc;color:#365440;border-radius:100px;font-size:12px;font-weight:700;padding:7px 11px;min-height:34px}
+.browse-suggestions button:hover{background:#e2eddf}
+.browse-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:0 0 15px}
+.browse-control{display:flex;flex-direction:column;gap:7px;min-width:0}
+.browse-control span{font-size:12px;color:#58695b;font-weight:700}
+.browse-control select{width:100%;min-width:0;min-height:46px;padding:10px 11px;cursor:pointer}
+.browse-shortcuts{border-top:1px solid #e8ece3;padding-top:15px;display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.browse-shortcuts .pill{min-height:42px;font-size:13px;padding:9px 14px}
+.browse-shopping{margin-left:auto}
+.result-summary{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 17px;min-height:29px}
+.result-summary .count{margin:0}
+.reset-filters{border:0;background:transparent;color:#2f613c;font-weight:750;font-size:13px;padding:6px 2px;text-decoration:underline;text-underline-offset:3px}
+.reset-filters:hover{color:#173b26}
+.card-cuisine{background:#f8f3ec;color:#876543}
+.empty-results{grid-column:1/-1;text-align:center;background:#fff;border:1px solid #e5eade;border-radius:17px;padding:38px 20px 42px}
+.empty-results h3{margin:0 0 10px;font-size:27px}
+.empty-results p{color:#69786c;margin:0 0 19px;line-height:1.5}
+@media(max-width:800px){
+ .browse-filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .browse-sort{grid-column:1/-1}
+}
+@media(max-width:650px){
+ .browse-panel{padding:16px 15px 15px;border-radius:15px}
+ .browse-suggestions{margin-bottom:15px}
+ .browse-filters{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .browse-sort{grid-column:1/-1}
+ .browse-control select{min-height:45px}
+ .browse-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .browse-shortcuts .pill{width:100%;min-width:0;padding:10px 5px;text-align:center}
+ .browse-shopping{grid-column:1/-1;margin:0}
+}
+@media print{.browse-panel,.result-summary{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -298,8 +340,26 @@ footer{padding-top:0;padding-bottom:38px}
 <main class="wrap">
 <section id="overview">
 <div class="intro"><div><span class="section-label">DE COLLECTIE</span><h2>Wat zet je vandaag op tafel?</h2></div><p>Zoek een gerecht, kies je porties en verzamel je boodschappen.</p></div>
-<div class="toolbar"><input id="search" class="search" type="search" placeholder="Zoek op gerecht, ingrediënt of keuken…" aria-label="Zoek recepten"><select id="category" aria-label="Categorie"><option value="">Alle categorieën</option></select><button id="quick" class="pill" aria-pressed="false" title="Toon gerechten met een totale bereidingstijd van hooguit 40 minuten">Snel klaar</button><button id="favorites" class="pill" aria-pressed="false">♡ Favorieten</button><button id="shoppingNav" class="pill">Boodschappenlijst (<span id="basketCount">0</span>)</button></div>
-<p class="count" id="count">Recepten laden…</p><div id="cards" class="cards"></div>
+<div class="browse-panel" role="search" aria-label="Recepten zoeken en filteren">
+ <div class="browse-search-row">
+  <label class="browse-label" for="search">Zoek een recept of ingrediënt</label>
+  <input id="search" class="search" type="search" placeholder="Bijv. kip rijst, courgette of satésaus" autocomplete="off" aria-describedby="searchHint">
+  <p class="browse-hint" id="searchHint">Zoek ook op keuken of trefwoord. Gebruik meerdere woorden om gerichter te zoeken.</p>
+ </div>
+ <div class="browse-suggestions"><span>Probeer eens</span><button type="button" data-search-term="kip">Kip</button><button type="button" data-search-term="rijst">Rijst</button><button type="button" data-search-term="wraps">Wraps</button><button type="button" data-search-term="stoofgerecht">Stoofgerecht</button></div>
+ <div class="toolbar browse-filters">
+  <label class="browse-control" for="category"><span>Categorie</span><select id="category"><option value="">Alle categorieën</option></select></label>
+  <label class="browse-control" for="timeFilter"><span>Totale tijd</span><select id="timeFilter"><option value="">Alle tijden</option><option value="30">Max. 30 min</option><option value="40">Max. 40 min</option><option value="60">Max. 60 min</option><option value="long">Meer dan 60 min</option></select></label>
+  <label class="browse-control browse-sort" for="sortRecipes"><span>Sorteer op</span><select id="sortRecipes"><option value="recommended">Relevantie / standaard</option><option value="newest">Nieuwste</option><option value="fastest">Snelste</option><option value="alphabetical">Naam A–Z</option></select></label>
+ </div>
+ <div class="browse-shortcuts">
+  <button id="quick" type="button" class="pill" aria-pressed="false" title="Toon recepten met een totale tijd van maximaal 40 minuten">Snel klaar ≤ 40 min</button>
+  <button id="favorites" type="button" class="pill" aria-pressed="false">♡ Favorieten</button>
+  <button id="shoppingNav" type="button" class="pill browse-shopping">Boodschappenlijst (<span id="basketCount">0</span>)</button>
+ </div>
+</div>
+<div class="result-summary"><p class="count" id="count" role="status" aria-live="polite">Recepten laden…</p><button type="button" id="resetFilters" class="reset-filters" hidden>Wis filters</button></div>
+<div id="cards" class="cards"></div>
 </section>
 <article id="detail" class="details" hidden></article>
 <section id="basket" class="details" hidden></section>
@@ -551,16 +611,66 @@ function toggleFav(id){
  save(STORAGE.fav,[...favorites]);renderCards();
  if(!el('detail').hidden)renderDetail();
 }
+function normalizeSearch(text){
+ return String(text||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('nl-NL').replace(/[-_/]+/g,' ').replace(/\s+/g,' ').trim();
+}
 function searchable(r){
- return [title(r),description(r),r.category,r.defaultVariantLabel||'',...allIngredients(r).map(x=>x.name),...(r.variants||[]).flatMap(v=>[v.label,description(v),...allIngredients(v).map(x=>x.name)])].join(' ').toLowerCase();
+ const parts=[title(r),description(r),r.category,r.cuisine,r.kind,r.heat,r.defaultVariantLabel||'',...(r.tags||[]),...allIngredients(r).map(i=>i.name)];
+ for(const variant of r.variants||[]){
+  parts.push(variant.label,description(variant),variant.cuisine,variant.kind,...(variant.tags||[]),...allIngredients(variant).map(i=>i.name));
+ }
+ return normalizeSearch(parts.filter(Boolean).join(' '));
+}
+function searchScore(r,terms){
+ if(!terms.length)return 0;
+ const titleText=normalizeSearch(title(r)),tags=normalizeSearch((r.tags||[]).join(' '));
+ const ingredientsText=normalizeSearch(allIngredients(r).map(i=>i.name).join(' '));
+ const cuisine=normalizeSearch([r.category,r.cuisine].join(' '));
+ return terms.reduce((score,term)=>score+
+  (titleText.includes(term)?12:0)+(tags.includes(term)?8:0)+
+  (ingredientsText.includes(term)?6:0)+(cuisine.includes(term)?3:0),0);
+}
+function activeFilters(){
+ const search=normalizeSearch(el('search').value);
+ return Boolean(search||el('category').value||el('timeFilter').value||favoriteOnly||el('sortRecipes').value!=='recommended');
 }
 function renderCards(){
- const term=el('search').value.toLowerCase().trim(),cat=el('category').value;
- const shown=recipes.filter(r=>(!cat||r.category===cat)&&(!favoriteOnly||favorites.has(r.id))&&(!quickOnly||timeInfo(r).total<=40)&&(!term||searchable(r).includes(term)));
- el('count').textContent=shown.length+' van '+recipes.length+' recepten';
- el('cards').innerHTML=shown.map(r=>'<div class="card" data-recipe="'+safe(r.id)+'" role="link" tabindex="0" aria-label="Open recept: '+safe(title(r))+'">'+(r.image?'<div class="card-art with-photo"><img loading="lazy" decoding="async" src="'+safe(r.image)+'" alt="'+safe(title(r))+'">'+imageLabel(r)+'</div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+'<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2><p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span><span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span></div><div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a><button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen: '+safe(title(r))+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>').join('')||'<p>Geen recepten gevonden. Probeer een andere zoekterm.</p>';
+ const terms=normalizeSearch(el('search').value).split(' ').filter(Boolean);
+ const category=el('category').value,time=el('timeFilter').value,sort=el('sortRecipes').value;
+ const records=recipes.map((recipe,index)=>({recipe,index,minutes:timeInfo(recipe).total}));
+ const matched=records.filter(({recipe,minutes})=>{
+  if(category&&recipe.category!==category)return false;
+  if(favoriteOnly&&!favorites.has(recipe.id))return false;
+  if(time==='long'&&minutes<=60)return false;
+  if(time!==''&&time!=='long'&&minutes>Number(time))return false;
+  if(terms.length&&!terms.every(term=>searchable(recipe).includes(term)))return false;
+  return true;
+ });
+ const byName=(a,b)=>title(a.recipe).localeCompare(title(b.recipe),'nl');
+ matched.sort((a,b)=>{
+  if(sort==='newest')return String(b.recipe.date||'').localeCompare(String(a.recipe.date||''))||a.index-b.index;
+  if(sort==='fastest')return a.minutes-b.minutes||byName(a,b);
+  if(sort==='alphabetical')return byName(a,b)||a.index-b.index;
+  if(terms.length)return searchScore(b.recipe,terms)-searchScore(a.recipe,terms)||a.index-b.index;
+  return a.index-b.index;
+ });
+ const shown=matched.map(x=>x.recipe);
+ el('count').textContent=shown.length+' van '+recipes.length+' recepten'+(activeFilters()?' gevonden':'');
+ el('resetFilters').hidden=!activeFilters();
+ el('quick').setAttribute('aria-pressed',time==='40');
+ el('favorites').setAttribute('aria-pressed',favoriteOnly);
+ el('cards').innerHTML=shown.map(r=>
+  '<div class="card" data-recipe="'+safe(r.id)+'" role="link" tabindex="0" aria-label="Open recept: '+safe(title(r))+'">'+
+  (r.image?'<div class="card-art with-photo"><img loading="lazy" decoding="async" src="'+safe(r.image)+'" alt="'+safe(title(r))+'">'+imageLabel(r)+'</div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+
+  '<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2>'+
+  '<p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span>'+
+  '<span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span>'+
+  (r.cuisine?'<span class="tag card-cuisine">'+safe(r.cuisine)+'</span>':'')+'</div>'+
+  '<div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a>'+
+  '<button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen: '+safe(title(r))+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>'
+ ).join('')||
+ '<div class="empty-results"><h3>Geen recepten gevonden</h3><p>Probeer een andere zoekterm of maak de filters minder specifiek.</p><button type="button" class="btn alt" id="resetEmpty">Wis filters</button></div>';
  document.querySelectorAll('#cards [data-fav]').forEach(b=>b.addEventListener('click',()=>toggleFav(b.dataset.fav)));
- // Open direct het recept bij een klik op de kaart, maar laat links en favorietenknoppen onafhankelijk werken.
  document.querySelectorAll('#cards .card[data-recipe]').forEach(card=>{
   card.addEventListener('click',event=>{
    if(event.target.closest('a,button'))return;
@@ -572,7 +682,18 @@ function renderCards(){
    location.hash='#recept/'+encodeURIComponent(card.dataset.recipe);
   });
  });
+ const resetEmpty=el('resetEmpty');
+ if(shown.length===0&&resetEmpty)resetEmpty.onclick=resetBrowse;
  basketCount();
+}
+function resetBrowse(){
+ el('search').value='';
+ el('category').value='';
+ el('timeFilter').value='';
+ el('sortRecipes').value='recommended';
+ favoriteOnly=false;
+ quickOnly=false;
+ renderCards();
 }
 function recipeText(r,mult){
  return title(r)+'\n\nIngrediënten:\n'+allIngredients(r).map(i=>'- '+amount(i,mult)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')+'\n\nBereiding:\n'+(r.steps||[]).map((s,i)=>(i+1)+'. '+(typeof s==='string'?scaleStep(s,allIngredients(r),mult):(s.title||'')+': '+scaleStep(s.body||'',allIngredients(r),mult))).join('\n\n');
@@ -809,9 +930,21 @@ function route(){
  window.scrollTo(0,0);
 }
 el('search').addEventListener('input',renderCards);
+el('search').addEventListener('keydown',event=>{if(event.key==='Escape'&&el('search').value){el('search').value='';renderCards()}});
 el('category').addEventListener('change',renderCards);
-el('favorites').onclick=()=>{favoriteOnly=!favoriteOnly;el('favorites').setAttribute('aria-pressed',favoriteOnly);renderCards()};
-el('quick').onclick=()=>{quickOnly=!quickOnly;el('quick').setAttribute('aria-pressed',quickOnly);renderCards()};
+el('timeFilter').addEventListener('change',()=>{quickOnly=el('timeFilter').value==='40';renderCards()});
+el('sortRecipes').addEventListener('change',renderCards);
+el('favorites').onclick=()=>{favoriteOnly=!favoriteOnly;renderCards()};
+el('quick').onclick=()=>{el('timeFilter').value=el('timeFilter').value==='40'?'':'40';quickOnly=el('timeFilter').value==='40';renderCards()};
+el('resetFilters').onclick=resetBrowse;
+document.querySelectorAll('[data-search-term]').forEach(button=>button.addEventListener('click',()=>{
+ el('search').value=button.dataset.searchTerm;
+ el('category').value='';
+ el('timeFilter').value='';
+ el('sortRecipes').value='recommended';
+ favoriteOnly=false;quickOnly=false;
+ renderCards();
+}));
 el('shoppingNav').onclick=()=>location.hash='#boodschappenlijst';
 window.addEventListener('hashchange',route);
 fetch('recepten.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Kan recepten niet laden');return r.json()}).then(data=>{
