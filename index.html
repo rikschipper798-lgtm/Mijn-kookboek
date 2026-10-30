@@ -323,6 +323,70 @@ footer{padding-top:0;padding-bottom:38px}
 }
 @media print{.browse-panel,.result-summary{display:none!important}}
 
+
+/* Stap 6 — persoonlijke notities, feedback en stap-voor-stap koken. */
+.cook-start-button{background:#b4774c;color:#fff}
+.cook-start-button:hover{background:#95603d}
+.personal-notes{margin-top:33px;padding:26px 28px 24px;border:1px solid #e1e8dc;border-radius:16px;background:#f8faf6}
+.personal-notes-head{display:flex;align-items:flex-start;justify-content:space-between;gap:13px}
+.personal-notes h3{margin:7px 0 0;color:#244832}
+.personal-notes-privacy{font-size:12px;color:#56735d;background:#e8f0e5;border-radius:20px;padding:7px 11px;white-space:nowrap}
+.personal-notes-intro{color:#66746a;font-size:14px;line-height:1.55;margin:12px 0 19px}
+.personal-notes-fields{display:grid;gap:9px;max-width:780px}
+.personal-notes-fields>label{font-size:14px;font-weight:750;color:#2a4832;margin-top:4px}
+.personal-notes textarea{width:100%;padding:13px 14px;border:1px solid #d9e1d5;background:#fff;border-radius:10px;font:inherit;font-size:15px;line-height:1.6;resize:vertical;min-height:88px;color:#24392b}
+.personal-notes textarea:focus,.personal-notes select:focus{outline:3px solid #cc9364;outline-offset:2px}
+.personal-notes-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:15px;flex-wrap:wrap;margin-top:8px}
+.personal-notes-bottom>label{font-size:14px;font-weight:750;display:flex;flex-direction:column;gap:6px}
+.personal-notes select{border:1px solid #d5dfd0;border-radius:10px;background:#fff;padding:10px;min-height:44px}
+.personal-notes-buttons{display:flex;flex-wrap:wrap;gap:8px}
+.personal-notes-buttons .btn{font-size:13px}
+.cook-date,.notes-save-status{margin:6px 0 0;color:#677569;font-size:12px;line-height:1.5}
+.notes-save-status{color:#416d4d}
+body.cook-active{overflow:hidden}
+.cook-overlay{position:fixed;inset:0;z-index:1000;background:#14271cbb;padding:18px;display:flex;align-items:center;justify-content:center}
+.cook-overlay[hidden]{display:none!important}
+.cook-dialog{background:#fff;max-width:760px;width:100%;max-height:calc(100dvh - 36px);min-height:440px;display:flex;flex-direction:column;overflow:hidden;border-radius:19px;box-shadow:0 22px 65px #0c201f70}
+.cook-dialog-header{padding:23px 28px 16px;display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.cook-dialog-header h2{font-family:Georgia,serif;font-weight:500;font-size:clamp(22px,3.8vw,29px);line-height:1.2;margin:7px 0 5px}
+.cook-dialog-header p{font-size:13px;color:#69796d;margin:0}
+.cook-kicker{font-size:11px;letter-spacing:.14em;font-weight:850;color:#a46d46}
+.cook-close{border:1px solid #d9e4d7;background:#f4f7f1;color:#34563a;border-radius:50%;width:39px;height:39px;flex:none;font-size:17px}
+.cook-progress{height:6px;width:100%;background:#e7ece4}
+.cook-progress span{height:100%;display:block;background:#5e835f;transition:width .2s}
+.cook-dialog-body{padding:28px 30px 35px;overflow-y:auto;flex:1}
+.cook-step-number{font-weight:800;font-size:13px;color:#547359;margin-bottom:12px}
+.cook-dialog-body h3{font-family:Georgia,serif;font-size:clamp(28px,4vw,39px);font-weight:500;color:#284933;margin:0 0 15px}
+.cook-step-time{font-size:13px;background:#f2eee3;color:#805b39;border-radius:20px;display:inline-block;padding:6px 12px;margin-bottom:14px}
+.cook-step-body{font-size:clamp(17px,2.5vw,20px);line-height:1.75;color:#304335;white-space:pre-line;max-width:660px;margin:0 0 26px;overflow-wrap:anywhere}
+.cook-ingredient-toggle{border:1px solid #cfdcc9;border-radius:9px;padding:10px 12px;font-weight:700;color:#31573b;background:#f1f7ee}
+.cook-ingredients{margin:12px 0 0;background:#f8faf6;border-radius:9px;padding:9px 17px}
+.cook-ingredients ul{list-style:none;padding:0;margin:0}
+.cook-ingredients li{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid #e2eadf;padding:10px 0;font-size:14px}
+.cook-ingredients li:last-child{border-bottom:0}
+.cook-ingredients li strong{text-align:right;white-space:nowrap;color:#31533b}
+.cook-ingredients small{font-size:11px;color:#7a877a}
+.cook-dialog-footer{border-top:1px solid #e7ece4;padding:15px 26px;background:#f8faf6;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cook-restart{border:0;background:transparent;text-decoration:underline;text-underline-offset:3px;font-size:13px;color:#58705e;padding:9px 0}
+.cook-step-actions{display:flex;gap:10px}
+.cook-step-actions .btn{min-width:105px;text-align:center}
+.cook-step-actions button:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:650px){
+ .personal-notes{padding:18px 15px;margin-top:22px}
+ .personal-notes-head{flex-direction:column;gap:7px}
+ .personal-notes-buttons{width:100%}
+ .personal-notes-buttons .btn{flex:1}
+ .cook-overlay{padding:0;align-items:stretch}
+ .cook-dialog{max-height:100dvh;min-height:100dvh;border-radius:0}
+ .cook-dialog-header{padding:18px 18px 13px}
+ .cook-dialog-body{padding:25px 20px}
+ .cook-dialog-footer{padding:13px 15px;gap:8px}
+ .cook-step-actions{gap:6px}
+ .cook-step-actions .btn{min-width:90px;padding:10px}
+ .cook-restart{font-size:12px}
+}
+@media print{.personal-notes,.cook-overlay,.cook-start-button{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -364,6 +428,7 @@ footer{padding-top:0;padding-bottom:38px}
 <article id="detail" class="details" hidden></article>
 <section id="basket" class="details" hidden></section>
 </main>
+<div id="cookOverlay" class="cook-overlay" hidden></div>
 <footer>Mijn Kookboek · Bewaren, koken en delen</footer>
 <script>
 'use strict';
@@ -371,12 +436,13 @@ const el=id=>document.getElementById(id);
 const safe=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number=x=>Number(x)||0;
 const fmt=n=>new Intl.NumberFormat('nl-NL',{maximumFractionDigits:3}).format(n);
-const STORAGE={fav:'mijn-kookboek-favorieten',checked:'mijn-kookboek-receptchecks',basket:'mijn-kookboek-boodschappen',basketChecked:'mijn-kookboek-boodschappenchecks'};
+const STORAGE={fav:'mijn-kookboek-favorieten',checked:'mijn-kookboek-receptchecks',basket:'mijn-kookboek-boodschappen',basketChecked:'mijn-kookboek-boodschappenchecks',notes:'mijn-kookboek-persoonlijke-notities',cook:'mijn-kookboek-kookvoortgang'};
 function load(k,defaultValue){try{const v=JSON.parse(localStorage.getItem(k));return v&&typeof v==='object'?v:defaultValue}catch(e){return defaultValue}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 let recipes=[],favoriteOnly=false,quickOnly=false;
 let favorites=new Set(Array.isArray(load(STORAGE.fav,[]))?load(STORAGE.fav,[]):[]);
 let checked=load(STORAGE.checked,{}),basket=load(STORAGE.basket,{}),basketChecked=load(STORAGE.basketChecked,{});
+let personalNotes=load(STORAGE.notes,{}),cookProgress=load(STORAGE.cook,{}),activeCook=null;
 function title(r){return r.title||'Onbekend recept'}
 function description(r){return r.description||r.subtitle||''}
 function portions(r){return number(r.servings||r.portions)||2}
@@ -857,6 +923,125 @@ function renderBasket(){
   el('clearBasket').onclick=()=>{if(window.confirm('Alle recepten uit de lijst verwijderen?')){basket={};basketChecked={};save(STORAGE.basket,basket);save(STORAGE.basketChecked,basketChecked);basketCount();renderBasket()}};
  }
 }
+// Persoonlijke gegevens worden uitsluitend op dit apparaat bewaard, niet in recepten.json.
+function noteRecord(key){
+ const value=personalNotes[key];
+ if(!value||typeof value!=='object'||Array.isArray(value))return {};
+ return value;
+}
+function noteDateLabel(value){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(String(value||'')))return '';
+ const [year,month,day]=value.split('-');
+ return day+'-'+month+'-'+year;
+}
+function notesPanel(key){
+ const note=noteRecord(key);
+ const rating=Number(note.rating)||0;
+ return '<section class="personal-notes" id="personalNotes" aria-labelledby="personalNotesTitle">'+
+ '<div class="personal-notes-head"><div><span class="section-label">JOUW VERSIE</span><h3 id="personalNotesTitle">Mijn kooknotities</h3></div>'+
+ '<span class="personal-notes-privacy">Alleen op dit apparaat</span></div>'+
+ '<p class="personal-notes-intro">Noteer wat je hebt aangepast en wat je een volgende keer anders zou doen. Dit verandert het oorspronkelijke recept niet.</p>'+
+ '<div class="personal-notes-fields">'+
+ '<label for="noteText">Mijn aanpassingen en tips</label>'+
+ '<textarea id="noteText" rows="4" maxlength="5000" placeholder="Bijvoorbeeld: iets meer gerookt paprikapoeder; paprika langer bakken…">'+safe(note.notes||'')+'</textarea>'+
+ '<label for="feedbackText">Feedback na het koken</label>'+
+ '<textarea id="feedbackText" rows="4" maxlength="5000" placeholder="Wat ging goed? Wat kan de volgende keer beter?">'+safe(note.feedback||'')+'</textarea>'+
+ '<div class="personal-notes-bottom"><label for="recipeRating">Mijn beoordeling <select id="recipeRating">'+
+ '<option value="0"'+(!rating?' selected':'')+'>Nog niet beoordeeld</option>'+
+ [1,2,3,4,5].map(n=>'<option value="'+n+'"'+(rating===n?' selected':'')+'>'+n+' / 5</option>').join('')+
+ '</select></label><div class="personal-notes-buttons">'+
+ '<button type="button" class="btn alt" id="markCooked">Vandaag gekookt</button>'+
+ '<button type="button" class="btn" id="savePersonalNotes">Bewaar notities</button></div></div>'+
+ '<p id="cookDateLabel" class="cook-date">'+(note.lastCookedOn?'Laatst gekookt: '+safe(noteDateLabel(note.lastCookedOn)):'Nog geen kookdatum vastgelegd.')+'</p>'+
+ '<p id="notesSaveStatus" class="notes-save-status" role="status" aria-live="polite">Wijzigingen worden tijdens het typen bewaard op dit apparaat.</p>'+
+ '</div></section>';
+}
+function savePersonalNote(key){
+ const record={...noteRecord(key),notes:el('noteText').value,feedback:el('feedbackText').value,rating:Number(el('recipeRating').value)||0};
+ personalNotes[key]=record;
+ save(STORAGE.notes,personalNotes);
+ el('notesSaveStatus').textContent='Op dit apparaat opgeslagen.';
+ return record;
+}
+function cookSteps(view,mult){
+ return (view.steps||[]).map((step,index)=>({
+  index:index,
+  title:typeof step==='string'?'Stap '+(index+1):step.title||'Stap '+(index+1),
+  duration:typeof step==='string'?'':step.duration||'',
+  body:scaleStep(typeof step==='string'?step:step.body||'',allIngredients(view),mult)
+ }));
+}
+function openCookMode(recipe,view,variantId,servings){
+ const steps=cookSteps(view,servings/portions(view));
+ if(!steps.length)return;
+ const key=listKey(recipe.id,variantId),state=cookProgress[key]||{};
+ activeCook={key,view,servings,steps,index:state.done?0:Math.max(0,Math.min(steps.length-1,Number(state.step)||0)),showIngredients:false};
+ el('cookOverlay').hidden=false;
+ document.body.classList.add('cook-active');
+ renderCookMode();
+}
+function persistCookStep(done){
+ if(!activeCook)return;
+ cookProgress[activeCook.key]={step:activeCook.index,done:Boolean(done)};
+ save(STORAGE.cook,cookProgress);
+}
+function closeCookMode(restoreFocus=true){
+ if(!activeCook)return;
+ activeCook=null;
+ el('cookOverlay').hidden=true;
+ el('cookOverlay').innerHTML='';
+ document.body.classList.remove('cook-active');
+ if(restoreFocus&&el('startCooking')&&!el('detail').hidden)el('startCooking').focus();
+}
+function renderCookMode(){
+ const c=activeCook;
+ if(!c)return;
+ const count=c.steps.length,step=c.steps[c.index],isLast=c.index===count-1;
+ const materials=allIngredients(c.view).map(item=>
+  '<li><span>'+safe(item.name)+(item.optional?' <small>(optioneel)</small>':'')+'</span><strong>'+safe(amount(item,c.servings/portions(c.view)))+'</strong></li>'
+ ).join('');
+ el('cookOverlay').innerHTML='<div class="cook-dialog" role="dialog" aria-modal="true" aria-labelledby="cookDialogTitle" aria-describedby="cookDialogDescription">'+
+ '<div class="cook-dialog-header"><div><span class="cook-kicker">KOOKMODUS</span><h2 id="cookDialogTitle">'+safe(title(c.view))+'</h2>'+
+ '<p id="cookDialogDescription">'+safe(portionsLabel(c.view,c.servings))+' · '+(c.index+1)+' van '+count+' stappen</p></div>'+
+ '<button class="cook-close" type="button" id="cookClose" aria-label="Sluit kookmodus">✕</button></div>'+
+ '<div class="cook-progress" role="progressbar" aria-label="Kookvoortgang" aria-valuemin="0" aria-valuemax="'+count+'" aria-valuenow="'+(c.index+1)+'"><span style="width:'+((c.index+1)/count*100)+'%"></span></div>'+
+ '<div class="cook-dialog-body">'+
+ '<div class="cook-step-number">Stap '+(c.index+1)+' van '+count+'</div>'+
+ '<h3>'+safe(step.title)+'</h3>'+
+ (step.duration?'<div class="cook-step-time">'+safe(step.duration)+'</div>':'')+
+ '<p class="cook-step-body">'+safe(step.body)+'</p>'+
+ '<button id="cookShowIngredients" class="cook-ingredient-toggle" type="button" aria-expanded="'+c.showIngredients+'">'+(c.showIngredients?'Verberg ingrediënten':'Bekijk ingrediënten')+'</button>'+
+ (c.showIngredients?'<div class="cook-ingredients"><ul>'+materials+'</ul></div>':'')+
+ '</div>'+
+ '<div class="cook-dialog-footer"><button type="button" id="cookRestart" class="cook-restart">Begin opnieuw</button>'+
+ '<div class="cook-step-actions"><button type="button" id="cookPrev" class="btn alt"'+(c.index===0?' disabled':'')+'>Vorige</button>'+
+ '<button type="button" id="cookNext" class="btn">'+(isLast?'Afronden':'Volgende stap')+'</button></div></div>'+
+ '</div>';
+ const overlay=el('cookOverlay');
+ el('cookClose').onclick=()=>closeCookMode();
+ el('cookPrev').onclick=()=>{if(c.index>0){c.index--;persistCookStep(false);renderCookMode()}};
+ el('cookNext').onclick=()=>{
+  if(isLast){persistCookStep(true);closeCookMode();return}
+  c.index++;persistCookStep(false);renderCookMode();
+ };
+ el('cookRestart').onclick=()=>{c.index=0;persistCookStep(false);renderCookMode()};
+ el('cookShowIngredients').onclick=()=>{c.showIngredients=!c.showIngredients;renderCookMode()};
+ const next=el('cookNext');
+ if(next&&typeof next.focus==='function')next.focus();
+}
+document.addEventListener('keydown',event=>{
+ if(!activeCook)return;
+ if(event.key==='Escape'){event.preventDefault();closeCookMode();return}
+ // Houd tabfocus binnen het kookvenster voor toetsenbordgebruik.
+ if(event.key==='Tab'){
+  const targets=[...el('cookOverlay').querySelectorAll('button:not([disabled])')];
+  if(!targets.length)return;
+  const index=targets.indexOf(document.activeElement);
+  if(event.shiftKey&&index<=0){event.preventDefault();targets[targets.length-1].focus()}
+  else if(!event.shiftKey&&(index===targets.length-1||index===-1)){event.preventDefault();targets[0].focus()}
+ }
+});
+el('cookOverlay').addEventListener('click',event=>{if(event.target===el('cookOverlay'))closeCookMode()});
 function renderDetail(){
  const id=decodeURIComponent(location.hash.slice(8)),r=findRecipe(id);
  if(!r){location.hash='';return}
@@ -875,7 +1060,8 @@ function renderDetail(){
  const scaleNote=current!==original?'<p class="scale-note">Ingrediënten en herkenbare hoeveelheden in de bereidingsstappen zijn omgerekend naar '+safe(portionsLabel(view,current))+'. Temperaturen, tijden en afmetingen blijven gelijk. Bij grotere porties kan een grotere pan of bereiding in meerdere batches nodig zijn. Niet-herkenbare aantallen in woorden blijven ongewijzigd.'+(view.servingUnit==='stokbroden'?' Gebruik bij stokbrood circa 150 ml stoomwater per ovenronde; bak extra broden zo nodig in een tweede ronde.':'')+'</p>':'';
  const jumpNav='<nav class="recipe-jumps" aria-label="Direct naar receptonderdelen"><span>Ga naar</span><button type="button" id="jumpIngredients">Ingrediënten</button><button type="button" id="jumpSteps">Bereiding</button></nav>';
  const actions='<div class="actions recipe-actions">'+
- '<button class="btn" id="addBasket">Voeg toe aan boodschappenlijst</button>'+
+ '<button class="btn cook-start-button" id="startCooking">Start kookmodus</button>'+
+ '<button class="btn alt" id="addBasket">Voeg toe aan boodschappenlijst</button>'+
  '<button class="btn alt" id="goBasket">Bekijk boodschappenlijst</button>'+
  '<button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button>'+
  '<details class="recipe-more-actions"><summary>Meer acties</summary><div class="recipe-secondary-actions">'+
@@ -892,9 +1078,24 @@ function renderDetail(){
  scaleNote+actions+
  '<div class="recipe-layout"><section class="recipe-ingredients" id="recipeIngredients"><h3>Ingrediënten</h3><p class="ingredient-helper">Vink aan wat je al in huis hebt. Dit ingrediënt wordt dan voor dit recept niet op je boodschappenlijst gezet.</p><ul class="ingredients recipe-ingredient-list">'+checkableIngredientRows(items,mult,key)+'</ul></section>'+
  '<section class="recipe-steps" id="recipeSteps"><h3>Bereiding</h3><ol class="steps">'+steps+'</ol></section></div>'+
- (remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'');
+ (remarks.length?'<h3>Kooktips</h3><div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'')+
+ notesPanel(key);
  el('back').onclick=()=>location.hash='';
  el('favorite').onclick=()=>toggleFav(r.id);
+ el('startCooking').onclick=()=>openCookMode(r,view,variantId,current);
+ for(const field of ['noteText','feedbackText','recipeRating']){
+  const input=el(field);
+  input.addEventListener(field==='recipeRating'?'change':'input',()=>savePersonalNote(key));
+ }
+ el('savePersonalNotes').onclick=()=>savePersonalNote(key);
+ el('markCooked').onclick=()=>{
+  const item=savePersonalNote(key);
+  item.lastCookedOn=new Date().toLocaleDateString('sv-SE');
+  personalNotes[key]=item;
+  save(STORAGE.notes,personalNotes);
+  el('cookDateLabel').textContent='Laatst gekookt: '+noteDateLabel(item.lastCookedOn);
+  el('notesSaveStatus').textContent='Kookdatum en notities opgeslagen op dit apparaat.';
+ };
  el('detail').querySelectorAll('[data-variant]').forEach(b=>b.onclick=()=>{el('detail').dataset.variantId=b.dataset.variant;renderDetail()});
  el('detail').querySelectorAll('[data-item]').forEach(b=>b.onchange=()=>{
   const marked=new Set(Array.isArray(checked[key])?checked[key]:[]),idx=number(b.dataset.item);
@@ -923,6 +1124,7 @@ function renderDetail(){
  document.title=title(view)+' | Mijn Kookboek';
 }
 function route(){
+ closeCookMode(false);
  document.querySelector('.top').classList.toggle('is-subpage',location.hash.startsWith('#recept/')||location.hash==='#boodschappenlijst');
  if(location.hash==='#boodschappenlijst')renderBasket();
  else if(location.hash.startsWith('#recept/'))renderDetail();
