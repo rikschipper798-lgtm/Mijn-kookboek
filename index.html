@@ -327,7 +327,7 @@ footer{padding-top:0;padding-bottom:38px}
 /* Stap 6 — persoonlijke notities, feedback en stap-voor-stap koken. */
 .cook-start-button{background:#b4774c;color:#fff}
 .cook-start-button:hover{background:#95603d}
-.personal-notes{margin-top:33px;padding:26px 28px 24px;border:1px solid #e1e8dc;border-radius:16px;background:#f8faf6}
+.personal-notes{scroll-margin-top:18px;margin-top:33px;padding:26px 28px 24px;border:1px solid #e1e8dc;border-radius:16px;background:#f8faf6}
 .personal-notes-head{display:flex;align-items:flex-start;justify-content:space-between;gap:13px}
 .personal-notes h3{margin:7px 0 0;color:#244832}
 .personal-notes-privacy{font-size:12px;color:#56735d;background:#e8f0e5;border-radius:20px;padding:7px 11px;white-space:nowrap}
@@ -993,7 +993,7 @@ function closeCookMode(restoreFocus=true){
  document.body.classList.remove('cook-active');
  if(restoreFocus&&el('startCooking')&&!el('detail').hidden)el('startCooking').focus();
 }
-function renderCookMode(){
+function renderCookMode(focusTarget='cookNext'){
  const c=activeCook;
  if(!c)return;
  const count=c.steps.length,step=c.steps[c.index],isLast=c.index===count-1;
@@ -1021,12 +1021,18 @@ function renderCookMode(){
  el('cookClose').onclick=()=>closeCookMode();
  el('cookPrev').onclick=()=>{if(c.index>0){c.index--;persistCookStep(false);renderCookMode()}};
  el('cookNext').onclick=()=>{
-  if(isLast){persistCookStep(true);closeCookMode();return}
+  if(isLast){
+   persistCookStep(true);
+   closeCookMode(false);
+   const notes=el('personalNotes');
+   if(notes)notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+   return;
+  }
   c.index++;persistCookStep(false);renderCookMode();
  };
  el('cookRestart').onclick=()=>{c.index=0;persistCookStep(false);renderCookMode()};
- el('cookShowIngredients').onclick=()=>{c.showIngredients=!c.showIngredients;renderCookMode()};
- const next=el('cookNext');
+ el('cookShowIngredients').onclick=()=>{c.showIngredients=!c.showIngredients;renderCookMode('cookShowIngredients')};
+ const next=el(focusTarget);
  if(next&&typeof next.focus==='function')next.focus();
 }
 document.addEventListener('keydown',event=>{
