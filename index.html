@@ -768,7 +768,7 @@ async function copyText(text,button){
  try{await navigator.clipboard.writeText(text);if(button)button.textContent='Gekopieerd'}
  catch(e){window.prompt('Kopieer de tekst',text)}
 }
-// Houd dezelfde opslagsleutels voor bestaande boodschappen en favorieten aan.
+// Houd bestaande winkelmandjes en afvinkgegevens intact; koophoeveelheden zijn afzonderlijk van receptmaten.
 function normalizedUnit(u){
  return ({stuk:'stuks',teentje:'teentjes',plantje:'plantjes',blaadje:'blaadjes',plak:'plakken',snee:'sneetjes',blad:'bladen'})[u]||u||'';
 }
@@ -781,6 +781,98 @@ function basketConversion(u){
  if(units[unit]){const [group,base,factor]=units[unit];return {group,unit:base,factor,sourceUnit:unit}}
  return {group:'eenheid:'+unit,unit:normalizedUnit(u),factor:1,sourceUnit:unit};
 }
+const SHOP_ALIASES={
+ 'rode paprika':'paprika',
+ 'verse tomaat':'tomaat','verse tomaten':'tomaat','rijpe tomaten':'tomaat',
+ 'wortels':'wortel','verse rode peper':'rode peper',
+ 'knoflookpoeder voor de saus':'knoflookpoeder','zout voor de rode ui':'zout',
+ 'grofgemalen zwarte peper':'zwarte peper',
+ 'gedroogde dille':'dille','gedroogde peterselie':'peterselie (gedroogd)',
+ 'marjoraan (gedroogd)':'marjoraan','korianderblad (gedroogd)':'korianderblad',
+ 'olijfolie voor de pitabroodjes':'olijfolie','extra vierge olijfolie':'olijfolie',
+ 'balsamico':'balsamicoazijn','ketjap manis':'ketjap',
+ 'griekse yoghurt (naturel)':'griekse yoghurt',
+ 'witte of basmatirijst':'rijst'
+};
+const SHOP_PIECE_WEIGHTS={paprika:160,courgette:300,ui:130,'rode ui':120,sjalot:45,tomaat:120,wortel:100,komkommer:350,'rode peper':20,ei:55};
+const SHOP_SPICES=new Set('chilipoeder|dille|gerookt paprikapoeder|gedroogde basilicum|knoflookpoeder|uienpoeder|komijn|komijnzaad|korianderblad|kaneel|kerrie|kurkuma|laurierblad|marjoraan|oregano|paprikapoeder|peterselie (gedroogd)|rozemarijn|tijm|zwarte peper|zout'.split('|'));
+// De maten zijn gangbare supermarktverpakkingen, geen exacte merkvoorschriften.
+const SHOP_PACKS={
+ 'tomatenpuree':['blikje',70,'g'], "grand'italia basilico pastasaus":['pot',400,'g'],
+ 'satésaus (bereid)':['pot',350,'g'],'instantgist':['zakje',7,'g'],
+ 'appelstroop':['pot',350,'ml'],'honing':['pot',350,'ml'],
+ 'mayonaise':['pot',450,'ml'],'mosterd':['pot',200,'ml'],
+ 'franse mosterd':['pot',200,'ml'],'dijonmosterd':['pot',200,'ml'],
+ 'sriracha':['fles',200,'ml'],'citroensap':['fles',200,'ml'],
+ 'balsamicoazijn':['fles',250,'ml'],'sojasaus':['fles',250,'ml'],
+ 'ketjap':['fles',250,'ml'],'olijfolie':['fles',500,'ml'],
+ 'zonnebloemolie':['fles',1000,'ml'],'olie':['fles',500,'ml'],
+ 'kookroom':['pakje',200,'ml'],'melk':['pak',1000,'ml'],
+ 'slagroom':['bekertje',250,'ml'],'runderbouillon':['pak',500,'ml'],
+ 'la trappe dubbel':['fles',330,'ml'],
+ 'bruin brood':['brood',20,'sneetjes'],'cheddar':['pak',8,'plakken']
+};
+const SHOP_PLURALS={potje:'potjes',pot:'potten',blikje:'blikjes',fles:'flessen',pakje:'pakjes',pak:'pakken',bekertje:'bekertjes',zakje:'zakjes',bol:'bollen',bosje:'bosjes',plantje:'plantjes',krop:'kroppen',brood:'broden'};
+function basketProfile(item){
+ const raw=basketName(item.name),name=SHOP_ALIASES[raw]||raw;
+ if(name==='water'||name==='heet water voor stoom')return null; // Kraanwater is geen boodschap.
+ const label=name.charAt(0).toLocaleUpperCase('nl-NL')+name.slice(1);
+ if(SHOP_SPICES.has(name)){
+  const size=name==='zout'?200:(name==='paprikapoeder'||name==='gerookt paprikapoeder'||name==='kerrie'?90:60);
+  return {id:name,name:label,type:'pack',base:'ml',size,unit:'potje'};
+ }
+ if(Object.prototype.hasOwnProperty.call(SHOP_PIECE_WEIGHTS,name)){
+  return {id:name,name:label,type:'pieces',base:'pieces',weight:SHOP_PIECE_WEIGHTS[name]};
+ }
+ if(name==='knoflook')return {id:name,name:label,type:'pack',base:'cloves',size:9,unit:'bol'};
+ if(name==='verse basilicum'||name==='verse peterselie'){
+  return {id:name,name:label,type:'pack',base:'freshHerbs',size:25,unit:name==='verse basilicum'?'plantje':'bosje'};
+ }
+ if(name==='sla'||name==='ijsbergsla')return {id:name,name:label,type:'pack',base:'lettuce',size:12,unit:'krop'};
+ if(name==='bloem'||name==='tarwebloem'||name==='suiker'){
+  return {id:name,name:label,type:'weight',base:'g',spoonGrams:name==='suiker'?12:10};
+ }
+ if(Object.prototype.hasOwnProperty.call(SHOP_PACKS,name)){
+  const [unit,size,base]=SHOP_PACKS[name];
+  return {id:name,name:label,type:'pack',unit,size,base};
+ }
+ const c=basketConversion(item.unit);
+ if(c.group==='eenheid:stuks'||c.group==='eenheid:plantjes')return {id:name,name:label,type:'pieces',base:'pieces'};
+ return {id:name+'|'+c.group,name:item.name,type:'raw',base:c.unit,group:c.group};
+}
+function basketSourceAmount(item,p){
+ const n=Number(item.qty),c=basketConversion(item.unit),u=c.sourceUnit;
+ if(!Number.isFinite(n))return null;
+ if(p.base==='pieces'){
+  if(c.group==='gewicht')return n*c.factor/(p.weight||120);
+  return n;
+ }
+ if(p.base==='cloves')return n;
+ if(p.base==='freshHerbs'){
+  if(c.group==='gewicht')return n*c.factor;
+  if(u==='plantjes')return n*25;
+  if(u==='el')return n*4;
+  if(u==='tl')return n*1.5;
+  return n*25;
+ }
+ if(p.base==='lettuce'){
+  if(c.group==='gewicht')return n*c.factor/12;
+  return n;
+ }
+ if(p.base==='g'){
+  if(c.group==='gewicht')return n*c.factor;
+  if(u==='el')return n*(p.spoonGrams||15);
+  if(u==='tl')return n*(p.spoonGrams||15)/3;
+  return n;
+ }
+ if(p.base==='ml'){
+  if(c.group==='volume')return n*c.factor;
+  if(c.group==='gewicht')return n*c.factor; // Benadering: 1 g ~= 1 ml voor sauzen.
+  return n;
+ }
+ if(p.base==='sneetjes'||p.base==='plakken')return n;
+ return n*c.factor;
+}
 function basketItems(){
  const combined=new Map();
  for(const entry of Object.values(basket)){
@@ -791,43 +883,53 @@ function basketItems(){
   const mult=Math.max(1,number(entry.servings))/portions(view);
   const available=new Set(Array.isArray(checked[listKey(recipe.id,entry.variantId)])?checked[listKey(recipe.id,entry.variantId)]:[]);
   allIngredients(view).forEach((item,index)=>{
-   // De bestaande afvinklijst is geïndexeerd per ingrediënt van het gekozen recept.
-   if(available.has(index) || (item.optional&&entry.includeOptional===false))return;
-   const c=basketConversion(item.unit),key=basketName(item.name)+'|'+c.group;
-   const oldKey=item.name.trim().toLowerCase()+'|'+normalizedUnit(item.unit);
-   if(!combined.has(key))combined.set(key,{
-    key,name:item.name,unit:c.unit,qty:0,numeric:false,text:false,optional:true,
-    originalUnits:new Set(),legacyKeys:new Set()
+   if(available.has(index)||(item.optional&&entry.includeOptional===false))return;
+   const split=['peper en zout','zout en peper'].includes(basketName(item.name))
+    ?[{...item,name:'Zout'},{...item,name:'Zwarte peper'}]:[item];
+   split.forEach(ingredient=>{
+    const p=basketProfile(ingredient);
+    if(!p)return;
+    const key='winkel:'+p.id+(p.type==='raw'?'|'+p.group:'');
+    const oldKey=item.name.trim().toLowerCase()+'|'+normalizedUnit(item.unit);
+    const oldCombinedKey=basketName(item.name)+'|'+basketConversion(item.unit).group;
+    if(!combined.has(key))combined.set(key,{
+     key,name:p.name,unit:p.unit||p.base,qty:0,numeric:false,text:false,optional:true,
+     type:p.type,base:p.base,size:p.size,originalUnits:new Set(),legacyKeys:new Set()
+    });
+    const row=combined.get(key);
+    row.legacyKeys.add(oldKey);row.legacyKeys.add(oldCombinedKey);
+    row.originalUnits.add(normalizedUnit(item.unit).toLowerCase());
+    row.optional=row.optional&&Boolean(item.optional);
+    if(p.id==='paprika'&&basketName(item.name)==='rode paprika')row.name='Paprika (rood)';
+    if(item.qty===null||item.qty===undefined){row.text=true;return}
+    const qty=basketSourceAmount(item,p);
+    if(qty!==null){row.qty+=qty*mult;row.numeric=true}
+    else row.text=true;
    });
-   const row=combined.get(key);
-   row.legacyKeys.add(oldKey);
-   row.originalUnits.add(c.sourceUnit);
-   row.optional=row.optional&&Boolean(item.optional);
-   if(item.qty===null||item.qty===undefined){row.text=true;return}
-   const qty=Number(item.qty);
-   if(Number.isFinite(qty)){row.qty+=qty*mult*c.factor;row.numeric=true}
-   else row.text=true;
   });
  }
  return [...combined.values()].sort((a,b)=>a.name.localeCompare(b.name,'nl'));
 }
 function basketAmount(item){
- if(!item.numeric)return item.text?(item.unit==='naar smaak'?'naar smaak':item.unit):'';
- const qty=item.qty;
- if(item.unit==='g')return qty>=1000?fmtQty(qty/1000,'kg')+' kg':fmtQty(qty,'g')+' g';
- if(item.unit==='ml'){
-  const spoonOnly=[...item.originalUnits].every(u=>u==='el'||u==='tl');
-  if(spoonOnly){
-   const tablespoons=Math.floor((qty+1e-8)/15);
-   const tsp=(qty-tablespoons*15)/5;
-   const parts=[];
-   if(tablespoons)parts.push(fmtQty(tablespoons,'el')+' el');
-   if(tsp>1e-8)parts.push(fmtQty(tsp,'tl')+' tl');
-   return parts.join(' + ')||'0 ml';
-  }
-  return qty>=1000?fmtQty(qty/1000,'l')+' l':fmtQty(qty,'ml')+' ml';
+ if(item.type==='pieces'){
+  const n=item.numeric?Math.max(1,Math.ceil(item.qty-1e-8)):1;
+  return n+' '+(n===1?'stuk':'stuks');
  }
- return amount({qty,unit:item.unit},1);
+ if(item.type==='pack'){
+  const n=item.numeric?Math.max(1,Math.ceil(item.qty/item.size-1e-8)):1;
+  return n+' '+(n===1?item.unit:(SHOP_PLURALS[item.unit]||item.unit));
+ }
+ if(!item.numeric)return item.text?(item.unit==='naar smaak'?'naar smaak':item.unit):'';
+ if(item.type==='weight'||item.unit==='g'){
+  return item.qty>=1000?fmtQty(item.qty/1000,'kg')+' kg':fmtQty(item.qty,'g')+' g';
+ }
+ if(item.unit==='ml')return item.qty>=1000?fmtQty(item.qty/1000,'l')+' l':fmtQty(item.qty,'ml')+' ml';
+ // Ook onbekende stukseenheden worden op hele winkelproducten afgerond.
+ if(item.unit==='stuks'){
+  const n=Math.max(1,Math.ceil(item.qty-1e-8));
+  return n+' '+(n===1?'stuk':'stuks');
+ }
+ return amount({qty:item.qty,unit:item.unit},1);
 }
 function isBasketChecked(item){
  if(Object.prototype.hasOwnProperty.call(basketChecked,item.key))return Boolean(basketChecked[item.key]);
@@ -888,7 +990,7 @@ function renderBasket(){
  el('basket').innerHTML=
   '<button class="back" id="backBasket">← Alle recepten</button>'+
   '<h2>Boodschappenlijst</h2>'+
-  '<p class="description">Vink producten af zodra je ze hebt gekocht, of kies <strong>Al in huis</strong> als je ze al hebt. Dan verplaatsen ze naar de aparte voorraadlijst hieronder. Wat je bij een recept als in huis afvinkt, wordt hier ook getoond.</p>'+
+  '<p class="description">Deze lijst toont praktische koophoeveelheden: hele groenten en eieren per stuk, kruiden per potje en andere producten in grammen of gangbare verpakkingen. De hoeveelheden worden per product opgeteld en naar boven afgerond. Verpakkingen zijn indicatief; de recepten blijven exact. Vink boodschappen af of kies <strong>Al in huis</strong>.</p>'+
   (selected?'<h3>Gekozen recepten</h3>'+selected+
    '<div class="actions"><button class="btn" id="copyBasket">Kopieer boodschappen</button><button class="btn alt" id="clearBasket">Maak lijst leeg</button></div>'+
    '<h3>Nog kopen ('+shoppingList.length+')</h3>'+
