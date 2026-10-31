@@ -894,10 +894,10 @@ function basketItems(){
     const oldCombinedKey=basketName(item.name)+'|'+basketConversion(item.unit).group;
     if(!combined.has(key))combined.set(key,{
      key,name:p.name,unit:p.unit||p.base,qty:0,numeric:false,text:false,optional:true,
-     type:p.type,base:p.base,size:p.size,originalUnits:new Set(),legacyKeys:new Set()
+     type:p.type,base:p.base,size:p.size,originalUnits:new Set(),legacyKeys:new Set(),legacyGroups:new Map()
     });
     const row=combined.get(key);
-    row.legacyKeys.add(oldKey);row.legacyKeys.add(oldCombinedKey);
+    row.legacyKeys.add(oldKey);row.legacyKeys.add(oldCombinedKey);row.legacyGroups.set(oldCombinedKey,oldKey);
     row.originalUnits.add(normalizedUnit(item.unit).toLowerCase());
     row.optional=row.optional&&Boolean(item.optional);
     if(p.id==='paprika'&&basketName(item.name)==='rode paprika')row.name='Paprika (rood)';
@@ -933,13 +933,19 @@ function basketAmount(item){
 }
 function isBasketChecked(item){
  if(Object.prototype.hasOwnProperty.call(basketChecked,item.key))return Boolean(basketChecked[item.key]);
- // Eerdere lijsten gebruikten naam + oorspronkelijke eenheid als sleutel.
- // Een samengevoegde regel telt alleen als gekocht wanneer alle vorige regels gekocht waren.
- const oldKeys=[...item.legacyKeys];
- return oldKeys.length>0&&oldKeys.every(key=>basketChecked[key]===true);
+ // Behoud oude afvinkstatus per oorspronkelijk samengevoegde productregel.
+ const groups=[...item.legacyGroups];
+ return groups.length>0&&groups.every(([combined,original])=>
+  basketChecked[combined]===true||(basketChecked[combined]===undefined&&basketChecked[original]===true));
 }
 function homeStockKey(item){return 'al-in-huis:'+item.key}
-function isAlreadyHome(item){return basketChecked[homeStockKey(item)]===true}
+function isAlreadyHome(item){
+ if(Object.prototype.hasOwnProperty.call(basketChecked,homeStockKey(item)))return Boolean(basketChecked[homeStockKey(item)]);
+ const groups=[...item.legacyGroups];
+ return groups.length>0&&groups.every(([combined,original])=>
+  basketChecked['al-in-huis:'+combined]===true||
+  (basketChecked['al-in-huis:'+combined]===undefined&&basketChecked['al-in-huis:'+original]===true));
+}
 function alreadyHomeFromRecipes(){
  const result=[];
  for(const entry of Object.values(basket)){
