@@ -577,6 +577,26 @@ let recipes=[],favoriteOnly=false,quickOnly=false;
 let favorites=new Set(Array.isArray(load(STORAGE.fav,[]))?load(STORAGE.fav,[]):[]);
 let checked=load(STORAGE.checked,{}),basket=load(STORAGE.basket,{}),basketChecked=load(STORAGE.basketChecked,{});
 let personalNotes=load(STORAGE.notes,{}),cookProgress=load(STORAGE.cook,{}),activeCook=null;
+// Oudere, losse melkchocolade-lavacake bewaren als variant van hetzelfde recept.
+function migrateLavacakeVariant(){
+ const oldId='chocolade-lavacake-melkchocolade';
+ const recipeId='chocolade-lavacake-pure-chocolade';
+ const oldKey=oldId+':klassiek',newKey=recipeId+':melkchocolade';
+ if(favorites.delete(oldId)){favorites.add(recipeId);save(STORAGE.fav,[...favorites])}
+ for(const [state,storageKey] of [[checked,STORAGE.checked],[personalNotes,STORAGE.notes],[cookProgress,STORAGE.cook]]){
+  if(Object.prototype.hasOwnProperty.call(state,oldKey)){
+   if(!Object.prototype.hasOwnProperty.call(state,newKey))state[newKey]=state[oldKey];
+   delete state[oldKey];save(storageKey,state);
+  }
+ }
+ if(Object.prototype.hasOwnProperty.call(basket,oldKey)){
+  if(!Object.prototype.hasOwnProperty.call(basket,newKey)){
+   basket[newKey]={...basket[oldKey],id:recipeId,variantId:'melkchocolade'};
+  }
+  delete basket[oldKey];save(STORAGE.basket,basket);
+ }
+}
+migrateLavacakeVariant();
 let pendingBackup=null;
 let cookTimer={durationSec:0,remainingSec:0,running:false,endsAt:0,finished:false};
 let cookTimerInterval=null;
@@ -1666,7 +1686,7 @@ el('cookOverlay').addEventListener('click',event=>{if(event.target===el('cookOve
 function renderDetail(){
  const id=decodeURIComponent(location.hash.slice(8)),r=findRecipe(id);
  if(!r){location.hash='';return}
- const baseVariant=id==='bolognese'?'romig':'klassiek';
+ const baseVariant=id==='bolognese'?'romig':id==='chocolade-lavacake-melkchocolade'?'melkchocolade':'klassiek';
  const variantId=el('detail').dataset.routeId===id?(el('detail').dataset.variantId||baseVariant):baseVariant;
  const view=viewFor(r,variantId),original=portions(view),prior=number(el('detail').dataset.currentServings);
  const current=el('detail').dataset.recipeId===r.id&&prior?prior:original;
@@ -1674,7 +1694,7 @@ function renderDetail(){
  el('overview').hidden=true;el('basket').hidden=true;el('detail').hidden=false;
  const mult=current/original,items=allIngredients(view),key=listKey(r.id,variantId);
  const canScale=items.some(i=>typeof i.qty==='number');
- const choices=r.variants?.length?'<div class="variants"><strong>Bereidingsvariant</strong>'+[{id:'klassiek',label:r.defaultVariantLabel||'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
+ const choices=r.variants?.length?'<div class="variants"><strong>'+safe(r.variantPrompt||'Bereidingsvariant')+'</strong>'+[{id:'klassiek',label:r.defaultVariantLabel||'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
  const steps=(view.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(scaledStepBody(view,s,mult)):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(scaledStepBody(view,s,mult))+'</div>')+'</div></li>').join('');
  const tips=typeof view.tips==='string'?[view.tips]:(view.tips||[]);
  const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
