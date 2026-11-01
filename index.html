@@ -3,7 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f7f3eb">
+<meta name="theme-color" content="#294935">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mijn Kookboek">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <meta name="description" content="Mijn Kookboek: persoonlijke recepten, boodschappenlijsten en kookinstructies.">
 <title>Mijn Kookboek — alle recepten</title>
 <style>
@@ -455,6 +461,18 @@ body.cook-active{overflow:hidden}
 @media(max-width:650px){.backup-panel{margin:24px 0 0;padding:0 15px}.backup-actions .btn{flex:1}.backup-preview .btn{width:100%;margin-right:0}}
 @media print{.backup-panel{display:none!important}}
 
+/* Installeerbare/offline app: rustige status en optionele handmatige installatie. */
+.offline-feature{max-width:850px;margin:30px auto 0;padding:21px 24px;border:1px solid #dbe6d7;border-radius:16px;background:#f8faf6;display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.offline-feature h2{font-family:Georgia,serif;font-size:24px;font-weight:500;line-height:1.25;color:#294935;margin:3px 0 8px}
+.offline-feature p{font-size:13px;color:#607364;line-height:1.55;margin:5px 0}
+.offline-feature .offline-copy{flex:1;min-width:230px}
+.offline-actions{display:flex;flex-wrap:wrap;gap:8px;align-self:center}
+.offline-actions button{font-size:13px;min-height:44px}
+.offline-guidance{flex-basis:100%;border-top:1px solid #dce7d8;padding-top:13px}
+.offline-guidance[hidden],.offline-actions button[hidden]{display:none!important}
+.offline-guidance strong{color:#385740}
+@media(max-width:650px){.offline-feature{padding:18px 15px}.offline-actions{width:100%}.offline-actions button{flex:1}}
+@media print{.offline-feature{display:none!important}}
 </style>
 </head>
 <body>
@@ -495,6 +513,23 @@ body.cook-active{overflow:hidden}
 </section>
 <article id="detail" class="details" hidden></article>
 <section id="basket" class="details" hidden></section>
+<section id="offlineFeatures" class="offline-feature" aria-labelledby="offlineFeaturesTitle">
+ <div class="offline-copy">
+  <span class="section-label">OOK ZONDER INTERNET</span>
+  <h2 id="offlineFeaturesTitle">Mijn Kookboek als app</h2>
+  <p id="offlineState" role="status" aria-live="polite">Offline gebruik wordt voorbereid. Open deze pagina eerst met internet om recepten op te slaan.</p>
+ </div>
+ <div class="offline-actions">
+  <button type="button" class="btn" id="appInstall" hidden>Installeer de app</button>
+  <button type="button" class="btn alt" id="appInstallHelp" aria-expanded="false" aria-controls="appInstallGuide">Zo installeer je</button>
+  <button type="button" class="btn" id="appUpdate" hidden>Nieuwe versie laden</button>
+ </div>
+ <div id="appInstallGuide" class="offline-guidance" hidden>
+  <p><strong>Android (Chrome):</strong> open het browsermenu en kies ‘App installeren’ of ‘Toevoegen aan startscherm’.</p>
+  <p><strong>iPhone (Safari):</strong> tik op ‘Delen’ en kies ‘Zet op beginscherm’.</p>
+  <p>Bezoek de website eerst online en zorg dat de offline status ‘klaar’ aangeeft. Nieuwe recepten en wijzigingen worden opgehaald zodra je de website weer online opent. Je persoonlijke notities blijven op dit apparaat; maak regelmatig een back-up.</p>
+ </div>
+</section>
 <details id="personalDataPanel" class="backup-panel">
  <summary>Mijn gegevens · back-up en herstel</summary>
  <div class="backup-panel-content">
@@ -1873,6 +1908,96 @@ el('downloadBackup').addEventListener('click',downloadPersonalBackup);
 el('backupFile').addEventListener('change',event=>readBackupFile(event.target.files[0]));
 el('restoreBackup').addEventListener('click',restorePersonalBackup);
 el('cancelBackup').addEventListener('click',()=>{cancelBackupImport();backupStatus('Herstellen geannuleerd; je gegevens zijn ongewijzigd.')});
+
+
+/* PWA: browserondersteuning, offline status en veilige handmatige updates.
+   Recepten worden online opgehaald en via de serviceworker offline bewaard.
+   Persoonlijke gegevens blijven in localStorage; er is geen accountsync. */
+const pwaState={ready:false,registration:null,installPrompt:null,reloadOnControllerChange:false};
+function pwaStandalone(){
+ return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;
+}
+function pwaUpdateStatus(){
+ const label=el('offlineState');
+ const supported='serviceWorker' in navigator&&window.isSecureContext;
+ if(!supported){
+  label.textContent='Deze browser ondersteunt offline gebruik niet volledig. De website werkt online; gebruik een recente browser voor de appfunctie.';
+  return;
+ }
+ const controlled=Boolean(navigator.serviceWorker.controller);
+ if(navigator.onLine===false){
+  label.textContent=controlled?'Je bent offline. Je eerder opgeslagen recepten en afbeeldingen zijn beschikbaar.':
+   'Je bent offline. Bezoek de website één keer online om recepten op te slaan.';
+ }else if(pwaState.ready&&controlled){
+  label.textContent=pwaStandalone()?'De app is geïnstalleerd en offline klaar. Receptwijzigingen komen automatisch mee zodra je online bent.':
+   'Offline gereed: recepten zijn op dit apparaat beschikbaar. Nieuwe wijzigingen worden bij een online bezoek opgehaald.';
+ }else if(pwaState.registration){
+  label.textContent='Recepten en afbeeldingen worden klaargezet voor offline gebruik. Houd deze pagina nog even online.';
+ }else{
+  label.textContent='Offline gebruik wordt voorbereid. Open deze pagina eerst met internet om recepten op te slaan.';
+ }
+}
+function pwaCheckUpdate(){
+ const reg=pwaState.registration;
+ el('appUpdate').hidden=!(reg&&reg.waiting&&navigator.serviceWorker.controller);
+}
+el('appInstallHelp').onclick=()=>{
+ const guide=el('appInstallGuide'),button=el('appInstallHelp');
+ guide.hidden=!guide.hidden;
+ button.setAttribute('aria-expanded',String(!guide.hidden));
+};
+el('appInstall').onclick=async()=>{
+ const prompt=pwaState.installPrompt;
+ if(!prompt)return;
+ pwaState.installPrompt=null;
+ el('appInstall').hidden=true;
+ try{await prompt.prompt();await prompt.userChoice}catch(error){}
+};
+el('appUpdate').onclick=()=>{
+ const worker=pwaState.registration?.waiting;
+ if(!worker)return;
+ pwaState.reloadOnControllerChange=true;
+ worker.postMessage({type:'SKIP_WAITING'});
+};
+window.addEventListener('beforeinstallprompt',event=>{
+ event.preventDefault();
+ pwaState.installPrompt=event;
+ if(!pwaStandalone())el('appInstall').hidden=false;
+});
+window.addEventListener('appinstalled',()=>{
+ pwaState.installPrompt=null;el('appInstall').hidden=true;pwaUpdateStatus();
+});
+window.addEventListener('online',pwaUpdateStatus);
+window.addEventListener('offline',pwaUpdateStatus);
+if('serviceWorker' in navigator&&window.isSecureContext){
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{
+  if(pwaState.reloadOnControllerChange){window.location.reload();return}
+  pwaUpdateStatus();pwaCheckUpdate();
+ });
+ window.addEventListener('load',()=>{
+  navigator.serviceWorker.register('./sw.js',{scope:'./'}).then(reg=>{
+   pwaState.registration=reg;
+   pwaUpdateStatus();
+   pwaCheckUpdate();
+   const watch=worker=>{
+    if(!worker)return;
+    worker.addEventListener('statechange',()=>{
+     if(worker.state==='installed')pwaCheckUpdate();
+    });
+   };
+   watch(reg.installing);
+   reg.addEventListener('updatefound',()=>watch(reg.installing));
+   navigator.serviceWorker.ready.then(()=>{
+    pwaState.ready=true;pwaUpdateStatus();pwaCheckUpdate();
+   }).catch(()=>{pwaUpdateStatus()});
+  }).catch(error=>{
+   el('offlineState').textContent='Offline gebruik is nog niet ingeschakeld. Controleer de verbinding en herlaad de website.';
+   console.warn('Kookboek offline registratie',error);
+  });
+ });
+}else{
+ pwaUpdateStatus();
+}
 
 el('shoppingNav').onclick=()=>location.hash='#boodschappenlijst';
 window.addEventListener('hashchange',route);
