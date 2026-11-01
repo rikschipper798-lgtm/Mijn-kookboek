@@ -515,6 +515,7 @@ let pendingBackup=null;
 let cookTimer={durationSec:0,remainingSec:0,running:false,endsAt:0,finished:false};
 let cookTimerInterval=null;
 let cookWakeLock=null,cookWakeWanted=false,cookWakeMessage='Scherm kan automatisch vergrendelen.';
+let cookAlarmAudio=null;
 function title(r){return r.title||'Onbekend recept'}
 function description(r){return r.description||r.subtitle||''}
 function portions(r){return number(r.servings||r.portions)||2}
@@ -1171,6 +1172,36 @@ function cookTimerText(seconds){
 function cookStopInterval(){
  if(cookTimerInterval!==null){clearInterval(cookTimerInterval);cookTimerInterval=null}
 }
+// Het geluidsysteem wordt tijdens een knopdruk geactiveerd; browsers kunnen
+// audio blokkeren en geluid is bij achtergrondgebruik niet gegarandeerd.
+function cookPrepareAlarm(){
+ const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+ if(!AudioContextClass)return;
+ try{
+  if(!cookAlarmAudio)cookAlarmAudio=new AudioContextClass();
+  if(cookAlarmAudio.state==='suspended')cookAlarmAudio.resume().catch(()=>{});
+ }catch(e){}
+}
+function cookPlayAlarm(){
+ if(document.visibilityState!=='visible'||!cookAlarmAudio||cookAlarmAudio.state!=='running')return;
+ try{
+  const ctx=cookAlarmAudio;
+  for(let i=0;i<2;i++){
+   const time=ctx.currentTime+i*0.35;
+   const oscillator=ctx.createOscillator();
+   const gain=ctx.createGain();
+   oscillator.type='sine';
+   oscillator.frequency.value=880;
+   gain.gain.setValueAtTime(0.0001,time);
+   gain.gain.exponentialRampToValueAtTime(0.09,time+0.02);
+   gain.gain.exponentialRampToValueAtTime(0.0001,time+0.23);
+   oscillator.connect(gain);
+   gain.connect(ctx.destination);
+   oscillator.start(time);
+   oscillator.stop(time+0.24);
+  }
+ }catch(e){}
+}
 function cookCurrentSeconds(){
  return cookTimer.running?Math.max(0,Math.ceil((cookTimer.endsAt-Date.now())/1000)):cookTimer.remainingSec;
 }
@@ -1182,6 +1213,7 @@ function cookTimerTick(){
   cookTimer.running=false;
   cookTimer.finished=true;
   cookStopInterval();
+  cookPlayAlarm();
   if(document.visibilityState==='visible'&&typeof navigator.vibrate==='function'){
    try{navigator.vibrate([130,100,130])}catch(e){}
   }
@@ -1225,6 +1257,7 @@ function cookTimerAction(){
   const value=Number(el('cookTimerMinutes').value);
   if(!Number.isInteger(value)||value<1||value>240){cookTimerUI();return}
   activeCook.timerDraft=value;
+  cookPrepareAlarm();
   cookTimer.durationSec=value*60;
   cookTimer.remainingSec=value*60;
   cookTimer.endsAt=Date.now()+cookTimer.remainingSec*1000;
@@ -1297,6 +1330,8 @@ function cookStopTools(){
  const lock=cookWakeLock;cookWakeLock=null;
  if(lock)Promise.resolve(lock.release()).catch(()=>{});
  cookWakeMessage='Scherm kan automatisch vergrendelen.';
+ const audio=cookAlarmAudio;cookAlarmAudio=null;
+ if(audio)Promise.resolve().then(()=>audio.close()).catch(()=>{});
 }
 document.addEventListener('visibilitychange',()=>{
  if(!activeCook)return;
@@ -1361,7 +1396,7 @@ function renderCookMode(focusTarget='cookNext'){
  '<p id="cookTimerStatus" class="cook-timer-status" role="status" aria-live="polite"></p>'+
  '<div class="cook-wake-row"><button type="button" id="cookStayAwake" aria-pressed="false">Scherm aanhouden: uit</button>'+
  '<span id="cookWakeStatus" class="cook-wake-status"></span></div>'+
- '<p class="cook-timer-note">De timer werkt zolang deze pagina open blijft. Bij vergrendeling of achtergrondgebruik zijn geluid en meldingen niet gegarandeerd. Verlaat je de kookmodus, dan stopt de timer.</p>'+
+ '<p class="cook-timer-note">De timer geeft een geluidssignaal als je browser dat toestaat. Bij vergrendeling of achtergrondgebruik zijn geluid en meldingen niet gegarandeerd. Verlaat je de kookmodus, dan stopt de timer.</p>'+
  '</section>'+
  '<div class="cook-ingredients" id="cookIngredientList" aria-label="'+(c.showIngredients?'Alle ingrediënten':'Ingrediënten voor deze stap')+'">'+
  '<div class="cook-ingredients-label">'+(c.showIngredients?'Alle ingrediënten':'Ingrediënten voor deze stap')+'</div>'+
