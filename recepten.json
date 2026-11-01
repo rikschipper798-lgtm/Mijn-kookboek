@@ -5194,5 +5194,109 @@
     "tips": "Deze hoeveelheden zijn bedoeld voor één groot Perzisch flatbread: één royale lunch of twee kleine porties. Bak het brood eerst kort voor voor een krokante bodem. Verwijder natte tomatenzaadlijsten en snijd champignons dun; door de kleine hoeveelheid van 35 g hoef je de champignons niet vooraf te bakken. Gebruik pesto met mate om een vette of zompige bodem te voorkomen. Kaas in twee lagen helpt het beleg bijeenhouden. Voeg geen extra zout toe: pesto, salami en kaas zijn al zout. Voeg verse basilicum pas na het bakken toe. Voor een mildere variant kun je circa 20 g salami vervangen door 25 g ham. Serveer bij gebruik als hoofdgerecht eventueel met een salade.",
     "image": "images/italiaanse-pesto-salamipizza-flatbread.webp",
     "image_source": "AI-gegenereerde afbeelding speciaal gemaakt voor deze pesto-salamipizza met champignons en verse basilicum"
+  },
+  {
+    "id": "aperol-spritz",
+    "title": "Aperol Spritz",
+    "subtitle": "Een frisse, licht bittere en bruisende Italiaanse cocktail met prosecco, Aperol, bruiswater en sinaasappel, in de klassieke 3-2-1-verhouding.",
+    "category": "Dranken",
+    "kind": "Cocktail",
+    "cuisine": "Italiaans",
+    "minutes": 5,
+    "prep": 5,
+    "cook": 0,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-11-01",
+    "tags": [
+      "Aperol Spritz",
+      "Cocktail",
+      "Italiaans",
+      "Prosecco",
+      "Borrel",
+      "Binnen 15 min"
+    ],
+    "ingredients": [
+      {
+        "name": "Prosecco (bij voorkeur Brut)",
+        "qty": 180,
+        "unit": "ml",
+        "group": "Cocktail"
+      },
+      {
+        "name": "Aperol",
+        "qty": 120,
+        "unit": "ml",
+        "group": "Cocktail"
+      },
+      {
+        "name": "Bruiswater",
+        "qty": 60,
+        "unit": "ml",
+        "group": "Cocktail"
+      },
+      {
+        "name": "Sinaasappel",
+        "qty": 2,
+        "unit": "schijfjes",
+        "group": "Garnering"
+      },
+      {
+        "name": "IJsblokjes",
+        "qty": 200,
+        "unit": "g",
+        "group": "Garnering"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Ingrediënten koelen",
+        "body": "Zorg dat de 180 ml prosecco, 120 ml Aperol en 60 ml bruiswater goed koud zijn.",
+        "ingredientIndices": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "title": "Glazen vullen met ijs",
+        "body": "Neem 2 grote wijnglazen en vul elk glas met circa 100 g ijsblokjes.",
+        "ingredientIndices": [
+          4
+        ]
+      },
+      {
+        "title": "Prosecco inschenken",
+        "body": "Verdeel de 180 ml prosecco over de glazen: 90 ml per glas.",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "title": "Aperol toevoegen",
+        "body": "Schenk voorzichtig 60 ml Aperol in elk glas (120 ml in totaal).",
+        "ingredientIndices": [
+          1
+        ]
+      },
+      {
+        "title": "Aanvullen met bruiswater",
+        "body": "Voeg per glas 30 ml bruiswater toe (60 ml in totaal) en roer één keer voorzichtig door, zodat de bubbels behouden blijven.",
+        "ingredientIndices": [
+          2
+        ]
+      },
+      {
+        "title": "Garneren en serveren",
+        "body": "Voeg aan elk glas 1 schijfje verse sinaasappel toe en serveer meteen.",
+        "ingredientIndices": [
+          3
+        ]
+      }
+    ],
+    "tips": "De klassieke 3-2-1-verhouding geeft een goede balans tussen frisheid, bitterheid en zoetheid. Kies droge prosecco (Brut) om het drankje niet te zoet te maken. Gebruik royaal ijs om de cocktail koud te houden en verdunning te beperken. Voor een iets minder bittere variant gebruik je per glas 100 ml prosecco, 50 ml Aperol en 30 ml bruiswater. Sodawater kan het bruiswater vervangen; tonic geeft een duidelijk bitterdere smaak."
   }
 ]
