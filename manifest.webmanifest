@@ -1,7 +1,7 @@
 {
   "id": "./",
   "name": "Mijn Kookboek",
-  "short_name": "Kookboek",
+  "short_name": "Mijn Kookboek",
   "description": "Persoonlijk kookboek met recepten, kookmodus, boodschappenlijsten en kooknotities, ook offline.",
   "start_url": "./",
   "scope": "./",
