@@ -390,6 +390,26 @@ body.cook-active{overflow:hidden}
  .cook-step-actions .btn{min-width:90px;padding:10px}
  .cook-restart{font-size:12px}
 }
+/* Timer en schermvergrendeling in kookmodus: optioneel, zonder automatische start. */
+.cook-tools{border:1px solid #d8e4d4;border-radius:13px;background:#f3f8f1;padding:15px 16px;margin:0 0 23px}
+.cook-timer-head{display:flex;gap:12px;align-items:baseline;justify-content:space-between;margin:0 0 11px}
+.cook-timer-head strong{font-size:16px;color:#294b33}
+.cook-timer-readout{font-size:clamp(25px,5vw,33px);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:#254832}
+.cook-tools.is-finished{border-color:#ba865b;background:#fff7eb}
+.cook-timer-form{display:flex;align-items:end;flex-wrap:wrap;gap:9px}
+.cook-minutes-field{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:750;color:#42604a}
+.cook-minutes-field input{background:#fff;border:1px solid #bfcfba;border-radius:9px;width:84px;min-height:44px;padding:9px 10px;font-size:16px;color:#294935}
+.cook-minutes-field input:disabled{color:#7b857a;background:#edf0ea}
+.cook-timer-form .btn{min-height:44px;padding:10px 15px}
+.cook-timer-form .btn:disabled{opacity:.48;cursor:not-allowed}
+.cook-timer-status{font-size:13px;color:#4e654f;margin:9px 0 0;line-height:1.4}
+.cook-tools.is-finished .cook-timer-status{color:#85552f;font-weight:800}
+.cook-wake-row{border-top:1px solid #dce7d8;margin-top:13px;padding-top:12px;display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+.cook-wake-row button{font-size:13px;border:1px solid #cbdac6;border-radius:9px;background:#fff;color:#2d5438;padding:10px 12px;font-weight:750;min-height:44px}
+.cook-wake-row button[aria-pressed=true]{background:#315a3d;border-color:#315a3d;color:#fff}
+.cook-wake-status{font-size:12px;color:#5e7462;line-height:1.4;flex:1;min-width:145px}
+.cook-timer-note{font-size:12px;color:#6a7a6b;line-height:1.5;margin:11px 0 0}
+@media(max-width:650px){.cook-tools{padding:12px;margin-bottom:17px}.cook-timer-form .btn{flex:1}.cook-wake-row{align-items:flex-start}.cook-wake-status{min-width:100%}}
 @media print{.personal-notes,.cook-overlay,.cook-start-button{display:none!important}}
 
 /* Persoonlijke gegevens: lokale export en bewust bevestigde import. */
@@ -492,6 +512,9 @@ let favorites=new Set(Array.isArray(load(STORAGE.fav,[]))?load(STORAGE.fav,[]):[
 let checked=load(STORAGE.checked,{}),basket=load(STORAGE.basket,{}),basketChecked=load(STORAGE.basketChecked,{});
 let personalNotes=load(STORAGE.notes,{}),cookProgress=load(STORAGE.cook,{}),activeCook=null;
 let pendingBackup=null;
+let cookTimer={durationSec:0,remainingSec:0,running:false,endsAt:0,finished:false};
+let cookTimerInterval=null;
+let cookWakeLock=null,cookWakeWanted=false,cookWakeMessage='Scherm kan automatisch vergrendelen.';
 function title(r){return r.title||'Onbekend recept'}
 function description(r){return r.description||r.subtitle||''}
 function portions(r){return number(r.servings||r.portions)||2}
@@ -1130,11 +1153,166 @@ function cookSteps(view,mult){
   ingredientIndices:typeof step==='object'&&Array.isArray(step.ingredientIndices)?step.ingredientIndices:null
  }));
 }
+
+/* Een stapduur is een richttijd; bij optionele handelingen, "per kant" en
+   verpakkingstijden wordt nooit automatisch een duur voorgesteld. */
+function cookSuggestedMinutes(duration){
+ const text=String(duration||'').toLocaleLowerCase('nl-NL');
+ if(/optioneel|per kant|volgens|verpakking|laatste|minimaal|tijdens|naargelang|eerst/.test(text))return null;
+ const match=text.match(/(\d{1,3})(?:\s*[–-]\s*(\d{1,3}))?\s*(?:min\b|minuten\b)/);
+ if(!match)return null;
+ const minutes=Number(match[2]||match[1]);
+ return Number.isInteger(minutes)&&minutes>=1&&minutes<=240?minutes:null;
+}
+function cookTimerText(seconds){
+ const total=Math.max(0,Math.ceil(seconds));
+ return String(Math.floor(total/60)).padStart(2,'0')+':'+String(total%60).padStart(2,'0');
+}
+function cookStopInterval(){
+ if(cookTimerInterval!==null){clearInterval(cookTimerInterval);cookTimerInterval=null}
+}
+function cookCurrentSeconds(){
+ return cookTimer.running?Math.max(0,Math.ceil((cookTimer.endsAt-Date.now())/1000)):cookTimer.remainingSec;
+}
+function cookTimerTick(){
+ if(!activeCook||!cookTimer.running)return;
+ cookTimer.remainingSec=cookCurrentSeconds();
+ if(cookTimer.remainingSec<=0){
+  cookTimer.remainingSec=0;
+  cookTimer.running=false;
+  cookTimer.finished=true;
+  cookStopInterval();
+  if(document.visibilityState==='visible'&&typeof navigator.vibrate==='function'){
+   try{navigator.vibrate([130,100,130])}catch(e){}
+  }
+ }
+ cookTimerUI();
+}
+function cookResetTimer(resetDraft=true){
+ cookStopInterval();
+ cookTimer={durationSec:0,remainingSec:0,running:false,endsAt:0,finished:false};
+ if(resetDraft&&activeCook)activeCook.timerDraft=cookSuggestedMinutes(activeCook.steps[activeCook.index].duration)||5;
+ cookTimerUI();
+}
+function cookTimerUI(){
+ if(!activeCook)return;
+ const readout=el('cookTimerReadout'),minutes=el('cookTimerMinutes'),start=el('cookTimerStart'),reset=el('cookTimerReset'),status=el('cookTimerStatus'),box=el('cookTools');
+ if(!readout||!minutes||!start||!reset||!status||!box)return;
+ const ongoing=cookTimer.durationSec>0&&!cookTimer.finished;
+ const remaining=cookCurrentSeconds();
+ readout.textContent=cookTimerText(cookTimer.durationSec?remaining:(Number(activeCook.timerDraft)||0)*60);
+ minutes.disabled=ongoing;
+ if(!ongoing&&document.activeElement!==minutes)minutes.value=activeCook.timerDraft??'';
+ start.textContent=cookTimer.finished?'Start opnieuw':cookTimer.running?'Pauze':ongoing?'Hervat':'Start timer';
+ start.disabled=(!ongoing&&!Number.isInteger(Number(minutes.value)))||(!ongoing&&(Number(minutes.value)<1||Number(minutes.value)>240));
+ reset.disabled=!cookTimer.durationSec;
+ status.textContent=cookTimer.finished?'De timer is afgelopen. Controleer de bereiding.':
+  cookTimer.running?'De timer loopt door terwijl je andere stappen bekijkt.':
+  ongoing?'Timer gepauzeerd. Je kunt verdergaan of opnieuw instellen.':
+  'Stel 1–240 minuten in. Een voorgestelde staptijd is een richtlijn.';
+ box.classList.toggle('is-finished',cookTimer.finished);
+}
+function cookTimerAction(){
+ if(!activeCook)return;
+ if(cookTimer.running){
+  cookTimer.remainingSec=cookCurrentSeconds();
+  cookTimer.running=false;
+  cookStopInterval();
+ }else if(cookTimer.durationSec&&!cookTimer.finished){
+  cookTimer.endsAt=Date.now()+cookTimer.remainingSec*1000;
+  cookTimer.running=true;
+ }else{
+  const value=Number(el('cookTimerMinutes').value);
+  if(!Number.isInteger(value)||value<1||value>240){cookTimerUI();return}
+  activeCook.timerDraft=value;
+  cookTimer.durationSec=value*60;
+  cookTimer.remainingSec=value*60;
+  cookTimer.endsAt=Date.now()+cookTimer.remainingSec*1000;
+  cookTimer.running=true;
+  cookTimer.finished=false;
+ }
+ if(cookTimer.running){
+  cookStopInterval();
+  cookTimerInterval=setInterval(cookTimerTick,500);
+ }
+ cookTimerUI();
+}
+function cookWakeUI(){
+ if(!activeCook)return;
+ const button=el('cookStayAwake'),status=el('cookWakeStatus');
+ if(!button||!status)return;
+ button.setAttribute('aria-pressed',String(cookWakeWanted));
+ button.textContent=cookWakeWanted?'Scherm aanhouden: aan':'Scherm aanhouden: uit';
+ status.textContent=cookWakeMessage;
+}
+async function cookAcquireWakeLock(){
+ if(!cookWakeWanted||!activeCook)return;
+ if(!('wakeLock' in navigator)||typeof navigator.wakeLock.request!=='function'){
+  cookWakeWanted=false;
+  cookWakeMessage='Niet ondersteund door deze browser. Pas zo nodig je scherminstellingen aan.';
+  cookWakeUI();
+  return;
+ }
+ if(document.visibilityState==='hidden')return;
+ try{
+  const lock=await navigator.wakeLock.request('screen');
+  if(!cookWakeWanted||!activeCook){
+   await lock.release();
+   return;
+  }
+  cookWakeLock=lock;
+  cookWakeMessage='Actief zolang kookmodus zichtbaar is; batterijgebruik kan toenemen.';
+  lock.addEventListener('release',()=>{
+   if(cookWakeLock===lock){
+    cookWakeLock=null;
+    if(cookWakeWanted)cookWakeMessage='Schermbeveiliging tijdelijk onderbroken; bij terugkeer proberen we opnieuw.';
+    cookWakeUI();
+   }
+  });
+ }catch(e){
+  cookWakeWanted=false;
+  cookWakeMessage='Aanhouden mislukt of geweigerd. Je scherm kan vergrendelen.';
+ }
+ cookWakeUI();
+}
+async function cookToggleWakeLock(){
+ if(!activeCook)return;
+ if(cookWakeWanted){
+  cookWakeWanted=false;
+  cookWakeMessage='Uitgeschakeld. Je scherm kan automatisch vergrendelen.';
+  const lock=cookWakeLock;cookWakeLock=null;
+  if(lock)try{await lock.release()}catch(e){}
+  cookWakeUI();
+ }else{
+  cookWakeWanted=true;
+  cookWakeMessage='Schermvergrendeling wordt aangevraagd…';
+  cookWakeUI();
+  await cookAcquireWakeLock();
+ }
+}
+function cookStopTools(){
+ cookStopInterval();
+ cookTimer={durationSec:0,remainingSec:0,running:false,endsAt:0,finished:false};
+ cookWakeWanted=false;
+ const lock=cookWakeLock;cookWakeLock=null;
+ if(lock)Promise.resolve(lock.release()).catch(()=>{});
+ cookWakeMessage='Scherm kan automatisch vergrendelen.';
+}
+document.addEventListener('visibilitychange',()=>{
+ if(!activeCook)return;
+ if(document.visibilityState==='visible'){
+  cookTimerTick(); // Date.now corrigeert vertraging door een inactief tabblad.
+  if(cookWakeWanted&&!cookWakeLock)cookAcquireWakeLock();
+ }
+});
+
 function openCookMode(recipe,view,variantId,servings){
  const steps=cookSteps(view,servings/portions(view));
  if(!steps.length)return;
  const key=listKey(recipe.id,variantId),state=cookProgress[key]||{};
- activeCook={key,view,servings,steps,index:state.done?0:Math.max(0,Math.min(steps.length-1,Number(state.step)||0)),showIngredients:false};
+ activeCook={key,view,servings,steps,index:state.done?0:Math.max(0,Math.min(steps.length-1,Number(state.step)||0)),showIngredients:false,timerDraft:5};
+ activeCook.timerDraft=cookSuggestedMinutes(steps[activeCook.index].duration)||5;
+ cookStopTools();
  el('cookOverlay').hidden=false;
  document.body.classList.add('cook-active');
  renderCookMode();
@@ -1146,6 +1324,7 @@ function persistCookStep(done){
 }
 function closeCookMode(restoreFocus=true){
  if(!activeCook)return;
+ cookStopTools();
  activeCook=null;
  el('cookOverlay').hidden=true;
  el('cookOverlay').innerHTML='';
@@ -1173,6 +1352,17 @@ function renderCookMode(focusTarget='cookNext'){
  '<h3>'+safe(step.title)+'</h3>'+
  (step.duration?'<div class="cook-step-time">'+safe(step.duration)+'</div>':'')+
  '<p class="cook-step-body">'+safe(step.body)+'</p>'+
+ '<section id="cookTools" class="cook-tools" aria-label="Kooktimer en scherm">'+
+ '<div class="cook-timer-head"><strong>Keukentimer</strong><span class="cook-timer-readout" id="cookTimerReadout" aria-label="Resterende tijd">05:00</span></div>'+
+ '<div class="cook-timer-form">'+
+ '<label class="cook-minutes-field" for="cookTimerMinutes">Minuten<input type="number" id="cookTimerMinutes" min="1" max="240" step="1" inputmode="numeric" value="'+safe(c.timerDraft??5)+'"></label>'+
+ '<button type="button" class="btn" id="cookTimerStart">Start timer</button>'+
+ '<button type="button" class="btn alt" id="cookTimerReset">Stop / reset</button></div>'+
+ '<p id="cookTimerStatus" class="cook-timer-status" role="status" aria-live="polite"></p>'+
+ '<div class="cook-wake-row"><button type="button" id="cookStayAwake" aria-pressed="false">Scherm aanhouden: uit</button>'+
+ '<span id="cookWakeStatus" class="cook-wake-status"></span></div>'+
+ '<p class="cook-timer-note">De timer werkt zolang deze pagina open blijft. Bij vergrendeling of achtergrondgebruik zijn geluid en meldingen niet gegarandeerd. Verlaat je de kookmodus, dan stopt de timer.</p>'+
+ '</section>'+
  '<div class="cook-ingredients" id="cookIngredientList" aria-label="'+(c.showIngredients?'Alle ingrediënten':'Ingrediënten voor deze stap')+'">'+
  '<div class="cook-ingredients-label">'+(c.showIngredients?'Alle ingrediënten':'Ingrediënten voor deze stap')+'</div>'+
  (materials?'<ul>'+materials+'</ul>':'<p class="cook-ingredients-empty">Voor deze stap zijn geen nieuwe ingrediënten nodig.</p>')+
@@ -1186,7 +1376,7 @@ function renderCookMode(focusTarget='cookNext'){
  '</div>';
  const overlay=el('cookOverlay');
  el('cookClose').onclick=()=>closeCookMode();
- el('cookPrev').onclick=()=>{if(c.index>0){c.index--;c.showIngredients=false;persistCookStep(false);renderCookMode()}};
+ el('cookPrev').onclick=()=>{if(c.index>0){c.index--;c.showIngredients=false;persistCookStep(false);if(!cookTimer.durationSec)c.timerDraft=cookSuggestedMinutes(c.steps[c.index].duration)||5;renderCookMode()}};
  el('cookNext').onclick=()=>{
   if(isLast){
    persistCookStep(true);
@@ -1195,10 +1385,19 @@ function renderCookMode(focusTarget='cookNext'){
    if(notes)notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
    return;
   }
-  c.index++;c.showIngredients=false;persistCookStep(false);renderCookMode();
+  c.index++;c.showIngredients=false;persistCookStep(false);if(!cookTimer.durationSec)c.timerDraft=cookSuggestedMinutes(c.steps[c.index].duration)||5;renderCookMode();
  };
- el('cookRestart').onclick=()=>{c.index=0;c.showIngredients=false;persistCookStep(false);renderCookMode()};
+ el('cookRestart').onclick=()=>{c.index=0;c.showIngredients=false;persistCookStep(false);if(!cookTimer.durationSec)c.timerDraft=cookSuggestedMinutes(c.steps[c.index].duration)||5;renderCookMode()};
  el('cookShowIngredients').onclick=()=>{c.showIngredients=!c.showIngredients;renderCookMode('cookShowIngredients')};
+ el('cookTimerMinutes').oninput=()=>{
+  const value=el('cookTimerMinutes').value;
+  c.timerDraft=value===''?'':Number(value);
+  cookTimerUI();
+ };
+ el('cookTimerStart').onclick=cookTimerAction;
+ el('cookTimerReset').onclick=()=>cookResetTimer();
+ el('cookStayAwake').onclick=cookToggleWakeLock;
+ cookTimerUI();cookWakeUI();
  const next=el(focusTarget);
  if(next&&typeof next.focus==='function')next.focus();
 }
@@ -1207,7 +1406,7 @@ document.addEventListener('keydown',event=>{
  if(event.key==='Escape'){event.preventDefault();closeCookMode();return}
  // Houd tabfocus binnen het kookvenster voor toetsenbordgebruik.
  if(event.key==='Tab'){
-  const targets=[...el('cookOverlay').querySelectorAll('button:not([disabled])')];
+  const targets=[...el('cookOverlay').querySelectorAll('button:not([disabled]),input:not([disabled])')];
   if(!targets.length)return;
   const index=targets.indexOf(document.activeElement);
   if(event.shiftKey&&index<=0){event.preventDefault();targets[targets.length-1].focus()}
