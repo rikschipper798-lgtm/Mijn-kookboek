@@ -188,15 +188,103 @@
       }
     ],
     "steps": [
-      "Snijd de 350 g kipfilet horizontaal tot twee dunne schnitzels. Leg de stukken tussen bakpapier, sla voorzichtig plat tot circa 1 cm en dep droog.",
-      "Snijd de ½ rode ui in flinterdunne halve ringen. Meng met 1 tl citroensap en 1 klein snufje zout. Laat 5–10 minuten staan terwijl je de rest voorbereidt; laat voor het beleggen uitlekken.",
-      "Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout. Voeg eventueel ¼ tl chilipoeder toe. Wrijf de helft over de kip en meng de andere helft door 60 g panko.",
-      "Zet drie diepe borden klaar met 3 el bloem, 1 losgeklopt ei en de gekruide panko. Haal de kip achtereenvolgens door bloem, ei en panko. Druk de kruimels licht aan, zonder het laagje plat te maken.",
-      "Meng 3 el mayonaise met 2 tl sriracha, 1 tl citroensap en ⅛ tl knoflookpoeder. Proef op pittigheid en frisheid. Gebruik bij brioche geen honing; voeg desgewenst ½ tl honing toe als je minder zoete broodjes gebruikt.",
-      "Snijd de ½ paprika in dunne reepjes en bak 3–4 minuten op middelhoog vuur in 1 tl olijfolie tot deze wat kleur krijgt maar nog beet heeft. Was en droog de 4 slablaadjes. Snijd ¼ komkommer en ½ tomaat in dunne plakjes; dep vooral de tomaat droog.",
-      "Verhit 4 el zonnebloemolie in een ruime koekenpan op middelhoog vuur. Bak de kipschnitzels circa 3–5 minuten per kant goudbruin en krokant. Controleer dat het dikste deel volledig gaar is (kerntemperatuur 74 °C). Laat kort uitlekken op een rooster.",
-      "Halveer de 2 broodjes en rooster de snijkanten 1–2 minuten in een droge pan tot ze licht goudbruin zijn.",
-      "Besmeer de onderste broodhelften dun met sriracha-mayo. Leg daarop droge sla en de warme krokante kipschnitzel. Verdeel de gebakken paprika, een paar plakjes komkommer en tomaat en de uitgelekte frisse rode ui erover. Schep de resterende saus op de bovenhelften en serveer meteen."
+      {
+        "body": "Snijd de 350 g kipfilet horizontaal tot twee dunne schnitzels. Leg de stukken tussen bakpapier, sla voorzichtig plat tot circa 1 cm en dep droog.",
+        "title": "Kip voorbereiden",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Snijd de ½ rode ui in flinterdunne halve ringen. Meng met 1 tl citroensap en 1 klein snufje zout. Laat 5–10 minuten staan terwijl je de rest voorbereidt; laat voor het beleggen uitlekken.",
+        "title": "Rode ui kort marineren",
+        "duration": "5–10 min rusten",
+        "ingredientIndices": [
+          16,
+          17,
+          18
+        ]
+      },
+      {
+        "body": "Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout. Voeg eventueel ¼ tl chilipoeder toe. Wrijf de helft over de kip en meng de andere helft door 60 g panko.",
+        "title": "Kruidenmix en panko maken",
+        "ingredientIndices": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          0,
+          3
+        ]
+      },
+      {
+        "body": "Zet drie diepe borden klaar met 3 el bloem, 1 losgeklopt ei en de gekruide panko. Haal de kip achtereenvolgens door bloem, ei en panko. Druk de kruimels licht aan, zonder het laagje plat te maken.",
+        "title": "Kip paneren",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "body": "Meng 3 el mayonaise met 2 tl sriracha, 1 tl citroensap en ⅛ tl knoflookpoeder. Proef op pittigheid en frisheid. Gebruik bij brioche geen honing; voeg desgewenst ½ tl honing toe als je minder zoete broodjes gebruikt.",
+        "title": "Sriracha-mayo mengen",
+        "ingredientIndices": [
+          22,
+          23,
+          24,
+          25,
+          26
+        ]
+      },
+      {
+        "body": "Snijd de ½ paprika in dunne reepjes en bak 3–4 minuten op middelhoog vuur in 1 tl olijfolie tot deze wat kleur krijgt maar nog beet heeft. Was en droog de 4 slablaadjes. Snijd ¼ komkommer en ½ tomaat in dunne plakjes; dep vooral de tomaat droog.",
+        "title": "Groenten voorbereiden",
+        "duration": "3–4 min paprika bakken",
+        "ingredientIndices": [
+          15,
+          21,
+          14,
+          19,
+          20
+        ]
+      },
+      {
+        "body": "Verhit 4 el zonnebloemolie in een ruime koekenpan op middelhoog vuur. Bak de kipschnitzels circa 3–5 minuten per kant goudbruin en krokant. Controleer dat het dikste deel volledig gaar is (kerntemperatuur 74 °C). Laat kort uitlekken op een rooster.",
+        "title": "Kipschnitzels bakken",
+        "duration": "3–5 min per kant",
+        "ingredientIndices": [
+          12,
+          0
+        ]
+      },
+      {
+        "body": "Halveer de 2 broodjes en rooster de snijkanten 1–2 minuten in een droge pan tot ze licht goudbruin zijn.",
+        "title": "Broodjes roosteren",
+        "duration": "1–2 min",
+        "ingredientIndices": [
+          13
+        ]
+      },
+      {
+        "body": "Besmeer de onderste broodhelften dun met sriracha-mayo. Leg daarop droge sla en de warme krokante kipschnitzel. Verdeel de gebakken paprika, een paar plakjes komkommer en tomaat en de uitgelekte frisse rode ui erover. Schep de resterende saus op de bovenhelften en serveer meteen.",
+        "title": "Broodjes beleggen",
+        "ingredientIndices": [
+          13,
+          22,
+          14,
+          0,
+          15,
+          19,
+          20,
+          16
+        ]
+      }
     ],
     "tips": "Panko is hier de standaard: de grotere kruimels geven een luchtiger, krokanter korstje. Marineer de rode ui tijdens het voorbereiden en laat hem goed uitlekken. Beperk komkommer en tomaat om een zompig broodje te voorkomen. Met brioche is extra honing in de saus niet nodig; bij minder zoete broodjes is ½ tl honing optioneel. Laat de kipschnitzel op een rooster uitlekken en beleg pas vlak voor het eten. Werk hygiënisch met rauwe kip en gebruik schone materialen bij het beleggen.",
     "image": "images/broodje-crispy-kipschnitzel-sriracha-mayo.webp",
@@ -317,12 +405,72 @@
       }
     ],
     "steps": [
-      "Snijd de kipfilets horizontaal open, zodat je twee grote, dunne schnitzels krijgt. Leg ze tussen twee vellen bakpapier en sla voorzichtig plat tot ongeveer 1 cm dik. Dep de kip droog.",
-      "Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout. Voeg eventueel ¼ tl chilipoeder toe voor een pittiger resultaat. Houd ½ tl gedroogde peterselie apart voor de panko.",
-      "Wrijf de helft van de kruidenmix over beide kanten van de kip. Meng de andere helft samen met ½ tl gedroogde peterselie door 60 g panko, zodat zowel het vlees als het korstje goed gekruid is.",
-      "Zet drie diepe borden klaar: één met 3 el bloem, één met 1 losgeklopt ei en één met de gekruide panko. Haal de kip achtereenvolgens door bloem, ei en panko. Druk het laagje licht aan, zonder de kruimels plat te drukken.",
-      "Verhit circa 4 el zonnebloemolie in een grote koekenpan op middelhoog vuur. Bak de schnitzels ongeveer 3–5 minuten per kant, afhankelijk van de dikte. Draai voorzichtig om zodra de onderkant goudbruin is. Voeg indien nodig wat extra olie toe. Controleer dat de kip volledig gaar is (kerntemperatuur 74 °C).",
-      "Laat de schnitzels 1–2 minuten uitlekken op een rooster, zodat ook de onderkant krokant blijft. Verdeel bij het serveren 1 tl citroensap over de twee schnitzels of geef het citroensap ernaast om zelf te doseren. Serveer direct."
+      {
+        "body": "Snijd de kipfilets horizontaal open, zodat je twee grote, dunne schnitzels krijgt. Leg ze tussen twee vellen bakpapier en sla voorzichtig plat tot ongeveer 1 cm dik. Dep de kip droog.",
+        "title": "Kipfilet platslaan",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout. Voeg eventueel ¼ tl chilipoeder toe voor een pittiger resultaat. Houd ½ tl gedroogde peterselie apart voor de panko.",
+        "title": "Kruidenmix mengen",
+        "ingredientIndices": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "body": "Wrijf de helft van de kruidenmix over beide kanten van de kip. Meng de andere helft samen met ½ tl gedroogde peterselie door 60 g panko, zodat zowel het vlees als het korstje goed gekruid is.",
+        "title": "Kip en panko kruiden",
+        "ingredientIndices": [
+          0,
+          3,
+          9,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11
+        ]
+      },
+      {
+        "body": "Zet drie diepe borden klaar: één met 3 el bloem, één met 1 losgeklopt ei en één met de gekruide panko. Haal de kip achtereenvolgens door bloem, ei en panko. Druk het laagje licht aan, zonder de kruimels plat te drukken.",
+        "title": "Kipschnitzels paneren",
+        "ingredientIndices": [
+          2,
+          1,
+          3,
+          0
+        ]
+      },
+      {
+        "body": "Verhit circa 4 el zonnebloemolie in een grote koekenpan op middelhoog vuur. Bak de schnitzels ongeveer 3–5 minuten per kant, afhankelijk van de dikte. Draai voorzichtig om zodra de onderkant goudbruin is. Voeg indien nodig wat extra olie toe. Controleer dat de kip volledig gaar is (kerntemperatuur 74 °C).",
+        "title": "Schnitzels bakken",
+        "duration": "3–5 min per kant",
+        "ingredientIndices": [
+          13,
+          0
+        ]
+      },
+      {
+        "body": "Laat de schnitzels 1–2 minuten uitlekken op een rooster, zodat ook de onderkant krokant blijft. Verdeel bij het serveren 1 tl citroensap over de twee schnitzels of geef het citroensap ernaast om zelf te doseren. Serveer direct.",
+        "title": "Laten uitlekken en serveren",
+        "duration": "1–2 min uitlekken",
+        "ingredientIndices": [
+          0,
+          14
+        ]
+      }
     ],
     "tips": "Gebruik panko in plaats van gewoon paneermeel voor een luchtiger, krokanter korstje. De ½ tl gedroogde peterselie gaat in de panko; de overige kruiden worden verdeeld over de kip en de panko. Houd de pan op middelhoog vuur, zodat het korstje goudbruin wordt voordat de kip gaar is. Controleer de kerntemperatuur (74 °C). Laat uitlekken op een rooster in plaats van keukenpapier. Serveer met 1 tl citroensap voor een frisse afwerking en combineer eventueel met aardappeltjes en groenten voor een complete maaltijd.",
     "image": "images/gekruide-kipschnitzel.webp",
@@ -478,37 +626,80 @@
       {
         "title": "Groenten voorbereiden",
         "duration": "5–7 minuten",
-        "body": "Snipper de ui en hak de knoflook fijn. Snijd de paprika's, courgette en tomaten in kleine blokjes. Schil de wortel en rasp grof of snijd fijn. Verwijder de zaadlijsten uit de rode peper en hak deze fijn."
+        "body": "Snipper de ui en hak de knoflook fijn. Snijd de paprika's, courgette en tomaten in kleine blokjes. Schil de wortel en rasp grof of snijd fijn. Verwijder de zaadlijsten uit de rode peper en hak deze fijn.",
+        "ingredientIndices": [
+          7,
+          10,
+          5,
+          4,
+          8,
+          6,
+          9
+        ]
       },
       {
         "title": "Gehakt goed bruin bakken",
         "duration": "6–8 minuten",
-        "body": "Verhit 1 el olijfolie in een grote hapjespan op middelhoog tot hoog vuur. Bak het gehakt rul en goudbruin. Laat het eerst ongeveer 2 minuten liggen voordat je het omschept, zodat een bruin korstje ontstaat. Bak eventueel in twee porties. Schep het gehakt uit de pan en laat het bakvet achter."
+        "body": "Verhit 1 el olijfolie in een grote hapjespan op middelhoog tot hoog vuur. Bak het gehakt rul en goudbruin. Laat het eerst ongeveer 2 minuten liggen voordat je het omschept, zodat een bruin korstje ontstaat. Bak eventueel in twee porties. Schep het gehakt uit de pan en laat het bakvet achter.",
+        "ingredientIndices": [
+          11,
+          1
+        ]
       },
       {
         "title": "Groenten bakken",
         "duration": "8 minuten",
-        "body": "Bak de ui en wortel 3 minuten in het achtergebleven bakvet. Voeg de paprika's en courgette toe en bak nog 5 minuten. Roer regelmatig zodat de groenten licht kleuren en wat vocht verdampt."
+        "body": "Bak de ui en wortel 3 minuten in het achtergebleven bakvet. Voeg de paprika's en courgette toe en bak nog 5 minuten. Roer regelmatig zodat de groenten licht kleuren en wat vocht verdampt.",
+        "ingredientIndices": [
+          7,
+          6,
+          5,
+          4
+        ]
       },
       {
         "title": "Smaakbasis opbouwen",
         "duration": "4–5 minuten",
-        "body": "Voeg de knoflook en verse rode peper toe en bak circa 30 seconden. Roer de tomatenpuree erdoor en bak die 1–2 minuten mee om de smaak te verdiepen. Voeg de oregano, 1 tl gedroogde basilicum, gerookt paprikapoeder, tijm en zwarte peper toe en roer ongeveer 30 seconden op middelhoog vuur, zonder de kruiden te laten verbranden. Voeg daarna de verse tomaten toe en bak nog circa 2 minuten."
+        "body": "Voeg de knoflook en verse rode peper toe en bak circa 30 seconden. Roer de tomatenpuree erdoor en bak die 1–2 minuten mee om de smaak te verdiepen. Voeg de oregano, 1 tl gedroogde basilicum, gerookt paprikapoeder, tijm en zwarte peper toe en roer ongeveer 30 seconden op middelhoog vuur, zonder de kruiden te laten verbranden. Voeg daarna de verse tomaten toe en bak nog circa 2 minuten.",
+        "ingredientIndices": [
+          10,
+          9,
+          3,
+          12,
+          13,
+          14,
+          15
+        ]
       },
       {
         "title": "Saus maken en inkoken",
         "duration": "12–15 minuten",
-        "body": "Doe het gebakken gehakt terug in de pan en voeg de Basilico pastasaus toe. Laat de saus 12–15 minuten zonder deksel zachtjes pruttelen; roer af en toe zodat het vocht uit de groenten verdampt. Proef en voeg zout naar smaak toe. Is de saus erg zoet of mist hij frisheid, roer er dan eventueel 1 tl balsamicoazijn door en proef opnieuw."
+        "body": "Doe het gebakken gehakt terug in de pan en voeg de Basilico pastasaus toe. Laat de saus 12–15 minuten zonder deksel zachtjes pruttelen; roer af en toe zodat het vocht uit de groenten verdampt. Proef en voeg zout naar smaak toe. Is de saus erg zoet of mist hij frisheid, roer er dan eventueel 1 tl balsamicoazijn door en proef opnieuw.",
+        "ingredientIndices": [
+          1,
+          2,
+          8,
+          16,
+          17,
+          18
+        ]
       },
       {
         "title": "Pasta koken",
         "duration": "tijdens het inkoken",
-        "body": "Breng een grote pan gezouten water aan de kook. Kook de pasta volgens de verpakking al dente. Bewaar 100 ml kookwater voordat je de pasta afgiet."
+        "body": "Breng een grote pan gezouten water aan de kook. Kook de pasta volgens de verpakking al dente. Bewaar 100 ml kookwater voordat je de pasta afgiet.",
+        "ingredientIndices": [
+          0
+        ]
       },
       {
         "title": "Pasta en saus samenvoegen",
         "duration": "2 minuten",
-        "body": "Meng de afgegoten pasta door de saus en verwarm 1–2 minuten samen op laag vuur. Voeg alleen als de saus te dik is 2–3 eetlepels pastakookwater toe. Schep goed om, verdeel over vier borden en bestrooi desgewenst met in totaal 30 g Parmezaanse kaas."
+        "body": "Meng de afgegoten pasta door de saus en verwarm 1–2 minuten samen op laag vuur. Voeg alleen als de saus te dik is 2–3 eetlepels pastakookwater toe. Schep goed om, verdeel over vier borden en bestrooi desgewenst met in totaal 30 g Parmezaanse kaas.",
+        "ingredientIndices": [
+          0,
+          19
+        ]
       }
     ],
     "tips": [
@@ -668,18 +859,119 @@
           }
         ],
         "steps": [
-          "Snipper ui en knoflook; snijd wortels, paprika, courgette, champignons en verse tomaten in kleine stukken.",
-          "Verhit de olijfolie in een grote pan. Bak het gehakt op vrij hoog vuur bruin en rul en haal het indien nodig even uit de pan.",
-          "Bak de ui en wortel circa 4 minuten; voeg de paprika toe en bak mee.",
-          "Voeg de courgette toe en bak circa 2 minuten mee. Schuif de groenten naar de rand van de pan (of haal ze tijdelijk uit de pan). Zet het vuur iets hoger en bak de 250 g champignons 5–7 minuten in het midden van de pan, bij voorkeur in een niet te dikke laag, totdat het vocht verdampt en de champignons duidelijk bruin kleuren.",
-          "Doe knoflook en tomatenpuree erbij. Bak de tomatenpuree 1 minuut mee om de smaak te verdiepen.",
-          "Roer 2 tl oregano, 1 tl basilicum, ½ tl gerookt paprikapoeder, ½ tl tijm, ¼ tl rozemarijn en eventueel ¼ tl chilipoeder door de groenten en bak 30 seconden al roerend mee.",
-          "Voeg de verse tomaten, Basilico-saus, het gehakt en de laurier toe.",
-          "Laat de saus 15–20 minuten rustig pruttelen; roer af en toe. Laat inkoken als hij nog waterig is.",
-          "Voeg 100 ml kookroom toe nadat de saus voldoende is ingekookt. Breng op smaak met ⅛ tl nootmuskaat en peper en zout. Proef: de saus moet hartig en tomatig blijven, niet overheersend romig of kruidig.",
-          "Kook intussen de pasta in ruim water volgens de aanwijzingen op de verpakking.",
-          "Verwijder het laurierblad. Voeg zonodig een beetje pastawater toe om de saus mooi te binden.",
-          "Meng de pasta met de saus of schep de saus erover. Serveer direct."
+          {
+            "body": "Snipper ui en knoflook; snijd wortels, paprika, courgette, champignons en verse tomaten in kleine stukken.",
+            "title": "Groenten snijden",
+            "ingredientIndices": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "body": "Verhit de olijfolie in een grote pan. Bak het gehakt op vrij hoog vuur bruin en rul en haal het indien nodig even uit de pan.",
+            "title": "Gehakt rul en bruin bakken",
+            "ingredientIndices": [
+              20,
+              0
+            ]
+          },
+          {
+            "body": "Bak de ui en wortel circa 4 minuten; voeg de paprika toe en bak mee.",
+            "title": "Ui, wortel en paprika bakken",
+            "duration": "ca. 4 min",
+            "ingredientIndices": [
+              2,
+              4,
+              5
+            ]
+          },
+          {
+            "body": "Voeg de courgette toe en bak circa 2 minuten mee. Schuif de groenten naar de rand van de pan (of haal ze tijdelijk uit de pan). Zet het vuur iets hoger en bak de 250 g champignons 5–7 minuten in het midden van de pan, bij voorkeur in een niet te dikke laag, totdat het vocht verdampt en de champignons duidelijk bruin kleuren.",
+            "title": "Courgette en champignons bakken",
+            "duration": "2 min courgette, 5–7 min champignons",
+            "ingredientIndices": [
+              6,
+              7
+            ]
+          },
+          {
+            "body": "Doe knoflook en tomatenpuree erbij. Bak de tomatenpuree 1 minuut mee om de smaak te verdiepen.",
+            "title": "Knoflook en tomatenpuree bakken",
+            "duration": "1 min",
+            "ingredientIndices": [
+              3,
+              10
+            ]
+          },
+          {
+            "body": "Roer 2 tl oregano, 1 tl basilicum, ½ tl gerookt paprikapoeder, ½ tl tijm, ¼ tl rozemarijn en eventueel ¼ tl chilipoeder door de groenten en bak 30 seconden al roerend mee.",
+            "title": "Gedroogde kruiden toevoegen",
+            "duration": "30 sec",
+            "ingredientIndices": [
+              12,
+              13,
+              14,
+              15,
+              16,
+              19
+            ]
+          },
+          {
+            "body": "Voeg de verse tomaten, Basilico-saus, het gehakt en de laurier toe.",
+            "title": "Tomatensaus opbouwen",
+            "ingredientIndices": [
+              8,
+              9,
+              0,
+              17
+            ]
+          },
+          {
+            "body": "Laat de saus 15–20 minuten rustig pruttelen; roer af en toe. Laat inkoken als hij nog waterig is.",
+            "title": "Saus rustig laten inkoken",
+            "duration": "15–20 min",
+            "ingredientIndices": [
+              0,
+              9
+            ]
+          },
+          {
+            "body": "Voeg 100 ml kookroom toe nadat de saus voldoende is ingekookt. Breng op smaak met ⅛ tl nootmuskaat en peper en zout. Proef: de saus moet hartig en tomatig blijven, niet overheersend romig of kruidig.",
+            "title": "Room toevoegen en op smaak brengen",
+            "ingredientIndices": [
+              11,
+              18,
+              21
+            ]
+          },
+          {
+            "body": "Kook intussen de pasta in ruim water volgens de aanwijzingen op de verpakking.",
+            "title": "Pasta al dente koken",
+            "duration": "volgens verpakking",
+            "ingredientIndices": [
+              1
+            ]
+          },
+          {
+            "body": "Verwijder het laurierblad. Voeg zonodig een beetje pastawater toe om de saus mooi te binden.",
+            "title": "Saus controleren en afwerken",
+            "ingredientIndices": [
+              17
+            ]
+          },
+          {
+            "body": "Meng de pasta met de saus of schep de saus erover. Serveer direct.",
+            "title": "Pasta serveren",
+            "ingredientIndices": [
+              1,
+              9
+            ]
+          }
         ],
         "tips": "Bak de 250 g champignons op voldoende hoog vuur tot het vocht grotendeels verdampt is en ze goudbruin kleuren. Voeg de 100 ml kookroom pas toe nadat de saus is ingekookt. Minder gerookt paprikapoeder en slechts ⅛ tl nootmuskaat houden de tomaat, het gehakt en de Italiaanse kruiden in balans.",
         "image": "images/bolognese.webp",
@@ -822,15 +1114,99 @@
       }
     ],
     "steps": [
-      "Verwarm de oven voor op 220 °C boven-/onderwarmte (200 °C hetelucht). Laat de 125 g mozzarella uitlekken en dep deze droog. Snijd de 400 g kipdijfilet in hapklare stukken, snijd de 2 paprika's, de courgette en 600 g verse tomaten, snipper de ui en hak de 3 teentjes knoflook en de rode peper fijn.",
-      "Kruid de kip met 1 tl oregano, ¼ tl gerookt paprikapoeder, een beetje van de ½ tl zwarte peper en een snuf zout. Verhit 1½ el olijfolie in een ruime koekenpan op middelhoog tot hoog vuur. Bak de kip circa 5–6 minuten rondom bruin en schep uit de pan. De kip gaart straks verder in de saus en oven.",
-      "Fruit de ui en paprika in dezelfde pan circa 3 minuten op middelhoog vuur. Voeg de courgette toe en bak 2 minuten mee. Voeg de knoflook en rode peper toe en bak 30 seconden. Roer 1½ el tomatenpuree erdoor en bak die 1 minuut al roerend om de smaak te verdiepen.",
-      "Voeg de 600 g verse tomaten, de resterende 1 tl oregano, ¼ tl gerookt paprikapoeder en de resterende zwarte peper toe. Laat 10–12 minuten zonder deksel op middelhoog tot laag vuur inkoken; roer af en toe. De saus moet duidelijk dikker zijn en geen plas vocht meer vormen. Voeg zo nodig nog 2–3 minuten toe en proef of extra zout nodig is.",
-      "Bereid ondertussen de 800 g gnocchi. Gebruik bij voorkeur een soort die je volgens de verpakking direct kunt bakken: verhit ½ el olijfolie in een tweede koekenpan en bak de gnocchi in één of twee porties circa 5–8 minuten tot ze wat kleur krijgen. Vereist de verpakking koken, kook de gnocchi dan volgens de aanwijzingen en laat zeer goed uitlekken.",
-      "Roer de aangebakken kip met eventueel opgevangen vleessappen door de ingekookte tomatensaus. Laat 2–3 minuten rustig doorwarmen; voeg naar wens de optionele 100 ml kookroom toe, maar pas nadat de tomatensaus voldoende is ingedikt.",
-      "Meng de bereide gnocchi door de saus. Proef en stel zout en peper bij. Houd alle 15 g verse basilicum apart tot ná de oven. Schep het mengsel in een ovenschaal.",
-      "Scheur de goed uitgelekte 125 g mozzarella over de gnocchi en verdeel 50 g Parmezaanse kaas erover. Bak 10–15 minuten in de voorverwarmde oven tot de kaas gesmolten en licht goudbruin is en de kip volledig gaar is (74 °C kerntemperatuur).",
-      "Haal de ovenschaal uit de oven. Scheur de 15 g verse basilicumblaadjes en verdeel ze over het gerecht. Serveer direct."
+      {
+        "body": "Verwarm de oven voor op 220 °C boven-/onderwarmte (200 °C hetelucht). Laat de 125 g mozzarella uitlekken en dep deze droog. Snijd de 400 g kipdijfilet in hapklare stukken, snijd de 2 paprika's, de courgette en 600 g verse tomaten, snipper de ui en hak de 3 teentjes knoflook en de rode peper fijn.",
+        "title": "Oven en ingrediënten voorbereiden",
+        "ingredientIndices": [
+          10,
+          1,
+          4,
+          5,
+          2,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "body": "Kruid de kip met 1 tl oregano, ¼ tl gerookt paprikapoeder, een beetje van de ½ tl zwarte peper en een snuf zout. Verhit 1½ el olijfolie in een ruime koekenpan op middelhoog tot hoog vuur. Bak de kip circa 5–6 minuten rondom bruin en schep uit de pan. De kip gaart straks verder in de saus en oven.",
+        "title": "Kip kruiden en aanbraden",
+        "duration": "5–6 min",
+        "ingredientIndices": [
+          1,
+          12,
+          13,
+          14,
+          15,
+          17
+        ]
+      },
+      {
+        "body": "Fruit de ui en paprika in dezelfde pan circa 3 minuten op middelhoog vuur. Voeg de courgette toe en bak 2 minuten mee. Voeg de knoflook en rode peper toe en bak 30 seconden. Roer 1½ el tomatenpuree erdoor en bak die 1 minuut al roerend om de smaak te verdiepen.",
+        "title": "Groenten en tomatenpuree bakken",
+        "duration": "ca. 6 min",
+        "ingredientIndices": [
+          6,
+          4,
+          5,
+          7,
+          8,
+          3
+        ]
+      },
+      {
+        "body": "Voeg de 600 g verse tomaten, de resterende 1 tl oregano, ¼ tl gerookt paprikapoeder en de resterende zwarte peper toe. Laat 10–12 minuten zonder deksel op middelhoog tot laag vuur inkoken; roer af en toe. De saus moet duidelijk dikker zijn en geen plas vocht meer vormen. Voeg zo nodig nog 2–3 minuten toe en proef of extra zout nodig is.",
+        "title": "Tomatensaus laten inkoken",
+        "duration": "10–12 min",
+        "ingredientIndices": [
+          2,
+          12,
+          13,
+          14
+        ]
+      },
+      {
+        "body": "Bereid ondertussen de 800 g gnocchi. Gebruik bij voorkeur een soort die je volgens de verpakking direct kunt bakken: verhit ½ el olijfolie in een tweede koekenpan en bak de gnocchi in één of twee porties circa 5–8 minuten tot ze wat kleur krijgen. Vereist de verpakking koken, kook de gnocchi dan volgens de aanwijzingen en laat zeer goed uitlekken.",
+        "title": "Gnocchi bereiden",
+        "ingredientIndices": [
+          0,
+          17
+        ]
+      },
+      {
+        "body": "Roer de aangebakken kip met eventueel opgevangen vleessappen door de ingekookte tomatensaus. Laat 2–3 minuten rustig doorwarmen; voeg naar wens de optionele 100 ml kookroom toe, maar pas nadat de tomatensaus voldoende is ingedikt.",
+        "title": "Kip toevoegen en saus afmaken",
+        "duration": "2–3 min",
+        "ingredientIndices": [
+          1,
+          16
+        ]
+      },
+      {
+        "body": "Meng de bereide gnocchi door de saus. Proef en stel zout en peper bij. Houd alle 15 g verse basilicum apart tot ná de oven. Schep het mengsel in een ovenschaal.",
+        "title": "Gnocchi en saus mengen",
+        "ingredientIndices": [
+          0,
+          14,
+          15
+        ]
+      },
+      {
+        "body": "Scheur de goed uitgelekte 125 g mozzarella over de gnocchi en verdeel 50 g Parmezaanse kaas erover. Bak 10–15 minuten in de voorverwarmde oven tot de kaas gesmolten en licht goudbruin is en de kip volledig gaar is (74 °C kerntemperatuur).",
+        "title": "Met kaas in de oven bakken",
+        "duration": "10–15 min",
+        "ingredientIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "body": "Haal de ovenschaal uit de oven. Scheur de 15 g verse basilicumblaadjes en verdeel ze over het gerecht. Serveer direct.",
+        "title": "Verse basilicum toevoegen",
+        "ingredientIndices": [
+          9
+        ]
+      }
     ],
     "tips": "Bak de 1½ el tomatenpuree kort mee voor meer diepte en laat de verse tomaten 10–12 minuten zonder deksel inkoken: zo blijft de ovenschotel minder waterig. Laat de mozzarella goed uitlekken en dep droog. Kies bij voorkeur gnocchi die je volgens de verpakking kunt aanbakken; kookgnocchi kun je ook gebruiken mits goed uitgelekt. De kookroom blijft optioneel. Voeg alle verse basilicum pas na het bakken toe. Werk schoon met rauwe kip en controleer op 74 °C kerntemperatuur.",
     "image": "images/gnocchi.webp",
@@ -979,14 +1355,88 @@
       }
     ],
     "steps": [
-      "Meng voor de marinade 1½ el olijfolie, 2 tl citroensap, 2 fijngehakte teentjes knoflook, ½ fijngehakte rode peper, ¾ tl gerookt paprikapoeder, ¾ tl gewoon paprikapoeder, ¾ tl oregano, ¼ tl chilipoeder, 1½ tl tomatenpuree, ½ tl honing, ½ tl zout en zwarte peper naar smaak.",
-      "Schep ongeveer een derde van de marinade in een schoon, apart bakje voordat deze met rauwe kip in aanraking komt. Dek af en bewaar gekoeld: dit is de basis voor de saus.",
-      "Snijd 350 g kipfilet in gelijkmatige stukken of reepjes van circa 2–3 cm. Meng met de resterende marinade en laat minimaal 30 minuten afgedekt in de koelkast marineren.",
-      "Kook 165 g rijst volgens de verpakking. Snipper ondertussen de ui en snijd de paprika en ½ courgette in stukjes.",
-      "Verhit een koekenpan op middelhoog tot hoog vuur. Laat overtollige marinade van de kip afdruipen en bak de kip in de olie die eraan hecht circa 3 minuten zonder veel te bewegen; keer om en bak nog circa 3 minuten zodat de stukken mooi bruin kleuren. Verlaag zo nodig het vuur om aanbranden van de marinade te voorkomen.",
-      "Verhit tegelijkertijd 1 el olijfolie in een tweede ruime pan. Fruit de ui 2–3 minuten, voeg paprika en courgette toe en bak nog 4–5 minuten op middelhoog tot hoog vuur tot de groenten licht kleuren en beetgaar zijn.",
-      "Voeg het schoon apart gehouden derde deel van de marinade en 2 el water aan de kip toe. Laat 2 minuten zacht koken tot een glanzende saus en controleer of de kip helemaal gaar is (kerntemperatuur 74 °C). Voeg zo nodig een scheutje water toe als de saus te snel indikt.",
-      "Proef de saus, voeg bij het serveren nog 1 tl citroensap toe voor frisheid en verdeel de kip, groenten en rijst over twee borden. Schep de warme saus over de kip."
+      {
+        "body": "Meng voor de marinade 1½ el olijfolie, 2 tl citroensap, 2 fijngehakte teentjes knoflook, ½ fijngehakte rode peper, ¾ tl gerookt paprikapoeder, ¾ tl gewoon paprikapoeder, ¾ tl oregano, ¼ tl chilipoeder, 1½ tl tomatenpuree, ½ tl honing, ½ tl zout en zwarte peper naar smaak.",
+        "title": "Piri-pirimarinade maken",
+        "ingredientIndices": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "body": "Schep ongeveer een derde van de marinade in een schoon, apart bakje voordat deze met rauwe kip in aanraking komt. Dek af en bewaar gekoeld: dit is de basis voor de saus.",
+        "title": "Marinade voor saus apart houden",
+        "ingredientIndices": []
+      },
+      {
+        "body": "Snijd 350 g kipfilet in gelijkmatige stukken of reepjes van circa 2–3 cm. Meng met de resterende marinade en laat minimaal 30 minuten afgedekt in de koelkast marineren.",
+        "title": "Kip marineren",
+        "duration": "minimaal 30 min marineren",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Kook 165 g rijst volgens de verpakking. Snipper ondertussen de ui en snijd de paprika en ½ courgette in stukjes.",
+        "title": "Rijst koken en groenten snijden",
+        "duration": "volgens rijstverpakking",
+        "ingredientIndices": [
+          1,
+          3,
+          2,
+          4
+        ]
+      },
+      {
+        "body": "Verhit een koekenpan op middelhoog tot hoog vuur. Laat overtollige marinade van de kip afdruipen en bak de kip in de olie die eraan hecht circa 3 minuten zonder veel te bewegen; keer om en bak nog circa 3 minuten zodat de stukken mooi bruin kleuren. Verlaag zo nodig het vuur om aanbranden van de marinade te voorkomen.",
+        "title": "Gemarineerde kip bakken",
+        "duration": "ca. 6 min, daarna controleren",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Verhit tegelijkertijd 1 el olijfolie in een tweede ruime pan. Fruit de ui 2–3 minuten, voeg paprika en courgette toe en bak nog 4–5 minuten op middelhoog tot hoog vuur tot de groenten licht kleuren en beetgaar zijn.",
+        "title": "Groenten roerbakken",
+        "duration": "6–8 min",
+        "ingredientIndices": [
+          17,
+          3,
+          2,
+          4
+        ]
+      },
+      {
+        "body": "Voeg het schoon apart gehouden derde deel van de marinade en 2 el water aan de kip toe. Laat 2 minuten zacht koken tot een glanzende saus en controleer of de kip helemaal gaar is (kerntemperatuur 74 °C). Voeg zo nodig een scheutje water toe als de saus te snel indikt.",
+        "title": "Saus toevoegen en kip garen",
+        "duration": "ca. 2 min",
+        "ingredientIndices": [
+          18,
+          0
+        ]
+      },
+      {
+        "body": "Proef de saus, voeg bij het serveren nog 1 tl citroensap toe voor frisheid en verdeel de kip, groenten en rijst over twee borden. Schep de warme saus over de kip.",
+        "title": "Op smaak brengen en serveren",
+        "ingredientIndices": [
+          19,
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
     ],
     "tips": "Houd een derde van de marinade apart vóór die met rauwe kip in contact komt; bewaar dit deel afgedekt in de koelkast. Door de kip eerst zonder overtollige marinade te bakken ontstaat meer bruining. Voeg pas op het einde 2 el water en de schone marinade toe en laat 2 minuten inkoken. De laatste 1 tl citroensap gaat bij het serveren over de saus voor een frisse piri-pirismaak. Voor een mildere versie kun je de hoeveelheid chili of rode peper verminderen.",
     "marinateMinutes": 30,
@@ -1059,13 +1509,64 @@
       }
     ],
     "steps": [
-      "Was de 1.100 g rijpe tomaten, verwijder de natte zaadlijsten en snijd het vruchtvlees in kleine blokjes. Laat de tomaten circa 5 minuten uitlekken in een zeef boven een kom, zodat de topping niet te nat wordt.",
-      "Verwarm ondertussen de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Snijd de 3 stokbroden in plakjes van ongeveer 1,5–2 cm. De opbrengst is afhankelijk van de lengte van het brood; mik op ongeveer 50–60 plakjes.",
-      "Verdeel 15 ml van de 65 ml extra vierge olijfolie heel dun over de snijkanten van de broodplakjes. Rooster ze op een bakplaat in circa 6–10 minuten goudbruin en knapperig. Werk zo nodig in twee rondes; houd de broodjes in het oog.",
-      "Meng de goed uitgelekte tomaten met de overige 50 ml extra vierge olijfolie en voeg zwarte peper naar smaak toe. Laat de basilicum en het zout nog even apart tot vlak voor het serveren.",
-      "Halveer de 4 teentjes knoflook. Wrijf de nog warme, geroosterde broodplakjes heel licht in met een snijvlak van de knoflook. De rauwe knoflook gaat niet rechtstreeks door het tomatenmengsel.",
-      "Scheur vlak voor het serveren de blaadjes van 1 basilicumplantje in stukjes en meng ze door de tomaten. Breng dan pas op smaak met zout en proef of de balans tussen tomaat, basilicum en olijfolie goed is.",
-      "Laat eventueel achtergebleven vocht in de kom en schep de topping pas vlak voor het uitdelen op de knapperige broodjes. Serveer meteen."
+      {
+        "body": "Was de 1.100 g rijpe tomaten, verwijder de natte zaadlijsten en snijd het vruchtvlees in kleine blokjes. Laat de tomaten circa 5 minuten uitlekken in een zeef boven een kom, zodat de topping niet te nat wordt.",
+        "title": "Tomaten snijden en uitlekken",
+        "duration": "ca. 5 min uitlekken",
+        "ingredientIndices": [
+          1
+        ]
+      },
+      {
+        "body": "Verwarm ondertussen de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Snijd de 3 stokbroden in plakjes van ongeveer 1,5–2 cm. De opbrengst is afhankelijk van de lengte van het brood; mik op ongeveer 50–60 plakjes.",
+        "title": "Oven voorverwarmen en brood snijden",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Verdeel 15 ml van de 65 ml extra vierge olijfolie heel dun over de snijkanten van de broodplakjes. Rooster ze op een bakplaat in circa 6–10 minuten goudbruin en knapperig. Werk zo nodig in twee rondes; houd de broodjes in het oog.",
+        "title": "Brood roosteren",
+        "duration": "6–10 min",
+        "ingredientIndices": [
+          3,
+          0
+        ]
+      },
+      {
+        "body": "Meng de goed uitgelekte tomaten met de overige 50 ml extra vierge olijfolie en voeg zwarte peper naar smaak toe. Laat de basilicum en het zout nog even apart tot vlak voor het serveren.",
+        "title": "Tomatentopping mengen",
+        "ingredientIndices": [
+          1,
+          3,
+          6
+        ]
+      },
+      {
+        "body": "Halveer de 4 teentjes knoflook. Wrijf de nog warme, geroosterde broodplakjes heel licht in met een snijvlak van de knoflook. De rauwe knoflook gaat niet rechtstreeks door het tomatenmengsel.",
+        "title": "Brood met knoflook inwrijven",
+        "ingredientIndices": [
+          4,
+          0
+        ]
+      },
+      {
+        "body": "Scheur vlak voor het serveren de blaadjes van 1 basilicumplantje in stukjes en meng ze door de tomaten. Breng dan pas op smaak met zout en proef of de balans tussen tomaat, basilicum en olijfolie goed is.",
+        "title": "Basilicum en zout toevoegen",
+        "ingredientIndices": [
+          2,
+          5,
+          1
+        ]
+      },
+      {
+        "body": "Laat eventueel achtergebleven vocht in de kom en schep de topping pas vlak voor het uitdelen op de knapperige broodjes. Serveer meteen.",
+        "title": "Bruschetta beleggen en serveren",
+        "ingredientIndices": [
+          0,
+          1
+        ]
+      }
     ],
     "tips": "Voor een borrelhapje voor 20 personen is 1,0–1,2 kg rijpe tomaat voldoende; de huidige hoeveelheid van 1.100 g sluit aan op de eerdere kookfeedback. Eén basilicumplantje is genoeg. Drie stokbroden leveren afhankelijk van formaat en plakdikte ongeveer 50–60 hapjes op. Verwijder de natte zaadlijsten, laat de tomaten 5 minuten uitlekken en voeg basilicum en zout pas vlak voor het serveren toe. Verdeel de 65 ml olijfolie in 15 ml voor het brood en 50 ml voor de topping; beleg pas vlak voor het uitserveren.",
     "image": "images/bruschetta.webp",
@@ -1166,11 +1667,58 @@
       }
     ],
     "steps": [
-      "Was de ½ komkommer. Rasp ¼ komkommer grof voor de saus, knijp of druk het vocht er goed uit en snijd de andere ¼ in dunne plakjes. Snijd de ½ rode ui in dunne halve ringen, de ½ paprika in fijne reepjes en 150 g tomaten in kleine blokjes. Dep de tomaten indien nodig droog.",
-      "Meng 120 g Griekse yoghurt met de uitgelekte geraspte komkommer, 2 tl citroensap, ½ tl knoflookpoeder en ½ tl gedroogde dille. Voeg een klein snufje zout toe, proef en zet de saus koel weg terwijl je de gyros bakt.",
-      "Verhit 1 el olijfolie in een grote koekenpan op middelhoog tot hoog vuur. Bak de 350 g gekruide kipgyros in circa 7–9 minuten goudbruin met krokante randjes. Laat de kip eerst een paar minuten rustig liggen voordat je omschept; bak zo nodig in twee porties. Controleer dat de kip volledig gaar is (74 °C kerntemperatuur).",
-      "Verwarm ondertussen de 4 flatbreads volgens de verpakking, bij voorkeur kort in een droge koekenpan op middelhoog vuur, ongeveer 30–60 seconden per kant, tot ze warm en soepel zijn.",
-      "Verdeel de yoghurtsaus over de warme flatbreads, leg de kipgyros erop en voeg rode ui, paprika, tomaat en de komkommerplakjes toe. Serveer direct, zodat het brood warm blijft en de groenten knapperig zijn."
+      {
+        "body": "Was de ½ komkommer. Rasp ¼ komkommer grof voor de saus, knijp of druk het vocht er goed uit en snijd de andere ¼ in dunne plakjes. Snijd de ½ rode ui in dunne halve ringen, de ½ paprika in fijne reepjes en 150 g tomaten in kleine blokjes. Dep de tomaten indien nodig droog.",
+        "title": "Frisse groenten voorbereiden",
+        "ingredientIndices": [
+          3,
+          2,
+          5,
+          4
+        ]
+      },
+      {
+        "body": "Meng 120 g Griekse yoghurt met de uitgelekte geraspte komkommer, 2 tl citroensap, ½ tl knoflookpoeder en ½ tl gedroogde dille. Voeg een klein snufje zout toe, proef en zet de saus koel weg terwijl je de gyros bakt.",
+        "title": "Yoghurtsaus maken",
+        "ingredientIndices": [
+          6,
+          3,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "body": "Verhit 1 el olijfolie in een grote koekenpan op middelhoog tot hoog vuur. Bak de 350 g gekruide kipgyros in circa 7–9 minuten goudbruin met krokante randjes. Laat de kip eerst een paar minuten rustig liggen voordat je omschept; bak zo nodig in twee porties. Controleer dat de kip volledig gaar is (74 °C kerntemperatuur).",
+        "title": "Kipgyros krokant bakken",
+        "duration": "7–9 min",
+        "ingredientIndices": [
+          11,
+          0
+        ]
+      },
+      {
+        "body": "Verwarm ondertussen de 4 flatbreads volgens de verpakking, bij voorkeur kort in een droge koekenpan op middelhoog vuur, ongeveer 30–60 seconden per kant, tot ze warm en soepel zijn.",
+        "title": "Flatbreads opwarmen",
+        "duration": "30–60 sec per kant",
+        "ingredientIndices": [
+          1
+        ]
+      },
+      {
+        "body": "Verdeel de yoghurtsaus over de warme flatbreads, leg de kipgyros erop en voeg rode ui, paprika, tomaat en de komkommerplakjes toe. Serveer direct, zodat het brood warm blijft en de groenten knapperig zijn.",
+        "title": "Flatbreads vullen",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      }
     ],
     "tips": "Door een kwart komkommer te raspen en goed uit te knijpen krijg je een dikkere, frisse saus met dille en knoflook; gebruik de andere kwart in plakjes op het flatbread. Een halve rode ui, een halve paprika en 150 g tomaat zijn voldoende voor vier goedgevulde flatbreads. Gebruik kant-en-klaar gekruide kipgyros zonder extra kruiden toe te voegen. Bak de kip op middelhoog tot hoog vuur in 1 el olijfolie en volg bij voorgegaarde gyros de verpakking. Voeg de koude toppings pas bij het serveren toe.",
     "image": "images/gyros.webp",
@@ -1319,15 +1867,96 @@
       }
     ],
     "steps": [
-      "Dep de 750 g runderstoofvlees goed droog en snijd in blokken van circa 3–4 cm. Snipper de 2 uien, hak 3 teentjes knoflook fijn en snijd de grote tomaat in blokjes. Snijd de eerste rode paprika in kleine stukken en de tweede in wat grovere repen; houd ze apart. Kneus de ½ tl komijnzaad eventueel licht met een vijzel.",
-      "Verhit de 2 el olijfolie in een zware stoofpan op middelhoog tot hoog vuur. Bak het rundvlees in twee porties in totaal circa 12–15 minuten goudbruin. Draai het pas als het makkelijk loslaat; haal het vervolgens uit de pan.",
-      "Verlaag naar middelhoog vuur en bak de gesnipperde uien 8–10 minuten in het achtergebleven bakvet tot ze zacht, licht goudbruin en zoetig worden. Voeg de eerste fijngesneden rode paprika toe en bak 3 minuten mee. Voeg de knoflook en 2 el tomatenpuree toe en bak al roerend nog 1 minuut.",
-      "Strooi 1½ el bloem over de groenten en roer circa 1 minuut mee. Zet het vuur laag en voeg 4 tl gewoon paprikapoeder, 1 tl gerookt paprikapoeder, ½ tl gekneusd komijnzaad, 1½ tl marjoraan, ½ tl tijm en ½ tl chilipoeder toe. Roer 20–30 seconden, maar laat het paprikapoeder niet donker of bitter worden; schenk direct een klein scheutje van de 450 ml runderbouillon erbij en roer de aanbaksels los.",
-      "Doe het vlees met zijn vrijgekomen sappen terug in de pan en voeg de grote tomaat, de resterende bouillon, 2 laurierblaadjes en 1 tl zwarte peper toe. Voeg eerst ongeveer ½ tl van de ¾ tl zout toe; proef aan het einde of het restant nodig is, afhankelijk van de bouillon. Roer alles goed door. Het vlees hoeft niet volledig onder te staan, maar er moet voldoende vocht onderin de pan aanwezig zijn.",
-      "Breng tegen de kook aan, zet dan het vuur zeer laag en laat met deksel schuin op de pan circa 2½–3 uur heel zacht stoven. Roer af en toe en controleer het vocht. Voeg zo nodig steeds 50–100 ml heet water toe zodat de saus niet droogkookt. Het vlees moet met een vork gemakkelijk uit elkaar te trekken zijn.",
-      "Voeg de tweede paprika circa 30 minuten vóór het einde van het stoven toe, zodra het vlees bijna zacht is. Laat meekoken tot de paprika zacht is maar nog enige structuur heeft en het vlees volledig mals is. Verwijder de laurierblaadjes. Is de saus te dun, laat dan enkele minuten zonder deksel inkoken; is hij te dik, voeg een scheutje water toe.",
-      "Proef de goulash op zout, rook, pittigheid en frisheid. Voeg desgewenst het resterende zout toe en eventueel 1 tl balsamico als de saus wat vlak of zwaar smaakt. Voeg de balsamico alleen naar smaak toe.",
-      "Kook in de laatste 15 minuten van het stoven de 300 g witte rijst of basmatirijst volgens de verpakking. Laat kort uitstomen en serveer met de warme goulash."
+      {
+        "body": "Dep de 750 g runderstoofvlees goed droog en snijd in blokken van circa 3–4 cm. Snipper de 2 uien, hak 3 teentjes knoflook fijn en snijd de grote tomaat in blokjes. Snijd de eerste rode paprika in kleine stukken en de tweede in wat grovere repen; houd ze apart. Kneus de ½ tl komijnzaad eventueel licht met een vijzel.",
+        "title": "Vlees en groenten voorbereiden",
+        "ingredientIndices": [
+          0,
+          2,
+          4,
+          5,
+          3
+        ]
+      },
+      {
+        "body": "Verhit de 2 el olijfolie in een zware stoofpan op middelhoog tot hoog vuur. Bak het rundvlees in twee porties in totaal circa 12–15 minuten goudbruin. Draai het pas als het makkelijk loslaat; haal het vervolgens uit de pan.",
+        "title": "Rundvlees in porties aanbraden",
+        "duration": "12–15 min",
+        "ingredientIndices": [
+          9,
+          0
+        ]
+      },
+      {
+        "body": "Verlaag naar middelhoog vuur en bak de gesnipperde uien 8–10 minuten in het achtergebleven bakvet tot ze zacht, licht goudbruin en zoetig worden. Voeg de eerste fijngesneden rode paprika toe en bak 3 minuten mee. Voeg de knoflook en 2 el tomatenpuree toe en bak al roerend nog 1 minuut.",
+        "title": "Ui en paprika zacht bakken",
+        "duration": "11–13 min",
+        "ingredientIndices": [
+          2,
+          3,
+          4,
+          6
+        ]
+      },
+      {
+        "body": "Strooi 1½ el bloem over de groenten en roer circa 1 minuut mee. Zet het vuur laag en voeg 4 tl gewoon paprikapoeder, 1 tl gerookt paprikapoeder, ½ tl gekneusd komijnzaad, 1½ tl marjoraan, ½ tl tijm en ½ tl chilipoeder toe. Roer 20–30 seconden, maar laat het paprikapoeder niet donker of bitter worden; schenk direct een klein scheutje van de 450 ml runderbouillon erbij en roer de aanbaksels los.",
+        "title": "Bloem en specerijen toevoegen",
+        "ingredientIndices": [
+          8,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          6,
+          7
+        ]
+      },
+      {
+        "body": "Doe het vlees met zijn vrijgekomen sappen terug in de pan en voeg de grote tomaat, de resterende bouillon, 2 laurierblaadjes en 1 tl zwarte peper toe. Voeg eerst ongeveer ½ tl van de ¾ tl zout toe; proef aan het einde of het restant nodig is, afhankelijk van de bouillon. Roer alles goed door. Het vlees hoeft niet volledig onder te staan, maar er moet voldoende vocht onderin de pan aanwezig zijn.",
+        "title": "Vlees, bouillon en kruiden samenvoegen",
+        "ingredientIndices": [
+          0,
+          5,
+          7,
+          10,
+          17,
+          18
+        ]
+      },
+      {
+        "body": "Breng tegen de kook aan, zet dan het vuur zeer laag en laat met deksel schuin op de pan circa 2½–3 uur heel zacht stoven. Roer af en toe en controleer het vocht. Voeg zo nodig steeds 50–100 ml heet water toe zodat de saus niet droogkookt. Het vlees moet met een vork gemakkelijk uit elkaar te trekken zijn.",
+        "title": "Goulash langzaam stoven",
+        "duration": "2½–3 uur",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Voeg de tweede paprika circa 30 minuten vóór het einde van het stoven toe, zodra het vlees bijna zacht is. Laat meekoken tot de paprika zacht is maar nog enige structuur heeft en het vlees volledig mals is. Verwijder de laurierblaadjes. Is de saus te dun, laat dan enkele minuten zonder deksel inkoken; is hij te dik, voeg een scheutje water toe.",
+        "title": "Tweede paprika toevoegen",
+        "duration": "laatste 30 min",
+        "ingredientIndices": [
+          3
+        ]
+      },
+      {
+        "body": "Proef de goulash op zout, rook, pittigheid en frisheid. Voeg desgewenst het resterende zout toe en eventueel 1 tl balsamico als de saus wat vlak of zwaar smaakt. Voeg de balsamico alleen naar smaak toe.",
+        "title": "Goulash proeven en afwerken",
+        "ingredientIndices": [
+          18,
+          19
+        ]
+      },
+      {
+        "body": "Kook in de laatste 15 minuten van het stoven de 300 g witte rijst of basmatirijst volgens de verpakking. Laat kort uitstomen en serveer met de warme goulash.",
+        "title": "Rijst koken en serveren",
+        "duration": "laatste 15 min",
+        "ingredientIndices": [
+          1
+        ]
+      }
     ],
     "tips": "Braad het vlees in porties voor diepe smaak en laat de uien 8–10 minuten rustig kleuren. Verlaag het vuur vóór je paprikapoeder toevoegt en blus na 20–30 seconden af: verbrand paprikapoeder wordt bitter. Start met 450 ml bouillon; controleer tijdens het stoven geregeld en vul zo nodig met heet water aan. Voeg de tweede rode paprika pas circa 30 minuten vóór het einde toe voor wat beet. De totale tijd is een richtlijn (ongeveer 3 uur en 45 minuten); het soort stoofvlees bepaalt of het na 2½ uur al mals is of langer nodig heeft. Bij minder zacht vlees langer stoven, niet hoger verhitten.",
     "image": "images/goulash.webp",
@@ -1502,13 +2131,89 @@
       }
     ],
     "steps": [
-      "Verwarm de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Rooster 1½ tl komijnzaad 30–60 seconden in een droge koekenpan op middelhoog vuur tot het geurt; laat even afkoelen en kneus fijn in een vijzel. Laat het komijnzaad niet donker worden.",
-      "Rasp ¼ courgette fijn en knijp het vocht stevig uit. Verwijder de natte zaadlijsten van de tomaat en snijd het vruchtvlees klein. Snipper 1 ui, hak 2 teentjes knoflook, ½ rode peper en 2 el verse peterselie fijn.",
-      "Meng 450 g rundergehakt kort met de ui, knoflook, rode peper, courgette, tomaat, verse peterselie, 1 el tomatenpuree, 1 tl citroensap en ½ el olijfolie. Voeg 1½ tl gekneusd komijnzaad, 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl gedroogd korianderblad, ¼ tl kaneel, ongeveer ¾ tl van het zout en zwarte peper naar smaak toe. Gebruik eventueel ¼ tl chilipoeder. Kneed niet langer dan nodig om de vulling gelijkmatig te mengen.",
-      "Laat de vulling desgewenst 15–30 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 pitabroodjes voorzichtig open en verdeel de vulling over de binnenkanten in een dunne, gelijkmatige laag van circa ½ cm.",
-      "Bestrijk de buitenkant van de gevulde pitabroodjes met in totaal 1 el olijfolie. Verhit een ruime koekenpan op middelhoog vuur en bak de broodjes, eventueel in porties, circa 2–3 minuten per kant tot beide kanten goudbruin en krokant zijn.",
-      "Leg de arayes op een bakplaat en bak nog circa 8–10 minuten in het midden van de oven. Draai ze halverwege om. Controleer of de gehaktvulling in het midden volledig gaar is (minimaal 71 °C kerntemperatuur); geef ze indien nodig enkele minuten extra.",
-      "Meng ondertussen 250 g Griekse yoghurt met 1 fijngehakt teentje knoflook, 2 tl citroensap en 1 tl olijfolie. Breng de saus op smaak met de resterende circa ¼ tl zout en zwarte peper. Proef en serveer de krokante arayes direct met de koude yoghurtsaus."
+      {
+        "body": "Verwarm de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Rooster 1½ tl komijnzaad 30–60 seconden in een droge koekenpan op middelhoog vuur tot het geurt; laat even afkoelen en kneus fijn in een vijzel. Laat het komijnzaad niet donker worden.",
+        "title": "Oven voorverwarmen en komijn roosteren",
+        "duration": "30–60 sec komijn roosteren",
+        "ingredientIndices": [
+          12
+        ]
+      },
+      {
+        "body": "Rasp ¼ courgette fijn en knijp het vocht stevig uit. Verwijder de natte zaadlijsten van de tomaat en snijd het vruchtvlees klein. Snipper 1 ui, hak 2 teentjes knoflook, ½ rode peper en 2 el verse peterselie fijn.",
+        "title": "Groenten en kruiden fijnsnijden",
+        "ingredientIndices": [
+          5,
+          6,
+          2,
+          3,
+          4,
+          7
+        ]
+      },
+      {
+        "body": "Meng 450 g rundergehakt kort met de ui, knoflook, rode peper, courgette, tomaat, verse peterselie, 1 el tomatenpuree, 1 tl citroensap en ½ el olijfolie. Voeg 1½ tl gekneusd komijnzaad, 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl gedroogd korianderblad, ¼ tl kaneel, ongeveer ¾ tl van het zout en zwarte peper naar smaak toe. Gebruik eventueel ¼ tl chilipoeder. Kneed niet langer dan nodig om de vulling gelijkmatig te mengen.",
+        "title": "Kruidige gehaktvulling mengen",
+        "ingredientIndices": [
+          0,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      {
+        "body": "Laat de vulling desgewenst 15–30 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 pitabroodjes voorzichtig open en verdeel de vulling over de binnenkanten in een dunne, gelijkmatige laag van circa ½ cm.",
+        "title": "Pitabroodjes vullen",
+        "duration": "optioneel 15–30 min rusten",
+        "ingredientIndices": [
+          1,
+          0
+        ]
+      },
+      {
+        "body": "Bestrijk de buitenkant van de gevulde pitabroodjes met in totaal 1 el olijfolie. Verhit een ruime koekenpan op middelhoog vuur en bak de broodjes, eventueel in porties, circa 2–3 minuten per kant tot beide kanten goudbruin en krokant zijn.",
+        "title": "Arayes goudbruin aanbakken",
+        "duration": "2–3 min per kant",
+        "ingredientIndices": [
+          11,
+          1
+        ]
+      },
+      {
+        "body": "Leg de arayes op een bakplaat en bak nog circa 8–10 minuten in het midden van de oven. Draai ze halverwege om. Controleer of de gehaktvulling in het midden volledig gaar is (minimaal 71 °C kerntemperatuur); geef ze indien nodig enkele minuten extra.",
+        "title": "Arayes in de oven garen",
+        "duration": "8–10 min",
+        "ingredientIndices": [
+          1,
+          0
+        ]
+      },
+      {
+        "body": "Meng ondertussen 250 g Griekse yoghurt met 1 fijngehakt teentje knoflook, 2 tl citroensap en 1 tl olijfolie. Breng de saus op smaak met de resterende circa ¼ tl zout en zwarte peper. Proef en serveer de krokante arayes direct met de koude yoghurtsaus.",
+        "title": "Yoghurtsaus maken en serveren",
+        "ingredientIndices": [
+          20,
+          21,
+          22,
+          23,
+          17,
+          18
+        ]
+      }
     ],
     "tips": "Druk het vocht uit de geraspte courgette en verwijder de natte zaadlijsten van de tomaat; een droge vulling houdt de pita krokant. Verdeel het gehakt in een dunne laag van circa ½ cm en bestrijk de buitenkant met olie. Rooster en kneus komijnzaad kort voor de beste geur. Laat de vulling desgewenst 15–30 minuten gekoeld rusten; dit is niet nodig om het recept te laten slagen en telt niet mee in de basisbereidingstijd van 45 minuten. Controleer bij rauw gehakt altijd of het midden volledig gaar is (71 °C).",
     "image": "images/arayes.webp",
@@ -1606,12 +2311,60 @@
       }
     ],
     "steps": [
-      "Meng 300 g rundergehakt losjes met ½ tl komijn, ½ tl paprikapoeder, ¼ tl gerookt paprikapoeder, ¼ tl knoflookpoeder, ¼ tl uienpoeder en ½ tl zwarte peper. Meng het zout nog niet door het vlees; kneed niet langer dan nodig.",
-      "Verdeel het gehakt in 2 gelijke porties van 150 g. Vorm er burgers van circa 1½–2 cm dik van en druk met een duim een klein kuiltje in het midden.",
-      "Bak de burgers meteen, of laat ze naar wens eerst 15–30 minuten afgedekt in de koelkast opstijven. Dit rustmoment is optioneel.",
-      "Verhit een koekenpan of grillpan 2–3 minuten op middelhoog tot hoog vuur met 1 el olie. Strooi vlak vóór het bakken de totale ½ tl zout gelijkmatig over beide kanten van de twee burgers.",
-      "Bak de burgers in ongeveer 4–6 minuten per kant goudbruin, afhankelijk van de dikte en de pan. Draai ze zo weinig mogelijk en druk ze tijdens het bakken niet plat. Controleer of het rundergehakt tot in de kern gaar is (71 °C). Laat de burgers zo nodig iets langer bakken op matig vuur.",
-      "Leg desgewenst in de laatste minuut een plak cheddar op elke burger. Serveer direct, eventueel op licht geroosterde hamburgerbroodjes met garnituur naar keuze."
+      {
+        "body": "Meng 300 g rundergehakt losjes met ½ tl komijn, ½ tl paprikapoeder, ¼ tl gerookt paprikapoeder, ¼ tl knoflookpoeder, ¼ tl uienpoeder en ½ tl zwarte peper. Meng het zout nog niet door het vlees; kneed niet langer dan nodig.",
+        "title": "Gehakt voorzichtig kruiden",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "body": "Verdeel het gehakt in 2 gelijke porties van 150 g. Vorm er burgers van circa 1½–2 cm dik van en druk met een duim een klein kuiltje in het midden.",
+        "title": "Burgers vormen",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Bak de burgers meteen, of laat ze naar wens eerst 15–30 minuten afgedekt in de koelkast opstijven. Dit rustmoment is optioneel.",
+        "title": "Eventueel laten opstijven",
+        "duration": "optioneel 15–30 min",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Verhit een koekenpan of grillpan 2–3 minuten op middelhoog tot hoog vuur met 1 el olie. Strooi vlak vóór het bakken de totale ½ tl zout gelijkmatig over beide kanten van de twee burgers.",
+        "title": "Pan voorverwarmen en burgers zouten",
+        "duration": "2–3 min voorverwarmen",
+        "ingredientIndices": [
+          8,
+          7
+        ]
+      },
+      {
+        "body": "Bak de burgers in ongeveer 4–6 minuten per kant goudbruin, afhankelijk van de dikte en de pan. Draai ze zo weinig mogelijk en druk ze tijdens het bakken niet plat. Controleer of het rundergehakt tot in de kern gaar is (71 °C). Laat de burgers zo nodig iets langer bakken op matig vuur.",
+        "title": "Hamburgers gaar bakken",
+        "duration": "4–6 min per kant",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Leg desgewenst in de laatste minuut een plak cheddar op elke burger. Serveer direct, eventueel op licht geroosterde hamburgerbroodjes met garnituur naar keuze.",
+        "title": "Cheddar toevoegen en serveren",
+        "duration": "laatste minuut kaas",
+        "ingredientIndices": [
+          10,
+          9
+        ]
+      }
     ],
     "tips": "De kruidenmix is bewust ongewijzigd gebleven. Meng het gehakt kort en strooi de ½ tl zout pas vlak voor het bakken op de buitenkant, zodat de structuur mals blijft. Bak in een goed voorverwarmde pan, zonder de burgers plat te drukken. De 15–30 minuten rusten in de koelkast is optioneel en telt niet als verplichte wachttijd mee. Controleer bij rundergehakt een kerntemperatuur van 71 °C. Rooster de optionele broodjes kort en laat de cheddar desgewenst op het laatst smelten.",
     "image": "images/hamburgers.webp",
@@ -1792,13 +2545,83 @@
       }
     ],
     "steps": [
-      "Snijd 350 g kipdijfilet in dunne, gelijkmatige reepjes. Meng 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl komijn, ¾ tl gedroogd korianderblad, ½ tl gedroogde marjoraan, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl kurkuma, ¼ tl kaneel, ¼ tl chilipoeder, ¾ tl zout en ½ tl zwarte peper met 1 geperst teentje knoflook, 1 el citroensap en 1 el olijfolie. Schep de kip erdoor.",
-      "Je kunt de kip direct bakken. Voor iets meer ingetrokken smaak kun je haar optioneel 15–30 minuten afgedekt in de koelkast marineren; dit is geen verplichte wachttijd.",
-      "Maak ondertussen de saus: meng 3 el mayonaise met 1 geperst teentje knoflook, 1½ tl citroensap, 1½ tl water en ¼ tl gedroogde peterselie. Proef en voeg desgewenst een beetje peper toe. Snijd ½ rode ui in dunne halve ringen, was de 50 g sla en laat goed uitlekken.",
-      "Verhit een grote koekenpan op middelhoog tot hoog vuur. Bak de kip in een niet te dikke laag, zo nodig in twee porties, ongeveer 7–9 minuten per portie tot ze duidelijke goudbruine randjes krijgt en helemaal gaar is (kerntemperatuur 74 °C). Roer niet voortdurend en voorkom dat vocht zich ophoopt, anders gaat de kip stoven.",
-      "Leg de 4 grote wraps open. Verdeel de gebakken kip, de rode ui en een dun laagje van de knoflooksaus erover, maar houd de sla en het grootste deel van de saus apart. Voeg desgewenst in totaal 50 g mozzarella toe. Vouw de wraps stevig dicht, zodat de vulling binnenblijft.",
-      "Verhit een schone, droge koekenpan op middelhoog vuur. Bak de gevouwen wraps met de vouwnaad eerst naar beneden circa 2 minuten per kant tot ze goudbruin en krokant zijn; werk zo nodig in twee rondes.",
-      "Serveer direct. Open de warme wraps aan één zijde voorzichtig om de droge sla toe te voegen, of serveer de sla ernaast zodat die fris en knapperig blijft. Lepel de overige knoflooksaus erbij of geef hem als dipsaus; zo worden de krokante wraps niet zompig."
+      {
+        "body": "Snijd 350 g kipdijfilet in dunne, gelijkmatige reepjes. Meng 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl komijn, ¾ tl gedroogd korianderblad, ½ tl gedroogde marjoraan, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl kurkuma, ¼ tl kaneel, ¼ tl chilipoeder, ¾ tl zout en ½ tl zwarte peper met 1 geperst teentje knoflook, 1 el citroensap en 1 el olijfolie. Schep de kip erdoor.",
+        "title": "Kip snijden en kruiden",
+        "ingredientIndices": [
+          0,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ]
+      },
+      {
+        "body": "Je kunt de kip direct bakken. Voor iets meer ingetrokken smaak kun je haar optioneel 15–30 minuten afgedekt in de koelkast marineren; dit is geen verplichte wachttijd.",
+        "title": "Kip eventueel marineren",
+        "duration": "optioneel 15–30 min marineren",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Maak ondertussen de saus: meng 3 el mayonaise met 1 geperst teentje knoflook, 1½ tl citroensap, 1½ tl water en ¼ tl gedroogde peterselie. Proef en voeg desgewenst een beetje peper toe. Snijd ½ rode ui in dunne halve ringen, was de 50 g sla en laat goed uitlekken.",
+        "title": "Knoflooksaus en ui voorbereiden",
+        "ingredientIndices": [
+          19,
+          20,
+          21,
+          22,
+          23,
+          2
+        ]
+      },
+      {
+        "body": "Verhit een grote koekenpan op middelhoog tot hoog vuur. Bak de kip in een niet te dikke laag, zo nodig in twee porties, ongeveer 7–9 minuten per portie tot ze duidelijke goudbruine randjes krijgt en helemaal gaar is (kerntemperatuur 74 °C). Roer niet voortdurend en voorkom dat vocht zich ophoopt, anders gaat de kip stoven.",
+        "title": "Kipshawarma krokant bakken",
+        "duration": "7–9 min per portie",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Leg de 4 grote wraps open. Verdeel de gebakken kip, de rode ui en een dun laagje van de knoflooksaus erover, maar houd de sla en het grootste deel van de saus apart. Voeg desgewenst in totaal 50 g mozzarella toe. Vouw de wraps stevig dicht, zodat de vulling binnenblijft.",
+        "title": "Wraps vullen en dichtvouwen",
+        "ingredientIndices": [
+          1,
+          0,
+          2,
+          19,
+          24
+        ]
+      },
+      {
+        "body": "Verhit een schone, droge koekenpan op middelhoog vuur. Bak de gevouwen wraps met de vouwnaad eerst naar beneden circa 2 minuten per kant tot ze goudbruin en krokant zijn; werk zo nodig in twee rondes.",
+        "title": "Wraps krokant bakken",
+        "duration": "ca. 2 min per kant",
+        "ingredientIndices": [
+          1
+        ]
+      },
+      {
+        "body": "Serveer direct. Open de warme wraps aan één zijde voorzichtig om de droge sla toe te voegen, of serveer de sla ernaast zodat die fris en knapperig blijft. Lepel de overige knoflooksaus erbij of geef hem als dipsaus; zo worden de krokante wraps niet zompig.",
+        "title": "Sla toevoegen en serveren",
+        "ingredientIndices": [
+          3,
+          19
+        ]
+      }
     ],
     "tips": "De bestaande shawarmakruiden zijn behouden, met ½ tl gedroogde marjoraan als extra kruidige laag. Gedroogd korianderblad is niet hetzelfde als gemalen korianderzaad: het blad smaakt groener, terwijl gemalen zaad warmer en licht citrusachtig is en vaker in shawarmakruiden wordt gebruikt. Wie gemalen korianderzaad heeft, kan de ¾ tl korianderblad eventueel daardoor vervangen (niet allebei gebruiken). Geen augurk: het citroensap in de saus geeft voldoende frisheid. Bak de kip in porties voor bruine randjes en rooster de gevouwen wraps zonder extra olie. Voeg de sla en het grootste deel van de saus na het krokant bakken toe of serveer apart. De kip mag direct worden gebakken; 15–30 minuten marineren in de koelkast is optioneel.",
     "image": "images/shawarma.webp",
@@ -1949,17 +2772,117 @@
       }
     ],
     "steps": [
-      "Snijd 300 g kipdijfilet in hapklare stukjes. Snijd 1 paprika, ½ courgette, 1 wortel en 1 rode ui in kleine stukken. Hak 2 teentjes knoflook en ½ rode peper fijn. Snijd 2 verse tomaten in blokjes en verwijder de natste zaadlijsten.",
-      "Kook 170 g rijst volgens de aanwijzingen op de verpakking. Laat na het afgieten kort uitdampen. Bereid ondertussen de kip en groenten.",
-      "Meng de kip met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, ½ tl komijn, ½ tl knoflookpoeder en een beetje zwarte peper. Voeg nog geen zout toe: de sojasaus geeft straks al zoutigheid.",
-      "Verhit ongeveer ¾ el van de 1½ el olijfolie in een wok op middelhoog tot hoog vuur. Bak de kip in circa 5–6 minuten met goed bruine randjes; laat eerst even liggen voordat je omschept. Bak zo nodig in twee porties en schep de kip daarna uit de wok.",
-      "Verhit de resterende ¾ el olijfolie in dezelfde wok. Bak de rode ui en wortel circa 3 minuten op middelhoog tot hoog vuur. Voeg paprika en courgette toe en bak nog circa 3–4 minuten, zodat de groenten licht kleuren en eventueel vocht verdampt.",
-      "Voeg knoflook en rode peper toe en roer 30 seconden door. Schep 1 el tomatenpuree erbij en bak circa 1 minuut mee, zodat de smaak verdiept.",
-      "Voeg de uitgelekte tomatenblokjes toe en roerbak 2–3 minuten op middelhoog tot hoog vuur, tot het meeste overtollige vocht verdampt is. Zo ontstaat een lichte, geconcentreerde basis in plaats van een waterige tomatensaus.",
-      "Roer 1½ el sojasaus en 2 el ketjap door de groenten en laat ongeveer 1 minuut zachtjes pruttelen tot de saus licht glanst. Voeg alleen als de saus te stroperig wordt een klein scheutje water toe.",
-      "Doe de gebakken kip met eventuele vleessappen terug in de wok. Schep 2–3 minuten om op middelhoog vuur, zodat de kip volledig gaar is (74 °C kerntemperatuur) en de saus alles dun omhult.",
-      "Zet het vuur uit en voeg 1 tl citroensap toe. Proef de saus: is hij te zout, voeg een klein scheutje water toe; mist hij hartigheid, voeg een paar druppels sojasaus toe. Breng zo nodig met zwarte peper op smaak en voeg alleen zout toe als het echt nodig is.",
-      "Serveer de kip en groenten met de rijst of schep de rijst kort door het gerecht. Serveer direct."
+      {
+        "body": "Snijd 300 g kipdijfilet in hapklare stukjes. Snijd 1 paprika, ½ courgette, 1 wortel en 1 rode ui in kleine stukken. Hak 2 teentjes knoflook en ½ rode peper fijn. Snijd 2 verse tomaten in blokjes en verwijder de natste zaadlijsten.",
+        "title": "Kip en groenten snijden",
+        "ingredientIndices": [
+          0,
+          2,
+          3,
+          4,
+          6,
+          7,
+          8,
+          5
+        ]
+      },
+      {
+        "body": "Kook 170 g rijst volgens de aanwijzingen op de verpakking. Laat na het afgieten kort uitdampen. Bereid ondertussen de kip en groenten.",
+        "title": "Rijst koken",
+        "duration": "volgens rijstverpakking",
+        "ingredientIndices": [
+          1
+        ]
+      },
+      {
+        "body": "Meng de kip met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, ½ tl komijn, ½ tl knoflookpoeder en een beetje zwarte peper. Voeg nog geen zout toe: de sojasaus geeft straks al zoutigheid.",
+        "title": "Kip kruiden",
+        "ingredientIndices": [
+          0,
+          13,
+          14,
+          15,
+          16,
+          17
+        ]
+      },
+      {
+        "body": "Verhit ongeveer ¾ el van de 1½ el olijfolie in een wok op middelhoog tot hoog vuur. Bak de kip in circa 5–6 minuten met goed bruine randjes; laat eerst even liggen voordat je omschept. Bak zo nodig in twee porties en schep de kip daarna uit de wok.",
+        "title": "Kip goudbruin bakken",
+        "duration": "5–6 min",
+        "ingredientIndices": [
+          19,
+          0
+        ]
+      },
+      {
+        "body": "Verhit de resterende ¾ el olijfolie in dezelfde wok. Bak de rode ui en wortel circa 3 minuten op middelhoog tot hoog vuur. Voeg paprika en courgette toe en bak nog circa 3–4 minuten, zodat de groenten licht kleuren en eventueel vocht verdampt.",
+        "title": "Ui, wortel en groenten bakken",
+        "duration": "6–7 min",
+        "ingredientIndices": [
+          19,
+          6,
+          4,
+          2,
+          3
+        ]
+      },
+      {
+        "body": "Voeg knoflook en rode peper toe en roer 30 seconden door. Schep 1 el tomatenpuree erbij en bak circa 1 minuut mee, zodat de smaak verdiept.",
+        "title": "Knoflook en tomatenpuree toevoegen",
+        "duration": "ca. 1½ min",
+        "ingredientIndices": [
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "body": "Voeg de uitgelekte tomatenblokjes toe en roerbak 2–3 minuten op middelhoog tot hoog vuur, tot het meeste overtollige vocht verdampt is. Zo ontstaat een lichte, geconcentreerde basis in plaats van een waterige tomatensaus.",
+        "title": "Tomaten laten inkoken",
+        "duration": "2–3 min",
+        "ingredientIndices": [
+          5
+        ]
+      },
+      {
+        "body": "Roer 1½ el sojasaus en 2 el ketjap door de groenten en laat ongeveer 1 minuut zachtjes pruttelen tot de saus licht glanst. Voeg alleen als de saus te stroperig wordt een klein scheutje water toe.",
+        "title": "Sojasaus en ketjap toevoegen",
+        "duration": "ca. 1 min",
+        "ingredientIndices": [
+          10,
+          11
+        ]
+      },
+      {
+        "body": "Doe de gebakken kip met eventuele vleessappen terug in de wok. Schep 2–3 minuten om op middelhoog vuur, zodat de kip volledig gaar is (74 °C kerntemperatuur) en de saus alles dun omhult.",
+        "title": "Kip terug in de wok garen",
+        "duration": "2–3 min",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Zet het vuur uit en voeg 1 tl citroensap toe. Proef de saus: is hij te zout, voeg een klein scheutje water toe; mist hij hartigheid, voeg een paar druppels sojasaus toe. Breng zo nodig met zwarte peper op smaak en voeg alleen zout toe als het echt nodig is.",
+        "title": "Saus proeven en bijsturen",
+        "ingredientIndices": [
+          12,
+          10,
+          17
+        ]
+      },
+      {
+        "body": "Serveer de kip en groenten met de rijst of schep de rijst kort door het gerecht. Serveer direct.",
+        "title": "Kip en rijst serveren",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
     ],
     "tips": "Bak de gekruide kip op voldoende hoog vuur en schep haar eerst uit de wok, zodat de groenten kunnen kleuren zonder te stoven. Verwijder de natste zaadlijsten van de tomaten en laat het vocht verdampen voordat de soja en ketjap erbij gaan. De 1 el tomatenpuree ondersteunt nu de ketjap-sojasaus in plaats van te overheersen. De oregano is bewust weggelaten voor een duidelijke, kruidige ketjapsmaak. Voeg 1 tl citroensap pas na het bakken toe voor frisheid. Proef vóór je zout toevoegt; sojasaus is al zout.",
     "image": "images/kiprijst.webp",
@@ -2177,15 +3100,120 @@
       }
     ],
     "steps": [
-      "Verwarm de oven voor op 210 °C hetelucht (230 °C boven-/onderwarmte). Bekleed twee bakplaten met bakpapier: één voor de groenten en één voor de rösti. Controleer de verpakking van de rösti op oventemperatuur en baktijd; pas zo nodig de temperatuur aan en houd de groenten goed in de gaten.",
-      "Schil of schrap 1 wortel en snijd in dunne halve plakjes. Snijd 1 paprika, ½ courgette, 1 rode ui en ½ rode peper in stukken. Snijd 1 tomaat in parten en verwijder de natste zaadlijsten. Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl oregano, ½ tl tijm en peper en zout naar smaak voor de groenten.",
-      "Meng de wortel met ongeveer ⅓ van de 1 el olijfolie en ⅓ van de groentenkruiden. Spreid op de eerste bakplaat uit en rooster 10 minuten. Voeg daarna paprika, rode ui en rode peper toe met de rest van de olijfolie en kruiden; schep om en rooster nog 10 minuten.",
-      "Voeg de courgette aan de groenten toe en rooster nog 10–12 minuten. Doe de tomatenparten pas tijdens de laatste 8 minuten erbij, zodat de groenten niet te nat worden. Rooster intussen 325 g rösti rondjes op de tweede bakplaat volgens de verpakking, bij voorkeur zo getimed dat ze tegelijk met de groenten klaar zijn. Laat rondom de rösti voldoende ruimte en draai ze wanneer de verpakking dit aangeeft.",
-      "Maak terwijl de groenten roosteren de zelfgemaakte schnitzels. Snijd 350 g kipfilet horizontaal in 2 dunne schnitzels en sla ze tussen bakpapier voorzichtig plat tot circa 1 cm dik. Dep droog. Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout; voeg eventueel ¼ tl chilipoeder toe. Wrijf de helft van deze mix over beide kanten van de kip.",
-      "Meng de overige helft van de kipkruiden met 60 g panko en ½ tl gedroogde peterselie. Zet drie borden klaar met 3 el bloem, 1 losgeklopt ei en de gekruide panko. Haal iedere schnitzel achtereenvolgens door bloem, ei en panko en druk de kruimels licht aan.",
-      "Verhit tijdens de laatste 10–12 ovenminuten circa 4 el zonnebloemolie in een ruime koekenpan op middelhoog vuur. Bak de schnitzels 3–5 minuten per kant goudbruin. Controleer of het dikste deel van de kip volledig gaar is (74 °C kerntemperatuur) en laat de schnitzels 1–2 minuten uitlekken op een rooster.",
-      "Roer 1 tl honing en 1 tl citroensap door elkaar tot een dressing. Schep de geroosterde groenten voorzichtig om met de dressing; houd de rösti apart zodat die krokant blijft. Verdeel de overige 1 tl citroensap over de twee kipschnitzels, of serveer deze ernaast.",
-      "Verdeel de groenten en de krokante rösti over twee borden en leg de warme zelfgemaakte kipschnitzels erbij. Serveer direct."
+      {
+        "body": "Verwarm de oven voor op 210 °C hetelucht (230 °C boven-/onderwarmte). Bekleed twee bakplaten met bakpapier: één voor de groenten en één voor de rösti. Controleer de verpakking van de rösti op oventemperatuur en baktijd; pas zo nodig de temperatuur aan en houd de groenten goed in de gaten.",
+        "title": "Oven en bakplaten voorbereiden",
+        "ingredientIndices": []
+      },
+      {
+        "body": "Schil of schrap 1 wortel en snijd in dunne halve plakjes. Snijd 1 paprika, ½ courgette, 1 rode ui en ½ rode peper in stukken. Snijd 1 tomaat in parten en verwijder de natste zaadlijsten. Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl oregano, ½ tl tijm en peper en zout naar smaak voor de groenten.",
+        "title": "Groenten snijden en kruidenmix maken",
+        "ingredientIndices": [
+          18,
+          16,
+          17,
+          20,
+          21,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      },
+      {
+        "body": "Meng de wortel met ongeveer ⅓ van de 1 el olijfolie en ⅓ van de groentenkruiden. Spreid op de eerste bakplaat uit en rooster 10 minuten. Voeg daarna paprika, rode ui en rode peper toe met de rest van de olijfolie en kruiden; schep om en rooster nog 10 minuten.",
+        "title": "Wortel en paprika roosteren",
+        "duration": "eerst 10 min, daarna verder roosteren",
+        "ingredientIndices": [
+          18,
+          28,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          16,
+          20,
+          21
+        ]
+      },
+      {
+        "body": "Voeg de courgette aan de groenten toe en rooster nog 10–12 minuten. Doe de tomatenparten pas tijdens de laatste 8 minuten erbij, zodat de groenten niet te nat worden. Rooster intussen 325 g rösti rondjes op de tweede bakplaat volgens de verpakking, bij voorkeur zo getimed dat ze tegelijk met de groenten klaar zijn. Laat rondom de rösti voldoende ruimte en draai ze wanneer de verpakking dit aangeeft.",
+        "title": "Courgette, tomaat en rösti roosteren",
+        "duration": "nog 10–12 min",
+        "ingredientIndices": [
+          17,
+          19,
+          15
+        ]
+      },
+      {
+        "body": "Maak terwijl de groenten roosteren de zelfgemaakte schnitzels. Snijd 350 g kipfilet horizontaal in 2 dunne schnitzels en sla ze tussen bakpapier voorzichtig plat tot circa 1 cm dik. Dep droog. Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl uienpoeder, ½ tl oregano, ¼ tl tijm, ¼ tl zwarte peper en ½ tl zout; voeg eventueel ¼ tl chilipoeder toe. Wrijf de helft van deze mix over beide kanten van de kip.",
+        "title": "Kipfilet en kruiden voorbereiden",
+        "ingredientIndices": [
+          0,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "body": "Meng de overige helft van de kipkruiden met 60 g panko en ½ tl gedroogde peterselie. Zet drie borden klaar met 3 el bloem, 1 losgeklopt ei en de gekruide panko. Haal iedere schnitzel achtereenvolgens door bloem, ei en panko en druk de kruimels licht aan.",
+        "title": "Kipschnitzels paneren",
+        "ingredientIndices": [
+          3,
+          9,
+          2,
+          1,
+          0
+        ]
+      },
+      {
+        "body": "Verhit tijdens de laatste 10–12 ovenminuten circa 4 el zonnebloemolie in een ruime koekenpan op middelhoog vuur. Bak de schnitzels 3–5 minuten per kant goudbruin. Controleer of het dikste deel van de kip volledig gaar is (74 °C kerntemperatuur) en laat de schnitzels 1–2 minuten uitlekken op een rooster.",
+        "title": "Schnitzels in de pan bakken",
+        "duration": "3–5 min per kant",
+        "ingredientIndices": [
+          13,
+          0
+        ]
+      },
+      {
+        "body": "Roer 1 tl honing en 1 tl citroensap door elkaar tot een dressing. Schep de geroosterde groenten voorzichtig om met de dressing; houd de rösti apart zodat die krokant blijft. Verdeel de overige 1 tl citroensap over de twee kipschnitzels, of serveer deze ernaast.",
+        "title": "Groenten met dressing afmaken",
+        "ingredientIndices": [
+          29,
+          30,
+          14,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21
+        ]
+      },
+      {
+        "body": "Verdeel de groenten en de krokante rösti over twee borden en leg de warme zelfgemaakte kipschnitzels erbij. Serveer direct.",
+        "title": "Alles op borden serveren",
+        "ingredientIndices": [
+          15,
+          0,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
+      }
     ],
     "tips": "De kipschnitzel is volledig gebaseerd op het aparte recept ‘Krokante, kruidige kipschnitzel’, inclusief dezelfde kruidenhoeveelheden en 60 g panko. Bak de rösti op een aparte bakplaat en volg daarvoor de verpakking. Wortel krijgt het langste oventijd; paprika en ui gaan later erbij, courgette nog later en tomaat alleen de laatste 8 minuten. Verdeel de dressing uitsluitend over de groenten. Voor het bakken van de schnitzels wordt dezelfde 4 el zonnebloemolie gebruikt als in het basisrecept; de 1 el olijfolie is alleen voor de groenten. Gebruik twee ovenniveaus en wissel de bakplaten zo nodig halverwege. Controleer kip op 74 °C en serveer zodra alles klaar is.",
     "image": "images/traybake.webp",
@@ -2360,15 +3388,98 @@
       }
     ],
     "steps": [
-      "Verwarm de oven voor op 200 °C hetelucht (220 °C boven-/onderwarmte). Halveer 475 g krieltjes en kook ze circa 7–8 minuten in water tot de buitenkant net zachter wordt. Giet af, laat 2–3 minuten droogstomen en schud de pan voorzichtig zodat de snijkanten ruw worden.",
-      "Meng de droge krieltjes met 1 el van de 1½ el olijfolie, 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ¾ tl rozemarijn, ½ tl tijm, ½ tl zout en ¼ tl zwarte peper. Spreid ze met ruimte ertussen uit op een voorverwarmde of goed hete bakplaat en rooster 30–35 minuten tot ze goudbruin en krokant zijn. Schep halverwege om.",
-      "Schrap of schil 250 g wortels en snijd in dunne staafjes. Meng met de resterende ½ el olijfolie en voeg ze tijdens de laatste circa 25 minuten naast de krieltjes toe, of gebruik een tweede bakplaat als het te vol wordt. Meng pas in de laatste 10 minuten van de oventijd 1 tl honing door de wortels om verbranden te voorkomen.",
-      "Maak 200 g sperziebonen schoon. Kook ze tijdens de laatste 12–15 minuten van de oventijd in licht kokend water totdat ze gaar zijn maar nog beet hebben; giet af.",
-      "Dep 375 g varkenshaas goed droog en bestrooi aan beide kanten met zout en zwarte peper naar smaak (apart van de kruiden voor de krieltjes). Verhit 10 g van de 15 g boter in een koekenpan op middelhoog tot hoog vuur. Braad de varkenshaas 4–5 minuten rondom bruin, verlaag daarna het vuur en gaar nog circa 6–10 minuten, afhankelijk van de dikte, tot 63–65 °C in de kern. Haal uit de pan en laat minimaal 5 minuten losjes afgedekt rusten.",
-      "Snijd intussen 200 g kastanjechampignons in plakjes, snipper 1 sjalot en hak 2 teentjes knoflook fijn. Voeg de resterende 5 g boter toe aan de pan met de aanbaksels van het vlees. Bak de champignons 5–7 minuten op vrij hoog vuur totdat het vrijgekomen vocht verdampt en de champignons goed bruin kleuren; schep niet te vaak om.",
-      "Voeg de sjalot toe en bak 2 minuten mee. Voeg de knoflook, ½ tl tijm en ¾ tl grofgemalen zwarte peper toe en bak nog 30 seconden op matig vuur. Roer 1 tl Dijonmosterd erdoor.",
-      "Schenk 100 ml runderbouillon erbij, roer de aanbaksels los en laat circa 2–3 minuten inkoken. Voeg daarna 125 ml kookroom toe en laat nog 3–5 minuten zacht pruttelen tot de champignon-pepersaus licht gebonden is. Proef eerst; voeg zo nodig 1 tl balsamico toe als frisse tegenhanger en stel de smaak bij.",
-      "Snijd de gerustte varkenshaas in plakken. Verdeel de krokante krieltjes, honingwortels en sperziebonen over twee borden. Leg de varkenshaas erbij en schep de warme champignon-pepersaus over of naast het vlees. Serveer direct."
+      {
+        "body": "Verwarm de oven voor op 200 °C hetelucht (220 °C boven-/onderwarmte). Halveer 475 g krieltjes en kook ze circa 7–8 minuten in water tot de buitenkant net zachter wordt. Giet af, laat 2–3 minuten droogstomen en schud de pan voorzichtig zodat de snijkanten ruw worden.",
+        "title": "Oven voorverwarmen en krieltjes voorkoken",
+        "duration": "7–8 min voorkoken",
+        "ingredientIndices": [
+          13
+        ]
+      },
+      {
+        "body": "Meng de droge krieltjes met 1 el van de 1½ el olijfolie, 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ¾ tl rozemarijn, ½ tl tijm, ½ tl zout en ¼ tl zwarte peper. Spreid ze met ruimte ertussen uit op een voorverwarmde of goed hete bakplaat en rooster 30–35 minuten tot ze goudbruin en krokant zijn. Schep halverwege om.",
+        "title": "Krieltjes kruiden en roosteren",
+        "ingredientIndices": [
+          13,
+          20,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      {
+        "body": "Schrap of schil 250 g wortels en snijd in dunne staafjes. Meng met de resterende ½ el olijfolie en voeg ze tijdens de laatste circa 25 minuten naast de krieltjes toe, of gebruik een tweede bakplaat als het te vol wordt. Meng pas in de laatste 10 minuten van de oventijd 1 tl honing door de wortels om verbranden te voorkomen.",
+        "title": "Wortels voorbereiden en roosteren",
+        "ingredientIndices": [
+          21,
+          20,
+          23
+        ]
+      },
+      {
+        "body": "Maak 200 g sperziebonen schoon. Kook ze tijdens de laatste 12–15 minuten van de oventijd in licht kokend water totdat ze gaar zijn maar nog beet hebben; giet af.",
+        "title": "Sperziebonen koken",
+        "duration": "12–15 min",
+        "ingredientIndices": [
+          22
+        ]
+      },
+      {
+        "body": "Dep 375 g varkenshaas goed droog en bestrooi aan beide kanten met zout en zwarte peper naar smaak (apart van de kruiden voor de krieltjes). Verhit 10 g van de 15 g boter in een koekenpan op middelhoog tot hoog vuur. Braad de varkenshaas 4–5 minuten rondom bruin, verlaag daarna het vuur en gaar nog circa 6–10 minuten, afhankelijk van de dikte, tot 63–65 °C in de kern. Haal uit de pan en laat minimaal 5 minuten losjes afgedekt rusten.",
+        "title": "Varkenshaas aanbraden",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          12
+        ]
+      },
+      {
+        "body": "Snijd intussen 200 g kastanjechampignons in plakjes, snipper 1 sjalot en hak 2 teentjes knoflook fijn. Voeg de resterende 5 g boter toe aan de pan met de aanbaksels van het vlees. Bak de champignons 5–7 minuten op vrij hoog vuur totdat het vrijgekomen vocht verdampt en de champignons goed bruin kleuren; schep niet te vaak om.",
+        "title": "Champignons en aromaten bakken",
+        "duration": "5–7 min champignons bakken",
+        "ingredientIndices": [
+          3,
+          4,
+          5,
+          12
+        ]
+      },
+      {
+        "body": "Voeg de sjalot toe en bak 2 minuten mee. Voeg de knoflook, ½ tl tijm en ¾ tl grofgemalen zwarte peper toe en bak nog 30 seconden op matig vuur. Roer 1 tl Dijonmosterd erdoor.",
+        "title": "Sjalot en kruiden toevoegen",
+        "duration": "ca. 2½ min",
+        "ingredientIndices": [
+          4,
+          5,
+          10,
+          11,
+          8
+        ]
+      },
+      {
+        "body": "Schenk 100 ml runderbouillon erbij, roer de aanbaksels los en laat circa 2–3 minuten inkoken. Voeg daarna 125 ml kookroom toe en laat nog 3–5 minuten zacht pruttelen tot de champignon-pepersaus licht gebonden is. Proef eerst; voeg zo nodig 1 tl balsamico toe als frisse tegenhanger en stel de smaak bij.",
+        "title": "Champignon-pepersaus afmaken",
+        "duration": "5–8 min saus laten binden",
+        "ingredientIndices": [
+          7,
+          6,
+          9
+        ]
+      },
+      {
+        "body": "Snijd de gerustte varkenshaas in plakken. Verdeel de krokante krieltjes, honingwortels en sperziebonen over twee borden. Leg de varkenshaas erbij en schep de warme champignon-pepersaus over of naast het vlees. Serveer direct.",
+        "title": "Varkenshaas aansnijden en serveren",
+        "ingredientIndices": [
+          0,
+          13,
+          21,
+          22
+        ]
+      }
     ],
     "tips": "Kook de krieltjes 7–8 minuten voor, laat ze goed droogstomen en schud de pan zodat ze ruwe randjes krijgen. Verdeel de 1½ el olijfolie in 1 el voor de krieltjes en ½ el voor de wortels; voeg de 1 tl honing pas in de laatste 10 ovenminuten toe. Bak de champignons 5–7 minuten stevig bruin voordat je sjalot en knoflook toevoegt; laat de bouillon inkoken vóór de room erbij gaat. De balsamico is optioneel en gaat pas na het proeven in de saus. Gaar de varkenshaas tot 63–65 °C kerntemperatuur en laat minimaal 5 minuten rusten. Bereid vlees, saus en sperziebonen terwijl de krieltjes in de oven staan om binnen circa 60 minuten te blijven.",
     "image": "images/varkenshaas.webp",
@@ -2538,16 +3649,103 @@
       }
     ],
     "steps": [
-      "Dep 550 g runderriblappen goed droog, snijd in flinke blokken van circa 3–4 cm en bestrooi met zout en peper naar smaak. Snijd 250 g ui in halve ringen en hak 1 teentje knoflook fijn.",
-      "Verhit 1 el olijfolie met circa 10 g van de 25 g boter in een zware stoofpan op middelhoog tot hoog vuur. Bak het vlees in twee porties in totaal circa 10–12 minuten rondom diepbruin; leg niet te veel vlees tegelijk in de pan, zodat het bakt in plaats van stooft. Schep de stukken uit de pan.",
-      "Verlaag het vuur naar laag tot middelhoog en voeg de resterende 15 g boter toe. Bak de 250 g ui circa 20–25 minuten, onder regelmatig omscheppen, tot de uien zacht en diep goudbruin zijn. Voeg de knoflook tijdens de laatste minuut toe en laat die niet verbranden.",
-      "Schenk eerst ongeveer 100 ml van de 300 ml La Trappe Dubbel bij de uien. Roer de aanbaksels los met een houten lepel en laat 1 minuut rustig bruisen. Doe het vlees met de vrijgekomen sappen terug in de pan en voeg de resterende 200 ml bier, 50 ml van de 75 ml runderbouillon, 2 laurierblaadjes en 1 tl tijm toe. Houd de resterende 25 ml bouillon apart om later zo nodig bij te vullen.",
-      "Besmeer 1 snee bruin brood aan één kant met 1 el Franse mosterd en leg het brood met de mosterdzijde naar beneden op het stoofvlees. Breng de vloeistof rustig tegen het kookpunt; het vlees hoeft niet volledig onder te staan, maar er moet voldoende vocht op de bodem zijn.",
-      "Zet het vuur zeer laag en laat 2½–3½ uur zacht stoven met het deksel schuin op de pan. Roer na circa 45 minuten het mosterdbrood door de saus. Controleer regelmatig dat de stoof slechts heel zacht pruttelt; voeg zo nodig de gereserveerde 25 ml bouillon en daarna kleine scheutjes heet water toe om droogkoken te voorkomen. Het vlees is klaar als het met een vork gemakkelijk uit elkaar valt; stoof anders langer.",
-      "Verwijder de laurierblaadjes. Is het vlees mals maar de saus nog dun, laat dan enkele minuten zonder deksel zacht inkoken tot de saus dik en glanzend is. Proef eerst: voeg alleen indien gewenst maximaal 1 tl balsamico toe voor frisheid of maximaal 1 tl optionele appelstroop als de biersmaak te bitter is of meer rondheid nodig heeft. Breng waar nodig op smaak met zout en peper.",
-      "Bereid tegen het einde 475 g diepvrieskrulfriet volgens de aanwijzingen op de verpakking, bij voorkeur zo dat de friet krokant en tegelijk met het stoofvlees klaar is.",
-      "Halveer 125 g cherrytomaten, snijd ⅓ komkommer in stukjes en ¼ rode ui in dunne halve ringen. Meng met 75 g gemengde sla. Klop een dressing van 1 el olijfolie, 2 tl citroensap, ½ tl mosterd en ½ tl honing en schep die pas vlak voor het serveren door de salade.",
-      "Serveer het warme, dikke stoofvlees met de knapperige krulfriet en de frisse salade. Eventuele restjes stoofvlees zijn de volgende dag opnieuw lekker; koel ze snel af, bewaar gekoeld en warm door en door op."
+      {
+        "body": "Dep 550 g runderriblappen goed droog, snijd in flinke blokken van circa 3–4 cm en bestrooi met zout en peper naar smaak. Snijd 250 g ui in halve ringen en hak 1 teentje knoflook fijn.",
+        "title": "Vlees, ui en knoflook voorbereiden",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          13
+        ]
+      },
+      {
+        "body": "Verhit 1 el olijfolie met circa 10 g van de 25 g boter in een zware stoofpan op middelhoog tot hoog vuur. Bak het vlees in twee porties in totaal circa 10–12 minuten rondom diepbruin; leg niet te veel vlees tegelijk in de pan, zodat het bakt in plaats van stooft. Schep de stukken uit de pan.",
+        "title": "Rundvlees diepbruin aanbraden",
+        "duration": "10–12 min",
+        "ingredientIndices": [
+          12,
+          11,
+          0
+        ]
+      },
+      {
+        "body": "Verlaag het vuur naar laag tot middelhoog en voeg de resterende 15 g boter toe. Bak de 250 g ui circa 20–25 minuten, onder regelmatig omscheppen, tot de uien zacht en diep goudbruin zijn. Voeg de knoflook tijdens de laatste minuut toe en laat die niet verbranden.",
+        "title": "Uien langzaam karamelliseren",
+        "duration": "20–25 min",
+        "ingredientIndices": [
+          1,
+          11,
+          2
+        ]
+      },
+      {
+        "body": "Schenk eerst ongeveer 100 ml van de 300 ml La Trappe Dubbel bij de uien. Roer de aanbaksels los met een houten lepel en laat 1 minuut rustig bruisen. Doe het vlees met de vrijgekomen sappen terug in de pan en voeg de resterende 200 ml bier, 50 ml van de 75 ml runderbouillon, 2 laurierblaadjes en 1 tl tijm toe. Houd de resterende 25 ml bouillon apart om later zo nodig bij te vullen.",
+        "title": "Bier en bouillon toevoegen",
+        "ingredientIndices": [
+          3,
+          0,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "body": "Besmeer 1 snee bruin brood aan één kant met 1 el Franse mosterd en leg het brood met de mosterdzijde naar beneden op het stoofvlees. Breng de vloeistof rustig tegen het kookpunt; het vlees hoeft niet volledig onder te staan, maar er moet voldoende vocht op de bodem zijn.",
+        "title": "Mosterd-brood op het stoofvlees leggen",
+        "ingredientIndices": [
+          5,
+          6
+        ]
+      },
+      {
+        "body": "Zet het vuur zeer laag en laat 2½–3½ uur zacht stoven met het deksel schuin op de pan. Roer na circa 45 minuten het mosterdbrood door de saus. Controleer regelmatig dat de stoof slechts heel zacht pruttelt; voeg zo nodig de gereserveerde 25 ml bouillon en daarna kleine scheutjes heet water toe om droogkoken te voorkomen. Het vlees is klaar als het met een vork gemakkelijk uit elkaar valt; stoof anders langer.",
+        "title": "Stoofvlees langzaam laten garen",
+        "duration": "2½–3½ uur",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Verwijder de laurierblaadjes. Is het vlees mals maar de saus nog dun, laat dan enkele minuten zonder deksel zacht inkoken tot de saus dik en glanzend is. Proef eerst: voeg alleen indien gewenst maximaal 1 tl balsamico toe voor frisheid of maximaal 1 tl optionele appelstroop als de biersmaak te bitter is of meer rondheid nodig heeft. Breng waar nodig op smaak met zout en peper.",
+        "title": "Saus op smaak en dikte brengen",
+        "ingredientIndices": [
+          9,
+          10,
+          13
+        ]
+      },
+      {
+        "body": "Bereid tegen het einde 475 g diepvrieskrulfriet volgens de aanwijzingen op de verpakking, bij voorkeur zo dat de friet krokant en tegelijk met het stoofvlees klaar is.",
+        "title": "Krulfriet bereiden",
+        "duration": "volgens verpakking",
+        "ingredientIndices": [
+          14
+        ]
+      },
+      {
+        "body": "Halveer 125 g cherrytomaten, snijd ⅓ komkommer in stukjes en ¼ rode ui in dunne halve ringen. Meng met 75 g gemengde sla. Klop een dressing van 1 el olijfolie, 2 tl citroensap, ½ tl mosterd en ½ tl honing en schep die pas vlak voor het serveren door de salade.",
+        "title": "Frisse salade en dressing maken",
+        "ingredientIndices": [
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ]
+      },
+      {
+        "body": "Serveer het warme, dikke stoofvlees met de knapperige krulfriet en de frisse salade. Eventuele restjes stoofvlees zijn de volgende dag opnieuw lekker; koel ze snel af, bewaar gekoeld en warm door en door op.",
+        "title": "Stoofvlees met friet serveren",
+        "ingredientIndices": [
+          0,
+          14,
+          15
+        ]
+      }
     ],
     "tips": "Braad de 550 g runderriblappen in twee porties goed bruin en bak de 250 g ui 20–25 minuten rustig goudbruin voor een diepe smaak. Gebruik eerst 50 ml van de 75 ml bouillon; houd 25 ml achter de hand en voeg tijdens het stoven zo nodig extra heet water toe. Laat de saus aan het einde zonder deksel inkoken wanneer het vlees al mals is. Balsamico en appelstroop zijn optioneel: proef eerst de balans tussen de bitterheid van het donkere bier, de zoetheid van de uien en de mosterd. Laat stoofvlees niet hard koken. Reken circa 4 uur en 15 minuten totaal, maar langer stoven kan nodig zijn. De friet en salade maak je pas tegen het einde.",
     "image": "images/vlaams-stoofvlees.webp",
@@ -2668,14 +3866,78 @@
       }
     ],
     "steps": [
-      "Verwarm de oven voor op 200 °C boven-/onderwarmte (190 °C hetelucht). Zet een ovenschaal klaar en verwarm de airfryer voor als de verpakking van de friet dit voorschrijft.",
-      "Schil en snijd 400 g wortels in gelijkmatige, niet te dikke stukken. Kook ze circa 6–8 minuten voor in licht kokend water tot ze net wat zachter zijn, maar nog beet hebben. Giet goed af en laat uitstomen.",
-      "Dep 330 g zalmfilets droog en leg ze in de ovenschaal, met de huidzijde naar beneden als die aanwezig is. Bestrijk met in totaal 2 tl olijfolie en kruid met 1 tl gedroogde dille, ¼ tl knoflookpoeder, ¼ tl zwarte peper en ¼ tl zout. Houd de 2 tl citroensap voor de zalm apart tot na het bakken.",
-      "Start de bereiding van 400 g Lamb Weston Rustic Fries in de airfryer volgens de verpakking (richtlijn circa 180 °C, ongeveer 15 minuten). Schud de friet tijdens het bakken regelmatig, bijvoorbeeld na ongeveer 4, 8 en 12 minuten, zodat deze krokant wordt.",
-      "Zet de zalm ongeveer tegelijkertijd met de friet in de voorverwarmde oven en bak circa 12–15 minuten, afhankelijk van de dikte van de filets. Controleer tegen het einde de gaarheid; houd voor een voedselveilige bereiding 63 °C kerntemperatuur aan. Laat de zalm na de oven circa 2 minuten rusten.",
-      "Verhit tijdens de laatste circa 5 minuten van de oventijd 10 g boter in een koekenpan op middelhoog vuur. Voeg de goed uitgelekte wortels toe en bak 2–3 minuten. Schep er ½ tl tijm, ¼ tl knoflookpoeder en peper en zout naar smaak door.",
-      "Voeg 1 tl honing toe en schep de wortels nog circa 1–2 minuten om, totdat ze mooi glanzen. Zet het vuur uit en voeg 1 tl citroensap toe; proef en stel zo nodig de smaak bij.",
-      "Besprenkel de ovenzalm pas na het bakken met de apart gehouden 2 tl citroensap. Serveer direct met de geglaceerde wortels en de krokante friet."
+      {
+        "body": "Verwarm de oven voor op 200 °C boven-/onderwarmte (190 °C hetelucht). Zet een ovenschaal klaar en verwarm de airfryer voor als de verpakking van de friet dit voorschrijft.",
+        "title": "Oven en airfryer voorverwarmen",
+        "ingredientIndices": []
+      },
+      {
+        "body": "Schil en snijd 400 g wortels in gelijkmatige, niet te dikke stukken. Kook ze circa 6–8 minuten voor in licht kokend water tot ze net wat zachter zijn, maar nog beet hebben. Giet goed af en laat uitstomen.",
+        "title": "Wortels voorkoken",
+        "duration": "6–8 min",
+        "ingredientIndices": [
+          7
+        ]
+      },
+      {
+        "body": "Dep 330 g zalmfilets droog en leg ze in de ovenschaal, met de huidzijde naar beneden als die aanwezig is. Bestrijk met in totaal 2 tl olijfolie en kruid met 1 tl gedroogde dille, ¼ tl knoflookpoeder, ¼ tl zwarte peper en ¼ tl zout. Houd de 2 tl citroensap voor de zalm apart tot na het bakken.",
+        "title": "Zalmfilets kruiden",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "body": "Start de bereiding van 400 g Lamb Weston Rustic Fries in de airfryer volgens de verpakking (richtlijn circa 180 °C, ongeveer 15 minuten). Schud de friet tijdens het bakken regelmatig, bijvoorbeeld na ongeveer 4, 8 en 12 minuten, zodat deze krokant wordt.",
+        "title": "Friet in de airfryer bakken",
+        "duration": "ca. 15 min, zie verpakking",
+        "ingredientIndices": [
+          14
+        ]
+      },
+      {
+        "body": "Zet de zalm ongeveer tegelijkertijd met de friet in de voorverwarmde oven en bak circa 12–15 minuten, afhankelijk van de dikte van de filets. Controleer tegen het einde de gaarheid; houd voor een voedselveilige bereiding 63 °C kerntemperatuur aan. Laat de zalm na de oven circa 2 minuten rusten.",
+        "title": "Zalm in de oven garen",
+        "duration": "12–15 min",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Verhit tijdens de laatste circa 5 minuten van de oventijd 10 g boter in een koekenpan op middelhoog vuur. Voeg de goed uitgelekte wortels toe en bak 2–3 minuten. Schep er ½ tl tijm, ¼ tl knoflookpoeder en peper en zout naar smaak door.",
+        "title": "Wortels kort bakken",
+        "duration": "2–3 min",
+        "ingredientIndices": [
+          8,
+          7,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "body": "Voeg 1 tl honing toe en schep de wortels nog circa 1–2 minuten om, totdat ze mooi glanzen. Zet het vuur uit en voeg 1 tl citroensap toe; proef en stel zo nodig de smaak bij.",
+        "title": "Wortels glaceren met honing",
+        "duration": "1–2 min",
+        "ingredientIndices": [
+          9,
+          13,
+          7
+        ]
+      },
+      {
+        "body": "Besprenkel de ovenzalm pas na het bakken met de apart gehouden 2 tl citroensap. Serveer direct met de geglaceerde wortels en de krokante friet.",
+        "title": "Zalm afmaken en serveren",
+        "ingredientIndices": [
+          6,
+          0,
+          14
+        ]
+      }
     ],
     "tips": "Dep de zalm droog en gebruik slechts 2 tl olijfolie; de vis bevat van zichzelf al vet. Gebruik 1 tl gedroogde dille voor een duidelijke kruidensmaak. Controleer de gaarheid vanaf ongeveer 12 minuten, afhankelijk van de dikte, en houd voor een voedselveilige bereiding 63 °C kerntemperatuur aan. Voeg de 2 tl citroensap pas ná het bakken aan de zalm toe. Kook de wortels 6–8 minuten voor, laat uitlekken en glaceer ze kort in 10 g boter met 1 tl honing; de extra 1 tl citroensap hoort bij de wortels. Plan zalm en friet gelijktijdig en maak de wortels als laatste af.",
     "image": "images/zalm.webp",
@@ -2735,16 +3997,86 @@
       }
     ],
     "steps": [
-      "Meng 350 g tarwebloem met 245 ml water, 2 g instantgist en 7 g zout tot een samenhangend deeg. Het deeg mag iets plakkerig zijn. Dek de kom af.",
-      "Laat het deeg 20 minuten afgedekt rusten. Maak je handen licht nat, pak de rand van het deeg, rek voorzichtig omhoog en vouw over het midden. Draai de kom een kwartslag en herhaal dit, totdat je alle vier de kanten eenmaal hebt gevouwen.",
-      "Laat opnieuw 20 minuten afgedekt rusten en herhaal het rekken en vouwen aan alle vier de kanten. Het deeg moet iets steviger en elastischer aanvoelen.",
-      "Zet het deeg goed afgedekt minimaal 8 uur en bij voorkeur 10–14 uur in de koelkast; 12 uur is een praktisch uitgangspunt voor de totale tijd.",
-      "Haal het deeg uit de koelkast en stort het voorzichtig op een licht bebloemd werkvlak. Verdeel in twee gelijke stukken en vorm beide zonder veel druk tot een kort, los rolletje. Dek af en laat 10–15 minuten ontspannen, zodat het deeg niet terugveert bij het definitieve vormen.",
-      "Druk elk stuk voorzichtig uit tot een rechthoek van circa 20–24 bij 12–15 cm, zonder alle lucht eruit te drukken. Vouw de boven- en onderrand elk ongeveer een derde naar het midden, vouw in de lengte dubbel en knijp de naad goed dicht.",
-      "Rol met lichte druk uit tot twee stokbroden van ongeveer 25–30 cm. Leg ze met de naad naar beneden op bakpapier, met voldoende ruimte ertussen, en dek losjes af.",
-      "Laat 60–90 minuten narijzen, afhankelijk van deeg- en kamertemperatuur (richttijd 75 minuten). Het deeg moet zichtbaar luchtiger zijn en na een lichte vingerdruk langzaam terugveren. Verwarm de oven tijdens de laatste 30 minuten voor op 240 °C boven-/onderwarmte (220 °C hetelucht), met een lege, uitsluitend metalen stoomschaal onderin.",
-      "Snijd in ieder stokbrood drie licht overlappende inkepingen, vrijwel in de lengterichting en circa ½–1 cm diep. Schuif de broden in de oven en giet voorzichtig 150 ml heet water in de hete metalen schaal. Houd je gezicht en handen uit de opstijgende stoom; gebruik geen glazen schaal.",
-      "Bak de stokbroden 20–25 minuten tot ze diep goudbruin en krokant zijn. Open na ongeveer 10 minuten voorzichtig kort de ovendeur om overtollige stoom te laten ontsnappen; pas op voor hete stoom. Laat na het bakken minimaal 20–30 minuten op een rooster afkoelen voordat je ze aansnijdt."
+      {
+        "body": "Meng 350 g tarwebloem met 245 ml water, 2 g instantgist en 7 g zout tot een samenhangend deeg. Het deeg mag iets plakkerig zijn. Dek de kom af.",
+        "title": "Deeg mengen",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "body": "Laat het deeg 20 minuten afgedekt rusten. Maak je handen licht nat, pak de rand van het deeg, rek voorzichtig omhoog en vouw over het midden. Draai de kom een kwartslag en herhaal dit, totdat je alle vier de kanten eenmaal hebt gevouwen.",
+        "title": "Eerste rust en rekken-vouwen",
+        "duration": "20 min rusten",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Laat opnieuw 20 minuten afgedekt rusten en herhaal het rekken en vouwen aan alle vier de kanten. Het deeg moet iets steviger en elastischer aanvoelen.",
+        "title": "Tweede rust en rekken-vouwen",
+        "duration": "20 min rusten",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Zet het deeg goed afgedekt minimaal 8 uur en bij voorkeur 10–14 uur in de koelkast; 12 uur is een praktisch uitgangspunt voor de totale tijd.",
+        "title": "Deeg laten nachtrijzen",
+        "duration": "minimaal 8 uur, liefst 10–14 uur",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Haal het deeg uit de koelkast en stort het voorzichtig op een licht bebloemd werkvlak. Verdeel in twee gelijke stukken en vorm beide zonder veel druk tot een kort, los rolletje. Dek af en laat 10–15 minuten ontspannen, zodat het deeg niet terugveert bij het definitieve vormen.",
+        "title": "Deeg verdelen en laten ontspannen",
+        "duration": "10–15 min rusten",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Druk elk stuk voorzichtig uit tot een rechthoek van circa 20–24 bij 12–15 cm, zonder alle lucht eruit te drukken. Vouw de boven- en onderrand elk ongeveer een derde naar het midden, vouw in de lengte dubbel en knijp de naad goed dicht.",
+        "title": "Stokbrood vormen",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Rol met lichte druk uit tot twee stokbroden van ongeveer 25–30 cm. Leg ze met de naad naar beneden op bakpapier, met voldoende ruimte ertussen, en dek losjes af.",
+        "title": "Stokbroden uitrollen en neerleggen",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Laat 60–90 minuten narijzen, afhankelijk van deeg- en kamertemperatuur (richttijd 75 minuten). Het deeg moet zichtbaar luchtiger zijn en na een lichte vingerdruk langzaam terugveren. Verwarm de oven tijdens de laatste 30 minuten voor op 240 °C boven-/onderwarmte (220 °C hetelucht), met een lege, uitsluitend metalen stoomschaal onderin.",
+        "title": "Broden laten narijzen en oven voorverwarmen",
+        "duration": "60–90 min narijzen",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Snijd in ieder stokbrood drie licht overlappende inkepingen, vrijwel in de lengterichting en circa ½–1 cm diep. Schuif de broden in de oven en giet voorzichtig 150 ml heet water in de hete metalen schaal. Houd je gezicht en handen uit de opstijgende stoom; gebruik geen glazen schaal.",
+        "title": "Broden insnijden en stoom toevoegen",
+        "ingredientIndices": [
+          0,
+          4
+        ]
+      },
+      {
+        "body": "Bak de stokbroden 20–25 minuten tot ze diep goudbruin en krokant zijn. Open na ongeveer 10 minuten voorzichtig kort de ovendeur om overtollige stoom te laten ontsnappen; pas op voor hete stoom. Laat na het bakken minimaal 20–30 minuten op een rooster afkoelen voordat je ze aansnijdt.",
+        "title": "Stokbroden bakken en afkoelen",
+        "duration": "20–25 min bakken",
+        "ingredientIndices": [
+          0
+        ]
+      }
     ],
     "tips": "De ingrediëntenverhouding blijft 350 g tarwebloem, 245 ml water, 2 g instantgist en 7 g zout (70% hydratatie). Vouw twee keer aan vier kanten, laat de gevormde voorrolletjes 10–15 minuten ontspannen en geef de stokbroden 60–90 minuten narijs. Het deeg is klaar voor de oven als het na een lichte vingerdruk langzaam terugveert. Snijd drie licht overlappende inkepingen bijna in de lengterichting. Gebruik een metalen schaal voor de stoom en laat na circa 10 minuten de stoom veilig ontsnappen. Koel de broden 20–30 minuten af op een rooster. De totale richttijd van circa 15 uur en 40 minuten omvat 12 uur nachtrijs; met een andere nachtrijs verandert de tijd.",
     "activeMinutes": 40,
@@ -2913,14 +4245,93 @@
       }
     ],
     "steps": [
-      "Snijd 300 g kipdijfilet in dunne reepjes. Meng met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl oregano, ¾ tl komijn, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl chilipoeder, ½ tl zwarte peper en ½ tl zout. Schep goed om, zodat de kip aan alle kanten gekruid is.",
-      "Snijd 1 paprika in reepjes, ¾ courgette in kleine halve plakjes en 1 rode ui in dunne halve ringen. Hak 2 teentjes knoflook fijn. Verwijder de natte zaadlijsten van 1 tomaat en snijd het vruchtvlees in kleine blokjes.",
-      "Verhit ½ el van de 1 el olijfolie in een ruime koekenpan op middelhoog tot hoog vuur. Bak de kipreepjes circa 5–7 minuten, zo nodig in twee porties, tot ze rondom bruine randjes krijgen. Schep de kip tijdelijk uit de pan; ze gaart straks volledig door in de saus.",
-      "Verhit de resterende ½ el olijfolie in dezelfde pan. Bak de rode ui en paprika circa 3 minuten op middelhoog tot hoog vuur. Voeg de courgette toe en bak nog 3–4 minuten stevig mee totdat vocht verdampt en de groenten licht kleuren.",
-      "Voeg de fijngesneden knoflook en 1½ el tomatenpuree toe. Bak al roerend ongeveer 1 minuut mee, zodat de puree smaak ontwikkelt zonder te verbranden.",
-      "Voeg de tomatenblokjes en ½ tl honing toe en laat 2–3 minuten inkoken tot een stevige saus. Voeg alleen als het mengsel te droog wordt maximaal de optionele 25 ml water toe. Doe de kip terug in de pan, schep om en laat nog circa 2–3 minuten zacht pruttelen tot de kip volledig gaar is (74 °C kerntemperatuur). Proef en stel de kruiding zo nodig bij.",
-      "Zet het vuur uit en roer 1 tl citroensap door de vulling. Controleer of de saus dik genoeg is om in een wrap te blijven: laat zo nodig nog even zonder deksel inkoken.",
-      "Verdeel het kip-groentemengsel over 4 grote wraps en vouw ze stevig dicht. Bak de wraps met de naad eerst naar beneden in een droge koekenpan op middelhoog vuur circa 2 minuten per kant, tot ze goudbruin en krokant zijn. Bak indien nodig in twee porties en serveer direct."
+      {
+        "body": "Snijd 300 g kipdijfilet in dunne reepjes. Meng met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl oregano, ¾ tl komijn, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl chilipoeder, ½ tl zwarte peper en ½ tl zout. Schep goed om, zodat de kip aan alle kanten gekruid is.",
+        "title": "Kipreepjes kruiden",
+        "ingredientIndices": [
+          1,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      {
+        "body": "Snijd 1 paprika in reepjes, ¾ courgette in kleine halve plakjes en 1 rode ui in dunne halve ringen. Hak 2 teentjes knoflook fijn. Verwijder de natte zaadlijsten van 1 tomaat en snijd het vruchtvlees in kleine blokjes.",
+        "title": "Groenten fijnsnijden",
+        "ingredientIndices": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "body": "Verhit ½ el van de 1 el olijfolie in een ruime koekenpan op middelhoog tot hoog vuur. Bak de kipreepjes circa 5–7 minuten, zo nodig in twee porties, tot ze rondom bruine randjes krijgen. Schep de kip tijdelijk uit de pan; ze gaart straks volledig door in de saus.",
+        "title": "Kip goudbruin bakken",
+        "duration": "5–7 min",
+        "ingredientIndices": [
+          20,
+          1
+        ]
+      },
+      {
+        "body": "Verhit de resterende ½ el olijfolie in dezelfde pan. Bak de rode ui en paprika circa 3 minuten op middelhoog tot hoog vuur. Voeg de courgette toe en bak nog 3–4 minuten stevig mee totdat vocht verdampt en de groenten licht kleuren.",
+        "title": "Groenten stevig bakken",
+        "duration": "6–7 min",
+        "ingredientIndices": [
+          20,
+          4,
+          2,
+          3
+        ]
+      },
+      {
+        "body": "Voeg de fijngesneden knoflook en 1½ el tomatenpuree toe. Bak al roerend ongeveer 1 minuut mee, zodat de puree smaak ontwikkelt zonder te verbranden.",
+        "title": "Knoflook en tomatenpuree meebakken",
+        "duration": "ca. 1 min",
+        "ingredientIndices": [
+          6,
+          7
+        ]
+      },
+      {
+        "body": "Voeg de tomatenblokjes en ½ tl honing toe en laat 2–3 minuten inkoken tot een stevige saus. Voeg alleen als het mengsel te droog wordt maximaal de optionele 25 ml water toe. Doe de kip terug in de pan, schep om en laat nog circa 2–3 minuten zacht pruttelen tot de kip volledig gaar is (74 °C kerntemperatuur). Proef en stel de kruiding zo nodig bij.",
+        "title": "Tomaten en kip laten inkoken",
+        "duration": "2–3 min",
+        "ingredientIndices": [
+          5,
+          9,
+          8,
+          1
+        ]
+      },
+      {
+        "body": "Zet het vuur uit en roer 1 tl citroensap door de vulling. Controleer of de saus dik genoeg is om in een wrap te blijven: laat zo nodig nog even zonder deksel inkoken.",
+        "title": "Vulling fris op smaak brengen",
+        "ingredientIndices": [
+          10
+        ]
+      },
+      {
+        "body": "Verdeel het kip-groentemengsel over 4 grote wraps en vouw ze stevig dicht. Bak de wraps met de naad eerst naar beneden in een droge koekenpan op middelhoog vuur circa 2 minuten per kant, tot ze goudbruin en krokant zijn. Bak indien nodig in twee porties en serveer direct.",
+        "title": "Wraps vullen en krokant bakken",
+        "duration": "ca. 2 min per kant",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
     ],
     "tips": "Voor een evenwichtige smaak bevat de kip nu 1 tl gewoon paprikapoeder en ½ tl gerookt paprikapoeder; de overige kruiden blijven gelijk. Bak kip en courgette stevig aan en verwijder de natte zaadlijsten uit de tomaat, zodat de wrapvulling niet waterig wordt. Voeg de 25 ml water alleen toe als de saus te droog is. Houd de honing op ½ tl en voeg de 1 tl citroensap pas op het einde toe. Laat de saus voldoende inkoken en bak de gevouwen wraps circa 2 minuten per kant in een droge koekenpan.",
     "image": "images/kipwraps.webp",
@@ -2989,12 +4400,59 @@
       }
     ],
     "steps": [
-      "Maak het cacaopapje: doe 17 g ongezoet cacaopoeder en 16 g suiker in een ruime mok of kom. Houd de overige 1 g cacaopoeder apart om de slagroom straks te bestuiven. Voeg ongeveer 3 el (45 ml) van de koude melk toe en roer stevig tot een glad, donker papje zonder klontjes.",
-      "Klop 75 ml goed koude slagroom in een kleine kom tot zachte pieken: circa 1–2 minuten met een handmixer of 3–5 minuten met een garde. Zet de geklopte slagroom tot het serveren koel weg.",
-      "Verwarm de resterende circa 455 ml melk in een steelpan op middellaag vuur gedurende ongeveer 3–4 minuten, tot de melk duidelijk dampt maar niet kookt. Roer af en toe om aanzetten te voorkomen.",
-      "Schenk eerst een kleine hoeveelheid warme melk bij het cacaopapje en klop glad. Voeg daarna al roerend de rest van de melk toe. Giet alles indien nodig terug in de pan.",
-      "Verwarm nog 1–2 minuten op laag vuur en blijf roeren totdat de cacao volledig is verdeeld. Voeg desgewenst ¼ tl kaneel en/of 20 g fijngehakte pure chocolade toe; roer tot de chocolade is gesmolten.",
-      "Proef de chocolademelk. Voeg voor een zoetere smaak eventueel een beetje extra suiker of honing toe. Verdeel over 2 mokken, schep op elke mok de helft van de geklopte slagroom en bestuif met de apart gehouden 1 g cacaopoeder. Serveer direct."
+      {
+        "body": "Maak het cacaopapje: doe 17 g ongezoet cacaopoeder en 16 g suiker in een ruime mok of kom. Houd de overige 1 g cacaopoeder apart om de slagroom straks te bestuiven. Voeg ongeveer 3 el (45 ml) van de koude melk toe en roer stevig tot een glad, donker papje zonder klontjes.",
+        "title": "Cacao met koude melk gladroeren",
+        "ingredientIndices": [
+          1,
+          2,
+          0
+        ]
+      },
+      {
+        "body": "Klop 75 ml goed koude slagroom in een kleine kom tot zachte pieken: circa 1–2 minuten met een handmixer of 3–5 minuten met een garde. Zet de geklopte slagroom tot het serveren koel weg.",
+        "title": "Slagroom lobbig kloppen",
+        "duration": "1–5 min, afhankelijk van hulpmiddel",
+        "ingredientIndices": [
+          5
+        ]
+      },
+      {
+        "body": "Verwarm de resterende circa 455 ml melk in een steelpan op middellaag vuur gedurende ongeveer 3–4 minuten, tot de melk duidelijk dampt maar niet kookt. Roer af en toe om aanzetten te voorkomen.",
+        "title": "Melk zacht verwarmen",
+        "duration": "3–4 min",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Schenk eerst een kleine hoeveelheid warme melk bij het cacaopapje en klop glad. Voeg daarna al roerend de rest van de melk toe. Giet alles indien nodig terug in de pan.",
+        "title": "Warme melk door cacao mengen",
+        "ingredientIndices": [
+          1,
+          0
+        ]
+      },
+      {
+        "body": "Verwarm nog 1–2 minuten op laag vuur en blijf roeren totdat de cacao volledig is verdeeld. Voeg desgewenst ¼ tl kaneel en/of 20 g fijngehakte pure chocolade toe; roer tot de chocolade is gesmolten.",
+        "title": "Chocolademelk afmaken",
+        "duration": "1–2 min",
+        "ingredientIndices": [
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "body": "Proef de chocolademelk. Voeg voor een zoetere smaak eventueel een beetje extra suiker of honing toe. Verdeel over 2 mokken, schep op elke mok de helft van de geklopte slagroom en bestuif met de apart gehouden 1 g cacaopoeder. Serveer direct.",
+        "title": "Proeven, inschenken en garneren",
+        "ingredientIndices": [
+          0,
+          5,
+          1,
+          2
+        ]
+      }
     ],
     "tips": "Dit recept gaat uit van ongezoet bakcacaopoeder. Gebruik je instant cacaodrankpoeder (bijvoorbeeld Nesquik), volg dan de aanwijzingen op de verpakking en voeg niet automatisch 16 g suiker toe. Een glad cacaopapje voorkomt klontjes. De slagroom is ongezoet, omdat de chocolademelk al suiker bevat; zo blijft het geheel in balans. Gebruik eventueel spuitslagroom als snelle vervanger voor de zelfgeklopte topping. Voor een rijkere chocoladesmaak kun je 20 g pure chocolade toevoegen.",
     "image": "images/chocolademelk.webp",
@@ -3069,10 +4527,44 @@
       }
     ],
     "steps": [
-      "Laat 40 g ongezouten roomboter op kamertemperatuur zacht worden, maar niet smelten. Hak 2 tl verse peterselie heel fijn en pers of rasp ½ klein teentje knoflook.",
-      "Prak de boter met een vork en meng de knoflook, peterselie, ¼ tl citroensap, ⅛ tl zout en ⅛ tl zwarte peper er volledig door. Voeg desgewenst ⅛ tl oregano toe voor een subtiele extra kruidensmaak.",
-      "Proef een klein beetje. Voeg alleen indien nodig een klein snufje zout of enkele druppels citroensap toe: de knoflook wordt tijdens het rusten iets duidelijker van smaak.",
-      "Schep de boter in een klein bakje, dek af en zet bij voorkeur 30 minuten in de koelkast zodat de smaken zich mengen. Haal ongeveer 10 minuten vóór het serveren uit de koelkast als je de boter goed smeerbaar wilt hebben."
+      {
+        "body": "Laat 40 g ongezouten roomboter op kamertemperatuur zacht worden, maar niet smelten. Hak 2 tl verse peterselie heel fijn en pers of rasp ½ klein teentje knoflook.",
+        "title": "Boter zacht laten worden en kruiden hakken",
+        "ingredientIndices": [
+          0,
+          2,
+          1
+        ]
+      },
+      {
+        "body": "Prak de boter met een vork en meng de knoflook, peterselie, ¼ tl citroensap, ⅛ tl zout en ⅛ tl zwarte peper er volledig door. Voeg desgewenst ⅛ tl oregano toe voor een subtiele extra kruidensmaak.",
+        "title": "Knoflook-kruidenboter mengen",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "body": "Proef een klein beetje. Voeg alleen indien nodig een klein snufje zout of enkele druppels citroensap toe: de knoflook wordt tijdens het rusten iets duidelijker van smaak.",
+        "title": "Proeven en bijsturen",
+        "ingredientIndices": [
+          4,
+          3
+        ]
+      },
+      {
+        "body": "Schep de boter in een klein bakje, dek af en zet bij voorkeur 30 minuten in de koelkast zodat de smaken zich mengen. Haal ongeveer 10 minuten vóór het serveren uit de koelkast als je de boter goed smeerbaar wilt hebben.",
+        "title": "Boter laten rusten en serveren",
+        "duration": "bij voorkeur 30 min koelen",
+        "ingredientIndices": [
+          0
+        ]
+      }
     ],
     "tips": "Dit recept behoudt de oorspronkelijke kleine portie van 40 g roomboter en ½ klein teentje knoflook. Gebruik 2 tl fijngehakte verse peterselie voor een frisse kruidensmaak; als vervanger kan ½ tl gedroogde peterselie worden gebruikt. De optionele oregano kan worden vervangen door 1 tl fijngeknipte bieslook. Laat bij voorkeur 30 minuten koelen (de totale tijd is 35 minuten, exclusief eventueel 10 minuten op temperatuur laten komen). Serveer op vers stokbrood, bij een biefstuk of gegrilde groenten. Bewaar afgedekt in de koelkast en gebruik binnen 2–3 dagen.",
     "image": "images/kruidenboter.webp",
@@ -3190,13 +4682,73 @@
       }
     ],
     "steps": [
-      "Snijd 400 g kipdijfilet in gelijkmatige stukken of reepjes. Kneus ½ tl komijnzaad fijn met de achterkant van een lepel of een vijzel, zodat de smaak goed vrijkomt.",
-      "Meng in een kom 2 tl olijfolie met 1 el ketjap manis, 1 tl paprikapoeder, 1 tl kerrie, ½ tl gekneusd komijnzaad, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl zwarte peper en ¼ tl zout. Voeg voor wat pit optioneel ¼ tl chilipoeder toe. Schep de kip grondig door deze kruidenmix.",
-      "Je kunt de kip meteen bakken. Laat haar voor een wat diepere smaak eventueel eerst 10–20 minuten afgedekt in de koelkast marineren; dit is optioneel en komt boven op de bereidingstijd.",
-      "Kook voor een volledige maaltijd desgewenst 150 g rijst volgens de verpakking en maak 300 g sperziebonen schoon. Kook de sperziebonen in circa 10–12 minuten gaar maar nog beetgaar. Bereid dit tegelijk met de kip.",
-      "Verhit een ruime koekenpan of wok op middelhoog tot hoog vuur. Bak de gekruide kip in circa 8–10 minuten goudbruin en volledig gaar (74 °C kerntemperatuur). Leg de kip in één laag, roer niet voortdurend en bak zo nodig in twee porties; gebruik indien nodig iets minder vuur zodat de ketjap niet verbrandt.",
-      "Verwarm 120 g reeds bereide satésaus in een klein steelpannetje op laag vuur volgens de aanwijzingen van de saus. Roer regelmatig en laat niet hard koken; voeg eventueel een klein scheutje water toe als de saus te dik is.",
-      "Verdeel de gebakken kip over twee borden en lepel de warme satésaus erover of serveer apart. Geef er eventueel rijst en sperziebonen bij, zodat het een volledige maaltijd wordt."
+      {
+        "body": "Snijd 400 g kipdijfilet in gelijkmatige stukken of reepjes. Kneus ½ tl komijnzaad fijn met de achterkant van een lepel of een vijzel, zodat de smaak goed vrijkomt.",
+        "title": "Kip snijden en komijn kneuzen",
+        "ingredientIndices": [
+          0,
+          5
+        ]
+      },
+      {
+        "body": "Meng in een kom 2 tl olijfolie met 1 el ketjap manis, 1 tl paprikapoeder, 1 tl kerrie, ½ tl gekneusd komijnzaad, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl zwarte peper en ¼ tl zout. Voeg voor wat pit optioneel ¼ tl chilipoeder toe. Schep de kip grondig door deze kruidenmix.",
+        "title": "Marinade mengen en kip kruiden",
+        "ingredientIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          0
+        ]
+      },
+      {
+        "body": "Je kunt de kip meteen bakken. Laat haar voor een wat diepere smaak eventueel eerst 10–20 minuten afgedekt in de koelkast marineren; dit is optioneel en komt boven op de bereidingstijd.",
+        "title": "Kip eventueel laten marineren",
+        "duration": "optioneel 10–20 min marineren",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Kook voor een volledige maaltijd desgewenst 150 g rijst volgens de verpakking en maak 300 g sperziebonen schoon. Kook de sperziebonen in circa 10–12 minuten gaar maar nog beetgaar. Bereid dit tegelijk met de kip.",
+        "title": "Rijst en sperziebonen bereiden",
+        "duration": "sperziebonen 10–12 min",
+        "ingredientIndices": [
+          12,
+          13
+        ]
+      },
+      {
+        "body": "Verhit een ruime koekenpan of wok op middelhoog tot hoog vuur. Bak de gekruide kip in circa 8–10 minuten goudbruin en volledig gaar (74 °C kerntemperatuur). Leg de kip in één laag, roer niet voortdurend en bak zo nodig in twee porties; gebruik indien nodig iets minder vuur zodat de ketjap niet verbrandt.",
+        "title": "Kipdij goudbruin en gaar bakken",
+        "duration": "8–10 min",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Verwarm 120 g reeds bereide satésaus in een klein steelpannetje op laag vuur volgens de aanwijzingen van de saus. Roer regelmatig en laat niet hard koken; voeg eventueel een klein scheutje water toe als de saus te dik is.",
+        "title": "Satésaus rustig opwarmen",
+        "ingredientIndices": [
+          11
+        ]
+      },
+      {
+        "body": "Verdeel de gebakken kip over twee borden en lepel de warme satésaus erover of serveer apart. Geef er eventueel rijst en sperziebonen bij, zodat het een volledige maaltijd wordt.",
+        "title": "Kip met satésaus serveren",
+        "ingredientIndices": [
+          0,
+          11,
+          12,
+          13
+        ]
+      }
     ],
     "tips": "Deze kipkruiding is gebaseerd op het eerdere recept van 9 juli 2026. De toen aangepaste versie voor 200 g kip blijft bruikbaar: neem 1 tl olie, 1½ tl ketjap, ½ tl paprikapoeder, ½ tl kerrie en van komijn, knoflookpoeder en uienpoeder elk ¼ tl; voeg peper en zout toe en gebruik circa 3–4 el bereide satésaus (of 4–5 el als je rijst erbij eet). Optioneel kun je een klein beetje sambal gebruiken in plaats van chilipoeder. Warm de saus apart en laat deze niet hard koken; zo blijft de kip goed gebakken. Voor een complete maaltijd zijn rijst en circa 300 g groenten voor twee personen aanbevolen.",
     "image": "images/kip-satesaus.webp",
@@ -3372,13 +4924,93 @@
       }
     ],
     "steps": [
-      "Snijd 375 g kipdijfilet in dunne reepjes. Kneus ¾ tl komijnzaad fijn. Meng met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl oregano, ¼ tl chilipoeder, ½ tl zout, ¼ tl zwarte peper en 1 el olijfolie. Schep de kip erdoor en laat staan terwijl je de groenten snijdt.",
-      "Snijd 1 rode paprika in reepjes en snipper 1 ui. Laat 150 g mais goed uitlekken en dep zo nodig droog. Verwijder de natte zaadlijsten uit 1 tomaat en snijd het vruchtvlees klein. Was 70 g ijsbergsla, laat goed uitlekken en snijd in reepjes.",
-      "Maak de knoflooksaus: meng 60 g Griekse yoghurt, 1 el mayonaise, ½ fijngeraspt teentje knoflook en 1 tl citroensap. Proef en breng op smaak met een klein beetje zout en zwarte peper. Zet koud weg tot het serveren.",
-      "Verhit een ruime koekenpan op middelhoog tot hoog vuur en bak de kipreepjes in 6–8 minuten rondom bruin; werk indien nodig in twee porties. Schep de kip uit de pan.",
-      "Bak in dezelfde pan de paprika en ui circa 4–5 minuten tot ze licht kleuren en nog wat beet hebben. Voeg de uitgelekte mais toe en bak circa 1 minuut mee. Doe de kip terug en schep nog 1–2 minuten om, totdat de kip volledig gaar is (74 °C kerntemperatuur). Voeg eventueel ½ tl citroensap toe voor een frisse afwerking.",
-      "Verwarm 4 wraps kort in een droge koekenpan, circa 20–30 seconden per kant, zodat ze soepel worden. Verdeel de ijsbergsla, warme kip-groentevulling, tomaat, 80 g geraspte kaas en knoflooksaus over de wraps. Vouw stevig dicht en serveer direct.",
-      "Wil je de wraps liever krokant? Vul dan eerst alleen met de warme kip-groentevulling en de kaas, vouw dicht en bak 1–2 minuten per kant in een droge pan. Voeg na het bakken de sla, tomaat en knoflooksaus via de open zijkant toe, zodat alles fris en krokant blijft."
+      {
+        "body": "Snijd 375 g kipdijfilet in dunne reepjes. Kneus ¾ tl komijnzaad fijn. Meng met 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl oregano, ¼ tl chilipoeder, ½ tl zout, ¼ tl zwarte peper en 1 el olijfolie. Schep de kip erdoor en laat staan terwijl je de groenten snijdt.",
+        "title": "Kip kruiden met Mexicaanse specerijen",
+        "ingredientIndices": [
+          0,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      {
+        "body": "Snijd 1 rode paprika in reepjes en snipper 1 ui. Laat 150 g mais goed uitlekken en dep zo nodig droog. Verwijder de natte zaadlijsten uit 1 tomaat en snijd het vruchtvlees klein. Was 70 g ijsbergsla, laat goed uitlekken en snijd in reepjes.",
+        "title": "Groenten snijden en droogmaken",
+        "ingredientIndices": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "body": "Maak de knoflooksaus: meng 60 g Griekse yoghurt, 1 el mayonaise, ½ fijngeraspt teentje knoflook en 1 tl citroensap. Proef en breng op smaak met een klein beetje zout en zwarte peper. Zet koud weg tot het serveren.",
+        "title": "Knoflooksaus mengen",
+        "ingredientIndices": [
+          17,
+          18,
+          19,
+          20,
+          21,
+          22
+        ]
+      },
+      {
+        "body": "Verhit een ruime koekenpan op middelhoog tot hoog vuur en bak de kipreepjes in 6–8 minuten rondom bruin; werk indien nodig in twee porties. Schep de kip uit de pan.",
+        "title": "Kipreepjes aanbraden",
+        "duration": "6–8 min",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "body": "Bak in dezelfde pan de paprika en ui circa 4–5 minuten tot ze licht kleuren en nog wat beet hebben. Voeg de uitgelekte mais toe en bak circa 1 minuut mee. Doe de kip terug en schep nog 1–2 minuten om, totdat de kip volledig gaar is (74 °C kerntemperatuur). Voeg eventueel ½ tl citroensap toe voor een frisse afwerking.",
+        "title": "Groenten bakken en kip toevoegen",
+        "duration": "4–5 min, daarna nog 1–2 min",
+        "ingredientIndices": [
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      {
+        "body": "Verwarm 4 wraps kort in een droge koekenpan, circa 20–30 seconden per kant, zodat ze soepel worden. Verdeel de ijsbergsla, warme kip-groentevulling, tomaat, 80 g geraspte kaas en knoflooksaus over de wraps. Vouw stevig dicht en serveer direct.",
+        "title": "Wraps verwarmen en vullen",
+        "duration": "20–30 sec per kant",
+        "ingredientIndices": [
+          1,
+          6,
+          0,
+          2,
+          3,
+          4,
+          5,
+          7,
+          17,
+          18
+        ]
+      },
+      {
+        "body": "Wil je de wraps liever krokant? Vul dan eerst alleen met de warme kip-groentevulling en de kaas, vouw dicht en bak 1–2 minuten per kant in een droge pan. Voeg na het bakken de sla, tomaat en knoflooksaus via de open zijkant toe, zodat alles fris en krokant blijft.",
+        "title": "Wraps eventueel krokant bakken",
+        "duration": "optioneel 1–2 min per kant",
+        "ingredientIndices": [
+          1,
+          0,
+          7,
+          6,
+          5,
+          17
+        ]
+      }
     ],
     "tips": "Gebaseerd op het eerdere Mexicaanse wraprecept van 8 augustus 2026, waarin voor twee personen 350–400 g kipdij, paprika, ui, mais, sla, tomaat, geraspte kaas en een saus van yoghurt en mayonaise werden gebruikt. In deze versie is 375 g kip gekozen, is het gerookte paprikapoeder teruggebracht van 1 naar ½ tl en het komijnzaad verhoogd naar ¾ tl voor een beter evenwicht. Gebruik 1 tl citroensap in de knoflooksaus in plaats van de eerder genoemde limoen. Laat mais uitlekken en voeg vochtige ingrediënten pas na krokant bakken toe. Als je geen Griekse yoghurt hebt, kun je crème fraîche gebruiken; gebruik geen gezoete vanillekwark.",
     "image": "images/mexicaanse-kipwraps.webp",
