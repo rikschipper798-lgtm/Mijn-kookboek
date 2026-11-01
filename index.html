@@ -411,6 +411,26 @@ body.cook-active{overflow:hidden}
 .cook-wake-status{font-size:12px;color:#5e7462;line-height:1.4;flex:1;min-width:145px}
 .cook-timer-note{font-size:12px;color:#6a7a6b;line-height:1.5;margin:11px 0 0}
 @media(max-width:650px){.cook-tools{padding:12px;margin-bottom:17px}.cook-timer-form .btn{flex:1}.cook-wake-row{align-items:flex-start}.cook-wake-status{min-width:100%}}
+
+/* De kookervaring afronden gebruikt de bestaande persoonlijke notities. */
+.cook-finish-intro{color:#5b6e5e;line-height:1.6;font-size:15px;margin:0 0 17px}
+.cook-finish-rating{border:0;margin:0 0 20px;padding:0;min-width:0}
+.cook-finish-rating legend{font-size:14px;font-weight:800;color:#2d4b35;margin-bottom:9px;padding:0}
+.cook-finish-stars{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.cook-finish-star{border:1px solid transparent;border-radius:8px;color:#becbbb;background:transparent;font-size:30px;cursor:pointer;width:44px;height:46px}
+.cook-finish-star.is-selected{color:#b57a37}
+.cook-finish-star:hover{background:#faf2e5}
+.cook-finish-clear{border:0;background:transparent;color:#456248;text-decoration:underline;font-size:13px;min-height:40px;padding:8px;cursor:pointer}
+.cook-finish-star:focus-visible,.cook-finish-clear:focus-visible,.cook-finish-fields textarea:focus{outline:3px solid #cc9364;outline-offset:2px}
+.cook-finish-rating-text{color:#5b715e;font-weight:700;font-size:13px;margin:6px 0 0}
+.cook-finish-fields{display:grid;gap:8px}
+.cook-finish-fields label{font-weight:800;font-size:14px;color:#294b34}
+.cook-finish-fields textarea{font:inherit;font-size:15px;line-height:1.55;color:#294332;border:1px solid #d4e0d0;border-radius:10px;padding:12px;width:100%;min-height:90px;resize:vertical;margin-bottom:9px;background:#fff}
+.cook-finish-privacy{font-size:12px;color:#677a6c;margin:5px 0;line-height:1.6}
+.cook-finish-status{font-size:13px;color:#914e3a;font-weight:700;line-height:1.5;min-height:16px;margin:9px 0 0}
+.cook-finish-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+.cook-finish-actions .btn{min-height:44px;font-size:13px}
+@media(max-width:650px){.cook-finish-dialog .cook-dialog-body{padding:20px 18px}.cook-finish-actions{width:100%}.cook-finish-actions .btn{flex:1}}
 @media print{.personal-notes,.cook-overlay,.cook-start-button{display:none!important}}
 
 /* Persoonlijke gegevens: lokale export en bewust bevestigde import. */
@@ -1389,6 +1409,120 @@ function closeCookMode(restoreFocus=true){
  document.body.classList.remove('cook-active');
  if(restoreFocus&&el('startCooking')&&!el('detail').hidden)el('startCooking').focus();
 }
+
+function finishDraftFor(key){
+ const note=noteRecord(key),rating=Number(note.rating);
+ return {notes:String(note.notes||''),feedback:String(note.feedback||''),
+  rating:Number.isInteger(rating)&&rating>=1&&rating<=5?rating:0};
+}
+function finishRatingUI(){
+ if(!activeCook?.finishDraft)return;
+ const n=activeCook.finishDraft.rating;
+ el('finishRatingText').textContent=n?n+' van 5 sterren':'Nog niet beoordeeld';
+ el('cookOverlay').querySelectorAll('[data-finish-star]').forEach(button=>{
+  const star=Number(button.dataset.finishStar);
+  button.classList.toggle('is-selected',star<=n);
+  button.setAttribute('aria-pressed',String(star===n));
+ });
+}
+function finishHasChanges(c){
+ const original=finishDraftFor(c.key),now=c.finishDraft;
+ return original.notes!==now.notes||original.feedback!==now.feedback||original.rating!==now.rating;
+}
+function finishWithoutSaving(){
+ const c=activeCook;
+ if(!c||c.phase!=='finish')return;
+ if(finishHasChanges(c)&&!window.confirm('Je hebt nog niet-opgeslagen feedback. Wil je deze wijzigingen overslaan?'))return;
+ persistCookStep(true);
+ closeCookMode(false);
+ const notes=el('personalNotes');
+ if(notes)notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+}
+function finishSave(){
+ const c=activeCook;
+ if(!c||c.phase!=='finish')return;
+ const d=c.finishDraft;
+ if(d.notes.length>5000||d.feedback.length>5000||!Number.isInteger(d.rating)||d.rating<0||d.rating>5){
+  el('finishSaveStatus').textContent='Controleer de velden (maximaal 5.000 tekens per tekstveld).';
+  return;
+ }
+ const date=new Date().toLocaleDateString('sv-SE');
+ const nextNotes={...personalNotes,[c.key]:{...noteRecord(c.key),notes:d.notes,feedback:d.feedback,rating:d.rating,lastCookedOn:date}};
+ const nextProgress={...cookProgress,[c.key]:{step:c.index,done:true}};
+ let oldNotes,oldProgress;
+ try{
+  oldNotes=localStorage.getItem(STORAGE.notes);
+  oldProgress=localStorage.getItem(STORAGE.cook);
+  localStorage.setItem(STORAGE.notes,JSON.stringify(nextNotes));
+  localStorage.setItem(STORAGE.cook,JSON.stringify(nextProgress));
+ }catch(error){
+  let rolledBack=true;
+  try{
+   if(oldNotes===null)localStorage.removeItem(STORAGE.notes);
+   else if(oldNotes!==undefined)localStorage.setItem(STORAGE.notes,oldNotes);
+  }catch(e){rolledBack=false}
+  try{
+   if(oldProgress===null)localStorage.removeItem(STORAGE.cook);
+   else if(oldProgress!==undefined)localStorage.setItem(STORAGE.cook,oldProgress);
+  }catch(e){rolledBack=false}
+  el('finishSaveStatus').textContent=rolledBack?
+   'Opslaan is mislukt. De ingevulde feedback staat nog hier; probeer opnieuw.':
+   'Opslaan is mislukt en eerdere gegevens konden niet volledig worden teruggezet. Bewaar je gegevens indien mogelijk eerst.';
+  return;
+ }
+ personalNotes=nextNotes;
+ cookProgress=nextProgress;
+ closeCookMode(false);
+ renderDetail();
+ const notes=el('personalNotes');
+ if(notes){
+  el('notesSaveStatus').textContent='Kookdatum, beoordeling en feedback zijn opgeslagen op dit apparaat.';
+  notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+ }
+}
+function renderCookCompletion(){
+ const c=activeCook;
+ if(!c)return;
+ c.phase='finish';
+ if(!c.finishDraft)c.finishDraft=finishDraftFor(c.key);
+ const d=c.finishDraft;
+ const stars=[1,2,3,4,5].map(n=>
+  '<button type="button" class="cook-finish-star'+(n<=d.rating?' is-selected':'')+
+  '" data-finish-star="'+n+'" aria-label="'+n+' van 5 sterren" aria-pressed="'+(n===d.rating)+'">★</button>'
+ ).join('');
+ el('cookOverlay').innerHTML='<div class="cook-dialog cook-finish-dialog" role="dialog" aria-modal="true" aria-labelledby="cookDialogTitle" aria-describedby="cookDialogDescription">'+
+  '<div class="cook-dialog-header"><div><span class="cook-kicker">RECEPT AFGEROND</span>'+
+  '<h2 id="cookDialogTitle">Klaar met koken?</h2>'+
+  '<p id="cookDialogDescription">'+safe(title(c.view))+' · '+safe(portionsLabel(c.view,c.servings))+'</p></div>'+
+  '<button class="cook-close" type="button" id="finishClose" aria-label="Sluiten zonder feedback op te slaan">✕</button></div>'+
+  '<div class="cook-progress" role="progressbar" aria-label="Kookvoortgang" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span style="width:100%"></span></div>'+
+  '<div class="cook-dialog-body"><p class="cook-finish-intro">Hoe beviel het gerecht? Bij bewaren wordt vandaag als laatste kookdatum vastgelegd. Je kunt dit later bij het recept aanpassen.</p>'+
+  '<fieldset class="cook-finish-rating"><legend>Mijn beoordeling</legend><div class="cook-finish-stars" role="group" aria-label="Beoordeling van het gerecht">'+stars+
+  '<button type="button" id="finishClearRating" class="cook-finish-clear">Geen beoordeling</button></div>'+
+  '<p id="finishRatingText" class="cook-finish-rating-text" role="status"></p></fieldset>'+
+  '<div class="cook-finish-fields"><label for="finishNotes">Mijn aanpassingen en tips</label>'+
+  '<textarea id="finishNotes" rows="3" maxlength="5000" placeholder="Welke ingrediënten of werkwijze heb je aangepast?">'+safe(d.notes)+'</textarea>'+
+  '<label for="finishFeedback">Feedback na het koken</label>'+
+  '<textarea id="finishFeedback" rows="3" maxlength="5000" placeholder="Wat ging goed? Wat kan de volgende keer beter?">'+safe(d.feedback)+'</textarea></div>'+
+  '<p class="cook-finish-privacy">Je kookervaring blijft op dit apparaat en wordt meegenomen in je back-up.</p>'+
+  '<p id="finishSaveStatus" class="cook-finish-status" role="alert"></p></div>'+
+  '<div class="cook-dialog-footer"><button type="button" id="finishBack" class="cook-restart">Terug naar laatste stap</button>'+
+  '<div class="cook-finish-actions"><button type="button" class="btn alt" id="finishSkip">Later invullen</button>'+
+  '<button type="button" class="btn" id="finishSave">Bewaar kookervaring</button></div></div></div>';
+ el('cookOverlay').querySelectorAll('[data-finish-star]').forEach(button=>button.onclick=()=>{
+  c.finishDraft.rating=Number(button.dataset.finishStar);finishRatingUI();
+ });
+ el('finishClearRating').onclick=()=>{c.finishDraft.rating=0;finishRatingUI()};
+ el('finishNotes').oninput=()=>{c.finishDraft.notes=el('finishNotes').value};
+ el('finishFeedback').oninput=()=>{c.finishDraft.feedback=el('finishFeedback').value};
+ el('finishSave').onclick=finishSave;
+ el('finishSkip').onclick=finishWithoutSaving;
+ el('finishClose').onclick=finishWithoutSaving;
+ el('finishBack').onclick=()=>{c.phase='steps';renderCookMode()};
+ finishRatingUI();
+ el('finishSave').focus();
+}
+
 function renderCookMode(focusTarget='cookNext'){
  const c=activeCook;
  if(!c)return;
@@ -1440,10 +1574,10 @@ function renderCookMode(focusTarget='cookNext'){
  el('cookPrev').onclick=()=>{if(c.index>0){c.index--;c.showIngredients=false;persistCookStep(false);if(!cookTimer.durationSec)c.timerDraft=cookStepTimerMinutes(c.steps[c.index])??'';renderCookMode()}};
  el('cookNext').onclick=()=>{
   if(isLast){
-   persistCookStep(true);
-   closeCookMode(false);
-   const notes=el('personalNotes');
-   if(notes)notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+   // Eerst de kookervaring tonen; de kookdatum volgt pas na expliciet bewaren.
+   cookStopTools();
+   c.phase='finish';
+   renderCookCompletion();
    return;
   }
   c.index++;c.showIngredients=false;persistCookStep(false);if(!cookTimer.durationSec)c.timerDraft=cookStepTimerMinutes(c.steps[c.index])??'';renderCookMode();
@@ -1471,7 +1605,7 @@ function renderCookMode(focusTarget='cookNext'){
 }
 document.addEventListener('keydown',event=>{
  if(!activeCook)return;
- if(event.key==='Escape'){event.preventDefault();closeCookMode();return}
+ if(event.key==='Escape'){event.preventDefault();if(activeCook.phase==='finish')finishWithoutSaving();else closeCookMode();return}
  // Houd tabfocus binnen het kookvenster voor toetsenbordgebruik.
  if(event.key==='Tab'){
   const targets=[...el('cookOverlay').querySelectorAll('button:not([disabled]),input:not([disabled])')];
@@ -1481,7 +1615,7 @@ document.addEventListener('keydown',event=>{
   else if(!event.shiftKey&&(index===targets.length-1||index===-1)){event.preventDefault();targets[0].focus()}
  }
 });
-el('cookOverlay').addEventListener('click',event=>{if(event.target===el('cookOverlay'))closeCookMode()});
+el('cookOverlay').addEventListener('click',event=>{if(event.target===el('cookOverlay')){if(activeCook?.phase==='finish')finishWithoutSaving();else closeCookMode()}});
 function renderDetail(){
  const id=decodeURIComponent(location.hash.slice(8)),r=findRecipe(id);
  if(!r){location.hash='';return}
