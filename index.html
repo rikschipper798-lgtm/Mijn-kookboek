@@ -392,6 +392,28 @@ body.cook-active{overflow:hidden}
 }
 @media print{.personal-notes,.cook-overlay,.cook-start-button{display:none!important}}
 
+/* Persoonlijke gegevens: lokale export en bewust bevestigde import. */
+.backup-panel{max-width:800px;margin:35px auto 0;background:#fff;border:1px solid #e0e7dc;border-radius:16px;padding:0 19px;box-shadow:0 5px 18px #263d2b0a}
+.backup-panel>summary{cursor:pointer;list-style:none;font-weight:750;color:#285038;padding:19px 0;min-height:58px}
+.backup-panel>summary::-webkit-details-marker{display:none}
+.backup-panel>summary:after{content:' +';float:right;font-weight:600;color:#738574}
+.backup-panel[open]>summary:after{content:' −'}
+.backup-panel-content{border-top:1px solid #e7ede3;padding:4px 0 19px;font-size:14px;line-height:1.6;color:#526456}
+.backup-panel-content p{margin:12px 0}
+.backup-actions{display:flex;gap:10px;flex-wrap:wrap;margin:17px 0}
+.backup-actions .btn{font-size:13px;min-height:44px}
+.backup-file-label{font-weight:700;display:block;color:#31543c;margin:15px 0 7px}
+.backup-file{display:block;max-width:100%;width:100%;font-size:14px;border:1px solid #dce5d9;border-radius:10px;background:#fbfcfa;padding:10px}
+.backup-preview{padding:15px;border:1px solid #d9e5d4;border-radius:11px;background:#f5f9f3;margin:15px 0}
+.backup-preview h3{font-size:19px;margin:0 0 6px}
+.backup-preview p{margin:6px 0 10px}
+.backup-preview .btn{margin-right:8px;margin-top:6px;font-size:13px}
+.backup-warning{color:#8b532e}
+.backup-status{min-height:22px;color:#345e3e;font-size:13px;font-weight:650}
+.backup-status.is-error{color:#963f32}
+@media(max-width:650px){.backup-panel{margin:24px 0 0;padding:0 15px}.backup-actions .btn{flex:1}.backup-preview .btn{width:100%;margin-right:0}}
+@media print{.backup-panel{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -432,6 +454,27 @@ body.cook-active{overflow:hidden}
 </section>
 <article id="detail" class="details" hidden></article>
 <section id="basket" class="details" hidden></section>
+<details id="personalDataPanel" class="backup-panel">
+ <summary>Mijn gegevens · back-up en herstel</summary>
+ <div class="backup-panel-content">
+  <p>Favorieten, afgevinkte ingrediënten, boodschappenlijsten, kooknotities en de voortgang van de kookmodus staan alleen in deze browser. Ze worden niet automatisch gesynchroniseerd met andere apparaten.</p>
+  <p><strong>Bewaar een back-up:</strong> download één JSON-bestand en bewaar het op een veilige plek, bijvoorbeeld in je eigen beveiligde cloudopslag. Het bestand bevat ook je persoonlijke notities.</p>
+  <div class="backup-actions">
+   <button type="button" class="btn" id="downloadBackup">Download back-up</button>
+  </div>
+  <label class="backup-file-label" for="backupFile">Gegevens herstellen op dit apparaat</label>
+  <input id="backupFile" class="backup-file" type="file" accept=".json,application/json" aria-describedby="backupFileHint">
+  <p id="backupFileHint">Selecteer een eerder gedownloade back-up. Eerst zie je wat erin staat; pas na je bevestiging worden de huidige gegevens vervangen. Maak vooraf een back-up van je huidige gegevens als je die wilt bewaren.</p>
+  <div id="backupPreview" class="backup-preview" hidden>
+   <h3>Gecontroleerd back-upbestand</h3>
+   <p id="backupPreviewSummary"></p>
+   <p class="backup-warning">Herstellen vervangt de huidige persoonlijke gegevens op dit apparaat. Recepten in het kookboek zelf veranderen niet.</p>
+   <button type="button" class="btn" id="restoreBackup">Herstel deze back-up</button>
+   <button type="button" class="btn alt" id="cancelBackup">Annuleren</button>
+  </div>
+  <p id="backupStatus" class="backup-status" role="status" aria-live="polite"></p>
+ </div>
+</details>
 </main>
 <div id="cookOverlay" class="cook-overlay" hidden></div>
 <footer>Mijn Kookboek · Bewaren, koken en delen</footer>
@@ -448,6 +491,7 @@ let recipes=[],favoriteOnly=false,quickOnly=false;
 let favorites=new Set(Array.isArray(load(STORAGE.fav,[]))?load(STORAGE.fav,[]):[]);
 let checked=load(STORAGE.checked,{}),basket=load(STORAGE.basket,{}),basketChecked=load(STORAGE.basketChecked,{});
 let personalNotes=load(STORAGE.notes,{}),cookProgress=load(STORAGE.cook,{}),activeCook=null;
+let pendingBackup=null;
 function title(r){return r.title||'Onbekend recept'}
 function description(r){return r.description||r.subtitle||''}
 function portions(r){return number(r.servings||r.portions)||2}
@@ -1276,6 +1320,159 @@ document.querySelectorAll('[data-search-term]').forEach(button=>button.addEventL
  favoriteOnly=false;quickOnly=false;
  renderCards();
 }));
+
+/* Versie 1: alleen persoonlijke browsergegevens, nooit recepten of afbeeldingen.
+   Het bestand blijft bij export/import lokaal op het apparaat. */
+const BACKUP_APP='mijn-kookboek';
+const BACKUP_VERSION=1;
+const BACKUP_MAX_BYTES=2*1024*1024;
+const BACKUP_FIELDS=['favorites','ingredientChecks','basket','basketChecks','notes','cookProgress'];
+function backupStatus(message,isError=false){
+ const status=el('backupStatus');
+ status.textContent=message;
+ status.classList.toggle('is-error',isError);
+}
+function backupData(){
+ return {
+  favorites:[...favorites],
+  ingredientChecks:checked,
+  basket:basket,
+  basketChecks:basketChecked,
+  notes:personalNotes,
+  cookProgress:cookProgress
+ };
+}
+function downloadPersonalBackup(){
+ try{
+  const payload={app:BACKUP_APP,version:BACKUP_VERSION,exportedAt:new Date().toISOString(),data:backupData()};
+  const json=JSON.stringify(payload,null,2)+'\n';
+  if(new Blob([json]).size>BACKUP_MAX_BYTES)throw Error('De gegevens zijn te groot voor een back-upbestand.');
+  const blob=new Blob([json],{type:'application/json;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const anchor=document.createElement('a');
+  anchor.href=url;
+  anchor.download='mijn-kookboek-backup-'+new Date().toLocaleDateString('sv-SE')+'.json';
+  document.body.appendChild(anchor);
+  try{anchor.click()}finally{anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+  backupStatus('Back-upbestand aangemaakt. Controleer je downloads en bewaar het bestand op een veilige plek.');
+ }catch(e){
+  backupStatus('Back-up downloaden is niet gelukt: '+e.message,true);
+ }
+}
+function backupObject(value){
+ return value!==null&&typeof value==='object'&&!Array.isArray(value);
+}
+function backupKey(key){
+ return typeof key==='string'&&key.length>0&&key.length<=500&&!['__proto__','constructor','prototype'].includes(key);
+}
+function backupMap(value,label,validate,maximum=2000){
+ if(!backupObject(value)||Object.keys(value).length>maximum)throw Error('Ongeldige '+label+'.');
+ const entries=Object.entries(value);
+ for(const [key,item] of entries){
+  if(!backupKey(key)||!validate(item,key))throw Error('Ongeldige '+label+'; dit bestand kan niet worden hersteld.');
+ }
+ // Object.fromEntries houdt ook bijzondere namen als gewone eigen sleutels.
+ return Object.fromEntries(entries);
+}
+function validBackup(payload){
+ if(!backupObject(payload)||payload.app!==BACKUP_APP||payload.version!==BACKUP_VERSION||
+    !backupObject(payload.data)||typeof payload.exportedAt!=='string'||!Number.isFinite(Date.parse(payload.exportedAt))) {
+  throw Error('Dit is geen ondersteund Mijn Kookboek-back-upbestand (versie 1).');
+ }
+ if(!BACKUP_FIELDS.every(name=>Object.prototype.hasOwnProperty.call(payload.data,name))){
+  throw Error('Het bestand is onvolledig; er ontbreken persoonlijke gegevens.');
+ }
+ const data=payload.data;
+ if(!Array.isArray(data.favorites)||data.favorites.length>2000||
+    !data.favorites.every(x=>typeof x==='string'&&backupKey(x))){
+  throw Error('Ongeldige favorieten in het back-upbestand.');
+ }
+ const favoritesList=[...new Set(data.favorites)];
+ const ingredientChecks=backupMap(data.ingredientChecks,'ingrediëntstatussen',value=>
+  Array.isArray(value)&&value.length<=1000&&value.every(x=>Number.isInteger(x)&&x>=0&&x<=10000));
+ const basketData=backupMap(data.basket,'boodschappenrecepten',value=>
+  backupObject(value)&&typeof value.id==='string'&&backupKey(value.id)&&
+  (value.variantId===undefined||typeof value.variantId==='string'&&value.variantId.length<=200)&&
+  Number.isFinite(value.servings)&&value.servings>=1&&value.servings<=1000&&
+  (value.includeOptional===undefined||typeof value.includeOptional==='boolean'),1000);
+ const basketChecks=backupMap(data.basketChecks,'boodschappenstatussen',value=>typeof value==='boolean',5000);
+ const notes=backupMap(data.notes,'kooknotities',value=>
+  backupObject(value)&&
+  (value.notes===undefined||typeof value.notes==='string'&&value.notes.length<=5000)&&
+  (value.feedback===undefined||typeof value.feedback==='string'&&value.feedback.length<=5000)&&
+  (value.rating===undefined||Number.isInteger(value.rating)&&value.rating>=0&&value.rating<=5)&&
+  (value.lastCookedOn===undefined||typeof value.lastCookedOn==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value.lastCookedOn)));
+ const cookProgressData=backupMap(data.cookProgress,'kookvoortgang',value=>
+  backupObject(value)&&Number.isInteger(value.step)&&value.step>=0&&value.step<=1000&&typeof value.done==='boolean');
+ return {
+  exportedAt:payload.exportedAt,
+  data:{favorites:favoritesList,ingredientChecks,basket:basketData,basketChecks,notes,cookProgress:cookProgressData}
+ };
+}
+function cancelBackupImport(){
+ pendingBackup=null;
+ el('backupPreview').hidden=true;
+ el('backupFile').value='';
+}
+async function readBackupFile(file){
+ cancelBackupImport();
+ if(!file)return;
+ if(file.size>BACKUP_MAX_BYTES){backupStatus('Het bestand is te groot (maximaal 2 MB).',true);return}
+ try{
+  const content=await file.text();
+  const parsed=validBackup(JSON.parse(content));
+  pendingBackup=parsed;
+  const d=parsed.data;
+  const date=new Date(parsed.exportedAt).toLocaleString('nl-NL',{dateStyle:'medium',timeStyle:'short'});
+  el('backupPreviewSummary').textContent='Gemaakt op '+date+' · '+d.favorites.length+' favorieten · '+
+   Object.keys(d.notes).length+' kooknotities · '+Object.keys(d.basket).length+' recepten op boodschappenlijst · '+
+   Object.keys(d.ingredientChecks).length+' recepten met afvinkstatus · '+
+   Object.keys(d.cookProgress).length+' kookvoortgangen.';
+  el('backupPreview').hidden=false;
+  backupStatus('Back-up gecontroleerd. Er is nog niets gewijzigd.');
+ }catch(e){
+  backupStatus('Back-up niet geschikt: '+e.message,true);
+ }
+}
+function restorePersonalBackup(){
+ if(!pendingBackup)return;
+ const message='Let op: alle huidige favorieten, notities, boodschappen en kookvoortgang op dit apparaat worden vervangen. Heb je daarvan een back-up bewaard? Wil je doorgaan?';
+ if(!window.confirm(message))return;
+ const data=pendingBackup.data;
+ const changes={
+  fav:data.favorites,checked:data.ingredientChecks,basket:data.basket,
+  basketChecked:data.basketChecks,notes:data.notes,cook:data.cookProgress
+ };
+ const originals={};
+ try{
+  for(const name of Object.keys(changes))originals[name]=localStorage.getItem(STORAGE[name]);
+  for(const [name,value] of Object.entries(changes))localStorage.setItem(STORAGE[name],JSON.stringify(value));
+ }catch(e){
+  // Bij een fout proberen we alle oorspronkelijke waarden terug te zetten.
+  let rolledBack=true;
+  for(const [name,value] of Object.entries(originals)){
+   try{if(value===null)localStorage.removeItem(STORAGE[name]);else localStorage.setItem(STORAGE[name],value)}
+   catch(error){rolledBack=false}
+  }
+  backupStatus(rolledBack?'Herstellen is mislukt. De oorspronkelijke gegevens zijn teruggezet.':
+   'Herstellen is mislukt. Niet alle oorspronkelijke gegevens konden worden teruggezet; bewaar je back-upbestand en controleer je gegevens.',true);
+  return;
+ }
+ favorites=new Set(data.favorites);
+ checked=data.ingredientChecks;
+ basket=data.basket;
+ basketChecked=data.basketChecks;
+ personalNotes=data.notes;
+ cookProgress=data.cookProgress;
+ cancelBackupImport();
+ route();
+ backupStatus('Gegevens hersteld op dit apparaat. Je favorieten, notities en boodschappen zijn bijgewerkt.');
+}
+el('downloadBackup').addEventListener('click',downloadPersonalBackup);
+el('backupFile').addEventListener('change',event=>readBackupFile(event.target.files[0]));
+el('restoreBackup').addEventListener('click',restorePersonalBackup);
+el('cancelBackup').addEventListener('click',()=>{cancelBackupImport();backupStatus('Herstellen geannuleerd; je gegevens zijn ongewijzigd.')});
+
 el('shoppingNav').onclick=()=>location.hash='#boodschappenlijst';
 window.addEventListener('hashchange',route);
 fetch('recepten.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Kan recepten niet laden');return r.json()}).then(data=>{
