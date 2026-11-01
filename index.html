@@ -583,7 +583,7 @@ function fmtQty(n,u){
  if(['g','kg','ml','l'].includes((u||'').toLowerCase()))return fmt(n);
  if(Math.abs(n-Math.round(n))<0.012)return String(Math.round(n));
  const whole=Math.floor(n),part=n-whole;
- const fractions=[[0.125,'⅛'],[0.25,'¼'],[1/3,'⅓'],[0.5,'½'],[2/3,'⅔'],[0.75,'¾'],[0.875,'⅞']];
+ const fractions=[[0.125,'⅛'],[0.25,'¼'],[1/3,'⅓'],[0.375,'⅜'],[0.5,'½'],[0.625,'⅝'],[2/3,'⅔'],[0.75,'¾'],[0.875,'⅞']];
  const hit=fractions.find(f=>Math.abs(f[0]-part)<0.012);
  return hit?(whole?String(whole):'')+hit[1]:fmt(n);
 }
@@ -656,6 +656,16 @@ function stepNoun(phrase,num){
  const words=phrase.split(/\s+/),word=words.at(-1).toLowerCase();
  words[words.length-1]=num<=1+.0001?(singular[word]||word):(plural[word]||word);
  return words.join(' ');
+}
+// Beperk herkenning tot ingrediënten die aan deze stap gekoppeld zijn.
+// Zonder expliciete koppelingen blijft de bestaande fallback werken.
+function scalingIngredients(view,step){
+ const items=allIngredients(view);
+ if(typeof step!=='object'||!Array.isArray(step.ingredientIndices))return items;
+ return step.ingredientIndices.map(index=>items[index]).filter(Boolean);
+}
+function scaledStepBody(view,step,mult){
+ return scaleStep(typeof step==='string'?step:step.body||'',scalingIngredients(view,step),mult);
 }
 function scaleStep(text,items,mult){
  const original=String(text||'');
@@ -835,7 +845,7 @@ function resetBrowse(){
  renderCards();
 }
 function recipeText(r,mult){
- return title(r)+'\n\nIngrediënten:\n'+allIngredients(r).map(i=>'- '+amount(i,mult)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')+'\n\nBereiding:\n'+(r.steps||[]).map((s,i)=>(i+1)+'. '+(typeof s==='string'?scaleStep(s,allIngredients(r),mult):(s.title||'')+': '+scaleStep(s.body||'',allIngredients(r),mult))).join('\n\n');
+ return title(r)+'\n\nIngrediënten:\n'+allIngredients(r).map(i=>'- '+amount(i,mult)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')+'\n\nBereiding:\n'+(r.steps||[]).map((s,i)=>(i+1)+'. '+(typeof s==='string'?scaledStepBody(r,s,mult):(s.title||'')+': '+scaledStepBody(r,s,mult))).join('\n\n');
 }
 async function copyText(text,button){
  try{await navigator.clipboard.writeText(text);if(button)button.textContent='Gekopieerd'}
@@ -1149,7 +1159,7 @@ function cookSteps(view,mult){
   index:index,
   title:typeof step==='string'?'Stap '+(index+1):step.title||'Stap '+(index+1),
   duration:typeof step==='string'?'':step.duration||'',
-  body:scaleStep(typeof step==='string'?step:step.body||'',allIngredients(view),mult),
+  body:scaledStepBody(view,step,mult),
   // Indices verwijzen naar de ingrediënten van de gekozen receptvariant.
   ingredientIndices:typeof step==='object'&&Array.isArray(step.ingredientIndices)?step.ingredientIndices:null
  }));
@@ -1461,10 +1471,10 @@ function renderDetail(){
  const mult=current/original,items=allIngredients(view),key=listKey(r.id,variantId);
  const canScale=items.some(i=>typeof i.qty==='number');
  const choices=r.variants?.length?'<div class="variants"><strong>Bereidingsvariant</strong>'+[{id:'klassiek',label:r.defaultVariantLabel||'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
- const steps=(view.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(scaleStep(s,items,mult)):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(scaleStep(s.body||'',items,mult))+'</div>')+'</div></li>').join('');
+ const steps=(view.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(scaledStepBody(view,s,mult)):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(scaledStepBody(view,s,mult))+'</div>')+'</div></li>').join('');
  const tips=typeof view.tips==='string'?[view.tips]:(view.tips||[]);
  const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
- const scaleNote=current!==original?'<p class="scale-note">Ingrediënten en herkenbare hoeveelheden in de bereidingsstappen zijn omgerekend naar '+safe(portionsLabel(view,current))+'. Temperaturen, tijden en afmetingen blijven gelijk. Bij grotere porties kan een grotere pan of bereiding in meerdere batches nodig zijn. Niet-herkenbare aantallen in woorden blijven ongewijzigd.'+(view.servingUnit==='stokbroden'?' Gebruik bij stokbrood circa 150 ml stoomwater per ovenronde; bak extra broden zo nodig in een tweede ronde.':'')+'</p>':'';
+ const scaleNote=current!==original?'<p class="scale-note">Ingrediënten en gekoppelde hoeveelheden in de bereidingsstappen zijn omgerekend naar '+safe(portionsLabel(view,current))+'. Temperaturen, tijden en afmetingen blijven gelijk. Bij grotere porties kan een grotere pan of bereiding in meerdere batches nodig zijn. Niet-herkenbare aantallen in woorden blijven ongewijzigd.'+(view.servingUnit==='stokbroden'?' Gebruik bij stokbrood circa 150 ml stoomwater per ovenronde; bak extra broden zo nodig in een tweede ronde.':'')+'</p>':'';
  const jumpNav='<nav class="recipe-jumps" aria-label="Direct naar receptonderdelen"><span>Ga naar</span><button type="button" id="jumpIngredients">Ingrediënten</button><button type="button" id="jumpSteps">Bereiding</button></nav>';
  const actions='<div class="actions recipe-actions">'+
  '<button class="btn cook-start-button" id="startCooking">Start kookmodus</button>'+
