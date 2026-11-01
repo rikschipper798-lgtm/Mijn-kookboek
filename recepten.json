@@ -5303,8 +5303,8 @@
   },
   {
     "id": "chocolade-lavacake-pure-chocolade",
-    "title": "Chocolade lavacake met pure chocolade",
-    "subtitle": "Een rijk chocoladecakeje met een licht stevige buitenkant en een warme, vloeibare kern van pure chocolade; ongezoete cacao verdiept de chocoladesmaak.",
+    "title": "Chocolade lavacake",
+    "subtitle": "Warme chocoladecakejes met een zachte buitenkant en een vloeibare kern. Kies na het openen voor pure chocolade of melkchocolade; de ingrediënten en bereidingsstappen passen zich aan je keuze aan.",
     "category": "Desserts",
     "kind": "Nagerecht",
     "cuisine": "Frans geïnspireerd",
@@ -5322,6 +5322,7 @@
       "Chocolade",
       "Lavacake",
       "Pure chocolade",
+      "Melkchocolade",
       "Oven",
       "Vegetarisch"
     ],
@@ -5468,175 +5469,164 @@
         ]
       }
     ],
-    "tips": "Gebruik bij voorkeur chocolade van 65–70% cacao voor een diepe smaak. De baktijd is cruciaal: de rand moet stevig zijn en de kern nog zacht. Zet bij een volgende keer de oventijd met 1 minuut bij als de kern te vloeibaar was, of trek 1 minuut af als hij te stevig werd. Beslag kan afgedekt tot 24 uur in de koelkast worden bewaard; koud beslag heeft vaak 1–3 minuten extra oventijd nodig. Dit klassieke lavacakeje heeft een deels ongare kern met ei: gebruik bij voorkeur gepasteuriseerde eieren en serveer het niet aan mensen die ongegaarde eieren moeten vermijden. Serveer bijvoorbeeld met vanille-ijs en frambozen; beide zijn optioneel."
-  },
-  {
-    "id": "chocolade-lavacake-melkchocolade",
-    "title": "Chocolade lavacake met melkchocolade",
-    "subtitle": "Een romig chocoladecakeje met een warme, vloeibare melkchocoladekern; extra ongezoete cacao en minder suiker houden de smaak in balans.",
-    "category": "Desserts",
-    "kind": "Nagerecht",
-    "cuisine": "Frans geïnspireerd",
-    "minutes": 28,
-    "prep": 15,
-    "cook": 13,
-    "servings": 2,
-    "servingUnit": "personen",
-    "heat": "Niet pittig",
-    "difficulty": "Gemiddeld",
-    "featured": false,
-    "date": "2026-11-01",
-    "tags": [
-      "Dessert",
-      "Chocolade",
-      "Lavacake",
-      "Melkchocolade",
-      "Oven",
-      "Vegetarisch"
+    "tips": "Gebruik bij voorkeur chocolade van 65–70% cacao voor een diepe smaak. De baktijd is cruciaal: de rand moet stevig zijn en de kern nog zacht. Zet bij een volgende keer de oventijd met 1 minuut bij als de kern te vloeibaar was, of trek 1 minuut af als hij te stevig werd. Beslag kan afgedekt tot 24 uur in de koelkast worden bewaard; koud beslag heeft vaak 1–3 minuten extra oventijd nodig. Dit klassieke lavacakeje heeft een deels ongare kern met ei: gebruik bij voorkeur gepasteuriseerde eieren en serveer het niet aan mensen die ongegaarde eieren moeten vermijden. Serveer bijvoorbeeld met vanille-ijs en frambozen; beide zijn optioneel.",
+    "defaultVariantLabel": "Pure chocolade",
+    "aliases": [
+      "chocolade-lavacake-melkchocolade"
     ],
-    "ingredients": [
+    "variants": [
       {
-        "name": "Melkchocolade",
-        "qty": 70,
-        "unit": "g",
-        "group": "Cakebeslag"
-      },
-      {
-        "name": "Ongezouten roomboter",
-        "qty": 55,
-        "unit": "g",
-        "group": "Cakebeslag"
-      },
-      {
-        "name": "Eieren (1 heel ei en 1 extra eidooier)",
-        "qty": 2,
-        "unit": "stuks",
-        "group": "Cakebeslag"
-      },
-      {
-        "name": "Suiker",
-        "qty": 10,
-        "unit": "g",
-        "group": "Cakebeslag"
-      },
-      {
-        "name": "Bloem",
-        "qty": 12,
-        "unit": "g",
-        "group": "Cakebeslag"
-      },
-      {
-        "name": "Ongezoet cacaopoeder",
-        "qty": 8,
-        "unit": "g",
-        "group": "Cakebeslag"
-      },
-      {
-        "name": "Zout",
-        "qty": 1,
-        "unit": "klein snufje",
-        "group": "Cakebeslag"
-      },
-      {
-        "name": "Ongezouten roomboter om in te vetten",
-        "qty": 5,
-        "unit": "g",
-        "group": "Vormpjes"
-      },
-      {
-        "name": "Ongezoet cacaopoeder voor de vormpjes",
-        "qty": 2,
-        "unit": "g",
-        "group": "Vormpjes"
-      },
-      {
-        "name": "Oploskoffie",
-        "qty": 0.25,
-        "unit": "tl",
-        "group": "Optioneel",
-        "optional": true
-      },
-      {
-        "name": "Vanille-ijs",
-        "qty": 2,
-        "unit": "bolletjes",
-        "group": "Serveren (optioneel)",
-        "optional": true
-      },
-      {
-        "name": "Frambozen",
-        "qty": 50,
-        "unit": "g",
-        "group": "Serveren (optioneel)",
-        "optional": true
+        "id": "melkchocolade",
+        "label": "Melkchocolade",
+        "subtitle": "Een romig chocoladecakeje met een warme, vloeibare melkchocoladekern; extra ongezoete cacao en minder suiker houden de smaak in balans.",
+        "minutes": 28,
+        "prep": 15,
+        "cook": 13,
+        "ingredients": [
+          {
+            "name": "Melkchocolade",
+            "qty": 70,
+            "unit": "g",
+            "group": "Cakebeslag"
+          },
+          {
+            "name": "Ongezouten roomboter",
+            "qty": 55,
+            "unit": "g",
+            "group": "Cakebeslag"
+          },
+          {
+            "name": "Eieren (1 heel ei en 1 extra eidooier)",
+            "qty": 2,
+            "unit": "stuks",
+            "group": "Cakebeslag"
+          },
+          {
+            "name": "Suiker",
+            "qty": 10,
+            "unit": "g",
+            "group": "Cakebeslag"
+          },
+          {
+            "name": "Bloem",
+            "qty": 12,
+            "unit": "g",
+            "group": "Cakebeslag"
+          },
+          {
+            "name": "Ongezoet cacaopoeder",
+            "qty": 8,
+            "unit": "g",
+            "group": "Cakebeslag"
+          },
+          {
+            "name": "Zout",
+            "qty": 1,
+            "unit": "klein snufje",
+            "group": "Cakebeslag"
+          },
+          {
+            "name": "Ongezouten roomboter om in te vetten",
+            "qty": 5,
+            "unit": "g",
+            "group": "Vormpjes"
+          },
+          {
+            "name": "Ongezoet cacaopoeder voor de vormpjes",
+            "qty": 2,
+            "unit": "g",
+            "group": "Vormpjes"
+          },
+          {
+            "name": "Oploskoffie",
+            "qty": 0.25,
+            "unit": "tl",
+            "group": "Optioneel",
+            "optional": true
+          },
+          {
+            "name": "Vanille-ijs",
+            "qty": 2,
+            "unit": "bolletjes",
+            "group": "Serveren (optioneel)",
+            "optional": true
+          },
+          {
+            "name": "Frambozen",
+            "qty": 50,
+            "unit": "g",
+            "group": "Serveren (optioneel)",
+            "optional": true
+          }
+        ],
+        "steps": [
+          {
+            "title": "Oven en vormpjes voorbereiden",
+            "body": "Verwarm de oven voor op 200°C boven- en onderwarmte (of 180°C hetelucht). Vet 2 ovenbestendige ramequins van circa 150 ml in met in totaal 5 g roomboter. Bestuif de binnenkant met in totaal 2 g ongezoet cacaopoeder en klop overtollig poeder eruit. Zet een bakplaat klaar voor het midden van de oven.",
+            "duration": "Tijdens het voorverwarmen",
+            "ingredientIndices": [
+              7,
+              8
+            ]
+          },
+          {
+            "title": "Chocolade en boter smelten",
+            "body": "Hak 70 g melkchocolade fijn. Smelt samen met 55 g roomboter rustig au bain-marie, zonder dat de kom het water raakt, of in de magnetron in intervallen van 15–20 seconden. Roer glad en laat circa 2 minuten afkoelen tot lauwwarm.",
+            "duration": "3–5 min",
+            "ingredientIndices": [
+              0,
+              1
+            ]
+          },
+          {
+            "title": "Eieren en suiker mengen",
+            "body": "Neem 2 eieren: gebruik 1 heel ei en alleen de dooier van het tweede ei. Klop met 10 g suiker circa 1–2 minuten tot goed gemengd en licht schuimig. Bewaar het overgebleven eiwit eventueel voor een ander gerecht.",
+            "duration": "1–2 min",
+            "ingredientIndices": [
+              2,
+              3
+            ]
+          },
+          {
+            "title": "Chocoladebeslag maken",
+            "body": "Roer het lauwwarme chocolademengsel rustig door het eimengsel. Zeef er 12 g bloem en 8 g ongezoet cacaopoeder boven; voeg 1 klein snufje zout toe. Spatel kort door tot er geen droge bloem meer zichtbaar is. Meng eventueel ¼ tl oploskoffie, eerst opgelost in ½ tl warm water, door het beslag. Roer niet langer dan nodig.",
+            "ingredientIndices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "title": "Vormpjes vullen en bakken",
+            "body": "Verdeel het beslag gelijkmatig over de 2 ingevette vormpjes (maximaal ongeveer ¾ vol). Bak midden in de goed voorverwarmde oven circa 10–12 minuten. Controleer vanaf 9 minuten: de randen moeten gezet zijn, de bovenkant niet meer vloeibaar en het midden nog zacht en licht wiebelig. Bak 1 minuut langer als de bovenkant nog duidelijk vloeibaar is. De exacte tijd hangt af van de oven en de vormpjes.",
+            "duration": "10–12 min",
+            "ingredientIndices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "title": "Kort rusten en serveren",
+            "body": "Haal de vormpjes voorzichtig uit de oven en laat precies circa 1 minuut rusten. Maak zo nodig de rand voorzichtig los met een mesje, zet een bord op ieder vormpje en keer om. Serveer onmiddellijk; voeg desgewenst per bord 1 bolletje vanille-ijs en circa 25 g frambozen toe.",
+            "duration": "1 min rusten",
+            "ingredientIndices": [
+              10,
+              11
+            ]
+          }
+        ],
+        "tips": "Omdat melkchocolade zoeter is, bevat deze variant slechts 10 g toegevoegde suiker en 8 g ongezoet cacaopoeder. Gebruik liever melkchocolade met een redelijk hoog cacaopercentage voor een vollere smaak. De baktijd is cruciaal: de randen stevig, het midden nog zacht. Verander de baktijd na de eerste proef met stappen van 1 minuut. Beslag kan afgedekt tot 24 uur in de koelkast worden bewaard; koud beslag heeft vaak 1–3 minuten extra oventijd nodig. De zachte kern is deels ongaar en bevat ei: gebruik bij voorkeur gepasteuriseerde eieren en serveer dit niet aan mensen die ongegaarde eieren moeten vermijden. Frambozen of vanille-ijs zijn optioneel."
       }
-    ],
-    "steps": [
-      {
-        "title": "Oven en vormpjes voorbereiden",
-        "body": "Verwarm de oven voor op 200°C boven- en onderwarmte (of 180°C hetelucht). Vet 2 ovenbestendige ramequins van circa 150 ml in met in totaal 5 g roomboter. Bestuif de binnenkant met in totaal 2 g ongezoet cacaopoeder en klop overtollig poeder eruit. Zet een bakplaat klaar voor het midden van de oven.",
-        "duration": "Tijdens het voorverwarmen",
-        "ingredientIndices": [
-          7,
-          8
-        ]
-      },
-      {
-        "title": "Chocolade en boter smelten",
-        "body": "Hak 70 g melkchocolade fijn. Smelt samen met 55 g roomboter rustig au bain-marie, zonder dat de kom het water raakt, of in de magnetron in intervallen van 15–20 seconden. Roer glad en laat circa 2 minuten afkoelen tot lauwwarm.",
-        "duration": "3–5 min",
-        "ingredientIndices": [
-          0,
-          1
-        ]
-      },
-      {
-        "title": "Eieren en suiker mengen",
-        "body": "Neem 2 eieren: gebruik 1 heel ei en alleen de dooier van het tweede ei. Klop met 10 g suiker circa 1–2 minuten tot goed gemengd en licht schuimig. Bewaar het overgebleven eiwit eventueel voor een ander gerecht.",
-        "duration": "1–2 min",
-        "ingredientIndices": [
-          2,
-          3
-        ]
-      },
-      {
-        "title": "Chocoladebeslag maken",
-        "body": "Roer het lauwwarme chocolademengsel rustig door het eimengsel. Zeef er 12 g bloem en 8 g ongezoet cacaopoeder boven; voeg 1 klein snufje zout toe. Spatel kort door tot er geen droge bloem meer zichtbaar is. Meng eventueel ¼ tl oploskoffie, eerst opgelost in ½ tl warm water, door het beslag. Roer niet langer dan nodig.",
-        "ingredientIndices": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          9
-        ]
-      },
-      {
-        "title": "Vormpjes vullen en bakken",
-        "body": "Verdeel het beslag gelijkmatig over de 2 ingevette vormpjes (maximaal ongeveer ¾ vol). Bak midden in de goed voorverwarmde oven circa 10–12 minuten. Controleer vanaf 9 minuten: de randen moeten gezet zijn, de bovenkant niet meer vloeibaar en het midden nog zacht en licht wiebelig. Bak 1 minuut langer als de bovenkant nog duidelijk vloeibaar is. De exacte tijd hangt af van de oven en de vormpjes.",
-        "duration": "10–12 min",
-        "ingredientIndices": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      },
-      {
-        "title": "Kort rusten en serveren",
-        "body": "Haal de vormpjes voorzichtig uit de oven en laat precies circa 1 minuut rusten. Maak zo nodig de rand voorzichtig los met een mesje, zet een bord op ieder vormpje en keer om. Serveer onmiddellijk; voeg desgewenst per bord 1 bolletje vanille-ijs en circa 25 g frambozen toe.",
-        "duration": "1 min rusten",
-        "ingredientIndices": [
-          10,
-          11
-        ]
-      }
-    ],
-    "tips": "Omdat melkchocolade zoeter is, bevat deze variant slechts 10 g toegevoegde suiker en 8 g ongezoet cacaopoeder. Gebruik liever melkchocolade met een redelijk hoog cacaopercentage voor een vollere smaak. De baktijd is cruciaal: de randen stevig, het midden nog zacht. Verander de baktijd na de eerste proef met stappen van 1 minuut. Beslag kan afgedekt tot 24 uur in de koelkast worden bewaard; koud beslag heeft vaak 1–3 minuten extra oventijd nodig. De zachte kern is deels ongaar en bevat ei: gebruik bij voorkeur gepasteuriseerde eieren en serveer dit niet aan mensen die ongegaarde eieren moeten vermijden. Frambozen of vanille-ijs zijn optioneel."
+    ]
   }
 ]
