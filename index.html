@@ -366,6 +366,11 @@ body.cook-active{overflow:hidden}
 .cook-ingredients li:last-child{border-bottom:0}
 .cook-ingredients li strong{text-align:right;white-space:nowrap;color:#31533b}
 .cook-ingredients small{font-size:11px;color:#7a877a}
+.cook-ingredients{margin:0 0 12px;padding:12px 17px}
+.cook-ingredients-label{font-size:14px;font-weight:800;color:#31533b;margin-bottom:7px}
+.cook-ingredients-hint{font-size:12px;line-height:1.5;color:#6d7d6e;margin:10px 0 0}
+.cook-ingredients-empty{font-size:14px;line-height:1.5;color:#617267;margin:7px 0}
+.cook-ingredient-toggle{margin-bottom:12px}
 .cook-dialog-footer{border-top:1px solid #e7ece4;padding:15px 26px;background:#f8faf6;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .cook-restart{border:0;background:transparent;text-decoration:underline;text-underline-offset:3px;font-size:13px;color:#58705e;padding:9px 0}
 .cook-step-actions{display:flex;gap:10px}
@@ -1076,7 +1081,9 @@ function cookSteps(view,mult){
   index:index,
   title:typeof step==='string'?'Stap '+(index+1):step.title||'Stap '+(index+1),
   duration:typeof step==='string'?'':step.duration||'',
-  body:scaleStep(typeof step==='string'?step:step.body||'',allIngredients(view),mult)
+  body:scaleStep(typeof step==='string'?step:step.body||'',allIngredients(view),mult),
+  // Indices verwijzen naar de ingrediënten van de gekozen receptvariant.
+  ingredientIndices:typeof step==='object'&&Array.isArray(step.ingredientIndices)?step.ingredientIndices:null
  }));
 }
 function openCookMode(recipe,view,variantId,servings){
@@ -1105,7 +1112,11 @@ function renderCookMode(focusTarget='cookNext'){
  const c=activeCook;
  if(!c)return;
  const count=c.steps.length,step=c.steps[c.index],isLast=c.index===count-1;
- const materials=allIngredients(c.view).map(item=>
+ const items=allIngredients(c.view);
+ // Oude recepten zonder koppeling vallen terug op de volledige ingrediëntenlijst.
+ const relevant=step.ingredientIndices===null?items:step.ingredientIndices.map(index=>items[index]).filter(Boolean);
+ const shown=c.showIngredients?items:relevant;
+ const materials=shown.map(item=>
   '<li><span>'+safe(item.name)+(item.optional?' <small>(optioneel)</small>':'')+'</span><strong>'+safe(amount(item,c.servings/portions(c.view)))+'</strong></li>'
  ).join('');
  el('cookOverlay').innerHTML='<div class="cook-dialog" role="dialog" aria-modal="true" aria-labelledby="cookDialogTitle" aria-describedby="cookDialogDescription">'+
@@ -1118,8 +1129,12 @@ function renderCookMode(focusTarget='cookNext'){
  '<h3>'+safe(step.title)+'</h3>'+
  (step.duration?'<div class="cook-step-time">'+safe(step.duration)+'</div>':'')+
  '<p class="cook-step-body">'+safe(step.body)+'</p>'+
- '<button id="cookShowIngredients" class="cook-ingredient-toggle" type="button" aria-expanded="'+c.showIngredients+'">'+(c.showIngredients?'Verberg ingrediënten':'Bekijk ingrediënten')+'</button>'+
- (c.showIngredients?'<div class="cook-ingredients"><ul>'+materials+'</ul></div>':'')+
+ '<div class="cook-ingredients" id="cookIngredientList" aria-label="'+(c.showIngredients?'Alle ingrediënten':'Ingrediënten voor deze stap')+'">'+
+ '<div class="cook-ingredients-label">'+(c.showIngredients?'Alle ingrediënten':'Ingrediënten voor deze stap')+'</div>'+
+ (materials?'<ul>'+materials+'</ul>':'<p class="cook-ingredients-empty">Voor deze stap zijn geen nieuwe ingrediënten nodig.</p>')+
+ (materials?'<p class="cook-ingredients-hint">Dit zijn de totale recepthoeveelheden. Gebruik bij verdeelde ingrediënten de hoeveelheid uit de staptekst.</p>':'')+
+ '</div>'+
+ '<button id="cookShowIngredients" class="cook-ingredient-toggle" type="button" aria-expanded="'+c.showIngredients+'" aria-controls="cookIngredientList">'+(c.showIngredients?'Toon ingrediënten per stap':'Bekijk alle ingrediënten')+'</button>'+
  '</div>'+
  '<div class="cook-dialog-footer"><button type="button" id="cookRestart" class="cook-restart">Begin opnieuw</button>'+
  '<div class="cook-step-actions"><button type="button" id="cookPrev" class="btn alt"'+(c.index===0?' disabled':'')+'>Vorige</button>'+
@@ -1127,7 +1142,7 @@ function renderCookMode(focusTarget='cookNext'){
  '</div>';
  const overlay=el('cookOverlay');
  el('cookClose').onclick=()=>closeCookMode();
- el('cookPrev').onclick=()=>{if(c.index>0){c.index--;persistCookStep(false);renderCookMode()}};
+ el('cookPrev').onclick=()=>{if(c.index>0){c.index--;c.showIngredients=false;persistCookStep(false);renderCookMode()}};
  el('cookNext').onclick=()=>{
   if(isLast){
    persistCookStep(true);
@@ -1136,9 +1151,9 @@ function renderCookMode(focusTarget='cookNext'){
    if(notes)notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
    return;
   }
-  c.index++;persistCookStep(false);renderCookMode();
+  c.index++;c.showIngredients=false;persistCookStep(false);renderCookMode();
  };
- el('cookRestart').onclick=()=>{c.index=0;persistCookStep(false);renderCookMode()};
+ el('cookRestart').onclick=()=>{c.index=0;c.showIngredients=false;persistCookStep(false);renderCookMode()};
  el('cookShowIngredients').onclick=()=>{c.showIngredients=!c.showIngredients;renderCookMode('cookShowIngredients')};
  const next=el(focusTarget);
  if(next&&typeof next.focus==='function')next.focus();
