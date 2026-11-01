@@ -5021,5 +5021,178 @@
     "tips": "Gebaseerd op het eerdere Mexicaanse wraprecept van 8 augustus 2026, waarin voor twee personen 350–400 g kipdij, paprika, ui, mais, sla, tomaat, geraspte kaas en een saus van yoghurt en mayonaise werden gebruikt. In deze versie is 375 g kip gekozen, is het gerookte paprikapoeder teruggebracht van 1 naar ½ tl en het komijnzaad verhoogd naar ¾ tl voor een beter evenwicht. Gebruik 1 tl citroensap in de knoflooksaus in plaats van de eerder genoemde limoen. Laat mais uitlekken en voeg vochtige ingrediënten pas na krokant bakken toe. Als je geen Griekse yoghurt hebt, kun je crème fraîche gebruiken; gebruik geen gezoete vanillekwark.",
     "image": "images/mexicaanse-kipwraps.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor Mexicaanse kipwraps met mais en knoflooksaus"
+  },
+  {
+    "id": "italiaanse-pesto-salamipizza-flatbread",
+    "title": "Italiaanse pesto-salamipizza op Perzisch flatbread",
+    "subtitle": "Krokant voorgebakken Perzisch flatbread met groene pesto, salami, paprika, tomaat, rode ui, champignons, gesmolten kaas en verse basilicum na het bakken.",
+    "category": "Brood & basis",
+    "kind": "Lunch of hoofdgerecht",
+    "cuisine": "Italiaans geïnspireerd",
+    "minutes": 22,
+    "prep": 8,
+    "cook": 14,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild tot gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-11-01",
+    "tags": [
+      "Pizza",
+      "Flatbread",
+      "Pesto",
+      "Salami",
+      "Lunch",
+      "Oven",
+      "Champignons",
+      "Basilicum"
+    ],
+    "ingredients": [
+      {
+        "name": "Perzisch flatbread (25–30 cm)",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Bodem"
+      },
+      {
+        "name": "Groene pesto",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Beleg"
+      },
+      {
+        "name": "Salami",
+        "qty": 45,
+        "unit": "g",
+        "group": "Beleg"
+      },
+      {
+        "name": "Geraspte kaas",
+        "qty": 75,
+        "unit": "g",
+        "group": "Beleg"
+      },
+      {
+        "name": "Rode paprika",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomaat",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 0.25,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Champignons",
+        "qty": 35,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Verse basilicum",
+        "qty": 5,
+        "unit": "blaadjes",
+        "group": "Afwerking"
+      },
+      {
+        "name": "Gedroogde oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Bodem"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 1,
+        "unit": "snufje",
+        "group": "Kruiden",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "title": "Oven en groenten voorbereiden",
+        "body": "Verwarm de oven voor op 220 °C boven- en onderwarmte (of 200 °C hetelucht) en verwarm de bakplaat mee. Snijd ½ rode paprika in kleine reepjes, ¼ rode ui in flinterdunne halve ringen en 35 g champignons in dunne plakjes van circa 2–3 mm. Verwijder de vochtige zaadlijsten van ½ tomaat en snijd het vruchtvlees klein. Snijd de 45 g salami eventueel in kleinere stukken. Dep de groenten zo nodig droog.",
+        "ingredientIndices": [
+          4,
+          6,
+          7,
+          5,
+          2
+        ]
+      },
+      {
+        "title": "Flatbread kort voorbakken",
+        "body": "Bestrijk de bovenkant en de randen van 1 Perzisch flatbread dun met 1 tl olijfolie. Leg het voorzichtig op de hete bakplaat en bak circa 3 minuten op de middelste richel, totdat de bovenkant iets droger aanvoelt. Het hoeft nog niet bruin te zijn.",
+        "duration": "3 min",
+        "ingredientIndices": [
+          0,
+          12
+        ]
+      },
+      {
+        "title": "Pizza in lagen beleggen",
+        "body": "Haal de bakplaat voorzichtig uit de oven. Smeer 1½ el groene pesto dun over het voorgebakken brood en laat ongeveer 1 cm van de randen vrij. Strooi circa 30 g van de 75 g geraspte kaas over de pesto. Verdeel vervolgens de paprika, rode ui, tomaat en champignons gelijkmatig. Leg 45 g salami erop en kruid met ½ tl oregano, ¼ tl knoflookpoeder en ¼ tl zwarte peper. Voeg eventueel 1 snufje chilipoeder toe. Strooi de overige 45 g kaas over het beleg.",
+        "ingredientIndices": [
+          1,
+          3,
+          4,
+          6,
+          5,
+          7,
+          2,
+          9,
+          10,
+          11,
+          13
+        ]
+      },
+      {
+        "title": "Krokant afbakken",
+        "body": "Bak de belegde flatbreadpizza 8–10 minuten op de middelste richel van de voorverwarmde oven. De kaas moet gesmolten zijn, de randen goudbruin en krokant en de salami licht gekleurd. Zet voor een extra krokante kaaskorst eventueel de laatste 1–2 minuten de grill aan en houd de pizza in de gaten.",
+        "duration": "8–10 min",
+        "ingredientIndices": [
+          0,
+          3,
+          2
+        ]
+      },
+      {
+        "title": "Afwerken met verse basilicum",
+        "body": "Laat de pizza circa 1 minuut op een rooster rusten, zodat de onderkant krokant blijft. Scheur 5 blaadjes verse basilicum grof en verdeel ze pas nu over de warme pizza. Snijd in punten en serveer direct.",
+        "duration": "1 min rusten",
+        "ingredientIndices": [
+          8
+        ]
+      }
+    ],
+    "tips": "Deze hoeveelheden zijn bedoeld voor één groot Perzisch flatbread: één royale lunch of twee kleine porties. Bak het brood eerst kort voor voor een krokante bodem. Verwijder natte tomatenzaadlijsten en snijd champignons dun; door de kleine hoeveelheid van 35 g hoef je de champignons niet vooraf te bakken. Gebruik pesto met mate om een vette of zompige bodem te voorkomen. Kaas in twee lagen helpt het beleg bijeenhouden. Voeg geen extra zout toe: pesto, salami en kaas zijn al zout. Voeg verse basilicum pas na het bakken toe. Voor een mildere variant kun je circa 20 g salami vervangen door 25 g ham. Serveer bij gebruik als hoofdgerecht eventueel met een salade.",
+    "image": "images/italiaanse-pesto-salamipizza-flatbread.webp",
+    "image_source": "AI-gegenereerde afbeelding speciaal gemaakt voor deze pesto-salamipizza met champignons en verse basilicum"
   }
 ]
