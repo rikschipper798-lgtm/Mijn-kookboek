@@ -482,6 +482,36 @@ body.cook-active{overflow:hidden}
 .offline-guidance strong{color:#385740}
 @media(max-width:650px){.offline-feature{padding:18px 15px}.offline-actions{width:100%}.offline-actions button{flex:1}}
 @media print{.offline-feature{display:none!important}}
+
+/* Direct zichtbare chocoladekeuze bovenaan het lavacakerecept. */
+.lava-choice{
+ margin:16px 0 22px;padding:19px 21px 20px;
+ background:linear-gradient(135deg,#fff9f1,#fffdf9);
+ border:2px solid #dec1a4;border-radius:17px;
+}
+.lava-choice-kicker{font-size:11px;font-weight:800;letter-spacing:.11em;color:#945a32;margin-bottom:7px}
+.lava-choice .lava-choice-title{font-family:Georgia,serif;font-size:clamp(22px,3vw,28px);font-weight:600;line-height:1.25;margin:0 0 7px;color:#274431}
+.lava-choice-explainer{font-size:14px;color:#5f6c5d;line-height:1.5;margin:0 0 15px}
+.lava-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.lava-choice-option{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;
+ width:100%;min-width:0;min-height:78px;padding:14px 16px;text-align:left;
+ background:#fff;border:2px solid #dedbd3;border-radius:12px;color:#2d4333;
+ box-shadow:0 2px 7px #2b3e2e08;
+}
+.lava-choice-option:hover{border-color:#769477;background:#f7faf5}
+.lava-choice-option[aria-pressed="true"]{border-color:#294935;background:#eaf2e7;box-shadow:0 0 0 1px #29493515}
+.lava-choice-option-text{display:flex;flex-direction:column;min-width:0;gap:4px}
+.lava-choice-option-text strong{font-size:16px;font-weight:800;line-height:1.25}
+.lava-choice-option-text small{font-size:12px;color:#647465;line-height:1.35}
+.lava-choice-mark{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border:2px solid #c3ccc1;border-radius:50%;font-size:15px;font-weight:800}
+.lava-choice-option[aria-pressed="true"] .lava-choice-mark{border-color:#294935;background:#294935;color:#fff}
+@media(max-width:540px){
+ .lava-choice{margin:14px 0 18px;padding:15px 14px 16px}
+ .lava-choice-grid{grid-template-columns:1fr;gap:8px}
+ .lava-choice-option{min-height:66px;padding:10px 13px}
+}
+@media print{.lava-choice{display:none!important}}
 </style>
 </head>
 <body>
@@ -1694,7 +1724,18 @@ function renderDetail(){
  el('overview').hidden=true;el('basket').hidden=true;el('detail').hidden=false;
  const mult=current/original,items=allIngredients(view),key=listKey(r.id,variantId);
  const canScale=items.some(i=>typeof i.qty==='number');
- const choices=r.variants?.length?'<div class="variants"><strong>'+safe(r.variantPrompt||'Bereidingsvariant')+'</strong>'+[{id:'klassiek',label:r.defaultVariantLabel||'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
+ const isLavaCake=r.id==='chocolade-lavacake-pure-chocolade';
+ const choices=r.variants?.length&&!isLavaCake?'<div class="variants"><strong>'+safe(r.variantPrompt||'Bereidingsvariant')+'</strong>'+[{id:'klassiek',label:r.defaultVariantLabel||'Klassieke basilico'},...r.variants].map(v=>'<button class="pill" type="button" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+safe(v.label)+'</button>').join('')+'</div>':'';
+ const chocolateChoices=isLavaCake?'<section class="lava-choice" aria-labelledby="lavaChoiceTitle">'+
+ '<div class="lava-choice-kicker">KIES JE VARIANT</div>'+
+ '<h3 class="lava-choice-title" id="lavaChoiceTitle">'+safe(r.variantPrompt||'Kies je chocoladesoort')+'</h3>'+
+ '<p class="lava-choice-explainer">Welke chocolade gebruik je? Het recept en de boodschappenlijst passen zich aan je keuze aan.</p>'+
+ '<div class="lava-choice-grid" role="group" aria-label="Chocoladesoort">'+
+ [{id:'klassiek',label:r.defaultVariantLabel||'Pure chocolade',hint:'Intens en minder zoet'},...(r.variants||[]).map(v=>({id:v.id,label:v.label,hint:v.id==='melkchocolade'?'Romig en zacht':''}))].map(v=>
+ '<button type="button" class="lava-choice-option" data-variant="'+safe(v.id)+'" aria-pressed="'+(v.id===variantId)+'">'+
+ '<span class="lava-choice-option-text"><strong>'+safe(v.label)+'</strong><small>'+safe(v.hint)+'</small></span>'+
+ '<span class="lava-choice-mark" aria-hidden="true">'+(v.id===variantId?'✓':'')+'</span></button>').join('')+
+ '</div></section>':'';
  const steps=(view.steps||[]).map((s,i)=>'<li><span class="num">'+(i+1)+'</span><div>'+(typeof s==='string'?safe(scaledStepBody(view,s,mult)):'<strong>'+safe(s.title||'Stap '+(i+1))+'</strong>'+(s.duration?' <small>('+safe(s.duration)+')</small>':'')+'<div>'+safe(scaledStepBody(view,s,mult))+'</div>')+'</div></li>').join('');
  const tips=typeof view.tips==='string'?[view.tips]:(view.tips||[]);
  const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
@@ -1711,7 +1752,7 @@ function renderDetail(){
  '<button class="btn alt" id="print">Print</button>'+
  '</div></details></div>';
  el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button>'+
- '<div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2><p class="description">'+safe(description(view))+'</p>'+jumpNav+
+ '<div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2>'+chocolateChoices+'<p class="description">'+safe(description(view))+'</p>'+jumpNav+
  (view.image?'<div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div>':'')+
  '<div class="meta"><span class="tag">'+safe(portionsLabel(view,original))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+'</div>'+
  timeBreakdown(view)+choices+
@@ -1737,7 +1778,14 @@ function renderDetail(){
   el('cookDateLabel').textContent='Laatst gekookt: '+noteDateLabel(item.lastCookedOn);
   el('notesSaveStatus').textContent='Kookdatum en notities opgeslagen op dit apparaat.';
  };
- el('detail').querySelectorAll('[data-variant]').forEach(b=>b.onclick=()=>{el('detail').dataset.variantId=b.dataset.variant;renderDetail()});
+ el('detail').querySelectorAll('[data-variant]').forEach(b=>b.onclick=()=>{
+  const nextVariant=b.dataset.variant;
+  if(nextVariant===variantId)return;
+  el('detail').dataset.variantId=nextVariant;
+  renderDetail();
+  const activeOption=Array.from(el('detail').querySelectorAll('[data-variant]')).find(button=>button.dataset.variant===nextVariant);
+  if(activeOption)activeOption.focus({preventScroll:true});
+ });
  el('detail').querySelectorAll('[data-item]').forEach(b=>b.onchange=()=>{
   const marked=new Set(Array.isArray(checked[key])?checked[key]:[]),idx=number(b.dataset.item);
   if(b.checked)marked.add(idx);else marked.delete(idx);
