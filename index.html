@@ -466,6 +466,8 @@ body.cook-active{overflow:hidden}
 .offline-feature h2{font-family:Georgia,serif;font-size:24px;font-weight:500;line-height:1.25;color:#294935;margin:3px 0 8px}
 .offline-feature p{font-size:13px;color:#607364;line-height:1.55;margin:5px 0}
 .offline-feature .offline-copy{flex:1;min-width:230px}
+.offline-feature .recipe-sync-status{color:#315f40;font-weight:700;margin:8px 0 0}
+.offline-feature .recipe-sync-status:empty{display:none}
 .offline-actions{display:flex;flex-wrap:wrap;gap:8px;align-self:center}
 .offline-actions button{font-size:13px;min-height:44px}
 .offline-guidance{flex-basis:100%;border-top:1px solid #dce7d8;padding-top:13px}
@@ -518,6 +520,7 @@ body.cook-active{overflow:hidden}
   <span class="section-label">OOK ZONDER INTERNET</span>
   <h2 id="offlineFeaturesTitle">Mijn Kookboek als app</h2>
   <p id="offlineState" role="status" aria-live="polite">Offline gebruik wordt voorbereid. Open deze pagina eerst met internet om recepten op te slaan.</p>
+  <p id="recipeSyncStatus" class="recipe-sync-status" role="status" aria-live="polite"></p>
  </div>
  <div class="offline-actions">
   <button type="button" class="btn" id="appInstall" hidden>Installeer de app</button>
@@ -1443,6 +1446,8 @@ function closeCookMode(restoreFocus=true){
  el('cookOverlay').innerHTML='';
  document.body.classList.remove('cook-active');
  if(restoreFocus&&el('startCooking')&&!el('detail').hidden)el('startCooking').focus();
+ // Werk recepten pas bij nadat de kookmodus echt gesloten is.
+ if(deferredRecipeUpdate)queueMicrotask(applyDeferredRecipeUpdate);
 }
 
 function finishDraftFor(key){
@@ -2001,18 +2006,116 @@ if('serviceWorker' in navigator&&window.isSecureContext){
 
 el('shoppingNav').onclick=()=>location.hash='#boodschappenlijst';
 window.addEventListener('hashchange',route);
-fetch('recepten.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Kan recepten niet laden');return r.json()}).then(data=>{
- if(!Array.isArray(data))throw Error('Ongeldige recepten');
+/* Recepten synchroniseren bij openen, terugkeren en herstelde verbinding.
+   De serviceworker bewaart een offline kopie maar probeert online eerst het
+   actuele recepten.json op te halen. Een actieve kookmodus of bewerking van
+   notities wordt nooit onderbroken door een stilzwijgende hertekening. */
+let recipeSignature=null;
+let recipeRefreshPromise=null;
+let recipeLastCheckAt=0;
+let deferredRecipeUpdate=null;
+function recipeEditorFocused(){
+ const field=document.activeElement;
+ return Boolean(field&&el('detail').contains(field)&&
+  (field.tagName==='INPUT'||field.tagName==='TEXTAREA'||field.tagName==='SELECT'));
+}
+function setRecipeSyncStatus(message){
+ el('recipeSyncStatus').textContent=message;
+}
+function refreshCategoryOptions(data){
+ const select=el('category'),current=select.value;
+ const categories=[...new Set(data.map(r=>r.category||'Overig'))].sort((a,b)=>a.localeCompare(b,'nl'));
+ // Behoud de bestaande keuze en eventuele andere zoek-/sorteerfilters.
+ select.length=1;
+ for(const category of categories)select.add(new Option(category,category));
+ select.value=categories.includes(current)?current:'';
+}
+function renderCurrentRecipes(){
+ if(location.hash==='#boodschappenlijst')renderBasket();
+ else if(location.hash.startsWith('#recept/'))renderDetail();
+ else renderCards();
+ // route() zou de pagina naar boven scrollen; bij synchronisatie doen we dat niet.
+}
+function applyRecipeUpdate(data,signature){
+ if(signature===recipeSignature){deferredRecipeUpdate=null;return false}
+ if(activeCook||recipeEditorFocused()){
+  deferredRecipeUpdate={data,signature};
+  setRecipeSyncStatus('Nieuwe receptgegevens ontvangen. Ze verschijnen na het koken of bewerken van notities.');
+  return false;
+ }
+ const wasLoaded=recipeSignature!==null;
  recipes=data;
+ recipeSignature=signature;
+ deferredRecipeUpdate=null;
  el('heroTotal').textContent=data.length;
  el('heroCategories').textContent=new Set(data.map(r=>r.category||'Overig')).size;
  el('heroFast').textContent=data.filter(r=>timeInfo(r).total<=40).length;
  if(favorites.has('bolognese')||favorites.has('pasta-basilico')){
-  favorites.add('pasta-rundergehakt-groenten');favorites.delete('bolognese');favorites.delete('pasta-basilico');save(STORAGE.fav,[...favorites]);
+  favorites.add('pasta-rundergehakt-groenten');
+  favorites.delete('bolognese');favorites.delete('pasta-basilico');
+  save(STORAGE.fav,[...favorites]);
  }
- [...new Set(data.map(x=>x.category||'Overig'))].sort((a,b)=>a.localeCompare(b,'nl')).forEach(c=>el('category').add(new Option(c,c)));
- basketCount();route();
-}).catch(e=>{el('count').innerHTML='<span class="error">De recepten konden niet worden geladen. Probeer de pagina opnieuw.</span>';console.error(e)});
+ refreshCategoryOptions(data);
+ basketCount();
+ if(wasLoaded)renderCurrentRecipes();
+ else route();
+ setRecipeSyncStatus(wasLoaded?'Recepten automatisch bijgewerkt. Je ziet nu de nieuwste opgehaalde versie.':
+  'Recepten geladen. Bij terugkeer naar de app wordt automatisch op wijzigingen gecontroleerd.');
+ return true;
+}
+function applyDeferredRecipeUpdate(){
+ if(!deferredRecipeUpdate||activeCook||recipeEditorFocused())return;
+ const {data,signature}=deferredRecipeUpdate;
+ applyRecipeUpdate(data,signature);
+}
+async function refreshRecipeCollection(initial=false){
+ if(recipeRefreshPromise)return recipeRefreshPromise;
+ if(!initial&&navigator.onLine===false)return;
+ // Voorkom dubbele verzoeken wanneer focus, pageshow en visibilitychange
+ // vrijwel tegelijk afgaan bij het terugkeren naar de app.
+ const now=Date.now();
+ if(!initial&&now-recipeLastCheckAt<2000)return;
+ recipeLastCheckAt=now;
+ const work=(async()=>{
+  const response=await fetch('recepten.json',{cache:'no-cache'});
+  if(!response.ok)throw Error('Kan recepten niet laden');
+  const data=await response.json();
+  if(!Array.isArray(data)||!data.every(r=>r&&typeof r==='object'&&
+   typeof r.id==='string'&&r.id.length>0&&typeof r.title==='string')){
+   throw Error('Ongeldige receptenlijst');
+  }
+  const signature=JSON.stringify(data);
+  if(signature!==recipeSignature)applyRecipeUpdate(data,signature);
+ })();
+ recipeRefreshPromise=work;
+ try{await work}catch(error){
+  if(initial&&recipeSignature===null){
+   el('count').innerHTML='<span class="error">De recepten konden niet worden geladen. Controleer de verbinding en probeer het opnieuw.</span>';
+  }else if(navigator.onLine!==false){
+   setRecipeSyncStatus('Nieuwe recepten controleren is tijdelijk niet gelukt. Bij het volgende openen proberen we opnieuw.');
+  }
+  console.warn('Kookboek recepten vernieuwen',error);
+ }finally{
+  if(recipeRefreshPromise===work)recipeRefreshPromise=null;
+ }
+}
+document.addEventListener('visibilitychange',()=>{
+ if(document.visibilityState==='visible')refreshRecipeCollection();
+});
+window.addEventListener('focus',()=>{
+ if(document.visibilityState==='visible')refreshRecipeCollection();
+});
+window.addEventListener('pageshow',event=>{
+ if(event.persisted)refreshRecipeCollection();
+});
+window.addEventListener('online',()=>refreshRecipeCollection());
+// Bij focusverlies van de notitievelden kunnen uitgestelde wijzigingen door.
+document.addEventListener('focusout',event=>{
+ if(deferredRecipeUpdate&&el('detail').contains(event.target)){
+  setTimeout(applyDeferredRecipeUpdate,0);
+ }
+});
+refreshRecipeCollection(true);
 </script>
 </body>
 </html>
