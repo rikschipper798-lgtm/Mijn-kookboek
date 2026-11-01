@@ -11,7 +11,14 @@
 <link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180">
 <meta name="description" content="Mijn Kookboek: persoonlijke recepten, boodschappenlijsten en kookinstructies.">
-<title>Mijn Kookboek — alle recepten</title>
+<meta name="application-name" content="Mijn Kookboek">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mijn Kookboek">
+<meta property="og:title" content="Mijn Kookboek">
+<meta property="og:description" content="Mijn Kookboek: persoonlijke recepten, boodschappenlijsten en kookinstructies.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mijn Kookboek">
+<title>Mijn Kookboek</title>
 <style>
 :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#28392e;background:#f8f5ed;--green:#294935;--leaf:#53704e;--clay:#b16e42;--line:#e5dfd2}
 *{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}a{color:inherit}
@@ -1109,7 +1116,7 @@ function alreadyHomeFromRecipes(){
 }
 function renderBasket(){
  el('overview').hidden=true;el('detail').hidden=true;el('basket').hidden=false;
- document.title='Boodschappenlijst | Mijn Kookboek';
+ document.title='Mijn Kookboek | Boodschappenlijst';
  const selected=Object.entries(basket).map(([key,entry])=>{
   const recipe=recipes.find(r=>r.id===entry.id);
   if(!recipe)return '';
@@ -1735,14 +1742,14 @@ function renderDetail(){
   el('minus').onclick=()=>{el('detail').dataset.currentServings=Math.max(1,current-1);renderDetail()};
   el('plus').onclick=()=>{el('detail').dataset.currentServings=current+1;renderDetail()};
  }
- document.title=title(view)+' | Mijn Kookboek';
+ document.title='Mijn Kookboek | '+title(view);
 }
 function route(){
  closeCookMode(false);
  document.querySelector('.top').classList.toggle('is-subpage',location.hash.startsWith('#recept/')||location.hash==='#boodschappenlijst');
  if(location.hash==='#boodschappenlijst')renderBasket();
  else if(location.hash.startsWith('#recept/'))renderDetail();
- else{el('detail').hidden=true;el('basket').hidden=true;el('detail').dataset.recipeId='';el('detail').dataset.routeId='';el('overview').hidden=false;document.title='Mijn Kookboek — alle recepten';renderCards()}
+ else{el('detail').hidden=true;el('basket').hidden=true;el('detail').dataset.recipeId='';el('detail').dataset.routeId='';el('overview').hidden=false;document.title='Mijn Kookboek';renderCards()}
  window.scrollTo(0,0);
 }
 el('search').addEventListener('input',renderCards);
