@@ -1215,231 +1215,262 @@
   {
     "id": "piripiri",
     "title": "Kip piri piri met rijst",
-    "subtitle": "Pittig-frisse, goudbruin gebakken kip met paprika en courgette, rijst en een warme piri-pirisaus met citroen.",
+    "subtitle": "Sappige kipdijfilet met gerookte paprika, oregano, verse peper en citroen, geserveerd met rijst en beetgare groenten in een geconcentreerde, licht pittige tomatensaus.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Portugees geïnspireerd",
-    "minutes": 35,
-    "prep": 15,
-    "cook": 20,
-    "servings": 2,
+    "minutes": 40,
+    "prep": 12,
+    "cook": 28,
+    "servings": 4,
     "servingUnit": "personen",
     "heat": "Gemiddeld pittig",
     "difficulty": "Makkelijk",
-    "date": "2026-10-16",
+    "date": "2026-11-04",
     "tags": [
       "Kip",
       "Rijst",
-      "Binnen 40 min"
+      "Piri piri",
+      "Groenterijk",
+      "Mealprep"
     ],
     "ingredients": [
       {
-        "name": "Kipfilet",
-        "qty": 350,
+        "name": "Kipdijfilet",
+        "qty": 450,
         "unit": "g",
         "group": "Basis"
       },
       {
-        "name": "Rijst",
-        "qty": 165,
+        "name": "Rijst (ongekookt)",
+        "qty": 300,
         "unit": "g",
         "group": "Basis"
-      },
-      {
-        "name": "Paprika",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Ui",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Groenten"
-      },
-      {
-        "name": "Courgette",
-        "qty": 0.5,
-        "unit": "stuk",
-        "group": "Groenten"
       },
       {
         "name": "Olijfolie",
-        "qty": 1.5,
+        "qty": 1,
         "unit": "el",
         "group": "Marinade"
       },
       {
         "name": "Citroensap",
-        "qty": 2,
-        "unit": "tl",
-        "group": "Marinade"
-      },
-      {
-        "name": "Knoflook",
-        "qty": 2,
-        "unit": "teentjes",
-        "group": "Marinade"
-      },
-      {
-        "name": "Rode peper",
-        "qty": 0.5,
-        "unit": "stuk",
+        "qty": 1,
+        "unit": "el",
         "group": "Marinade"
       },
       {
         "name": "Gerookt paprikapoeder",
-        "qty": 0.75,
-        "unit": "tl",
-        "group": "Marinade"
-      },
-      {
-        "name": "Paprikapoeder",
-        "qty": 0.75,
+        "qty": 2,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Oregano",
-        "qty": 0.75,
+        "qty": 1,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 1,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Chilipoeder",
-        "qty": 0.25,
-        "unit": "tl",
-        "group": "Marinade"
-      },
-      {
-        "name": "Tomatenpuree",
-        "qty": 1.5,
-        "unit": "tl",
-        "group": "Marinade"
-      },
-      {
-        "name": "Honing",
         "qty": 0.5,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Zout",
-        "qty": 0.5,
+        "qty": 0.75,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Zwarte peper",
-        "qty": null,
-        "unit": "naar smaak",
+        "qty": 0.5,
+        "unit": "tl",
         "group": "Marinade"
+      },
+      {
+        "name": "Courgette",
+        "qty": 250,
+        "unit": "g",
+        "group": "Groenten en saus"
+      },
+      {
+        "name": "Paprika",
+        "qty": 180,
+        "unit": "g",
+        "group": "Groenten en saus"
+      },
+      {
+        "name": "Verse tomaten",
+        "qty": 225,
+        "unit": "g",
+        "group": "Groenten en saus"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 120,
+        "unit": "g",
+        "group": "Groenten en saus"
+      },
+      {
+        "name": "Rode peper",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Groenten en saus"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Groenten en saus"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 1.5,
+        "unit": "el",
+        "group": "Groenten en saus"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Groenten en saus"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Groenten en saus"
       },
       {
         "name": "Olijfolie",
         "qty": 1,
         "unit": "el",
-        "group": "Groenten bakken"
+        "group": "Groenten en saus"
       },
       {
-        "name": "Water",
-        "qty": 2,
-        "unit": "el",
-        "group": "Saus"
+        "name": "Zout",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Groenten en saus"
       },
       {
         "name": "Citroensap",
         "qty": 1,
         "unit": "tl",
         "group": "Afwerking"
+      },
+      {
+        "name": "Honing",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Afwerking",
+        "optional": true
+      },
+      {
+        "name": "Water",
+        "qty": 2,
+        "unit": "el",
+        "group": "Afwerking",
+        "optional": true
       }
     ],
     "steps": [
       {
-        "body": "Meng voor de marinade 1½ el olijfolie, 2 tl citroensap, 2 fijngehakte teentjes knoflook, ½ fijngehakte rode peper, ¾ tl gerookt paprikapoeder, ¾ tl gewoon paprikapoeder, ¾ tl oregano, ¼ tl chilipoeder, 1½ tl tomatenpuree, ½ tl honing, ½ tl zout en zwarte peper naar smaak.",
-        "title": "Piri-pirimarinade maken",
+        "title": "Kip marineren",
+        "body": "Snijd 450 g kipdijfilet in stukken van ongeveer 3 cm. Meng met 1 el olijfolie, 1 el citroensap, 2 tl gerookt paprikapoeder, 1 tl oregano, 1 tl knoflookpoeder, ½ tl chilipoeder, ¾ tl zout en ½ tl zwarte peper. Laat ongeveer 10 minuten afgedekt marineren terwijl je de groenten snijdt.",
+        "duration": "ca. 10 min marineren, parallel aan voorbereiden",
         "ingredientIndices": [
+          0,
+          2,
+          3,
+          4,
           5,
           6,
           7,
           8,
-          9,
+          9
+        ]
+      },
+      {
+        "title": "Groenten snijden en rijst koken",
+        "body": "Snijd 250 g courgette en 180 g paprika in blokjes van circa 2 cm. Snijd 120 g rode ui in halve ringen en 225 g tomaten in kleine blokjes. Hak 2 tenen knoflook en 1 rode peper fijn; verwijder voor minder pit de zaadlijsten van de peper. Kook ondertussen 300 g rijst volgens de verpakking. Laat de gare rijst afgedekt staan en maak voor het serveren los met een vork.",
+        "duration": "rijst volgens verpakking",
+        "ingredientIndices": [
           10,
           11,
-          12,
           13,
-          14,
+          12,
           15,
-          16
+          14,
+          1
         ]
       },
       {
-        "body": "Schep ongeveer een derde van de marinade in een schoon, apart bakje voordat deze met rauwe kip in aanraking komt. Dek af en bewaar gekoeld: dit is de basis voor de saus.",
-        "title": "Marinade voor saus apart houden",
-        "ingredientIndices": []
-      },
-      {
-        "body": "Snijd 350 g kipfilet in gelijkmatige stukken of reepjes van circa 2–3 cm. Meng met de resterende marinade en laat minimaal 30 minuten afgedekt in de koelkast marineren.",
-        "title": "Kip marineren",
-        "duration": "minimaal 30 min marineren",
-        "ingredientIndices": [
-          0
-        ]
-      },
-      {
-        "body": "Kook 165 g rijst volgens de verpakking. Snipper ondertussen de ui en snijd de paprika en ½ courgette in stukjes.",
-        "title": "Rijst koken en groenten snijden",
-        "duration": "volgens rijstverpakking",
-        "ingredientIndices": [
-          1,
-          3,
-          2,
-          4
-        ]
-      },
-      {
-        "body": "Verhit een koekenpan op middelhoog tot hoog vuur. Laat overtollige marinade van de kip afdruipen en bak de kip in de olie die eraan hecht circa 3 minuten zonder veel te bewegen; keer om en bak nog circa 3 minuten zodat de stukken mooi bruin kleuren. Verlaag zo nodig het vuur om aanbranden van de marinade te voorkomen.",
-        "title": "Gemarineerde kip bakken",
-        "duration": "ca. 6 min, daarna controleren",
-        "ingredientIndices": [
-          0
-        ]
-      },
-      {
-        "body": "Verhit tegelijkertijd 1 el olijfolie in een tweede ruime pan. Fruit de ui 2–3 minuten, voeg paprika en courgette toe en bak nog 4–5 minuten op middelhoog tot hoog vuur tot de groenten licht kleuren en beetgaar zijn.",
-        "title": "Groenten roerbakken",
+        "title": "Kip goudbruin bakken",
+        "body": "Verhit een ruime koekenpan of wok op middelhoog tot hoog vuur. Bak de gemarineerde kip in twee porties elk circa 3–4 minuten, zodat de buitenkant goudbruin kleurt; laat de stukken eerst even liggen voordat je ze omschept. Schep uit de pan met een schone tang of lepel. De kip hoeft nu nog niet helemaal gaar te zijn: hij gaart later verder in de saus.",
         "duration": "6–8 min",
         "ingredientIndices": [
-          17,
-          3,
-          2,
-          4
-        ]
-      },
-      {
-        "body": "Voeg het schoon apart gehouden derde deel van de marinade en 2 el water aan de kip toe. Laat 2 minuten zacht koken tot een glanzende saus en controleer of de kip helemaal gaar is (kerntemperatuur 74 °C). Voeg zo nodig een scheutje water toe als de saus te snel indikt.",
-        "title": "Saus toevoegen en kip garen",
-        "duration": "ca. 2 min",
-        "ingredientIndices": [
-          18,
           0
         ]
       },
       {
-        "body": "Proef de saus, voeg bij het serveren nog 1 tl citroensap toe voor frisheid en verdeel de kip, groenten en rijst over twee borden. Schep de warme saus over de kip.",
-        "title": "Op smaak brengen en serveren",
+        "title": "Groenten met kruiden bakken",
+        "body": "Voeg 1 el olijfolie toe aan dezelfde pan. Bak de rode ui 2 minuten op middelhoog vuur. Voeg paprika en courgette toe en bak 4 minuten op middelhoog tot hoog vuur, zodat ze kleuren en nog wat bite houden. Voeg knoflook en verse rode peper toe en bak 30 seconden mee. Strooi ½ tl gerookt paprikapoeder en ½ tl oregano erbij en bak nog 30 seconden al omscheppend.",
+        "duration": "ca. 7 min",
         "ingredientIndices": [
           19,
+          13,
+          11,
+          10,
+          15,
+          14,
+          17,
+          18
+        ]
+      },
+      {
+        "title": "Geconcentreerde tomatensaus maken",
+        "body": "Voeg 1½ el tomatenpuree toe en bak 1 minuut mee. Doe daarna de 225 g verse tomatenblokjes en ¼ tl zout erbij. Laat circa 4 minuten op middelhoog vuur zonder deksel inkoken terwijl je geregeld roert en de aanbaksels losmaakt. De tomaat moet deels uiteen zijn gevallen en de saus aan de groenten hechten. Voeg geen extra water toe, behalve eventueel 1–2 el als de pan te droog wordt.",
+        "duration": "ca. 5 min",
+        "ingredientIndices": [
+          16,
+          12,
+          20,
+          23
+        ]
+      },
+      {
+        "title": "Kip verder garen en proeven",
+        "body": "Voeg de gebakken kip en alle vrijgekomen sappen weer toe. Schep om en laat 4–5 minuten zachtjes garen, of langer tot de kip volledig gaar is (controleer bij voorkeur een kerntemperatuur van minstens 75 °C). Roer op het einde 1 tl citroensap erdoor en proef. Voeg zo nodig een snufje zout of chilipoeder toe. Is de saus te zuur, voeg dan optioneel ½ tl honing toe.",
+        "duration": "4–5 min, zo nodig langer",
+        "ingredientIndices": [
           0,
+          21,
+          22
+        ]
+      },
+      {
+        "title": "Serveren en porties bewaren",
+        "body": "Verdeel de rijst en de kip met kruidige groenten over vier porties; vijf kleinere porties kan ook. Bewaar de porties voor later snel afgekoeld in afgesloten ondiepe bakjes, zet binnen 2 uur in de koelkast (maximaal 2 dagen bij 4 °C) of vries in. Warm een portie later één keer goed door en door op.",
+        "ingredientIndices": [
           1,
-          2,
-          3,
-          4
+          0,
+          10,
+          11,
+          12
         ]
       }
     ],
-    "tips": "Houd een derde van de marinade apart vóór die met rauwe kip in contact komt; bewaar dit deel afgedekt in de koelkast. Door de kip eerst zonder overtollige marinade te bakken ontstaat meer bruining. Voeg pas op het einde 2 el water en de schone marinade toe en laat 2 minuten inkoken. De laatste 1 tl citroensap gaat bij het serveren over de saus voor een frisse piri-pirismaak. Voor een mildere versie kun je de hoeveelheid chili of rode peper verminderen.",
-    "marinateMinutes": 30,
+    "tips": "Met 450 g kipdijfilet is dit een gerecht voor 4 gewone of 5 kleinere porties. Gebruik ongeveer 250 g courgette, 180 g paprika, 225 g tomaat en 120 g rode ui zodat de groenten de kip niet overheersen. Bak de kip in porties om een korstje te krijgen, bak de tomatenpuree kort mee en laat de tomaten zonder extra water inkoken. Voeg het laatste citroensap na het garen toe voor frisse piri-pirismaak. ½ tl honing is alleen nodig als de tomaten te zuur smaken. Bewaar rijst en kip met groenten bij voorkeur apart; laat snel afkoelen, zet binnen 2 uur in de koelkast en bewaar maximaal 2 dagen bij 4 °C. Vries porties voor later in en warm één keer door en door op.",
+    "marinateMinutes": 10,
     "image": "images/piripiri.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
