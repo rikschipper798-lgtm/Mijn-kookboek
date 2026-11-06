@@ -2406,11 +2406,11 @@
   {
     "id": "shawarma",
     "title": "Krokante kipshawarmawraps",
-    "subtitle": "Krokant gebakken kipshawarmawraps met warm gekruide kipdij, rode ui, frisse sla en knoflooksaus met peterselie; zonder augurk.",
+    "subtitle": "Crispy kipshawarmawraps met sappige yoghurt-gemarineerde kipdij, warme shawarmakruiden, frisse groenten, knoflooksaus en een krokant gebakken rode tomaten-paprikakorst; zonder augurk.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Midden-Oosters geïnspireerd",
-    "minutes": 40,
+    "minutes": 70,
     "prep": 15,
     "cook": 25,
     "servings": 2,
@@ -2422,53 +2422,66 @@
     "tags": [
       "Kip",
       "Wraps",
-      "Crispy"
+      "Crispy",
+      "Shawarma"
     ],
     "ingredients": [
       {
         "name": "Kipdijfilet",
-        "qty": 350,
+        "qty": 400,
         "unit": "g",
         "group": "Basis"
       },
       {
-        "name": "Grote wraps of platbroden",
+        "name": "Grote Libanese platbroden of dunne wraps",
         "qty": 4,
         "unit": "stuks",
         "group": "Basis"
       },
       {
-        "name": "Rode ui",
-        "qty": 0.5,
-        "unit": "stuk",
-        "group": "Groenten"
+        "name": "Griekse yoghurt",
+        "qty": 2,
+        "unit": "el",
+        "group": "Marinade"
       },
       {
-        "name": "Sla",
-        "qty": 50,
-        "unit": "g",
-        "group": "Groenten"
-      },
-      {
-        "name": "Paprikapoeder",
+        "name": "Tomatenpuree",
         "qty": 1,
         "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Marinade"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "el",
+        "group": "Marinade"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
         "group": "Marinade"
       },
       {
         "name": "Gerookt paprikapoeder",
-        "qty": 0.5,
-        "unit": "tl",
-        "group": "Marinade"
-      },
-      {
-        "name": "Komijn",
         "qty": 1,
         "unit": "tl",
         "group": "Marinade"
       },
       {
-        "name": "Korianderblad",
+        "name": "Gemalen komijn",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Gemalen korianderzaad",
         "qty": 0.75,
         "unit": "tl",
         "group": "Marinade"
@@ -2517,72 +2530,129 @@
       },
       {
         "name": "Zwarte peper",
-        "qty": 0.5,
+        "qty": 0.25,
         "unit": "tl",
         "group": "Marinade"
+      },
+      {
+        "name": "Mayonaise",
+        "qty": 2,
+        "unit": "el",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Griekse yoghurt",
+        "qty": 3,
+        "unit": "el",
+        "group": "Knoflooksaus"
       },
       {
         "name": "Knoflook",
         "qty": 1,
         "unit": "teentje",
-        "group": "Marinade"
+        "group": "Knoflooksaus"
       },
       {
         "name": "Citroensap",
         "qty": 1,
-        "unit": "el",
-        "group": "Marinade"
-      },
-      {
-        "name": "Olijfolie",
-        "qty": 1,
-        "unit": "el",
-        "group": "Marinade"
-      },
-      {
-        "name": "Mayonaise",
-        "qty": 3,
-        "unit": "el",
-        "group": "Saus"
+        "unit": "tl",
+        "group": "Knoflooksaus"
       },
       {
         "name": "Peterselie (gedroogd)",
         "qty": 0.25,
         "unit": "tl",
-        "group": "Saus"
+        "group": "Knoflooksaus"
       },
       {
-        "name": "Knoflook",
-        "qty": 1,
-        "unit": "teentje",
-        "group": "Saus"
+        "name": "Zout",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Knoflooksaus"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "Tomaten",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Groenten"
+      },
+      {
+        "name": "Komkommer",
+        "qty": 0.5,
+        "unit": "stuk",
+        "group": "Groenten"
+      },
+      {
+        "name": "IJsbergsla",
+        "qty": 80,
+        "unit": "g",
+        "group": "Groenten"
       },
       {
         "name": "Citroensap",
-        "qty": 1.5,
+        "qty": 1,
         "unit": "tl",
-        "group": "Saus"
+        "group": "Groenten"
+      },
+      {
+        "name": "Sumak",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Groenten",
+        "optional": true
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 1,
+        "unit": "el",
+        "group": "Rode coating"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Rode coating"
       },
       {
         "name": "Water",
-        "qty": 1.5,
+        "qty": 2,
         "unit": "tl",
-        "group": "Saus"
+        "group": "Rode coating"
       },
       {
-        "name": "Mozzarella",
-        "qty": 50,
-        "unit": "g",
-        "group": "Extra",
-        "optional": true
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Rode coating"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Rode coating"
       }
     ],
     "steps": [
       {
-        "body": "Snijd 350 g kipdijfilet in dunne, gelijkmatige reepjes. Meng 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl komijn, ¾ tl gedroogd korianderblad, ½ tl gedroogde marjoraan, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl kurkuma, ¼ tl kaneel, ¼ tl chilipoeder, ¾ tl zout en ½ tl zwarte peper met 1 geperst teentje knoflook, 1 el citroensap en 1 el olijfolie. Schep de kip erdoor.",
-        "title": "Kip snijden en kruiden",
+        "title": "Kip marineren",
+        "body": "Snijd 400 g kipdijfilet in dunne reepjes. Meng met 2 el Griekse yoghurt, 1 tl tomatenpuree, 1 el olijfolie, 1 el citroensap, 2 geperste tenen knoflook, 1 tl gerookt paprikapoeder, 1 tl gemalen komijn, ¾ tl gemalen korianderzaad, ½ tl marjoraan, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl kurkuma, ¼ tl kaneel, ¼ tl chilipoeder, ¾ tl zout en ¼ tl zwarte peper. Schep goed om en marineer 30 minuten afgedekt in de koelkast.",
+        "duration": "30 min marineren",
         "ingredientIndices": [
           0,
+          2,
+          3,
           4,
           5,
           6,
@@ -2596,68 +2666,94 @@
           14,
           15,
           16,
-          17,
-          18
+          17
         ]
       },
       {
-        "body": "Je kunt de kip direct bakken. Voor iets meer ingetrokken smaak kun je haar optioneel 15–30 minuten afgedekt in de koelkast marineren; dit is geen verplichte wachttijd.",
-        "title": "Kip eventueel marineren",
-        "duration": "optioneel 15–30 min marineren",
+        "title": "Knoflooksaus maken",
+        "body": "Meng tijdens het marineren 2 el mayonaise met 3 el Griekse yoghurt, 1 geperst teentje knoflook, 1 tl citroensap en ¼ tl gedroogde peterselie. Voeg een klein snufje zout en peper toe, proef en zet de saus afgedekt koel weg.",
         "ingredientIndices": [
-          0
-        ]
-      },
-      {
-        "body": "Maak ondertussen de saus: meng 3 el mayonaise met 1 geperst teentje knoflook, 1½ tl citroensap, 1½ tl water en ¼ tl gedroogde peterselie. Proef en voeg desgewenst een beetje peper toe. Snijd ½ rode ui in dunne halve ringen, was de 50 g sla en laat goed uitlekken.",
-        "title": "Knoflooksaus en ui voorbereiden",
-        "ingredientIndices": [
+          18,
           19,
           20,
           21,
           22,
           23,
-          2,
-          3
+          24
         ]
       },
       {
-        "body": "Verhit een grote koekenpan op middelhoog tot hoog vuur. Bak de kip in een niet te dikke laag, zo nodig in twee porties, ongeveer 7–9 minuten per portie tot ze duidelijke goudbruine randjes krijgt en helemaal gaar is (kerntemperatuur 74 °C). Roer niet voortdurend en voorkom dat vocht zich ophoopt, anders gaat de kip stoven.",
-        "title": "Kipshawarma krokant bakken",
-        "duration": "7–9 min per portie",
+        "title": "Groenten voorbereiden",
+        "body": "Snijd ½ rode ui in dunne halve ringen en meng met 1 tl citroensap en eventueel ½ tl sumak. Snijd 2 tomaten en ½ komkommer klein; verwijder zo nodig overtollig vocht. Snijd 80 g ijsbergsla fijn en droog goed.",
+        "ingredientIndices": [
+          25,
+          29,
+          30,
+          26,
+          27,
+          28
+        ]
+      },
+      {
+        "title": "Kip goudbruin bakken",
+        "body": "Verhit een grote koekenpan op middelhoog tot hoog vuur. Bak de gemarineerde kip in een dunne laag, zo nodig in twee porties, circa 6–8 minuten per portie. Laat de reepjes eerst 2–3 minuten ongestoord kleuren en schep daarna om. De kip moet rondom bruine randjes hebben en volledig gaar zijn (74 °C kerntemperatuur). Houd warm.",
+        "duration": "6–8 min per portie",
         "ingredientIndices": [
           0
         ]
       },
       {
-        "body": "Leg de 4 grote wraps open. Verdeel de gebakken kip, de rode ui en een dun laagje van de knoflooksaus erover, maar houd de sla en het grootste deel van de saus apart. Voeg desgewenst in totaal 50 g mozzarella toe. Vouw de wraps stevig dicht, zodat de vulling binnenblijft.",
-        "title": "Wraps vullen en dichtvouwen",
+        "title": "Rode coating mengen",
+        "body": "Roer 1 el tomatenpuree met 2 tl olijfolie, 2 tl water, ¼ tl gerookt paprikapoeder en ⅛ tl chilipoeder tot een dunne, goed smeerbare coating.",
+        "ingredientIndices": [
+          31,
+          32,
+          33,
+          34,
+          35
+        ]
+      },
+      {
+        "title": "Wraps vullen",
+        "body": "Besmeer de 4 platbroden of dunne wraps met een dun laagje knoflooksaus. Verdeel de warme kip, rode ui en een bescheiden hoeveelheid tomaat, komkommer en ijsbergsla erover. Bewaar de rest van de groenten en saus voor erbij. Vouw de zijkanten naar binnen en rol stevig op.",
         "ingredientIndices": [
           1,
           0,
-          2,
+          18,
           19,
-          24
+          25,
+          26,
+          27,
+          28
         ]
       },
       {
-        "body": "Verhit een schone, droge koekenpan op middelhoog vuur. Bak de gevouwen wraps met de vouwnaad eerst naar beneden circa 2 minuten per kant tot ze goudbruin en krokant zijn; werk zo nodig in twee rondes.",
         "title": "Wraps krokant bakken",
-        "duration": "ca. 2 min per kant",
+        "body": "Verhit een schone koekenpan op middelhoog vuur. Bak de gevouwen wraps met de naad naar beneden circa 2 minuten per kant; bak in twee rondes als ze niet allemaal passen. Bestrijk beide kanten vervolgens heel dun met de rode coating en bak nog 30–45 seconden per kant tot de buitenkant roodbruin en knapperig is. Verlaag het vuur als de tomatenpuree dreigt te verbranden.",
+        "duration": "ca. 5–6 min per ronde",
         "ingredientIndices": [
-          1
+          1,
+          31,
+          32,
+          33,
+          34,
+          35
         ]
       },
       {
-        "body": "Serveer direct. Open de warme wraps aan één zijde voorzichtig om de droge sla toe te voegen, of serveer de sla ernaast zodat die fris en knapperig blijft. Lepel de overige knoflooksaus erbij of geef hem als dipsaus; zo worden de krokante wraps niet zompig.",
-        "title": "Sla toevoegen en serveren",
+        "title": "Serveren",
+        "body": "Snijd de krokante wraps schuin doormidden en serveer direct met de overgebleven frisse groenten en knoflooksaus. Serveer extra saus ernaast zodat de korst krokant blijft.",
         "ingredientIndices": [
-          3,
+          1,
+          26,
+          27,
+          28,
+          18,
           19
         ]
       }
     ],
-    "tips": "De bestaande shawarmakruiden zijn behouden, met ½ tl gedroogde marjoraan als extra kruidige laag. Gedroogd korianderblad is niet hetzelfde als gemalen korianderzaad: het blad smaakt groener, terwijl gemalen zaad warmer en licht citrusachtig is en vaker in shawarmakruiden wordt gebruikt. Wie gemalen korianderzaad heeft, kan de ¾ tl korianderblad eventueel daardoor vervangen (niet allebei gebruiken). Geen augurk: het citroensap in de saus geeft voldoende frisheid. Bak de kip in porties voor bruine randjes en rooster de gevouwen wraps zonder extra olie. Voeg de sla en het grootste deel van de saus na het krokant bakken toe of serveer apart. De kip mag direct worden gebakken; 15–30 minuten marineren in de koelkast is optioneel.",
+    "tips": "Reken op circa 15 minuten voorbereiden, 30 minuten marineren (intussen kunnen saus en groenten worden klaargemaakt) en ongeveer 25 minuten bakken en afronden; totaal circa 60–70 minuten. Marineer altijd afgedekt in de koelkast. Gemalen korianderzaad geeft de typische warme, citrusachtige shawarmasmaak; gedroogd korianderblad is geen gelijkwaardige vervanger. Stampt komijnzaad fijn als je geen gemalen komijn hebt. De rode coating dun aanbrengen en kort bakken om verbranden te voorkomen. Snijd de groenten klein, dep ze droog en gebruik niet te veel vulling voor stevige, krokante wraps. Optioneel: serveer met 150 g krokante airfryerfriet voor een stevigere streetfoodvariant. Niet door de gebruiker als getest aangemerkt.",
     "image": "images/shawarma.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie"
   },
