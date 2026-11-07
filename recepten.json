@@ -4710,7 +4710,7 @@
         ]
       }
     ],
-    "tips": "Dit recept behoudt de oorspronkelijke kleine portie van 40 g roomboter en ½ klein teentje knoflook. Gebruik 2 tl fijngehakte verse peterselie voor een frisse kruidensmaak; als vervanger kan ½ tl gedroogde peterselie worden gebruikt. De optionele oregano kan worden vervangen door 1 tl fijngeknipte bieslook. Laat bij voorkeur 30 minuten koelen (de totale tijd is 35 minuten, exclusief eventueel 10 minuten op temperatuur laten komen). Serveer op vers stokbrood, bij een biefstuk of gegrilde groenten. Bewaar afgedekt in de koelkast en gebruik binnen 2–3 dagen.",
+    "tips": "Dit recept behoudt de oorspronkelijke kleine portie van 40 g roomboter en ½ klein teentje knoflook. Gebruik 2 tl fijngehakte verse peterselie voor een frisse kruidensmaak; als vervanger kan ½ tl gedroogde peterselie worden gebruikt. De optionele oregano kan worden vervangen door 1 tl fijngeknipte bieslook. De actieve bereiding duurt 5 minuten; 30 minuten koelen is optioneel en komt daar eventueel bij. Haal de boter voor gebruik zo nodig ongeveer 10 minuten vooraf uit de koelkast. Serveer op vers stokbrood, bij een biefstuk of gegrilde groenten. Bewaar afgedekt in de koelkast en gebruik binnen 2–3 dagen.",
     "image": "images/kruidenboter.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor zelfgemaakte knoflook-kruidenboter (40 g)",
     "restTiming": "optional",
@@ -6011,7 +6011,7 @@
         "group": "Stokbrood"
       },
       {
-        "name": "Zelfgemaakte knoflook-kruidenboter (zie basisrecept)",
+        "name": "Knoflook-kruidenboter (zelfgemaakt of kant-en-klaar)",
         "qty": 40,
         "unit": "g",
         "group": "Vulling",
@@ -6041,7 +6041,7 @@
       },
       {
         "title": "Kruidenboter tussen de inkepingen verdelen",
-        "body": "Gebruik 40 g zachte zelfgemaakte knoflook-kruidenboter (volgens het afzonderlijke basisrecept in het kookboek). Verdeel de boter gelijkmatig tussen alle inkepingen en smeer eventueel een klein beetje over de bovenkant.",
+        "body": "Gebruik 40 g zachte knoflook-kruidenboter. Maak deze volgens het afzonderlijke basisrecept in het kookboek of kies kant-en-klare kruidenboter. Verdeel de boter gelijkmatig tussen alle inkepingen en smeer eventueel een klein beetje over de bovenkant.",
         "ingredientIndices": [
           1
         ]
@@ -6066,7 +6066,7 @@
         ]
       }
     ],
-    "tips": "Gebruik het bestaande basisrecept ‘Zelfgemaakte knoflook-kruidenboter (40 g)’ voor de vulling. Met 30 g kaas blijft de kruidenboter de belangrijkste smaakmaker en ontstaat toch een licht krokant kaaskorstje. Laat de onderkant van het stokbrood heel zodat het gemakkelijk te delen is. Dit brood is direct uit de oven het lekkerst. Bewaar restjes maximaal 2 dagen afgedekt in de koelkast en warm ongeveer 5 minuten op bij 180 °C boven- en onderwarmte.",
+    "tips": "Gebruik het bestaande basisrecept ‘Zelfgemaakte knoflook-kruidenboter (40 g)’ voor de vulling, of gebruik kant-en-klare kruidenboter. Met 30 g kaas blijft de kruidenboter de belangrijkste smaakmaker en ontstaat toch een licht krokant kaaskorstje. Laat de onderkant van het stokbrood heel zodat het gemakkelijk te delen is. Dit brood is direct uit de oven het lekkerst. Bewaar restjes maximaal 2 dagen afgedekt in de koelkast en warm ongeveer 5 minuten op bij 180 °C boven- en onderwarmte.",
     "image": "images/gevuld-kruidenboterstokbrood-kaas-oregano.avif",
     "image_source": "AI-afbeelding speciaal gemaakt voor het gevulde kruidenboterstokbrood met kaas en oregano"
   }
