@@ -512,6 +512,12 @@ body.cook-active{overflow:hidden}
  .lava-choice-option{min-height:66px;padding:10px 13px}
 }
 @media print{.lava-choice{display:none!important}}
+
+.ingredient-component-link{display:inline-block;margin:2px 0 9px 36px;font-size:12px;font-weight:600;color:var(--leaf)}
+.basket-component-choice{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:8px 0;padding:10px 12px;border:1px solid #dbe6d7;border-radius:10px;background:#f7faf6}
+.basket-component-choice label{flex:1;min-width:160px;font-size:13px}
+.basket-component-choice select{max-width:100%;padding:8px;border:1px solid #c7d7c7;border-radius:8px;background:#fff}
+.basket-component-choice a{font-size:12px;color:#315f40;font-weight:600}
 </style>
 </head>
 <body>
@@ -758,7 +764,8 @@ function checkableIngredientRows(list,mult,key){
  return groups(list).map(([g,items])=>'<li class="ingredient-heading">'+safe(g)+'</li>'+items.map(({item,index})=>
   '<li class="ingredient-row"><label><input type="checkbox" data-item="'+index+'"'+(state.has(index)?' checked':'')+'>'+
   '<span class="ingredient-name">'+safe(item.name)+(item.optional?' <small>(optioneel)</small>':'')+'</span>'+
-  '<strong class="ingredient-amount">'+safe(amount(item,mult))+'</strong></label></li>').join('')).join('');
+  '<strong class="ingredient-amount">'+safe(amount(item,mult))+'</strong></label>'+
+  (item.componentRecipeId?'<a class="ingredient-component-link" href="#recept/'+encodeURIComponent(item.componentRecipeId)+'">Bekijk basisrecept</a>':'')+'</li>').join('')).join('');
 }
 
 const STEP_FRAC={'⅛':.125,'¼':.25,'⅓':1/3,'⅜':.375,'½':.5,'⅝':.625,'⅔':2/3,'¾':.75,'⅞':.875};
@@ -1156,6 +1163,43 @@ function basketSourceAmount(item,p){
  if(p.base==='sneetjes'||p.base==='plakken')return n;
  return n*c.factor;
 }
+// Een basisrecept kan als kant-en-klaar product worden gekocht of worden
+// uitgesplitst in grondstoffen op basis van de werkelijke opbrengst.
+function componentRecipe(item){
+ if(!item||!item.componentRecipeId)return null;
+ const base=recipes.find(r=>r.id===item.componentRecipeId);
+ return base&&Number(base.outputQty)>0&&base.outputUnit===item.unit?base:null;
+}
+function componentMode(entry,index){
+ return entry.componentModes&&entry.componentModes[index]==='buy'?'buy':'make';
+}
+function hasOptionalIngredients(view,visited=new Set()){
+ return allIngredients(view).some(item=>{
+  if(item.optional)return true;
+  const component=componentRecipe(item);
+  return component&&!visited.has(component.id)&&
+   hasOptionalIngredients(component,new Set([...visited,component.id]));
+ });
+}
+function basketIngredients(entry,view,recipeId){
+ const mult=Math.max(1,number(entry.servings))/portions(view);
+ const available=new Set(Array.isArray(checked[listKey(recipeId,entry.variantId)])?checked[listKey(recipeId,entry.variantId)]:[]);
+ const rows=[];
+ function expand(item,factor,mode,visited){
+  if(item.optional&&entry.includeOptional===false)return;
+  const component=componentRecipe(item);
+  if(component&&mode!=='buy'&&!visited.has(component.id)){
+   const next=factor*Number(item.qty)/Number(component.outputQty);
+   for(const sub of allIngredients(component))expand(sub,next,'make',new Set([...visited,component.id]));
+   return;
+  }
+  rows.push({item:component&&mode==='buy'?{...item,name:item.readyMadeName||item.name}:item,mult:factor});
+ }
+ allIngredients(view).forEach((item,index)=>{
+  if(!available.has(index))expand(item,mult,componentMode(entry,index),new Set([recipeId]));
+ });
+ return rows;
+}
 function basketItems(){
  const combined=new Map();
  for(const entry of Object.values(basket)){
@@ -1163,33 +1207,30 @@ function basketItems(){
   const recipe=recipes.find(r=>r.id===entry.id);
   if(!recipe)continue;
   const view=viewFor(recipe,entry.variantId);
-  const mult=Math.max(1,number(entry.servings))/portions(view);
-  const available=new Set(Array.isArray(checked[listKey(recipe.id,entry.variantId)])?checked[listKey(recipe.id,entry.variantId)]:[]);
-  allIngredients(view).forEach((item,index)=>{
-   if(available.has(index)||(item.optional&&entry.includeOptional===false))return;
+  for(const {item,mult} of basketIngredients(entry,view,recipe.id)){
    const split=['peper en zout','zout en peper'].includes(basketName(item.name))
     ?[{...item,name:'Zout'},{...item,name:'Zwarte peper'}]:[item];
    split.forEach(ingredient=>{
     const p=basketProfile(ingredient);
     if(!p)return;
     const key='winkel:'+p.id+(p.type==='raw'?'|'+p.group:'');
-    const oldKey=item.name.trim().toLowerCase()+'|'+normalizedUnit(item.unit);
-    const oldCombinedKey=basketName(item.name)+'|'+basketConversion(item.unit).group;
+    const oldKey=ingredient.name.trim().toLowerCase()+'|'+normalizedUnit(ingredient.unit);
+    const oldCombinedKey=basketName(ingredient.name)+'|'+basketConversion(ingredient.unit).group;
     if(!combined.has(key))combined.set(key,{
      key,name:p.name,unit:p.unit||p.base,qty:0,numeric:false,text:false,optional:true,
      type:p.type,base:p.base,size:p.size,originalUnits:new Set(),legacyKeys:new Set(),legacyGroups:new Map()
     });
     const row=combined.get(key);
     row.legacyKeys.add(oldKey);row.legacyKeys.add(oldCombinedKey);row.legacyGroups.set(oldCombinedKey,oldKey);
-    row.originalUnits.add(normalizedUnit(item.unit).toLowerCase());
-    row.optional=row.optional&&Boolean(item.optional);
-    if(p.id==='paprika'&&basketName(item.name)==='rode paprika')row.name='Paprika (rood)';
-    if(item.qty===null||item.qty===undefined){row.text=true;return}
-    const qty=basketSourceAmount(item.scaleRoundTo?{...item,qty:scaledIngredientQty(item,mult)}:item,p);
-    if(qty!==null){row.qty+=item.scaleRoundTo?qty:qty*mult;row.numeric=true}
+    row.originalUnits.add(normalizedUnit(ingredient.unit).toLowerCase());
+    row.optional=row.optional&&Boolean(ingredient.optional);
+    if(p.id==='paprika'&&basketName(ingredient.name)==='rode paprika')row.name='Paprika (rood)';
+    if(ingredient.qty===null||ingredient.qty===undefined){row.text=true;return}
+    const qty=basketSourceAmount(ingredient.scaleRoundTo?{...ingredient,qty:scaledIngredientQty(ingredient,mult)}:ingredient,p);
+    if(qty!==null){row.qty+=ingredient.scaleRoundTo?qty:qty*mult;row.numeric=true}
     else row.text=true;
    });
-  });
+  }
  }
  return [...combined.values()].sort((a,b)=>a.name.localeCompare(b.name,'nl'));
 }
@@ -1254,9 +1295,20 @@ function renderBasket(){
  const selected=Object.entries(basket).map(([key,entry])=>{
   const recipe=recipes.find(r=>r.id===entry.id);
   if(!recipe)return '';
-  const view=viewFor(recipe,entry.variantId),hasOptional=allIngredients(view).some(i=>i.optional);
+  const view=viewFor(recipe,entry.variantId),hasOptional=hasOptionalIngredients(view);
   const optional=hasOptional?'<label class="basket-optional"><input type="checkbox" data-optional="'+safe(key)+'"'+(entry.includeOptional!==false?' checked':'')+'> Optionele ingrediënten meenemen</label>':'';
-  return '<div class="basket-recipe"><div class="basket-recipe-info"><strong>'+safe(title(view))+'</strong><span>'+safe(portionsLabel(view,entry.servings))+'</span>'+optional+'</div><button class="btn alt" data-remove="'+safe(key)+'" aria-label="Verwijder '+safe(title(view))+'">Verwijder</button></div>';
+  const selectedItems=new Set(Array.isArray(checked[listKey(recipe.id,entry.variantId)])?checked[listKey(recipe.id,entry.variantId)]:[]);
+  const components=allIngredients(view).map((item,index)=>({item,index}))
+   .filter(({item,index})=>componentRecipe(item)&&!selectedItems.has(index));
+  const componentChoices=components.map(({item,index})=>{
+   const base=componentRecipe(item),mode=componentMode(entry,index),factor=entry.servings/portions(view);
+   return '<div class="basket-component-choice"><label for="component-'+safe(key)+'-'+index+'">'+safe(amount(item,factor))+' '+safe(item.name)+'</label>'+
+    '<select id="component-'+safe(key)+'-'+index+'" data-component-key="'+safe(key)+'" data-component-index="'+index+'" aria-label="Bereiding van '+safe(item.name)+'">'+
+    '<option value="make"'+(mode==='make'?' selected':'')+'>Zelf maken</option>'+
+    '<option value="buy"'+(mode==='buy'?' selected':'')+'>Kant-en-klaar kopen</option></select>'+
+    '<a href="#recept/'+encodeURIComponent(base.id)+'">Bekijk basisrecept</a></div>';
+  }).join('');
+  return '<div class="basket-recipe"><div class="basket-recipe-info"><strong>'+safe(title(view))+'</strong><span>'+safe(portionsLabel(view,entry.servings))+'</span>'+componentChoices+optional+'</div><button class="btn alt" data-remove="'+safe(key)+'" aria-label="Verwijder '+safe(title(view))+'">Verwijder</button></div>';
  }).join('');
  const products=basketItems();
  const shoppingList=products.filter(item=>!isAlreadyHome(item));
@@ -1279,7 +1331,7 @@ function renderBasket(){
  el('basket').innerHTML=
   '<button class="back" id="backBasket">← Alle recepten</button>'+
   '<h2>Boodschappenlijst</h2>'+
-  '<p class="description">Deze lijst toont praktische koophoeveelheden: hele groenten en eieren per stuk, kruiden per potje en andere producten in grammen of gangbare verpakkingen. De hoeveelheden worden per product opgeteld en naar boven afgerond. Verpakkingen zijn indicatief; de recepten blijven exact. Vink boodschappen af of kies <strong>Al in huis</strong>.</p>'+
+  '<p class="description">Deze lijst toont praktische koophoeveelheden: hele groenten en eieren per stuk, kruiden per potje en andere producten in grammen of gangbare verpakkingen. De hoeveelheden worden per product opgeteld en naar boven afgerond. Verpakkingen zijn indicatief; de recepten blijven exact. Voor gekoppelde basisrecepten kun je <strong>Zelf maken</strong> of <strong>Kant-en-klaar kopen</strong> kiezen. Vink boodschappen af of kies <strong>Al in huis</strong>.</p>'+
   (selected?'<h3>Gekozen recepten</h3>'+selected+
    '<div class="actions"><button class="btn" id="copyBasket">Kopieer boodschappen</button><button class="btn alt" id="clearBasket">Maak lijst leeg</button></div>'+
    '<h3>Nog kopen ('+shoppingList.length+')</h3>'+
@@ -1291,6 +1343,15 @@ function renderBasket(){
    :'<p>Je lijst is nog leeg. Open een recept en kies ‘Voeg toe aan boodschappenlijst’.</p>');
  el('backBasket').onclick=()=>location.hash='';
  el('basket').querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{delete basket[b.dataset.remove];save(STORAGE.basket,basket);basketCount();renderBasket()});
+ el('basket').querySelectorAll('[data-component-key]').forEach(select=>select.onchange=()=>{
+  const entry=basket[select.dataset.componentKey];
+  if(!entry)return;
+  const index=Number(select.dataset.componentIndex);
+  if(!Number.isInteger(index))return;
+  entry.componentModes={...(entry.componentModes||{}),[index]:select.value==='buy'?'buy':'make'};
+  save(STORAGE.basket,basket);
+  renderBasket();
+ });
  el('basket').querySelectorAll('[data-optional]').forEach(input=>input.onchange=()=>{
   const entry=basket[input.dataset.optional];if(!entry)return;
   entry.includeOptional=input.checked;
