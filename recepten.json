@@ -1466,7 +1466,8 @@
           10,
           11,
           12
-        ]
+        ],
+        "scaleServingSummary": true
       }
     ],
     "tips": "Met 450 g kipdijfilet is dit een gerecht voor 4 gewone of 5 kleinere porties. Gebruik ongeveer 250 g courgette, 180 g paprika, 225 g tomaat en 120 g rode ui zodat de groenten de kip niet overheersen. Bak de kip in porties om een korstje te krijgen, bak de tomatenpuree kort mee en laat de tomaten zonder extra water inkoken. Voeg het laatste citroensap na het garen toe voor frisse piri-pirismaak. ½ tl honing is alleen nodig als de tomaten te zuur smaken. Bewaar rijst en kip met groenten bij voorkeur apart; laat snel afkoelen, zet binnen 2 uur in de koelkast en bewaar maximaal 2 dagen bij 4 °C. Vries porties voor later in en warm één keer door en door op.",
@@ -5467,10 +5468,11 @@
         "group": "Cakebeslag"
       },
       {
-        "name": "Eieren (1 heel ei en 1 extra eidooier)",
+        "name": "Eieren",
         "qty": 2,
         "unit": "stuks",
-        "group": "Cakebeslag"
+        "group": "Cakebeslag",
+        "scaleRoundTo": 2
       },
       {
         "name": "Suiker",
@@ -5556,7 +5558,8 @@
         "ingredientIndices": [
           2,
           3
-        ]
+        ],
+        "scaleEggMixture": true
       },
       {
         "title": "Chocoladebeslag maken",
@@ -5623,10 +5626,11 @@
             "group": "Cakebeslag"
           },
           {
-            "name": "Eieren (1 heel ei en 1 extra eidooier)",
+            "name": "Eieren",
             "qty": 2,
             "unit": "stuks",
-            "group": "Cakebeslag"
+            "group": "Cakebeslag",
+            "scaleRoundTo": 2
           },
           {
             "name": "Suiker",
@@ -5712,7 +5716,8 @@
             "ingredientIndices": [
               2,
               3
-            ]
+            ],
+            "scaleEggMixture": true
           },
           {
             "title": "Chocoladebeslag maken",
