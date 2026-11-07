@@ -123,6 +123,54 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
    }
   }
  });
+ const byRecipeId=new Map(data.filter(r=>r&&typeof r.id==='string').map(r=>[r.id,r]));
+ const dependencyGraph=new Map();
+ data.forEach((r,index)=>{
+  if(!r||typeof r!=='object'||Array.isArray(r))return;
+  const loc='recepten['+index+']';
+  if(r.outputQty!==undefined||r.outputUnit!==undefined){
+   if(typeof r.outputQty!=='number'||!Number.isFinite(r.outputQty)||r.outputQty<=0)
+    fail(loc+'.outputQty','opbrengst moet een positief getal zijn');
+   if(!isText(r.outputUnit)||!UNITS.has(r.outputUnit))
+    fail(loc+'.outputUnit','opbrengst moet een ondersteunde eenheid hebben');
+  }
+  const dependencies=new Set();
+  for(const [view,p] of [[r,loc],...(Array.isArray(r.variants)?r.variants.map((v,j)=>[v,loc+'.variants['+j+']']):[])]){
+   if(!view||!Array.isArray(view.ingredients))continue;
+   view.ingredients.forEach((item,j)=>{
+    if(!item||typeof item!=='object'||Array.isArray(item))return;
+    const at=p+'.ingredients['+j+']';
+    if(item.componentRecipeId===undefined){
+     if(item.readyMadeName!==undefined)fail(at+'.readyMadeName','koopalternatief zonder gekoppeld basisrecept');
+     return;
+    }
+    if(!isText(item.componentRecipeId)||!ID.test(item.componentRecipeId)){
+     fail(at+'.componentRecipeId','ongeldige verwijzing naar basisrecept');return;
+    }
+    const base=byRecipeId.get(item.componentRecipeId);
+    if(!base){fail(at+'.componentRecipeId','gekoppeld basisrecept bestaat niet');return;}
+    if(typeof base.outputQty!=='number'||base.outputQty<=0||!isText(base.outputUnit))
+     fail(at+'.componentRecipeId','basisrecept heeft geen geldige opbrengst');
+    if(item.unit!==base.outputUnit)
+     fail(at+'.unit','eenheid komt niet overeen met de opbrengst van het basisrecept');
+    if(typeof item.qty!=='number'||!Number.isFinite(item.qty)||item.qty<=0)
+     fail(at+'.qty','gekoppeld ingrediënt moet een positieve hoeveelheid hebben');
+    if(!isText(item.readyMadeName))
+     fail(at+'.readyMadeName','naam van kant-en-klaar alternatief ontbreekt');
+    dependencies.add(base.id);
+   });
+  }
+  dependencyGraph.set(r.id,dependencies);
+ });
+ const visiting=new Set(),done=new Set();
+ function visit(id,trail){
+  if(visiting.has(id)){fail('receptkoppelingen','cirkel in basisrecepten: '+[...trail,id].join(' → '));return;}
+  if(done.has(id))return;
+  visiting.add(id);
+  for(const next of dependencyGraph.get(id)||[])visit(next,[...trail,id]);
+  visiting.delete(id);done.add(id);
+ }
+ for(const id of dependencyGraph.keys())visit(id,[]);
  return {errors,warnings,stats:{recipes:data.length,variants,images}};
 }
 if(require.main===module){
