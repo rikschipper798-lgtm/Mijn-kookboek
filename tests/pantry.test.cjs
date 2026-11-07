@@ -70,7 +70,7 @@ function appBrowser(){
  const entries=new Map(),store=storage();
  function el(id){
   if(entries.has(id))return entries.get(id);
-  let markup='',children=[];
+  let markup='',children=new Map();
   const x={
    id,hidden:false,checked:false,value:'',textContent:'',dataset:{},style:{},
    classList:{add(){},remove(){},toggle(){}},
@@ -78,19 +78,22 @@ function appBrowser(){
    contains(y){return y===this;},focus(){},scrollIntoView(){},
    querySelectorAll(selector){
     if(id!=='basket')return [];
+    if(children.has(selector))return children.get(selector);
     const patterns={
      '[data-house]':[/data-house="([^"]+)"/g,'house'],
      '[data-pantry-id]':[/data-pantry-id="([^"]+)"/g,'pantryId'],
      '[data-pantry-remove]':[/data-pantry-remove="([^"]+)"/g,'pantryRemove']
     };
     const v=patterns[selector];if(!v)return [];
-    return [...markup.matchAll(v[0])].map(m=>({
+    const controls=[...markup.matchAll(v[0])].map(m=>({
      dataset:{[v[1]]:m[1]},checked:!!m[0].includes(' checked'),
      onclick:null,onchange:null
     }));
+    children.set(selector,controls);
+    return controls;
    }
   };
-  Object.defineProperty(x,'innerHTML',{get:()=>markup,set:v=>{markup=String(v);children=[]}});
+  Object.defineProperty(x,'innerHTML',{get:()=>markup,set:v=>{markup=String(v);children=new Map()}});
   entries.set(id,x);return x;
  }
  const document={
