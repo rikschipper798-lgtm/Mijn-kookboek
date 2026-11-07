@@ -1,0 +1,28 @@
+name: Controleer kookboekrecepten
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Receptvalidatie
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js instellen
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regressietests uitvoeren
+        run: node --test tests/validate-recipes.test.cjs
+      - name: Recepten en afbeeldingen controleren
+        run: node scripts/validate-recipes.cjs
