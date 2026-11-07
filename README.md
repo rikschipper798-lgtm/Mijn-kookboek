@@ -74,3 +74,18 @@ Gebruik bij het **ingrediënt in het hoofdrecept**:
 \`\`\`
 
 De validator controleert of het doelrecept bestaat, of de opbrengst en eenheden overeenkomen en of er geen cirkelverwijzingen ontstaan. Receptvarianten blijven ondersteund. De regressietests staan in \`tests/component-recipes.test.cjs\`.
+
+## Persoonlijke standaardvoorraad
+
+Op de website staat bij de recepten een knop **Mijn voorraad**. De knop opent de boodschappenlijst met een uitklapbaar voorraadbeheer. Bij de eerste opening zijn 36 producten uit `Keukenprofiel_Rik.md` als gewoonlijk aanwezig ingesteld (kruiden, smaakmakers en droge voorraad). In het beheer kun je producten aan- of uitvinken, nieuwe producten toevoegen, eigen producten verwijderen en de oorspronkelijke lijst herstellen. Verse kruiden worden niet automatisch gelijkgesteld aan gedroogde kruiden.
+
+De boodschappenlijst toont standaardproducten automatisch bij **Al in huis**. Dat betekent **niet** dat er genoeg voorraad voor het volledige recept is: er worden geen werkelijke hoeveelheden bijgehouden. Met **Toch kopen** voeg je een product alsnog aan de boodschappen toe. Die keuze geldt voor de huidige boodschappenlijst; bij het legen van de lijst verdwijnen de uitzonderingen. Productnamen worden waar mogelijk genormaliseerd (zoals rijst, pasta en olijfolie), zodat meerdere schrijfwijzen als hetzelfde product worden herkend.
+
+De voorraad staat **uitsluitend lokaal in de browser** onder `mijn-kookboek-voorraad`. Nieuwe back-ups bevatten de aangepaste voorraad. Oude back-ups zonder voorraadgegevens blijven herstelbaar en laten de bestaande voorraad ongemoeid. De losse module `pantry.js` is in de serviceworker-cache opgenomen voor offline gebruik.
+
+Testen:
+
+```bash
+node --test tests/pantry.test.cjs
+node --test tests/offline-images.test.cjs
+```
