@@ -33,3 +33,13 @@ Gebruik bij voorkeur een **pull request** en controleer of de status `Receptvali
 **Let op:** de workflow controleert een rechtstreekse push naar `main` pas **nadat** die push is gedaan. Zonder verplichte branch protection voorkomt de workflow dus niet dat een foutieve wijziging rechtstreeks wordt gepubliceerd.
 
 Als je bewust een nieuwe ingrediënteenheid introduceert, pas dan ook de ondersteunde lijst `UNITS` in de validator aan.
+
+## Offline receptafbeeldingen
+
+De serviceworker in `sw.js` leest bij installatie automatisch alle afbeeldingen uit `recepten.json`, inclusief afbeeldingen die alleen bij een variant horen. Er is dus geen handmatig bijgewerkte afbeeldingenlijst meer.
+
+Bij het online ophalen van nieuwe receptgegevens worden afbeeldingen die nog niet offline opgeslagen zijn automatisch toegevoegd. Bestaande afbeeldingen worden niet opnieuw gedownload zolang ze in de afbeeldingscache staan; als een afbeelding zichtbaar wordt in de website wordt deze zoals voorheen online ververst. Een mislukte afbeeldingsdownload blokkeert de overige recepten niet en wordt bij een volgend online bezoek opnieuw geprobeerd.
+
+Het aanmaken van de offline cache is afhankelijk van de browser, de internetverbinding en beschikbare opslagruimte. Voor offline gebruik moet de website eerst met internet geopend zijn.
+
+**Tests:** `node --test tests/offline-images.test.cjs` controleert installatie, varianten, nieuwe afbeeldingen, ontbreken/herproberen, offline terugval, dubbele afbeeldingen en het opruimen van oude serviceworkercaches. De GitHub Actions-workflow voert deze tests automatisch uit.
