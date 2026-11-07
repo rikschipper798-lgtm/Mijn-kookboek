@@ -89,3 +89,47 @@ Testen:
 node --test tests/pantry.test.cjs
 node --test tests/offline-images.test.cjs
 ```
+
+
+## Receptversies, wijzigingsdatum en geschiedenis
+
+Alle 27 bestaande recepten en de 2 varianten zijn bij invoering van het versiebeheer gestart op **versie 1**. De eerdere \`date\` blijft de bestaande **opnamedatum**; eerdere bewerkingen zijn niet betrouwbaar terug te halen en worden dus niet achteraf als revisies gepresenteerd.
+
+Per recept en variant staan deze velden in \`recepten.json\`:
+
+\`\`\`json
+"version": 1,
+"updatedAt": null,
+"changeLog": []
+\`\`\`
+
+Bij iedere **inhoudelijke wijziging** (ingrediënten, hoeveelheden, stappen, titel, tijden, afbeelding, enz.) wordt \`version\` met precies één verhoogd en een logregel toegevoegd. Bijvoorbeeld:
+
+\`\`\`json
+"version": 2,
+"updatedAt": "2026-11-07",
+"changeLog": [
+  {
+    "version": 2,
+    "date": "2026-11-07",
+    "description": "Kruidenhoeveelheden bijgesteld en bereiding verduidelijkt."
+  }
+]
+\`\`\`
+
+De \`date\` van het bestaande recept blijft ongewijzigd. **Bewaar oude logregels**; bij versie 3 komt er een nieuwe regel bij, zodat eerdere wijzigingen zichtbaar blijven. Receptvarianten hebben een **eigen versie**. Als een aanpassing in het hoofdrecept ook een variant beïnvloedt, verhoog dan ook de variantversie en voeg bij beide een passende logregel toe.
+
+### Wijziging registreren
+
+Werk eerst de receptinhoud in \`recepten.json\` bij. Daarna kun je met Node.js versie, datum en logregel laten bijwerken:
+
+\`\`\`bash
+node scripts/bump-recipe-version.cjs piripiri "Kruiding aangescherpt en baktijd verduidelijkt"
+node scripts/bump-recipe-version.cjs pasta-rundergehakt-groenten "Romige variant verbeterd" --variant=romig
+\`\`\`
+
+De datum wordt standaard bepaald in de tijdzone **Europe/Amsterdam**. Optioneel kun je \`--date=YYYY-MM-DD\` toevoegen. Leg inhoud en versiemetadata vast **in dezelfde Git-commit**. Verhoog de versie niet als uitsluitend technische bestanden buiten \`recepten.json\` zijn aangepast.
+
+De website toont de actuele versie en opnamedatum, een eventuele laatste wijzigingsdatum en een uitklapbare wijzigingsgeschiedenis. De sorteermogelijkheden **Recent toegevoegd** en **Recent gewijzigd** zijn apart; bij recent gewijzigd tellen wijzigingen aan varianten mee.
+
+De workflow draait \`tests/recipe-revisions.test.cjs\`, de inhoudsvalidator en \`scripts/check-recipe-revisions.cjs\`. De laatste vergelijkt \`recepten.json\` met de vorige Git-commit en keurt een ontbrekende versieverhoging, weggelaten logregel of stille herschrijving van bestaande geschiedenis af. De website toont de **wijzigingssamenvattingen**, niet de volledige oude receptinhoud. Voorgaande volledige versies zijn zo nodig via de GitHub-commitgeschiedenis terug te vinden.
