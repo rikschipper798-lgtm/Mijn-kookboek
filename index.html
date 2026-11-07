@@ -1073,7 +1073,7 @@ function basketConversion(u){
 }
 const SHOP_ALIASES={
  'rode paprika':'paprika',
- 'verse tomaat':'tomaat','verse tomaten':'tomaat','rijpe tomaten':'tomaat','eieren':'ei',
+ 'verse tomaat':'tomaat','verse tomaten':'tomaat','rijpe tomaten':'tomaat','eieren':'ei','gedroogde oregano':'oregano',
  'wortels':'wortel','verse rode peper':'rode peper',
  'knoflookpoeder voor de saus':'knoflookpoeder','zout voor de rode ui':'zout',
  'grofgemalen zwarte peper':'zwarte peper',
@@ -1173,12 +1173,13 @@ function componentRecipe(item){
 function componentMode(entry,index){
  return entry.componentModes&&entry.componentModes[index]==='buy'?'buy':'make';
 }
-function hasOptionalIngredients(view,visited=new Set()){
- return allIngredients(view).some(item=>{
+function hasOptionalIngredients(view,entry,visited=new Set()){
+ return allIngredients(view).some((item,index)=>{
   if(item.optional)return true;
   const component=componentRecipe(item);
-  return component&&!visited.has(component.id)&&
-   hasOptionalIngredients(component,new Set([...visited,component.id]));
+  if(!component||visited.has(component.id))return false;
+  if(!visited.size&&componentMode(entry,index)==='buy')return false;
+  return hasOptionalIngredients(component,entry,new Set([...visited,component.id]));
  });
 }
 function basketIngredients(entry,view,recipeId){
@@ -1295,7 +1296,7 @@ function renderBasket(){
  const selected=Object.entries(basket).map(([key,entry])=>{
   const recipe=recipes.find(r=>r.id===entry.id);
   if(!recipe)return '';
-  const view=viewFor(recipe,entry.variantId),hasOptional=hasOptionalIngredients(view);
+  const view=viewFor(recipe,entry.variantId),hasOptional=hasOptionalIngredients(view,entry);
   const optional=hasOptional?'<label class="basket-optional"><input type="checkbox" data-optional="'+safe(key)+'"'+(entry.includeOptional!==false?' checked':'')+'> Optionele ingrediënten meenemen</label>':'';
   const selectedItems=new Set(Array.isArray(checked[listKey(recipe.id,entry.variantId)])?checked[listKey(recipe.id,entry.variantId)]:[]);
   const components=allIngredients(view).map((item,index)=>({item,index}))
@@ -1306,7 +1307,10 @@ function renderBasket(){
     '<select id="component-'+safe(key)+'-'+index+'" data-component-key="'+safe(key)+'" data-component-index="'+index+'" aria-label="Bereiding van '+safe(item.name)+'">'+
     '<option value="make"'+(mode==='make'?' selected':'')+'>Zelf maken</option>'+
     '<option value="buy"'+(mode==='buy'?' selected':'')+'>Kant-en-klaar kopen</option></select>'+
-    '<a href="#recept/'+encodeURIComponent(base.id)+'">Bekijk basisrecept</a></div>';
+    '<a href="#recept/'+encodeURIComponent(base.id)+'">Bekijk basisrecept</a>'+
+    '<small>Zelf maken: '+safe(niceTime(timeInfo(base).total))+
+    (base.restMinutes&&base.restTiming==='optional'?' + optioneel '+safe(niceTime(base.restMinutes))+' rusten':'')+
+    '</small></div>';
   }).join('');
   return '<div class="basket-recipe"><div class="basket-recipe-info"><strong>'+safe(title(view))+'</strong><span>'+safe(portionsLabel(view,entry.servings))+'</span>'+componentChoices+optional+'</div><button class="btn alt" data-remove="'+safe(key)+'" aria-label="Verwijder '+safe(title(view))+'">Verwijder</button></div>';
  }).join('');
