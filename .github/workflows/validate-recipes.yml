@@ -26,5 +26,7 @@ jobs:
         run: node --test tests/validate-recipes.test.cjs
       - name: Offline afbeeldingen en synchronisatie testen
         run: node --test tests/offline-images.test.cjs
+      - name: Gekoppelde basisrecepten testen
+        run: node --test tests/component-recipes.test.cjs
       - name: Recepten en afbeeldingen controleren
         run: node scripts/validate-recipes.cjs
