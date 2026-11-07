@@ -28,5 +28,7 @@ jobs:
         run: node --test tests/offline-images.test.cjs
       - name: Gekoppelde basisrecepten testen
         run: node --test tests/component-recipes.test.cjs
+      - name: Persoonlijke voorraad en back-ups testen
+        run: node --test tests/pantry.test.cjs
       - name: Recepten en afbeeldingen controleren
         run: node scripts/validate-recipes.cjs
