@@ -4,6 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
 const {validateRecipes}=require('../scripts/validate-recipes.cjs');
 const {checkChanges}=require('../scripts/check-recipe-revisions.cjs');
+const {bumpRecipe}=require('../scripts/bump-recipe-version.cjs');
 const root=path.resolve(__dirname,'..');
 const catalog=JSON.parse(fs.readFileSync(path.join(root,'recepten.json'),'utf8'));
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
@@ -28,7 +29,7 @@ const after=html.indexOf('function timeInfo(',before);
 assert.ok(before!==-1&&after>before,'Versiefuncties ontbreken in website');
 const source=html.slice(before,after);
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const ui=new Function('safe',source+'\nreturn {recipeVersion,revisionDateLabel,latestRevisionDate,recipeRevisionMeta,revisionHistory};')(escape);
+const ui=new Function('safe',source+'\nreturn {recipeVersion,revisionDateLabel,latestRevisionDate,hasRecordedChanges,recipeRevisionMeta,revisionHistory};')(escape);
 
 test('Alle 27 recepten en 2 varianten beginnen als gecontroleerde versie 1',()=>{
  assert.equal(catalog.length,27);
@@ -135,4 +136,41 @@ test('Eerdere wijzigingsregels mogen bij versie 3 niet worden aangepast',()=>{
  d[0].changeLog[0].description='Achteraf gewijzigde tekst voor oude versie';
  d[0].changeLog.push({version:3,date:'2026-11-07',description:'De bereiding opnieuw verder uitgewerkt.'});
  assert.match(checkChanges(old,d).join('\n'),/bestaande wijzigingsregels mogen niet worden aangepast/);
+});
+
+test('Revisiehulpmiddel verhoogt versie en registreert datum en omschrijving',()=>{
+ const d=clone();
+ const details=bumpRecipe(d,d[0].id,'Ingrediënten en bereidingswijze verder verbeterd.',{date:'2026-11-07'});
+ assert.equal(details.version,2);
+ assert.equal(d[0].updatedAt,'2026-11-07');
+ assert.deepEqual(d[0].changeLog,[{version:2,date:'2026-11-07',
+  description:'Ingrediënten en bereidingswijze verder verbeterd.'}]);
+ assert.equal(catalog[0].version,1);
+});
+test('Revisiehulpmiddel kan een variant onafhankelijk verhogen',()=>{
+ const d=clone(),r=d.find(x=>x.variants?.length);
+ const result=bumpRecipe(d,r.id,'De romige saus wat rijker en milder gemaakt.',{
+  variantId:r.variants[0].id,date:'2026-11-07'
+ });
+ assert.equal(result.version,2);
+ assert.equal(r.version,1);
+ assert.equal(r.variants[0].version,2);
+});
+test('Revisiehulpmiddel weigert onjuiste datum, onbekend recept en te korte tekst',()=>{
+ assert.throws(()=>bumpRecipe(clone(),'niet-bestaand','Beschrijving van wijziging.',{date:'2026-11-07'}));
+ assert.throws(()=>bumpRecipe(clone(),catalog[0].id,'Kort',{date:'2026-11-07'}));
+ assert.throws(()=>bumpRecipe(clone(),catalog[0].id,'Betere ingrediënten toegevoegd.',{date:'2026-02-30'}));
+ assert.throws(()=>bumpRecipe(clone(),catalog[0].id,'Betere ingrediënten toegevoegd.',{date:'2020-02-01'}));
+});
+test('Een gewijzigde variant bepaalt de datum bij recent gewijzigd',()=>{
+ const d=clone(),r=d.find(x=>x.variants?.length);
+ assert.equal(ui.latestRevisionDate(r),r.date);
+ r.variants[0].version=2;
+ r.variants[0].updatedAt='2026-11-07';
+ r.variants[0].changeLog=[{version:2,date:'2026-11-07',
+  description:'De saus en verhoudingen zijn aangescherpt.'}];
+ assert.equal(ui.latestRevisionDate(r),'2026-11-07');
+ assert.equal(ui.hasRecordedChanges(r),true);
+ assert.equal(ui.recipeRevisionMeta(r).includes('Bijgewerkt'),false);
+ assert.equal(ui.recipeRevisionMeta({...r,...r.variants[0]}).includes('Bijgewerkt'),true);
 });
