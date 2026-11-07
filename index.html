@@ -537,6 +537,18 @@ body.cook-active{overflow:hidden}
 .pantry-add>p,.pantry-message{font-size:12px;color:#607365}
 .pantry-auto-label{display:block;font-size:11px;font-weight:400;color:#68816c;margin-top:4px}
 @media(max-width:650px){.pantry-grid{grid-template-columns:1fr}.pantry-content{padding:0 12px 15px}}
+
+/* Receptversies staan rustig tussen de metadata en de ingrediënten. */
+.revision-history{margin:14px 0 18px;padding:0;border:1px solid #dbe6d7;border-radius:12px;background:#fafbf9}
+.revision-history summary{min-height:44px;padding:13px 17px;font-size:14px;font-weight:700;color:#35573d;cursor:pointer}
+.revision-history summary:hover{background:#f1f6ef}
+.revision-content{padding:0 17px 15px;font-size:13px;line-height:1.55;color:#4c5e50}
+.revision-content>p{margin:9px 0}
+.revision-list{margin:12px 0;padding-left:24px}
+.revision-list li{margin:0 0 12px}
+.revision-list p{margin:3px 0 0}
+.revision-baseline{color:#647567;font-style:italic}
+@media print{.revision-history{break-inside:avoid}.revision-history .revision-content{display:block}}
 </style>
 </head>
 <body>
@@ -564,7 +576,7 @@ body.cook-active{overflow:hidden}
  <div class="toolbar browse-filters">
   <label class="browse-control" for="category"><span>Categorie</span><select id="category"><option value="">Alle categorieën</option></select></label>
   <label class="browse-control" for="timeFilter"><span>Totale tijd</span><select id="timeFilter"><option value="">Alle tijden</option><option value="30">Max. 30 min</option><option value="40">Max. 40 min</option><option value="60">Max. 60 min</option><option value="long">Meer dan 60 min</option></select></label>
-  <label class="browse-control browse-sort" for="sortRecipes"><span>Sorteer op</span><select id="sortRecipes"><option value="recommended">Relevantie / standaard</option><option value="newest">Nieuwste</option><option value="fastest">Snelste</option><option value="alphabetical">Naam A–Z</option></select></label>
+  <label class="browse-control browse-sort" for="sortRecipes"><span>Sorteer op</span><select id="sortRecipes"><option value="recommended">Relevantie / standaard</option><option value="newest">Recent toegevoegd</option><option value="recently-updated">Recent gewijzigd</option><option value="fastest">Snelste</option><option value="alphabetical">Naam A–Z</option></select></label>
  </div>
  <div class="browse-shortcuts">
   <button id="quick" type="button" class="pill" aria-pressed="false" title="Toon recepten met een totale tijd van maximaal 40 minuten">Snel klaar ≤ 40 min</button>
@@ -670,6 +682,32 @@ function unitLabel(r,n){
  return u;
 }
 function portionsLabel(r,n){return fmt(n)+' '+unitLabel(r,n)}
+// Versies vanaf november 2026: bestaande datums blijven opnamedatums.
+// updateAt is alleen ingevuld bij een werkelijk vastgelegde revisie.
+function recipeVersion(r){return Number.isInteger(r.version)&&r.version>0?r.version:1}
+function revisionDateLabel(value){
+ if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))return '';
+ const [year,month,day]=value.split('-').map(Number);
+ const months=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+ return day+' '+months[month-1]+' '+year;
+}
+function latestRevisionDate(r){return r.updatedAt||r.date||''}
+function recipeRevisionMeta(r){
+ return '<span class="tag">Versie '+recipeVersion(r)+'</span>'+
+  (r.updatedAt?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(r.updatedAt))+'</span>':'');
+}
+function revisionHistory(r){
+ const history=Array.isArray(r.changeLog)?r.changeLog:[];
+ const baseline='Versie 1 is de eerste vastgelegde versie. Eerdere aanpassingen zijn niet apart gedocumenteerd.';
+ const list=history.length?'<ol class="revision-list">'+[...history].reverse().map(change=>
+  '<li><strong>Versie '+safe(change.version)+' · '+safe(revisionDateLabel(change.date))+'</strong>'+
+  '<p>'+safe(change.description)+'</p></li>').join('')+'</ol>':'';
+ return '<details class="revision-history"><summary>Receptversies en wijzigingsgeschiedenis</summary>'+
+  '<div class="revision-content"><p><strong>Huidige versie:</strong> '+recipeVersion(r)+
+  ' · <strong>Opgenomen:</strong> '+safe(revisionDateLabel(r.date))+'</p>'+
+  (r.updatedAt?'<p><strong>Laatst bijgewerkt:</strong> '+safe(revisionDateLabel(r.updatedAt))+'</p>':'')+
+  list+'<p class="revision-baseline">'+baseline+'</p></div></details>';
+}
 function timeInfo(r){
  // 'minutes' is de verstreken totaaltijd van het basisrecept:
  // verplichte wachttijd zit hier al in en parallelle handelingen tellen slechts eenmaal.
@@ -1026,6 +1064,7 @@ function renderCards(){
  const byName=(a,b)=>title(a.recipe).localeCompare(title(b.recipe),'nl');
  matched.sort((a,b)=>{
   if(sort==='newest')return String(b.recipe.date||'').localeCompare(String(a.recipe.date||''))||a.index-b.index;
+   if(sort==='recently-updated')return String(latestRevisionDate(b.recipe)).localeCompare(String(latestRevisionDate(a.recipe)))||a.index-b.index;
   if(sort==='fastest')return a.minutes-b.minutes||byName(a,b);
   if(sort==='alphabetical')return byName(a,b)||a.index-b.index;
   if(terms.length)return searchScore(b.recipe,terms)-searchScore(a.recipe,terms)||a.index-b.index;
@@ -1042,7 +1081,8 @@ function renderCards(){
   '<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2>'+
   '<p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span>'+
   '<span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span>'+
-  (r.cuisine?'<span class="tag card-cuisine">'+safe(r.cuisine)+'</span>':'')+'</div>'+
+  (r.cuisine?'<span class="tag card-cuisine">'+safe(r.cuisine)+'</span>':'')+
+   (r.updatedAt?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(r.updatedAt))+'</span>':'')+'</div>'+
   '<div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a>'+
   '<button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen: '+safe(title(r))+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>'
  ).join('')||
@@ -1073,7 +1113,9 @@ function resetBrowse(){
  renderCards();
 }
 function recipeText(r,mult){
- return title(r)+'\n'+portionsLabel(r,Math.round(portions(r)*mult))+'\n\nIngrediënten:\n'+allIngredients(r).map(i=>'- '+amount(i,mult)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')+'\n\nBereiding:\n'+(r.steps||[]).map((s,i)=>(i+1)+'. '+(typeof s==='string'?scaledStepBody(r,s,mult):(s.title||'')+': '+scaledStepBody(r,s,mult))).join('\n\n');
+ return title(r)+'\n'+portionsLabel(r,Math.round(portions(r)*mult))+'\nVersie '+recipeVersion(r)+
+   (r.updatedAt?' · bijgewerkt '+revisionDateLabel(r.updatedAt):'')+
+   '\n\nIngrediënten:\n'+allIngredients(r).map(i=>'- '+amount(i,mult)+' '+i.name+(i.optional?' (optioneel)':'')).join('\n')+'\n\nBereiding:\n'+(r.steps||[]).map((s,i)=>(i+1)+'. '+(typeof s==='string'?scaledStepBody(r,s,mult):(s.title||'')+': '+scaledStepBody(r,s,mult))).join('\n\n');
 }
 async function copyText(text,button){
  try{await navigator.clipboard.writeText(text);if(button)button.textContent='Gekopieerd'}
@@ -1960,9 +2002,9 @@ function renderDetail(){
  el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button>'+
  '<div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2>'+chocolateChoices+'<p class="description">'+safe(description(view))+'</p>'+jumpNav+
  (view.image?'<div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div>':'')+
- '<div class="meta"><span class="tag">'+safe(portionsLabel(view,current))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+'</div>'+
+ '<div class="meta"><span class="tag">'+safe(portionsLabel(view,current))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+recipeRevisionMeta(view)+'</div>'+
   (view.timeNote?'<p class="ingredient-helper">'+safe(view.timeNote)+'</p>':'')+
- timeBreakdown(view)+choices+
+ timeBreakdown(view)+choices+revisionHistory(view)+
  (canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+
  scaleNote+actions+
  '<div class="recipe-layout"><section class="recipe-ingredients" id="recipeIngredients"><h3>Ingrediënten</h3><p class="ingredient-helper">Vink aan wat je al in huis hebt. Dit ingrediënt wordt dan voor dit recept niet op je boodschappenlijst gezet.</p><ul class="ingredients recipe-ingredient-list">'+checkableIngredientRows(items,mult,key)+'</ul></section>'+
