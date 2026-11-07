@@ -176,3 +176,15 @@ test('Bij activeren worden oudere serviceworkercaches opgeruimd',async()=>{
  await pwa.activate();
  assert.equal((await pwa.caches.keys()).includes('mijn-kookboek-pwa-images-oud'),false);
 });
+
+test('Voorraadmodule is offline beschikbaar na de eerste installatie',async()=>{
+ const pwa=createWorker([catalog[0]]);
+ await pwa.install();
+ const core=await pwa.cacheFor('core');
+ const script=await core.match(baseUrl+'pantry.js');
+ assert.ok(script,'pantry.js moet in de basisbestanden-cache staan');
+ pwa.state.online=false;
+ const response=await pwa.dispatch('fetch',new Request(baseUrl+'pantry.js'));
+ assert.equal(response.status,200);
+ assert.match(await response.text(),/pantry\.js/);
+});
