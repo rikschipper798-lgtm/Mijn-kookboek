@@ -4714,7 +4714,9 @@
     "image": "images/kruidenboter.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor zelfgemaakte knoflook-kruidenboter (40 g)",
     "restTiming": "optional",
-    "timeNote": "Direct klaar in 5 minuten zodra de boter zacht is. Voor meer smaak kun je de kruidenboter daarna optioneel 30 minuten in de koelkast laten rusten; dat is niet meegerekend."
+    "timeNote": "Direct klaar in 5 minuten zodra de boter zacht is. Voor meer smaak kun je de kruidenboter daarna optioneel 30 minuten in de koelkast laten rusten; dat is niet meegerekend.",
+    "outputQty": 40,
+    "outputUnit": "g"
   },
   {
     "id": "kip-satesaus",
@@ -6012,7 +6014,9 @@
         "name": "Zelfgemaakte knoflook-kruidenboter (zie basisrecept)",
         "qty": 40,
         "unit": "g",
-        "group": "Vulling"
+        "group": "Vulling",
+        "componentRecipeId": "kruidenboter",
+        "readyMadeName": "Kruidenboter (kant-en-klaar)"
       },
       {
         "name": "Geraspte jong belegen kaas",
