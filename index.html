@@ -2062,6 +2062,7 @@ function backupData(){
   basket:basket,
   basketChecks:basketChecked,
   notes:personalNotes,
+  pantry:pantry.get(),
   cookProgress:cookProgress
  };
 }
@@ -2127,9 +2128,10 @@ function validBackup(payload){
   (value.lastCookedOn===undefined||typeof value.lastCookedOn==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value.lastCookedOn)));
  const cookProgressData=backupMap(data.cookProgress,'kookvoortgang',value=>
   backupObject(value)&&Number.isInteger(value.step)&&value.step>=0&&value.step<=1000&&typeof value.done==='boolean');
+ const pantryData=data.pantry===undefined?null:pantry.validate(data.pantry);
  return {
   exportedAt:payload.exportedAt,
-  data:{favorites:favoritesList,ingredientChecks,basket:basketData,basketChecks,notes,cookProgress:cookProgressData}
+  data:{favorites:favoritesList,ingredientChecks,basket:basketData,basketChecks,notes,cookProgress:cookProgressData,pantry:pantryData}
  };
 }
 function cancelBackupImport(){
@@ -2150,7 +2152,8 @@ async function readBackupFile(file){
   el('backupPreviewSummary').textContent='Gemaakt op '+date+' · '+d.favorites.length+' favorieten · '+
    Object.keys(d.notes).length+' kooknotities · '+Object.keys(d.basket).length+' recepten op boodschappenlijst · '+
    Object.keys(d.ingredientChecks).length+' recepten met afvinkstatus · '+
-   Object.keys(d.cookProgress).length+' kookvoortgangen.';
+   Object.keys(d.cookProgress).length+' kookvoortgangen · '+
+   (d.pantry===null?'bestaande voorraad blijft behouden':d.pantry.filter(x=>x.have).length+' producten in de voorraad.');
   el('backupPreview').hidden=false;
   backupStatus('Back-up gecontroleerd. Er is nog niets gewijzigd.');
  }catch(e){
@@ -2166,6 +2169,7 @@ function restorePersonalBackup(){
   fav:data.favorites,checked:data.ingredientChecks,basket:data.basket,
   basketChecked:data.basketChecks,notes:data.notes,cook:data.cookProgress
  };
+ if(data.pantry!==null)changes.pantry=data.pantry;
  const originals={};
  try{
   for(const name of Object.keys(changes))originals[name]=localStorage.getItem(STORAGE[name]);
@@ -2187,9 +2191,11 @@ function restorePersonalBackup(){
  basketChecked=data.basketChecks;
  personalNotes=data.notes;
  cookProgress=data.cookProgress;
+ if(data.pantry!==null)pantry.restore(data.pantry);
  cancelBackupImport();
  route();
- backupStatus('Gegevens hersteld op dit apparaat. Je favorieten, notities en boodschappen zijn bijgewerkt.');
+ backupStatus('Gegevens hersteld op dit apparaat. Je favorieten, notities en boodschappen zijn bijgewerkt.'+
+  (data.pantry===null?' Je bestaande voorraad is behouden.':' Je standaardvoorraad is ook hersteld.'));
 }
 el('downloadBackup').addEventListener('click',downloadPersonalBackup);
 el('backupFile').addEventListener('change',event=>readBackupFile(event.target.files[0]));
