@@ -5948,5 +5948,94 @@
       }
     ],
     "tips": "Vouw de kaas zorgvuldig in de achterham, laat minimaal 1 cm ruimte tot de kipranden en sluit de kip goed om lekkage te beperken. Een mengsel van fijn paneermeel en panko geeft tegelijk een egale en luchtig krokante korst. Bak niet te heet: de korst mag niet verbranden voordat de kip gaar is. Bereid eventueel enkele uren vooraf voor en bewaar de ongegaarde, gepaneerde kip afgedekt in de koelkast. Gaar bereide restjes maximaal 2 dagen afgesloten gekoeld bewaren; opnieuw verwarmen in de oven op 170 °C boven- en onderwarmte tot door en door heet. Serveer bijvoorbeeld met geroosterde rozemarijnaardappeltjes en sperziebonen met wortel; bijgerechten vallen buiten de 45 minuten."
+  },
+  {
+    "id": "gevuld-kruidenboterstokbrood-kaas-oregano",
+    "title": "Gevuld kruidenboterstokbrood met kaas en oregano",
+    "subtitle": "Krokant warm stokbrood met zelfgemaakte knoflook-kruidenboter tussen de inkepingen, een dun laagje gesmolten kaas en oregano bovenop.",
+    "category": "Borrelhapjes",
+    "kind": "Borrelhap of bijgerecht",
+    "cuisine": "Europees",
+    "minutes": 25,
+    "prep": 10,
+    "cook": 15,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-11-07",
+    "tags": [
+      "Stokbrood",
+      "Kruidenboter",
+      "Knoflook",
+      "Kaas",
+      "Oregano",
+      "Oven",
+      "Borrel",
+      "Vegetarisch"
+    ],
+    "ingredients": [
+      {
+        "name": "Afbakstokbrood",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Stokbrood"
+      },
+      {
+        "name": "Zelfgemaakte knoflook-kruidenboter (zie basisrecept)",
+        "qty": 40,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Geraspte jong belegen kaas",
+        "qty": 30,
+        "unit": "g",
+        "group": "Topping"
+      },
+      {
+        "name": "Gedroogde oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Topping"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Oven voorverwarmen en stokbrood insnijden",
+        "body": "Verwarm de oven voor op 200 °C boven- en onderwarmte (180 °C hetelucht). Snijd 1 afbakstokbrood ongeveer elke 2 cm schuin in, maar niet helemaal door: de onderkant moet heel blijven. Leg het brood op een met bakpapier beklede bakplaat.",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "title": "Kruidenboter tussen de inkepingen verdelen",
+        "body": "Gebruik 40 g zachte zelfgemaakte knoflook-kruidenboter (volgens het afzonderlijke basisrecept in het kookboek). Verdeel de boter gelijkmatig tussen alle inkepingen en smeer eventueel een klein beetje over de bovenkant.",
+        "ingredientIndices": [
+          1
+        ]
+      },
+      {
+        "title": "Beleg de bovenkant met kaas en oregano",
+        "body": "Strooi 30 g geraspte jong belegen kaas gelijkmatig over de bovenkant van het stokbrood. Verdeel daar ½ tl gedroogde oregano over. Doe geen kaas tussen de inkepingen: alleen kruidenboter komt ertussen.",
+        "ingredientIndices": [
+          2,
+          3
+        ]
+      },
+      {
+        "title": "Goudbruin bakken",
+        "body": "Bak het stokbrood 12–15 minuten in het midden van de oven, totdat het brood krokant en goudbruin is en de kaas gesmolten is. Gebruik je een al afgebakken stokbrood, controleer dan na circa 8–10 minuten. Serveer direct, terwijl de kaas nog warm is.",
+        "duration": "12–15 min",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    ],
+    "tips": "Gebruik het bestaande basisrecept ‘Zelfgemaakte knoflook-kruidenboter (40 g)’ voor de vulling. Met 30 g kaas blijft de kruidenboter de belangrijkste smaakmaker en ontstaat toch een licht krokant kaaskorstje. Laat de onderkant van het stokbrood heel zodat het gemakkelijk te delen is. Dit brood is direct uit de oven het lekkerst. Bewaar restjes maximaal 2 dagen afgedekt in de koelkast en warm ongeveer 5 minuten op bij 180 °C boven- en onderwarmte."
   }
 ]
