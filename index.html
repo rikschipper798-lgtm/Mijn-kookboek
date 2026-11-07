@@ -644,10 +644,21 @@ function unitLabel(r,n){
 }
 function portionsLabel(r,n){return fmt(n)+' '+unitLabel(r,n)}
 function timeInfo(r){
- // De standaardduur bevat alle bereidingsstappen, ook de rijstijden van brood.
- // Alleen expliciete externe marineer- en rustperiodes komen bovenop die duur.
- const base=duration(r),marinate=number(r.marinateMinutes),rest=number(r.restMinutes);
- return {total:base+marinate+rest,base,marinate,rest,active:number(r.activeMinutes),coldRise:number(r.coldRiseMinutes),finalProof:number(r.finalProofMinutes),estimated:Boolean(r.totalTimeEstimated)};
+ // 'minutes' is de verstreken totaaltijd van het basisrecept:
+ // verplichte wachttijd zit hier al in en parallelle handelingen tellen slechts eenmaal.
+ // Optioneel marineren/rusten verandert dit totaal niet.
+ const base=duration(r)||number(r.prep)+number(r.cook);
+ const marinate=number(r.marinateMinutes),rest=number(r.restMinutes);
+ return {
+  total:base,base,prep:number(r.prep),cook:number(r.cook),
+  marinate,marinateTiming:r.marinateTiming||'included',
+  rest,restTiming:r.restTiming||'included',
+  optionalWaitMin:number(r.optionalWaitMinMinutes),
+  optionalWaitMax:number(r.optionalWaitMaxMinutes),
+  optionalWaitType:r.optionalWaitType||'wachten',
+  active:number(r.activeMinutes),coldRise:number(r.coldRiseMinutes),
+  finalProof:number(r.finalProofMinutes),estimated:Boolean(r.totalTimeEstimated)
+ };
 }
 function niceTime(n){if(!n)return '–';return n<60?n+' min':Math.floor(n/60)+' uur'+(n%60?' '+n%60+' min':'')}
 function rangeTime(low,high){
@@ -655,8 +666,23 @@ function rangeTime(low,high){
  return low+'–'+high+' min';
 }
 function timeBadges(r){
- const t=timeInfo(r);
- return ['<span class="tag">'+(t.estimated?'ca. ':'')+niceTime(t.total)+' totaal</span>',t.marinate?'<span class="tag">'+t.marinate+' min marineren</span>':'',t.rest?'<span class="tag">'+t.rest+' min rusten</span>':'',t.coldRise?'<span class="tag">'+niceTime(t.coldRise)+' nachtrijs</span>':'',t.finalProof?'<span class="tag">'+niceTime(t.finalProof)+' narijzen</span>':'',t.active?'<span class="tag">'+t.active+' min actief</span>':''].join('');
+ const t=timeInfo(r),detailedBread=Boolean(t.coldRise);
+ const marinateLabel=t.marinateTiming==='parallel'?' (tijdens voorbereiding)':
+  t.marinateTiming==='optional'?' (optioneel)':' (inbegrepen)';
+ const restLabel=t.restTiming==='optional'?' (optioneel)':' (inbegrepen)';
+ const optionalRange=t.optionalWaitMin>0?niceTime(t.optionalWaitMin)+
+  (t.optionalWaitMax>t.optionalWaitMin?'–'+niceTime(t.optionalWaitMax):''):'';
+ return [
+  '<span class="tag">'+(t.estimated?'ca. ':'')+niceTime(t.total)+' totaal</span>',
+  !detailedBread&&t.prep?'<span class="tag">'+niceTime(t.prep)+' voorbereiden</span>':'',
+  !detailedBread&&t.cook?'<span class="tag">'+niceTime(t.cook)+' bereiden</span>':'',
+  t.marinate?'<span class="tag">'+niceTime(t.marinate)+' marineren'+marinateLabel+'</span>':'',
+  t.rest?'<span class="tag">'+niceTime(t.rest)+' rusten'+restLabel+'</span>':'',
+  optionalRange?'<span class="tag">'+optionalRange+' '+safe(t.optionalWaitType)+' (optioneel)</span>':'',
+  t.coldRise?'<span class="tag">'+niceTime(t.coldRise)+' nachtrijs (inbegrepen)</span>':'',
+  t.finalProof?'<span class="tag">'+niceTime(t.finalProof)+' narijzen (inbegrepen)</span>':'',
+  t.active?'<span class="tag">'+niceTime(t.active)+' actief</span>':''
+ ].join('');
 }
 function timeBreakdown(r){
  if(!number(r.coldRiseMinutes))return '';
@@ -1813,6 +1839,7 @@ function renderDetail(){
  '<div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2>'+chocolateChoices+'<p class="description">'+safe(description(view))+'</p>'+jumpNav+
  (view.image?'<div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div>':'')+
  '<div class="meta"><span class="tag">'+safe(portionsLabel(view,current))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+'</div>'+
+  (view.timeNote?'<p class="ingredient-helper">'+safe(view.timeNote)+'</p>':'')+
  timeBreakdown(view)+choices+
  (canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+
  scaleNote+actions+
