@@ -84,7 +84,7 @@ function createWorker(recipes=catalog){
   async fetchRecipe(){return dispatch('fetch',new Request(baseUrl+'recepten.json'));},
   async fetchImage(rel){return dispatch('fetch',new Request(baseUrl+rel));},
   async cacheFor(kind){
-   const key=(await caches.keys()).find(x=>x.includes('-'+kind+'-'));
+   const key=(await caches.keys()).find(x=>x.startsWith('mijn-kookboek-pwa-'+kind+'-'));
    assert.ok(key,'ontbrekende '+kind+' cache');
    return caches.open(key);
   }
