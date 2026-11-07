@@ -24,5 +24,7 @@ jobs:
           node-version: '22'
       - name: Regressietests uitvoeren
         run: node --test tests/validate-recipes.test.cjs
+      - name: Offline afbeeldingen en synchronisatie testen
+        run: node --test tests/offline-images.test.cjs
       - name: Recepten en afbeeldingen controleren
         run: node scripts/validate-recipes.cjs
