@@ -5755,7 +5755,9 @@
         "tips": "Omdat melkchocolade zoeter is, bevat deze variant slechts 10 g toegevoegde suiker en 8 g ongezoet cacaopoeder. Gebruik liever melkchocolade met een redelijk hoog cacaopercentage voor een vollere smaak. De baktijd is cruciaal: de randen stevig, het midden nog zacht. Verander de baktijd na de eerste proef met stappen van 1 minuut. Beslag kan afgedekt tot 24 uur in de koelkast worden bewaard; koud beslag heeft vaak 1–3 minuten extra oventijd nodig. De zachte kern is deels ongaar en bevat ei: gebruik bij voorkeur gepasteuriseerde eieren en serveer dit niet aan mensen die ongegaarde eieren moeten vermijden. Frambozen of vanille-ijs zijn optioneel."
       }
     ],
-    "variantPrompt": "Kies je chocoladesoort"
+    "variantPrompt": "Kies je chocoladesoort",
+    "image": "images/chocolade-lavacake.avif",
+    "image_source": "AI-afbeelding speciaal gegenereerd voor de chocolade lavacake met vloeibare chocoladekern"
   },
   {
     "id": "klassieke-krokante-kip-cordon-bleu",
