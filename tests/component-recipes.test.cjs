@@ -4,6 +4,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const {validateRecipes}=require('../scripts/validate-recipes.cjs');
+const CookbookPantry=require('../pantry.js');
 
 const root=path.resolve(__dirname,'..');
 const catalog=JSON.parse(fs.readFileSync(path.join(root,'recepten.json'),'utf8'));
@@ -56,7 +57,7 @@ function browser(){
   createElement:()=>({click(){},remove(){}})
  };
  const location={hash:'',href:''},navigator={onLine:true};
- const window={location,navigator,isSecureContext:false,matchMedia:()=>({matches:false}),addEventListener(){},confirm:()=>true,scrollTo(){},print(){}};
+ const window={location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),addEventListener(){},confirm:()=>true,scrollTo(){},print(){}};
  const localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)};
  const api=new Function('document','window','navigator','localStorage','location','fetch','Option','setInterval','clearInterval','queueMicrotask','setTimeout',
   js+'\nreturn {refreshRecipeCollection,route,renderBasket,basketItems,getBasket:()=>basket,getChecks:()=>checked,getRecipes:()=>recipes};')(
