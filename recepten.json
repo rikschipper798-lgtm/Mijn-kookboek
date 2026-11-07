@@ -5756,5 +5756,197 @@
       }
     ],
     "variantPrompt": "Kies je chocoladesoort"
+  },
+  {
+    "id": "klassieke-krokante-kip-cordon-bleu",
+    "title": "Klassieke krokante kip cordon bleu",
+    "subtitle": "Sappige kipfilet gevuld met achterham en gesmolten jong belegen kaas, met een goudbruine korst van gekruid paneermeel en panko.",
+    "category": "Kip",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Europees",
+    "minutes": 45,
+    "prep": 25,
+    "cook": 20,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild kruidig",
+    "difficulty": "Gemiddeld",
+    "date": "2026-11-07",
+    "tags": [
+      "Kip",
+      "Cordon bleu",
+      "Krokant",
+      "Gevulde kip",
+      "Koekenpan"
+    ],
+    "ingredients": [
+      {
+        "name": "Kipfilet",
+        "qty": 350,
+        "unit": "g",
+        "group": "Kip en vulling"
+      },
+      {
+        "name": "Achterham",
+        "qty": 50,
+        "unit": "g",
+        "group": "Kip en vulling"
+      },
+      {
+        "name": "Jong belegen kaas",
+        "qty": 60,
+        "unit": "g",
+        "group": "Kip en vulling"
+      },
+      {
+        "name": "Dijonmosterd",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kip en vulling",
+        "optional": true
+      },
+      {
+        "name": "Bloem",
+        "qty": 30,
+        "unit": "g",
+        "group": "Paneren"
+      },
+      {
+        "name": "Ei",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Paneren"
+      },
+      {
+        "name": "Fijn paneermeel",
+        "qty": 30,
+        "unit": "g",
+        "group": "Paneren"
+      },
+      {
+        "name": "Panko",
+        "qty": 30,
+        "unit": "g",
+        "group": "Paneren"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruidenkorst"
+      },
+      {
+        "name": "Gedroogde peterselie",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruidenkorst"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruidenkorst"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruidenkorst"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruidenkorst"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruidenkorst"
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 3,
+        "unit": "el",
+        "group": "Bakken"
+      },
+      {
+        "name": "Roomboter",
+        "qty": 10,
+        "unit": "g",
+        "group": "Bakken",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "title": "Kipfilets voorbereiden",
+        "body": "Snijd de 350 g kipfilet als 2 filets van ongeveer 150–175 g horizontaal in, zonder helemaal door te snijden. Klap ze open als een boek. Leg iedere filet tussen twee vellen bakpapier en sla voorzichtig plat tot ongeveer 7–8 mm dikte. Zorg voor een gelijkmatige dikte zonder gaten; dep de kip droog met keukenpapier.",
+        "duration": "5 min",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "title": "Vullen en sluiten",
+        "body": "Verdeel 60 g jong belegen kaas over 50 g achterham (ongeveer 2 plakken). Vouw de ham om de kaas, zodat de kaas zoveel mogelijk wordt ingesloten. Besmeer de binnenkant van iedere kipfilet eventueel met ½ tl Dijonmosterd. Leg de pakketjes op de kip en houd minimaal 1 cm ruimte tot de randen. Vouw de kipfilets dicht, druk de randen goed aan en zet zo nodig vast met cocktailprikkers.",
+        "duration": "5 min",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "title": "Paneerlaag en kruiden mengen",
+        "body": "Zet drie diepe borden klaar. Bord 1: 30 g bloem. Bord 2: 1 losgeklopt ei. Bord 3: meng 30 g fijn paneermeel met 30 g panko, ½ tl knoflookpoeder, ½ tl gedroogde peterselie, ¼ tl gerookt paprikapoeder, ¼ tl uienpoeder, ¼ tl zwarte peper en ¼ tl zout. Meng goed zodat de kruiden gelijkmatig verdeeld zijn.",
+        "duration": "5 min",
+        "ingredientIndices": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "title": "Cordon bleus paneren en kort koelen",
+        "body": "Haal iedere gevulde kipfilet eerst door de bloem, daarna door het ei en ten slotte door het gekruide paneermengsel. Druk de kruimels voorzichtig aan, vooral langs de randen, zodat de kip rondom bedekt is. Leg de cordon bleus 5 minuten in de koelkast; dit helpt de paneerlaag hechten.",
+        "duration": "5 min koelen",
+        "ingredientIndices": [
+          0,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "title": "Goudbruin bakken en gaarheid controleren",
+        "body": "Verhit 3 el zonnebloemolie in een ruime koekenpan op middelhoog vuur. Bak de cordon bleus ongeveer 3 minuten per kant tot ze goudbruin beginnen te worden. Zet het vuur daarna laag tot middellaag en bak nog ongeveer 8–12 minuten; keer iedere 2–3 minuten voorzichtig zodat de korst niet verbrandt. Voeg eventueel de laatste 2 minuten 10 g roomboter toe en schep wat bakvet over de kip. Controleer de kerntemperatuur in het dikste deel van het kippenvlees, zonder de kaas te raken: minimaal 74 °C. Verleng de baktijd zo nodig op laag vuur.",
+        "duration": "14–18 min",
+        "ingredientIndices": [
+          0,
+          14,
+          15
+        ]
+      },
+      {
+        "title": "Kort laten rusten en serveren",
+        "body": "Haal de cordon bleus uit de pan en laat ongeveer 2 minuten onafgedekt rusten op een rooster. Hierdoor blijft ook de onderkant krokant. Verwijder eventuele cocktailprikkers en serveer direct.",
+        "duration": "2 min",
+        "ingredientIndices": [
+          0
+        ]
+      }
+    ],
+    "tips": "Vouw de kaas zorgvuldig in de achterham, laat minimaal 1 cm ruimte tot de kipranden en sluit de kip goed om lekkage te beperken. Een mengsel van fijn paneermeel en panko geeft tegelijk een egale en luchtig krokante korst. Bak niet te heet: de korst mag niet verbranden voordat de kip gaar is. Bereid eventueel enkele uren vooraf voor en bewaar de ongegaarde, gepaneerde kip afgedekt in de koelkast. Gaar bereide restjes maximaal 2 dagen afgesloten gekoeld bewaren; opnieuw verwarmen in de oven op 170 °C boven- en onderwarmte tot door en door heet. Serveer bijvoorbeeld met geroosterde rozemarijnaardappeltjes en sperziebonen met wortel; bijgerechten vallen buiten de 45 minuten."
   }
 ]
