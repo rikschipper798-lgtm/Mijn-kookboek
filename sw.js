@@ -1,13 +1,13 @@
 'use strict';
 // Bestandsversie: verhoog deze waarde bij wijzigingen aan offline infrastructuur.
 // index.html en recepten.json worden online altijd opnieuw opgehaald.
-const CACHE_VERSION='2026-11-07-pwa-auto-images-v1';
+const CACHE_VERSION='2026-11-07-pwa-pantry-v1';
 const CORE_CACHE='mijn-kookboek-pwa-core-'+CACHE_VERSION;
 const IMAGE_CACHE='mijn-kookboek-pwa-images-'+CACHE_VERSION;
 const CACHE_PREFIX='mijn-kookboek-pwa-';
 const SCOPE=self.registration.scope;
 const ROOT=new URL('./',SCOPE);
-const CORE_ASSETS=['index.html','recepten.json','manifest.webmanifest',
+const CORE_ASSETS=['index.html','pantry.js','recepten.json','manifest.webmanifest',
  'icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png'];
 // Afbeeldingen komen uit dezelfde receptenlijst die de website gebruikt.
 // Zowel basisrecepten als varianten worden meegenomen. Dubbele paden slechts één keer.
@@ -143,7 +143,7 @@ self.addEventListener('fetch',event=>{
   }));
  }else if(pathname.startsWith('images/')){
   event.respondWith(imageWithRefresh(event));
- }else if(pathname==='manifest.webmanifest'||pathname.startsWith('icons/')){
+ }else if(pathname==='pantry.js'||pathname==='manifest.webmanifest'||pathname.startsWith('icons/')){
   event.respondWith(cacheFirst(request,CORE_CACHE));
  }
 });
