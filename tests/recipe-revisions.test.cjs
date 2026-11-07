@@ -121,7 +121,7 @@ test('Eigen wijziging aan een variant verplicht alleen die variant tot een nieuw
  const d=clone(),r=d.find(x=>x.variants?.length);r.variants[0].label+=' verbeterd';
  const errors=checkChanges(catalog,d);
  assert.ok(errors.some(x=>x.includes('::romig')));
- assert.ok(!errors.some(x=>x.startsWith(r.id+':')));
+ assert.ok(!errors.some(x=>x.startsWith(r.id+': ')));
 });
 test('Een nieuw recept begint op versie 1',()=>{
  const d=clone(),newRecipe=JSON.parse(JSON.stringify(d[0]));
