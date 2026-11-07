@@ -518,6 +518,25 @@ body.cook-active{overflow:hidden}
 .basket-component-choice label{flex:1;min-width:160px;font-size:13px}
 .basket-component-choice select{max-width:100%;padding:8px;border:1px solid #c7d7c7;border-radius:8px;background:#fff}
 .basket-component-choice a{font-size:12px;color:#315f40;font-weight:600}
+
+.pantry-editor{margin:18px 0 24px;border:1px solid #d7e3d4;border-radius:14px;background:#f8faf7}
+.pantry-editor summary{padding:16px 18px;cursor:pointer;font-weight:750;color:#294935;min-height:48px}
+.pantry-editor summary span{font-size:12px;font-weight:500;color:#647465}
+.pantry-content{padding:0 17px 18px}
+.pantry-content>p{font-size:13px;color:#5d6a61;line-height:1.55}
+.pantry-group{border:0;margin:16px 0;padding:0}
+.pantry-group legend{font-weight:750;color:#304e35;margin-bottom:8px}
+.pantry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:7px}
+.pantry-product{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 9px;border:1px solid #e4eae1;border-radius:8px;background:#fff}
+.pantry-product label{display:flex;align-items:center;gap:9px;min-height:30px;min-width:0;flex:1;font-size:13px;cursor:pointer}
+.pantry-product input{width:18px;height:18px;flex-shrink:0;accent-color:#315f40}
+.pantry-product button{border:0;background:transparent;color:#6b473d;text-decoration:underline;cursor:pointer;font-size:12px}
+.pantry-add{margin:17px 0}.pantry-add>label{display:block;font-weight:650;margin-bottom:6px}
+.pantry-add-actions{display:flex;flex-wrap:wrap;gap:9px}
+.pantry-add-actions input{flex:1;min-width:155px;padding:11px;border:1px solid #b8cbb9;border-radius:8px}
+.pantry-add>p,.pantry-message{font-size:12px;color:#607365}
+.pantry-auto-label{display:block;font-size:11px;font-weight:400;color:#68816c;margin-top:4px}
+@media(max-width:650px){.pantry-grid{grid-template-columns:1fr}.pantry-content{padding:0 12px 15px}}
 </style>
 </head>
 <body>
@@ -551,6 +570,7 @@ body.cook-active{overflow:hidden}
   <button id="quick" type="button" class="pill" aria-pressed="false" title="Toon recepten met een totale tijd van maximaal 40 minuten">Snel klaar ≤ 40 min</button>
   <button id="favorites" type="button" class="pill" aria-pressed="false">♡ Favorieten</button>
   <button id="shoppingNav" type="button" class="pill browse-shopping">Boodschappenlijst (<span id="basketCount">0</span>)</button>
+   <button id="pantryNav" type="button" class="pill">Mijn voorraad</button>
  </div>
 </div>
 <div class="result-summary"><p class="count" id="count" role="status" aria-live="polite">Recepten laden…</p><button type="button" id="resetFilters" class="reset-filters" hidden>Wis filters</button></div>
@@ -579,7 +599,7 @@ body.cook-active{overflow:hidden}
 <details id="personalDataPanel" class="backup-panel">
  <summary>Mijn gegevens · back-up en herstel</summary>
  <div class="backup-panel-content">
-  <p>Favorieten, afgevinkte ingrediënten, boodschappenlijsten, kooknotities en de voortgang van de kookmodus staan alleen in deze browser. Ze worden niet automatisch gesynchroniseerd met andere apparaten.</p>
+  <p>Favorieten, afgevinkte ingrediënten, boodschappenlijsten, je standaardvoorraad, kooknotities en de voortgang van de kookmodus staan alleen in deze browser. Ze worden niet automatisch gesynchroniseerd met andere apparaten.</p>
   <p><strong>Bewaar een back-up:</strong> download één JSON-bestand en bewaar het op een veilige plek, bijvoorbeeld in je eigen beveiligde cloudopslag. Het bestand bevat ook je persoonlijke notities.</p>
   <div class="backup-actions">
    <button type="button" class="btn" id="downloadBackup">Download back-up</button>
@@ -600,13 +620,14 @@ body.cook-active{overflow:hidden}
 </main>
 <div id="cookOverlay" class="cook-overlay" hidden></div>
 <footer>Mijn Kookboek · Bewaren, koken en delen</footer>
+<script src="./pantry.js"></script>
 <script>
 'use strict';
 const el=id=>document.getElementById(id);
 const safe=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number=x=>Number(x)||0;
 const fmt=n=>new Intl.NumberFormat('nl-NL',{maximumFractionDigits:3}).format(n);
-const STORAGE={fav:'mijn-kookboek-favorieten',checked:'mijn-kookboek-receptchecks',basket:'mijn-kookboek-boodschappen',basketChecked:'mijn-kookboek-boodschappenchecks',notes:'mijn-kookboek-persoonlijke-notities',cook:'mijn-kookboek-kookvoortgang'};
+const STORAGE={fav:'mijn-kookboek-favorieten',checked:'mijn-kookboek-receptchecks',basket:'mijn-kookboek-boodschappen',basketChecked:'mijn-kookboek-boodschappenchecks',pantry:'mijn-kookboek-voorraad',notes:'mijn-kookboek-persoonlijke-notities',cook:'mijn-kookboek-kookvoortgang'};
 function load(k,defaultValue){try{const v=JSON.parse(localStorage.getItem(k));return v&&typeof v==='object'?v:defaultValue}catch(e){return defaultValue}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 let recipes=[],favoriteOnly=false,quickOnly=false;
@@ -1082,10 +1103,19 @@ const SHOP_ALIASES={
  'olijfolie voor de pitabroodjes':'olijfolie','extra vierge olijfolie':'olijfolie',
  'balsamico':'balsamicoazijn','ketjap manis':'ketjap',
  'griekse yoghurt (naturel)':'griekse yoghurt',
- 'witte of basmatirijst':'rijst'
+ 'witte of basmatirijst':'rijst','rijst (ongekookt)':'rijst',
+ 'pasta (penne of fusilli)':'pasta','tarwebloem':'bloem'
 };
 const SHOP_PIECE_WEIGHTS={paprika:160,courgette:300,ui:130,'rode ui':120,sjalot:45,tomaat:120,wortel:100,komkommer:350,'rode peper':20,ei:55};
 const SHOP_SPICES=new Set('chilipoeder|dille|gerookt paprikapoeder|gedroogde basilicum|knoflookpoeder|uienpoeder|komijn|komijnzaad|korianderblad|kaneel|kerrie|kurkuma|laurierblad|marjoraan|oregano|paprikapoeder|peterselie (gedroogd)|rozemarijn|tijm|zwarte peper|zout'.split('|'));
+// Herken namen vanuit de receptregels: eenzelfde product kan meerdere schrijfwijzen hebben.
+const pantry=window.CookbookPantry.create(localStorage,STORAGE.pantry,
+ name=>{const normalized=basketName(name);return SHOP_ALIASES[normalized]||normalized;});
+let pantryExpanded=false;
+function clearPantryBasketOverride(id){
+ for(const row of basketItems())if(row.pantryId===id)delete basketChecked[homeStockKey(row)];
+ save(STORAGE.basketChecked,basketChecked);
+}
 // De maten zijn gangbare supermarktverpakkingen, geen exacte merkvoorschriften.
 const SHOP_PACKS={
  'tomatenpuree':['blikje',70,'g'], "grand'italia basilico pastasaus":['pot',400,'g'],
@@ -1218,7 +1248,7 @@ function basketItems(){
     const oldKey=ingredient.name.trim().toLowerCase()+'|'+normalizedUnit(ingredient.unit);
     const oldCombinedKey=basketName(ingredient.name)+'|'+basketConversion(ingredient.unit).group;
     if(!combined.has(key))combined.set(key,{
-     key,name:p.name,unit:p.unit||p.base,qty:0,numeric:false,text:false,optional:true,
+     key,name:p.name,pantryId:(SHOP_ALIASES[basketName(ingredient.name)]||basketName(ingredient.name)),unit:p.unit||p.base,qty:0,numeric:false,text:false,optional:true,
      type:p.type,base:p.base,size:p.size,originalUnits:new Set(),legacyKeys:new Set(),legacyGroups:new Map()
     });
     const row=combined.get(key);
@@ -1267,9 +1297,10 @@ function homeStockKey(item){return 'al-in-huis:'+item.key}
 function isAlreadyHome(item){
  if(Object.prototype.hasOwnProperty.call(basketChecked,homeStockKey(item)))return Boolean(basketChecked[homeStockKey(item)]);
  const groups=[...item.legacyGroups];
- return groups.length>0&&groups.every(([combined,original])=>
+ const manually=groups.length>0&&groups.every(([combined,original])=>
   basketChecked['al-in-huis:'+combined]===true||
   (basketChecked['al-in-huis:'+combined]===undefined&&basketChecked['al-in-huis:'+original]===true));
+ return manually||pantry.isHome(item.pantryId||item.name);
 }
 function alreadyHomeFromRecipes(){
  const result=[];
@@ -1324,7 +1355,7 @@ function renderBasket(){
   '<button type="button" class="basket-house-btn" data-house="'+safe(item.key)+'" aria-label="Markeer '+safe(item.name)+' als al in huis">Al in huis</button></div>'
  ).join('');
  const homeList=storedAtHome.map(item=>
-  '<div class="basket-product-row basket-home-row"><span class="basket-house-name">'+safe(item.name)+' — '+safe(basketAmount(item))+'</span>'+
+  '<div class="basket-product-row basket-home-row"><span class="basket-house-name">'+safe(item.name)+' — '+safe(basketAmount(item))+(pantry.isHome(item.pantryId||item.name)?'<small class="pantry-auto-label">Standaardvoorraad · controleer hoeveelheid</small>':'')+'</span>'+
   '<button type="button" class="basket-house-btn" data-house="'+safe(item.key)+'" aria-label="Zet '+safe(item.name)+' terug op boodschappenlijst">Toch kopen</button></div>'
  ).join('');
  const fromRecipes=recipeAtHome.map(item=>
@@ -1334,8 +1365,8 @@ function renderBasket(){
  const homeCount=storedAtHome.length+recipeAtHome.length;
  el('basket').innerHTML=
   '<button class="back" id="backBasket">← Alle recepten</button>'+
-  '<h2>Boodschappenlijst</h2>'+
-  '<p class="description">Deze lijst toont praktische koophoeveelheden: hele groenten en eieren per stuk, kruiden per potje en andere producten in grammen of gangbare verpakkingen. De hoeveelheden worden per product opgeteld en naar boven afgerond. Verpakkingen zijn indicatief; de recepten blijven exact. Voor gekoppelde basisrecepten kun je <strong>Zelf maken</strong> of <strong>Kant-en-klaar kopen</strong> kiezen. Vink boodschappen af of kies <strong>Al in huis</strong>.</p>'+
+  '<h2>Boodschappenlijst</h2>'+pantry.html(safe,pantryExpanded)+
+  '<p class="description">Deze lijst toont praktische koophoeveelheden: hele groenten en eieren per stuk, kruiden per potje en andere producten in grammen of gangbare verpakkingen. De hoeveelheden worden per product opgeteld en naar boven afgerond. Verpakkingen zijn indicatief; de recepten blijven exact. Voor gekoppelde basisrecepten kun je <strong>Zelf maken</strong> of <strong>Kant-en-klaar kopen</strong> kiezen. De standaardvoorraad staat automatisch bij <strong>Al in huis</strong>. Kies <strong>Toch kopen</strong> als iets op is. Vink overige boodschappen af of kies <strong>Al in huis</strong>.</p>'+
   (selected?'<h3>Gekozen recepten</h3>'+selected+
    '<div class="actions"><button class="btn" id="copyBasket">Kopieer boodschappen</button><button class="btn alt" id="clearBasket">Maak lijst leeg</button></div>'+
    '<h3>Nog kopen ('+shoppingList.length+')</h3>'+
@@ -1346,6 +1377,31 @@ function renderBasket(){
     '</section>':'')
    :'<p>Je lijst is nog leeg. Open een recept en kies ‘Voeg toe aan boodschappenlijst’.</p>');
  el('backBasket').onclick=()=>location.hash='';
+ const panel=el('pantryPanel');
+ panel.ontoggle=()=>{pantryExpanded=panel.open;};
+ el('basket').querySelectorAll('[data-pantry-id]').forEach(input=>input.onchange=()=>{
+  const id=input.dataset.pantryId;
+  if(pantry.set(id,input.checked))clearPantryBasketOverride(id);
+  pantryExpanded=true;renderBasket();
+ });
+ el('basket').querySelectorAll('[data-pantry-remove]').forEach(button=>button.onclick=()=>{
+  const id=button.dataset.pantryRemove;
+  if(pantry.remove(id))clearPantryBasketOverride(id);
+  pantryExpanded=true;renderBasket();
+ });
+ function addPantryFromInput(){
+  const result=pantry.add(el('pantryNew').value);
+  if(result.ok)clearPantryBasketOverride(result.id);
+  pantryExpanded=true;renderBasket();
+  el('pantryStatus').textContent=result.message;
+ }
+ el('pantryAdd').onclick=addPantryFromInput;
+ el('pantryNew').onkeydown=event=>{if(event.key==='Enter'){event.preventDefault();addPantryFromInput()}};
+ el('pantryReset').onclick=()=>{
+  if(!window.confirm('Standaardvoorraad herstellen uit het keukenprofiel? Zelf toegevoegde producten verdwijnen.'))return;
+  for(const id of pantry.reset())clearPantryBasketOverride(id);
+  pantryExpanded=true;renderBasket();el('pantryStatus').textContent='Beginvoorraad hersteld.';
+ };
  el('basket').querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{delete basket[b.dataset.remove];save(STORAGE.basket,basket);basketCount();renderBasket()});
  el('basket').querySelectorAll('[data-component-key]').forEach(select=>select.onchange=()=>{
   const entry=basket[select.dataset.componentKey];
@@ -1368,7 +1424,8 @@ function renderBasket(){
  });
  el('basket').querySelectorAll('[data-house]').forEach(button=>button.onclick=()=>{
   const key='al-in-huis:'+button.dataset.house;
-  const nowHome=!Boolean(basketChecked[key]);
+  const row=basketItems().find(x=>x.key===button.dataset.house);
+  const nowHome=row?!isAlreadyHome(row):!Boolean(basketChecked[key]);
   basketChecked[key]=nowHome;
   if(nowHome)basketChecked[button.dataset.house]=false;
   save(STORAGE.basketChecked,basketChecked);
@@ -2230,6 +2287,7 @@ if('serviceWorker' in navigator&&window.isSecureContext){
 }
 
 el('shoppingNav').onclick=()=>location.hash='#boodschappenlijst';
+ el('pantryNav').onclick=()=>{pantryExpanded=true;location.hash='#boodschappenlijst';if(!el('basket').hidden)renderBasket()};
 window.addEventListener('hashchange',route);
 /* Recepten synchroniseren bij openen, terugkeren en herstelde verbinding.
    De serviceworker bewaart een offline kopie maar probeert online eerst het
