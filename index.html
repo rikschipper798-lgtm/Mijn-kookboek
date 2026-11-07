@@ -691,7 +691,13 @@ function revisionDateLabel(value){
  const months=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
  return day+' '+months[month-1]+' '+year;
 }
-function latestRevisionDate(r){return r.updatedAt||r.date||''}
+function latestRevisionDate(r){
+ return [r.date,r.updatedAt,...(r.variants||[]).map(v=>v.updatedAt)]
+  .filter(Boolean).sort().at(-1)||'';
+}
+function hasRecordedChanges(r){
+ return Boolean(r.updatedAt||(r.variants||[]).some(v=>v.updatedAt));
+}
 function recipeRevisionMeta(r){
  return '<span class="tag">Versie '+recipeVersion(r)+'</span>'+
   (r.updatedAt?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(r.updatedAt))+'</span>':'');
@@ -1082,7 +1088,7 @@ function renderCards(){
   '<p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span>'+
   '<span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span>'+
   (r.cuisine?'<span class="tag card-cuisine">'+safe(r.cuisine)+'</span>':'')+
-   (r.updatedAt?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(r.updatedAt))+'</span>':'')+'</div>'+
+   (hasRecordedChanges(r)?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(latestRevisionDate(r)))+'</span>':'')+'</div>'+
   '<div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a>'+
   '<button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen: '+safe(title(r))+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>'
  ).join('')||
