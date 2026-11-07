@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - name: Node.js instellen
         uses: actions/setup-node@v4
         with:
@@ -30,5 +32,9 @@ jobs:
         run: node --test tests/component-recipes.test.cjs
       - name: Persoonlijke voorraad en back-ups testen
         run: node --test tests/pantry.test.cjs
+      - name: Receptversies en wijzigingsgeschiedenis testen
+        run: node --test tests/recipe-revisions.test.cjs
       - name: Recepten en afbeeldingen controleren
         run: node scripts/validate-recipes.cjs
+      - name: Receptversies tegen vorige Git-versie controleren
+        run: node scripts/check-recipe-revisions.cjs
