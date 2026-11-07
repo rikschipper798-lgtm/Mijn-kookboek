@@ -1473,7 +1473,9 @@
     "tips": "Met 450 g kipdijfilet is dit een gerecht voor 4 gewone of 5 kleinere porties. Gebruik ongeveer 250 g courgette, 180 g paprika, 225 g tomaat en 120 g rode ui zodat de groenten de kip niet overheersen. Bak de kip in porties om een korstje te krijgen, bak de tomatenpuree kort mee en laat de tomaten zonder extra water inkoken. Voeg het laatste citroensap na het garen toe voor frisse piri-pirismaak. ½ tl honing is alleen nodig als de tomaten te zuur smaken. Bewaar rijst en kip met groenten bij voorkeur apart; laat snel afkoelen, zet binnen 2 uur in de koelkast en bewaar maximaal 2 dagen bij 4 °C. Vries porties voor later in en warm één keer door en door op.",
     "marinateMinutes": 10,
     "image": "images/piripiri.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
+    "image_source": "AI-afbeelding uit eerdere kookboekversie",
+    "marinateTiming": "parallel",
+    "timeNote": "De 10 minuten marineren vallen samen met het snijden van de groenten. Ze komen niet bovenop de totale bereidingstijd."
   },
   {
     "id": "bruschetta",
@@ -1602,7 +1604,8 @@
     ],
     "tips": "Voor een borrelhapje voor 20 personen is 1,0–1,2 kg rijpe tomaat voldoende; de huidige hoeveelheid van 1.100 g sluit aan op de eerdere kookfeedback. Eén basilicumplantje is genoeg. Drie stokbroden leveren afhankelijk van formaat en plakdikte ongeveer 50–60 hapjes op. Verwijder de natte zaadlijsten, laat de tomaten 5 minuten uitlekken en voeg basilicum en zout pas vlak voor het serveren toe. Verdeel de 65 ml olijfolie in 15 ml voor het brood en 50 ml voor de topping; beleg pas vlak voor het uitserveren.",
     "image": "images/bruschetta.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
+    "image_source": "AI-afbeelding uit eerdere kookboekversie",
+    "timeNote": "De totale tijd bevat circa 5 minuten speling voor voorverwarmen, het beleggen en het uitserveren van de bruschetta. Tomaten uitlekken en oven voorverwarmen kunnen tegelijk."
   },
   {
     "id": "gyros",
@@ -2250,7 +2253,10 @@
     ],
     "tips": "Druk het vocht uit de geraspte courgette en verwijder de natte zaadlijsten van de tomaat; een droge vulling houdt de pita krokant. Verdeel het gehakt in een dunne laag van circa ½ cm en bestrijk de buitenkant met olie. Rooster en kneus komijnzaad kort voor de beste geur. Laat de vulling desgewenst 15–30 minuten gekoeld rusten; dit is niet nodig om het recept te laten slagen en telt niet mee in de basisbereidingstijd van 45 minuten. Controleer bij rauw gehakt altijd of het midden volledig gaar is (71 °C).",
     "image": "images/arayes.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
+    "image_source": "AI-afbeelding uit eerdere kookboekversie",
+    "optionalWaitMinMinutes": 15,
+    "optionalWaitMaxMinutes": 30,
+    "optionalWaitType": "rusten"
   },
   {
     "id": "hamburgers",
@@ -2402,7 +2408,10 @@
     ],
     "tips": "De kruidenmix is bewust ongewijzigd gebleven. Meng het gehakt kort en strooi de ½ tl zout pas vlak voor het bakken op de buitenkant, zodat de structuur mals blijft. Bak in een goed voorverwarmde pan, zonder de burgers plat te drukken. De 15–30 minuten rusten in de koelkast is optioneel en telt niet als verplichte wachttijd mee. Controleer bij rundergehakt een kerntemperatuur van 71 °C. Rooster de optionele broodjes kort en laat de cheddar desgewenst op het laatst smelten.",
     "image": "images/hamburgers.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
+    "image_source": "AI-afbeelding uit eerdere kookboekversie",
+    "optionalWaitMinMinutes": 15,
+    "optionalWaitMaxMinutes": 30,
+    "optionalWaitType": "rusten"
   },
   {
     "id": "shawarma",
@@ -2756,7 +2765,10 @@
     ],
     "tips": "Reken op circa 15 minuten voorbereiden, 30 minuten marineren (intussen kunnen saus en groenten worden klaargemaakt) en ongeveer 25 minuten bakken en afronden; totaal circa 60–70 minuten. Marineer altijd afgedekt in de koelkast. Gemalen korianderzaad geeft de typische warme, citrusachtige shawarmasmaak; gedroogd korianderblad is geen gelijkwaardige vervanger. Stampt komijnzaad fijn als je geen gemalen komijn hebt. De rode coating dun aanbrengen en kort bakken om verbranden te voorkomen. Snijd de groenten klein, dep ze droog en gebruik niet te veel vulling voor stevige, krokante wraps. Optioneel: serveer met 150 g krokante airfryerfriet voor een stevigere streetfoodvariant. Niet door de gebruiker als getest aangemerkt.",
     "image": "images/shawarma.webp",
-    "image_source": "AI-afbeelding uit eerdere kookboekversie"
+    "image_source": "AI-afbeelding uit eerdere kookboekversie",
+    "marinateMinutes": 30,
+    "marinateTiming": "included",
+    "timeNote": "De 30 minuten marineren vallen binnen de 70 minuten totaaltijd. Maak de saus en snijd de groenten terwijl de kip in de koelkast marineert."
   },
   {
     "id": "kiprijst",
@@ -4700,7 +4712,9 @@
     ],
     "tips": "Dit recept behoudt de oorspronkelijke kleine portie van 40 g roomboter en ½ klein teentje knoflook. Gebruik 2 tl fijngehakte verse peterselie voor een frisse kruidensmaak; als vervanger kan ½ tl gedroogde peterselie worden gebruikt. De optionele oregano kan worden vervangen door 1 tl fijngeknipte bieslook. Laat bij voorkeur 30 minuten koelen (de totale tijd is 35 minuten, exclusief eventueel 10 minuten op temperatuur laten komen). Serveer op vers stokbrood, bij een biefstuk of gegrilde groenten. Bewaar afgedekt in de koelkast en gebruik binnen 2–3 dagen.",
     "image": "images/kruidenboter.webp",
-    "image_source": "AI-afbeelding speciaal gemaakt voor zelfgemaakte knoflook-kruidenboter (40 g)"
+    "image_source": "AI-afbeelding speciaal gemaakt voor zelfgemaakte knoflook-kruidenboter (40 g)",
+    "restTiming": "optional",
+    "timeNote": "Direct klaar in 5 minuten zodra de boter zacht is. Voor meer smaak kun je de kruidenboter daarna optioneel 30 minuten in de koelkast laten rusten; dat is niet meegerekend."
   },
   {
     "id": "kip-satesaus",
@@ -4884,7 +4898,10 @@
     ],
     "tips": "Deze kipkruiding is gebaseerd op het eerdere recept van 9 juli 2026. De toen aangepaste versie voor 200 g kip blijft bruikbaar: neem 1 tl olie, 1½ tl ketjap, ½ tl paprikapoeder, ½ tl kerrie en van komijn, knoflookpoeder en uienpoeder elk ¼ tl; voeg peper en zout toe en gebruik circa 3–4 el bereide satésaus (of 4–5 el als je rijst erbij eet). Optioneel kun je een klein beetje sambal gebruiken in plaats van chilipoeder. Warm de saus apart en laat deze niet hard koken; zo blijft de kip goed gebakken. Voor een complete maaltijd zijn rijst en circa 300 g groenten voor twee personen aanbevolen.",
     "image": "images/kip-satesaus.webp",
-    "image_source": "AI-afbeelding speciaal gemaakt voor kruidige kipdij met satésaus, rijst en sperziebonen"
+    "image_source": "AI-afbeelding speciaal gemaakt voor kruidige kipdij met satésaus, rijst en sperziebonen",
+    "optionalWaitMinMinutes": 10,
+    "optionalWaitMaxMinutes": 20,
+    "optionalWaitType": "marineren"
   },
   {
     "id": "mexicaanse-kipwraps",
