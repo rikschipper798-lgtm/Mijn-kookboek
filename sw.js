@@ -1,7 +1,7 @@
 'use strict';
 // Bestandsversie: verhoog deze waarde bij wijzigingen aan offline infrastructuur.
 // index.html en recepten.json worden online altijd opnieuw opgehaald.
-const CACHE_VERSION='2026-11-01-pwa-brand-v2';
+const CACHE_VERSION='2026-11-07-pwa-auto-images-v1';
 const CORE_CACHE='mijn-kookboek-pwa-core-'+CACHE_VERSION;
 const IMAGE_CACHE='mijn-kookboek-pwa-images-'+CACHE_VERSION;
 const CACHE_PREFIX='mijn-kookboek-pwa-';
@@ -9,44 +9,64 @@ const SCOPE=self.registration.scope;
 const ROOT=new URL('./',SCOPE);
 const CORE_ASSETS=['index.html','recepten.json','manifest.webmanifest',
  'icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png'];
-// Receptafbeeldingen van de huidige collectie; toekomstige afbeeldingen worden
-// bij online gebruik ook automatisch opgeslagen door de fetch-handler.
-const IMAGE_ASSETS=[
- "images/broodje-crispy-kipschnitzel-sriracha-mayo.webp",
- "images/gekruide-kipschnitzel.webp",
- "images/pasta-rundergehakt-groenten.webp",
- "images/bolognese.webp",
- "images/gnocchi.webp",
- "images/piripiri.webp",
- "images/bruschetta.webp",
- "images/gyros.webp",
- "images/goulash.webp",
- "images/arayes.webp",
- "images/hamburgers.webp",
- "images/shawarma.webp",
- "images/kiprijst.webp",
- "images/traybake.webp",
- "images/varkenshaas.webp",
- "images/vlaams-stoofvlees.webp",
- "images/zalm.webp",
- "images/stokbrood.webp",
- "images/kipwraps.webp",
- "images/chocolademelk.webp",
- "images/kruidenboter.webp",
- "images/kip-satesaus.webp",
- "images/mexicaanse-kipwraps.webp",
- "images/italiaanse-pesto-salamipizza-flatbread.webp"
-];
+// Afbeeldingen komen uit dezelfde receptenlijst die de website gebruikt.
+// Zowel basisrecepten als varianten worden meegenomen. Dubbele paden slechts één keer.
+function recipeImagePaths(data){
+ if(!Array.isArray(data))return [];
+ const unique=new Set();
+ const add=path=>{
+  if(typeof path!=='string'||!/^images\/[A-Za-z0-9_.\/-]+\.(?:webp|avif|png|jpe?g|svg)$/i.test(path))return;
+  if(path.split('/').includes('..')||path.includes('//'))return;
+  unique.add(path);
+ };
+ for(const recipe of data){
+  if(!recipe||typeof recipe!=='object')continue;
+  add(recipe.image);
+  if(Array.isArray(recipe.variants)){
+   for(const variant of recipe.variants)if(variant&&typeof variant==='object')add(variant.image);
+  }
+ }
+ return [...unique];
+}
+// Kleine parallelle batches om de verbinding niet onnodig te belasten.
+// Ontbrekende afbeeldingen blokkeren het offline beschikbaar maken van recepten nooit.
+async function syncRecipeImages(data){
+ const paths=recipeImagePaths(data);
+ const photos=await caches.open(IMAGE_CACHE);
+ let index=0,loaded=0,failed=0;
+ await Promise.all(Array.from({length:Math.min(4,paths.length)},async()=>{
+  while(index<paths.length){
+   const path=paths[index++];
+   const request=new Request(new URL(path,ROOT),{cache:'reload'});
+   try{
+    if(await photos.match(request))continue;
+    const response=await fetch(request);
+    if(!response.ok)throw new Error('HTTP '+response.status);
+    await photos.put(request,response.clone());
+    loaded++;
+   }catch(error){failed++;}
+  }
+ }));
+ if(failed)console.warn('Offline afbeeldingen: '+failed+' van '+paths.length+' nog niet opgeslagen; volgende online bezoek probeert opnieuw.');
+ return {total:paths.length,loaded,failed};
+}
+async function syncRecipeImagesFromResponse(response){
+ try{return await syncRecipeImages(await response.json())}
+ catch(error){
+  console.warn('Offline afbeeldingensynchronisatie kon niet worden uitgevoerd.',error);
+  return null;
+ }
+}
 
 self.addEventListener('install',event=>{
  event.waitUntil((async()=>{
   // Zonder volledig basisscherm en recepten activeren we niet als offline app.
   const core=await caches.open(CORE_CACHE);
   await core.addAll(CORE_ASSETS.map(path=>new Request(new URL(path,ROOT),{cache:'reload'})));
-  // Afbeeldingen zijn aanvullend: een ontbrekende foto blokkeert de app niet.
-  const photos=await caches.open(IMAGE_CACHE);
-  await Promise.allSettled(IMAGE_ASSETS.map(path=>
-   photos.add(new Request(new URL(path,ROOT),{cache:'reload'}))));
+  // Gebruik de zojuist opgeslagen receptgegevens als bron voor alle foto's.
+  // Bij een ontbrekende foto werkt het kookboek offline verder.
+  const recipeResponse=await core.match(new URL('recepten.json',ROOT));
+  if(recipeResponse)await syncRecipeImagesFromResponse(recipeResponse);
  })());
 });
 self.addEventListener('activate',event=>{
@@ -60,12 +80,13 @@ self.addEventListener('activate',event=>{
 self.addEventListener('message',event=>{
  if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting();
 });
-async function networkFirst(request,cacheName,fallbackUrl=null){
+async function networkFirst(request,cacheName,fallbackUrl=null,onNetworkUpdate=null){
  const cache=await caches.open(cacheName);
  try{
   const response=await fetch(request);
   if(response.ok){
    try{await cache.put(request,response.clone())}catch(e){}
+   if(onNetworkUpdate)onNetworkUpdate(response.clone());
    return response;
   }
   const previous=await cache.match(request)||(fallbackUrl?await cache.match(fallbackUrl):null);
@@ -115,7 +136,11 @@ self.addEventListener('fetch',event=>{
  if(request.mode==='navigate'||pathname===''||pathname==='index.html'){
   event.respondWith(networkFirst(request,CORE_CACHE,new URL('index.html',ROOT)));
  }else if(pathname==='recepten.json'){
-  event.respondWith(networkFirst(request,CORE_CACHE));
+  event.respondWith(networkFirst(request,CORE_CACHE,null,response=>{
+   // Zodra online een gewijzigde receptenlijst binnenkomt, worden ook nieuwe
+   // receptfoto's en variantfoto's offline opgeslagen, zonder nieuwe sw.js-versie.
+   event.waitUntil(syncRecipeImagesFromResponse(response));
+  }));
  }else if(pathname.startsWith('images/')){
   event.respondWith(imageWithRefresh(event));
  }else if(pathname==='manifest.webmanifest'||pathname.startsWith('icons/')){
