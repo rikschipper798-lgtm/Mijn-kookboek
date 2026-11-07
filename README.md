@@ -43,3 +43,34 @@ Bij het online ophalen van nieuwe receptgegevens worden afbeeldingen die nog nie
 Het aanmaken van de offline cache is afhankelijk van de browser, de internetverbinding en beschikbare opslagruimte. Voor offline gebruik moet de website eerst met internet geopend zijn.
 
 **Tests:** `node --test tests/offline-images.test.cjs` controleert installatie, varianten, nieuwe afbeeldingen, ontbreken/herproberen, offline terugval, dubbele afbeeldingen en het opruimen van oude serviceworkercaches. De GitHub Actions-workflow voert deze tests automatisch uit.
+
+## Gekoppelde basisrecepten
+
+Een gerecht kan een ingrediënt gebruiken dat ook als zelfstandig recept in het kookboek staat. Voorbeeld: het **gevulde kruidenboterstokbrood** gebruikt het basisrecept **knoflook-kruidenboter**.
+
+In de boodschappenlijst kun je per gekoppeld ingrediënt kiezen:
+
+- **Zelf maken** (standaard): de benodigde hoeveelheid wordt omgerekend naar de ingrediënten van het basisrecept. De boodschappenlijst telt deze op bij ingrediënten uit andere recepten en houdt rekening met porties en optionele ingrediënten.
+- **Kant-en-klaar kopen**: de grondstoffen van het basisrecept verdwijnen uit deze receptregel en worden vervangen door het kant-en-klare product. De keuze wordt lokaal bij het geselecteerde recept opgeslagen en meegenomen in back-ups.
+
+In het recept staat een link naar het basisrecept. Een al in huis afgevinkt samengesteld ingrediënt wordt niet alsnog uitgesplitst op de boodschappenlijst.
+
+### Een nieuw basisrecept koppelen
+
+Vermeld bij het **basisrecept** de opbrengst in dezelfde eenheid als het gekoppelde ingrediënt:
+
+\`\`\`json
+"outputQty": 40,
+"outputUnit": "g"
+\`\`\`
+
+Gebruik bij het **ingrediënt in het hoofdrecept**:
+
+\`\`\`json
+"qty": 40,
+"unit": "g",
+"componentRecipeId": "kruidenboter",
+"readyMadeName": "Kruidenboter (kant-en-klaar)"
+\`\`\`
+
+De validator controleert of het doelrecept bestaat, of de opbrengst en eenheden overeenkomen en of er geen cirkelverwijzingen ontstaan. Receptvarianten blijven ondersteund. De regressietests staan in \`tests/component-recipes.test.cjs\`.
