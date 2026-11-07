@@ -43,6 +43,49 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
    if(r.minutes!==sum)fail(p+'.minutes','rijs- en rusttijden tellen op tot '+sum+', niet '+r.minutes);
   }
  }
+
+ function revisions(view,p,created){
+  if(!Number.isInteger(view.version)||view.version<1||view.version>9999)
+   fail(p+'.version','versie moet een positief geheel getal zijn');
+  if(!Object.prototype.hasOwnProperty.call(view,'updatedAt')||
+     (view.updatedAt!==null&&!date(view.updatedAt)))
+   fail(p+'.updatedAt','gebruik null of een geldige datum YYYY-MM-DD');
+  if(!Array.isArray(view.changeLog)){
+   fail(p+'.changeLog','wijzigingsgeschiedenis moet een lijst zijn');
+   return;
+  }
+  const version=view.version;
+  if(Number.isInteger(version)&&version>=1){
+   if(view.changeLog.length!==version-1)
+    fail(p+'.changeLog','verwacht precies één wijzigingsregel voor elke versie vanaf 2');
+   if(version===1&&view.updatedAt!==null)
+    fail(p+'.updatedAt','versie 1 is de historische beginversie; updatedAt moet null zijn');
+   if(version>1&&!date(view.updatedAt))
+    fail(p+'.updatedAt','bij versie 2 of hoger is een wijzigingsdatum verplicht');
+  }
+  let previous=created;
+  view.changeLog.forEach((change,index)=>{
+   const loc=p+'.changeLog['+index+']';
+   if(!change||typeof change!=='object'||Array.isArray(change)){
+    fail(loc,'moet een wijzigingsobject zijn');return;
+   }
+   if(change.version!==index+2)fail(loc+'.version','revisies moeten oplopend vanaf versie 2 zijn');
+   if(!date(change.date))fail(loc+'.date','ongeldige wijzigingsdatum');
+   if(!isText(change.description)||change.description.trim().length<8||
+       change.description.trim().length>400)
+    fail(loc+'.description','korte, concrete omschrijving vereist (8-400 tekens)');
+   if(date(change.date)&&date(created)&&change.date<created)
+    fail(loc+'.date','wijzigingsdatum kan niet vóór de opnamedatum liggen');
+   if(date(change.date)&&date(previous)&&change.date<previous)
+    fail(loc+'.date','wijzigingsdatums mogen niet teruglopen');
+   if(date(change.date))previous=change.date;
+  });
+  if(date(view.updatedAt)&&date(created)&&view.updatedAt<created)
+   fail(p+'.updatedAt','wijzigingsdatum kan niet vóór de opnamedatum liggen');
+  const latest=view.changeLog[view.changeLog.length-1];
+  if(version>1&&latest&&latest.date!==view.updatedAt)
+   fail(p+'.updatedAt','moet overeenkomen met de nieuwste wijzigingsregel');
+ }
  function contents(r,p){
   const ingredients=r.ingredients,steps=r.steps,used=new Set(),names=new Set();
   if(!Array.isArray(ingredients)||!ingredients.length)fail(p+'.ingredients','minimaal één ingrediënt vereist');
@@ -102,7 +145,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
   else if(new Set(r.tags.map(t=>t.trim().toLowerCase())).size!==r.tags.length)fail(loc+'.tags','dubbele tags');
   if(!Number.isInteger(r.servings)||r.servings<=0)fail(loc+'.servings','positief geheel aantal porties vereist');
   for(const flag of ['featured','totalTimeEstimated'])if(r[flag]!==undefined&&typeof r[flag]!=='boolean')fail(loc+'.'+flag,'true/false vereist');
-  time(r,loc);image(r,loc);images++;contents(r,loc);
+  revisions(r,loc,r.date);time(r,loc);image(r,loc);images++;contents(r,loc);
   if(r.variants!==undefined){
    if(!Array.isArray(r.variants)||!r.variants.length)fail(loc+'.variants','niet-lege variantenlijst vereist');
    else{
@@ -113,7 +156,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
      if(!isText(v.id)||!ID.test(v.id))fail(p+'.id','ongeldige variant-ID');
      else if(seen.has(v.id)||v.id===r.id)fail(p+'.id','dubbele variant-ID');
      seen.add(v.id);required(v,'label',p);
-     const merged={...r,...v};time(merged,p);contents(merged,p);
+     revisions(v,p,r.date);const merged={...r,...v};time(merged,p);contents(merged,p);
      if(v.image!==undefined){
       image({...merged,image_source:v.image_source||r.image_source},p);images++;
       if(v.image!==r.image&&!isText(v.image_source))fail(p+'.image_source','eigen herkomst voor variantafbeelding vereist');
