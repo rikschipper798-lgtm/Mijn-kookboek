@@ -4,6 +4,49 @@ Persoonlijk online kookboek met recepten, kookmodus en boodschappenlijst.
 
 **Website:** https://rikschipper798-lgtm.github.io/Mijn-kookboek/
 
+## Voedingswaarden per recept
+
+Alle recepten en hun varianten hebben een eigen `nutrition`-object in `recepten.json`.
+De website toont de voedingswaarden bij het gerecht en een compact kcal-label in het overzicht.
+
+```json
+"nutrition": {
+  "per": "portie",
+  "kcal": 740,
+  "proteinG": 41,
+  "carbsG": 85,
+  "fatG": 27,
+  "fiberG": 9.3,
+  "estimated": true
+}
+```
+
+De vijf waarden gelden **per standaardportie** zoals omschreven door `servings` en
+`servingUnit`. Bij het aanpassen van het aantal porties veranderen de hoeveelheden
+in het recept en het geschatte **totaal** aan calorieën; de voedingswaarde **per portie**
+blijft gelijk. Voor het stokbroodrecept is de eenheid één stokbrood.
+
+De waarden zijn **benaderingen**, berekend uit de hoeveelheden in de recepten en
+gangbare gemiddelde voedingswaarden per ingrediënt. Ze zijn niet individueel
+laboratoriumbepaald of geverifieerd aan de hand van merkverpakkingen. Aannames:
+
+- Optionele ingrediënten tellen niet mee; bij het toevoegen ervan moeten de waarden
+  opnieuw worden bepaald.
+- Gerapporteerde eetbare hoeveelheden zijn uitgangspunt; voor stuks en lepels
+  worden praktische gemiddelde omrekengewichten gebruikt.
+- Voor ruime hoeveelheden zonnebloemolie bij het bakken van gepaneerde kip
+  wordt ongeveer 38% van de opgegeven olie als geconsumeerd meegerekend; de
+  rest kan in de pan achterblijven. Overige toegevoegde bakolie telt in beginsel mee.
+- Ingrediënten zoals wraps, sauzen, yoghurt, vlees en kaas verschillen per merk
+  en vetpercentage. Bij gerechten met alcohol telt de energie uit alcohol mee,
+  ook wanneer die niet in de getoonde macronutriënten is terug te vinden.
+- Voedingswaarden worden op een praktische precisie afgerond en zijn niet
+  geschikt als gegarandeerde dieet-, allergenen- of medische voedingsinformatie.
+
+**Bij een nieuw of gewijzigd recept:** actualiseer ook `nutrition` (en waar
+nodig de variant). Leg de inhoudelijke wijziging vast via de bestaande
+`version`, `updatedAt` en `changeLog`-velden.
+
 ## Automatische receptcontrole
 
 Bij iedere push naar `main`, iedere pull request en via `workflow_dispatch` in GitHub Actions draait de workflow [Controleer kookboekrecepten](.github/workflows/validate-recipes.yml).
