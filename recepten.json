@@ -7271,5 +7271,190 @@
         "description": "Definitief recept toegevoegd met gebakken ui, grove mosterd en krokant spek als topping."
       }
     ]
+  },
+  {
+    "id": "klassieke-saucijzenbroodjes",
+    "title": "Klassieke saucijzenbroodjes",
+    "subtitle": "Goudbruin, krokant roomboterbladerdeeg met een sappige gehaktvulling. Mosterd, zwarte peper en nootmuskaat geven de broodjes hun klassieke, hartige smaak.",
+    "category": "Varkensvlees",
+    "kind": "Lunch of hartige snack",
+    "cuisine": "Nederlands",
+    "minutes": 50,
+    "prep": 15,
+    "cook": 30,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild kruidig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-11-08",
+    "recipeType": "overig",
+    "tags": [
+      "Saucijzenbroodjes",
+      "Bladerdeeg",
+      "Gehakt",
+      "Lunch",
+      "Oven",
+      "Klassiek"
+    ],
+    "ingredients": [
+      {
+        "name": "Roomboterbladerdeeg (diepvries, circa 10 × 10 cm)",
+        "qty": 4,
+        "unit": "plakjes",
+        "group": "Deeg en afwerking"
+      },
+      {
+        "name": "Half-om-halfgehakt",
+        "qty": 250,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Paneermeel",
+        "qty": 20,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Melk",
+        "qty": 25,
+        "unit": "ml",
+        "group": "Vulling"
+      },
+      {
+        "name": "Middelfijne mosterd",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Vulling"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.3333333333333333,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Nootmuskaat",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Fijn zout",
+        "qty": 2,
+        "unit": "g",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Ei (om te bestrijken; ongeveer de helft nodig)",
+        "qty": 1,
+        "unit": "stuk",
+        "group": "Deeg en afwerking"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Oven verwarmen en bladerdeeg ontdooien",
+        "body": "Verwarm de oven volledig voor op 200 °C boven- en onderwarmte, of 180 °C hetelucht. Bekleed een metalen bakplaat met bakpapier. Laat de 4 plakjes bladerdeeg ongeveer 5–10 minuten ontdooien, totdat ze buigzaam zijn maar nog koel aanvoelen.",
+        "duration": "5–10 min, parallel aan de vulling",
+        "ingredientIndices": [
+          0
+        ]
+      },
+      {
+        "title": "Paneermeel weken en kruiden toevoegen",
+        "body": "Meng 20 g paneermeel met 25 ml melk en laat 5 minuten staan. Roer vervolgens 2 tl middelfijne mosterd (circa 10 g), ½ tl uienpoeder, ¼ tl knoflookpoeder, ⅓ tl zwarte peper, ¼ tl nootmuskaat en 2 g fijn zout erdoor. Het mengsel moet vochtig zijn, zonder losse melk.",
+        "duration": "5 min weken",
+        "ingredientIndices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "title": "Gehaktvulling mengen",
+        "body": "Voeg 250 g half-om-halfgehakt toe. Meng kort met je handen tot de vulling gelijkmatig gekruid is en licht plakkerig samenhangt. Kneed niet langer dan nodig: dat maakt de vulling compacter.",
+        "ingredientIndices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "title": "Smaak controleren",
+        "body": "Bak een klein, plat stukje vulling in een koekenpan op middelhoog vuur volledig gaar. Bij een pan met antiaanbaklaag is extra olie meestal niet nodig. Proef en voeg zo nodig een beetje extra peper of mosterd toe aan de resterende vulling. De smaak mag duidelijk gekruid zijn, omdat het bladerdeeg die straks verzacht. Proef het rauwe gehakt niet.",
+        "ingredientIndices": [
+          1,
+          4,
+          7
+        ]
+      },
+      {
+        "title": "Broodjes vullen en sluiten",
+        "body": "Verdeel de vulling in 4 gelijke porties en vorm worstjes van circa 8 cm lang. Verwijder de folie van het bladerdeeg. Leg op één helft van ieder plakje een worstje en houd bij de uiteinden ongeveer 1 cm vrije rand. Maak de sluitranden licht vochtig met water. Vouw het deeg over de vulling zonder het strak te trekken. Druk de drie open randen goed dicht en druk alleen de smalle sluitrand na met een vork.",
+        "ingredientIndices": [
+          0,
+          1
+        ]
+      },
+      {
+        "title": "Bovenkant bestrijken",
+        "body": "Leg de broodjes met enkele centimeters tussenruimte op de bakplaat. Is het deeg inmiddels slap of plakkerig? Zet de broodjes dan eerst 10 minuten in de koelkast; deze extra koeltijd komt boven op de totale tijd. Klop het ei los en bestrijk de bovenkant dun; ongeveer de helft van het ei is voldoende. Voorkom dat het ei langs de snijranden naar beneden loopt, omdat dit het rijzen kan belemmeren. Maak met een scherp mes 2 kleine, oppervlakkige sneetjes in de bovenkant, net door het deeg.",
+        "ingredientIndices": [
+          0,
+          10
+        ]
+      },
+      {
+        "title": "Krokant en gaar bakken",
+        "body": "Plaats de bakplaat iets onder het midden van de oven. Bak de broodjes 25–30 minuten, tot ze diep goudbruin zijn en ook de onderkant droog en goudbruin is. Controleer bij voorkeur of de gehaktvulling in het midden minimaal 75 °C is. Is de bovenkant al donker genoeg maar de vulling nog niet gaar? Dek de broodjes losjes af met aluminiumfolie en bak verder.",
+        "duration": "25–30 min",
+        "ingredientIndices": [
+          0,
+          1,
+          10
+        ]
+      },
+      {
+        "title": "Kort laten rusten",
+        "body": "Leg de broodjes op een rooster en laat ze 5 minuten rusten. Zo kan stoom ontsnappen en blijft de onderkant beter krokant.",
+        "duration": "5 min rusten",
+        "ingredientIndices": []
+      }
+    ],
+    "tips": "De basishoeveelheid levert 4 saucijzenbroodjes op voor 2 personen als lunch. Totale tijd: 45–50 minuten, inclusief 5 minuten rusten; eventueel 10 minuten extra koeltijd als het bladerdeeg slap wordt. Benodigd: metalen bakplaat, bakpapier en bij voorkeur een keukenkwastje en kernthermometer. Half-om-halfgehakt houdt de vulling sappig; een ei door de vulling is bij deze verhouding niet nodig. Aanvullende boodschappen ten opzichte van de standaardvoorraad: bladerdeeg, half-om-halfgehakt, melk, mosterd en ei. Als lunch past een frisse salade van tomaat en komkommer erbij. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. De magnetron maakt het bladerdeeg zacht.",
+    "version": 1,
+    "updatedAt": "2026-11-08",
+    "changeLog": [
+      {
+        "version": 1,
+        "date": "2026-11-08",
+        "description": "Definitief klassiek recept toegevoegd met verbeterde kruiding, 5 minuten weektijd en aanwijzingen voor krokant bakken."
+      }
+    ]
   }
 ]
