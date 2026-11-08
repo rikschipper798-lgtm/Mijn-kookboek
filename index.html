@@ -1544,7 +1544,7 @@ function personalCardEntry(recipe){
  if(!entries.length)return null;
  // Geen gemiddelde over verschillende varianten: toon één herkenbare variant.
  return entries.sort((a,b)=>b.lastCookedOn.localeCompare(a.lastCookedOn)||
-  b.rating-a.rating||(a.id==='klassiek'?-1:1))[0];
+  b.rating-a.rating||(a.id==='klassiek'?-1:b.id==='klassiek'?1:a.id.localeCompare(b.id)))[0];
 }
 function personalCardRating(recipe){
  const selected=personalCardEntry(recipe);
