@@ -180,3 +180,17 @@ De datum wordt standaard bepaald in de tijdzone **Europe/Amsterdam**. Optioneel 
 De website toont de actuele versie en opnamedatum, een eventuele laatste wijzigingsdatum en een uitklapbare wijzigingsgeschiedenis. De sorteermogelijkheden **Recent toegevoegd** en **Recent gewijzigd** zijn apart; bij recent gewijzigd tellen wijzigingen aan varianten mee.
 
 De workflow draait `tests/recipe-revisions.test.cjs`, de inhoudsvalidator en `scripts/check-recipe-revisions.cjs`. De laatste vergelijkt `recepten.json` met de vorige Git-commit en keurt een ontbrekende versieverhoging, weggelaten logregel of stille herschrijving van bestaande geschiedenis af. De website toont de **wijzigingssamenvattingen**, niet de volledige oude receptinhoud. Voorgaande volledige versies zijn zo nodig via de GitHub-commitgeschiedenis terug te vinden.
+
+## Persoonlijke beoordelingen en kookervaringen
+
+Persoonlijke informatie blijft **uitsluitend in de browser op het eigen apparaat**, onder \`mijn-kookboek-persoonlijke-notities\`. Er wordt niets naar \`recepten.json\` of GitHub geüpload.
+
+De receptenkaart toont — **alleen als er eigen gegevens zijn ingevuld** — een blok *Mijn kookervaring* met jouw beoordeling (1–5 sterren), laatst vastgelegde kookdatum en de aanwezigheid van notities. Bij recepten met meerdere varianten wordt de **naam van de getoonde variant** vermeld. Er wordt geen gemiddelde van verschillende varianten of gebruikers verzonnen.
+
+Op de receptpagina verschijnt direct boven de ingrediënten een samenvatting met de beoordeling, laatste kookdatum en een ingekort voorbeeld van feedback en persoonlijke aanpassingen. Via **Beoordeel dit recept** of **Bewerk mijn ervaring** ga je naar het bestaande formulier. Bewerken, automatisch opslaan en de knop **Vandaag gekookt** verversen deze samenvatting zonder de tekstvelden opnieuw op te bouwen.
+
+In het receptenoverzicht zijn twee sorteermogelijkheden beschikbaar: **Mijn beoordeling** en **Laatst gekookt**. De knop **Eerder gekookt** toont alleen recepten met een persoonlijk vastgelegde kookdatum; een rating zonder kookdatum telt daarvoor niet mee. De filter- en sorteerfuncties werken ook als een kookervaring bij een variant hoort.
+
+Kooknotities en persoonlijke beoordelingen blijven meegenomen worden in de bestaande lokale back-up. Er is **geen** publiek ratingsysteem, geen onzichtbare automatische kookregistratie en geen synchronisatie tussen apparaten.
+
+Tests: \`node --test tests/personal-experience.test.cjs\`. Deze regressietests worden ook uitgevoerd in de workflow \`Controleer kookboekrecepten\`.
