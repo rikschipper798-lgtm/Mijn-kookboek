@@ -597,11 +597,12 @@ body.cook-active{overflow:hidden}
  <div class="toolbar browse-filters">
   <label class="browse-control" for="category"><span>Categorie</span><select id="category"><option value="">Alle categorieën</option></select></label>
   <label class="browse-control" for="timeFilter"><span>Totale tijd</span><select id="timeFilter"><option value="">Alle tijden</option><option value="30">Max. 30 min</option><option value="40">Max. 40 min</option><option value="60">Max. 60 min</option><option value="long">Meer dan 60 min</option></select></label>
-  <label class="browse-control browse-sort" for="sortRecipes"><span>Sorteer op</span><select id="sortRecipes"><option value="recommended">Relevantie / standaard</option><option value="newest">Recent toegevoegd</option><option value="recently-updated">Recent gewijzigd</option><option value="fastest">Snelste</option><option value="alphabetical">Naam A–Z</option></select></label>
+  <label class="browse-control browse-sort" for="sortRecipes"><span>Sorteer op</span><select id="sortRecipes"><option value="recommended">Relevantie / standaard</option><option value="newest">Recent toegevoegd</option><option value="recently-updated">Recent gewijzigd</option><option value="last-cooked">Laatst gekookt</option><option value="my-rating">Mijn beoordeling</option><option value="fastest">Snelste</option><option value="alphabetical">Naam A–Z</option></select></label>
  </div>
  <div class="browse-shortcuts">
   <button id="quick" type="button" class="pill" aria-pressed="false" title="Toon recepten met een totale tijd van maximaal 40 minuten">Snel klaar ≤ 40 min</button>
   <button id="favorites" type="button" class="pill" aria-pressed="false">♡ Favorieten</button>
+   <button id="cookedOnly" type="button" class="pill" aria-pressed="false">✓ Eerder gekookt</button>
   <button id="shoppingNav" type="button" class="pill browse-shopping">Boodschappenlijst (<span id="basketCount">0</span>)</button>
    <button id="pantryNav" type="button" class="pill">Mijn voorraad</button>
  </div>
@@ -663,7 +664,7 @@ const fmt=n=>new Intl.NumberFormat('nl-NL',{maximumFractionDigits:3}).format(n);
 const STORAGE={fav:'mijn-kookboek-favorieten',checked:'mijn-kookboek-receptchecks',basket:'mijn-kookboek-boodschappen',basketChecked:'mijn-kookboek-boodschappenchecks',pantry:'mijn-kookboek-voorraad',notes:'mijn-kookboek-persoonlijke-notities',cook:'mijn-kookboek-kookvoortgang'};
 function load(k,defaultValue){try{const v=JSON.parse(localStorage.getItem(k));return v&&typeof v==='object'?v:defaultValue}catch(e){return defaultValue}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-let recipes=[],favoriteOnly=false,quickOnly=false;
+let recipes=[],favoriteOnly=false,quickOnly=false,cookedOnly=false;
 let favorites=new Set(Array.isArray(load(STORAGE.fav,[]))?load(STORAGE.fav,[]):[]);
 let checked=load(STORAGE.checked,{}),basket=load(STORAGE.basket,{}),basketChecked=load(STORAGE.basketChecked,{});
 let personalNotes=load(STORAGE.notes,{}),cookProgress=load(STORAGE.cook,{}),activeCook=null;
@@ -1074,7 +1075,7 @@ function searchScore(r,terms){
 }
 function activeFilters(){
  const search=normalizeSearch(el('search').value);
- return Boolean(search||el('category').value||el('timeFilter').value||favoriteOnly||el('sortRecipes').value!=='recommended');
+ return Boolean(search||el('category').value||el('timeFilter').value||favoriteOnly||cookedOnly||el('sortRecipes').value!=='recommended');
 }
 function renderCards(){
  const terms=normalizeSearch(el('search').value).split(' ').filter(Boolean);
@@ -1083,6 +1084,7 @@ function renderCards(){
  const matched=records.filter(({recipe,minutes})=>{
   if(category&&recipe.category!==category)return false;
   if(favoriteOnly&&!favorites.has(recipe.id))return false;
+   if(cookedOnly&&!personalLastCooked(recipe))return false;
   if(time==='long'&&minutes<=60)return false;
   if(time!==''&&time!=='long'&&minutes>Number(time))return false;
   if(terms.length&&!terms.every(term=>searchable(recipe).includes(term)))return false;
@@ -1092,7 +1094,9 @@ function renderCards(){
  matched.sort((a,b)=>{
   if(sort==='newest')return String(b.recipe.date||'').localeCompare(String(a.recipe.date||''))||a.index-b.index;
    if(sort==='recently-updated')return String(latestRevisionDate(b.recipe)).localeCompare(String(latestRevisionDate(a.recipe)))||a.index-b.index;
-  if(sort==='fastest')return a.minutes-b.minutes||byName(a,b);
+  if(sort==='last-cooked')return personalLastCooked(b.recipe).localeCompare(personalLastCooked(a.recipe))||byName(a,b);
+   if(sort==='my-rating')return personalCardRating(b.recipe)-personalCardRating(a.recipe)||byName(a,b);
+   if(sort==='fastest')return a.minutes-b.minutes||byName(a,b);
   if(sort==='alphabetical')return byName(a,b)||a.index-b.index;
   if(terms.length)return searchScore(b.recipe,terms)-searchScore(a.recipe,terms)||a.index-b.index;
   return a.index-b.index;
@@ -1102,6 +1106,7 @@ function renderCards(){
  el('resetFilters').hidden=!activeFilters();
  el('quick').setAttribute('aria-pressed',time==='40');
  el('favorites').setAttribute('aria-pressed',favoriteOnly);
+  el('cookedOnly').setAttribute('aria-pressed',cookedOnly);
  el('cards').innerHTML=shown.map(r=>
   '<div class="card" data-recipe="'+safe(r.id)+'" role="link" tabindex="0" aria-label="Open recept: '+safe(title(r))+'">'+
   (r.image?'<div class="card-art with-photo"><img loading="lazy" decoding="async" src="'+safe(r.image)+'" alt="'+safe(title(r))+'">'+imageLabel(r)+'</div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+
@@ -1109,7 +1114,7 @@ function renderCards(){
   '<p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span>'+
   '<span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span>'+
   (r.cuisine?'<span class="tag card-cuisine">'+safe(r.cuisine)+'</span>':'')+
-   (hasRecordedChanges(r)?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(latestRevisionDate(r)))+'</span>':'')+'</div>'+
+   (hasRecordedChanges(r)?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(latestRevisionDate(r)))+'</span>':'')+'</div>'+personalCardSummary(r)+
   '<div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a>'+
   '<button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen: '+safe(title(r))+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>'
  ).join('')||
@@ -1137,6 +1142,7 @@ function resetBrowse(){
  el('sortRecipes').value='recommended';
  favoriteOnly=false;
  quickOnly=false;
+ cookedOnly=false;
  renderCards();
 }
 function recipeText(r,mult){
@@ -1598,9 +1604,9 @@ function notesPanel(key){
  const note=noteRecord(key);
  const rating=Number(note.rating)||0;
  return '<section class="personal-notes" id="personalNotes" aria-labelledby="personalNotesTitle">'+
- '<div class="personal-notes-head"><div><span class="section-label">JOUW VERSIE</span><h3 id="personalNotesTitle">Mijn kooknotities</h3></div>'+
+ '<div class="personal-notes-head"><div><span class="section-label">JOUW VERSIE</span><h3 id="personalNotesTitle">Mijn kookervaring vastleggen</h3></div>'+
  '<span class="personal-notes-privacy">Alleen op dit apparaat</span></div>'+
- '<p class="personal-notes-intro">Noteer wat je hebt aangepast en wat je een volgende keer anders zou doen. Dit verandert het oorspronkelijke recept niet.</p>'+
+ '<p class="personal-notes-intro">Geef je eigen beoordeling en noteer wat je na het koken hebt ervaren. Dit verandert het oorspronkelijke recept niet.</p>'+
  '<div class="personal-notes-fields">'+
  '<label for="noteText">Mijn aanpassingen en tips</label>'+
  '<textarea id="noteText" rows="4" maxlength="5000" placeholder="Bijvoorbeeld: iets meer gerookt paprikapoeder; paprika langer bakken…">'+safe(note.notes||'')+'</textarea>'+
@@ -1621,6 +1627,7 @@ function savePersonalNote(key){
  personalNotes[key]=record;
  save(STORAGE.notes,personalNotes);
  el('notesSaveStatus').textContent='Op dit apparaat opgeslagen.';
+ updateExperienceOverview(key);
  return record;
 }
 function cookSteps(view,mult){
@@ -2105,7 +2112,7 @@ function renderDetail(){
  '<button class="btn alt" id="print">Print</button>'+
  '</div></details></div>';
  el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button>'+
- '<div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2>'+chocolateChoices+'<p class="description">'+safe(description(view))+'</p>'+jumpNav+
+ '<div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2>'+chocolateChoices+'<p class="description">'+safe(description(view))+'</p>'+ '<section class="experience-overview" id="experienceOverview" aria-label="Mijn kookervaring">'+personalDetailSummary(key)+'</section>'+jumpNav+
  (view.image?'<div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div>':'')+
  '<div class="meta"><span class="tag">'+safe(portionsLabel(view,current))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+recipeRevisionMeta(view)+'</div>'+
   (view.timeNote?'<p class="ingredient-helper">'+safe(view.timeNote)+'</p>':'')+
@@ -2119,6 +2126,7 @@ function renderDetail(){
  el('back').onclick=()=>location.hash='';
  el('favorite').onclick=()=>toggleFav(r.id);
  el('startCooking').onclick=()=>openCookMode(r,view,variantId,current);
+  updateExperienceOverview(key);
  for(const field of ['noteText','feedbackText','recipeRating']){
   const input=el(field);
   input.addEventListener(field==='recipeRating'?'change':'input',()=>savePersonalNote(key));
@@ -2130,6 +2138,7 @@ function renderDetail(){
   personalNotes[key]=item;
   save(STORAGE.notes,personalNotes);
   el('cookDateLabel').textContent='Laatst gekookt: '+noteDateLabel(item.lastCookedOn);
+   updateExperienceOverview(key);
   el('notesSaveStatus').textContent='Kookdatum en notities opgeslagen op dit apparaat.';
  };
  el('detail').querySelectorAll('[data-variant]').forEach(b=>b.onclick=()=>{
@@ -2180,6 +2189,7 @@ el('category').addEventListener('change',renderCards);
 el('timeFilter').addEventListener('change',()=>{quickOnly=el('timeFilter').value==='40';renderCards()});
 el('sortRecipes').addEventListener('change',renderCards);
 el('favorites').onclick=()=>{favoriteOnly=!favoriteOnly;renderCards()};
+el('cookedOnly').onclick=()=>{cookedOnly=!cookedOnly;renderCards()};
 el('quick').onclick=()=>{el('timeFilter').value=el('timeFilter').value==='40'?'':'40';quickOnly=el('timeFilter').value==='40';renderCards()};
 el('resetFilters').onclick=resetBrowse;
 document.querySelectorAll('[data-search-term]').forEach(button=>button.addEventListener('click',()=>{
@@ -2187,7 +2197,7 @@ document.querySelectorAll('[data-search-term]').forEach(button=>button.addEventL
  el('category').value='';
  el('timeFilter').value='';
  el('sortRecipes').value='recommended';
- favoriteOnly=false;quickOnly=false;
+ favoriteOnly=false;quickOnly=false;cookedOnly=false;
  renderCards();
 }));
 
