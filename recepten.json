@@ -7287,7 +7287,7 @@
   },
   {
     "id": "klassieke-saucijzenbroodjes",
-    "title": "Klassieke saucijzenbroodjes",
+    "title": "Saucijzenbroodjes",
     "subtitle": "Goudbruin, krokant roomboterbladerdeeg met een sappige gehaktvulling. Mosterd, zwarte peper en nootmuskaat geven de broodjes hun klassieke, hartige smaak.",
     "category": "Varkensvlees",
     "kind": "Lunch of hartige snack",
@@ -7308,7 +7308,8 @@
       "Gehakt",
       "Lunch",
       "Oven",
-      "Klassiek"
+      "Klassiek",
+      "Poestabroodjes"
     ],
     "ingredients": [
       {
@@ -7460,13 +7461,253 @@
       }
     ],
     "tips": "De basishoeveelheid levert 4 saucijzenbroodjes op voor 2 personen als lunch. Totale tijd: 45–50 minuten, inclusief 5 minuten rusten; eventueel 10 minuten extra koeltijd als het bladerdeeg slap wordt. Benodigd: metalen bakplaat, bakpapier en bij voorkeur een keukenkwastje en kernthermometer. Half-om-halfgehakt houdt de vulling sappig; een ei door de vulling is bij deze verhouding niet nodig. Aanvullende boodschappen ten opzichte van de standaardvoorraad: bladerdeeg, half-om-halfgehakt, melk, mosterd en ei. Als lunch past een frisse salade van tomaat en komkommer erbij. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. De magnetron maakt het bladerdeeg zacht.",
-    "version": 1,
+    "version": 2,
     "updatedAt": "2026-11-08",
     "changeLog": [
       {
         "version": 1,
         "date": "2026-11-08",
         "description": "Definitief klassiek recept toegevoegd met verbeterde kruiding, 5 minuten weektijd en aanwijzingen voor krokant bakken."
+      },
+      {
+        "version": 2,
+        "date": "2026-11-08",
+        "description": "Kruidige poestabroodjes toegevoegd als alternatief bij de klassieke saucijzenbroodjes."
+      }
+    ],
+    "defaultVariantLabel": "Klassiek",
+    "variantPrompt": "Kies je broodje",
+    "variants": [
+      {
+        "id": "poesta",
+        "label": "Kruidige poestabroodjes",
+        "subtitle": "Krokant roomboterbladerdeeg met een sappige gehaktvulling van zachtgebakken ui, paprika en tomaat. Zoet paprikapoeder, knoflook en een beetje chili zorgen voor een volle, lichtpittige smaak. Eigen variant; niet het originele recept van Bakkerij De Jong.",
+        "minutes": 70,
+        "prep": 20,
+        "cook": 30,
+        "servings": 2,
+        "servingUnit": "personen",
+        "heat": "Licht tot gemiddeld pittig",
+        "recipeType": "overig",
+        "tags": [
+          "Poestabroodjes",
+          "Paprika",
+          "Gehakt",
+          "Bladerdeeg",
+          "Lunch"
+        ],
+        "ingredients": [
+          {
+            "name": "Roomboterbladerdeeg (diepvries, circa 10 × 10 cm)",
+            "qty": 4,
+            "unit": "plakjes",
+            "group": "Deeg en afwerking"
+          },
+          {
+            "name": "Half-om-halfgehakt",
+            "qty": 200,
+            "unit": "g",
+            "group": "Vulling"
+          },
+          {
+            "name": "Ui (gepeld)",
+            "qty": 40,
+            "unit": "g",
+            "group": "Vulling"
+          },
+          {
+            "name": "Rode paprika (schoongemaakt)",
+            "qty": 50,
+            "unit": "g",
+            "group": "Vulling"
+          },
+          {
+            "name": "Zonnebloemolie",
+            "qty": 1,
+            "unit": "tl",
+            "group": "Vulling"
+          },
+          {
+            "name": "Tomatenpuree",
+            "qty": 10,
+            "unit": "g",
+            "group": "Vulling"
+          },
+          {
+            "name": "Paneermeel",
+            "qty": 15,
+            "unit": "g",
+            "group": "Vulling"
+          },
+          {
+            "name": "Melk",
+            "qty": 15,
+            "unit": "ml",
+            "group": "Vulling"
+          },
+          {
+            "name": "Zoet paprikapoeder",
+            "qty": 1.5,
+            "unit": "tl",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Knoflookpoeder",
+            "qty": 0.5,
+            "unit": "tl",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Gemalen komijn",
+            "qty": 0.125,
+            "unit": "tl",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Chilipoeder",
+            "qty": 0.125,
+            "unit": "tl",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Extra chilipoeder",
+            "qty": 0.125,
+            "unit": "tl",
+            "group": "Kruiden",
+            "optional": true
+          },
+          {
+            "name": "Zwarte peper",
+            "qty": 0.25,
+            "unit": "tl",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Fijn zout",
+            "qty": 2,
+            "unit": "g",
+            "group": "Kruiden"
+          },
+          {
+            "name": "Ei (om te bestrijken; ongeveer de helft nodig)",
+            "qty": 1,
+            "unit": "stuk",
+            "group": "Deeg en afwerking"
+          }
+        ],
+        "steps": [
+          {
+            "title": "Groenten heel fijn snijden",
+            "body": "Snipper 40 g ui en snijd 50 g rode paprika in blokjes van maximaal 3 mm. Zo verdelen de groenten zich gelijkmatig door de vulling en blijven de broodjes makkelijk te sluiten.",
+            "ingredientIndices": [
+              2,
+              3
+            ]
+          },
+          {
+            "title": "Groenten zacht en droog bakken",
+            "body": "Verhit 1 tl zonnebloemolie in een koekenpan op middelhoog vuur. Bak de ui en paprika 6–8 minuten, onder regelmatig omscheppen. Ze moeten zacht zijn, zonder donker te worden. Bak zo nodig iets langer totdat er geen los vocht meer in de pan staat.",
+            "ingredientIndices": [
+              2,
+              3,
+              4
+            ],
+            "duration": "6–8 min"
+          },
+          {
+            "title": "Tomatenpuree en kruiden meebakken",
+            "body": "Voeg 10 g tomatenpuree toe en bak 1–2 minuten mee, totdat de puree iets donkerder wordt. Zet het vuur laag. Voeg 1½ tl zoet paprikapoeder, ½ tl knoflookpoeder, ⅛ tl gemalen komijn en ⅛ tl chilipoeder toe. Roer ongeveer 15 seconden door en haal de pan direct van het vuur. Laat het paprikapoeder niet donker worden; dat kan bitter smaken.",
+            "ingredientIndices": [
+              5,
+              8,
+              9,
+              10,
+              11
+            ],
+            "duration": "1–2 min + 15 sec"
+          },
+          {
+            "title": "Smaakbasis volledig afkoelen",
+            "body": "Spreid het mengsel dun uit op een groot bord. Laat circa 10–15 minuten afkoelen, totdat het niet meer warm aanvoelt. Zet het zo nodig kort in de koelkast. Meng het pas daarna met het gehakt.",
+            "ingredientIndices": [
+              2,
+              3,
+              5
+            ],
+            "duration": "10–15 min afkoelen"
+          },
+          {
+            "title": "Oven, deeg en paneermeel voorbereiden",
+            "body": "Verwarm ondertussen de oven volledig voor op 200 °C boven- en onderwarmte of 180 °C hetelucht. Bekleed een metalen bakplaat met bakpapier. Meng 15 g paneermeel met 15 ml melk en laat 5 minuten weken. Laat de 4 plakjes bladerdeeg tegen het einde van de afkoeltijd 5–10 minuten ontdooien: ze moeten buigzaam zijn, maar nog koel aanvoelen.",
+            "ingredientIndices": [
+              0,
+              6,
+              7
+            ],
+            "duration": "Tijdens het afkoelen"
+          },
+          {
+            "title": "Vulling mengen en smaak controleren",
+            "body": "Meng 200 g half-om-halfgehakt met de afgekoelde smaakbasis, het geweekte paneermeel, ¼ tl zwarte peper en 2 g zout. Meng kort met je handen, totdat alles gelijkmatig verdeeld is en licht plakkerig samenhangt. Bak een klein, plat proefstukje volledig gaar in een koekenpan. Proef: paprika en ui moeten duidelijk aanwezig zijn, met een lichte pit. Voeg indien gewenst de extra ⅛ tl chilipoeder toe aan de resterende vulling. De sterkte verschilt per chilipoeder. Proef het rauwe gehakt niet.",
+            "ingredientIndices": [
+              1,
+              2,
+              3,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ]
+          },
+          {
+            "title": "Broodjes vullen en sluiten",
+            "body": "Verdeel de vulling in 4 gelijke porties. Vorm brede, lage worstjes van circa 8 cm lang. Verwijder de folie van het bladerdeeg en leg op één helft van ieder plakje een portie vulling. Houd bij de uiteinden ongeveer 1 cm vrije rand. Maak de sluitranden licht vochtig met water. Vouw het deeg over de vulling zonder het uit te rekken. Druk de drie open randen goed dicht en druk alleen de smalle sluitrand na met een vork. Past de vulling niet zonder trekken? Houd dan een klein beetje achter en bak dit apart gaar.",
+            "ingredientIndices": [
+              0,
+              1
+            ]
+          },
+          {
+            "title": "Zo nodig koelen en bestrijken",
+            "body": "Leg de broodjes met enkele centimeters tussenruimte op de bakplaat. Voelt het deeg slap of vettig aan? Zet de gevormde broodjes dan 10 minuten in de koelkast; die tijd komt boven op de totale tijd. Klop het ei los en bestrijk de bovenkant dun; ongeveer de helft van het ei is voldoende. Laat het ei niet over de snijranden lopen, zodat het bladerdeeg goed kan rijzen. Maak bovenop ieder broodje 2 kleine sneetjes, net door het deeg.",
+            "ingredientIndices": [
+              0,
+              15
+            ]
+          },
+          {
+            "title": "Goudbruin en gaar bakken",
+            "body": "Plaats de bakplaat iets onder het midden van de oven. Bak de broodjes 25–30 minuten, totdat het bladerdeeg diep goudbruin is en de bodem droog en goudbruin aanvoelt. Controleer bij voorkeur of de gehaktvulling in het midden minimaal 75 °C is. Deze royale broodjes kunnen enkele minuten langer nodig hebben. Wordt de bovenkant te donker voordat de vulling gaar is? Dek de broodjes losjes af met aluminiumfolie en bak verder.",
+            "ingredientIndices": [
+              0,
+              1,
+              15
+            ],
+            "duration": "25–30 min, zo nodig langer"
+          },
+          {
+            "title": "Kort laten rusten",
+            "body": "Leg de broodjes op een rooster en laat 5 minuten rusten. Zo ontsnapt de stoom en blijft de onderkant beter krokant. Serveer warm.",
+            "ingredientIndices": [],
+            "duration": "5 min rusten"
+          }
+        ],
+        "tips": "De basishoeveelheid levert 4 royale broodjes voor 2 personen als lunch. Reken op 60–70 minuten totaal: circa 20 minuten voorbereiding, 10–15 minuten afkoelen, 25–30 minuten bakken en 5 minuten rusten; eventueel 10 minuten extra koelen als het deeg slap wordt. Benodigd: koekenpan, metalen bakplaat, bakpapier, rooster en bij voorkeur een keukenkwastje en kernthermometer. Aanvullende boodschappen: bladerdeeg, gehakt, ui, paprika, melk, ei en zoet paprikapoeder. Komijnzaad uit de voorraad kun je fijnstampen; meet daarvan ⅛ tl af. Gebruik zoet paprikapoeder als basis: gerookt paprikapoeder geeft een duidelijk andere smaak. Voeg geen extra paneermeel toe zolang dat niet nodig is; goed drooggebakken groenten houden de vulling stevig en te veel paneermeel maakt haar broodachtig. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. Vermijd de magnetron als je het bladerdeeg krokant wilt houden.",
+        "version": 1,
+        "updatedAt": "2026-11-08",
+        "changeLog": [
+          {
+            "version": 1,
+            "date": "2026-11-08",
+            "description": "Poestavariant toegevoegd met paprika, ui, aangepaste kruiding en verbeterde bereidingswijze."
+          }
+        ]
       }
     ]
   }
