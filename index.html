@@ -583,6 +583,18 @@ body.cook-active{overflow:hidden}
 .nutrition-note{font-size:12px;color:#69776b;line-height:1.6;margin:13px 0 0}
 @media(max-width:650px){.nutrition-panel{padding:17px 15px}.nutrition-values{grid-template-columns:repeat(2,minmax(0,1fr))}.nutrition-item:first-child{grid-column:1/-1}.nutrition-item strong{font-size:21px}}
 @media print{.nutrition-panel{break-inside:avoid;background:#fff}.nutrition-item{border-color:#ddd}}
+
+/* Receptindeling: maaltijd, hapje/drank en basisrecept/onderdeel. */
+.recipe-type-switcher{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:0 0 18px}
+.recipe-type-option{min-width:0;min-height:52px;border:1px solid #dce7d8;border-radius:10px;padding:10px 9px;background:#f8faf7;color:#35553c;font-size:12px;font-weight:700;line-height:1.3;cursor:pointer}
+.recipe-type-option:hover{background:#edf4ea}
+.recipe-type-option[aria-pressed="true"]{border:2px solid #365c3e;background:#e5f0e2;color:#213e2a}
+.recipe-type-option:focus-visible{outline:3px solid #c48d4a;outline-offset:3px}
+.recipe-type-option span{display:inline-block;min-width:20px;margin-left:4px;padding:2px 5px;border-radius:15px;background:#e2ebe0;color:#35553c;font-size:11px}
+.recipe-type-hint{margin:3px 0 15px;padding:10px 13px;background:#f5f8f3;border-left:3px solid #81a481;color:#48624e;font-size:13px;line-height:1.6}
+@media(max-width:850px){.recipe-type-switcher{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.recipe-type-option{min-height:62px}}
+@media print{.recipe-type-switcher{display:none!important}}
 </style>
 </head>
 <body>
@@ -607,7 +619,13 @@ body.cook-active{overflow:hidden}
   <p class="browse-hint" id="searchHint">Zoek ook op keuken of trefwoord. Gebruik meerdere woorden om gerichter te zoeken.</p>
  </div>
  <div class="browse-suggestions"><span>Probeer eens</span><button type="button" data-search-term="kip">Kip</button><button type="button" data-search-term="rijst">Rijst</button><button type="button" data-search-term="wraps">Wraps</button><button type="button" data-search-term="stoofgerecht">Stoofgerecht</button></div>
- <div class="toolbar browse-filters">
+ <div class="recipe-type-switcher" role="group" aria-label="Soort recept">
+   <button type="button" class="recipe-type-option" data-recipe-type="" aria-pressed="true">Alle recepten <span data-recipe-type-count="all">0</span></button>
+   <button type="button" class="recipe-type-option" data-recipe-type="maaltijd" aria-pressed="false">Maaltijden <span data-recipe-type-count="maaltijd">0</span></button>
+   <button type="button" class="recipe-type-option" data-recipe-type="overig" aria-pressed="false">Hapjes, desserts &amp; dranken <span data-recipe-type-count="overig">0</span></button>
+   <button type="button" class="recipe-type-option" data-recipe-type="onderdeel" aria-pressed="false">Basisrecepten &amp; onderdelen <span data-recipe-type-count="onderdeel">0</span></button>
+  </div>
+  <div class="toolbar browse-filters">
   <label class="browse-control" for="category"><span>Categorie</span><select id="category"><option value="">Alle categorieën</option></select></label>
   <label class="browse-control" for="timeFilter"><span>Totale tijd</span><select id="timeFilter"><option value="">Alle tijden</option><option value="30">Max. 30 min</option><option value="40">Max. 40 min</option><option value="60">Max. 60 min</option><option value="long">Meer dan 60 min</option></select></label>
   <label class="browse-control browse-sort" for="sortRecipes"><span>Sorteer op</span><select id="sortRecipes"><option value="recommended">Relevantie / standaard</option><option value="newest">Recent toegevoegd</option><option value="recently-updated">Recent gewijzigd</option><option value="last-cooked">Laatst gekookt</option><option value="my-rating">Mijn beoordeling</option><option value="fastest">Snelste</option><option value="alphabetical">Naam A–Z</option></select></label>
@@ -677,7 +695,7 @@ const fmt=n=>new Intl.NumberFormat('nl-NL',{maximumFractionDigits:3}).format(n);
 const STORAGE={fav:'mijn-kookboek-favorieten',checked:'mijn-kookboek-receptchecks',basket:'mijn-kookboek-boodschappen',basketChecked:'mijn-kookboek-boodschappenchecks',pantry:'mijn-kookboek-voorraad',notes:'mijn-kookboek-persoonlijke-notities',cook:'mijn-kookboek-kookvoortgang'};
 function load(k,defaultValue){try{const v=JSON.parse(localStorage.getItem(k));return v&&typeof v==='object'?v:defaultValue}catch(e){return defaultValue}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-let recipes=[],favoriteOnly=false,quickOnly=false,cookedOnly=false;
+let recipes=[],favoriteOnly=false,quickOnly=false,cookedOnly=false,recipeTypeFilter='';
 let favorites=new Set(Array.isArray(load(STORAGE.fav,[]))?load(STORAGE.fav,[]):[]);
 let checked=load(STORAGE.checked,{}),basket=load(STORAGE.basket,{}),basketChecked=load(STORAGE.basketChecked,{});
 let personalNotes=load(STORAGE.notes,{}),cookProgress=load(STORAGE.cook,{}),activeCook=null;
@@ -1083,6 +1101,13 @@ function viewFor(r,variant){
  const v=(r.variants||[]).find(x=>x.id===variant);
  return v?{...r,...v,title:r.title+' — '+v.label}:{...r,title:r.variants?.length?r.title+' — '+(r.defaultVariantLabel||'Klassieke basilico'):r.title};
 }
+const RECIPE_TYPE_LABELS={maaltijd:'Maaltijd',overig:'Hapje, dessert of drank',onderdeel:'Basisrecept / onderdeel'};
+function recipeTypeLabel(recipe){return RECIPE_TYPE_LABELS[recipe.recipeType]||'Recept'}
+function setRecipeTypeFilter(value){
+ if(value!==''&&!Object.prototype.hasOwnProperty.call(RECIPE_TYPE_LABELS,value))return;
+ recipeTypeFilter=value;
+ renderCards();
+}
 function findRecipe(id){return recipes.find(r=>r.id===id||(r.aliases||[]).includes(id))}
 function basketCount(){el('basketCount').textContent=Object.keys(basket).length}
 function toggleFav(id){
@@ -1094,7 +1119,7 @@ function normalizeSearch(text){
  return String(text||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('nl-NL').replace(/[-_/]+/g,' ').replace(/\s+/g,' ').trim();
 }
 function searchable(r){
- const parts=[title(r),description(r),r.category,r.cuisine,r.kind,r.heat,r.defaultVariantLabel||'',...(r.tags||[]),...allIngredients(r).map(i=>i.name)];
+ const parts=[title(r),description(r),r.category,r.cuisine,r.kind,r.heat,r.defaultVariantLabel||'',recipeTypeLabel(r),r.recipeType||'',...(r.tags||[]),...allIngredients(r).map(i=>i.name)];
  for(const variant of r.variants||[]){
   parts.push(variant.label,description(variant),variant.cuisine,variant.kind,...(variant.tags||[]),...allIngredients(variant).map(i=>i.name));
  }
@@ -1111,14 +1136,22 @@ function searchScore(r,terms){
 }
 function activeFilters(){
  const search=normalizeSearch(el('search').value);
- return Boolean(search||el('category').value||el('timeFilter').value||favoriteOnly||cookedOnly||el('sortRecipes').value!=='recommended');
+ return Boolean(search||el('category').value||el('timeFilter').value||favoriteOnly||cookedOnly||recipeTypeFilter||el('sortRecipes').value!=='recommended');
 }
 function renderCards(){
  const terms=normalizeSearch(el('search').value).split(' ').filter(Boolean);
  const category=el('category').value,time=el('timeFilter').value,sort=el('sortRecipes').value;
+ const counts=recipes.reduce((total,recipe)=>(total[recipe.recipeType]=(total[recipe.recipeType]||0)+1,total),{});
+ document.querySelectorAll('[data-recipe-type]').forEach(button=>
+  button.setAttribute('aria-pressed',String(button.dataset.recipeType===recipeTypeFilter)));
+ document.querySelectorAll('[data-recipe-type-count]').forEach(node=>{
+  const role=node.dataset.recipeTypeCount;
+  node.textContent=role==='all'?recipes.length:counts[role]||0;
+ });
  const records=recipes.map((recipe,index)=>({recipe,index,minutes:timeInfo(recipe).total}));
  const matched=records.filter(({recipe,minutes})=>{
   if(category&&recipe.category!==category)return false;
+  if(recipeTypeFilter&&recipe.recipeType!==recipeTypeFilter)return false;
   if(favoriteOnly&&!favorites.has(recipe.id))return false;
    if(cookedOnly&&!personalLastCooked(recipe))return false;
   if(time==='long'&&minutes<=60)return false;
@@ -1146,7 +1179,7 @@ function renderCards(){
  el('cards').innerHTML=shown.map(r=>
   '<div class="card" data-recipe="'+safe(r.id)+'" role="link" tabindex="0" aria-label="Open recept: '+safe(title(r))+'">'+
   (r.image?'<div class="card-art with-photo"><img loading="lazy" decoding="async" src="'+safe(r.image)+'" alt="'+safe(title(r))+'">'+imageLabel(r)+'</div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+
-  '<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2>'+
+  '<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+' · '+safe(recipeTypeLabel(r))+'</div><h2>'+safe(title(r))+'</h2>'+
   '<p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span>'+
   '<span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span>'+
   (r.nutrition?'<span class="tag">ca. '+safe(r.nutrition.kcal)+' kcal / portie</span>':'')+
@@ -1180,6 +1213,7 @@ function resetBrowse(){
  favoriteOnly=false;
  quickOnly=false;
  cookedOnly=false;
+ recipeTypeFilter='';
  renderCards();
 }
 function recipeText(r,mult){
@@ -2149,9 +2183,10 @@ function renderDetail(){
  '<button class="btn alt" id="print">Print</button>'+
  '</div></details></div>';
  el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button>'+
- '<div class="eyebrow">'+safe(view.category||'Recept')+'</div><h2>'+safe(title(view))+'</h2>'+chocolateChoices+'<p class="description">'+safe(description(view))+'</p>'+ '<section class="experience-overview" id="experienceOverview" aria-label="Mijn kookervaring">'+personalDetailSummary(key)+'</section>'+jumpNav+
+ '<div class="eyebrow">'+safe(view.category||'Recept')+' · '+safe(recipeTypeLabel(view))+'</div><h2>'+safe(title(view))+'</h2>'+chocolateChoices+'<p class="description">'+safe(description(view))+'</p>'+ '<section class="experience-overview" id="experienceOverview" aria-label="Mijn kookervaring">'+personalDetailSummary(key)+'</section>'+jumpNav+
  (view.image?'<div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div>':'')+
  '<div class="meta"><span class="tag">'+safe(portionsLabel(view,current))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+recipeRevisionMeta(view)+'</div>'+
+  (view.recipeType==='onderdeel'?'<p class="recipe-type-hint">Dit is een basisrecept of gerechtsonderdeel. Combineer het eventueel met andere gerechten voor een complete maaltijd.</p>':'')+
   (view.timeNote?'<p class="ingredient-helper">'+safe(view.timeNote)+'</p>':'')+
  timeBreakdown(view)+choices+revisionHistory(view)+
  (canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+
@@ -2225,6 +2260,8 @@ el('search').addEventListener('keydown',event=>{if(event.key==='Escape'&&el('sea
 el('category').addEventListener('change',renderCards);
 el('timeFilter').addEventListener('change',()=>{quickOnly=el('timeFilter').value==='40';renderCards()});
 el('sortRecipes').addEventListener('change',renderCards);
+document.querySelectorAll('[data-recipe-type]').forEach(button=>
+ button.addEventListener('click',()=>setRecipeTypeFilter(button.dataset.recipeType)));
 el('favorites').onclick=()=>{favoriteOnly=!favoriteOnly;renderCards()};
 el('cookedOnly').onclick=()=>{cookedOnly=!cookedOnly;renderCards()};
 el('quick').onclick=()=>{el('timeFilter').value=el('timeFilter').value==='40'?'':'40';quickOnly=el('timeFilter').value==='40';renderCards()};
@@ -2234,7 +2271,7 @@ document.querySelectorAll('[data-search-term]').forEach(button=>button.addEventL
  el('category').value='';
  el('timeFilter').value='';
  el('sortRecipes').value='recommended';
- favoriteOnly=false;quickOnly=false;cookedOnly=false;
+ favoriteOnly=false;quickOnly=false;cookedOnly=false;recipeTypeFilter='';
  renderCards();
 }));
 
