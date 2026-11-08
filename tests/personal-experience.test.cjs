@@ -93,7 +93,7 @@ test('Bestaande notities en beoordelingen staan op de receptenkaart',async()=>{
  const card=b.get('cards').innerHTML;
  assert.match(card,/MIJN KOOKERVARING/);
  assert.match(card,/4\/5/);
- assert.match(card,/Gekookt 5-11-2026/);
+ assert.match(card,/Gekookt 05-11-2026/);
  assert.match(card,/Notities/);
  b.show('bruschetta');
  assert.match(b.get('detail').innerHTML,/4\/5/);
@@ -150,7 +150,7 @@ test('Eerder gekookt filtert alleen recepten met een vastgelegde kookdatum',asyn
  const list=b.get('cards').innerHTML;
  assert.match(list,/data-recipe="kruidenboter"/);
  assert.doesNotMatch(list,/data-recipe="bruschetta"/);
- assert.equal(b.get('cookedOnly')['attr_aria-pressed'],'true');
+ assert.equal(b.get('cookedOnly')['attr_aria-pressed'],true);
 });
 test('Sortering op eigen beoordeling en laatste kookdatum gebruikt lokale gegevens',async()=>{
  const b=app({
