@@ -194,3 +194,23 @@ In het receptenoverzicht zijn twee sorteermogelijkheden beschikbaar: **Mijn beoo
 Kooknotities en persoonlijke beoordelingen blijven meegenomen worden in de bestaande lokale back-up. Er is **geen** publiek ratingsysteem, geen onzichtbare automatische kookregistratie en geen synchronisatie tussen apparaten.
 
 Tests: \`node --test tests/personal-experience.test.cjs\`. Deze regressietests worden ook uitgevoerd in de workflow \`Controleer kookboekrecepten\`.
+
+## Maaltijden, overige recepten en basisrecepten (punt 9)
+
+Elk hoofdrecept heeft een verplicht veld \`recipeType\` in \`recepten.json\`. De indeling is **onafhankelijk van de bestaande categorie** (\`Kip\`, \`Brood & basis\`, \`Dranken\`, enz.) en de bestaande \`kind\`-aanduiding. Zo blijft een pizzagerecht in de categorie \`Brood & basis\` een maaltijd, terwijl een recept voor alleen een stokbrood een basisrecept is.
+
+| Waarde | Websitegroep | Betekenis |
+| --- | --- | --- |
+| \`maaltijd\` | Maaltijden | Een gerecht dat bedoeld is als maaltijd, eventueel met bijgerechten |
+| \`overig\` | Hapjes, desserts & dranken | Zelfstandig hapje, dessert of drankje; niet bedoeld als volledige maaltijd |
+| \`onderdeel\` | Basisrecepten & onderdelen | Een onderdeel zoals kruidenboter, stokbrood of een losse kipschnitzel |
+
+De collectie bevat bij invoering **19 maaltijden, 5 overige recepten en 3 basisrecepten/onderdelen**. In het overzicht staat boven de bestaande categorie- en tijdfilters een aparte rij met vier knoppen: Alle recepten, Maaltijden, Hapjes/desserts/dranken, en Basisrecepten/onderdelen. De knoppen tonen het aantal recepten, combineren met zoeken en overige filters, en worden gereset met **Wis filters**. De indeling verschijnt ook op receptkaarten en receptpagina's. Basisrecepten krijgen daar een korte uitleg dat ze een onderdeel van een maaltijd kunnen vormen.
+
+### Nieuwe recepten en varianten
+
+Voeg bij een nieuw hoofdrecept de passende \`recipeType\` toe; ontbrekende of onbekende waarden worden door \`scripts/validate-recipes.cjs\` afgekeurd. Een variant **erft** het type van het hoofdrecept en mag zelf geen \`recipeType\` vastleggen. Het verwijzen naar een ander recept met \`componentRecipeId\` mag uitsluitend als het doelrecept het type \`onderdeel\` heeft. De bestaande koppeling van gevuld kruidenboterstokbrood naar kruidenboter blijft intact.
+
+Voor de invoering van de indeling zijn de versienummers van alle 27 recepten en de 2 varianten volgens het bestaande revisiebeleid verhoogd en van een nieuwe logregel voorzien. Inhoud, recept-ID's, porties en boodschappen blijven ongewijzigd. Toekomstige inhoudelijke aanpassingen volgen dezelfde versieregels.
+
+Automatische tests: \`node --test tests/recipe-types.test.cjs\`; opgenomen in GitHub Actions, naast de bestaande tests voor recepten, varianten, offline gebruik en boodschappen.
