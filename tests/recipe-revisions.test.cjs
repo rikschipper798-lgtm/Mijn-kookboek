@@ -10,17 +10,23 @@ const catalog=JSON.parse(fs.readFileSync(path.join(root,'recepten.json'),'utf8')
 const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const clone=()=>JSON.parse(JSON.stringify(catalog));
 const check=other=>validateRecipes(other,{rootDir:root});
+const REVISION_DATE='2026-11-08';
+// Synthetische beginversie voor regressies; de echte collectie kan al v2+ bevatten.
+const firstVersion=()=>{
+ const r=clone()[0];r.version=1;r.updatedAt=null;r.changeLog=[];return r;
+};
+const baseline=()=>{const c=clone();c[0]=firstVersion();return c;};
 const sample=()=>{
- const r=clone()[0];
+ const r=firstVersion();
  r.subtitle+=' Nieuwe informatie.';
- r.version=2;r.updatedAt='2026-11-07';
- r.changeLog=[{version:2,date:'2026-11-07',description:'Bereiding en kruidenbalans aangepast.'}];
+ r.version=2;r.updatedAt=REVISION_DATE;
+ r.changeLog=[{version:2,date:REVISION_DATE,description:'Bereiding en kruidenbalans aangepast.'}];
  return r;
 };
-const candidate=()=>{const c=clone();c[0]=sample();return c;};
+const candidate=()=>{const c=baseline();c[0]=sample();return c;};
 function mustReject(name,edit,pattern){
  test(name,()=>{
-  const copy=clone();edit(copy);
+  const copy=baseline();edit(copy);
   assert.match(check(copy).errors.join('\n'),pattern);
  });
 }
@@ -31,14 +37,15 @@ const source=html.slice(before,after);
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ui=new Function('safe',source+'\nreturn {recipeVersion,revisionDateLabel,latestRevisionDate,hasRecordedChanges,recipeRevisionMeta,revisionHistory};')(escape);
 
-test('Alle 27 recepten en 2 varianten beginnen als gecontroleerde versie 1',()=>{
+test('Alle 27 recepten en 2 varianten hebben een geldige versiegeschiedenis',()=>{
  assert.equal(catalog.length,27);
  const variants=catalog.flatMap(r=>r.variants||[]);
  assert.equal(variants.length,2);
  for(const r of [...catalog,...variants]){
-  assert.equal(r.version,1);
-  assert.equal(r.updatedAt,null);
-  assert.deepEqual(r.changeLog,[]);
+  assert.ok(Number.isInteger(r.version)&&r.version>=1);
+  assert.equal(r.changeLog.length,r.version-1);
+  if(r.version===1)assert.equal(r.updatedAt,null);
+  else assert.equal(r.updatedAt,r.changeLog.at(-1).date);
  }
  assert.deepEqual(check(catalog).errors,[]);
 });
@@ -49,18 +56,18 @@ test('Bestaande opnamedatums blijven behouden',()=>{
 test('Een geldige tweede versie wordt geaccepteerd',()=>{
  const next=candidate();
  assert.deepEqual(check(next).errors,[]);
- assert.deepEqual(checkChanges(catalog,next),[]);
+ assert.deepEqual(checkChanges(baseline(),next),[]);
 });
 test('Datums en versiegegevens verschijnen in het juiste Nederlands',()=>{
  assert.equal(ui.revisionDateLabel('2026-11-07'),'7 november 2026');
  const r=sample();
  assert.match(ui.recipeRevisionMeta(r),/Versie 2/);
- assert.match(ui.recipeRevisionMeta(r),/Bijgewerkt 7 november 2026/);
+ assert.match(ui.recipeRevisionMeta(r),/Bijgewerkt 8 november 2026/);
  assert.match(ui.revisionHistory(r),/Bereiding en kruidenbalans aangepast/);
  assert.match(ui.revisionHistory(r),/Opgenomen/);
 });
 test('Geschiedenis van eerste versie heeft geen gefingeerde revisies',()=>{
- const initial=ui.revisionHistory(catalog[0]);
+ const initial=ui.revisionHistory(firstVersion());
  assert.match(initial,/Huidige versie:<\/strong> 1/);
  assert.match(initial,/Eerdere aanpassingen zijn niet apart gedocumenteerd/);
  assert.doesNotMatch(initial,/<li>/);
@@ -69,7 +76,7 @@ test('Bij variant staat de versie van de variant zelf',()=>{
  const parent=catalog.find(x=>x.id==='pasta-rundergehakt-groenten');
  const variant=parent.variants[0];
  const view={...parent,...variant,title:parent.title+' — '+variant.label};
- assert.equal(ui.recipeVersion(view),1);
+ assert.equal(ui.recipeVersion(view),variant.version);
  assert.equal(ui.revisionDateLabel(view.date),'28 oktober 2026');
 });
 test('Wijzigingsomschrijvingen worden veilig als tekst getoond',()=>{
@@ -81,15 +88,15 @@ test('Wijzigingsomschrijvingen worden veilig als tekst getoond',()=>{
 test('Nieuwste recept en recent gewijzigd blijven afzonderlijke sorteerkeuzes',()=>{
  assert.match(html,/value="newest">Recent toegevoegd/);
  assert.match(html,/value="recently-updated">Recent gewijzigd/);
- assert.equal(ui.latestRevisionDate(catalog[0]),catalog[0].date);
- assert.equal(ui.latestRevisionDate(sample()),'2026-11-07');
+ assert.equal(ui.latestRevisionDate(firstVersion()),catalog[0].date);
+ assert.equal(ui.latestRevisionDate(sample()),REVISION_DATE);
 });
 mustReject('Een ontbrekend versienummer wordt afgekeurd',d=>{delete d[0].version;},/versie moet/);
-mustReject('Versie 1 mag geen fictieve wijzigingsdatum hebben',d=>{d[0].updatedAt='2026-11-07';},/versie 1 is de historische beginversie/);
+mustReject('Versie 1 mag geen fictieve wijzigingsdatum hebben',d=>{d[0].updatedAt=REVISION_DATE;},/versie 1 is de historische beginversie/);
 mustReject('Versie 2 vereist een beschrijving',d=>{d[0]=sample();d[0].changeLog[0].description='Kort';},/omschrijving/);
-mustReject('Versie 2 vereist precies één logregel',d=>{d[0].version=2;d[0].updatedAt='2026-11-07';},/precies één wijzigingsregel/);
+mustReject('Versie 2 vereist precies één logregel',d=>{d[0].version=2;d[0].updatedAt=REVISION_DATE;},/precies één wijzigingsregel/);
 mustReject('Versie 3 vereist geschiedenis van versie 2 en 3',d=>{
- d[0]=sample();d[0].version=3;d[0].updatedAt='2026-11-07';
+ d[0]=sample();d[0].version=3;d[0].updatedAt=REVISION_DATE;
 },/precies één wijzigingsregel/);
 mustReject('Wijziging vóór de opnamedatum wordt afgekeurd',d=>{
  d[0]=sample();d[0].changeLog[0].date='2026-10-01';d[0].updatedAt='2026-10-01';
@@ -108,9 +115,9 @@ test('Een stille inhoudelijke wijziging zonder versieverhoging wordt geblokkeerd
  assert.match(checkChanges(catalog,d).join('\n'),/verhoog versienummer/);
 });
 test('Een lege versieverhoging wordt geblokkeerd',()=>{
- const d=clone();d[0].version=2;d[0].updatedAt='2026-11-07';
- d[0].changeLog=[{version:2,date:'2026-11-07',description:'Alleen metadata gewijzigd.'}];
- assert.match(checkChanges(catalog,d).join('\n'),/inhoud niet veranderd/);
+ const d=baseline();d[0].version=2;d[0].updatedAt=REVISION_DATE;
+ d[0].changeLog=[{version:2,date:REVISION_DATE,description:'Alleen metadata gewijzigd.'}];
+ assert.match(checkChanges(baseline(),d).join('\n'),/inhoud niet veranderd/);
 });
 test('Een wijziging aan geërfde velden geldt ook voor varianten',()=>{
  const d=clone(),r=d.find(x=>x.variants?.length);
@@ -125,7 +132,7 @@ test('Eigen wijziging aan een variant verplicht alleen die variant tot een nieuw
  assert.ok(!errors.some(x=>x.startsWith(r.id+': ')));
 });
 test('Een nieuw recept begint op versie 1',()=>{
- const d=clone(),newRecipe=JSON.parse(JSON.stringify(d[0]));
+ const d=clone(),newRecipe=firstVersion();
  newRecipe.id='geheel-nieuw-recept';newRecipe.date='2026-11-07';
  newRecipe.version=1;newRecipe.updatedAt=null;newRecipe.changeLog=[];d.push(newRecipe);
  assert.deepEqual(checkChanges(catalog,d),[]);
@@ -139,22 +146,22 @@ test('Eerdere wijzigingsregels mogen bij versie 3 niet worden aangepast',()=>{
 });
 
 test('Revisiehulpmiddel verhoogt versie en registreert datum en omschrijving',()=>{
- const d=clone();
- const details=bumpRecipe(d,d[0].id,'Ingrediënten en bereidingswijze verder verbeterd.',{date:'2026-11-07'});
+ const d=baseline();
+ const details=bumpRecipe(d,d[0].id,'Ingrediënten en bereidingswijze verder verbeterd.',{date:REVISION_DATE});
  assert.equal(details.version,2);
- assert.equal(d[0].updatedAt,'2026-11-07');
- assert.deepEqual(d[0].changeLog,[{version:2,date:'2026-11-07',
+ assert.equal(d[0].updatedAt,REVISION_DATE);
+ assert.deepEqual(d[0].changeLog,[{version:2,date:REVISION_DATE,
   description:'Ingrediënten en bereidingswijze verder verbeterd.'}]);
- assert.equal(catalog[0].version,1);
+ assert.equal(catalog[0].version>=1,true);
 });
 test('Revisiehulpmiddel kan een variant onafhankelijk verhogen',()=>{
  const d=clone(),r=d.find(x=>x.variants?.length);
  const result=bumpRecipe(d,r.id,'De romige saus wat rijker en milder gemaakt.',{
-  variantId:r.variants[0].id,date:'2026-11-07'
+  variantId:r.variants[0].id,date:REVISION_DATE
  });
- assert.equal(result.version,2);
- assert.equal(r.version,1);
- assert.equal(r.variants[0].version,2);
+ assert.equal(result.version,catalog.find(x=>x.id===r.id).variants[0].version+1);
+ assert.equal(r.version,catalog.find(x=>x.id===r.id).version);
+ assert.equal(r.variants[0].version,result.version);
 });
 test('Revisiehulpmiddel weigert onjuiste datum, onbekend recept en te korte tekst',()=>{
  assert.throws(()=>bumpRecipe(clone(),'niet-bestaand','Beschrijving van wijziging.',{date:'2026-11-07'}));
@@ -164,12 +171,14 @@ test('Revisiehulpmiddel weigert onjuiste datum, onbekend recept en te korte teks
 });
 test('Een gewijzigde variant bepaalt de datum bij recent gewijzigd',()=>{
  const d=clone(),r=d.find(x=>x.variants?.length);
+ r.version=1;r.updatedAt=null;r.changeLog=[];
+ r.variants[0].version=1;r.variants[0].updatedAt=null;r.variants[0].changeLog=[];
  assert.equal(ui.latestRevisionDate(r),r.date);
  r.variants[0].version=2;
- r.variants[0].updatedAt='2026-11-07';
- r.variants[0].changeLog=[{version:2,date:'2026-11-07',
+ r.variants[0].updatedAt=REVISION_DATE;
+ r.variants[0].changeLog=[{version:2,date:REVISION_DATE,
   description:'De saus en verhoudingen zijn aangescherpt.'}];
- assert.equal(ui.latestRevisionDate(r),'2026-11-07');
+ assert.equal(ui.latestRevisionDate(r),REVISION_DATE);
  assert.equal(ui.hasRecordedChanges(r),true);
  assert.equal(ui.recipeRevisionMeta(r).includes('Bijgewerkt'),false);
  assert.equal(ui.recipeRevisionMeta({...r,...r.variants[0]}).includes('Bijgewerkt'),true);
