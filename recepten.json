@@ -7055,5 +7055,221 @@
     "updatedAt": null,
     "changeLog": [],
     "recipeType": "maaltijd"
+  },
+  {
+    "id": "hutspot-rookworst-spek-gebakken-ui",
+    "title": "Hutspot met rookworst, krokant spek en gebakken ui",
+    "subtitle": "Smeuïge hutspot met goudbruin gebakken ui, een subtiele mosterdtoets en krokant spek.",
+    "category": "Varkensvlees",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Nederlands",
+    "minutes": 45,
+    "prep": 10,
+    "cook": 35,
+    "servings": 2,
+    "servingUnit": "personen",
+    "heat": "Mild kruidig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-11-08",
+    "recipeType": "maaltijd",
+    "tags": [
+      "Hutspot",
+      "Stamppot",
+      "Rookworst",
+      "Spek",
+      "Wortel",
+      "Mosterd"
+    ],
+    "ingredients": [
+      {
+        "name": "Kruimige aardappelen (geschild gewicht)",
+        "qty": 500,
+        "unit": "g",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Winterwortel (schoongemaakt gewicht)",
+        "qty": 400,
+        "unit": "g",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Uien (gepeld gewicht)",
+        "qty": 250,
+        "unit": "g",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Melk",
+        "qty": 50,
+        "unit": "ml",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Extra melk naar behoefte",
+        "qty": 25,
+        "unit": "ml",
+        "group": "Optioneel",
+        "optional": true
+      },
+      {
+        "name": "Ongezouten roomboter",
+        "qty": 15,
+        "unit": "g",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Grove mosterd",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Gedroogde tijm",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Nootmuskaat",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Hutspot"
+      },
+      {
+        "name": "Rookworst",
+        "qty": 250,
+        "unit": "g",
+        "group": "Voor erbij"
+      },
+      {
+        "name": "Gerookte spekreepjes",
+        "qty": 75,
+        "unit": "g",
+        "group": "Voor erbij"
+      },
+      {
+        "name": "Olijfolie (alleen als het spek weinig vet afgeeft)",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Optioneel",
+        "optional": true
+      },
+      {
+        "name": "Extra grove mosterd naar smaak",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Optioneel",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "title": "Groenten snijden",
+        "body": "Snijd 500 g kruimige aardappelen in stukken van circa 3 cm en 400 g winterwortel in halve plakjes van maximaal ½ cm dik. Snijd van de 250 g uien 75 g grof en de overige 175 g in dunne halve ringen.",
+        "ingredientIndices": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "title": "Groenten koken en tegelijkertijd spek bakken",
+        "body": "Doe de aardappelen, wortel en 75 g grofgesneden ui in een kookpan. Voeg water toe tot alles net onderstaat. Breng met het deksel op de pan aan de kook. Laat vervolgens met het deksel schuin op de pan 20–25 minuten zachtjes koken. Doe ondertussen 75 g spekreepjes in een droge koekenpan. Bak op middelhoog vuur in 6–8 minuten goudbruin en krokant. Schep uit de pan en laat uitlekken op keukenpapier.",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          12
+        ],
+        "duration": "20–25 min koken; spek parallel"
+      },
+      {
+        "title": "Uien goudbruin bakken",
+        "body": "Laat circa 2 tl spekvet achter in de koekenpan en voeg 5 g van de 15 g boter toe. Geeft het spek nauwelijks vet af, voeg dan eventueel 1 tl olijfolie toe. Bak de 175 g uienringen op middellaag vuur 18–22 minuten, onder regelmatig omscheppen, tot ze zacht en goudbruin zijn. Voeg de laatste 2 minuten ¼ tl tijm toe. Kleurt de ui te snel, zet het vuur lager en voeg een klein scheutje water toe.",
+        "ingredientIndices": [
+          2,
+          5,
+          7,
+          13
+        ],
+        "duration": "18–22 min, parallel aan het koken"
+      },
+      {
+        "title": "Rookworst verwarmen",
+        "body": "Verwarm 250 g rookworst volgens de aanwijzingen op de verpakking. Begin op tijd, zodat hij tegelijk met de hutspot klaar is. Moet de worst in heet water worden verwarmd, houd het water dan onder het kookpunt.",
+        "ingredientIndices": [
+          11
+        ]
+      },
+      {
+        "title": "Gaarheid controleren en afgieten",
+        "body": "Controleer de groenten vanaf 20 minuten: de aardappelen moeten makkelijk uit elkaar vallen en de wortel moet met een vork te pletten zijn. Laat zo nodig enkele minuten langer koken. Bewaar een kopje kookvocht en giet af. Laat de groenten op laag vuur 1–2 minuten uitdampen en schud de pan voorzichtig om.",
+        "ingredientIndices": [
+          0,
+          1,
+          2
+        ],
+        "duration": "1–2 min uitdampen"
+      },
+      {
+        "title": "Hutspot stampen",
+        "body": "Verwarm 50 ml melk tot lauwwarm. Voeg aan de groenten de melk, de resterende 10 g boter, 2 tl grove mosterd, ⅛ tl nootmuskaat en ¼ tl zwarte peper toe. Stamp tot een smeuïge hutspot met nog wat structuur. Voeg alleen als dat nodig is maximaal 25 ml extra melk beetje bij beetje toe. Is de hutspot daarna nog te stevig, voeg dan telkens een eetlepel kookvocht toe.",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          9
+        ]
+      },
+      {
+        "title": "Gebakken ui toevoegen en proeven",
+        "body": "Schep de helft van de gebakken ui door de hutspot. Proef een hapje met een stukje spek erbij en voeg alleen indien nodig wat zout of extra peper toe. Voor een duidelijkere mosterdtoets kun je optioneel eerst de helft van de extra grove mosterd toevoegen, proeven en daarna eventueel de rest gebruiken.",
+        "ingredientIndices": [
+          2,
+          9,
+          10,
+          12,
+          14
+        ]
+      },
+      {
+        "title": "Serveren met de krokante topping",
+        "body": "Verdeel de hutspot over twee borden en leg de rookworst erbij. Verdeel de resterende gebakken ui en al het krokante spek erover, vlak voordat je gaat eten.",
+        "ingredientIndices": [
+          2,
+          11,
+          12
+        ]
+      }
+    ],
+    "tips": "Twee royale porties. Benodigd: kookpan, koekenpan, aardappelstamper en eventueel een aparte pan voor de rookworst. Reken op 40–45 minuten totaal; kook de groenten, bak de ui en verwarm de rookworst gelijktijdig. Voeg geen bouillon toe: spek, rookworst en mosterd geven al veel hartigheid en zout. De hoeveelheid benodigde melk hangt af van de aardappelen en hoeveel vocht na het afgieten achterblijft. Houd het spek apart tot het serveren zodat het knapperig blijft. Bij meer porties kan een grotere of tweede koekenpan nodig zijn om de ui goed te laten kleuren.",
+    "version": 1,
+    "updatedAt": "2026-11-08",
+    "changeLog": [
+      {
+        "version": 1,
+        "date": "2026-11-08",
+        "description": "Definitief recept toegevoegd met gebakken ui, grove mosterd en krokant spek als topping."
+      }
+    ]
   }
 ]
