@@ -86,6 +86,18 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
   if(version>1&&latest&&latest.date!==view.updatedAt)
    fail(p+'.updatedAt','moet overeenkomen met de nieuwste wijzigingsregel');
  }
+ function nutrition(n,p){
+  if(!n||typeof n!=='object'||Array.isArray(n)){
+   fail(p+'.nutrition','voedingswaarden per portie ontbreken');return;
+  }
+  if(n.per!=='portie')fail(p+'.nutrition.per','verwacht portie');
+  if(n.estimated!==true)fail(p+'.nutrition.estimated','verwacht geschatte voedingswaarden (true)');
+  for(const k of ['kcal','proteinG','carbsG','fatG','fiberG']){
+   if(typeof n[k]!=='number'||!Number.isFinite(n[k])||n[k]<0)
+    fail(p+'.nutrition.'+k,'voedingswaarde moet een niet-negatief getal zijn');
+  }
+  if(typeof n.kcal==='number'&&n.kcal<=0)fail(p+'.nutrition.kcal','energie moet groter dan nul zijn');
+ }
  function contents(r,p){
   const ingredients=r.ingredients,steps=r.steps,used=new Set(),names=new Set();
   if(!Array.isArray(ingredients)||!ingredients.length)fail(p+'.ingredients','minimaal één ingrediënt vereist');
@@ -145,7 +157,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
   else if(new Set(r.tags.map(t=>t.trim().toLowerCase())).size!==r.tags.length)fail(loc+'.tags','dubbele tags');
   if(!Number.isInteger(r.servings)||r.servings<=0)fail(loc+'.servings','positief geheel aantal porties vereist');
   for(const flag of ['featured','totalTimeEstimated'])if(r[flag]!==undefined&&typeof r[flag]!=='boolean')fail(loc+'.'+flag,'true/false vereist');
-  revisions(r,loc,r.date);time(r,loc);image(r,loc);images++;contents(r,loc);
+  revisions(r,loc,r.date);time(r,loc);image(r,loc);nutrition(r.nutrition,loc);images++;contents(r,loc);
   if(r.variants!==undefined){
    if(!Array.isArray(r.variants)||!r.variants.length)fail(loc+'.variants','niet-lege variantenlijst vereist');
    else{
@@ -156,7 +168,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
      if(!isText(v.id)||!ID.test(v.id))fail(p+'.id','ongeldige variant-ID');
      else if(seen.has(v.id)||v.id===r.id)fail(p+'.id','dubbele variant-ID');
      seen.add(v.id);required(v,'label',p);
-     revisions(v,p,r.date);const merged={...r,...v};time(merged,p);contents(merged,p);
+     revisions(v,p,r.date);nutrition(v.nutrition,p);const merged={...r,...v};time(merged,p);contents(merged,p);
      if(v.image!==undefined){
       image({...merged,image_source:v.image_source||r.image_source},p);images++;
       if(v.image!==r.image&&!isText(v.image_source))fail(p+'.image_source','eigen herkomst voor variantafbeelding vereist');
