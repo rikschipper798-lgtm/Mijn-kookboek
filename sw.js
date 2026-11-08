@@ -1,7 +1,7 @@
 'use strict';
 // Bestandsversie: verhoog deze waarde bij wijzigingen aan offline infrastructuur.
 // index.html en recepten.json worden online altijd opnieuw opgehaald.
-const CACHE_VERSION='2026-11-07-pwa-revisions-v1';
+const CACHE_VERSION='2026-11-08-pwa-personal-experience-v1';
 const CORE_CACHE='mijn-kookboek-pwa-core-'+CACHE_VERSION;
 const IMAGE_CACHE='mijn-kookboek-pwa-images-'+CACHE_VERSION;
 const CACHE_PREFIX='mijn-kookboek-pwa-';
