@@ -7461,7 +7461,7 @@
       }
     ],
     "tips": "De basishoeveelheid levert 4 saucijzenbroodjes op voor 2 personen als lunch. Totale tijd: 45–50 minuten, inclusief 5 minuten rusten; eventueel 10 minuten extra koeltijd als het bladerdeeg slap wordt. Benodigd: metalen bakplaat, bakpapier en bij voorkeur een keukenkwastje en kernthermometer. Half-om-halfgehakt houdt de vulling sappig; een ei door de vulling is bij deze verhouding niet nodig. Aanvullende boodschappen ten opzichte van de standaardvoorraad: bladerdeeg, half-om-halfgehakt, melk, mosterd en ei. Als lunch past een frisse salade van tomaat en komkommer erbij. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. De magnetron maakt het bladerdeeg zacht.",
-    "version": 2,
+    "version": 3,
     "updatedAt": "2026-11-08",
     "changeLog": [
       {
@@ -7473,6 +7473,11 @@
         "version": 2,
         "date": "2026-11-08",
         "description": "Kruidige poestabroodjes toegevoegd als alternatief bij de klassieke saucijzenbroodjes."
+      },
+      {
+        "version": 3,
+        "date": "2026-11-08",
+        "description": "Eigen AI-gegenereerde afbeelding toegevoegd."
       }
     ],
     "defaultVariantLabel": "Klassiek",
@@ -7699,16 +7704,25 @@
           }
         ],
         "tips": "De basishoeveelheid levert 4 royale broodjes voor 2 personen als lunch. Reken op 60–70 minuten totaal: circa 20 minuten voorbereiding, 10–15 minuten afkoelen, 25–30 minuten bakken en 5 minuten rusten; eventueel 10 minuten extra koelen als het deeg slap wordt. Benodigd: koekenpan, metalen bakplaat, bakpapier, rooster en bij voorkeur een keukenkwastje en kernthermometer. Aanvullende boodschappen: bladerdeeg, gehakt, ui, paprika, melk, ei en zoet paprikapoeder. Komijnzaad uit de voorraad kun je fijnstampen; meet daarvan ⅛ tl af. Gebruik zoet paprikapoeder als basis: gerookt paprikapoeder geeft een duidelijk andere smaak. Voeg geen extra paneermeel toe zolang dat niet nodig is; goed drooggebakken groenten houden de vulling stevig en te veel paneermeel maakt haar broodachtig. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. Vermijd de magnetron als je het bladerdeeg krokant wilt houden.",
-        "version": 1,
+        "version": 2,
         "updatedAt": "2026-11-08",
         "changeLog": [
           {
             "version": 1,
             "date": "2026-11-08",
             "description": "Poestavariant toegevoegd met paprika, ui, aangepaste kruiding en verbeterde bereidingswijze."
+          },
+          {
+            "version": 2,
+            "date": "2026-11-08",
+            "description": "Eigen AI-gegenereerde afbeelding toegevoegd."
           }
-        ]
+        ],
+        "image": "images/kruidige-poestabroodjes.webp",
+        "image_source": "AI-gegenereerde afbeelding speciaal gemaakt voor de kruidige poestabroodjes met paprika en ui"
       }
-    ]
+    ],
+    "image": "images/klassieke-saucijzenbroodjes.webp",
+    "image_source": "AI-gegenereerde afbeelding speciaal gemaakt voor de klassieke saucijzenbroodjes"
   }
 ]
