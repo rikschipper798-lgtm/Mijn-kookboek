@@ -43,6 +43,11 @@ rejects('Dubbele recept-ID wordt afgekeurd',data=>data.push({...data[0],id:data[
 rejects('Alias die een ander recept overschrijft wordt afgekeurd',data=>{data[0].aliases=[data[1].id];},/dubbele ID/);
 rejects('Lege titel wordt afgekeurd',data=>{data[0].title='';},/verplicht niet-leeg/);
 rejects('Ongeldige datum wordt afgekeurd',data=>{data[0].date='2026-02-31';},/ongeldige datum/);
+rejects('Ontbrekende voedingswaarden worden afgekeurd',data=>{delete data[0].nutrition;},/voedingswaarden per portie ontbreken/);
+rejects('Een negatieve voedingswaarde wordt afgekeurd',data=>{data[0].nutrition.proteinG=-5;},/voedingswaarde moet een niet-negatief getal zijn/);
+rejects('Elke variant moet eigen voedingswaarden hebben',data=>{
+ const r=data.find(x=>x.variants?.length);delete r.variants[0].nutrition;
+},/voedingswaarden per portie ontbreken/);
 rejects('Negatieve hoeveelheid wordt afgekeurd',data=>{data[0].ingredients[0].qty=-1;},/positief getal/);
 rejects('Onbekende eenheid wordt afgekeurd',data=>{data[0].ingredients[0].unit='bananen';},/onbekende eenheid/);
 rejects('Null met standaardmaat wordt afgekeurd',data=>{data[0].ingredients[0].qty=null;},/null alleen/);
