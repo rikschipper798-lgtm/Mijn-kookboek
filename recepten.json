@@ -7049,11 +7049,17 @@
       }
     ],
     "tips": "Gebruik niet te mager rundergehakt (circa 15% vet) voor sappige kofta's. Knijp geraspte ui goed uit en kneed het vlees slechts kort. Bak eerst bruin, daarna op middelhoog vuur volledig gaar tot 71 °C in de kern. Breng komkommer en tomaat pas vlak voor het serveren op smaak om het flatbread droog te houden. Als alternatief voor 1 tl gemalen komijn kun je 1¼ tl komijnzaad kort roosteren en fijnstampen. De gemalen koriander is optioneel. De voedingswaarden zijn grove schattingen op basis van gemiddeld rundergehakt, volle Griekse yoghurt en twee grote flatbreads; merk en broodformaat maken verschil. De kofta's kunnen maximaal één dag van tevoren afgedekt in de koelkast worden gevormd.",
-    "image": "images/runderkofta-flatbread.svg",
-    "image_source": "AI-gegenereerde vectorillustratie van de kofta met flatbread, groenten en yoghurtsaus (geen foto).",
-    "version": 1,
-    "updatedAt": null,
-    "changeLog": [],
+    "image": "images/runderkofta-flatbread.webp",
+    "image_source": "AI-gegenereerde fotorealistische afbeelding van runderkofta met flatbread, groenten en knoflook-yoghurtsaus.",
+    "version": 2,
+    "updatedAt": "2026-11-08",
+    "changeLog": [
+      {
+        "version": 2,
+        "date": "2026-11-08",
+        "description": "De eerdere vectorillustratie vervangen door een fotorealistische, AI-gegenereerde afbeelding die aansluit bij het recept."
+      }
+    ],
     "recipeType": "maaltijd"
   },
   {
