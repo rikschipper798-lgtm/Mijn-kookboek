@@ -549,6 +549,27 @@ body.cook-active{overflow:hidden}
 .revision-list p{margin:3px 0 0}
 .revision-baseline{color:#647567;font-style:italic}
 @media print{.revision-history{break-inside:avoid}.revision-history .revision-content{display:block}}
+
+/* Persoonlijke ervaring is privé en duidelijk gescheiden van receptmetadata. */
+.card-experience{border:1px solid #e3ebdc;background:#f7faf5;border-radius:11px;padding:11px 12px;margin:0 0 6px}
+.card-experience-title{display:block;color:#67806b;font-weight:800;font-size:10px;letter-spacing:.09em;margin-bottom:6px}
+.card-experience-stats{display:flex;align-items:center;gap:7px 12px;flex-wrap:wrap;font-size:12px;color:#48634d;line-height:1.4}
+.experience-score{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;color:#344d37;font-size:13px}
+.experience-score strong{font-variant-numeric:tabular-nums}
+.experience-stars{color:#ae7d35;letter-spacing:1px;font-size:17px;white-space:nowrap}
+.experience-cooked,.experience-noted,.experience-variant{font-size:12px;color:#526955}
+.experience-variant{padding:3px 7px;background:#e8efe4;border-radius:7px}
+.experience-overview{border:1px solid #dce7d7;border-radius:14px;background:#f8fbf7;padding:16px 19px;margin:17px 0 21px;scroll-margin-top:18px}
+.experience-overview-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.experience-overview-head h3{font-size:21px;color:#284832;margin:4px 0 0}
+.experience-overview-head .btn{font-size:13px;min-height:44px}
+.experience-overview-data{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:12px 0 0}
+.experience-pending{font-size:13px;color:#708071}
+.experience-preview{font-size:13px;line-height:1.55;color:#455b49;margin:12px 0 0;overflow-wrap:anywhere}
+.experience-empty{font-size:13px;color:#718171;line-height:1.5;margin:9px 0 0}
+@media(max-width:550px){.experience-overview{padding:14px}.experience-overview-head .btn{flex:1 1 100%;text-align:center}}
+@media print{.experience-overview,.card-experience{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -1489,6 +1510,84 @@ function noteRecord(key){
  const value=personalNotes[key];
  if(!value||typeof value!=='object'||Array.isArray(value))return {};
  return value;
+}
+// Alleen lokaal opgeslagen persoonlijke ervaringen. Per receptvariant apart bewaren.
+function personalRating(note){
+ const n=Number(note&&note.rating);
+ return Number.isInteger(n)&&n>=1&&n<=5?n:0;
+}
+function personalStars(rating){
+ return '<span class="experience-stars" aria-hidden="true">'+
+  '★'.repeat(rating)+'☆'.repeat(5-rating)+'</span>';
+}
+function personalEntries(recipe){
+ return [{id:'klassiek',label:recipe.defaultVariantLabel||'Basisrecept'},
+  ...(recipe.variants||[]).map(v=>({id:v.id,label:v.label}))].map(v=>{
+  const note=noteRecord(listKey(recipe.id,v.id));
+  const lastCookedOn=typeof note.lastCookedOn==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(note.lastCookedOn)?note.lastCookedOn:'';
+  return {id:v.id,label:v.label,note,rating:personalRating(note),lastCookedOn};
+ });
+}
+function personalLastCooked(recipe){
+ return personalEntries(recipe).map(x=>x.lastCookedOn).sort().at(-1)||'';
+}
+function personalCardEntry(recipe){
+ const hasText=note=>typeof note==='string'&&note.trim().length>0;
+ const entries=personalEntries(recipe).filter(x=>x.rating||x.lastCookedOn||
+  hasText(x.note.notes)||hasText(x.note.feedback));
+ if(!entries.length)return null;
+ // Geen gemiddelde over verschillende varianten: toon één herkenbare variant.
+ return entries.sort((a,b)=>b.lastCookedOn.localeCompare(a.lastCookedOn)||
+  b.rating-a.rating||(a.id==='klassiek'?-1:1))[0];
+}
+function personalCardRating(recipe){
+ const selected=personalCardEntry(recipe);
+ return selected?selected.rating:0;
+}
+function personalCardSummary(recipe){
+ const entry=personalCardEntry(recipe);
+ if(!entry)return '';
+ const name=recipe.variants?.length?'<span class="experience-variant">'+safe(entry.label)+'</span>':'';
+ const rating=entry.rating?'<span class="experience-score" aria-label="Mijn beoordeling: '+entry.rating+' van 5">'+
+  personalStars(entry.rating)+' <strong>'+entry.rating+'/5</strong></span>':'';
+ const cooked=entry.lastCookedOn?'<span class="experience-cooked">Gekookt '+safe(noteDateLabel(entry.lastCookedOn))+'</span>':'';
+ const notes=(typeof entry.note.notes==='string'&&entry.note.notes.trim())||
+  (typeof entry.note.feedback==='string'&&entry.note.feedback.trim())?
+  '<span class="experience-noted">Notities</span>':'';
+ return '<div class="card-experience" aria-label="Mijn persoonlijke kookervaring">'+
+  '<span class="card-experience-title">MIJN KOOKERVARING</span>'+
+  '<div class="card-experience-stats">'+rating+cooked+notes+name+'</div></div>';
+}
+function personalDetailSummary(key){
+ const note=noteRecord(key),rating=personalRating(note);
+ const cooked=typeof note.lastCookedOn==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(note.lastCookedOn)?
+  noteDateLabel(note.lastCookedOn):'';
+ const feedback=typeof note.feedback==='string'?note.feedback.trim():'';
+ const notes=typeof note.notes==='string'?note.notes.trim():'';
+ const snippet=(text,max=175)=>text.length>max?text.slice(0,max).trimEnd()+'…':text;
+ return '<div class="experience-overview-head"><div><span class="section-label">ALLEEN OP DIT APPARAAT</span>'+
+  '<h3>Mijn kookervaring</h3></div><button type="button" class="btn alt" id="jumpExperience">'+
+  (rating||cooked||feedback||notes?'Bewerk mijn ervaring':'Beoordeel dit recept')+'</button></div>'+
+  '<div class="experience-overview-data">'+
+  (rating?'<span class="experience-score" aria-label="Mijn beoordeling: '+rating+' van 5">'+personalStars(rating)+' <strong>'+rating+'/5</strong></span>':
+   '<span class="experience-pending">Nog niet beoordeeld</span>')+
+  (cooked?'<span class="experience-cooked">Laatst gekookt: '+safe(cooked)+'</span>':
+   '<span class="experience-pending">Nog geen kookdatum</span>')+'</div>'+
+  (feedback?'<p class="experience-preview"><strong>Na het koken:</strong> '+safe(snippet(feedback))+'</p>':'')+
+  (notes?'<p class="experience-preview"><strong>Mijn aanpassingen:</strong> '+safe(snippet(notes))+'</p>':'')+
+  (!(feedback||notes)?'<p class="experience-empty">Leg vast wat goed werkte en wat je volgende keer wilt aanpassen.</p>':'');
+}
+function updateExperienceOverview(key){
+ const node=el('experienceOverview');
+ if(!node)return;
+ node.innerHTML=personalDetailSummary(key);
+ const jump=el('jumpExperience');
+ if(jump)jump.onclick=()=>{
+  const section=el('personalNotes');
+  if(section)section.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  const target=el(personalRating(noteRecord(key))?'feedbackText':'recipeRating');
+  if(target&&typeof target.focus==='function')target.focus({preventScroll:true});
+ };
 }
 function noteDateLabel(value){
  if(!/^\d{4}-\d{2}-\d{2}$/.test(String(value||'')))return '';
