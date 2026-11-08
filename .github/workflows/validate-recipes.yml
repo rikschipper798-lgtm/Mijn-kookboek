@@ -36,6 +36,8 @@ jobs:
         run: node --test tests/recipe-revisions.test.cjs
       - name: Persoonlijke beoordelingen en kookervaringen testen
         run: node --test tests/personal-experience.test.cjs
+      - name: Receptgroepen en filters testen
+        run: node --test tests/recipe-types.test.cjs
       - name: Voedingswaarden en porties testen
         run: node --test tests/nutrition.test.cjs
       - name: Recepten en afbeeldingen controleren
