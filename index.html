@@ -570,6 +570,19 @@ body.cook-active{overflow:hidden}
 @media(max-width:550px){.experience-overview{padding:14px}.experience-overview-head .btn{flex:1 1 100%;text-align:center}}
 @media print{.experience-overview,.card-experience{display:none!important}}
 
+
+/* Geschatte voedingswaarden: rustig zichtbaar op elke receptdetailpagina. */
+.nutrition-panel{margin:22px 0 19px;padding:21px 23px;border:1px solid #dfe8dc;border-radius:16px;background:#f6f8f3}
+.nutrition-heading{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 15px}
+.nutrition-heading h3{font-family:Georgia,serif;font-size:23px;font-weight:500;margin:0;color:#294c36}
+.nutrition-heading span{font-size:13px;color:#607467;font-weight:650}
+.nutrition-values{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.nutrition-item{padding:12px 10px;background:#fff;border:1px solid #e4eadf;border-radius:10px;min-width:0}
+.nutrition-item strong{display:block;color:#294c36;font-size:clamp(17px,2.5vw,23px);font-variant-numeric:tabular-nums}
+.nutrition-item span{display:block;margin-top:4px;color:#69786c;font-size:12px}
+.nutrition-note{font-size:12px;color:#69776b;line-height:1.6;margin:13px 0 0}
+@media(max-width:650px){.nutrition-panel{padding:17px 15px}.nutrition-values{grid-template-columns:repeat(2,minmax(0,1fr))}.nutrition-item:first-child{grid-column:1/-1}.nutrition-item strong{font-size:21px}}
+@media print{.nutrition-panel{break-inside:avoid;background:#fff}.nutrition-item{border-color:#ddd}}
 </style>
 </head>
 <body>
@@ -704,6 +717,29 @@ function unitLabel(r,n){
  return u;
 }
 function portionsLabel(r,n){return fmt(n)+' '+unitLabel(r,n)}
+function nutritionPanel(r,current){
+ const n=r.nutrition;
+ if(!n||n.per!=='portie')return '';
+ const perUnit=r.servingUnit==='stokbroden'?'stokbrood':'persoon';
+ const values=[
+  ['Energie',n.kcal,'kcal'],
+  ['Eiwitten',n.proteinG,'g'],
+  ['Koolhydraten',n.carbsG,'g'],
+  ['Vetten',n.fatG,'g'],
+  ['Vezels',n.fiberG,'g']
+ ];
+ if(values.some(([,value])=>!Number.isFinite(value)))return '';
+ const pretty=value=>Number(value).toLocaleString('nl-NL',{maximumFractionDigits:1});
+ return '<section class="nutrition-panel" aria-label="Geschatte voedingswaarden per '+perUnit+'">'+
+  '<div class="nutrition-heading"><h3>Voedingswaarden</h3><span>Schatting per '+perUnit+'</span></div>'+
+  '<div class="nutrition-values">'+values.map(([name,value,unit])=>
+   '<div class="nutrition-item"><strong>'+pretty(value)+' '+unit+'</strong><span>'+name+'</span></div>'
+  ).join('')+'</div>'+
+  '<p class="nutrition-note">Bij '+safe(portionsLabel(r,current))+' is dat circa '+pretty(n.kcal*current)+' kcal in totaal. '+
+  'Berekend op basis van standaardingrediënten; optionele ingrediënten zijn niet meegeteld. '+
+  'De werkelijk gegeten hoeveelheid bakolie en merkverschillen kunnen de waarden beïnvloeden.</p></section>';
+}
+
 // Versies vanaf november 2026: bestaande datums blijven opnamedatums.
 // updateAt is alleen ingevuld bij een werkelijk vastgelegde revisie.
 function recipeVersion(r){return Number.isInteger(r.version)&&r.version>0?r.version:1}
@@ -1113,6 +1149,7 @@ function renderCards(){
   '<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+'</div><h2>'+safe(title(r))+'</h2>'+
   '<p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span>'+
   '<span class="tag">'+(timeInfo(r).estimated?'ca. ':'')+niceTime(timeInfo(r).total)+'</span>'+
+  (r.nutrition?'<span class="tag">ca. '+safe(r.nutrition.kcal)+' kcal / portie</span>':'')+
   (r.cuisine?'<span class="tag card-cuisine">'+safe(r.cuisine)+'</span>':'')+
    (hasRecordedChanges(r)?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(latestRevisionDate(r)))+'</span>':'')+'</div>'+personalCardSummary(r)+
   '<div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a>'+
@@ -2118,7 +2155,7 @@ function renderDetail(){
   (view.timeNote?'<p class="ingredient-helper">'+safe(view.timeNote)+'</p>':'')+
  timeBreakdown(view)+choices+revisionHistory(view)+
  (canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+
- scaleNote+actions+
+ scaleNote+nutritionPanel(view,current)+actions+
  '<div class="recipe-layout"><section class="recipe-ingredients" id="recipeIngredients"><h3>Ingrediënten</h3><p class="ingredient-helper">Vink aan wat je al in huis hebt. Dit ingrediënt wordt dan voor dit recept niet op je boodschappenlijst gezet.</p><ul class="ingredients recipe-ingredient-list">'+checkableIngredientRows(items,mult,key)+'</ul></section>'+
  '<section class="recipe-steps" id="recipeSteps"><h3>Bereiding</h3><ol class="steps">'+steps+'</ol></section></div>'+
  (remarks.length?'<h3>Kooktips</h3>'+(current!==original?'<p class="ingredient-helper">Deze kooktips beschrijven het basisrecept voor '+safe(portionsLabel(view,original))+'. Gebruik hierboven de omgerekende ingrediënten en bereidingsstappen.</p>':'')+'<div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'')+
