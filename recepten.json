@@ -7267,8 +7267,8 @@
         ]
       }
     ],
-    "tips": "Twee royale porties. Benodigd: kookpan, koekenpan, aardappelstamper en eventueel een aparte pan voor de rookworst. Reken op 40–45 minuten totaal; kook de groenten, bak de ui en verwarm de rookworst gelijktijdig. Voeg geen bouillon toe: spek, rookworst en mosterd geven al veel hartigheid en zout. De hoeveelheid benodigde melk hangt af van de aardappelen en hoeveel vocht na het afgieten achterblijft. Houd het spek apart tot het serveren zodat het knapperig blijft. Bij meer porties kan een grotere of tweede koekenpan nodig zijn om de ui goed te laten kleuren.",
-    "version": 2,
+    "tips": "Twee royale porties. Benodigd: kookpan, koekenpan, aardappelstamper en eventueel een aparte pan voor de rookworst. Reken op 40–45 minuten totaal; kook de groenten, bak de ui en verwarm de rookworst gelijktijdig. Voeg geen bouillon toe: spek, rookworst en mosterd geven al veel hartigheid en zout. De hoeveelheid benodigde melk hangt af van de aardappelen en hoeveel vocht na het afgieten achterblijft. Houd het spek apart tot het serveren zodat het knapperig blijft. Bij meer porties kan een grotere of tweede koekenpan nodig zijn om de ui goed te laten kleuren. Voedingswaarden zijn een schatting per persoon (de helft van het recept), met gewone varkensrookworst en halfvolle melk, zonder optionele extra melk, olie of mosterd. Alle vetten uit de ingrediënten zijn meegerekend; weggegooid spekvet kan de werkelijke hoeveelheid vet en calorieën verlagen. Merken en het type rookworst kunnen de waarden beïnvloeden.",
+    "version": 3,
     "updatedAt": "2026-11-08",
     "changeLog": [
       {
@@ -7280,10 +7280,24 @@
         "version": 2,
         "date": "2026-11-08",
         "description": "AI-gegenereerde receptfoto toegevoegd."
+      },
+      {
+        "version": 3,
+        "date": "2026-11-08",
+        "description": "Geschatte voedingswaarden per portie toegevoegd, inclusief uitgangspunten."
       }
     ],
     "image": "images/hutspot-rookworst-spek.webp",
-    "image_source": "AI-gegenereerde foto van hutspot met rookworst, krokant spek en goudbruin gebakken ui"
+    "image_source": "AI-gegenereerde foto van hutspot met rookworst, krokant spek en goudbruin gebakken ui",
+    "nutrition": {
+      "per": "portie",
+      "kcal": 845,
+      "proteinG": 33,
+      "carbsG": 67,
+      "fatG": 48,
+      "fiberG": 12.4,
+      "estimated": true
+    }
   },
   {
     "id": "klassieke-saucijzenbroodjes",
