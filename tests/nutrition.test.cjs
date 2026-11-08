@@ -33,9 +33,9 @@ test('Detail toont alle vijf voedingswaarden en schaalt alleen het recepttotaal'
  const base=show(r,4),scaled=show(r,6);
  for(const name of ['Energie','Eiwitten','Koolhydraten','Vetten','Vezels'])assert.match(base,new RegExp(name));
  assert.match(base,/740 kcal/);
- assert.match(base,/2\\.960 kcal in totaal/);
+ assert.match(base,/2\.960 kcal in totaal/);
  assert.match(scaled,/740 kcal/);
- assert.match(scaled,/4\\.440 kcal in totaal/);
+ assert.match(scaled,/4\.440 kcal in totaal/);
 });
 
 test('Eigen voedingswaarden van een variant worden zichtbaar',()=>{
