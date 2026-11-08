@@ -6763,5 +6763,297 @@
       }
     ],
     "recipeType": "overig"
+  },
+  {
+    "id": "runderkofta-flatbread-knoflook-yoghurtsaus",
+    "title": "Kruidige runderkofta met flatbread en knoflook-yoghurtsaus",
+    "subtitle": "Sappige, Midden-Oosters gekruide runderkofta met warm flatbread, knapperige komkommer-tomatensalade en een frisse, romige knoflook-yoghurtsaus.",
+    "category": "Rundvlees",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Midden-Oosters geïnspireerd",
+    "minutes": 38,
+    "prep": 18,
+    "cook": 20,
+    "servings": 2,
+    "servingUnit": "personen",
+    "nutrition": {
+      "per": "portie",
+      "kcal": 830,
+      "proteinG": 42,
+      "carbsG": 59,
+      "fatG": 46,
+      "fiberG": 5.5,
+      "estimated": true
+    },
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "featured": false,
+    "date": "2026-11-08",
+    "tags": [
+      "Rundvlees",
+      "Kofta",
+      "Flatbread",
+      "Midden-Oosters",
+      "Binnen 40 min"
+    ],
+    "ingredients": [
+      {
+        "name": "Rundergehakt (bij voorkeur circa 15% vet)",
+        "qty": 300,
+        "unit": "g",
+        "group": "Kofta"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 60,
+        "unit": "g",
+        "group": "Kofta"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Kofta"
+      },
+      {
+        "name": "Gemalen komijn",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kofta"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kofta"
+      },
+      {
+        "name": "Gemalen korianderzaad",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kofta",
+        "optional": true
+      },
+      {
+        "name": "Gedroogde peterselie",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kofta"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kofta"
+      },
+      {
+        "name": "Kaneel",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Kofta"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kofta"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kofta"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Kofta"
+      },
+      {
+        "name": "Griekse yoghurt (naturel)",
+        "qty": 150,
+        "unit": "g",
+        "group": "Knoflook-yoghurtsaus"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 1,
+        "unit": "teentje",
+        "group": "Knoflook-yoghurtsaus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Knoflook-yoghurtsaus"
+      },
+      {
+        "name": "Gedroogde dille",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Knoflook-yoghurtsaus"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Knoflook-yoghurtsaus"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Knoflook-yoghurtsaus"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Knoflook-yoghurtsaus"
+      },
+      {
+        "name": "Grote flatbreads",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Flatbread & groenten"
+      },
+      {
+        "name": "Komkommer",
+        "qty": 150,
+        "unit": "g",
+        "group": "Flatbread & groenten"
+      },
+      {
+        "name": "Tomaten",
+        "qty": 160,
+        "unit": "g",
+        "group": "Flatbread & groenten"
+      },
+      {
+        "name": "Rode ui",
+        "qty": 40,
+        "unit": "g",
+        "group": "Flatbread & groenten"
+      },
+      {
+        "name": "Gemengde sla",
+        "qty": 50,
+        "unit": "g",
+        "group": "Flatbread & groenten"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Flatbread & groenten"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Flatbread & groenten"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Flatbread & groenten"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Flatbread & groenten"
+      }
+    ],
+    "steps": [
+      {
+        "title": "Rasp de ui en vorm zes kofta's",
+        "body": "Rasp 60 g rode ui fijn en knijp het vocht stevig uit. Pers 2 tenen knoflook. Meng met 300 g rundergehakt, 1 tl gemalen komijn, 1 tl gerookt paprikapoeder, eventueel ½ tl gemalen korianderzaad, ½ tl peterselie, ¼ tl chilipoeder, ⅛ tl kaneel, ½ tl zout en ¼ tl zwarte peper. Kneed circa 1–2 minuten tot het mengsel samenhangt, zonder het onnodig lang te bewerken. Verdeel in zes gelijke porties en vorm langwerpige kofta's van ongeveer 9 cm lang en 2 cm dik.",
+        "duration": "5–7 min",
+        "ingredientIndices": [
+          1,
+          2,
+          0,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "title": "Meng de knoflook-yoghurtsaus",
+        "body": "Meng 150 g Griekse yoghurt met 2 tl citroensap, ½ tl gedroogde dille, 1 tl olijfolie, ¼ tl zout en ⅛ tl zwarte peper. Pers 1 teen knoflook, roer eerst de helft erdoor en proef. Voeg de rest naar smaak toe. Zet koel weg tot het serveren.",
+        "duration": "3 min",
+        "ingredientIndices": [
+          12,
+          14,
+          15,
+          16,
+          17,
+          18,
+          13
+        ]
+      },
+      {
+        "title": "Snijd de frisse groenten",
+        "body": "Snijd 150 g komkommer en 160 g tomaten in kleine blokjes en 40 g rode ui in flinterdunne halve ringen. Was zo nodig 50 g gemengde sla en laat goed uitlekken. Meng de tomaat, komkommer en rode ui alvast, maar voeg olie, citroensap en zout pas vlak voor het serveren toe; zo wordt het flatbread niet zompig.",
+        "duration": "5 min",
+        "ingredientIndices": [
+          20,
+          21,
+          22,
+          23
+        ]
+      },
+      {
+        "title": "Bak de kofta's mooi bruin en gaar",
+        "body": "Verhit 1 el olijfolie in een ruime koekenpan op middelhoog tot hoog vuur (ongeveer stand 7 van 9). Leg de zes kofta's met ruimte ertussen in de pan; bak eventueel in twee porties als de pan te klein is. Bak ongeveer 2 minuten op de eerste kant en 2 minuten op de tweede kant voor een bruine korst. Zet het vuur terug naar middelhoog (ongeveer stand 5 van 9) en bak nog 6–8 minuten, terwijl je de kofta's regelmatig draait. Controleer dat het rundergehakt in de kern 71 °C bereikt; bak zo nodig wat langer. Leg op een bord en laat 2 minuten rusten.",
+        "duration": "10–12 min + 2 min rusten",
+        "ingredientIndices": [
+          11,
+          0
+        ]
+      },
+      {
+        "title": "Maak de salade af en verwarm het flatbread",
+        "body": "Meng de gesneden groenten nu pas met 1 tl citroensap, 1 tl olijfolie, ⅛ tl zout en ⅛ tl zwarte peper. Verwarm de 2 grote flatbreads in een droge koekenpan op middelhoog vuur gedurende circa 45–60 seconden per kant. Gebruik eventueel de schoongeveegde koftapan. Het brood moet warm, soepel en licht geroosterd zijn.",
+        "duration": "3 min",
+        "ingredientIndices": [
+          20,
+          21,
+          22,
+          24,
+          25,
+          26,
+          27,
+          19
+        ]
+      },
+      {
+        "title": "Serveer direct",
+        "body": "Verdeel de 50 g sla over de warme flatbreads, schep de komkommer-tomatensalade erop en verdeel de zes kofta's (drie per persoon). Lepel er wat knoflook-yoghurtsaus overheen en geef de rest apart. Proef of nog een paar druppels citroensap gewenst zijn.",
+        "duration": "2 min",
+        "ingredientIndices": [
+          23,
+          19,
+          0,
+          12,
+          14
+        ]
+      }
+    ],
+    "tips": "Gebruik niet te mager rundergehakt (circa 15% vet) voor sappige kofta's. Knijp geraspte ui goed uit en kneed het vlees slechts kort. Bak eerst bruin, daarna op middelhoog vuur volledig gaar tot 71 °C in de kern. Breng komkommer en tomaat pas vlak voor het serveren op smaak om het flatbread droog te houden. Als alternatief voor 1 tl gemalen komijn kun je 1¼ tl komijnzaad kort roosteren en fijnstampen. De gemalen koriander is optioneel. De voedingswaarden zijn grove schattingen op basis van gemiddeld rundergehakt, volle Griekse yoghurt en twee grote flatbreads; merk en broodformaat maken verschil. De kofta's kunnen maximaal één dag van tevoren afgedekt in de koelkast worden gevormd.",
+    "image": "images/runderkofta-flatbread.svg",
+    "image_source": "AI-gegenereerde vectorillustratie van de kofta met flatbread, groenten en yoghurtsaus (geen foto).",
+    "version": 1,
+    "updatedAt": null,
+    "changeLog": [],
+    "recipeType": "maaltijd"
   }
 ]

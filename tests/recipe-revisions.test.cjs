@@ -37,8 +37,8 @@ const source=html.slice(before,after);
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ui=new Function('safe',source+'\nreturn {recipeVersion,revisionDateLabel,latestRevisionDate,hasRecordedChanges,recipeRevisionMeta,revisionHistory};')(escape);
 
-test('Alle 27 recepten en 2 varianten hebben een geldige versiegeschiedenis',()=>{
- assert.equal(catalog.length,27);
+test('Alle 28 recepten en 2 varianten hebben een geldige versiegeschiedenis',()=>{
+ assert.equal(catalog.length,28);
  const variants=catalog.flatMap(r=>r.variants||[]);
  assert.equal(variants.length,2);
  for(const r of [...catalog,...variants]){

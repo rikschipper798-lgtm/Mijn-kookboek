@@ -205,7 +205,7 @@ Elk hoofdrecept heeft een verplicht veld `recipeType` in `recepten.json`. De ind
 | `overig` | Hapjes, desserts & dranken | Zelfstandig hapje, dessert of drankje; niet bedoeld als volledige maaltijd |
 | `onderdeel` | Basisrecepten & onderdelen | Een onderdeel zoals kruidenboter, stokbrood of een losse kipschnitzel |
 
-De collectie bevat bij invoering **19 maaltijden, 5 overige recepten en 3 basisrecepten/onderdelen**. In het overzicht staat boven de bestaande categorie- en tijdfilters een aparte rij met vier knoppen: Alle recepten, Maaltijden, Hapjes/desserts/dranken, en Basisrecepten/onderdelen. De knoppen tonen het aantal recepten, combineren met zoeken en overige filters, en worden gereset met **Wis filters**. De indeling verschijnt ook op receptkaarten en receptpagina's. Basisrecepten krijgen daar een korte uitleg dat ze een onderdeel van een maaltijd kunnen vormen.
+De collectie telde bij invoering **19 maaltijden, 5 overige recepten en 3 basisrecepten/onderdelen**. Met de toevoeging van runderkofta op 8 november 2026 zijn dat **20 maaltijden, 5 overige recepten en 3 basisrecepten/onderdelen**. In het overzicht staat boven de bestaande categorie- en tijdfilters een aparte rij met vier knoppen: Alle recepten, Maaltijden, Hapjes/desserts/dranken, en Basisrecepten/onderdelen. De knoppen tonen het aantal recepten, combineren met zoeken en overige filters, en worden gereset met **Wis filters**. De indeling verschijnt ook op receptkaarten en receptpagina's. Basisrecepten krijgen daar een korte uitleg dat ze een onderdeel van een maaltijd kunnen vormen.
 
 ### Nieuwe recepten en varianten
 

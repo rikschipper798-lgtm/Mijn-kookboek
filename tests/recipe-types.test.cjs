@@ -15,9 +15,9 @@ const groups=['maaltijd','overig','onderdeel'];
 
 test('Alle recepten hebben één expliciet en geldig recepttype',()=>{
  assert.deepEqual(check(recipes).errors,[]);
- assert.equal(recipes.length,27);
+ assert.equal(recipes.length,28);
  assert.deepEqual(Object.fromEntries(groups.map(type=>[type,recipes.filter(x=>x.recipeType===type).length])),
-  {maaltijd:19,overig:5,onderdeel:3});
+  {maaltijd:20,overig:5,onderdeel:3});
  assert.equal(new Set(recipes.map(x=>x.id)).size,recipes.length);
 });
 test('Basisrecepten, losse kipschnitzel en maaltijden zijn terecht onderscheiden',()=>{
@@ -101,8 +101,8 @@ function browser(){
 }
 test('Tabbladen tonen alle groepstellingen en standaard alle recepten',async()=>{
  const b=browser();await b.ready();
- assert.equal(b.ids().length,27);
- assert.equal(Number(b.counters.get('maaltijd').textContent),19);
+ assert.equal(b.ids().length,28);
+ assert.equal(Number(b.counters.get('maaltijd').textContent),20);
  assert.equal(Number(b.counters.get('overig').textContent),5);
  assert.equal(Number(b.counters.get('onderdeel').textContent),3);
  assert.equal(b.buttons.get('')['attr_aria-pressed'],'true');
@@ -115,7 +115,7 @@ test('Receptgroepfilter toont uitsluitend geselecteerde soort',async()=>{
  assert.equal(b.buttons.get('maaltijd')['attr_aria-pressed'],'false');
  assert.equal(b.element('resetFilters').hidden,false);
  b.select('maaltijd');
- assert.equal(b.ids().length,19);
+ assert.equal(b.ids().length,20);
  assert.ok(b.ids().includes('gnocchi'));
  assert.ok(!b.ids().includes('chocolademelk'));
  b.select('overig');
@@ -139,9 +139,9 @@ test('Recepttype combineert met bestaande categorie en tekstzoeker',async()=>{
 test('Alle recepten en Wis filters herstellen de complete collectie',async()=>{
  const b=browser();await b.ready();
  b.select('onderdeel');b.select('');
- assert.equal(b.ids().length,27);
+ assert.equal(b.ids().length,28);
  b.select('overig');b.app.resetBrowse();
- assert.equal(b.ids().length,27);
+ assert.equal(b.ids().length,28);
  assert.equal(b.buttons.get('')['attr_aria-pressed'],'true');
 });
 test('Receptkaarten, details en varianten tonen het juiste type',async()=>{
@@ -166,4 +166,19 @@ test('Gekoppelde basisrecepten blijven werken op de boodschappenlijst',async()=>
  assert.match(text,/Zelf maken/);
  assert.match(text,/Bekijk basisrecept/);
  assert.ok(b.app.basketItems().length>0);
+});
+
+test('Nieuw gerecht runderkofta is een maaltijd voor twee en heeft volledige bereidingsstappen',()=>{
+ const kofta=recipes.find(r=>r.id==='runderkofta-flatbread-knoflook-yoghurtsaus');
+ assert.ok(kofta,'runderkofta ontbreekt');
+ assert.equal(kofta.recipeType,'maaltijd');
+ assert.equal(kofta.category,'Rundvlees');
+ assert.equal(kofta.servings,2);
+ assert.equal(kofta.minutes,38);
+ assert.equal(kofta.version,1);
+ assert.equal(kofta.updatedAt,null);
+ assert.equal(kofta.steps.length,6);
+ const used=new Set(kofta.steps.flatMap(s=>s.ingredientIndices));
+ assert.equal(used.size,kofta.ingredients.length,'alle ingrediënten moeten in de stappen terugkomen');
+ assert.ok(kofta.nutrition.estimated);
 });

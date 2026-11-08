@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780" role="img" aria-labelledby="title desc">
+<title id="title">Runderkofta op flatbread met frisse groenten en yoghurtsaus</title>
+<desc id="desc">Warme huiselijke vectorillustratie van zes langwerpige gegrilde runderkofta op twee flatbreads, met komkommer, tomaat, sla en een schaaltje knoflook-yoghurtsaus.</desc>
+<defs>
+<linearGradient id="wood" x2="1" y2="1"><stop stop-color="#9b6b4b"/><stop offset=".5" stop-color="#c18c62"/><stop offset="1" stop-color="#7b503a"/></linearGradient>
+<radialGradient id="plate"><stop stop-color="#faf4e6"/><stop offset=".75" stop-color="#eae1cf"/><stop offset="1" stop-color="#b7a38e"/></radialGradient>
+<linearGradient id="bread" x2=".9" y2="1"><stop stop-color="#efc887"/><stop offset=".6" stop-color="#db9d5b"/><stop offset="1" stop-color="#b87940"/></linearGradient>
+<linearGradient id="meat" x2=".8" y2=".9"><stop stop-color="#935038"/><stop offset=".52" stop-color="#6c3827"/><stop offset="1" stop-color="#3c241d"/></linearGradient>
+<radialGradient id="sauce"><stop stop-color="#fffefa"/><stop offset="1" stop-color="#eee7d6"/></radialGradient>
+<filter id="shadow"><feGaussianBlur stdDeviation="18"/></filter>
+<filter id="smallshadow"><feGaussianBlur stdDeviation="5"/></filter>
+<g id="kofta">
+<rect x="-136" y="-37" width="272" height="74" rx="37" fill="#4c3025" opacity=".28" transform="translate(7,11)" filter="url(#smallshadow)"/>
+<rect x="-136" y="-37" width="272" height="74" rx="35" fill="url(#meat)" stroke="#49291e" stroke-width="4"/>
+<path d="M-110,-17 C-65,-30 -18,-22 20,-27 S90,-25 113,-10" stroke="#b7764b" stroke-width="12" stroke-linecap="round" fill="none" opacity=".54"/>
+<path d="M-109,16 C-70,8 -8,22 35,11 S84,15 116,18" stroke="#291a15" stroke-width="8" stroke-linecap="round" fill="none" opacity=".48"/>
+<path d="M-70,-33 l-12,65 M-14,-35 l-9,69 M44,-34 l-8,69 M94,-30 l-6,59" stroke="#281912" stroke-width="11" opacity=".4"/>
+<g fill="#76914d" opacity=".83"><circle cx="-93" cy="-7" r="3"/><circle cx="-41" cy="12" r="3"/><circle cx="16" cy="-14" r="3"/><circle cx="69" cy="7" r="3"/><circle cx="102" cy="-7" r="2"/></g>
+</g>
+<g id="tomato"><circle r="24" fill="#bc3e2f" stroke="#8d2b23" stroke-width="4"/><circle cx="-8" cy="-8" r="8" fill="#eb8770" opacity=".6"/><path d="M-11 -13 L0 -6 L11 -13 L7 -1 L0 -6 L-7 -1Z" fill="#497445"/></g>
+<g id="cucumber"><ellipse rx="27" ry="20" fill="#4b8559"/><ellipse rx="21" ry="15" fill="#b9d8a4"/><ellipse rx="13" ry="9" fill="#e0edca"/><g fill="#a3b77e"><circle cx="0" cy="-7" r="2"/><circle cx="8" cy="2" r="2"/><circle cx="-8" cy="2" r="2"/></g></g>
+<g id="leaf"><path d="M0 0 Q-40 -33 -11 -68 Q24 -78 32 -32 Q29 -5 0 0Z" fill="#46754c" stroke="#315e3b" stroke-width="3"/><path d="M0 0 Q-6 -34 -7 -57" stroke="#9fb77b" stroke-width="3" fill="none"/></g>
+</defs>
+<rect width="1200" height="780" fill="url(#wood)"/>
+<g stroke="#744c36" stroke-width="5" opacity=".22"><path d="M0 72 H1200 M0 180 H1200 M0 660 H1200"/><path d="M240 0 V780 M898 0 V780"/></g>
+<ellipse cx="585" cy="404" rx="492" ry="337" fill="#39251a" opacity=".25" filter="url(#shadow)"/>
+<ellipse cx="573" cy="377" rx="485" ry="328" fill="url(#plate)" stroke="#e2d2bd" stroke-width="20"/>
+<ellipse cx="573" cy="377" rx="448" ry="295" fill="#f7f1e2" stroke="#d4c7b4" stroke-width="4"/>
+<g transform="translate(520 380) rotate(-10)">
+<ellipse cx="-25" cy="15" rx="350" ry="214" fill="#9b6e44" opacity=".16" filter="url(#smallshadow)"/>
+<ellipse cx="-20" cy="-13" rx="346" ry="207" fill="url(#bread)" stroke="#b4773e" stroke-width="8"/>
+<path d="M-268 -82 Q-140 -187 50 -167 Q200 -147 294 -30 Q106 -94 -60 -55 Q-195 -45 -268 -82Z" fill="#f2d39f" opacity=".65"/>
+<g fill="#ae6d36" opacity=".6"><ellipse cx="-195" cy="64" rx="26" ry="10" transform="rotate(20 -195 64)"/><ellipse cx="-44" cy="-122" rx="30" ry="13"/><ellipse cx="208" cy="93" rx="24" ry="11"/><ellipse cx="-100" cy="138" rx="33" ry="12"/></g>
+</g>
+<g transform="translate(540 370) rotate(13)">
+<ellipse cx="50" cy="2" rx="315" ry="185" fill="#a76f37" opacity=".15" filter="url(#smallshadow)"/>
+<ellipse cx="35" cy="-10" rx="317" ry="178" fill="url(#bread)" stroke="#b77945" stroke-width="7"/>
+<g fill="#ad723a" opacity=".45"><ellipse cx="-98" cy="99" rx="25" ry="11"/><ellipse cx="198" cy="-91" rx="25" ry="9"/></g>
+</g>
+<g opacity=".95">
+<use href="#leaf" transform="translate(228 335) rotate(-15)"/><use href="#leaf" transform="translate(270 510) rotate(55)"/><use href="#leaf" transform="translate(347 560) rotate(93)"/><use href="#leaf" transform="translate(684 205) rotate(127)"/><use href="#leaf" transform="translate(807 433) rotate(-100)"/><use href="#leaf" transform="translate(767 550) rotate(-75)"/>
+</g>
+<g opacity=".97">
+<use href="#cucumber" transform="translate(263 366) rotate(-28)"/><use href="#cucumber" transform="translate(288 415) rotate(26)"/><use href="#cucumber" transform="translate(335 510) rotate(-18)"/><use href="#cucumber" transform="translate(726 228) rotate(31)"/><use href="#cucumber" transform="translate(791 461) rotate(-34)"/>
+<use href="#tomato" transform="translate(308 330)"/><use href="#tomato" transform="translate(243 466) scale(.9)"/><use href="#tomato" transform="translate(376 561) scale(.8)"/><use href="#tomato" transform="translate(782 300) scale(.85)"/><use href="#tomato" transform="translate(810 531) scale(.9)"/>
+</g>
+<g transform="translate(504 272) rotate(-11)"><use href="#kofta"/></g>
+<g transform="translate(585 346) rotate(8)"><use href="#kofta"/></g>
+<g transform="translate(508 415) rotate(-18)"><use href="#kofta"/></g>
+<g transform="translate(635 491) rotate(12)"><use href="#kofta"/></g>
+<g transform="translate(418 497) rotate(22)"><use href="#kofta" transform="scale(.78)"/></g>
+<g transform="translate(705 380) rotate(-11)"><use href="#kofta" transform="scale(.77)"/></g>
+<ellipse cx="975" cy="570" rx="142" ry="108" fill="#3f241a" opacity=".25" filter="url(#shadow)"/>
+<ellipse cx="961" cy="553" rx="139" ry="102" fill="#f1e9dd" stroke="#d6c8b5" stroke-width="11"/>
+<ellipse cx="961" cy="546" rx="116" ry="82" fill="url(#sauce)"/>
+<path d="M882 545 Q934 495 996 532 T1046 543 Q1005 600 940 573 T882 545" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="round" opacity=".9"/>
+<g stroke="#5f8553" stroke-width="5" stroke-linecap="round"><path d="M900 522 l11 -12 M973 564 l15 -6 M1030 530 l-9 11 M925 561 l15 4"/></g>
+<g fill="#e9bc77" opacity=".5"><circle cx="891" cy="554" r="7"/><circle cx="1002" cy="506" r="6"/></g>
+</svg>
