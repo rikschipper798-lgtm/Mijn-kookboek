@@ -97,7 +97,7 @@ test('Bestaande notities en beoordelingen staan op de receptenkaart',async()=>{
  assert.match(card,/Notities/);
  b.show('bruschetta');
  assert.match(b.get('detail').innerHTML,/4\/5/);
- assert.match(b.get('detail').innerHTML,/Laatst gekookt: 5-11-2026/);
+ assert.match(b.get('detail').innerHTML,/Laatst gekookt: 05-11-2026/);
  assert.match(b.get('detail').innerHTML,/Geslaagd/);
  assert.match(b.get('detail').innerHTML,/Meer basilicum/);
 });
