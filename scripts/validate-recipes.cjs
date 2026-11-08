@@ -4,6 +4,7 @@ const fs=require('node:fs'),path=require('node:path');
 const UNITS=new Set('g|kg|ml|l|tl|el|stuk|stuks|teentje|teentjes|snee|snufje|klein snufje|plakken|blad|blaadjes|plantje|schijfjes|bolletjes|grote|naar smaak'.split('|'));
 const TIME_KEYS='minutes prep cook marinateMinutes restMinutes activeMinutes optionalWaitMinMinutes optionalWaitMaxMinutes initialRestMinutes coldRiseMinutes coldRiseMinimumMinutes coldRiseRecommendedMinMinutes coldRiseRecommendedMaxMinutes benchRestMinutes finalProofMinutes finalProofMinMinutes finalProofMaxMinutes coolMinutes'.split(' ');
 const ID=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const RECIPE_TYPES=new Set(['maaltijd','overig','onderdeel']);
 const IMG=/^images\/[a-zA-Z0-9_./-]+\.(webp|avif|png|jpg|jpeg|svg)$/i;
 function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(f)=>fs.existsSync(path.join(rootDir,f))}={}){
  const errors=[],warnings=[],seenIds=new Map();
@@ -152,6 +153,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
    else r.aliases.forEach((x,k)=>id(x,loc+'.aliases['+k+']'));
   }
   for(const k of ['title','subtitle','category','kind','cuisine','servingUnit','heat','difficulty'])required(r,k,loc);
+  if(!RECIPE_TYPES.has(r.recipeType))fail(loc+'.recipeType','verplicht type: maaltijd, overig of onderdeel');
   if(!date(r.date))fail(loc+'.date','ongeldige datum YYYY-MM-DD');
   if(!Array.isArray(r.tags)||!r.tags.length||r.tags.some(t=>!isText(t)))fail(loc+'.tags','niet-lege lijst tags vereist');
   else if(new Set(r.tags.map(t=>t.trim().toLowerCase())).size!==r.tags.length)fail(loc+'.tags','dubbele tags');
@@ -168,6 +170,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
      if(!isText(v.id)||!ID.test(v.id))fail(p+'.id','ongeldige variant-ID');
      else if(seen.has(v.id)||v.id===r.id)fail(p+'.id','dubbele variant-ID');
      seen.add(v.id);required(v,'label',p);
+     if(Object.prototype.hasOwnProperty.call(v,'recipeType'))fail(p+'.recipeType','varianten delen het type van hun hoofdrecept');
      revisions(v,p,r.date);nutrition(v.nutrition,p);const merged={...r,...v};time(merged,p);contents(merged,p);
      if(v.image!==undefined){
       image({...merged,image_source:v.image_source||r.image_source},p);images++;
@@ -204,6 +207,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
     }
     const base=byRecipeId.get(item.componentRecipeId);
     if(!base){fail(at+'.componentRecipeId','gekoppeld basisrecept bestaat niet');return;}
+    if(base.recipeType!=='onderdeel')fail(at+'.componentRecipeId','gekoppeld recept moet een basisrecept of onderdeel zijn');
     if(typeof base.outputQty!=='number'||base.outputQty<=0||!isText(base.outputUnit))
      fail(at+'.componentRecipeId','basisrecept heeft geen geldige opbrengst');
     if(item.unit!==base.outputUnit)
