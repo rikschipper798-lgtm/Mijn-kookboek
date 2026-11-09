@@ -57,30 +57,34 @@ Nu beschikbaar:
    ooit bestaande registraties overschrijft.
 5. Verwijder oude back-ups volgens een later vast te stellen bewaartermijn.
 
-**Nog open:** voor een automatische, onafhankelijke back-up zijn een gekozen
-externe opslagbestemming en beveiligd beheer van authenticatiesleutels
-nodig, of een betaald Supabase-plan met automatische herstelopties.
-Zonder die keuze is automatische off-site back-up **niet actief**.
+**Actueel:** een dagelijkse versleutelde back-up naar GitHub Actions-artifacts
+is op 9 november 2026 geactiveerd. Een geslaagde eerste database-export en
+archiefcontrole zijn bevestigd. Voor sterkere herstelgaranties blijven een
+volledige testrestore en periodieke controle van geplande uitvoeringen
+noodzakelijk. GitHub Actions-artifacts worden na 30 dagen verwijderd.
 
 Referentie:
 [Supabase – Database Backups](https://supabase.com/docs/guides/platform/backups).
 
-## Voorbereide automatische databaseback-up via GitHub Actions
+## Dagelijkse versleutelde databaseback-up via GitHub Actions
 
-Naast de persoonlijke, met wachtzin beveiligde dagboekexport is nu een
-**dagelijkse workflow voor een aparte, versleutelde PostgreSQL-back-up**
-voorbereid. Deze is nog **niet actief**, omdat de GitHub Actions-secrets
-`SUPABASE_BACKUP_DB_URL` en `BACKUP_ENCRYPTION_KEY_BASE64` nog niet
-zijn ingesteld. De workflow markeert een ontbrekende back-up als fout en slaat nooit een
-onversleutelde dump als artifact op. De dagelijkse planning staat voorlopig
-uit totdat een handmatige back-up en een herstelcontrole zijn geslaagd.
+De workflow `.github/workflows/backup-database.yml` is actief en gepland
+voor iedere dag om **03.17 UTC**. De eerste handmatig gestarte test
+[42685890232](https://github.com/rikschipper798-lgtm/Mijn-kookboek/actions/runs/42685890232)
+is geslaagd: database-export, AES-256-GCM-versleuteling, integriteitscontrole,
+`pg_restore --list` en een werkelijk opgeslagen versleuteld artifact.
+GitHub bewaart het artifact maximaal 30 dagen. Beide secrets zijn ingesteld;
+deel sleutels en databasewachtwoorden niet met derden of via deze chat.
 
-In [BACKUP-AUTOMATION.md](BACKUP-AUTOMATION.md) staan de twee secrets,
-het geplande tijdstip (03.17 UTC), de 30-daagse artifactretentie,
-herstelcontrole en beveiligingsafspraken. Gebruik geen databasewachtwoorden
-of encryptiesleutels in GitHub-bestanden of in ChatGPT. Een eerste succesvolle
-workflowrun én een gecontroleerde testrestore zijn vereist voordat de
-automatische back-upvoorziening als operationeel mag worden aangemerkt.
+De eerste geplande run moet nog worden gecontroleerd. Een geslaagde lijst
+van PostgreSQL-archiefobjecten is **geen** volledige hersteltest. Voor
+een robuuste herstelgarantie moet een restore worden getest in een volledig
+gescheiden tijdelijke database. Controleer wekelijks GitHub Actions en de
+aanwezigheid van een recente geslaagde back-up.
+
+Zie [BACKUP-AUTOMATION.md](BACKUP-AUTOMATION.md) voor sleutelbeheer en
+herstelstappen. De oorspronkelijke Supabase Free-database heeft nog steeds
+geen beheerde dagelijkse point-in-time-back-up.
 
 ## Voorbereide productie-inlogmails
 
