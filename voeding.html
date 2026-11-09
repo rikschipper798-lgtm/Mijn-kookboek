@@ -308,7 +308,17 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   if(!cloudReady){status('Log eerst in om gegevens te bewerken.',true);return false;}
   const previous=JSON.stringify(state);
   action();
-  if(cloudMode){render();window.CookbookCloud.enqueue(state);return true;}
+  if(cloudMode){
+   // Store the complete change in the account-specific local recovery journal
+   // BEFORE it is shown as successfully entered.
+   if(!window.CookbookCloud.enqueue(state)){
+    state=JSON.parse(previous);
+    render();
+    status('Deze wijziging is niet opgeslagen. Je vorige gegevens zijn behouden.',true);
+    return false;
+   }
+   render();return true;
+  }
   try{localStorage.setItem(KEY,JSON.stringify(state));}
   catch(e){state=JSON.parse(previous);status('Opslaan is mislukt. Controleer de browseropslag.',true);return false;}
   render();return true;
@@ -333,8 +343,12 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
    }
   }
   if(changed){
-   if(cloudMode)window.CookbookCloud.enqueue(state);
-   else try{localStorage.setItem(KEY,JSON.stringify(state));}
+   if(cloudMode){
+    if(!window.CookbookCloud.enqueue(state)){
+     state=JSON.parse(snapshot);
+     status('Automatische werkdagmaaltijden konden niet veilig worden opgeslagen.',true);
+    }
+   }else try{localStorage.setItem(KEY,JSON.stringify(state));}
    catch(e){state=JSON.parse(snapshot);status('Automatisch invullen kon niet worden opgeslagen.',true);}
   }
  }
@@ -609,6 +623,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
    hasLocal(){return Boolean(localStorage.getItem(KEY));},
    getLocal(){return cleanData(JSON.parse(localStorage.getItem(KEY)));},
    getState(){return state;},
+   validateData(data){return data?cleanData(data):null;},
    onData(data){state=data?cleanData(data):newState();cloudReady=true;render();loadWeekdayForm();},
    onLogout(){cloudReady=false;state=newState();render();}
   });
