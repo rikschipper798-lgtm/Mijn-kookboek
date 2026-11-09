@@ -58,7 +58,7 @@ Favorieten, voorraad, boodschappen en kooknotities blijven voorlopig lokaal.
 
 Bij een wijziging in het ingelogde voedingsdagboek wordt de volledige actuele
 dagboekstand **eerst synchroon als herstelkopie per account** in de lokale
-browseropslag gezet. De cloudversie wordt daarna met revisiecontrole bijgewerkt.
+browseropslag gezet. De cloudversie wordt daarna met revisiecontrole bijgewerkt. Als een upload wel op de server is verwerkt maar de bevestiging niet aankomt, vergelijkt de app de actuele serverversie met de verzonden herstelkopie.
 Een nieuwere cloudversie wordt niet stilzwijgend vervangen.
 
 Bij netwerkstoringen, een onderbroken browser of een herstart wordt de
