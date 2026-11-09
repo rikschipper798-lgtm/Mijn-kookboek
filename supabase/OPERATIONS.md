@@ -24,6 +24,12 @@ Eigenaar moet daarom:
 6. De algemene bevestigingsmail kort en neutraal houden en niet voorzien
    van persoonlijke voedingsgegevens.
 
+De Supabase Security Advisor meldt momenteel dat bescherming tegen
+gelekte wachtwoorden is uitgeschakeld. De website gebruikt nu Magic Links,
+maar als je daarnaast wachtwoordaanmeldingen toestaat, beoordeel en activeer
+deze optie via Supabase Authentication > Security and Protection.
+De waarschuwing is niet hetzelfde als een gevonden datalek.
+
 Deze stappen zijn nog **niet uitgevoerd**. Zonder keuze van provider, domein
 en eigen SMTP-inloggegevens kan deze koppeling niet veilig worden geactiveerd.
 
