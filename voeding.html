@@ -216,7 +216,8 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  const validNum=n=>typeof n==='number'&&Number.isFinite(n)&&n>=0;
  const today=()=>new Date().toLocaleDateString('sv-SE');
  const dateValid=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&new Date(s+'T12:00:00').toLocaleDateString('sv-SE')===s;
- const newState=()=>({goals:{...DEFAULTS},days:{}});
+ const SLOTS=['ontbijt','lunch'];
+ const newState=()=>({goals:{...DEFAULTS},days:{},weekdayPresets:{},weekdayApplied:{}});
  let state=newState(),recipeOptions=[],selectedDay=today();
  function status(message,error=false){el('status').textContent=message;el('status').classList.toggle('error',error);}
  function cleanData(data){
@@ -239,11 +240,32 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
        !KEYS.slice(1).every(key=>item.nutrition[key]===null||validNum(item.nutrition[key])&&item.nutrition[key]<=2000)){
       throw Error('Ongeldige maaltijdgegevens.');
     }
-    return {id:item.id,title:item.title.slice(0,200),source:item.source==='recipe'?'recipe':'manual',
+    return {id:item.id,title:item.title.slice(0,200),source:item.source==='recipe'?'recipe':item.source==='preset'?'preset':'manual',
      nutrition:Object.fromEntries(KEYS.map(key=>[key,item.nutrition[key]]))};
    });
   }
-  return {goals,days};
+  const weekdayPresets={};
+   const raw=data.weekdayPresets===undefined?{}:data.weekdayPresets;
+   if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('Ongeldige standaardmaaltijden.');
+   for(const slot of SLOTS){
+    const p=raw[slot];if(p===undefined||p===null)continue;
+    if(!p||typeof p.title!=='string'||!p.title.trim()||p.title.length>120||
+       typeof p.enabled!=='boolean'||!dateValid(p.startDate)||!p.nutrition||
+       !validNum(p.nutrition.kcal)||p.nutrition.kcal>10000||
+       !KEYS.slice(1).every(k=>p.nutrition[k]===null||validNum(p.nutrition[k])&&p.nutrition[k]<=1000))
+     throw Error('Ongeldige standaardmaaltijd.');
+    weekdayPresets[slot]={title:p.title,enabled:p.enabled,startDate:p.startDate,
+     nutrition:Object.fromEntries(KEYS.map(k=>[k,p.nutrition[k]]))};
+   }
+   const weekdayApplied={};
+   const processed=data.weekdayApplied===undefined?{}:data.weekdayApplied;
+   if(!processed||typeof processed!=='object'||Array.isArray(processed)||Object.keys(processed).length>3650)throw Error('Ongeldige werkdaggegevens.');
+   for(const [day,slots] of Object.entries(processed)){
+    if(!dateValid(day)||!Array.isArray(slots)||slots.length>2||!slots.every(slot=>SLOTS.includes(slot)))
+      throw Error('Ongeldige werkdag.');
+    weekdayApplied[day]=[...new Set(slots)];
+   }
+   return {goals,days,weekdayPresets,weekdayApplied};
  }
  try{
   const stored=localStorage.getItem(KEY);
