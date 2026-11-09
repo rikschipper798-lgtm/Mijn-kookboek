@@ -174,7 +174,7 @@ test('Lokale herstelkopie staat synchroon op schijf vóór verzending',async()=>
 test('Verbindingsverlies en pagina herladen: herstel wordt teruggevonden en daarna gesynchroniseerd',async()=>{
  const db=makeDb(),store=makeStorage(),a=harness(db,'a',store);
  await a.start();db.failNextWrite();assert.equal(a.enqueue(diary(425)),true);
- await a.flush();
+ await wait(); // Laat eerste automatische poging falen, zonder een tweede retry.
  assert.equal(countPending(store),1);
  assert.equal(db.rows.size,0);
  const reopened=harness(db,'a',store);
@@ -249,7 +249,7 @@ test('Na bevestigde cloudschrijfactie en browsercrash wordt de herstelkopie herk
 
 test('Herstelkopie is ook tijdens offline herstart beschikbaar en wordt later veilig geüpload',async()=>{
  const db=makeDb(),store=makeStorage(),a=harness(db,'offline',store);
- await a.start();db.failNextWrite();a.enqueue(diary(210));await a.flush();
+ await a.start();db.failNextWrite();a.enqueue(diary(210));await wait(); // Eerste poging mislukt.
  assert.equal(countPending(store),1);
  db.failNextRead();
  const reopened=harness(db,'offline',store);await reopened.start();
@@ -290,7 +290,7 @@ test('Tijdelijke netwerkfout is herstelbaar zonder onterechte conflictmelding',a
  await browser.start();
  db.failNextWrite();
  assert.equal(browser.enqueue(diary(440)),true);
- await browser.flush();
+ await wait(); // Laat één automatische poging uitvoeren.
  assert.equal(countPending(storage),1);
  assert.doesNotMatch(browser.status,/cloudconflict/i);
  await browser.flush();
