@@ -6,6 +6,27 @@ Persoonlijk online kookboek met recepten, kookmodus en boodschappenlijst.
 
 ## Persoonlijk voedingsdagboek
 
+### Vaste maaltijden op werkdagen
+
+Op de voedingsdagboekpagina kun je onder **Vast ontbijt en lunch** twee persoonlijke
+standaardmaaltijden instellen, zonder ze aan `recepten.json` toe te voegen.
+
+- Per maaltijd: omschrijving, kcal en optioneel eiwitten, koolhydraten, vetten en vezels.
+- Eenmaal ingeschakeld worden beide maaltijden vanaf hun insteldatum automatisch
+  ingevoerd op maandag tot en met vrijdag, voor vandaag en de vorige zes dagen
+  van het geselecteerde overzicht. Toekomstige werkdagen worden niet vooraf gelogd.
+- Automatische registraties zijn **aannames** en worden als zodanig weergegeven.
+  Ze tellen mee in de dagtotalen, maar bevestigen niet dat de maaltijd echt is gegeten.
+- Via **Wissen** kan een afwijkende dag worden gecorrigeerd; voeg daarna de werkelijk
+  gegeten maaltijd handmatig toe. De verwijderde standaard wordt die dag niet
+  opnieuw toegevoegd.
+- Aanpassen of uitschakelen van een standaard wijzigt **bestaande dagregistraties niet**.
+- De twee standaarden en de reeds verwerkte werkdagen worden uitsluitend lokaal
+  in hetzelfde dagboek opgeslagen en zijn inbegrepen bij de afzonderlijke export/import.
+  Oude dagboekback-ups blijven te importeren.
+
+## Persoonlijk voedingsdagboek
+
 Via **Voedingsdagboek** op de startpagina, of **Registreer maaltijd** op een receptdetail, open je [het voedingsdagboek](https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html).
 
 - Persoonlijke, aanpasbare dagdoelen: 2.300 kcal, 160 g eiwit, 246 g koolhydraten, 75 g vet en 37,5 g vezels als startpunt.
