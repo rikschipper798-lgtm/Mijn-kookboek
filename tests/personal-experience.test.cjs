@@ -32,7 +32,7 @@ function app(initialNotes={}){
   const element={
    id,value:'',textContent:'',checked:false,hidden:false,open:false,dataset:{},style:{},innerHTML:'',
    classList:{add(){},remove(){},toggle(){}},
-   setAttribute(name,value){this['attr_'+name]=value;},
+   setAttribute(name,value){this['attr_'+name]=value;},removeAttribute(name){delete this['attr_'+name];},
    addEventListener(event,listener){this['on'+event]=listener;},
    querySelectorAll(){return [];},
    contains(other){return other===this;},
