@@ -311,7 +311,6 @@ footer{padding-top:0;padding-bottom:38px}
 .browse-control select{width:100%;min-width:0;min-height:46px;padding:10px 11px;cursor:pointer}
 .browse-shortcuts{border-top:1px solid #e8ece3;padding-top:15px;display:flex;flex-wrap:wrap;gap:9px;align-items:center}
 .browse-shortcuts .pill{min-height:42px;font-size:13px;padding:9px 14px}
-.browse-shopping{margin-left:auto}
 .result-summary{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 17px;min-height:29px}
 .result-summary .count{margin:0}
 .reset-filters{border:0;background:transparent;color:#2f613c;font-weight:750;font-size:13px;padding:6px 2px;text-decoration:underline;text-underline-offset:3px}
@@ -332,7 +331,6 @@ footer{padding-top:0;padding-bottom:38px}
  .browse-control select{min-height:45px}
  .browse-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
  .browse-shortcuts .pill{width:100%;min-width:0;padding:10px 5px;text-align:center}
- .browse-shopping{grid-column:1/-1;margin:0}
 }
 @media print{.browse-panel,.result-summary{display:none!important}}
 
@@ -595,10 +593,32 @@ body.cook-active{overflow:hidden}
 @media(max-width:850px){.recipe-type-switcher{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.recipe-type-option{min-height:62px}}
 @media print{.recipe-type-switcher{display:none!important}}
-.nav-diary{display:inline-flex;align-items:center;text-decoration:none;justify-content:center}
+
+/* Primaire navigatie: recepten, boodschappen en dagboek zijn gelijkwaardige bestemmingen. */
+.primary-nav{position:sticky;top:0;z-index:80;background:#fffdf9;border-bottom:1px solid #dce4d8;box-shadow:0 3px 15px #1d382415}
+.primary-nav-inner{max-width:1160px;margin:auto;padding:9px 25px;display:flex;gap:8px;align-items:center}
+.primary-nav-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:45px;padding:11px 17px;border-radius:10px;text-decoration:none;font-size:14px;font-weight:750;color:#294935}
+.primary-nav-link:hover{background:#edf3e9}
+.primary-nav-link[aria-current="page"]{background:#294935;color:#fff}
+.primary-nav-link[aria-current="page"]:hover{background:#244331}
+.primary-nav-count{display:inline-grid;place-items:center;min-width:23px;height:23px;padding:0 6px;background:#e6ede1;border-radius:20px;font-size:12px;color:#294935;font-variant-numeric:tabular-nums}
+.primary-nav-link[aria-current="page"] .primary-nav-count{background:#ffffff30;color:white}
+.nav-mobile{display:none}
+@media(max-width:650px){
+ .primary-nav-inner{padding:8px 10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+ .primary-nav-link{min-width:0;min-height:45px;padding:9px 4px;gap:4px;text-align:center;font-size:12px}
+ .nav-desktop{display:none}.nav-mobile{display:inline}
+ .primary-nav-count{font-size:11px;min-width:19px;height:19px;padding:0 4px}
+}
+@media print{.primary-nav{display:none!important}}
 </style>
 </head>
 <body>
+<nav class="primary-nav" aria-label="Hoofdnavigatie"><div class="primary-nav-inner">
+ <a class="primary-nav-link" id="recipesNav" href="./" aria-current="page">Recepten</a>
+ <a class="primary-nav-link" id="shoppingNav" href="./#boodschappenlijst"><span class="nav-desktop">Boodschappenlijst</span><span class="nav-mobile">Boodschappen</span><span class="primary-nav-count" id="basketCount">0</span></a>
+ <a class="primary-nav-link" href="./voeding.html"><span class="nav-desktop">Voedingsdagboek</span><span class="nav-mobile">Dagboek</span></a>
+</div></nav>
 <header class="top"><div class="top-inner">
 <div class="hero-copy"><div class="kicker">THUIS KOKEN, OP SMAAK VERZAMELD</div>
 <h1>Mijn Kookboek<span>.</span></h1>
@@ -635,9 +655,6 @@ body.cook-active{overflow:hidden}
   <button id="quick" type="button" class="pill" aria-pressed="false" title="Toon recepten met een totale tijd van maximaal 40 minuten">Snel klaar ≤ 40 min</button>
   <button id="favorites" type="button" class="pill" aria-pressed="false">♡ Favorieten</button>
    <button id="cookedOnly" type="button" class="pill" aria-pressed="false">✓ Eerder gekookt</button>
-  <button id="shoppingNav" type="button" class="pill browse-shopping">Boodschappenlijst (<span id="basketCount">0</span>)</button>
-   <button id="pantryNav" type="button" class="pill">Mijn voorraad</button>
-   <a href="./voeding.html" class="pill nav-diary">Voedingsdagboek</a>
  </div>
 </div>
 <div class="result-summary"><p class="count" id="count" role="status" aria-live="polite">Recepten laden…</p><button type="button" id="resetFilters" class="reset-filters" hidden>Wis filters</button></div>
@@ -2252,6 +2269,10 @@ function renderDetail(){
 }
 function route(){
  closeCookMode(false);
+ const onBasket=location.hash==='#boodschappenlijst';
+ el('recipesNav').removeAttribute('aria-current');
+ el('shoppingNav').removeAttribute('aria-current');
+ el(onBasket?'shoppingNav':'recipesNav').setAttribute('aria-current','page');
  document.querySelector('.top').classList.toggle('is-subpage',location.hash.startsWith('#recept/')||location.hash==='#boodschappenlijst');
  if(location.hash==='#boodschappenlijst')renderBasket();
  else if(location.hash.startsWith('#recept/'))renderDetail();
@@ -2526,8 +2547,6 @@ if('serviceWorker' in navigator&&window.isSecureContext){
  pwaUpdateStatus();
 }
 
-el('shoppingNav').onclick=()=>location.hash='#boodschappenlijst';
- el('pantryNav').onclick=()=>{pantryExpanded=true;location.hash='#boodschappenlijst';if(!el('basket').hidden)renderBasket()};
 window.addEventListener('hashchange',route);
 /* Recepten synchroniseren bij openen, terugkeren en herstelde verbinding.
    De serviceworker bewaart een offline kopie maar probeert online eerst het
