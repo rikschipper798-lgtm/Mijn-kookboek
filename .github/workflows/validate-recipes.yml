@@ -40,6 +40,8 @@ jobs:
         run: node --test tests/recipe-types.test.cjs
       - name: Voedingswaarden en porties testen
         run: node --test tests/nutrition.test.cjs
+      - name: Accountisolatie en synchronisatie van voedingsdagboek testen
+        run: node --test tests/cloud-diary.test.cjs
       - name: Recepten en afbeeldingen controleren
         run: node scripts/validate-recipes.cjs
       - name: Receptversies tegen vorige Git-versie controleren
