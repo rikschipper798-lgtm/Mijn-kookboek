@@ -29,7 +29,7 @@ function makeStorage(){
  };
 }
 function makeDb(){
- const rows=new Map();
+ const rows=new Map(),history=new Map();
  let failWrite=false,failRead=false,holdRead=false,releaseRead=null,loseAcknowledgement=false,holdWrite=false,releaseWrite=null;
  const result=async(account,kind,body,filters)=>{
   if(kind==='select'){
@@ -58,6 +58,9 @@ function makeDb(){
   }
   const old=rows.get(account);
   if(!old||old.revision!==filters.revision)return {data:null,error:null};
+  const versions=history.get(account)||[];
+  versions.push({revision:old.revision,diary:copy(old.diary),saved_at:new Date().toISOString()});
+  history.set(account,versions.slice(-3));
   rows.set(account,{...old,...copy(body)});
   if(holdWrite){
    holdWrite=false;
@@ -69,10 +72,22 @@ function makeDb(){
   return {data:{revision:body.revision},error:null};
  };
  return {
-  rows,failNextWrite(){failWrite=true;},failNextRead(){failRead=true;},loseNextAcknowledgement(){loseAcknowledgement=true;},holdNextRead(){holdRead=true;},holdNextWriteResponse(){holdWrite=true;},releaseWriteResponse(){assert.equal(typeof releaseWrite,'function');releaseWrite();releaseWrite=null;},
+  rows,history,failNextWrite(){failWrite=true;},failNextRead(){failRead=true;},loseNextAcknowledgement(){loseAcknowledgement=true;},holdNextRead(){holdRead=true;},holdNextWriteResponse(){holdWrite=true;},releaseWriteResponse(){assert.equal(typeof releaseWrite,'function');releaseWrite();releaseWrite=null;},
   release(){assert.equal(typeof releaseRead,'function');releaseRead();releaseRead=null;},
   client(account){
    return {from(name){
+    if(name==='nutrition_diary_history'){
+     const q={
+      select(){return q;},
+      eq(key,value){assert.equal(key,'user_id');assert.equal(value,account);return q;},
+      order(){return q;},
+      async limit(count){
+       const values=[...(history.get(account)||[])].reverse().slice(0,count);
+       return {data:values,error:null};
+      }
+     };
+     return q;
+    }
     assert.equal(name,'nutrition_diaries');
     let kind='select',body=null,filters={};
     const q={
@@ -118,6 +133,11 @@ function harness(db,account,storage,{local=null}={}){
  callbacks.getLocal=()=>local;
  callbacks.hasLocal=()=>!!local;
  callbacks.getState=()=>callbacks.current;
+ callbacks.restoreVersion=data=>{
+  if(!cloud.enqueue(data))return false;
+  callbacks.current=copy(data);
+  return true;
+ };
  return {
   cloud,storage,callbacks,listeners,elements,
   start:()=>cloud.start(callbacks),
@@ -411,4 +431,21 @@ test('Ingelogde instellink loopt via dezelfde commit- en cloudroute',()=>{
  assert.equal(saved.weekdayPresets.ontbijt.nutrition.kcal,276);
  assert.equal(saved.weekdayPresets.lunch.nutrition.kcal,516);
  assert.equal(removedHash,true);
+});
+
+test('Eerdere dagboekversie wordt via de normale sync hersteld en bewaart de huidige versie',async()=>{
+ const db=makeDb(),store=makeStorage(),account=harness(db,'history-user',store);
+ await account.start();
+ account.enqueue(diary(120));await account.flush();
+ account.enqueue(diary(290));await account.flush();
+ assert.equal(db.history.get('history-user').length,1);
+ assert.equal(db.history.get('history-user')[0].diary.days['2026-11-09'][0].nutrition.kcal,120);
+ await account.elements.cloudHistoryLoad.onclick();
+ assert.match(account.elements.cloudHistorySelect.innerHTML,/Versie 1/);
+ account.elements.cloudHistorySelect.value='1';
+ account.elements.cloudHistoryRestore.onclick();
+ assert.equal(account.state.days['2026-11-09'][0].nutrition.kcal,120);
+ await account.flush();
+ assert.equal(db.rows.get('history-user').diary.days['2026-11-09'][0].nutrition.kcal,120);
+ assert.equal(db.history.get('history-user').at(-1).diary.days['2026-11-09'][0].nutrition.kcal,290);
 });
