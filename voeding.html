@@ -149,6 +149,9 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
         <h2 id="weekdayTitle">Vast ontbijt en lunch</h2>
         <p class="muted">Leg je vaste werkdagmaaltijden vast, zonder ze als recept toe te voegen. Maandag t/m vrijdag worden ze vanaf de insteldatum automatisch ingevuld.</p>
         <div id="weekdaySummary"></div>
+        <div class="actions"><button type="button" class="secondary" id="importPresetButton">Laad vaste maaltijden uit bestand</button></div>
+        <input id="importPresetFile" type="file" accept=".json,application/json" hidden aria-label="Bestand met vaste maaltijden">
+        <p class="muted">Een bestand met vaste maaltijden vervangt uitsluitend de opgeslagen ontbijt- en lunchstandaarden. Bestaande dagregistraties en je doelen blijven behouden.</p>
         <form id="weekdayForm">
           <div class="field"><label for="weekdaySlot">Maaltijd</label><select id="weekdaySlot"><option value="ontbijt">Ontbijt</option><option value="lunch">Lunch</option></select></div>
           <div class="field"><label for="weekdayTitleInput">Wat eet je meestal?</label><input id="weekdayTitleInput" maxlength="120" required placeholder="Bijv. kwark met havermout"></div>
@@ -436,7 +439,28 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   addEntry({id:uniqueId(),title,source:'manual',nutrition});
   el('manualForm').reset();
  });
-  el('weekdaySlot').onchange=loadWeekdayForm;
+  el('importPresetButton').onclick=()=>el('importPresetFile').click();
+ el('importPresetFile').onchange=async event=>{
+  const file=event.target.files[0];
+  event.target.value='';
+  if(!file)return;
+  if(file.size>20000){status('Bestand met standaardmaaltijden is te groot.',true);return;}
+  try{
+   const payload=JSON.parse(await file.text());
+   if(!payload||payload.app!=='mijn-kookboek-vaste-maaltijden'||payload.version!==1||
+     !payload.weekdayPresets||typeof payload.weekdayPresets!=='object'||
+     !SLOTS.every(slot=>payload.weekdayPresets[slot]&&typeof payload.weekdayPresets[slot]==='object'))
+     throw Error('Dit bestand bevat niet beide standaardmaaltijden.');
+   // Hergebruik de bestaande strikte validatie, inclusief kcal, macro's en startdatum.
+   const candidate=cleanData({...state,weekdayPresets:payload.weekdayPresets});
+   const hasCurrent=SLOTS.some(slot=>state.weekdayPresets[slot]);
+   if(hasCurrent&&!window.confirm('De bestaande standaardontbijt- en lunchgegevens worden vervangen. Je overige dagboekregistraties blijven bewaard. Doorgaan?'))return;
+   if(commit(()=>{state.weekdayPresets=candidate.weekdayPresets;})){
+    loadWeekdayForm();status('Ontbijt en lunch zijn ingesteld voor werkdagen. Bestaande dagregistraties en doelen zijn behouden.');
+   }
+  }catch(error){status('Importeren van standaardmaaltijden is niet gelukt: '+error.message,true);}
+ };
+ el('weekdaySlot').onchange=loadWeekdayForm;
  el('weekdayForm').addEventListener('submit',event=>{
   event.preventDefault();
   const slot=el('weekdaySlot').value,title=el('weekdayTitleInput').value.trim(),rawKcal=el('weekdayKcal').value;
