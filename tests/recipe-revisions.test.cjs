@@ -37,18 +37,30 @@ const source=html.slice(before,after);
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ui=new Function('safe',source+'\nreturn {recipeVersion,revisionDateLabel,latestRevisionDate,hasRecordedChanges,recipeRevisionMeta,revisionHistory};')(escape);
 
-test('Alle 28 recepten en 2 varianten hebben een geldige versiegeschiedenis',()=>{
- assert.equal(catalog.length,28);
+test('Alle actuele recepten en varianten hebben een geldige versiegeschiedenis',()=>{
  const variants=catalog.flatMap(r=>r.variants||[]);
- assert.equal(variants.length,2);
+ assert.ok(catalog.length>=30);
+ assert.ok(variants.length>=3);
  for(const r of [...catalog,...variants]){
   assert.ok(Number.isInteger(r.version)&&r.version>=1);
-  assert.equal(r.changeLog.length,r.version-1);
+  assert.equal(r.changeLog.length,r.version-1+(r.changeLog[0]?.version===1?1:0));
   if(r.version===1)assert.equal(r.updatedAt,null);
   else assert.equal(r.updatedAt,r.changeLog.at(-1).date);
  }
  assert.deepEqual(check(catalog).errors,[]);
 });
+test('V1-opnamelog blijft bewaard als een nieuwere versie wordt geregistreerd',()=>{
+ const catalogRecipe=catalog.find(r=>r.id==='hutspot-rookworst-spek-gebakken-ui');
+ const input=clone();
+ const oldHistory=JSON.stringify(catalogRecipe.changeLog);
+ const next=input.find(r=>r.id===catalogRecipe.id);
+ const result=bumpRecipe(input,catalogRecipe.id,'Receptmetadata en oorspronkelijke versie gecontroleerd.',{date:'2026-11-09'});
+ assert.equal(result.version,catalogRecipe.version+1);
+ assert.equal(JSON.stringify(next.changeLog.slice(0,-1)),oldHistory);
+ assert.equal(next.changeLog.at(-1).version,result.version);
+ assert.deepEqual(check(input).errors,[]);
+});
+
 test('Bestaande opnamedatums blijven behouden',()=>{
  assert.equal(catalog.find(x=>x.id==='bruschetta').date,'2026-10-14');
  assert.equal(catalog.find(x=>x.id==='gevuld-kruidenboterstokbrood-kaas-oregano').date,'2026-11-07');
