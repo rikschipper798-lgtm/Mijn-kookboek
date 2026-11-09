@@ -1,8 +1,8 @@
 // Publieke browserconfiguratie. Dit is de PUBLISHABLE key, geen geheim.
-// Cloudaccounts blijven uit tot de Auth Redirect URL is geconfigureerd.
-// Zet active pas op true nadat de terugkeer-URL in Supabase is ingesteld.
+// De gebruiker heeft aangegeven de Auth Redirect URL te hebben ingesteld.
+// Accounts zijn nu geactiveerd; test het aanmeldproces in de browser.
 window.COOKBOOK_CLOUD_CONFIG = {
-  active: false,
+  active: true,
   url: "https://usppeputwknbxayekufe.supabase.co",
   publishableKey: "sb_publishable_dGSzWo8wmqJfxQHVItJztw_n0rzTY4Y"
 };
