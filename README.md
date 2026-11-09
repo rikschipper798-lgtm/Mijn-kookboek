@@ -46,6 +46,15 @@ standaardmaaltijden instellen, zonder ze aan `recepten.json` toe te voegen.
   in hetzelfde dagboek opgeslagen en zijn inbegrepen bij de afzonderlijke export/import.
   Oude dagboekback-ups blijven te importeren.
 
+## Optionele cloudaccounts voor het voedingsdagboek
+
+De website bevat een voorbereide Supabase-koppeling voor persoonlijke
+e-mailaccounts en synchronisatie van voedingsdoelen, vaste maaltijden en
+dagregistraties. De koppeling is **nog niet geactiveerd**: zonder Supabase-
+projectconfiguratie blijft het bestaande lokale dagboek ongewijzigd werken.
+Zie [instellen van accounts, RLS en migratie](supabase/README.md).
+Favorieten, voorraad, boodschappen en kooknotities blijven voorlopig lokaal.
+
 ## Persoonlijk voedingsdagboek
 
 Via **Voedingsdagboek** op de startpagina, of **Registreer maaltijd** op een receptdetail, open je [het voedingsdagboek](https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html).
