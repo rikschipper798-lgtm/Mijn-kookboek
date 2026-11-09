@@ -75,6 +75,11 @@ button:disabled{opacity:.45;cursor:default}
 .week-row span:last-child{font-weight:700}
 .status{font-size:13px;min-height:20px;color:#305d3d}
 .status.error{color:#9c3434}
+.preset-card{border:1px solid #e3eadf;border-radius:10px;background:#f8faf6;padding:12px;margin:9px 0}
+.preset-card strong{display:block}.preset-card span{display:block;font-size:12px;color:#617265;margin-top:4px}
+.preset-check{display:flex;align-items:flex-start;gap:8px;margin:12px 0;font-size:13px;font-weight:650}
+.preset-check input{width:18px;height:18px;min-height:18px;flex:none}
+
 footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
 @media(max-width:760px){.layout{grid-template-columns:1fr}.panel{padding:18px}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.datebar{justify-content:flex-start}}
 @media(max-width:450px){.grid2{grid-template-columns:1fr}.entry-list li{align-items:flex-start}.entry-right{flex-direction:column;align-items:flex-end}.datebar input{max-width:165px}}
@@ -103,7 +108,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
           <div class="muted" id="calorieNote">Nog niets geregistreerd</div>
         </div>
         <div class="metrics" id="metrics"></div>
-        <p class="muted">Dit is je <strong>geregistreerde</strong> inname, niet automatisch je volledige dag. Voedingswaarden van recepten zijn schattingen; bij losse invoer zijn lege macrovelden onbekend en tellen ze niet mee.</p>
+        <p class="muted">Dit is je <strong>geregistreerde</strong> inname, inclusief eventuele automatisch ingevulde standaardmaaltijden (aannames), niet noodzakelijk je werkelijke inname. Voedingswaarden van recepten zijn schattingen; bij losse invoer zijn lege macrovelden onbekend en tellen ze niet mee.</p>
       </section>
       <section class="panel" aria-labelledby="entryTitle">
         <h2 id="entryTitle">Geregistreerde maaltijden</h2>
@@ -140,6 +145,25 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
       </section>
     </div>
     <div>
+      <section class="panel" aria-labelledby="weekdayTitle">
+        <h2 id="weekdayTitle">Vast ontbijt en lunch</h2>
+        <p class="muted">Leg je vaste werkdagmaaltijden vast, zonder ze als recept toe te voegen. Maandag t/m vrijdag worden ze vanaf de insteldatum automatisch ingevuld.</p>
+        <div id="weekdaySummary"></div>
+        <form id="weekdayForm">
+          <div class="field"><label for="weekdaySlot">Maaltijd</label><select id="weekdaySlot"><option value="ontbijt">Ontbijt</option><option value="lunch">Lunch</option></select></div>
+          <div class="field"><label for="weekdayTitleInput">Wat eet je meestal?</label><input id="weekdayTitleInput" maxlength="120" required placeholder="Bijv. kwark met havermout"></div>
+          <div class="grid2">
+            <div class="field"><label for="weekdayKcal">Calorieën (kcal) *</label><input id="weekdayKcal" type="number" required min="0" max="10000"></div>
+            <div class="field"><label for="weekdayProtein">Eiwitten (g)</label><input id="weekdayProtein" type="number" min="0" max="1000" step=".1"></div>
+            <div class="field"><label for="weekdayCarbs">Koolhydraten (g)</label><input id="weekdayCarbs" type="number" min="0" max="1000" step=".1"></div>
+            <div class="field"><label for="weekdayFat">Vetten (g)</label><input id="weekdayFat" type="number" min="0" max="1000" step=".1"></div>
+            <div class="field"><label for="weekdayFiber">Vezels (g)</label><input id="weekdayFiber" type="number" min="0" max="1000" step=".1"></div>
+          </div>
+          <label class="preset-check"><input id="weekdayEnabled" type="checkbox" checked>Automatisch invullen op werkdagen</label>
+          <div class="actions"><button type="submit">Bewaar standaard</button><button type="button" class="danger" id="weekdayDelete">Verwijder standaard</button></div>
+        </form>
+        <p class="muted">Automatische invoer is een <strong>aanname</strong>, geen bevestiging van wat je hebt gegeten. Op afwijkende dagen kun je de maaltijd verwijderen en je werkelijke maaltijd toevoegen. Eerdere registraties blijven bestaan wanneer je een standaard wijzigt.</p>
+      </section>
       <section class="panel" aria-labelledby="goalsTitle">
         <h2 id="goalsTitle">Jouw richtwaarden</h2>
         <p class="muted">Startwaarden voor geleidelijk vetverlies. Ze zijn gebaseerd op je eerder berekende voedingsdoelen en kunnen hier worden aangepast.</p>
