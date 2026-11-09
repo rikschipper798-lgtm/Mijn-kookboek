@@ -107,6 +107,62 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  .primary-nav-count{font-size:11px;min-width:19px;height:19px;padding:0 4px}
 }
 @media print{.primary-nav{display:none!important}}
+
+/* Dagdashboard: dagelijkse intake en maaltijden centraal, overige functies op afroep. */
+header{padding-top:22px;padding-bottom:23px}
+header a{margin-bottom:10px}
+header h1{font-size:clamp(32px,4.5vw,45px)}
+header p{margin-top:7px;font-size:14px;max-width:720px}
+main{padding-top:25px}
+.diary-view-actions{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-bottom:10px}
+.diary-view-actions .datebar{margin:0;display:flex;align-items:end;gap:12px}
+.diary-view-actions .datebar label{font-size:13px}
+.diary-add-trigger{min-height:46px;padding:12px 20px;white-space:nowrap}
+.diary-status{margin:2px 0 15px}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:20px;align-items:start}
+.dashboard-grid>.panel{margin:0}
+.dashboard-grid .panel h2{font-size:clamp(23px,3vw,29px)}
+.dashboard-grid .summary{margin-bottom:17px}
+.meal-entry-editor{border-color:#cbdcc9;background:#fff;box-shadow:0 9px 24px #28402b12;margin-bottom:20px}
+.meal-editor-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.meal-editor-heading h2{margin:0;font-size:26px}
+.meal-editor-heading button{font-size:13px}
+.meal-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:17px 0 22px}
+.meal-choice-button{color:#294935;background:#eef3e9;border:1px solid #d1dfcb;min-height:45px;border-radius:10px}
+.meal-choice-button[aria-pressed="true"]{color:#fff;background:#294935;border-color:#294935}
+.meal-mode h3{color:var(--green);font:500 23px/1.25 Georgia,serif;margin:0 0 10px}
+.meal-mode p.muted{margin:0 0 15px}
+.meal-mode form>.field:first-child{margin-top:7px}
+.meal-mode[hidden],#mealEntryPanel[hidden],#accountTools[hidden]{display:none!important}
+.diary-utilities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:21px;align-items:start}
+.diary-utility{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}
+.diary-utility>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 18px;color:var(--green)}
+.diary-utility>summary::-webkit-details-marker{display:none}
+.diary-utility>summary span{display:block;min-width:0}
+.diary-utility>summary strong{display:block;font-size:15px}
+.diary-utility>summary small{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:4px}
+.diary-utility>summary:after{content:"›";font-size:27px;font-weight:400;line-height:1;color:#69816b;transform:rotate(0deg);transition:transform .2s}
+.diary-utility[open]>summary:after{transform:rotate(90deg)}
+.diary-utility>summary:hover{background:#f5f8f2}
+.diary-utility-body{padding:0 15px 15px;border-top:1px solid #e8ede4}
+.diary-utility-body>.panel{margin:15px 0 0;box-shadow:none;background:#fafbf8;border-color:#e0e8da}
+.diary-utility-body>.panel h2{font-size:clamp(21px,2.4vw,25px)}
+.diary-utility .panel .actions{margin-top:12px}
+.account-utility{margin-top:14px}
+@media(max-width:820px){
+ .dashboard-grid{grid-template-columns:1fr}
+ .diary-utilities{grid-template-columns:1fr}
+ .diary-view-actions{align-items:stretch}
+ .diary-add-trigger{width:100%}
+}
+@media(max-width:450px){
+ .diary-view-actions .datebar{width:100%;justify-content:space-between}
+ .diary-view-actions .datebar>.row{width:100%}
+ .diary-view-actions .datebar input{max-width:unset}
+ .meal-entry-editor{padding:17px}
+ .meal-editor-heading h2{font-size:22px}
+ .diary-utility-body{padding:0 10px 10px}
+}
 </style>
 </head>
 <body>
@@ -122,43 +178,51 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   <p>Registreer je maaltijden, bekijk je geschatte calorieën en vergelijk je dag met je persoonlijke richtwaarden.</p>
 </header>
 <main>
-  <section class="panel" id="cloudPanel" hidden aria-labelledby="cloudPanelTitle">
-    <h2 id="cloudPanelTitle">Mijn persoonlijke account</h2>
-    <div id="cloudLogin">
-      <p class="muted">Log in met je e-mailadres. Je ontvangt een eenmalige inloglink. Je voedingsdoelen en registraties zijn per account gescheiden.</p>
-      <form id="cloudLoginForm" class="cloud-box">
-        <div class="field"><label for="cloudEmail">E-mailadres</label><input id="cloudEmail" required type="email" autocomplete="email" placeholder="jij@voorbeeld.nl"></div>
-        <button id="cloudSignIn" type="submit">Stuur inloglink</button>
-      </form>
-    </div>
-    <div id="cloudUser" hidden>
-      <p class="muted">Ingelogd als <span id="cloudEmailLabel"></span></p>
-      <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudBackup" type="button" class="secondary">Versleutelde back-upopties</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
-      <details id="cloudHistorySection" class="muted">
-        <summary>Eerdere dagboekversies terughalen</summary>
-        <p>Supabase bewaart maximaal drie eerdere versies. Sla eerst eventuele huidige wijzigingen op. Bij het terugzetten blijft de huidige cloudversie als herstelversie beschikbaar.</p>
-        <div class="actions"><button id="cloudHistoryLoad" type="button" class="secondary">Laad eerdere versies</button></div>
-        <div id="cloudHistoryOptions" hidden>
-          <label for="cloudHistorySelect">Kies een eerdere versie</label>
-          <select id="cloudHistorySelect"></select>
-          <button id="cloudHistoryRestore" class="secondary" type="button">Herstel geselecteerde versie</button>
-        </div>
-        <p id="cloudHistoryStatus" class="muted" role="status" aria-live="polite"></p>
-      </details>
-      <details class="muted"><summary>Mijn account en persoonsgegevens verwijderen</summary>
-        <p>Je kunt je account en cloudgegevens definitief verwijderen. Maak eerst een back-up als je iets wilt bewaren. Voor deze handeling wordt tweemaal om bevestiging gevraagd.</p>
-        <button id="cloudDeleteAccount" class="danger" type="button">Account en cloudgegevens definitief verwijderen</button>
-      </details>
-    </div>
-    <p id="cloudStatus" role="status" aria-live="polite"></p>
-  </section>
-  <div id="diaryContent">
+ <div id="diaryContent">
+  <div class="diary-view-actions">
   <div class="datebar">
     <div><label for="selectedDate">Welke dag wil je bekijken?</label><div class="row"><button class="secondary arrow" type="button" id="previousDay" aria-label="Vorige dag">←</button><input type="date" id="selectedDate"><button class="secondary arrow" type="button" id="nextDay" aria-label="Volgende dag">→</button></div></div>
     <button class="secondary" id="today" type="button">Vandaag</button>
   </div>
-  <div class="layout">
-    <div>
+   <button type="button" id="addMealButton" class="diary-add-trigger" aria-expanded="false" aria-controls="mealEntryPanel">+ Maaltijd toevoegen</button>
+  </div>
+  <p role="status" id="status" class="status diary-status" aria-live="polite"></p>
+  <section class="panel meal-entry-editor" id="mealEntryPanel" aria-label="Maaltijd toevoegen" hidden>
+   <div class="meal-editor-heading"><h2>Maaltijd toevoegen</h2><button type="button" class="secondary" id="closeMealEntry">Sluiten</button></div>
+   <div class="meal-choice" role="group" aria-label="Manier van toevoegen">
+    <button type="button" class="meal-choice-button" id="mealRecipeChoice" aria-pressed="true" aria-controls="recipeSection">Uit kookboek</button>
+    <button type="button" class="meal-choice-button" id="mealManualChoice" aria-pressed="false" aria-controls="manualSection">Zelf invoeren</button>
+   </div>
+      <section class="meal-mode" aria-labelledby="recipeTitle" id="recipeSection">
+        <h3 id="recipeTitle">Uit mijn kookboek</h3>
+        <p class="muted">De waarden worden per standaardportie uit het kookboek overgenomen, inclusief de gekozen variant. Je kunt ook een halve portie registreren.</p>
+        <form id="recipeForm">
+          <div class="field"><label for="recipeSelect">Recept</label><select id="recipeSelect" required><option value="">Recepten laden…</option></select></div>
+          <div class="grid2">
+            <div class="field"><label for="recipeQty">Gegeten porties</label><input type="number" min="0.25" max="20" step="0.25" id="recipeQty" value="1" required inputmode="decimal"></div>
+            <div class="field"><label>Geschatte energie</label><div id="recipePreview" class="help">Kies een recept om de calorieën te zien.</div></div>
+          </div>
+          <button type="submit" id="addRecipe">Recept registreren</button>
+        </form>
+      </section>
+      <section class="meal-mode" aria-labelledby="manualTitle" id="manualSection" hidden>
+        <h3 id="manualTitle">Zelf invoeren</h3>
+        <p class="muted">Gebruik de voedingswaarden van een verpakking of een eigen schatting voor de hoeveelheid die je daadwerkelijk hebt gegeten.</p>
+        <form id="manualForm">
+          <div class="field"><label for="manualName">Omschrijving</label><input id="manualName" required maxlength="120" placeholder="Bijv. ontbijt: kwark en banaan"></div>
+          <div class="grid3">
+            <div class="field"><label for="manualKcal">Calorieën (kcal) *</label><input id="manualKcal" required type="number" min="0" max="10000" step="1" inputmode="numeric"></div>
+            <div class="field"><label for="manualProtein">Eiwit (g)</label><input id="manualProtein" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
+            <div class="field"><label for="manualCarbs">Koolhydraten (g)</label><input id="manualCarbs" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
+            <div class="field"><label for="manualFat">Vet (g)</label><input id="manualFat" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
+            <div class="field"><label for="manualFiber">Vezels (g)</label><input id="manualFiber" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
+          </div>
+          <p class="muted">* Alleen calorieën zijn verplicht. Lege velden betekenen 'niet bekend', niet nul.</p>
+          <button type="submit">Voeg toe aan deze dag</button>
+        </form>
+      </section>
+  </section>
+  <div class="dashboard-grid">
       <section class="panel" aria-labelledby="dayTitle">
         <h2 id="dayTitle">Dagoverzicht</h2>
         <div class="summary">
@@ -175,36 +239,26 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
         <p id="emptyEntries" class="muted">Voor deze dag zijn nog geen maaltijden toegevoegd.</p>
         <ul class="entry-list" id="entries"></ul>
       </section>
-      <section class="panel" aria-labelledby="recipeTitle" id="recipeSection">
-        <h2 id="recipeTitle">Voeg een kookboekrecept toe</h2>
-        <p class="muted">De waarden worden per standaardportie uit het kookboek overgenomen, inclusief de gekozen variant. Je kunt ook een halve portie registreren.</p>
-        <form id="recipeForm">
-          <div class="field"><label for="recipeSelect">Recept</label><select id="recipeSelect" required><option value="">Recepten laden…</option></select></div>
-          <div class="grid2">
-            <div class="field"><label for="recipeQty">Gegeten porties</label><input type="number" min="0.25" max="20" step="0.25" id="recipeQty" value="1" required inputmode="decimal"></div>
-            <div class="field"><label>Geschatte energie</label><div id="recipePreview" class="help">Kies een recept om de calorieën te zien.</div></div>
-          </div>
-          <button type="submit" id="addRecipe">Recept registreren</button>
-        </form>
+  </div>
+  <div class="diary-utilities">
+   <details class="diary-utility" id="insightsMenu">
+    <summary><span><strong>Inzichten</strong><small>Weekoverzicht en richtlijn avondeten</small></span></summary>
+    <div class="diary-utility-body">
+      <section class="panel">
+        <h2>Laatste 7 dagen</h2>
+        <div id="weekOverview"></div>
+        <p class="muted">Alleen dagen met registraties tellen mee in het gemiddelde. Een lege dag betekent niet dat je niets hebt gegeten.</p>
       </section>
-      <section class="panel" aria-labelledby="manualTitle">
-        <h2 id="manualTitle">Voeg zelf eten of drinken toe</h2>
-        <p class="muted">Gebruik de voedingswaarden van een verpakking of een eigen schatting voor de hoeveelheid die je daadwerkelijk hebt gegeten.</p>
-        <form id="manualForm">
-          <div class="field"><label for="manualName">Omschrijving</label><input id="manualName" required maxlength="120" placeholder="Bijv. ontbijt: kwark en banaan"></div>
-          <div class="grid3">
-            <div class="field"><label for="manualKcal">Calorieën (kcal) *</label><input id="manualKcal" required type="number" min="0" max="10000" step="1" inputmode="numeric"></div>
-            <div class="field"><label for="manualProtein">Eiwit (g)</label><input id="manualProtein" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
-            <div class="field"><label for="manualCarbs">Koolhydraten (g)</label><input id="manualCarbs" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
-            <div class="field"><label for="manualFat">Vet (g)</label><input id="manualFat" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
-            <div class="field"><label for="manualFiber">Vezels (g)</label><input id="manualFiber" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
-          </div>
-          <p class="muted">* Alleen calorieën zijn verplicht. Lege velden betekenen 'niet bekend', niet nul.</p>
-          <button type="submit">Voeg toe aan deze dag</button>
-        </form>
+      <section class="panel">
+        <h2>Richtlijn avondeten</h2>
+        <ul class="goal-list"><li><span>Energie</span><strong>650–800 kcal</strong></li><li><span>Eiwit</span><strong>40–55 g</strong></li><li><span>Koolhydraten</span><strong>65–95 g</strong></li><li><span>Vet</span><strong>18–28 g</strong></li><li><span>Vezels</span><strong>Min. 10 g</strong></li><li><span>Groenten</span><strong>Min. 250 g</strong></li></ul>
+        <p class="muted">Praktische streefwaarden, geen harde grenzen. De groentehoeveelheid wordt nog niet automatisch bijgehouden.</p>
       </section>
     </div>
-    <div>
+   </details>
+   <details class="diary-utility" id="settingsMenu">
+    <summary><span><strong>Instellingen en beheer</strong><small>Vaste maaltijden, voedingsdoelen en back-ups</small></span></summary>
+    <div class="diary-utility-body">
       <section class="panel" aria-labelledby="weekdayTitle">
         <h2 id="weekdayTitle">Vast ontbijt en lunch</h2>
         <p class="muted">Leg je vaste werkdagmaaltijden vast, zonder ze als recept toe te voegen. Maandag t/m vrijdag worden ze vanaf de insteldatum automatisch ingevuld.</p>
@@ -245,16 +299,6 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
         </details>
       </section>
       <section class="panel">
-        <h2>Richtlijn avondeten</h2>
-        <ul class="goal-list"><li><span>Energie</span><strong>650–800 kcal</strong></li><li><span>Eiwit</span><strong>40–55 g</strong></li><li><span>Koolhydraten</span><strong>65–95 g</strong></li><li><span>Vet</span><strong>18–28 g</strong></li><li><span>Vezels</span><strong>Min. 10 g</strong></li><li><span>Groenten</span><strong>Min. 250 g</strong></li></ul>
-        <p class="muted">Praktische streefwaarden, geen harde grenzen. De groentehoeveelheid wordt nog niet automatisch bijgehouden.</p>
-      </section>
-      <section class="panel">
-        <h2>Laatste 7 dagen</h2>
-        <div id="weekOverview"></div>
-        <p class="muted">Alleen dagen met registraties tellen mee in het gemiddelde. Een lege dag betekent niet dat je niets hebt gegeten.</p>
-      </section>
-      <section class="panel">
         <h2>Privacy en back-up</h2>
         <p id="privacyDescription" class="muted">Je registraties en aangepaste doelen worden uitsluitend in deze browser op dit apparaat opgeslagen, niet in de openbare GitHub-repository. Er is geen automatische synchronisatie met andere apparaten.</p>
         <div class="actions"><button type="button" id="export" class="secondary">Exporteer dagboek (JSON)</button><button type="button" id="importButton" class="secondary">Importeer dagboek</button></div>
@@ -277,10 +321,46 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
         <p class="muted" id="storageCapacity" aria-live="polite"></p>
       </section>
     </div>
+   </details>
   </div>
-  <p role="status" id="status" class="status" aria-live="polite"></p>
+ </div>
+ <details class="diary-utility account-utility" id="accountTools" hidden>
+  <summary><span><strong>Account en synchronisatie</strong><small>Inloggen, gegevens synchroniseren en accountbeheer</small></span></summary>
+  <div class="diary-utility-body">
+  <section class="panel" id="cloudPanel" hidden aria-labelledby="cloudPanelTitle">
+    <h2 id="cloudPanelTitle">Mijn persoonlijke account</h2>
+    <div id="cloudLogin">
+      <p class="muted">Log in met je e-mailadres. Je ontvangt een eenmalige inloglink. Je voedingsdoelen en registraties zijn per account gescheiden.</p>
+      <form id="cloudLoginForm" class="cloud-box">
+        <div class="field"><label for="cloudEmail">E-mailadres</label><input id="cloudEmail" required type="email" autocomplete="email" placeholder="jij@voorbeeld.nl"></div>
+        <button id="cloudSignIn" type="submit">Stuur inloglink</button>
+      </form>
+    </div>
+    <div id="cloudUser" hidden>
+      <p class="muted">Ingelogd als <span id="cloudEmailLabel"></span></p>
+      <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudBackup" type="button" class="secondary">Versleutelde back-upopties</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
+      <details id="cloudHistorySection" class="muted">
+        <summary>Eerdere dagboekversies terughalen</summary>
+        <p>Supabase bewaart maximaal drie eerdere versies. Sla eerst eventuele huidige wijzigingen op. Bij het terugzetten blijft de huidige cloudversie als herstelversie beschikbaar.</p>
+        <div class="actions"><button id="cloudHistoryLoad" type="button" class="secondary">Laad eerdere versies</button></div>
+        <div id="cloudHistoryOptions" hidden>
+          <label for="cloudHistorySelect">Kies een eerdere versie</label>
+          <select id="cloudHistorySelect"></select>
+          <button id="cloudHistoryRestore" class="secondary" type="button">Herstel geselecteerde versie</button>
+        </div>
+        <p id="cloudHistoryStatus" class="muted" role="status" aria-live="polite"></p>
+      </details>
+      <details class="muted"><summary>Mijn account en persoonsgegevens verwijderen</summary>
+        <p>Je kunt je account en cloudgegevens definitief verwijderen. Maak eerst een back-up als je iets wilt bewaren. Voor deze handeling wordt tweemaal om bevestiging gevraagd.</p>
+        <button id="cloudDeleteAccount" class="danger" type="button">Account en cloudgegevens definitief verwijderen</button>
+      </details>
+    </div>
+    <p id="cloudStatus" role="status" aria-live="polite"></p>
+  </section>
   </div>
+ </details>
 </main>
+
 <footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden · <a href="./privacy.html">Privacy en gegevensbeheer</a></footer>
 <script src="./cloud-config.js"></script>
 <script src="./voeding-cloud.js"></script>
@@ -309,6 +389,8 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  const newState=()=>({goals:{...DEFAULTS},days:{},weekdayPresets:{},weekdayApplied:{}});
  const cloudMode=Boolean(window.CookbookCloud&&window.CookbookCloud.enabled);
  let cloudReady=!cloudMode;
+ el('accountTools').hidden=!cloudMode;
+ el('accountTools').open=cloudMode&&!cloudReady;
  if(cloudMode)el('privacyDescription').textContent='Als je bent ingelogd, staan je persoonlijke voedingsdoelen, vaste maaltijden en dagregistraties in de beveiligde clouddatabase van de gekoppelde inlogdienst. Ze worden niet in GitHub gepubliceerd. Gegevens worden per account gescheiden via databasebeveiliging. Houd rekening met een internetverbinding om wijzigingen te synchroniseren.';
  let state=newState(),recipeOptions=[],selectedDay=today(),presetLinkHandled=false;
  function status(message,error=false){el('status').textContent=message;el('status').classList.toggle('error',error);}
@@ -441,8 +523,10 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  }
  function currentEntries(){return state.days[selectedDay]||[];}
  function addEntry(entry){
-  if(commit(()=>{if(!state.days[selectedDay])state.days[selectedDay]=[];state.days[selectedDay].push(entry);}))
-   status('Maaltijd geregistreerd voor '+selectedDay+(cloudMode?'. Controleer de synchronisatiestatus bovenaan.':'.'));
+  if(commit(()=>{if(!state.days[selectedDay])state.days[selectedDay]=[];state.days[selectedDay].push(entry);})){
+   showMealEntry(null);
+   status('Maaltijd geregistreerd voor '+selectedDay+(cloudMode?'. Controleer de synchronisatiestatus bij Account en synchronisatie.':'.'));
+  }
  }
  function totals(entries){
   const out={};const missing={};
@@ -491,6 +575,21 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   }
   el('weekOverview').innerHTML=rows.join('')+'<p class="muted"><strong>'+(count?fmt(sum/count)+' kcal gemiddeld over '+count+' geregistreerde '+(count===1?'dag':'dagen'):'Nog geen geregistreerde dagen')+'</strong></p>';
  }
+ function showMealEntry(mode,focus=false){
+  const recipe=mode==='recipe',manual=mode==='manual',open=recipe||manual;
+  el('mealEntryPanel').hidden=!open;
+  el('addMealButton').setAttribute('aria-expanded',String(open));
+  el('recipeSection').hidden=!recipe;
+  el('manualSection').hidden=!manual;
+  el('mealRecipeChoice').setAttribute('aria-pressed',String(recipe));
+  el('mealManualChoice').setAttribute('aria-pressed',String(manual));
+  if(open&&focus)el(recipe?'recipeSelect':'manualName').focus({preventScroll:true});
+ }
+ el('addMealButton').onclick=()=>showMealEntry(el('mealEntryPanel').hidden?'recipe':null,true);
+ el('closeMealEntry').onclick=()=>{showMealEntry(null);el('addMealButton').focus();};
+ el('mealRecipeChoice').onclick=()=>showMealEntry('recipe',true);
+ el('mealManualChoice').onclick=()=>showMealEntry('manual',true);
+ if(new URLSearchParams(location.search).has('recept'))showMealEntry('recipe');
  el('selectedDate').value=selectedDay;
  el('selectedDate').addEventListener('change',event=>{if(dateValid(event.target.value)){selectedDay=event.target.value;render();}});
  el('previousDay').onclick=()=>shiftDay(-1);
@@ -766,8 +865,13 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
    getState(){return state;},
    restoreVersion(data){const cleaned=cleanData(data);return commit(()=>{state=cleaned;});},
    validateData(data){return data?cleanData(data):null;},
-   onData(data){state=data?cleanData(data):newState();cloudReady=true;render();loadWeekdayForm();processPresetLink();},
-   onLogout(){cloudReady=false;state=newState();render();}
+   onData(data){
+    const wasLocked=!cloudReady;
+    state=data?cleanData(data):newState();cloudReady=true;
+    if(wasLocked)el('accountTools').open=false;
+    render();loadWeekdayForm();processPresetLink();
+   },
+   onLogout(){cloudReady=false;state=newState();el('accountTools').open=true;render();}
   });
  }
 })();
