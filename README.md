@@ -67,6 +67,9 @@ gewijzigd, blijft de lokale versie bewaard en moet de gebruiker bewust kiezen:
 eerst **Exporteer dagboek** en daarna **Cloud opnieuw laden**. Een geldige
 opgeslagen inlogsessie maakt ook offline herstel van een bestaande herstelkopie
 mogelijk; een serverrevisie wordt gecontroleerd vóór de volgende upload.
+Na een succesvolle online installatie bewaart de PWA ook de benodigde publieke
+Supabase-inlogbibliotheek voor offline gebruik. Zonder eerdere installatie,
+geldige sessie of lokale herstelkopie is offline herstel niet gegarandeerd.
 
 Als lokaal opslaan mislukt, wordt de wijziging teruggedraaid. Dit is geen
 vervanging voor echte back-ups: het verwijderen van browsergegevens verwijdert
