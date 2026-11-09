@@ -1,11 +1,10 @@
 name: Versleutelde databaseback-up
 
-# De planning wordt pas ingeschakeld nadat de twee secrets zijn ingesteld
-# en een handmatige back-up plus herstelcontrole geslaagd zijn.
-# Dan de volgende regels inschakelen:
-#   schedule:
-#     - cron: '17 3 * * *'
+# Eerste versleutelde databaseback-up geslaagd op 9 november 2026.
+# Dagelijkse back-up om 03.17 UTC; handmatige uitvoering blijft mogelijk.
 on:
+  schedule:
+    - cron: '17 3 * * *'
   workflow_dispatch:
 
 permissions:
