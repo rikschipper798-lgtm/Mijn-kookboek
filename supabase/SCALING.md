@@ -17,6 +17,16 @@ normalisatie nu zou het aantal writes en synchronisatierisico's verhogen zonder
 dat er momenteel gebruikersdata zijn. Er is nog geen productietest met echte
 gebruikers uitgevoerd.
 
+## Huidige preventieve limieten
+
+De browser berekent vóór het opslaan het aantal UTF-8-bytes van het JSON-
+dagboek en weigert een wijziging zodra dit meer dan 1.800.000 bytes zou
+opleveren. Vanaf 1.200.000 bytes wordt de gebruiker gewaarschuwd.
+PostgreSQL bewaakt daarnaast de bestaande limiet van 2 MiB per dagboek.
+Hierdoor worden onnodige synchronisatieconflicten bij zeer grote bestanden
+voorkomen. Administratieve statistieken staan in
+[monitoring.sql](monitoring.sql).
+
 ## Wat we periodiek moeten meten
 
 - **Documentgrootte per account**: `octet_length(diary::text)`. De huidige
