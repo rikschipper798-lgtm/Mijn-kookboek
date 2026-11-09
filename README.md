@@ -56,6 +56,19 @@ als de veilige applicatielimiet nadert. Er staat nog geen automatische,
 onafhankelijke off-site back-up aan. Zie
 [Operationeel draaiboek: SMTP, back-ups en privacy](supabase/OPERATIONS.md).
 
+## Back-ups en productie-e-mails
+
+Een dagelijkse, buiten Supabase opgeslagen en versleutelde back-upworkflow
+staat klaar in [GitHub Actions](.github/workflows/backup-database.yml).
+**Automatische back-ups zijn nog niet actief** totdat twee repositorysecrets
+veilig zijn ingesteld en de eerste hersteltest slaagt. Zie
+[BACKUP-AUTOMATION.md](supabase/BACKUP-AUTOMATION.md).
+
+Voor inloggen door externe gebruikers is ook een eigen SMTP-provider nodig.
+De Nederlandstalige e-mailtemplate en instructies staan in
+[SMTP-SETUP.md](supabase/SMTP-SETUP.md); deze providerkoppeling is nog niet
+actief.
+
 ## Optionele cloudaccounts voor het voedingsdagboek
 
 De website bevat een voorbereide Supabase-koppeling voor persoonlijke
