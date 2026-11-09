@@ -30,7 +30,7 @@ Voeg **Repository secrets** toe:
 | Secret | Waarde | Waar te vinden |
 | --- | --- | --- |
 | `SUPABASE_BACKUP_DB_URL` | PostgreSQL-connectiestring van het Supabase-project `Mijn Kookboek`, inclusief databasewachtwoord, bij voorkeur de **Session Pooler** over TLS | Supabase Dashboard > Project > Connect |
-| `BACKUP_ENCRYPTION_KEY_BASE64` | Nieuw, sterk willekeurig 32-byte encryptiegeheim in Base64-formaat | Genereer uitsluitend op je eigen apparaat: `openssl rand -base64 32` |
+| `BACKUP_ENCRYPTION_KEY_BASE64` | Nieuw, sterk willekeurig 32-byte encryptiegeheim in Base64-formaat | Genereer op je apparaat via de [lokale browsergenerator](../backup-sleutel.html) of op een computer met `openssl rand -base64 32` |
 
 Gebruik voor de connection string de Session Pooler die een GitHub Actions-runner
 via IPv4 kan bereiken. Een direct database-adres kan in sommige netwerken
@@ -43,6 +43,20 @@ geplande runner-uitvoering.
 
 De repository bevat geen cloud-secret, databasewachtwoord of export van
 bestaande gebruikersgegevens.
+
+### Ook mogelijk op je telefoon
+
+Open [Back-upsleutel maken](../backup-sleutel.html) via de beveiligde
+GitHub Pages-website. Klik op **Genereer veilige sleutel**, bewaar deze in
+je eigen wachtwoordbeheerder en kopieer de waarde daarna rechtstreeks
+naar de GitHub Secret `BACKUP_ENCRYPTION_KEY_BASE64`. De pagina gebruikt
+uitsluitend `crypto.getRandomValues`; er zijn geen externe scripts of
+netwerkverzoeken. Het gegenereerde geheim wordt niet in je browseropslag
+bewaard. Bewaar het dus zelf veilig, buiten GitHub.
+
+Laat `SUPABASE_BACKUP_DB_URL` uitsluitend via de geheime GitHub Secrets-
+instellingen invullen; stuur de volledige connection string, het
+databasewachtwoord of de encryptiesleutel niet via ChatGPT.
 
 ## Eerste test en activeren
 
