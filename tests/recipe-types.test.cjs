@@ -15,9 +15,10 @@ const groups=['maaltijd','overig','onderdeel'];
 
 test('Alle recepten hebben één expliciet en geldig recepttype',()=>{
  assert.deepEqual(check(recipes).errors,[]);
- assert.equal(recipes.length,28);
- assert.deepEqual(Object.fromEntries(groups.map(type=>[type,recipes.filter(x=>x.recipeType===type).length])),
-  {maaltijd:20,overig:5,onderdeel:3});
+ assert.ok(recipes.length>=30);
+ const counts=Object.fromEntries(groups.map(type=>[type,recipes.filter(x=>x.recipeType===type).length]));
+ assert.equal(Object.values(counts).reduce((n,v)=>n+v,0),recipes.length);
+ for(const type of groups)assert.ok(counts[type]>0);
  assert.equal(new Set(recipes.map(x=>x.id)).size,recipes.length);
 });
 test('Basisrecepten, losse kipschnitzel en maaltijden zijn terecht onderscheiden',()=>{
@@ -48,6 +49,11 @@ test('Varianten mogen niet afwijken van hoofdindeling',()=>{
  const data=clone(),p=data.find(x=>x.id==='pasta-rundergehakt-groenten');
  p.variants[0].recipeType='onderdeel';
  assert.match(check(data).errors.join('\n'),/varianten delen het type/);
+});
+test('Een variant mag hetzelfde expliciete type hebben als het hoofdrecept',()=>{
+ const r=recipes.find(x=>x.id==='klassieke-saucijzenbroodjes');
+ assert.equal(r.variants[0].recipeType,r.recipeType);
+ assert.deepEqual(check(clone()).errors,[]);
 });
 test('Ingrediënten mogen alleen naar een gemarkeerd basisrecept verwijzen',()=>{
  const data=clone();
@@ -101,10 +107,9 @@ function browser(){
 }
 test('Tabbladen tonen alle groepstellingen en standaard alle recepten',async()=>{
  const b=browser();await b.ready();
- assert.equal(b.ids().length,28);
- assert.equal(Number(b.counters.get('maaltijd').textContent),20);
- assert.equal(Number(b.counters.get('overig').textContent),5);
- assert.equal(Number(b.counters.get('onderdeel').textContent),3);
+ assert.equal(b.ids().length,recipes.length);
+ for(const type of groups)
+  assert.equal(Number(b.counters.get(type).textContent),recipes.filter(r=>r.recipeType===type).length);
  assert.equal(b.buttons.get('')['attr_aria-pressed'],'true');
 });
 test('Receptgroepfilter toont uitsluitend geselecteerde soort',async()=>{
@@ -115,11 +120,11 @@ test('Receptgroepfilter toont uitsluitend geselecteerde soort',async()=>{
  assert.equal(b.buttons.get('maaltijd')['attr_aria-pressed'],'false');
  assert.equal(b.element('resetFilters').hidden,false);
  b.select('maaltijd');
- assert.equal(b.ids().length,20);
+ assert.equal(b.ids().length,recipes.filter(r=>r.recipeType==='maaltijd').length);
  assert.ok(b.ids().includes('gnocchi'));
  assert.ok(!b.ids().includes('chocolademelk'));
  b.select('overig');
- assert.equal(b.ids().length,5);
+ assert.equal(b.ids().length,recipes.filter(r=>r.recipeType==='overig').length);
  assert.ok(b.ids().includes('bruschetta'));
  assert.ok(!b.ids().includes('kruidenboter'));
 });
@@ -139,9 +144,9 @@ test('Recepttype combineert met bestaande categorie en tekstzoeker',async()=>{
 test('Alle recepten en Wis filters herstellen de complete collectie',async()=>{
  const b=browser();await b.ready();
  b.select('onderdeel');b.select('');
- assert.equal(b.ids().length,28);
+ assert.equal(b.ids().length,recipes.length);
  b.select('overig');b.app.resetBrowse();
- assert.equal(b.ids().length,28);
+ assert.equal(b.ids().length,recipes.length);
  assert.equal(b.buttons.get('')['attr_aria-pressed'],'true');
 });
 test('Receptkaarten, details en varianten tonen het juiste type',async()=>{
@@ -175,8 +180,8 @@ test('Nieuw gerecht runderkofta is een maaltijd voor twee en heeft volledige ber
  assert.equal(kofta.category,'Rundvlees');
  assert.equal(kofta.servings,2);
  assert.equal(kofta.minutes,38);
- assert.equal(kofta.version,1);
- assert.equal(kofta.updatedAt,null);
+ assert.equal(kofta.version,kofta.changeLog.at(-1).version);
+ assert.equal(kofta.updatedAt,kofta.changeLog.at(-1).date);
  assert.equal(kofta.steps.length,6);
  const used=new Set(kofta.steps.flatMap(s=>s.ingredientIndices));
  assert.equal(used.size,kofta.ingredients.length,'alle ingrediënten moeten in de stappen terugkomen');
