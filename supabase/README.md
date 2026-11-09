@@ -1,6 +1,31 @@
 # Persoonlijke accounts en cloudsync voor het voedingsdagboek
 
-**Status 9 november 2026:** De eigenaar heeft bevestigd dat de Auth Redirect URL is ingesteld; daarop is de cloudkoppeling geactiveerd via `cloud-config.js` (`active: true`). Supabase-project, beveiligde database en RLS zijn ingericht en gecontroleerd. De **echte magic-link-login en synchronisatie op twee apparaten** moeten nog met een gebruikersaccount worden getest.
+**Status 9 november 2026:** De Supabase Auth-koppeling, RLS en accountgebonden browserherstel zijn ingericht. De instelpagina voor vaste maaltijden gebruikt dezelfde beveiligde dagboekroute. Er is een geschiedenis van maximaal drie eerdere cloudversies en een serverfunctie voor zelfverwijdering van het account. De broncode en gesimuleerde regressiescenario's zijn gecontroleerd; een echte e-mailinlog-, herstel- en verwijdertest met een gebruikersaccount moet nog worden uitgevoerd.
+
+## Herstelgeschiedenis en accountverwijdering
+
+`public.nutrition_diary_history` bewaart bij een wijziging maximaal drie
+eerdere dagboekstanden. Een trigger in het niet-openbare `app_private`-schema
+legt ze vast. Gebruikers kunnen uitsluitend hun eigen historie lezen en niet
+rechtstreeks wijzigen. De knop **Eerdere dagboekversies terughalen** verwerkt
+herstel via dezelfde lokale herstelkopie en revisiecontrole als normale invoer.
+
+De gedeployde `delete-my-account` Edge Function controleert een geldige
+gebruikerssessie via Supabase Auth en verwijdert daarna uitsluitend het
+aangemelde account. Hiervoor is tweevoudige bevestiging nodig. De server
+houdt de geheime beheersleutel buiten de browser; de geschiedenis en het
+dagboek worden via databasecascades verwijderd. Gedownloade back-ups op
+andere apparaten blijven de verantwoordelijkheid van de gebruiker.
+
+De echte accountverwijdering is niet uitgevoerd, om geen gebruikersdata
+zonder noodzaak te vernietigen.
+
+## Schema-evolutie
+
+De database heeft `schema_version` en minimale JSONB-structuurvalidatie.
+Zie [SCALING.md](SCALING.md) voor de gecontroleerde migratie naar
+genormaliseerde tabellen. Die omschakeling is niet geactiveerd omdat eerst
+echte gebruikers- en prestatiemetingen nodig zijn.
 
 ## Betrouwbaarheid van cloudsync – herstelbare wachtrij
 
