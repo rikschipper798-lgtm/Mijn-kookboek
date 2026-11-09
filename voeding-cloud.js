@@ -14,6 +14,7 @@
  let client=null,hooks=null,user=null,revision=0,ready=false,loading=false;
  let draft=null,conflict=false,sending=false,refreshing=false,timer=null;
  let generation=0,edits=0,needsVerification=false;
+ let historyRows=new Map();
 
  function notify(message,error=false){
   const node=el('cloudStatus');if(!node)return;
@@ -69,6 +70,7 @@
   generation++;stopTimer();
   user=null;revision=0;ready=false;loading=false;draft=null;
   sending=false;refreshing=false;conflict=false;edits=0;needsVerification=false;
+  historyRows.clear();
   if(hooks)hooks.onLogout();
   view();
  }
@@ -360,6 +362,48 @@
    }catch(err){
     notify('Verwijderen is niet bevestigd: '+err.message+'. Controleer eerst je accountstatus voordat je opnieuw probeert.',true);
    }finally{button.disabled=false;}
+  };
+  el('cloudHistoryLoad').onclick=async()=>{
+   if(!user||!ready||draft||sending||conflict){
+    notify('Synchroniseer eerst je openstaande wijzigingen voordat je een eerdere versie ophaalt.',true);return;
+   }
+   const token=generation,account=user.id;
+   el('cloudHistoryLoad').disabled=true;
+   el('cloudHistoryStatus').textContent='Eerdere versies ophalen…';
+   try{
+    const result=await client.from('nutrition_diary_history')
+     .select('revision,saved_at,diary').eq('user_id',account)
+     .order('revision',{ascending:false}).limit(3);
+    if(token!==generation||user?.id!==account)return;
+    if(result.error)throw result.error;
+    historyRows.clear();
+    for(const entry of result.data||[]){
+     const rev=Number(entry.revision);
+     if(!Number.isSafeInteger(rev)||rev<1)continue;
+     historyRows.set(String(rev),entry);
+    }
+    el('cloudHistoryOptions').hidden=historyRows.size===0;
+    el('cloudHistorySelect').innerHTML=[...historyRows.entries()].map(([rev,row])=>
+      '<option value="'+rev+'">Versie '+rev+' · '+new Date(row.saved_at).toLocaleString('nl-NL')+'</option>').join('');
+    el('cloudHistoryStatus').textContent=historyRows.size
+      ?historyRows.size+' eerdere versie(s) beschikbaar.':'Er zijn nog geen eerdere versies opgeslagen.';
+   }catch(error){
+    el('cloudHistoryStatus').textContent='Ophalen mislukt: '+error.message;
+   }finally{el('cloudHistoryLoad').disabled=false;}
+  };
+  el('cloudHistoryRestore').onclick=()=>{
+   if(!user||!ready||draft||sending||conflict){
+    notify('Los eerst de openstaande synchronisatie op voordat je een versie herstelt.',true);return;
+   }
+   const entry=historyRows.get(el('cloudHistorySelect').value);
+   if(!entry){notify('Kies eerst een versie.',true);return;}
+   if(!window.confirm('Je gaat een oudere dagboekversie herstellen. De huidige versie wordt als herstelversie bewaard zodra de cloud de wijziging accepteert. Doorgaan?'))return;
+   try{
+    const validated=hooks.validateData(entry.diary);
+    if(!hooks.restoreVersion(validated))throw Error('De herstelactie is niet veilig opgeslagen.');
+    historyRows.clear();el('cloudHistoryOptions').hidden=true;
+    notify('De vorige dagboekversie is lokaal hersteld. Wacht tot de cloudsync is bevestigd.');
+   }catch(error){notify('Herstellen is mislukt: '+error.message,true);}
   };
   el('cloudRefresh').onclick=()=>{if(draft&&!conflict)void flush();else void refresh(Boolean(conflict));};
   try{
