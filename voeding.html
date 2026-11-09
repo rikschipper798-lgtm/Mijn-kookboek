@@ -234,9 +234,23 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
       <section class="panel">
         <h2>Privacy en back-up</h2>
         <p id="privacyDescription" class="muted">Je registraties en aangepaste doelen worden uitsluitend in deze browser op dit apparaat opgeslagen, niet in de openbare GitHub-repository. Er is geen automatische synchronisatie met andere apparaten.</p>
-        <div class="actions"><button type="button" id="export" class="secondary">Exporteer dagboek</button><button type="button" id="importButton" class="secondary">Importeer dagboek</button></div>
+        <div class="actions"><button type="button" id="export" class="secondary">Exporteer dagboek (JSON)</button><button type="button" id="importButton" class="secondary">Importeer dagboek</button></div>
+        <details id="secureBackupOptions">
+          <summary>Versleutelde back-up maken</summary>
+          <p class="muted">Een versleutelde back-up kun je veiliger buiten dit apparaat bewaren. Kies een eigen wachtzin van minimaal 12 tekens. Deze wordt niet opgeslagen; zonder wachtzin kun je de back-up niet herstellen.</p>
+          <div class="grid2">
+            <div class="field"><label for="backupPass">Wachtzin</label><input id="backupPass" type="password" autocomplete="new-password" minlength="12" placeholder="Minimaal 12 tekens"></div>
+            <div class="field"><label for="backupPassConfirm">Herhaal wachtzin</label><input id="backupPassConfirm" type="password" autocomplete="new-password" minlength="12"></div>
+          </div>
+          <button type="button" class="secondary" id="backupEncrypted">Download versleutelde back-up</button>
+        </details>
+        <div id="backupDecryptBox" hidden>
+          <p class="muted">Dit bestand is versleuteld. Vul de bijbehorende wachtzin in om het terug te zetten. Er wordt niets overschreven voordat je bevestigt.</p>
+          <div class="field"><label for="backupDecryptPass">Wachtzin van de back-up</label><input id="backupDecryptPass" type="password" autocomplete="off"></div>
+          <div class="actions"><button id="backupDecrypt" type="button" class="secondary">Ontsleutel en controleer back-up</button><button id="backupDecryptCancel" type="button" class="secondary">Annuleren</button></div>
+        </div>
         <input id="importFile" type="file" accept=".json,application/json" hidden aria-label="Importeer voedingsdagboek">
-        <p class="muted">Bewaar het exportbestand veilig. Dit dagboek heeft een eigen back-up, apart van de algemene kookboek-back-up. Importeren vervangt de bestaande voedingsregistraties en doelen.</p>
+        <p class="muted">Een gewone JSON-export is <strong>niet versleuteld</strong>. Bewaar die daarom afgeschermd. Een versleutelde back-up kun je later met je wachtzin importeren. Importeren vervangt pas na jouw bevestiging de bestaande registraties en doelen.</p>
       </section>
     </div>
   </div>
@@ -246,6 +260,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
 <footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden · <a href="./privacy.html">Privacy en gegevensbeheer</a></footer>
 <script src="./cloud-config.js"></script>
 <script src="./voeding-cloud.js"></script>
+<script src="./voeding-backup.js"></script>
 <script>
 'use strict';
 (function(){
