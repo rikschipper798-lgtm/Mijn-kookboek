@@ -1,14 +1,14 @@
 'use strict';
 // Bestandsversie: verhoog deze waarde bij wijzigingen aan offline infrastructuur.
 // index.html en recepten.json worden online altijd opnieuw opgehaald.
-const CACHE_VERSION='2026-11-09-diary-durable-recovery-v12';
+const CACHE_VERSION='2026-11-09-diary-governance-v13';
 const CORE_CACHE='mijn-kookboek-pwa-core-'+CACHE_VERSION;
 const IMAGE_CACHE='mijn-kookboek-pwa-images-'+CACHE_VERSION;
 const CACHE_PREFIX='mijn-kookboek-pwa-';
 const SCOPE=self.registration.scope;
 const ROOT=new URL('./',SCOPE);
 const CLOUD_SDK_URL='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0';
-const CORE_ASSETS=['index.html','voeding.html','voeding-cloud.js','cloud-config.js','instellen-vaste-maaltijden.html','pantry.js','recepten.json','manifest.webmanifest',
+const CORE_ASSETS=['index.html','voeding.html','voeding-cloud.js','cloud-config.js','instellen-vaste-maaltijden.html','privacy.html','pantry.js','recepten.json','manifest.webmanifest',
  'icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png'];
 // Afbeeldingen komen uit dezelfde receptenlijst die de website gebruikt.
 // Zowel basisrecepten als varianten worden meegenomen. Dubbele paden slechts één keer.
