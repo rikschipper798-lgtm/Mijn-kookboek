@@ -70,3 +70,20 @@ rejects('Dubbele variant-ID wordt afgekeurd',data=>{
 rejects('Onjuiste afrondstap voor eieren wordt afgekeurd',data=>{
  data.find(x=>x.id==='chocolade-lavacake-pure-chocolade').ingredients.find(x=>x.scaleRoundTo).qty=3;
 },/niet deelbaar/);
+
+test('Bladerdeegplakjes en vastgelegde oorspronkelijke v1-log zijn geldig',()=>{
+ const data=clone();
+ const saucijzen=data.find(r=>r.id==='klassieke-saucijzenbroodjes');
+ assert.equal(saucijzen.ingredients[0].unit,'plakjes');
+ assert.equal(saucijzen.variants[0].recipeType,saucijzen.recipeType);
+ assert.equal(saucijzen.changeLog[0].version,1);
+ assert.deepEqual(check(data).errors,[]);
+});
+rejects('Oorspronkelijke v1-log moet overeenkomen met opnamedatum',data=>{
+ const r=data.find(x=>x.id==='klassieke-saucijzenbroodjes');
+ r.changeLog[0].date='2026-11-09';
+},/oorspronkelijke v1-opname/);
+rejects('Ontbrekende revisie in v1-geschiedenis wordt afgekeurd',data=>{
+ const r=data.find(x=>x.id==='klassieke-saucijzenbroodjes');
+ r.changeLog.splice(1,1);
+},/precies één wijzigingsregel/);
