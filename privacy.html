@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="nl">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy en gegevensbeheer · Mijn Kookboek</title>
+<meta name="description" content="Hoe het persoonlijke voedingsdagboek je gegevens opslaat, synchroniseert en verwijdert.">
+<style>
+:root{font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:#253a2a;background:#fafaf7}
+*{box-sizing:border-box}body{margin:0}header{background:#21422e;color:#fff;padding:32px max(20px,calc((100vw - 760px)/2))}
+header a{color:#eaf2e7}h1{font:500 clamp(32px,5vw,48px) Georgia,serif;margin:12px 0 0}
+main{max-width:760px;margin:34px auto;padding:0 20px 60px}section{margin:25px 0;padding:0 0 12px;border-bottom:1px solid #d9e3d9}
+h2{font:500 25px Georgia,serif;color:#21422e}p,li{max-width:70ch}
+a{color:#245539}footer{padding:20px;text-align:center;border-top:1px solid #d9e3d9;color:#66736a}
+.note{background:#eef3eb;padding:15px 18px;border-radius:12px}
+</style></head>
+<body><header><a href="./voeding.html">← Naar mijn voedingsdagboek</a><h1>Privacy en gegevensbeheer</h1></header>
+<main>
+<p class="note"><strong>Persoonlijke gegevens zijn niet openbaar.</strong> Dit is de technische privacy-uitleg voor het voedingsdagboek. Voor gebruik door een grotere externe gebruikersgroep moeten de contactgegevens van de verwerkingsverantwoordelijke, juridische grondslag en overige formele privacyafspraken nog worden vastgesteld.</p>
+<section><h2>Welke gegevens worden opgeslagen?</h2>
+<p>Wanneer je inlogt, gebruikt de applicatie je e-mailadres en de gebruikersidentificatie van Supabase Authentication. In het voedingsdagboek kun je voedingsdoelen, vaste ontbijt- en lunchmaaltijden, voedingswaarden, eetregistraties en datums opslaan. Deze gegevens staan in een afgeschermde database bij Supabase.</p>
+<p>De openbare recepten, receptenfoto’s en code staan in GitHub. Jouw persoonlijke dagboek wordt niet aan <code>recepten.json</code> of de openbare repository toegevoegd.</p></section>
+<section><h2>Waar en hoe worden gegevens bewaard?</h2>
+<p>Supabase verzorgt het inloggen en de opslag van je voedingsdagboek in een project in de regio <strong>eu-central-1</strong> (Duitsland). De database gebruikt Row Level Security zodat ingelogde gebruikers alleen hun eigen dagboek kunnen ophalen en wijzigen. De publiek zichtbare publishable key is geen beheersleutel.</p>
+<p>De browser bewaart een inlogsessie en, als er wijzigingen op synchronisatie wachten, een <strong>accountgebonden lokale herstelkopie</strong>. Deze kopie kan op hetzelfde apparaat zichtbaar blijven totdat de upload bevestigd is. Gebruikers van dezelfde browser of personen met toegang tot je ontgrendelde apparaat kunnen plaatselijke gegevens mogelijk bekijken.</p>
+<p>Als je je browsergegevens verwijdert of privé/incognito gebruikt, kunnen lokaal bewaarde gegevens verdwijnen. Een niet-gesynchroniseerde wijziging kan dan verloren gaan.</p></section>
+<section><h2>Waarom gebruiken we deze gegevens?</h2>
+<p>Om je persoonlijke voedingsdagboek te tonen, jouw doelen en maaltijden te bewaren en je registraties tussen apparaten te synchroniseren. De actuele dagboekfunctie heeft geen ingebouwde mogelijkheid om je voedingsgegevens te delen met andere bezoekers.</p></section>
+<section><h2>Exporteren, aanpassen en verwijderen</h2>
+<p>Je kunt je maaltijden en doelen in het voedingsdagboek aanpassen. Via <strong>Exporteer dagboek</strong> maak je zelf een JSON-back-up. Bewaar dit bestand veilig; een gedownloade back-up valt buiten de automatische cloudverwijdering.</p>
+<p>Via <strong>Mijn persoonlijke account → Mijn account en persoonsgegevens verwijderen</strong> kun je na twee bevestigingen je account en de bijbehorende cloudregistraties definitief laten verwijderen. De applicatie wist dan ook de herstelkopie van dat account en de oudere lokale dagboekopslag in de gebruikte browser. Andere browsers, handmatig gedownloade bestanden en externe back-ups worden niet automatisch gewist.</p></section>
+<section><h2>Bewaartermijn en herstel</h2>
+<p>Je actieve voedingsdagboek blijft bewaard totdat het wordt gewijzigd of het account wordt verwijderd, zolang de dienst beschikbaar is. Voor het gratis hostingabonnement is geen gegarandeerde automatische herstelback-up ingeregeld. Download daarom periodiek een eigen export. Bij een tijdelijke netwerkstoring houdt de browser een herstelkopie aan; dat is geen volledige back-up.</p></section>
+<section><h2>Toegang en hulp</h2>
+<p>Je beheert je eigen gegevens via het voedingsdagboek. De projectbeheerder heeft technische beheertoegang tot Supabase. Voor formeel extern gebruik moeten diens contactgegevens en een volledig privacybeleid nog worden ingevuld. Deel geen persoonlijke voedingsinformatie in openbare GitHub-issues.</p></section>
+</main><footer>Mijn Kookboek · Privacy-uitleg · 9 november 2026</footer></body></html>
