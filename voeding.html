@@ -218,7 +218,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
       </section>
       <section class="panel">
         <h2>Privacy en back-up</h2>
-        <p class="muted">Je registraties en aangepaste doelen worden uitsluitend in deze browser op dit apparaat opgeslagen, niet in de openbare GitHub-repository. Er is geen automatische synchronisatie met andere apparaten.</p>
+        <p id="privacyDescription" class="muted">Je registraties en aangepaste doelen worden uitsluitend in deze browser op dit apparaat opgeslagen, niet in de openbare GitHub-repository. Er is geen automatische synchronisatie met andere apparaten.</p>
         <div class="actions"><button type="button" id="export" class="secondary">Exporteer dagboek</button><button type="button" id="importButton" class="secondary">Importeer dagboek</button></div>
         <input id="importFile" type="file" accept=".json,application/json" hidden aria-label="Importeer voedingsdagboek">
         <p class="muted">Bewaar het exportbestand veilig. Dit dagboek heeft een eigen back-up, apart van de algemene kookboek-back-up. Importeren vervangt de bestaande voedingsregistraties en doelen.</p>
@@ -248,6 +248,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  const newState=()=>({goals:{...DEFAULTS},days:{},weekdayPresets:{},weekdayApplied:{}});
  const cloudMode=Boolean(window.CookbookCloud&&window.CookbookCloud.enabled);
  let cloudReady=!cloudMode;
+ if(cloudMode)el('privacyDescription').textContent='Als je bent ingelogd, staan je persoonlijke voedingsdoelen, vaste maaltijden en dagregistraties in de beveiligde clouddatabase van de gekoppelde inlogdienst. Ze worden niet in GitHub gepubliceerd. Gegevens worden per account gescheiden via databasebeveiliging. Houd rekening met een internetverbinding om wijzigingen te synchroniseren.';
  let state=newState(),recipeOptions=[],selectedDay=today();
  function status(message,error=false){el('status').textContent=message;el('status').classList.toggle('error',error);}
  function cleanData(data){
@@ -355,7 +356,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  function currentEntries(){return state.days[selectedDay]||[];}
  function addEntry(entry){
   if(commit(()=>{if(!state.days[selectedDay])state.days[selectedDay]=[];state.days[selectedDay].push(entry);}))
-   status('Maaltijd opgeslagen voor '+selectedDay+'.');
+   status('Maaltijd geregistreerd voor '+selectedDay+(cloudMode?'. Controleer de synchronisatiestatus bovenaan.':'.'));
  }
  function totals(entries){
   const out={};const missing={};
@@ -573,7 +574,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
     status('Controleer de ingevulde richtwaarden.',true);return;
    }
   }
-  if(commit(()=>{state.goals=next;})){el('editGoals').open=false;status('Richtwaarden opgeslagen op dit apparaat.');}
+  if(commit(()=>{state.goals=next;})){el('editGoals').open=false;status(cloudMode?'Richtwaarden gewijzigd. Controleer hierboven of de synchronisatie is gelukt.':'Richtwaarden opgeslagen op dit apparaat.');}
  });
  el('export').onclick=()=>{
   try{
@@ -597,7 +598,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
     throw Error('Dit is geen ondersteund bestand voor het voedingsdagboek.');
    const imported=cleanData(payload.data);
    if(!window.confirm('Dit vervangt al je huidige voedingsregistraties en richtwaarden op dit apparaat. Doorgaan?'))return;
-   if(commit(()=>{state=imported;}))status('Voedingsdagboek hersteld vanuit het importbestand.');
+   if(commit(()=>{state=imported;}))status(cloudMode?'Dagboek op dit scherm hersteld; wacht op cloudsync voordat je de pagina sluit.':'Voedingsdagboek hersteld vanuit het importbestand.');
   }catch(error){status('Importeren mislukt: '+error.message,true);}
  };
  render();
