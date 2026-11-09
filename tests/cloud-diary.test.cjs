@@ -180,7 +180,8 @@ test('Een tweede apparaat met verouderde revisie overschrijft het eerste niet',a
 test('Lokale herstelkopieën van verschillende accounts worden niet gecombineerd',async()=>{
  const db=makeDb(),shared=makeStorage();
  const a=harness(db,'alice',shared),b=harness(db,'bob',shared);
- await a.start();a.enqueue(diary(300));
+ await a.start();db.failNextWrite();a.enqueue(diary(300));
+ await wait(); // Simuleer een onderbroken upload: account A behoudt zijn herstelkopie.
  await b.start();assert.equal(b.state,null);
  b.enqueue(diary(500));
  assert.equal(countPending(shared),2);
