@@ -75,6 +75,12 @@ button:disabled{opacity:.45;cursor:default}
 .week-row span:last-child{font-weight:700}
 .status{font-size:13px;min-height:20px;color:#305d3d}
 .status.error{color:#9c3434}
+#cloudPanel[hidden],#diaryContent[hidden],#cloudLogin[hidden],#cloudUser[hidden]{display:none!important}
+#cloudPanel{border-color:#c9decb;background:#f7faf5}
+.cloud-box{display:flex;flex-wrap:wrap;align-items:center;gap:15px}
+.cloud-box .field{flex:1;min-width:180px}.cloud-box button{flex:none}
+#cloudStatus{font-size:13px;margin:12px 0 0;color:#48614d}
+#cloudStatus.error{color:#983e36}
 .preset-card{border:1px solid #e3eadf;border-radius:10px;background:#f8faf6;padding:12px;margin:9px 0}
 .preset-card strong{display:block}.preset-card span{display:block;font-size:12px;color:#617265;margin-top:4px}
 .preset-check{display:flex;align-items:flex-start;gap:8px;margin:12px 0;font-size:13px;font-weight:650}
@@ -93,6 +99,22 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   <p>Registreer je maaltijden, bekijk je geschatte calorieën en vergelijk je dag met je persoonlijke richtwaarden.</p>
 </header>
 <main>
+  <section class="panel" id="cloudPanel" hidden aria-labelledby="cloudPanelTitle">
+    <h2 id="cloudPanelTitle">Mijn persoonlijke account</h2>
+    <div id="cloudLogin">
+      <p class="muted">Log in met je e-mailadres. Je ontvangt een eenmalige inloglink. Je voedingsdoelen en registraties zijn per account gescheiden.</p>
+      <form id="cloudLoginForm" class="cloud-box">
+        <div class="field"><label for="cloudEmail">E-mailadres</label><input id="cloudEmail" required type="email" autocomplete="email" placeholder="jij@voorbeeld.nl"></div>
+        <button id="cloudSignIn" type="submit">Stuur inloglink</button>
+      </form>
+    </div>
+    <div id="cloudUser" hidden>
+      <p class="muted">Ingelogd als <span id="cloudEmailLabel"></span></p>
+      <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
+    </div>
+    <p id="cloudStatus" role="status" aria-live="polite"></p>
+  </section>
+  <div id="diaryContent">
   <div class="datebar">
     <div><label for="selectedDate">Welke dag wil je bekijken?</label><div class="row"><button class="secondary arrow" type="button" id="previousDay" aria-label="Vorige dag">←</button><input type="date" id="selectedDate"><button class="secondary arrow" type="button" id="nextDay" aria-label="Volgende dag">→</button></div></div>
     <button class="secondary" id="today" type="button">Vandaag</button>
@@ -204,8 +226,11 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
     </div>
   </div>
   <p role="status" id="status" class="status" aria-live="polite"></p>
+  </div>
 </main>
 <footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden</footer>
+<script src="./cloud-config.js"></script>
+<script src="./voeding-cloud.js"></script>
 <script>
 'use strict';
 (function(){
