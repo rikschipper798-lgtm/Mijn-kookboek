@@ -50,8 +50,7 @@ standaardmaaltijden instellen, zonder ze aan `recepten.json` toe te voegen.
 
 De website bevat een voorbereide Supabase-koppeling voor persoonlijke
 e-mailaccounts en synchronisatie van voedingsdoelen, vaste maaltijden en
-dagregistraties. De koppeling is **nog niet geactiveerd**: zonder Supabase-
-projectconfiguratie blijft het bestaande lokale dagboek ongewijzigd werken.
+dagregistraties. De Supabase-database, RLS en publieke browserconfiguratie zijn uitgevoerd; de login blijft **nog niet geactiveerd** totdat de Auth Redirect URL is ingesteld. Het bestaande lokale dagboek blijft daarom ongewijzigd werken.
 Zie [instellen van accounts, RLS en migratie](supabase/README.md).
 Favorieten, voorraad, boodschappen en kooknotities blijven voorlopig lokaal.
 
