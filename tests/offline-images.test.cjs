@@ -201,3 +201,15 @@ test('Inlogbibliotheek is offline beschikbaar na een online PWA-installatie',asy
  assert.equal(response.status,200);
  assert.match(await response.text(),/supabase-js@2\.119\.0/);
 });
+
+test('Versleutelde back-upmodule blijft offline beschikbaar in de PWA',async()=>{
+ const pwa=createWorker([catalog[0]]);
+ await pwa.install();
+ const core=await pwa.cacheFor('core');
+ const cached=await core.match(baseUrl+'voeding-backup.js');
+ assert.ok(cached,'De back-upmodule moet gecachet zijn.');
+ pwa.state.online=false;
+ const response=await pwa.dispatch('fetch',new Request(baseUrl+'voeding-backup.js'));
+ assert.equal(response.status,200);
+ assert.match(await response.text(),/voeding-backup\.js/);
+});
