@@ -51,6 +51,8 @@
   const identity=session?.user;
   if(!identity){reset();return;}
   if(user?.id===identity.id&&(ready||loading))return;
+  // A different account must never see the previous account's open diary.
+  if(user?.id&&user.id!==identity.id&&hooks)hooks.onLogout();
   const requestId=++loadId;
   user=identity;ready=false;loading=true;pending=null;revision=0;conflict=false;
   display();
@@ -113,7 +115,8 @@
     }
     if(user?.id!==account)return;
     if(result.error||!result.data){
-     pending=value;
+     // Keep newer edits if the user changed something while the request was pending.
+     if(!pending)pending=value;
      const likelyConflict=!result.error||result.error.code==='23505';
      if(likelyConflict){
       conflict=true;
@@ -137,15 +140,18 @@
    return;
   }
   if(force&&pending&&!window.confirm('Er staan niet-gesynchroniseerde wijzigingen op dit scherm. Maak eerst een back-up. Wil je ze nu overschrijven met de cloudversie?'))return;
-  if(force){pending=null;conflict=false;}
   if(onlineSyncing)return;
   onlineSyncing=true;
   try{
    const record=await remoteRow(user);
-   if(!record){if(force){revision=0;hooks.onData(null);}return;}
+   if(!record){
+    if(force){hooks.onData(null);revision=0;pending=null;conflict=false;}
+    return;
+   }
    if(record.revision!==revision||force){
-    revision=record.revision;
     hooks.onData(record.diary);
+    revision=record.revision;
+    if(force){pending=null;conflict=false;}
     setStatus('Nieuwste cloudversie geladen.');
    }else if(force)setStatus('Je dagboek was al bijgewerkt.');
   }catch(error){
@@ -176,6 +182,7 @@
    if((pending||sending)&&!window.confirm('Niet alle wijzigingen zijn gesynchroniseerd. Wil je toch uitloggen?'))return;
    const result=await client.auth.signOut();
    if(result.error)setStatus('Uitloggen mislukt: '+result.error.message,true);
+   else{reset();setStatus('Uitgelogd. Je persoonlijke dagboek is gesloten.');}
   };
   el('cloudRefresh').onclick=()=>{if(conflict)void refresh(true);else if(pending)void flush();else void refresh(true);};
   try{
@@ -203,6 +210,11 @@
    });
    document.addEventListener('visibilitychange',()=>{
     if(document.visibilityState==='visible'&&ready&&!pending)void refresh();
+   });
+   window.addEventListener('beforeunload',event=>{
+    if(!pending&&!sending)return;
+    event.preventDefault();
+    event.returnValue='';
    });
   }catch(error){setStatus('Accounts kunnen nog niet worden gestart: '+error.message,true);}
  }
