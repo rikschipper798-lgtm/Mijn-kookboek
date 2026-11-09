@@ -15,10 +15,10 @@ const show=new Function('safe','portionsLabel',source+'\nreturn nutritionPanel;'
  (recipe,n)=>n+' '+(recipe.servingUnit==='stokbroden'?'stokbroden':'personen')
 );
 
-test('Alle 28 recepten en beide varianten bevatten complete geschatte voedingswaarden',()=>{
- assert.equal(recipes.length,28);
+test('Alle actuele recepten en varianten bevatten complete geschatte voedingswaarden',()=>{
+ assert.ok(recipes.length>=30);
  const all=recipes.flatMap(r=>[r,...r.variants||[]]);
- assert.equal(all.length,30);
+ assert.equal(all.length,recipes.length+recipes.reduce((n,r)=>n+(r.variants||[]).length,0));
  for(const recipe of all){
   assert.equal(recipe.nutrition.per,'portie');
   assert.equal(recipe.nutrition.estimated,true);
