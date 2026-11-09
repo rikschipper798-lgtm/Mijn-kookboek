@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#294935">
+<title>Vaste maaltijden instellen · Mijn Kookboek</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#243c2b;background:#faf9f5}
+*{box-sizing:border-box}body{margin:0}
+header{padding:30px max(22px,calc((100vw - 700px)/2));background:linear-gradient(120deg,#1b3d2b,#416c4b);color:white}
+header a{color:#e8eee4;text-decoration:none;font-size:14px}header h1{font:500 clamp(34px,6vw,52px) Georgia,serif;margin:18px 0 8px}
+header p{color:#e3eade;line-height:1.6}
+main{max-width:700px;margin:28px auto;padding:0 17px 50px}
+.panel{background:white;border:1px solid #e2e6df;border-radius:18px;padding:25px;box-shadow:0 6px 24px #34403413}
+h2{font:500 25px Georgia,serif;margin:0 0 14px}
+.meal{border:1px solid #e1e9dc;background:#f7faf6;border-radius:12px;padding:16px;margin:12px 0}
+.meal h3{font-size:17px;margin:0 0 7px}
+.meal p{font-size:14px;line-height:1.6;margin:0 0 7px}
+.meal strong{font-size:21px}
+p.note{font-size:13px;line-height:1.6;color:#5f7265}
+button,a.btn{display:inline-block;border:0;border-radius:11px;padding:13px 19px;cursor:pointer;background:#294935;color:white;text-decoration:none;font-weight:750;font:700 15px system-ui;min-height:47px}
+button:disabled{opacity:.55}
+a.btn{background:#e7f0e6;color:#294935}
+button:hover{background:#1a3f28}
+#result{border-radius:10px;margin-top:18px;padding:12px 14px;font-size:14px}
+#result:not(:empty){background:#ecf5ec}
+#result.error{background:#fff0ed;color:#853e37}
+:focus-visible{outline:3px solid #c38d60;outline-offset:3px}
+</style>
+</head>
+<body>
+<header><a href="./voeding.html">← Terug naar voedingsdagboek</a><h1>Vaste maaltijden instellen</h1><p>Neem je persoonlijke ontbijt- en lunchstandaarden over zonder bestand te uploaden.</p></header>
+<main><section class="panel">
+<h2>Controleer de gegevens</h2>
+<div id="preview"><p>Gegevens controleren…</p></div>
+<p class="note">Na bevestiging worden alleen de twee standaarden in de browser van dit apparaat opgeslagen. Automatische registraties op de geselecteerde werkdag worden bijgewerkt. Zelf ingevoerde maaltijden en je voedingsdoelen blijven behouden. Deze instellingen worden niet naar de openbare receptenlijst verzonden.</p>
+<button id="apply" type="button" disabled>Stel ontbijt en lunch in</button>
+<div id="result" role="status" aria-live="polite"></div>
+<p id="continue" hidden><a class="btn" href="./voeding.html?v=20261109">Open mijn voedingsdagboek</a></p>
+</section></main>
+<script>
+'use strict';
+(function(){
+ const KEY='mijn-kookboek-voedingsdagboek',SLOTS=['ontbijt','lunch'],MACROS=['kcal','proteinG','carbsG','fatG','fiberG'];
+ const $=id=>document.getElementById(id);
+ const defaults={kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5};
+ const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const date=()=>new Date().toLocaleDateString('sv-SE');
+ const validDate=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&new Date(v+'T12:00:00').toLocaleDateString('sv-SE')===v;
+ let payload;
+ function message(s,error=false){$('result').textContent=s;$('result').classList.toggle('error',error);}
+ function validate(data){
+  if(!data||data.app!=='mijn-kookboek-vaste-maaltijden'||data.version!==1||!data.weekdayPresets)throw Error('Deze instellink bevat geen geldige standaardmaaltijden.');
+  const p={};
+  for(const slot of SLOTS){
+   const meal=data.weekdayPresets[slot];
+   if(!meal||typeof meal.title!=='string'||!meal.title.trim()||meal.title.length>120||
+      !validDate(meal.startDate)||typeof meal.enabled!=='boolean'||!meal.nutrition||
+      !MACROS.every(k=>meal.nutrition[k]===null||Number.isFinite(meal.nutrition[k])&&meal.nutrition[k]>=0&&meal.nutrition[k]<=10000))
+      throw Error('Onvolledige of onjuiste gegevens voor '+slot+'.');
+   p[slot]={title:meal.title,enabled:meal.enabled,startDate:meal.startDate,nutrition:Object.fromEntries(MACROS.map(k=>[k,meal.nutrition[k]]))};
+  }
+  return p;
+ }
+ try{
+  const prefix='#gegevens=';
+  if(!location.hash.startsWith(prefix))throw Error('De link bevat geen maaltijdgegevens. Open de volledige instellink uit het gesprek.');
+  const input=decodeURIComponent(location.hash.slice(prefix.length));
+  payload=validate(JSON.parse(input));
+  $('preview').innerHTML=SLOTS.map(slot=>{
+   const m=payload[slot];
+   return '<div class="meal"><h3>'+(slot==='ontbijt'?'Ontbijt':'Lunch')+'</h3><p>'+escape(m.title)+'</p><strong>'+m.nutrition.kcal.toLocaleString('nl-NL')+' kcal</strong></div>';
+  }).join('');
+  $('apply').disabled=false;
+ }catch(error){
+  $('preview').textContent='Geen geldige maaltijdgegevens gevonden.';
+  message(error.message,true);
+ }
+ $('apply').onclick=()=>{
+  if(!payload)return;
+  try{
+   const existing=localStorage.getItem(KEY);
+   const state=existing?JSON.parse(existing):{goals:{...defaults},days:{},weekdayPresets:{},weekdayApplied:{}};
+   if(!state||typeof state!=='object'||!state.goals||!state.days||typeof state.days!=='object'||Array.isArray(state.days))
+    throw Error('De bestaande gegevens hebben een onverwachte structuur. Maak eerst een back-up.');
+   state.weekdayPresets={...payload};
+   state.weekdayApplied ||= {};
+   const current=date(),wd=new Date(current+'T12:00:00').getDay();
+   if(wd>=1&&wd<=5){
+    const rows=state.days[current]||[];
+    for(const slot of SLOTS){
+     const p=payload[slot];if(!p.enabled||current<p.startDate)continue;
+     const found=rows.filter(x=>x&&x.source==='preset'&&typeof x.title==='string'&&x.title.startsWith('Standaard '+slot+':'));
+     if(found.length){
+      found[0].title='Standaard '+slot+': '+p.title;
+      found[0].nutrition={...p.nutrition};
+      for(const dup of found.slice(1)){const at=rows.indexOf(dup);if(at>=0)rows.splice(at,1);}
+     }else{
+      rows.push({id:String(Date.now())+'-'+slot,source:'preset',title:'Standaard '+slot+': '+p.title,nutrition:{...p.nutrition}});
+     }
+     state.weekdayApplied[current] ||= [];
+     if(!state.weekdayApplied[current].includes(slot))state.weekdayApplied[current].push(slot);
+    }
+    state.days[current]=rows;
+   }
+   localStorage.setItem(KEY,JSON.stringify(state));
+   history.replaceState(null,'',location.pathname+location.search);
+   $('continue').hidden=false;
+   $('apply').disabled=true;
+   message('Opgeslagen op dit apparaat. Het ontbijt is '+payload.ontbijt.nutrition.kcal+' kcal en de lunch '+payload.lunch.nutrition.kcal+' kcal. Open nu je voedingsdagboek.');
+  }catch(e){message('Instellen is niet gelukt: '+e.message,true);}
+ };
+})();
+</script>
+</body>
+</html>
