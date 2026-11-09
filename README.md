@@ -52,17 +52,18 @@ Het voedingsdagboek ondersteunt naast de bestaande JSON-export nu ook een
 **versleutelde, met wachtzin beschermde back-up**. De wachtzin wordt niet
 opgeslagen; je kunt het bestand met dezelfde wachtzin later importeren.
 Op de dagboekpagina zie je ook de huidige gegevensomvang en een waarschuwing
-als de veilige applicatielimiet nadert. Er staat nog geen automatische,
-onafhankelijke off-site back-up aan. Zie
+als de veilige applicatielimiet nadert. Sinds 9 november 2026 is ook een
+dagelijkse versleutelde databaseback-up via GitHub Actions ingepland. Zie
 [Operationeel draaiboek: SMTP, back-ups en privacy](supabase/OPERATIONS.md).
 
 ## Back-ups en productie-e-mails
 
-Een dagelijkse, buiten Supabase opgeslagen en versleutelde back-upworkflow
-staat klaar in [GitHub Actions](.github/workflows/backup-database.yml).
-**Automatische back-ups zijn nog niet actief** totdat twee repositorysecrets
-veilig zijn ingesteld, de eerste hersteltest slaagt en de dagelijkse planning
-expliciet wordt ingeschakeld. Zie
+De dagelijkse, buiten Supabase opgeslagen en versleutelde back-upworkflow
+staat **aan** in [GitHub Actions](.github/workflows/backup-database.yml).
+De eerste back-up op **9 november 2026** is geslaagd, inclusief
+cryptografische controle en controle van de PostgreSQL-archiefstructuur.
+De eerste geplande uitvoering en een volledige testrestore naar een aparte
+database moeten nog worden gecontroleerd. Zie
 [BACKUP-AUTOMATION.md](supabase/BACKUP-AUTOMATION.md).
 
 Voor inloggen door externe gebruikers is ook een eigen SMTP-provider nodig.
