@@ -595,6 +595,7 @@ body.cook-active{overflow:hidden}
 @media(max-width:850px){.recipe-type-switcher{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.recipe-type-option{min-height:62px}}
 @media print{.recipe-type-switcher{display:none!important}}
+.nav-diary{display:inline-flex;align-items:center;text-decoration:none;justify-content:center}
 </style>
 </head>
 <body>
@@ -636,6 +637,7 @@ body.cook-active{overflow:hidden}
    <button id="cookedOnly" type="button" class="pill" aria-pressed="false">✓ Eerder gekookt</button>
   <button id="shoppingNav" type="button" class="pill browse-shopping">Boodschappenlijst (<span id="basketCount">0</span>)</button>
    <button id="pantryNav" type="button" class="pill">Mijn voorraad</button>
+   <a href="./voeding.html" class="pill nav-diary">Voedingsdagboek</a>
  </div>
 </div>
 <div class="result-summary"><p class="count" id="count" role="status" aria-live="polite">Recepten laden…</p><button type="button" id="resetFilters" class="reset-filters" hidden>Wis filters</button></div>
@@ -2176,6 +2178,7 @@ function renderDetail(){
  '<button class="btn cook-start-button" id="startCooking">Start kookmodus</button>'+
  '<button class="btn alt" id="addBasket">Voeg toe aan boodschappenlijst</button>'+
  '<button class="btn alt" id="goBasket">Bekijk boodschappenlijst</button>'+
+ '<a class="btn alt" href="./voeding.html?recept='+encodeURIComponent(r.id)+'&variant='+encodeURIComponent(variantId)+'">Registreer maaltijd</a>'+
  '<button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button>'+
  '<details class="recipe-more-actions"><summary>Meer acties</summary><div class="recipe-secondary-actions">'+
  '<button class="btn alt" id="copy">Kopieer recept</button>'+
