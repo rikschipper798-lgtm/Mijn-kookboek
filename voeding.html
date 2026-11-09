@@ -638,31 +638,79 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   }
   if(commit(()=>{state.goals=next;})){el('editGoals').open=false;status(cloudMode?'Richtwaarden gewijzigd. Controleer hierboven of de synchronisatie is gelukt.':'Richtwaarden opgeslagen op dit apparaat.');}
  });
+ function downloadBackup(payload,filename){
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),anchor=document.createElement('a');
+  anchor.href=url;anchor.download=filename;
+  document.body.appendChild(anchor);anchor.click();anchor.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+ }
+ const currentExport=()=>({app:'mijn-kookboek-voedingsdagboek',version:1,
+  exportedAt:new Date().toISOString(),data:state});
  el('export').onclick=()=>{
   try{
-   const payload={app:'mijn-kookboek-voedingsdagboek',version:1,exportedAt:new Date().toISOString(),data:state};
-   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
-   const url=URL.createObjectURL(blob),anchor=document.createElement('a');
-   anchor.href=url;anchor.download='voedingsdagboek-'+today()+'.json';
-   document.body.appendChild(anchor);anchor.click();anchor.remove();
-   setTimeout(()=>URL.revokeObjectURL(url),1000);
-   status('Exportbestand aangemaakt. Controleer je downloads.');
+   downloadBackup(currentExport(),'voedingsdagboek-'+today()+'.json');
+   status('Gewone JSON-export gemaakt (niet versleuteld). Bewaar het bestand veilig.');
   }catch(e){status('Exporteren is niet gelukt.',true);}
  };
+ el('backupEncrypted').onclick=async()=>{
+  const pass=el('backupPass').value,confirmation=el('backupPassConfirm').value;
+  if(pass.length<12){status('Gebruik een wachtzin van minimaal 12 tekens.',true);return;}
+  if(pass!==confirmation){status('De twee wachtzinnen komen niet overeen.',true);return;}
+  const button=el('backupEncrypted');button.disabled=true;
+  try{
+   const encrypted=await window.CookbookBackup.encrypt(currentExport(),pass);
+   downloadBackup(encrypted,'voedingsdagboek-versleuteld-'+today()+'.json');
+   status('Versleutelde back-up aangemaakt. Bewaar de wachtzin apart en controleer je downloads.');
+  }catch(e){status('Versleutelde back-up maken is mislukt: '+e.message,true);}
+  finally{el('backupPass').value='';el('backupPassConfirm').value='';button.disabled=false;}
+ };
+ let encryptedImport=null;
+ function clearEncryptedImport(){
+  encryptedImport=null;
+  el('backupDecryptPass').value='';
+  el('backupDecryptBox').hidden=true;
+ }
+ function restorePayload(payload){
+  if(payload.app==='mijn-kookboek-vaste-maaltijden')return importPresets(payload);
+  if(payload.app!=='mijn-kookboek-voedingsdagboek'||payload.version!==1)
+   throw Error('Dit is geen ondersteund voedingsdagboekbestand.');
+  const imported=cleanData(payload.data);
+  if(!window.confirm('Dit vervangt je huidige voedingsregistraties en richtwaarden, ook in de cloud zodra synchronisatie lukt. Wil je doorgaan?'))return false;
+  if(!commit(()=>{state=imported;}))return false;
+  status(cloudMode?'Herstel lokaal opgeslagen; controleer de synchronisatiestatus voordat je de pagina sluit.':'Voedingsdagboek hersteld.');
+  return true;
+ }
  el('importButton').onclick=()=>el('importFile').click();
  el('importFile').onchange=async event=>{
   const file=event.target.files[0];event.target.value='';if(!file)return;
-  if(file.size>2*1024*1024){status('Bestand is te groot (maximaal 2 MB).',true);return;}
+  if(file.size>3*1024*1024){status('Bestand is te groot (maximaal 3 MB).',true);return;}
   try{
    const payload=JSON.parse(await file.text());
-   if(payload.app==='mijn-kookboek-vaste-maaltijden'){importPresets(payload);return;}
-   if(payload.app!=='mijn-kookboek-voedingsdagboek'||payload.version!==1)
-    throw Error('Dit is geen ondersteund bestand voor het voedingsdagboek.');
-   const imported=cleanData(payload.data);
-   if(!window.confirm('Dit vervangt al je huidige voedingsregistraties en richtwaarden op dit apparaat. Doorgaan?'))return;
-   if(commit(()=>{state=imported;}))status(cloudMode?'Dagboek op dit scherm hersteld; wacht op cloudsync voordat je de pagina sluit.':'Voedingsdagboek hersteld vanuit het importbestand.');
+   if(window.CookbookBackup.isEncrypted(payload)){
+    clearEncryptedImport();
+    encryptedImport=payload;
+    el('backupDecryptBox').hidden=false;
+    el('backupDecryptPass').focus();
+    status('Versleutelde back-up herkend. Vul de wachtzin in.');
+    return;
+   }
+   clearEncryptedImport();
+   restorePayload(payload);
   }catch(error){status('Importeren mislukt: '+error.message,true);}
  };
+ el('backupDecryptCancel').onclick=clearEncryptedImport;
+ el('backupDecrypt').onclick=async()=>{
+  if(!encryptedImport)return;
+  const pass=el('backupDecryptPass').value;
+  const button=el('backupDecrypt');button.disabled=true;
+  try{
+   const payload=await window.CookbookBackup.decrypt(encryptedImport,pass);
+   if(restorePayload(payload))clearEncryptedImport();
+  }catch(error){status('Ontsleutelen/importeren mislukt: '+error.message,true);}
+  finally{el('backupDecryptPass').value='';button.disabled=false;}
+ };
+
  render();
  loadWeekdayForm();
  fetchRecipes();
