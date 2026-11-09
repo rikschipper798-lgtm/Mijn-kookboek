@@ -80,3 +80,41 @@ test('Directe instelpagina verwijst na controle naar voedingsdagboek zonder zelf
  assert.equal(forwarded.weekdayPresets.ontbijt.nutrition.kcal,276);
  assert.equal(forwarded.weekdayPresets.lunch.nutrition.kcal,516);
 });
+
+test('Dagboek wijst te grote nieuwe wijzigingen af vóór cloudupload',()=>{
+ const inline=html.match(/<script>\s*'use strict';[\s\S]*?<\/script>/);
+ assert.ok(inline);
+ const vm=require('node:vm');
+ const entries=Array.from({length:100},(_,i)=>({
+  id:'line-'+i,title:'A'.repeat(200),source:'manual',
+  nutrition:{kcal:100,proteinG:10,carbsG:15,fatG:5,fiberG:2}
+ }));
+ const days={};
+ for(let i=0;i<75;i++){
+  const date=new Date('2026-01-01T12:00:00Z');date.setUTCDate(date.getUTCDate()+i);
+  days[date.toISOString().slice(0,10)]=entries;
+ }
+ const oversized={goals:{kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5},
+  days,weekdayPresets:{},weekdayApplied:{}};
+ let cloudWrites=0;const elements={},events={};
+ const el=id=>elements[id]??={value:'',checked:false,disabled:false,hidden:false,
+  style:{},innerHTML:'',textContent:'',dataset:{},classList:{toggle(){}},
+  setAttribute(){},addEventListener(k,fn){(events[id]??={})[k]=fn;},
+  focus(){},reset(){}};
+ const sandbox={
+  window:{CookbookCloud:{enabled:true,start(callbacks){callbacks.onData(oversized)},
+   enqueue(){cloudWrites++;return true;}},confirm(){return true;}},
+  document:{getElementById:el},location:{search:'',hash:''},
+  localStorage:{getItem(){return null},setItem(){}},
+  fetch:async()=>({ok:true,json:async()=>[]}),URLSearchParams,Date,Math,JSON,Error,Promise,Number,String,
+  setTimeout(){return 0;}
+ };
+ vm.runInNewContext(inline[0].replace(/^<script>/,'').replace(/<\/script>$/,''),sandbox,{timeout:4000});
+ el('manualName').value='Nog een maaltijd';
+ el('manualKcal').value='200';
+ for(const id of ['manualProtein','manualCarbs','manualFat','manualFiber'])el(id).value='';
+ events.manualForm.submit({preventDefault(){}});
+ assert.equal(cloudWrites,0);
+ assert.match(el('status').textContent,/opslaglimiet/);
+ assert.match(el('storageCapacity').textContent,/Dagboekgrootte/);
+});
