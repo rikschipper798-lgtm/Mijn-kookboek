@@ -12,7 +12,10 @@ create table if not exists public.nutrition_diaries (
 alter table public.nutrition_diaries enable row level security;
 
 -- Beperk Data API-toegang: alleen ingelogde gebruikers, nooit anoniem.
-revoke all on table public.nutrition_diaries from anon;
+-- Supabase-projecten kunnen extra standaardrechten aan authenticated geven.
+-- Trek daarom eerst ALLE rechten in (inclusief DELETE en TRUNCATE) en
+-- verleen daarna uitsluitend de rechten die deze app nodig heeft.
+revoke all privileges on table public.nutrition_diaries from anon, authenticated, public;
 grant select, insert, update on table public.nutrition_diaries to authenticated;
 
 drop policy if exists "Own diary read" on public.nutrition_diaries;
