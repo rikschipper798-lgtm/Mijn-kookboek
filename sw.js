@@ -1,13 +1,13 @@
 'use strict';
 // Bestandsversie: verhoog deze waarde bij wijzigingen aan offline infrastructuur.
 // index.html en recepten.json worden online altijd opnieuw opgehaald.
-const CACHE_VERSION='2026-11-09-nutrition-diary-direct-setup-v5';
+const CACHE_VERSION='2026-11-09-diary-accounts-scaffold-v6';
 const CORE_CACHE='mijn-kookboek-pwa-core-'+CACHE_VERSION;
 const IMAGE_CACHE='mijn-kookboek-pwa-images-'+CACHE_VERSION;
 const CACHE_PREFIX='mijn-kookboek-pwa-';
 const SCOPE=self.registration.scope;
 const ROOT=new URL('./',SCOPE);
-const CORE_ASSETS=['index.html','voeding.html','instellen-vaste-maaltijden.html','pantry.js','recepten.json','manifest.webmanifest',
+const CORE_ASSETS=['index.html','voeding.html','voeding-cloud.js','cloud-config.js','instellen-vaste-maaltijden.html','pantry.js','recepten.json','manifest.webmanifest',
  'icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png'];
 // Afbeeldingen komen uit dezelfde receptenlijst die de website gebruikt.
 // Zowel basisrecepten als varianten worden meegenomen. Dubbele paden slechts één keer.
@@ -143,7 +143,10 @@ self.addEventListener('fetch',event=>{
   }));
  }else if(pathname.startsWith('images/')){
   event.respondWith(imageWithRefresh(event));
- }else if(pathname==='pantry.js'||pathname==='manifest.webmanifest'||pathname.startsWith('icons/')){
+ }else if(pathname==='cloud-config.js'){
+  // Public client configuration must refresh when the cloud backend is enabled.
+  event.respondWith(networkFirst(request,CORE_CACHE));
+ }else if(pathname==='voeding-cloud.js'||pathname==='pantry.js'||pathname==='manifest.webmanifest'||pathname.startsWith('icons/')){
   event.respondWith(cacheFirst(request,CORE_CACHE));
  }
 });
