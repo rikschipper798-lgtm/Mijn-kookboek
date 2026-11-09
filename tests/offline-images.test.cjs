@@ -188,3 +188,16 @@ test('Voorraadmodule is offline beschikbaar na de eerste installatie',async()=>{
  assert.equal(response.status,200);
  assert.match(await response.text(),/pantry\.js/);
 });
+
+test('Inlogbibliotheek is offline beschikbaar na een online PWA-installatie',async()=>{
+ const pwa=createWorker([catalog[0]]);
+ await pwa.install();
+ const cache=await pwa.cacheFor('core');
+ assert.ok(await cache.match('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0'),
+   'De externe inlogbibliotheek moet worden opgeslagen voor offline herstel');
+ pwa.state.online=false;
+ const request=new Request('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0',{mode:'no-cors'});
+ const response=await pwa.dispatch('fetch',request);
+ assert.equal(response.status,200);
+ assert.match(await response.text(),/supabase-js@2\.119\.0/);
+});
