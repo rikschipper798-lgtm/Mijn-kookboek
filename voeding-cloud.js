@@ -337,6 +337,30 @@
    else{reset();notify('Uitgelogd. Eventuele herstelkopie blijft bewaard voor het juiste account.');}
   };
   el('cloudBackup').onclick=()=>el('export').click();
+  el('cloudDeleteAccount').onclick=async()=>{
+   if(!client||!user||!ready){notify('Log eerst in om het account te verwijderen.',true);return;}
+   const typed=window.prompt('Dit verwijdert je account en alle cloudregistraties definitief. Typ VERWIJDER om door te gaan.');
+   if(typed!=='VERWIJDER')return;
+   if(!window.confirm('Laatste bevestiging: dit account en het voedingsdagboek worden definitief verwijderd. Een eventueel gedownload back-upbestand blijft van jou. Doorgaan?'))return;
+   const button=el('cloudDeleteAccount');
+   button.disabled=true;notify('Je account wordt verwijderd…');
+   const accountId=user.id;
+   try{
+    const result=await client.functions.invoke('delete-my-account',{body:{confirmation:'VERWIJDER'}});
+    if(result.error||result.data?.deleted!==true)throw Error(result.error?.message||result.data?.error||'Onbekende serverreactie');
+    // Wis uitsluitend gegevens van dit ingelogde dagboekaccount en de oude
+    // lokale dagboekkopie. Andere gebruikersaccounts worden niet aangeraakt.
+    try{
+     window.localStorage.removeItem(storageKey(accountId));
+     window.localStorage.removeItem('mijn-kookboek-voedingsdagboek');
+    }catch(error){notify('Cloudaccount verwijderd, maar browsergegevens konden niet worden gewist. Wis de websitegegevens van deze browser handmatig.',true);}
+    await client.auth.signOut();
+    reset();
+    notify('Je account en cloudgegevens zijn verwijderd. Controleer eventueel gedownloade back-ups zelf.');
+   }catch(err){
+    notify('Verwijderen is niet bevestigd: '+err.message+'. Controleer eerst je accountstatus voordat je opnieuw probeert.',true);
+   }finally{button.disabled=false;}
+  };
   el('cloudRefresh').onclick=()=>{if(draft&&!conflict)void flush();else void refresh(Boolean(conflict));};
   try{
    const sdk=await loadSdk();
