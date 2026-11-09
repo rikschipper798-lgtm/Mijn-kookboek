@@ -32,6 +32,21 @@ Voeg **Repository secrets** toe:
 | `SUPABASE_BACKUP_DB_URL` | PostgreSQL-connectiestring van het Supabase-project `Mijn Kookboek`, inclusief databasewachtwoord, bij voorkeur de **Session Pooler** over TLS | Supabase Dashboard > Project > Connect |
 | `BACKUP_ENCRYPTION_KEY_BASE64` | Nieuw, sterk willekeurig 32-byte encryptiegeheim in Base64-formaat | Genereer op je apparaat via de [lokale browsergenerator](../backup-sleutel.html) of op een computer met `openssl rand -base64 32` |
 
+**Belangrijk bij deze Supabase-database:** de Session Pooler op poort
+`5432` gebruikt als gebruikersnaam `postgres.usppeputwknbxayekufe`,
+niet alleen `postgres`. In Supabase > **Connect** moet je de
+**Session Pooler** (niet de Direct connection of Transaction Pooler)
+selecteren en de volledige URI kopiëren. Vul het juiste
+databasewachtwoord in voor `[YOUR-PASSWORD]`. Als het wachtwoord
+speciale URL-tekens bevat, moeten die correct percent-encoded zijn
+in de verbindings-URI.
+
+De eerste test op 9 november 2026 heeft bevestigd dat beide secrets
+aanwezig zijn en dat de encryptiesleutel geldig is. De verbinding werd
+echter geweigerd doordat de Session Pooler gebruikersnaam `postgres`
+ontving. Er is toen **geen back-upbestand opgeslagen**. De workflow geeft
+voor dit foutscenario nu een specifieke foutmelding.
+
 Gebruik voor de connection string de Session Pooler die een GitHub Actions-runner
 via IPv4 kan bereiken. Een direct database-adres kan in sommige netwerken
 alleen IPv6 ondersteunen. Gebruik `sslmode=require` of strengere verificatie
