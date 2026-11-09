@@ -46,6 +46,16 @@ standaardmaaltijden instellen, zonder ze aan `recepten.json` toe te voegen.
   in hetzelfde dagboek opgeslagen en zijn inbegrepen bij de afzonderlijke export/import.
   Oude dagboekback-ups blijven te importeren.
 
+## Privacy en beveiligde back-ups
+
+Het voedingsdagboek ondersteunt naast de bestaande JSON-export nu ook een
+**versleutelde, met wachtzin beschermde back-up**. De wachtzin wordt niet
+opgeslagen; je kunt het bestand met dezelfde wachtzin later importeren.
+Op de dagboekpagina zie je ook de huidige gegevensomvang en een waarschuwing
+als de veilige applicatielimiet nadert. Er staat nog geen automatische,
+onafhankelijke off-site back-up aan. Zie
+[Operationeel draaiboek: SMTP, back-ups en privacy](supabase/OPERATIONS.md).
+
 ## Optionele cloudaccounts voor het voedingsdagboek
 
 De website bevat een voorbereide Supabase-koppeling voor persoonlijke
