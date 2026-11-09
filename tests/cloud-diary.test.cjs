@@ -6,145 +6,207 @@ const path=require('node:path');
 const vm=require('node:vm');
 
 const root=path.resolve(__dirname,'..');
-const code=fs.readFileSync(path.join(root,'voeding-cloud.js'),'utf8');
-const app=fs.readFileSync(path.join(root,'voeding.html'),'utf8');
-const sql=fs.readFileSync(path.join(root,'supabase/schema.sql'),'utf8');
-const makeData=kcal=>({goals:{kcal:2300},days:{"2026-11-09":[{title:'Test',nutrition:{kcal}}]},weekdayPresets:{},weekdayApplied:{}});
+const script=fs.readFileSync(path.join(root,'voeding-cloud.js'),'utf8');
+const html=fs.readFileSync(path.join(root,'voeding.html'),'utf8');
+const config=fs.readFileSync(path.join(root,'cloud-config.js'),'utf8');
+const schema=fs.readFileSync(path.join(root,'supabase/schema.sql'),'utf8');
+const copy=v=>JSON.parse(JSON.stringify(v));
+const diary=kcal=>({
+ goals:{kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5},
+ days:{'2026-11-09':[{id:'entry',title:'Test',source:'manual',
+  nutrition:{kcal,proteinG:10,carbsG:10,fatG:10,fiberG:2}}]},
+ weekdayPresets:{},weekdayApplied:{}
+});
+const wait=()=>new Promise(resolve=>setTimeout(resolve,20));
 
-function database(){
- const rows=new Map();
+function makeStorage(){
+ const data=new Map();let blocked=false;
  return {
-  rows,
-  from(table){
-   assert.equal(table,'nutrition_diaries');
-   let action='select',payload=null,filters={};
-   const builder={
-    select(){return builder;},
-    eq(key,value){filters[key]=value;return builder;},
-    insert(input){action='insert';payload=input;return builder;},
-    update(input){action='update';payload=input;return builder;},
-    async maybeSingle(){
-     const row=rows.get(filters.user_id);
-     if(action==='select')return {data:row?{diary:row.diary,revision:row.revision}:null,error:null};
-     if(!row||row.revision!==filters.revision)return {data:null,error:null};
-     const next={...row,...payload};rows.set(filters.user_id,next);
-     return {data:{revision:next.revision},error:null};
-    },
-    async single(){
-     if(action!=='insert')throw Error('Unexpected single()');
-     if(rows.has(payload.user_id))return {data:null,error:{code:'23505',message:'duplicate'}};
-     rows.set(payload.user_id,{...payload});
-     return {data:{revision:payload.revision},error:null};
-    }
-   };
-   return builder;
+  data,block(flag){blocked=flag;},
+  getItem(key){if(blocked)throw Error('Storage unavailable');return data.has(key)?data.get(key):null;},
+  setItem(key,value){if(blocked)throw Error('Storage unavailable');data.set(key,value);},
+  removeItem(key){if(blocked)throw Error('Storage unavailable');data.delete(key);}
+ };
+}
+function makeDb(){
+ const rows=new Map();
+ let failWrite=false,holdRead=false,releaseRead=null;
+ const result=async(account,kind,body,filters)=>{
+  if(kind==='select'){
+   const row=rows.get(account);
+   const value=row?{diary:copy(row.diary),revision:row.revision}:null;
+   if(holdRead){
+    holdRead=false;
+    return new Promise(resolve=>{releaseRead=()=>resolve({data:value,error:null});});
+   }
+   return {data:value,error:null};
+  }
+  if(failWrite){failWrite=false;return {data:null,error:{code:'NETWORK',message:'No internet'}};}
+  if(kind==='insert'){
+   if(body.user_id!==account)return {data:null,error:{code:'RLS',message:'forbidden'}};
+   if(rows.has(account))return {data:null,error:{code:'23505',message:'duplicate key'}};
+   rows.set(account,copy(body));
+   return {data:{revision:body.revision},error:null};
+  }
+  const old=rows.get(account);
+  if(!old||old.revision!==filters.revision)return {data:null,error:null};
+  rows.set(account,{...old,...copy(body)});
+  return {data:{revision:body.revision},error:null};
+ };
+ return {
+  rows,failNextWrite(){failWrite=true;},holdNextRead(){holdRead=true;},
+  release(){assert.equal(typeof releaseRead,'function');releaseRead();releaseRead=null;},
+  client(account){
+   return {from(name){
+    assert.equal(name,'nutrition_diaries');
+    let kind='select',body=null,filters={};
+    const q={
+     select(){return q;},eq(k,v){filters[k]=v;return q;},
+     insert(value){kind='insert';body=value;return q;},
+     update(value){kind='update';body=value;return q;},
+     async maybeSingle(){return result(account,kind,body,filters);},
+     async single(){return result(account,kind,body,filters);}
+    };
+    return q;
+   },auth:{
+    onAuthStateChange(){return {data:{subscription:{unsubscribe(){}}}};},
+    async getSession(){return {data:{session:{user:{id:account,email:account+'@example.org'}}},error:null};},
+    async signInWithOtp(){return {error:null};},async signOut(){return {error:null};}
+   }};
   }
  };
 }
-function harness(db,account,{local=null}={}){
- const elements={};
- function element(id){
-  if(!elements[id])elements[id]={
-   id,value:'',hidden:false,disabled:false,textContent:'',
-   classList:{toggle(){}},listeners:{},addEventListener(name,fn){this.listeners[name]=fn;},
-   checkValidity(){return true;},click(){if(this.onclick)this.onclick();}
-  };
-  return elements[id];
- }
- const document={
-  getElementById:element,
-  addEventListener(){},
-  head:{appendChild(){throw Error('Cloud SDK should be preloaded in test')}}
+function harness(db,account,storage,{local=null}={}){
+ const elements={},listeners={},callbacks={};
+ const el=id=>elements[id]??={
+  value:'',textContent:'',hidden:false,disabled:false,
+  classList:{toggle(){}},addEventListener(type,fn){this[type]=fn;},
+  checkValidity(){return true;}
  };
- const client={
-  from:key=>db.from(key),
-  auth:{
-   onAuthStateChange(){return {data:{subscription:{unsubscribe(){}}}};},
-   async getSession(){return {data:{session:{user:account}},error:null};},
-   async signOut(){return {error:null};},
-   async signInWithOtp(){return {error:null};}
-  }
+ const win={
+  COOKBOOK_CLOUD_CONFIG:{active:true,url:'https://sample.supabase.co',
+   publishableKey:'sb_publishable_example_public_key_0123456789'},
+  supabase:{createClient(){return db.client(account);}},
+  localStorage:storage,confirm(){return true;},
+  addEventListener(name,fn){listeners[name]=fn;}
  };
- const window={
-  COOKBOOK_CLOUD_CONFIG:{
-   url:'https://kookboek-test.supabase.co',publishableKey:'sb_publishable_example_test_key_for_javascript'
-  },
-  supabase:{createClient(){return client;}},
-  addEventListener(){},
-  confirm(){return true;}
+ const document={getElementById:el,addEventListener(name,fn){listeners[name]=fn;}};
+ vm.runInNewContext(script,{window:win,document,
+  location:{origin:'https://example.org',pathname:'/voeding.html'},
+  setTimeout:(fn,ms)=>setTimeout(fn,Math.min(ms,3)),clearTimeout,
+  Date,Math,JSON,Error,Promise,Number,String},{filename:'voeding-cloud.js',timeout:1500});
+ const cloud=win.CookbookCloud;
+ callbacks.current=null;
+ callbacks.onData=data=>{callbacks.current=data?copy(data):null;};
+ callbacks.onLogout=()=>{callbacks.current=null;};
+ callbacks.validateData=data=>data?copy(data):null;
+ callbacks.getLocal=()=>local;
+ callbacks.hasLocal=()=>!!local;
+ callbacks.getState=()=>callbacks.current;
+ return {
+  cloud,storage,callbacks,listeners,elements,
+  start:()=>cloud.start(callbacks),
+  enqueue(d){const ok=cloud.enqueue(d);if(ok)callbacks.current=copy(d);return ok;},
+  async flush(){cloud.retry();await wait();},
+  async refresh(){listeners.online();await wait();},
+  get state(){return callbacks.current;},
+  get status(){return el('cloudStatus').textContent;}
  };
- const callbacks={
-  onData(v){callbacks.current=v;},
-  onLogout(){callbacks.current=null;},
-  getLocal(){return local;},
-  getState(){return callbacks.current;},
-  hasLocal(){return !!local;},
-  current:null
- };
- const context={
-  window,document,location:{origin:'https://example.com',pathname:'/voeding.html'},
-  setTimeout:fn=>setTimeout(fn,0),clearTimeout,console,Date,JSON,Error,Promise
- };
- vm.runInNewContext(code,context,{filename:'voeding-cloud.js',timeout:1000});
- return {cloud:window.CookbookCloud,callbacks,elements,async start(){
-  await window.CookbookCloud.start(callbacks);
- },async save(data){
-  callbacks.current=data;
-  window.CookbookCloud.enqueue(data);
-  await new Promise(resolve=>setTimeout(resolve,30));
- }};
 }
+const countPending=storage=>[...storage.data.keys()].filter(k=>k.includes('mijn-kookboek-cloud-herstel-v1')).length;
 
-test('Cloudaccounts bevatten geen geheime sleutels en zijn standaard uitgeschakeld',()=>{
- const config=fs.readFileSync(path.join(root,'cloud-config.js'),'utf8');
- assert.match(config,/publishableKey:\s*""/);
- assert.doesNotMatch(config,/service_role\s*:\s*['"]/i);
- assert.match(app,/cloudMode/);
- assert.match(app,/cloudReady/);
- assert.match(app,/voeding-cloud\.js/);
- assert.match(app,/cloud-config\.js/);
+test('Configuratie en toegangsregels zijn in overeenstemming met productie',()=>{
+ assert.match(config,/active:\s*true/);
+ assert.match(config,/sb_publishable_/);
+ assert.doesNotMatch(config,/sb_secret_\S+/);
+ assert.match(html,/if\(!window\.CookbookCloud\.enqueue\(state\)\)/);
+ assert.match(schema,/enable row level security/);
+ assert.match(schema,/revoke all privileges on table public\.nutrition_diaries from anon, authenticated, public/);
+ assert.match(schema,/with check \(user_id = \(select auth\.uid\(\)\)\)/);
 });
-test('RLS geeft uitsluitend toegang tot de eigen profielrij',()=>{
- assert.match(sql,/enable row level security/i);
- assert.match(sql,/to authenticated/i);
- assert.match(sql,/with check \(user_id = \(select auth\.uid\(\)\)\)/i);
- assert.match(sql,/using \(user_id = \(select auth\.uid\(\)\)\)/i);
- assert.match(sql,/revoke all on table public\.nutrition_diaries from anon/i);
-});
-test('Twee verschillende gebruikers synchroniseren gescheiden dagboeken',async()=>{
- const db=database();
- const personA={id:'11111111-1111-4111-8111-111111111111',email:'a@example.org'};
- const personB={id:'22222222-2222-4222-8222-222222222222',email:'b@example.org'};
- const a=harness(db,personA),b=harness(db,personB);
+
+test('Lokale herstelkopie staat synchroon op schijf vóór verzending',async()=>{
+ const db=makeDb(),store=makeStorage(),a=harness(db,'a',store);
  await a.start();
- await a.save(makeData(420));
- assert.equal(db.rows.get(personA.id).diary.days['2026-11-09'][0].nutrition.kcal,420);
- await b.start();
- assert.equal(b.callbacks.current,null);
- await b.save(makeData(590));
- assert.equal(db.rows.size,2);
- assert.equal(db.rows.get(personA.id).diary.days['2026-11-09'][0].nutrition.kcal,420);
- assert.equal(db.rows.get(personB.id).diary.days['2026-11-09'][0].nutrition.kcal,590);
+ assert.equal(a.enqueue(diary(350)),true);
+ assert.equal(countPending(store),1);
+ assert.equal(JSON.parse([...store.data.values()][0]).diary.days['2026-11-09'][0].nutrition.kcal,350);
+ await a.flush();
+ assert.equal(db.rows.get('a').diary.days['2026-11-09'][0].nutrition.kcal,350);
+ assert.equal(countPending(store),0);
 });
-test('Twee apparaten van hetzelfde account overschrijven elkaar niet stilzwijgend',async()=>{
- const db=database();
- const person={id:'33333333-3333-4333-8333-333333333333',email:'same@example.org'};
- const first=harness(db,person);
- await first.start();
- await first.save(makeData(300)); // rev 1
- const second=harness(db,person);
- await second.start(); // rev 1
- await first.save(makeData(480)); // rev 2
- await second.save(makeData(920)); // conflict
- assert.equal(db.rows.get(person.id).revision,2);
- assert.equal(db.rows.get(person.id).diary.days['2026-11-09'][0].nutrition.kcal,480);
- assert.match(second.elements.cloudStatus.textContent,/ander apparaat gewijzigd/);
+
+test('Verbindingsverlies en pagina herladen: herstel wordt teruggevonden en daarna gesynchroniseerd',async()=>{
+ const db=makeDb(),store=makeStorage(),a=harness(db,'a',store);
+ await a.start();db.failNextWrite();assert.equal(a.enqueue(diary(425)),true);
+ await a.flush();
+ assert.equal(countPending(store),1);
+ assert.equal(db.rows.size,0);
+ const reopened=harness(db,'a',store);
+ await reopened.start();
+ assert.equal(reopened.state.days['2026-11-09'][0].nutrition.kcal,425);
+ await reopened.flush();
+ assert.equal(db.rows.get('a').diary.days['2026-11-09'][0].nutrition.kcal,425);
+ assert.equal(countPending(store),0);
 });
-test('Oude lokale dagboekgegevens verhuizen alleen na expliciete instemming',async()=>{
- const db=database(),person={id:'44444444-4444-4444-8444-444444444444',email:'migrate@example.org'};
- const old=makeData(780);
- const browser=harness(db,person,{local:old});
- await browser.start();
- await new Promise(resolve=>setTimeout(resolve,30));
- assert.equal(db.rows.get(person.id).diary.days['2026-11-09'][0].nutrition.kcal,780);
+
+test('Tijdens cloud refresh mag nieuwere lokale invoer niet worden vervangen',async()=>{
+ const db=makeDb(),store=makeStorage(),a=harness(db,'a',store);
+ await a.start();a.enqueue(diary(200));await a.flush();
+ db.holdNextRead();
+ // Begin a refresh and leave its response unresolved.
+ a.listeners.online();
+ await wait();
+ const newer=diary(470);
+ assert.equal(a.enqueue(newer),true);
+ db.release();await wait();
+ assert.equal(a.state.days['2026-11-09'][0].nutrition.kcal,470);
+ assert.match(a.status,/genegeerd|gesynchroniseerd|opgeslagen|cloudsync/i);
+ await a.flush();
+ assert.equal(db.rows.get('a').diary.days['2026-11-09'][0].nutrition.kcal,470);
+});
+
+test('Een tweede apparaat met verouderde revisie overschrijft het eerste niet',async()=>{
+ const db=makeDb(),one=harness(db,'a',makeStorage());
+ await one.start();one.enqueue(diary(150));await one.flush();
+ const two=harness(db,'a',makeStorage());await two.start();
+ one.enqueue(diary(300));await one.flush();
+ two.enqueue(diary(600));await two.flush();
+ assert.equal(db.rows.get('a').diary.days['2026-11-09'][0].nutrition.kcal,300);
+ assert.equal(countPending(two.storage),1);
+ assert.match(two.status,/conflict/i);
+});
+
+test('Lokale herstelkopieën van verschillende accounts worden niet gecombineerd',async()=>{
+ const db=makeDb(),shared=makeStorage();
+ const a=harness(db,'alice',shared),b=harness(db,'bob',shared);
+ await a.start();a.enqueue(diary(300));
+ await b.start();assert.equal(b.state,null);
+ b.enqueue(diary(500));
+ assert.equal(countPending(shared),2);
+ assert.notEqual([...shared.data.keys()][0],[...shared.data.keys()][1]);
+});
+
+test('Browseropslag niet beschikbaar: invoer wordt geweigerd',async()=>{
+ const db=makeDb(),storage=makeStorage(),a=harness(db,'a',storage);
+ await a.start();storage.block(true);
+ assert.equal(a.enqueue(diary(123)),false);
+ storage.block(false);
+ assert.equal(db.rows.size,0);
+ assert.equal(countPending(storage),0);
+ assert.match(a.status,/niet veilig|opslag/i);
+});
+
+test('Na bevestigde cloudschrijfactie en browsercrash wordt de herstelkopie herkend',async()=>{
+ const db=makeDb(),store=makeStorage(),a=harness(db,'a',store);
+ await a.start();a.enqueue(diary(300));await a.flush();
+ const original=db.rows.get('a');
+ original.revision=2;original.diary=diary(410);
+ const key='mijn-kookboek-cloud-herstel-v1:https://sample.supabase.co:a';
+ store.setItem(key,JSON.stringify({version:1,userId:'a',baseRevision:1,nonce:'crash',
+  diary:diary(410),savedAt:new Date().toISOString()}));
+ const reopened=harness(db,'a',store);await reopened.start();
+ assert.equal(reopened.state.days['2026-11-09'][0].nutrition.kcal,410);
+ assert.equal(countPending(store),0);
+ assert.doesNotMatch(reopened.status,/conflict/i);
 });
