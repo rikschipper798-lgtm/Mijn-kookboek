@@ -3,7 +3,7 @@
 (function(){
  'use strict';
  const config=window.COOKBOOK_CLOUD_CONFIG||{};
- const enabled=/^https:\/\/[a-z0-9.-]+\.supabase\.co\/?$/i.test(config.url||'')&&
+ const enabled=config.active===true&&/^https:\/\/[a-z0-9.-]+\.supabase\.co\/?$/i.test(config.url||'')&&
    typeof config.publishableKey==='string'&&config.publishableKey.length>20;
  const panel=()=>document.getElementById('cloudPanel');
  const el=id=>document.getElementById(id);
