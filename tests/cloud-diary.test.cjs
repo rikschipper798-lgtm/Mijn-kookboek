@@ -368,3 +368,47 @@ test('Wijziging tijdens een lopende upload blijft behouden en wordt daarna apart
  assert.equal(countPending(store),0);
  assert.doesNotMatch(client.status,/conflict/i);
 });
+
+test('Directe instelpagina schrijft niet buiten de persoonlijke dagboekopslag om',()=>{
+ const page=fs.readFileSync(path.join(root,'instellen-vaste-maaltijden.html'),'utf8');
+ assert.match(page,/voeding\.html#vaste-maaltijden=/);
+ assert.doesNotMatch(page,/localStorage\.setItem/);
+ assert.match(html,/function processPresetLink\(/);
+ assert.match(html,/if\(!cloudMode\)processPresetLink\(\)/);
+ assert.match(html,/onData\(data\)[\s\S]*?processPresetLink\(\)/);
+});
+
+test('Ingelogde instellink loopt via dezelfde commit- en cloudroute',()=>{
+ const source=html.match(/<script>\s*'use strict';[\s\S]*?<\/script>/);
+ assert.equal(Boolean(source),true);
+ const inline=source[0].replace(/^<script>/,'').replace(/<\/script>$/,'');
+ const elements={},listeners={};let cloudWrites=0,saved,removedHash=false;
+ const preset={
+  app:'mijn-kookboek-vaste-maaltijden',version:1,
+  weekdayPresets:{
+   ontbijt:{title:'Kip en hagelslag',enabled:true,startDate:'2026-11-09',nutrition:{kcal:276,proteinG:10,carbsG:37.1,fatG:8.1,fiberG:6.2}},
+   lunch:{title:'Brood met ham en pasta',enabled:true,startDate:'2026-11-09',nutrition:{kcal:516,proteinG:19,carbsG:64.8,fatG:17.6,fiberG:11}}
+  }
+ };
+ const el=id=>elements[id]??={
+  value:'',checked:false,hidden:false,disabled:false,style:{},dataset:{},innerHTML:'',textContent:'',
+  classList:{toggle(){}},setAttribute(){},addEventListener(k,fn){(listeners[id]??={})[k]=fn;},
+  focus(){},reset(){}
+ };
+ const cloud={enabled:true,start(callbacks){callbacks.onData(null);},enqueue(data){cloudWrites++;saved=copy(data);return true;}};
+ const sandbox={
+  window:{CookbookCloud:cloud,confirm(){return true;}},
+  document:{getElementById:el},
+  location:{search:'',pathname:'/Mijn-kookboek/voeding.html',
+   hash:'#vaste-maaltijden='+encodeURIComponent(JSON.stringify(preset))},
+  history:{replaceState(){removedHash=true;}},
+  localStorage:{getItem(){return null},setItem(){throw Error('Legacy storage must not be touched');}},
+  fetch:async()=>({ok:true,json:async()=>[]}),
+  URLSearchParams,Date,Math,JSON,Error,Promise,Number,String,setTimeout(){return 0;}
+ };
+ vm.runInNewContext(inline,sandbox,{timeout:1600});
+ assert.equal(cloudWrites>0,true);
+ assert.equal(saved.weekdayPresets.ontbijt.nutrition.kcal,276);
+ assert.equal(saved.weekdayPresets.lunch.nutrition.kcal,516);
+ assert.equal(removedHash,true);
+});
