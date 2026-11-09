@@ -25,7 +25,7 @@ function browser(){
   const node={
    id,dataset:{},style:{},hidden:false,checked:false,value:'',textContent:'',add(){},
    classList:{add(){},remove(){},toggle(){}},
-   setAttribute(){},addEventListener(k,f){this['on'+k]=f;},focus(){},
+   setAttribute(){},removeAttribute(){},addEventListener(k,f){this['on'+k]=f;},focus(){},
    contains(x){return x===this;},scrollIntoView(){},
    querySelectorAll(selector){
     if(children.has(selector))return children.get(selector);
