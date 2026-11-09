@@ -27,7 +27,8 @@ jobs:
             echo "ready=true" >> "$GITHUB_OUTPUT"
           else
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::Automatische back-up is nog niet actief. Stel de twee repositorysecrets in volgens supabase/BACKUP-AUTOMATION.md."
+            echo "::error::GEEN BACK-UP GEMAAKT: stel beide repositorysecrets in volgens supabase/BACKUP-AUTOMATION.md."
+            exit 1
           fi
 
       - name: Controleer encryptiesleutel en verbinding
