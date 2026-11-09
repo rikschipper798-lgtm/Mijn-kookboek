@@ -89,9 +89,32 @@ button:disabled{opacity:.45;cursor:default}
 footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
 @media(max-width:760px){.layout{grid-template-columns:1fr}.panel{padding:18px}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.datebar{justify-content:flex-start}}
 @media(max-width:450px){.grid2{grid-template-columns:1fr}.entry-list li{align-items:flex-start}.entry-right{flex-direction:column;align-items:flex-end}.datebar input{max-width:165px}}
+
+/* Primaire navigatie: recepten, boodschappen en dagboek zijn gelijkwaardige bestemmingen. */
+.primary-nav{position:sticky;top:0;z-index:80;background:#fffdf9;border-bottom:1px solid #dce4d8;box-shadow:0 3px 15px #1d382415}
+.primary-nav-inner{max-width:1160px;margin:auto;padding:9px 25px;display:flex;gap:8px;align-items:center}
+.primary-nav-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:45px;padding:11px 17px;border-radius:10px;text-decoration:none;font-size:14px;font-weight:750;color:#294935}
+.primary-nav-link:hover{background:#edf3e9}
+.primary-nav-link[aria-current="page"]{background:#294935;color:#fff}
+.primary-nav-link[aria-current="page"]:hover{background:#244331}
+.primary-nav-count{display:inline-grid;place-items:center;min-width:23px;height:23px;padding:0 6px;background:#e6ede1;border-radius:20px;font-size:12px;color:#294935;font-variant-numeric:tabular-nums}
+.primary-nav-link[aria-current="page"] .primary-nav-count{background:#ffffff30;color:white}
+.nav-mobile{display:none}
+@media(max-width:650px){
+ .primary-nav-inner{padding:8px 10px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+ .primary-nav-link{min-width:0;min-height:45px;padding:9px 4px;gap:4px;text-align:center;font-size:12px}
+ .nav-desktop{display:none}.nav-mobile{display:inline}
+ .primary-nav-count{font-size:11px;min-width:19px;height:19px;padding:0 4px}
+}
+@media print{.primary-nav{display:none!important}}
 </style>
 </head>
 <body>
+<nav class="primary-nav" aria-label="Hoofdnavigatie"><div class="primary-nav-inner">
+ <a class="primary-nav-link" href="./">Recepten</a>
+ <a class="primary-nav-link" href="./#boodschappenlijst"><span class="nav-desktop">Boodschappenlijst</span><span class="nav-mobile">Boodschappen</span></a>
+ <a class="primary-nav-link" href="./voeding.html" aria-current="page"><span class="nav-desktop">Voedingsdagboek</span><span class="nav-mobile">Dagboek</span></a>
+</div></nav>
 <header>
   <a href="./">← Terug naar Mijn Kookboek</a>
   <div class="overline">PERSOONLIJK OVERZICHT</div>
