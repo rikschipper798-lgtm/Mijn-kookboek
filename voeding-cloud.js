@@ -13,7 +13,7 @@
  const makeNonce=()=>Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,13);
  let client=null,hooks=null,user=null,revision=0,ready=false,loading=false;
  let draft=null,conflict=false,sending=false,refreshing=false,timer=null;
- let generation=0,edits=0;
+ let generation=0,edits=0,needsVerification=false;
 
  function notify(message,error=false){
   const node=el('cloudStatus');if(!node)return;
@@ -68,7 +68,7 @@
  function reset(){
   generation++;stopTimer();
   user=null;revision=0;ready=false;loading=false;draft=null;
-  sending=false;refreshing=false;conflict=false;edits=0;
+  sending=false;refreshing=false;conflict=false;edits=0;needsVerification=false;
   if(hooks)hooks.onLogout();
   view();
  }
@@ -102,7 +102,7 @@
   if(conflict){
    notify('Je wijzigingen zijn lokaal bewaard, maar er is een cloudconflict. Exporteer je dagboek en kies daarna bewust Cloud opnieuw laden.',true);
   }else{
-   notify('Wijziging veilig op dit apparaat opgeslagen; cloudsync volgt.');
+   notify(needsVerification?'Wijziging lokaal bewaard; bij verbinding wordt eerst de cloudversie gecontroleerd.':'Wijziging lokaal bewaard; cloudsync volgt.');
    schedule();
   }
   return true;
@@ -112,6 +112,25 @@
   sending=true;const account=user.id,token=generation;
   try{
    while(draft&&!conflict&&ready&&user?.id===account&&generation===token){
+    if(needsVerification){
+     // The page was reopened while offline: confirm the server revision
+     // before making any write based on the recovered journal.
+     const live=await fetchRow({id:account});
+     if(token!==generation||user?.id!==account)return;
+     const liveRevision=live?.revision||0;
+     if(liveRevision!==draft.baseRevision){
+      if(live&&JSON.stringify(hooks.validateData(live.diary))===JSON.stringify(hooks.validateData(draft.diary))){
+       if(!deleteLocal(draft))return;
+       revision=liveRevision;draft=null;needsVerification=false;
+       notify('Deze herstelkopie stond al in de cloud. Je dagboek is gesynchroniseerd.');
+       return;
+      }
+      conflict=true;needsVerification=false;
+      notify('De cloud is intussen gewijzigd. Je lokale dagboek blijft bewaard: exporteer een back-up en kies daarna bewust de cloudversie.',true);
+      return;
+     }
+     revision=liveRevision;needsVerification=false;
+    }
     const sent=draft;
     let response;
     if(sent.baseRevision===0){
@@ -168,7 +187,7 @@
   if(user?.id===account.id&&(loading||ready))return;
   const token=++generation;
   stopTimer();user=account;ready=false;loading=true;draft=null;
-  revision=0;conflict=false;sending=false;refreshing=false;edits=0;
+  revision=0;conflict=false;sending=false;refreshing=false;edits=0;needsVerification=false;
   if(hooks)hooks.onLogout();
   view();notify('Persoonlijk dagboek en lokale herstelkopie laden…');
   try{
@@ -214,8 +233,24 @@
    }else notify('Ingelogd. Dagboek actueel en gesynchroniseerd.');
   }catch(err){
    if(token!==generation)return;
-   loading=false;ready=false;
-   notify('Persoonlijk dagboek laden is mislukt: '+err.message+'. Je lokale herstelkopie blijft behouden.',true);
+   loading=false;
+   // A valid cached Supabase session can recover an already saved draft
+   // while disconnected. Its base revision is verified before any upload.
+   try{
+    const recovered=readLocal(account.id);
+    if(recovered){
+     draft=recovered;revision=recovered.baseRevision;needsVerification=true;
+     ready=true;conflict=false;
+     hooks.onData(recovered.diary);
+     view();
+     notify('Geen cloudverbinding. Je lokale herstelkopie is geopend; wijzigingen blijven bewaard. Synchronisatie hervat wanneer de verbinding terugkomt.',true);
+     return;
+    }
+   }catch(recoveryError){
+    notify('Lokale herstelkopie kon niet worden geopend: '+recoveryError.message,true);
+   }
+   ready=false;
+   notify('Persoonlijk dagboek laden is mislukt: '+err.message+'. Eventuele lokale gegevens blijven behouden.',true);
    view();
   }
  }
