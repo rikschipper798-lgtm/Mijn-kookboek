@@ -54,6 +54,26 @@ dagregistraties. De Supabase-database, Row Level Security en publieke browsercon
 Zie [instellen van accounts, RLS en migratie](supabase/README.md).
 Favorieten, voorraad, boodschappen en kooknotities blijven voorlopig lokaal.
 
+### Herstelbare synchronisatie (9 november 2026)
+
+Bij een wijziging in het ingelogde voedingsdagboek wordt de volledige actuele
+dagboekstand **eerst synchroon als herstelkopie per account** in de lokale
+browseropslag gezet. De cloudversie wordt daarna met revisiecontrole bijgewerkt.
+Een nieuwere cloudversie wordt niet stilzwijgend vervangen.
+
+Bij netwerkstoringen, een onderbroken browser of een herstart wordt de
+accountgebonden herstelkopie opnieuw aangeboden. Als de server intussen is
+gewijzigd, blijft de lokale versie bewaard en moet de gebruiker bewust kiezen:
+eerst **Exporteer dagboek** en daarna **Cloud opnieuw laden**. Een geldige
+opgeslagen inlogsessie maakt ook offline herstel van een bestaande herstelkopie
+mogelijk; een serverrevisie wordt gecontroleerd vóór de volgende upload.
+
+Als lokaal opslaan mislukt, wordt de wijziging teruggedraaid. Dit is geen
+vervanging voor echte back-ups: het verwijderen van browsergegevens verwijdert
+ook de herstelkopie. De oplossing maakt geen automatische samenvoeging van
+verschillende apparaten. Zie [technische werking](supabase/README.md).
+
+
 ## Persoonlijk voedingsdagboek
 
 Via **Voedingsdagboek** op de startpagina, of **Registreer maaltijd** op een receptdetail, open je [het voedingsdagboek](https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html).
