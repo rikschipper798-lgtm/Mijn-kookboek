@@ -23,8 +23,9 @@ de herstelstatus van accounts gescheiden blijft.
    herstelkopie zijn, kan het lokale dagboek worden geopend. Voor de
    eerstvolgende upload wordt de serverrevisie opnieuw gecontroleerd.
 6. Bij een conflict exporteert de gebruiker eerst het dagboek en kan daarna
-   bewust de cloudversie herstellen. Er vindt **geen automatische
-   samenvoeging** van verschillende apparaten plaats.
+   bewust de cloudversie herstellen. De knop **Download dagboekback-up**
+   staat ook direct bovenaan bij het persoonlijke account. Er vindt
+   **geen automatische samenvoeging** van verschillende apparaten plaats.
 
 Een browser kan lokale gegevens verwijderen (bijvoorbeeld door
 privémodus, opslagopschoning of apparaatverlies). Een lokale herstelkopie is
