@@ -6,6 +6,18 @@ Persoonlijk online kookboek met recepten, kookmodus en boodschappenlijst.
 
 ## Vaste maaltijden op werkdagen
 
+De optionele pagina `instellen-vaste-maaltijden.html` ondersteunt een directe
+persoonlijke instellink: het fragment `#gegevens=` bevat de JSON met twee
+standaardmaaltijden (geen bestand-upload vereist). Het fragment wordt niet aan
+de server gestuurd. De pagina controleert de waarden en vraagt om een expliciete
+klik op **Stel ontbijt en lunch in** voordat de lokale browsergegevens wijzigen.
+Bij opslaan worden bestaande automatische registraties voor de huidige werkdag
+bijgewerkt of hersteld, zonder de handmatige registraties en de voedingsdoelen
+te verwijderen. De URL wordt daarna opgeschoond. De instelpagina zelf bevat
+geen specifieke persoonlijke maaltijden in de repository.
+
+
+
 **Correctie herimport (9 november 2026):** zowel de knop bij ‘Vast ontbijt en lunch’
 als de algemene knop ‘Importeer dagboek’ herkennen nu het bestandstype
 `mijn-kookboek-vaste-maaltijden`. De import actualiseert bestaande automatisch
