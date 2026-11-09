@@ -65,6 +65,29 @@ Zonder die keuze is automatische off-site back-up **niet actief**.
 Referentie:
 [Supabase – Database Backups](https://supabase.com/docs/guides/platform/backups).
 
+## Voorbereide automatische databaseback-up via GitHub Actions
+
+Naast de persoonlijke, met wachtzin beveiligde dagboekexport is nu een
+**dagelijkse workflow voor een aparte, versleutelde PostgreSQL-back-up**
+voorbereid. Deze is nog **niet actief**, omdat de GitHub Actions-secrets
+`SUPABASE_BACKUP_DB_URL` en `BACKUP_ENCRYPTION_KEY_BASE64` nog niet
+zijn ingesteld. De workflow markeert een ontbrekende back-up als fout
+en slaat nooit een onversleutelde dump als artifact op.
+
+In [BACKUP-AUTOMATION.md](BACKUP-AUTOMATION.md) staan de twee secrets,
+het geplande tijdstip (03.17 UTC), de 30-daagse artifactretentie,
+herstelcontrole en beveiligingsafspraken. Gebruik geen databasewachtwoorden
+of encryptiesleutels in GitHub-bestanden of in ChatGPT. Een eerste succesvolle
+workflowrun én een gecontroleerde testrestore zijn vereist voordat de
+automatische back-upvoorziening als operationeel mag worden aangemerkt.
+
+## Voorbereide productie-inlogmails
+
+Een neutrale Nederlandstalige Magic Link-template en
+[SMTP-SETUP.md](SMTP-SETUP.md) zijn beschikbaar. De template is **niet
+automatisch geactiveerd**: eerst is een gekozen provider en geverifieerd
+domein nodig. Dit voorkomt dat ongeteste SMTP-credentials worden gepubliceerd.
+
 ## Schaalbaarheid en monitoring
 
 Het actuele model bewaart één JSONB-dagboek per account en maximaal drie oudere
