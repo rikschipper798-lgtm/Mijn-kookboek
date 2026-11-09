@@ -6,6 +6,16 @@ Persoonlijk online kookboek met recepten, kookmodus en boodschappenlijst.
 
 ## Vaste maaltijden op werkdagen
 
+**Correctie herimport (9 november 2026):** zowel de knop bij ‘Vast ontbijt en lunch’
+als de algemene knop ‘Importeer dagboek’ herkennen nu het bestandstype
+`mijn-kookboek-vaste-maaltijden`. De import actualiseert bestaande automatisch
+ingevulde regels in de zichtbare week. Voor de geselecteerde werkdag worden
+ontbrekende automatische regels na herimport opnieuw toegevoegd, ook als de oude
+standaard eerder is verwijderd. Zelf ingevoerde maaltijden, andere dagboekgegevens
+en caloriedoelen blijven behouden. De status is bij de importknop zichtbaar.
+
+
+
 Op de voedingsdagboekpagina kun je onder **Vast ontbijt en lunch** twee persoonlijke
 standaardmaaltijden instellen, zonder ze aan `recepten.json` toe te voegen.
 
