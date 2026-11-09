@@ -250,3 +250,27 @@ test('Cloudconflict op herstart houdt het ongesynchroniseerde dagboek intact',as
  assert.equal(countPending(store),1);
  assert.match(recovered.status,/cloud is op een ander apparaat gewijzigd/i);
 });
+
+test('Tijdelijke netwerkfout is herstelbaar zonder onterechte conflictmelding',async()=>{
+ const db=makeDb(),storage=makeStorage(),browser=harness(db,'retry',storage);
+ await browser.start();
+ db.failNextWrite();
+ assert.equal(browser.enqueue(diary(440)),true);
+ await browser.flush();
+ assert.equal(countPending(storage),1);
+ assert.doesNotMatch(browser.status,/cloudconflict/i);
+ await browser.flush();
+ assert.equal(db.rows.get('retry').diary.days['2026-11-09'][0].nutrition.kcal,440);
+ assert.equal(countPending(storage),0);
+});
+
+test('Conflicterende wijziging op het tweede apparaat blijft lokaal herstelbaar',async()=>{
+ const db=makeDb(),first=harness(db,'shared',makeStorage());
+ await first.start();first.enqueue(diary(111));await first.flush();
+ const second=harness(db,'shared',makeStorage());await second.start();
+ first.enqueue(diary(222));await first.flush();
+ second.enqueue(diary(333));await second.flush();
+ assert.equal(second.state.days['2026-11-09'][0].nutrition.kcal,333);
+ assert.equal(countPending(second.storage),1);
+ assert.equal(db.rows.get('shared').diary.days['2026-11-09'][0].nutrition.kcal,222);
+});
