@@ -315,6 +315,7 @@
    if(r.error)notify('Uitloggen mislukt: '+r.error.message,true);
    else{reset();notify('Uitgelogd. Eventuele herstelkopie blijft bewaard voor het juiste account.');}
   };
+  el('cloudBackup').onclick=()=>el('export').click();
   el('cloudRefresh').onclick=()=>{if(draft&&!conflict)void flush();else void refresh(Boolean(conflict));};
   try{
    const sdk=await loadSdk();
