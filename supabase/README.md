@@ -2,6 +2,46 @@
 
 **Status 9 november 2026:** De eigenaar heeft bevestigd dat de Auth Redirect URL is ingesteld; daarop is de cloudkoppeling geactiveerd via `cloud-config.js` (`active: true`). Supabase-project, beveiligde database en RLS zijn ingericht en gecontroleerd. De **echte magic-link-login en synchronisatie op twee apparaten** moeten nog met een gebruikersaccount worden getest.
 
+## Betrouwbaarheid van cloudsync – herstelbare wachtrij
+
+De implementatie bewaart iedere nieuwe dagboekstand vooraf als complete,
+gebruikersgebonden herstelkopie in `localStorage`. De opslagcode gebruikt de
+Supabase-project-URL en het ID van de ingelogde gebruiker als sleutel, zodat
+de herstelstatus van accounts gescheiden blijft.
+
+1. Een nieuwe of aangepaste maaltijd wordt eerst synchroon in de lokale
+   herstelkopie opgeslagen; alleen bij succes wordt de wijziging getoond.
+2. De browser synchroniseert daarna met Supabase via `revision`-controle.
+   Niet bevestigde wijzigingen blijven lokaal aanwezig.
+3. Na bevestigde upload wordt de lokale kopie pas gewist als de juiste
+   opgeslagen versie nog dezelfde is. Verandert de inhoud tijdens de upload,
+   dan wordt de nieuwe versie opnieuw veilig ingepland.
+4. Na een browserherstart leest de app eerst de cloudversie en kijkt daarna
+   naar een bestaande herstelkopie van dit account. Bij een verschil tussen
+   server- en lokale revisie wordt geen automatische overschrijving gedaan.
+5. Als de cloud niet bereikbaar is maar er een geldige opgeslagen sessie én
+   herstelkopie zijn, kan het lokale dagboek worden geopend. Voor de
+   eerstvolgende upload wordt de serverrevisie opnieuw gecontroleerd.
+6. Bij een conflict exporteert de gebruiker eerst het dagboek en kan daarna
+   bewust de cloudversie herstellen. Er vindt **geen automatische
+   samenvoeging** van verschillende apparaten plaats.
+
+Een browser kan lokale gegevens verwijderen (bijvoorbeeld door
+privémodus, opslagopschoning of apparaatverlies). Een lokale herstelkopie is
+daarom **geen volledige back-up**. Bewaar waar nodig een exportbestand.
+Andere tabbladen worden gecontroleerd op wijzigingen aan dezelfde
+herstelkopie; bij een conflict wordt het bewerken geweigerd in plaats van
+een nieuwere lokale kopie zonder waarschuwing te vervangen.
+
+De oplossing werkt zonder nieuwe database- of API-tabellen en behoudt
+de bestaande RLS-rechten. Dit beperkt het risico bij bestaande accounts.
+
+**Tests:** `tests/cloud-diary.test.cjs` bevat scenario's voor opslagfouten,
+tijdelijke netwerkuitval, herstart tijdens offline gebruik, oude revisies,
+twee apparaten, twee tabbladen, accountisolatie en browsercrashes na
+serverbevestiging. Deze tests gebruiken een gesimuleerde Supabase-client;
+een echte end-to-end-test met e-mailaanmelding is aanvullend nodig.
+
 ## Architectuur
 
 - De receptenwebsite blijft statisch op GitHub Pages.
