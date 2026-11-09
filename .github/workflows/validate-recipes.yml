@@ -46,6 +46,8 @@ jobs:
         run: node --test tests/cloud-governance.test.cjs
       - name: Versleutelde dagboekback-ups testen
         run: node --test tests/secure-backup.test.cjs
+      - name: Versleutelde onafhankelijke databaseback-ups testen
+        run: node --test tests/backup-database.test.cjs
       - name: JavaScript-syntax van cloudmodules controleren
         run: |
           node --check voeding-cloud.js
