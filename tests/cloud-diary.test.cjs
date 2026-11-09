@@ -274,3 +274,42 @@ test('Conflicterende wijziging op het tweede apparaat blijft lokaal herstelbaar'
  assert.equal(countPending(second.storage),1);
  assert.equal(db.rows.get('shared').diary.days['2026-11-09'][0].nutrition.kcal,222);
 });
+
+test('Dagboekformulier toont een wijziging pas na een bevestigde lokale opslag',()=>{
+ const source=html.match(/<script>\s*'use strict';[\s\S]*?<\/script>/);
+ assert.equal(Boolean(source),true);
+ const inline=source[0].replace(/^<script>/,'').replace(/<\/script>$/,'');
+ function formCase(allow){
+  const nodes={},listeners={};
+  const node=id=>nodes[id]??={
+   id,value:'',checked:false,hidden:false,disabled:false,style:{},dataset:{},
+   textContent:'',innerHTML:'',classList:{toggle(){}},setAttribute(){},
+   addEventListener(name,fn){(listeners[id]??={})[name]=fn;},
+   focus(){},reset(){}
+  };
+  let saved=null;
+  const cloud={enabled:true,start(callbacks){callbacks.onData(null);},
+   enqueue(data){if(!allow)return false;saved=copy(data);return true;}};
+  const sandbox={
+   window:{CookbookCloud:cloud,confirm(){return true;}},
+   document:{getElementById:node},
+   location:{search:''},
+   localStorage:{getItem(){return null},setItem(){}},
+   fetch:async()=>({ok:true,json:async()=>[]}),
+   URLSearchParams,Date,Math,JSON,Error,Promise,Number,String,
+   setTimeout(){return 0;}
+  };
+  vm.runInNewContext(inline,sandbox,{timeout:1500});
+  node('manualName').value='Test voor opslag';
+  node('manualKcal').value='350';
+  listeners.manualForm.submit({preventDefault(){}});
+  return {saved,html:node('entries').innerHTML,message:node('status').textContent};
+ }
+ const failed=formCase(false);
+ assert.equal(failed.saved,null);
+ assert.doesNotMatch(failed.html,/Test voor opslag/);
+ assert.match(failed.message,/niet opgeslagen/);
+ const succeeded=formCase(true);
+ assert.equal(succeeded.saved.days[Object.keys(succeeded.saved.days)[0]][0].nutrition.kcal,350);
+ assert.match(succeeded.html,/Test voor opslag/);
+});
