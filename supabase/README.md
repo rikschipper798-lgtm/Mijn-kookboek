@@ -1,8 +1,6 @@
 # Persoonlijke accounts en cloudsync voor het voedingsdagboek
 
-**Status 9 november 2026:** Supabase-project **Mijn Kookboek** gekoppeld, database en RLS-beveiliging uitgevoerd en gecontroleerd. Project URL en publieke publishable key staan in `cloud-config.js`. De activeringsschakelaar blijft `active: false` tot de URL voor de inloglinks is ingesteld. Het bestaande lokale dagboek blijft daardoor werken.
-
-
+**Status 9 november 2026:** De eigenaar heeft bevestigd dat de Auth Redirect URL is ingesteld; daarop is de cloudkoppeling geactiveerd via `cloud-config.js` (`active: true`). Supabase-project, beveiligde database en RLS zijn ingericht en gecontroleerd. De **echte magic-link-login en synchronisatie op twee apparaten** moeten nog met een gebruikersaccount worden getest.
 
 ## Architectuur
 
@@ -22,7 +20,7 @@ werkdagmaaltijden uit het voedingsdagboek.
 **Niet inbegrepen:** recepten, favorieten, boodschappenlijsten, voorraad,
 persoonlijke kooknotities en de kookmodus. Die zijn nu nog lokaal.
 
-## Laatste handmatige instelling
+## Ingestelde Auth Redirect URL (nog live te testen)
 
 Open in het bestaande project **Mijn Kookboek** het Supabase-dashboard:
 [Authentication > URL Configuration](https://supabase.com/dashboard/project/usppeputwknbxayekufe/auth/url-configuration).
@@ -32,12 +30,12 @@ Stel in en bewaar:
 - **Site URL:** `https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html`
 - **Redirect URL:** `https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html`
 
-De URL voor de inloglink moet exact worden toegestaan; anders kan Supabase
+De gebruiker heeft gemeld deze instelling te hebben opgeslagen. De URL voor de inloglink moet exact worden toegestaan; anders kan Supabase
 de gebruiker naar een verkeerde pagina sturen. Controleer vervolgens onder
 **Authentication > Sign In / Providers** dat **Email** ingeschakeld is.
 Deze instellingen kunnen niet via de beschikbare databaseconnector worden
-gewijzigd. Laat daarna in `cloud-config.js` `active: true` zetten;
-de pagina schakelt pas dan over naar persoonlijke accounts.
+uitgelezen of gewijzigd. De accountfunctie is inmiddels geactiveerd; controleer de
+redirect door zelf een inloglink aan te vragen en te openen.
 
 De overige stappen zijn uitgevoerd:
 - Supabase-project: `usppeputwknbxayekufe` (EU-central-1).
@@ -45,6 +43,7 @@ De overige stappen zijn uitgevoerd:
 - RLS ingeschakeld met eigen-accountbeleid voor SELECT/INSERT/UPDATE.
 - Geen anonieme API-toegang tot deze tabel.
 - Publieke URL en **publishable key** staan al in de GitHub-configuratie.
+- De activeringsschakelaar in `cloud-config.js` staat op `active: true`.
 - Security Advisors leverden na het toepassen van de configuratie geen meldingen.
 
 **Na activering**: maak eerst vanuit het lokale dagboek een JSON-back-up en
