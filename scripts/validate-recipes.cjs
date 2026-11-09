@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-const UNITS=new Set('g|kg|ml|l|tl|el|stuk|stuks|teentje|teentjes|snee|snufje|klein snufje|plakken|blad|blaadjes|plantje|schijfjes|bolletjes|grote|naar smaak'.split('|'));
+const UNITS=new Set('g|kg|ml|l|tl|el|stuk|stuks|teentje|teentjes|snee|snufje|klein snufje|plakken|plakjes|blad|blaadjes|plantje|schijfjes|bolletjes|grote|naar smaak'.split('|'));
 const TIME_KEYS='minutes prep cook marinateMinutes restMinutes activeMinutes optionalWaitMinMinutes optionalWaitMaxMinutes initialRestMinutes coldRiseMinutes coldRiseMinimumMinutes coldRiseRecommendedMinMinutes coldRiseRecommendedMaxMinutes benchRestMinutes finalProofMinutes finalProofMinMinutes finalProofMaxMinutes coolMinutes'.split(' ');
 const ID=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const RECIPE_TYPES=new Set(['maaltijd','overig','onderdeel']);
@@ -56,9 +56,13 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
    return;
   }
   const version=view.version;
+  // Oudere recepten registreren wijzigingen vanaf v2; enkele nieuwere
+  // recepten bevatten óók de oorspronkelijke opname als v1-logregel.
+  // Beide zijn geldig zolang de geschiedenis volledig en oplopend is.
+  const hasCreationLog=view.changeLog[0]?.version===1;
   if(Number.isInteger(version)&&version>=1){
-   if(view.changeLog.length!==version-1)
-    fail(p+'.changeLog','verwacht precies één wijzigingsregel voor elke versie vanaf 2');
+   if(view.changeLog.length!==version-1+(hasCreationLog?1:0))
+    fail(p+'.changeLog','verwacht precies één wijzigingsregel voor elke versie vanaf 2'+(hasCreationLog?', plus de oorspronkelijke v1-opname':''));
    if(version===1&&view.updatedAt!==null)
     fail(p+'.updatedAt','versie 1 is de historische beginversie; updatedAt moet null zijn');
    if(version>1&&!date(view.updatedAt))
@@ -70,7 +74,10 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
    if(!change||typeof change!=='object'||Array.isArray(change)){
     fail(loc,'moet een wijzigingsobject zijn');return;
    }
-   if(change.version!==index+2)fail(loc+'.version','revisies moeten oplopend vanaf versie 2 zijn');
+   if(change.version!==index+(hasCreationLog?1:2))
+    fail(loc+'.version','revisies moeten opeenvolgend vanaf versie '+(hasCreationLog?1:2)+' zijn');
+   if(hasCreationLog&&index===0&&change.date!==created)
+    fail(loc+'.date','oorspronkelijke v1-opname moet gelijk zijn aan de receptdatum');
    if(!date(change.date))fail(loc+'.date','ongeldige wijzigingsdatum');
    if(!isText(change.description)||change.description.trim().length<8||
        change.description.trim().length>400)
@@ -170,7 +177,8 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
      if(!isText(v.id)||!ID.test(v.id))fail(p+'.id','ongeldige variant-ID');
      else if(seen.has(v.id)||v.id===r.id)fail(p+'.id','dubbele variant-ID');
      seen.add(v.id);required(v,'label',p);
-     if(Object.prototype.hasOwnProperty.call(v,'recipeType'))fail(p+'.recipeType','varianten delen het type van hun hoofdrecept');
+     if(Object.prototype.hasOwnProperty.call(v,'recipeType')&&v.recipeType!==r.recipeType)
+      fail(p+'.recipeType','varianten delen het type van hun hoofdrecept');
      revisions(v,p,r.date);nutrition(v.nutrition,p);const merged={...r,...v};time(merged,p);contents(merged,p);
      if(v.image!==undefined){
       image({...merged,image_source:v.image_source||r.image_source},p);images++;
