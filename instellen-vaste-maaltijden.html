@@ -34,8 +34,8 @@ button:hover{background:#1a3f28}
 <main><section class="panel">
 <h2>Controleer de gegevens</h2>
 <div id="preview"><p>Gegevens controleren…</p></div>
-<p class="note">Na bevestiging worden alleen de twee standaarden in de browser van dit apparaat opgeslagen. Automatische registraties op de geselecteerde werkdag worden bijgewerkt. Zelf ingevoerde maaltijden en je voedingsdoelen blijven behouden. Deze instellingen worden niet naar de openbare receptenlijst verzonden.</p>
-<button id="apply" type="button" disabled>Stel ontbijt en lunch in</button>
+<p class="note">Deze instelpagina brengt je naar het voedingsdagboek, waar de standaarden via dezelfde beveiligde opslag als je andere registraties worden overgenomen. Ben je nog niet ingelogd, dan wordt eerst gevraagd om aan te melden. Je bestaande handmatige maaltijden en doelen blijven behouden. De gegevens staan uitsluitend in de URL-fragmentcode van je browser en worden niet als GitHub-recept gepubliceerd.</p>
+<button id="apply" type="button" disabled>Neem ontbijt en lunch over in het voedingsdagboek</button>
 <div id="result" role="status" aria-live="polite"></div>
 <p id="continue" hidden><a class="btn" href="./voeding.html?v=20261109">Open mijn voedingsdagboek</a></p>
 </section></main>
@@ -80,37 +80,12 @@ button:hover{background:#1a3f28}
  $('apply').onclick=()=>{
   if(!payload)return;
   try{
-   const existing=localStorage.getItem(KEY);
-   const state=existing?JSON.parse(existing):{goals:{...defaults},days:{},weekdayPresets:{},weekdayApplied:{}};
-   if(!state||typeof state!=='object'||!state.goals||!state.days||typeof state.days!=='object'||Array.isArray(state.days))
-    throw Error('De bestaande gegevens hebben een onverwachte structuur. Maak eerst een back-up.');
-   state.weekdayPresets={...payload};
-   state.weekdayApplied ||= {};
-   const current=date(),wd=new Date(current+'T12:00:00').getDay();
-   if(wd>=1&&wd<=5){
-    const rows=state.days[current]||[];
-    for(const slot of SLOTS){
-     const p=payload[slot];if(!p.enabled||current<p.startDate)continue;
-     const found=rows.filter(x=>x&&x.source==='preset'&&typeof x.title==='string'&&x.title.startsWith('Standaard '+slot+':'));
-     if(found.length){
-      found[0].title='Standaard '+slot+': '+p.title;
-      found[0].nutrition={...p.nutrition};
-      for(const dup of found.slice(1)){const at=rows.indexOf(dup);if(at>=0)rows.splice(at,1);}
-     }else{
-      rows.push({id:String(Date.now())+'-'+slot,source:'preset',title:'Standaard '+slot+': '+p.title,nutrition:{...p.nutrition}});
-     }
-     state.weekdayApplied[current] ||= [];
-     if(!state.weekdayApplied[current].includes(slot))state.weekdayApplied[current].push(slot);
-    }
-    state.days[current]=rows;
-   }
-   localStorage.setItem(KEY,JSON.stringify(state));
-   history.replaceState(null,'',location.pathname+location.search);
-   $('continue').hidden=false;
-   $('apply').disabled=true;
-   message('Opgeslagen op dit apparaat. Het ontbijt is '+payload.ontbijt.nutrition.kcal+' kcal en de lunch '+payload.lunch.nutrition.kcal+' kcal. Open nu je voedingsdagboek.');
-  }catch(e){message('Instellen is niet gelukt: '+e.message,true);}
+   const forwarded={app:'mijn-kookboek-vaste-maaltijden',version:1,weekdayPresets:payload};
+   const target='./voeding.html#vaste-maaltijden='+encodeURIComponent(JSON.stringify(forwarded));
+   location.assign(target);
+  }catch(e){message('Overnemen is niet gelukt: '+e.message,true);}
  };
+
 })();
 </script>
 </body>
