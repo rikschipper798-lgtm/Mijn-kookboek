@@ -17,8 +17,16 @@
  let historyRows=new Map();
 
  function notify(message,error=false){
-  const node=el('cloudStatus');if(!node)return;
-  node.textContent=message;node.classList.toggle('error',error);
+  const node=el('cloudStatus');
+  if(node){node.textContent=message;node.classList.toggle('error',error);}
+  // De status is dezelfde feitelijke syncstatus als in het accountpaneel.
+  // Geen afzonderlijke UI-gissingen over succesvolle uploads.
+  if(hooks&&typeof hooks.onStatus==='function'){
+   hooks.onStatus({
+    loggedIn:Boolean(user),ready,pending:Boolean(draft),conflict,
+    error,message
+   });
+  }
  }
  function view(){
   if(!el('cloudPanel'))return;
