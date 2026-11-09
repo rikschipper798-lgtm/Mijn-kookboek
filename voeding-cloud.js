@@ -287,7 +287,7 @@
    const remote=await fetchRow(user);
    if(token!==generation||user?.id!==account)return;
    // A cloud read must never win over an edit saved while it was in flight.
-   if(edits!==editMark||sending||conflict||(draft&&!force)){
+   if(edits!==editMark||sending||(conflict&&!force)||(draft&&!force)){
     notify('Cloudantwoord genegeerd: ondertussen zijn er lokale wijzigingen opgeslagen.',true);
     return;
    }
