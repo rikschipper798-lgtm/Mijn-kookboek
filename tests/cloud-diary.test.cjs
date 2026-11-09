@@ -30,7 +30,7 @@ function makeStorage(){
 }
 function makeDb(){
  const rows=new Map();
- let failWrite=false,failRead=false,holdRead=false,releaseRead=null;
+ let failWrite=false,failRead=false,holdRead=false,releaseRead=null,loseAcknowledgement=false;
  const result=async(account,kind,body,filters)=>{
   if(kind==='select'){
    if(failRead){failRead=false;return {data:null,error:{code:'NETWORK',message:'No internet'}};}
@@ -47,15 +47,21 @@ function makeDb(){
    if(body.user_id!==account)return {data:null,error:{code:'RLS',message:'forbidden'}};
    if(rows.has(account))return {data:null,error:{code:'23505',message:'duplicate key'}};
    rows.set(account,copy(body));
+   if(loseAcknowledgement){
+    loseAcknowledgement=false;return {data:null,error:{code:'NETWORK',message:'Lost HTTP acknowledgement'}};
+   }
    return {data:{revision:body.revision},error:null};
   }
   const old=rows.get(account);
   if(!old||old.revision!==filters.revision)return {data:null,error:null};
   rows.set(account,{...old,...copy(body)});
+  if(loseAcknowledgement){
+   loseAcknowledgement=false;return {data:null,error:{code:'NETWORK',message:'Lost HTTP acknowledgement'}};
+  }
   return {data:{revision:body.revision},error:null};
  };
  return {
-  rows,failNextWrite(){failWrite=true;},failNextRead(){failRead=true;},holdNextRead(){holdRead=true;},
+  rows,failNextWrite(){failWrite=true;},failNextRead(){failRead=true;},loseNextAcknowledgement(){loseAcknowledgement=true;},holdNextRead(){holdRead=true;},
   release(){assert.equal(typeof releaseRead,'function');releaseRead();releaseRead=null;},
   client(account){
    return {from(name){
@@ -312,4 +318,28 @@ test('Dagboekformulier toont een wijziging pas na een bevestigde lokale opslag',
  const succeeded=formCase(true);
  assert.equal(succeeded.saved.days[Object.keys(succeeded.saved.days)[0]][0].nutrition.kcal,350);
  assert.match(succeeded.html,/Test voor opslag/);
+});
+
+test('Verloren netwerkbevestiging bij eerste upload wordt veilig als geslaagd herkend',async()=>{
+ const db=makeDb(),store=makeStorage(),client=harness(db,'lost-insert',store);
+ await client.start();
+ db.loseNextAcknowledgement();
+ assert.equal(client.enqueue(diary(410)),true);
+ await client.flush();
+ assert.equal(db.rows.get('lost-insert').diary.days['2026-11-09'][0].nutrition.kcal,410);
+ assert.equal(countPending(store),0);
+ assert.doesNotMatch(client.status,/conflict/i);
+});
+
+test('Verloren netwerkbevestiging bij update laat geen schijnconflict achter',async()=>{
+ const db=makeDb(),store=makeStorage(),client=harness(db,'lost-update',store);
+ await client.start();
+ client.enqueue(diary(220));await client.flush();
+ db.loseNextAcknowledgement();
+ assert.equal(client.enqueue(diary(540)),true);
+ await client.flush();
+ assert.equal(db.rows.get('lost-update').diary.days['2026-11-09'][0].nutrition.kcal,540);
+ assert.equal(db.rows.get('lost-update').revision,2);
+ assert.equal(countPending(store),0);
+ assert.doesNotMatch(client.status,/conflict/i);
 });
