@@ -1,8 +1,8 @@
 # Persoonlijke accounts en cloudsync voor het voedingsdagboek
 
-Status: **de broncode is voorbereid**, maar **cloudsync staat standaard uit**
-omdat er nog geen Supabase-project/configuratie gekoppeld is.
-De bestaande lokale pagina blijft werken.
+**Status 9 november 2026:** Supabase-project **Mijn Kookboek** gekoppeld, database en RLS-beveiliging uitgevoerd en gecontroleerd. Project URL en publieke publishable key staan in `cloud-config.js`. De activeringsschakelaar blijft `active: false` tot de URL voor de inloglinks is ingesteld. Het bestaande lokale dagboek blijft daardoor werken.
+
+
 
 ## Architectuur
 
@@ -22,42 +22,34 @@ werkdagmaaltijden uit het voedingsdagboek.
 **Niet inbegrepen:** recepten, favorieten, boodschappenlijsten, voorraad,
 persoonlijke kooknotities en de kookmodus. Die zijn nu nog lokaal.
 
-## Eénmalig configureren
+## Laatste handmatige instelling
 
-1. Maak een eigen [Supabase-project](https://supabase.com/dashboard/projects)
-   aan. Kies bij voorkeur een EU-regio en controleer het privacybeleid,
-   bewaartermijnen en de voorwaarden van je databaseprovider.
-2. Open **SQL Editor** in dat project en voer de complete inhoud van
-   [schema.sql](./schema.sql) uit.
-3. Controleer dat de tabel `public.nutrition_diaries` bestaat, dat RLS is
-   ingeschakeld en dat de policies voor `SELECT`, `INSERT`, `UPDATE` elk
-   uitsluitend de eigen `user_id = auth.uid()` toestaan.
-4. Open in Supabase **Authentication > URL Configuration** en stel in:
+Open in het bestaande project **Mijn Kookboek** het Supabase-dashboard:
+[Authentication > URL Configuration](https://supabase.com/dashboard/project/usppeputwknbxayekufe/auth/url-configuration).
 
-   - **Site URL:** `https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html`
-   - **Redirect URL:** `https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html`
+Stel in en bewaar:
 
-5. Laat de e-mailinlogmethode ingeschakeld via **Authentication > Providers**.
-   Test de Magic Link-e-mail. Voor productie/meerdere gebruikers kan een
-   eigen SMTP-provider nodig zijn vanwege standaard verzendlimieten.
-6. Ga naar **Project Settings > API** (of het betreffende Connect-scherm
-   voor je Supabase-versie). Neem alleen de **Project URL** en de
-   **publishable key** over.
-7. Vul in het publieke bestand `cloud-config.js` uitsluitend die twee
-   waarden in:
+- **Site URL:** `https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html`
+- **Redirect URL:** `https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html`
 
-   ```js
-   window.COOKBOOK_CLOUD_CONFIG = {
-     url: "https://PROJECT-REF.supabase.co",
-     publishableKey: "sb_publishable_xxxxxxxxxxx"
-   };
-   ```
+De URL voor de inloglink moet exact worden toegestaan; anders kan Supabase
+de gebruiker naar een verkeerde pagina sturen. Controleer vervolgens onder
+**Authentication > Sign In / Providers** dat **Email** ingeschakeld is.
+Deze instellingen kunnen niet via de beschikbare databaseconnector worden
+gewijzigd. Laat daarna in `cloud-config.js` `active: true` zetten;
+de pagina schakelt pas dan over naar persoonlijke accounts.
 
-8. Sla dit bestand op in GitHub. De cloud-login verschijnt in
-   [voedingsdagboek](https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html)
-   nadat de nieuwe versie is geladen. Test met twee verschillende
-   e-mailaccounts in twee browsers; ieder account moet uitsluitend zijn
-   eigen waarden zien.
+De overige stappen zijn uitgevoerd:
+- Supabase-project: `usppeputwknbxayekufe` (EU-central-1).
+- `public.nutrition_diaries` met `user_id`, JSONB-dagboek en revisienummer.
+- RLS ingeschakeld met eigen-accountbeleid voor SELECT/INSERT/UPDATE.
+- Geen anonieme API-toegang tot deze tabel.
+- Publieke URL en **publishable key** staan al in de GitHub-configuratie.
+- Security Advisors leverden na het toepassen van de configuratie geen meldingen.
+
+**Na activering**: maak eerst vanuit het lokale dagboek een JSON-back-up en
+log vervolgens eenmalig in. Voor een nieuw account zonder cloudgegevens
+vraagt de pagina of het huidige lokale dagboek moet worden meegenomen.
 
 **BELANGRIJK:** Gebruik nooit een Supabase secret key, service_role key,
 databasewachtwoord of persoonlijke API-token in JavaScript op GitHub Pages,
