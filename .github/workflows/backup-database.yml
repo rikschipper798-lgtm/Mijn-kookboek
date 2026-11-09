@@ -60,6 +60,24 @@ jobs:
             sh -ec 'exec pg_dump -d "$SUPABASE_BACKUP_DB_URL" --format=custom --no-owner --no-privileges --schema=public --schema=auth --schema=storage' \
             | node scripts/backup-database.cjs encrypt - "$backup"
           node scripts/backup-database.cjs verify "$backup"
+
+          # Controleer ook of de ontsleutelde inhoud een leesbaar PostgreSQL-
+          # archief is. Dit is nog geen volledige restore in een testdatabase.
+          plaintext="$RUNNER_TEMP/kookboek-backup/pg-archive-verify.dump"
+          cleanup() {
+            if [[ -f "$plaintext" ]]; then
+              shred --remove "$plaintext" 2>/dev/null || rm -f "$plaintext"
+            fi
+          }
+          trap cleanup EXIT
+          node scripts/backup-database.cjs decrypt "$backup" "$plaintext" >/dev/null
+          docker run --rm \
+            -v "$RUNNER_TEMP/kookboek-backup:/backup:ro" \
+            postgres:17.11 \
+            pg_restore --list /backup/pg-archive-verify.dump >/dev/null
+          cleanup
+          trap - EXIT
+
           echo "path=$backup" >> "$GITHUB_OUTPUT"
           echo "size_bytes=$(stat -c '%s' "$backup")" >> "$GITHUB_OUTPUT"
 
