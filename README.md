@@ -4,6 +4,20 @@ Persoonlijk online kookboek met recepten, kookmodus en boodschappenlijst.
 
 **Website:** https://rikschipper798-lgtm.github.io/Mijn-kookboek/
 
+## Persoonlijk voedingsdagboek
+
+Via **Voedingsdagboek** op de startpagina, of **Registreer maaltijd** op een receptdetail, open je [het voedingsdagboek](https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html).
+
+- Persoonlijke, aanpasbare dagdoelen: 2.300 kcal, 160 g eiwit, 246 g koolhydraten, 75 g vet en 37,5 g vezels als startpunt.
+- Avondmaaltijd-richtwaarden: 650–800 kcal, 40–55 g eiwit, 65–95 g koolhydraten, 18–28 g vet, minimaal 10 g vezels en 250 g groente.
+- Per datum kookboekrecepten (inclusief varianten en fracties van een portie) of eigen voeding registreren.
+- Dagtotaal, voortgang en overzicht van de laatste zeven dagen bekijken.
+- Persoonlijke gegevens blijven in `localStorage` van de browser onder `mijn-kookboek-voedingsdagboek`. Ze worden niet naar GitHub gestuurd of automatisch tussen apparaten gedeeld.
+- Het dagboek heeft **eigen export/import** onder Privacy en back-up. De algemene back-up vanuit de receptenpagina bevat het voedingsdagboek niet; maak dus afzonderlijk een export.
+- Receptwaarden zijn schattingen, en handmatig ontbrekende macro's worden als onbekend behandeld. Het dagboek is bedoeld als praktisch hulpmiddel, niet als medisch meetinstrument.
+
+De pagina is een offline basisbestand van de PWA.
+
 ## Voedingswaarden per recept
 
 Alle recepten en hun varianten hebben een eigen `nutrition`-object in `recepten.json`.
