@@ -111,6 +111,17 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
     <div id="cloudUser" hidden>
       <p class="muted">Ingelogd als <span id="cloudEmailLabel"></span></p>
       <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudBackup" type="button" class="secondary">Download dagboekback-up</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
+      <details id="cloudHistorySection" class="muted">
+        <summary>Eerdere dagboekversies terughalen</summary>
+        <p>Supabase bewaart maximaal drie eerdere versies. Sla eerst eventuele huidige wijzigingen op. Bij het terugzetten blijft de huidige cloudversie als herstelversie beschikbaar.</p>
+        <div class="actions"><button id="cloudHistoryLoad" type="button" class="secondary">Laad eerdere versies</button></div>
+        <div id="cloudHistoryOptions" hidden>
+          <label for="cloudHistorySelect">Kies een eerdere versie</label>
+          <select id="cloudHistorySelect"></select>
+          <button id="cloudHistoryRestore" class="secondary" type="button">Herstel geselecteerde versie</button>
+        </div>
+        <p id="cloudHistoryStatus" class="muted" role="status" aria-live="polite"></p>
+      </details>
       <details class="muted"><summary>Mijn account en persoonsgegevens verwijderen</summary>
         <p>Je kunt je account en cloudgegevens definitief verwijderen. Maak eerst een back-up als je iets wilt bewaren. Voor deze handeling wordt tweemaal om bevestiging gevraagd.</p>
         <button id="cloudDeleteAccount" class="danger" type="button">Account en cloudgegevens definitief verwijderen</button>
@@ -646,6 +657,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
    hasLocal(){return Boolean(localStorage.getItem(KEY));},
    getLocal(){return cleanData(JSON.parse(localStorage.getItem(KEY)));},
    getState(){return state;},
+   restoreVersion(data){const cleaned=cleanData(data);return commit(()=>{state=cleaned;});},
    validateData(data){return data?cleanData(data):null;},
    onData(data){state=data?cleanData(data):newState();cloudReady=true;render();loadWeekdayForm();processPresetLink();},
    onLogout(){cloudReady=false;state=newState();render();}
