@@ -246,6 +246,8 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  const dateValid=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&new Date(s+'T12:00:00').toLocaleDateString('sv-SE')===s;
  const SLOTS=['ontbijt','lunch'];
  const newState=()=>({goals:{...DEFAULTS},days:{},weekdayPresets:{},weekdayApplied:{}});
+ const cloudMode=Boolean(window.CookbookCloud&&window.CookbookCloud.enabled);
+ let cloudReady=!cloudMode;
  let state=newState(),recipeOptions=[],selectedDay=today();
  function status(message,error=false){el('status').textContent=message;el('status').classList.toggle('error',error);}
  function cleanData(data){
@@ -295,13 +297,17 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
    }
    return {goals,days,weekdayPresets,weekdayApplied};
  }
- try{
-  const stored=localStorage.getItem(KEY);
-  if(stored)state=cleanData(JSON.parse(stored));
- }catch(e){status('Bestaande voedingsgegevens konden niet worden ingelezen: '+e.message,true);}
+ if(!cloudMode){
+  try{
+   const stored=localStorage.getItem(KEY);
+   if(stored)state=cleanData(JSON.parse(stored));
+  }catch(e){status('Bestaande voedingsgegevens konden niet worden ingelezen: '+e.message,true);}
+ }
  function commit(action){
+  if(!cloudReady){status('Log eerst in om gegevens te bewerken.',true);return false;}
   const previous=JSON.stringify(state);
   action();
+  if(cloudMode){render();window.CookbookCloud.enqueue(state);return true;}
   try{localStorage.setItem(KEY,JSON.stringify(state));}
   catch(e){state=JSON.parse(previous);status('Opslaan is mislukt. Controleer de browseropslag.',true);return false;}
   render();return true;
@@ -325,8 +331,11 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
     state.weekdayApplied[day]=[...done,slot];changed=true;
    }
   }
-  if(changed)try{localStorage.setItem(KEY,JSON.stringify(state));}
-  catch(e){state=JSON.parse(snapshot);status('Automatisch invullen kon niet worden opgeslagen.',true);}
+  if(changed){
+   if(cloudMode)window.CookbookCloud.enqueue(state);
+   else try{localStorage.setItem(KEY,JSON.stringify(state));}
+   catch(e){state=JSON.parse(snapshot);status('Automatisch invullen kon niet worden opgeslagen.',true);}
+  }
  }
  function showWeekdays(){
   el('weekdaySummary').innerHTML=SLOTS.map(slot=>{
@@ -357,6 +366,8 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   return {out,missing};
  }
  function render(){
+  el('diaryContent').hidden=!cloudReady;
+  if(!cloudReady)return;
   autoWeekdays();showWeekdays();
   const entries=currentEntries();
   const result=totals(entries),kcal=result.out.kcal,goal=state.goals.kcal;
@@ -592,6 +603,15 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  render();
  loadWeekdayForm();
  fetchRecipes();
+ if(cloudMode){
+  window.CookbookCloud.start({
+   hasLocal(){return Boolean(localStorage.getItem(KEY));},
+   getLocal(){return cleanData(JSON.parse(localStorage.getItem(KEY)));},
+   getState(){return state;},
+   onData(data){state=data?cleanData(data):newState();cloudReady=true;render();loadWeekdayForm();},
+   onLogout(){cloudReady=false;state=newState();render();}
+  });
+ }
 })();
 </script>
 </body>
