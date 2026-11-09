@@ -4,9 +4,7 @@ Persoonlijk online kookboek met recepten, kookmodus en boodschappenlijst.
 
 **Website:** https://rikschipper798-lgtm.github.io/Mijn-kookboek/
 
-## Persoonlijk voedingsdagboek
-
-### Vaste maaltijden op werkdagen
+## Vaste maaltijden op werkdagen
 
 Op de voedingsdagboekpagina kun je onder **Vast ontbijt en lunch** twee persoonlijke
 standaardmaaltijden instellen, zonder ze aan `recepten.json` toe te voegen.
