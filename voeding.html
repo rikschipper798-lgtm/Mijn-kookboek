@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#294935">
+<meta name="description" content="Houd jouw dagelijkse calorieën en voedingswaarden bij met recepten uit Mijn Kookboek.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<title>Voedingsdagboek · Mijn Kookboek</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#25382c;background:#faf9f5;--green:#294935;--muted:#67746a;--line:#e2e6dc;--leaf:#4c6a51}
+*{box-sizing:border-box}
+body{margin:0}
+a{color:inherit}button,input,select{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid #c38d60;outline-offset:3px}
+header{background:linear-gradient(120deg,#183c2a,#3e6347);color:white;padding:27px max(20px,calc((100vw - 1100px)/2))}
+header a{display:inline-block;color:#e1e9df;text-decoration:none;font-size:14px;font-weight:650;margin-bottom:20px}
+header a:hover{text-decoration:underline}
+header .overline{color:#e4bd93;letter-spacing:.16em;font-size:11px;font-weight:750}
+header h1{font:500 clamp(33px,5.8vw,54px)/1.13 Georgia,serif;letter-spacing:-.025em;margin:8px 0}
+header p{color:#e0e8df;line-height:1.6;margin:11px 0 0;max-width:690px}
+main{max-width:1100px;margin:auto;padding:28px 20px 70px}
+.layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(275px,.8fr);gap:20px;align-items:start}
+.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:23px;margin-bottom:20px;box-shadow:0 5px 20px #3440340b}
+h2{font:500 27px/1.2 Georgia,serif;margin:0 0 13px;color:var(--green)}
+h3{font-size:17px;margin:0 0 11px}
+p{line-height:1.55}
+.muted,small{color:var(--muted);font-size:13px}
+.datebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between;margin:0 0 20px}
+.datebar label{font-weight:700}
+.datebar input{max-width:190px}
+.datebar .arrow{min-width:45px}
+label{display:block;font-size:13px;color:#425b49;font-weight:700;margin-bottom:6px}
+input,select{width:100%;border:1px solid #cfdbcf;background:#fff;color:#26382a;border-radius:10px;padding:11px 12px;min-height:43px}
+button,.button{background:#294935;border:0;color:white;border-radius:10px;padding:11px 15px;min-height:44px;font-weight:700}
+button:hover,.button:hover{background:#1d3e2b}
+button.secondary{background:#ebf1e8;color:#294935}
+button.secondary:hover{background:#dce9d7}
+button.danger{background:#fff0eb;color:#8c3b2f}
+button.danger:hover{background:#ffe0d6}
+button:disabled{opacity:.45;cursor:default}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.row>*{min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.field{margin-bottom:13px}
+.summary{background:#f4f7f1;border:1px solid #dde9d8;border-radius:13px;padding:17px;margin:14px 0}
+.summary .primary{font:500 35px Georgia,serif;color:#254831}
+.summary .primary span{font:500 16px system-ui;color:#4a6450}
+.meter{height:12px;background:#dce7d7;border-radius:8px;overflow:hidden;margin:12px 0 9px}
+.meter>div{height:100%;background:#5c8766;transition:width .2s}
+.meter>div.over{background:#b16e42}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.metric{background:#fafbf9;border:1px solid #e8eee6;padding:12px;border-radius:10px}
+.metric strong{display:block;font-size:22px;color:#294935}
+.metric span{display:block;font-size:12px;color:#66776a;margin-top:3px}
+.goal-list{list-style:none;padding:0;margin:12px 0}
+.goal-list li{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #e9eee7}
+.goal-list strong{white-space:nowrap}
+.entry-list{list-style:none;padding:0;margin:12px 0}
+.entry-list li{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #edf0e9;padding:13px 0}
+.entry-list li:last-child{border:0}
+.entry-title{font-weight:700;overflow-wrap:anywhere}
+.entry-details{font-size:12px;color:#69776c;margin-top:4px;line-height:1.5}
+.entry-right{display:flex;align-items:center;gap:9px;flex:none}
+.entry-right strong{white-space:nowrap}
+.entry-right button{min-height:35px;padding:7px 10px;font-size:12px}
+.help{padding:12px 14px;background:#f9f4ea;border-radius:9px;color:#655d4d;font-size:13px;line-height:1.55}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.actions button{flex:1}
+.week-row{padding:8px 0;border-bottom:1px solid #e6ebe3;display:flex;justify-content:space-between;gap:10px;font-size:13px}
+.week-row:last-child{border:0}
+.week-row span:last-child{font-weight:700}
+.status{font-size:13px;min-height:20px;color:#305d3d}
+.status.error{color:#9c3434}
+footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.panel{padding:18px}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.datebar{justify-content:flex-start}}
+@media(max-width:450px){.grid2{grid-template-columns:1fr}.entry-list li{align-items:flex-start}.entry-right{flex-direction:column;align-items:flex-end}.datebar input{max-width:165px}}
+</style>
+</head>
+<body>
+<header>
+  <a href="./">← Terug naar Mijn Kookboek</a>
+  <div class="overline">PERSOONLIJK OVERZICHT</div>
+  <h1>Mijn voedingsdagboek</h1>
+  <p>Registreer je maaltijden, bekijk je geschatte calorieën en vergelijk je dag met je persoonlijke richtwaarden.</p>
+</header>
+<main>
+  <div class="datebar">
+    <div><label for="selectedDate">Welke dag wil je bekijken?</label><div class="row"><button class="secondary arrow" type="button" id="previousDay" aria-label="Vorige dag">←</button><input type="date" id="selectedDate"><button class="secondary arrow" type="button" id="nextDay" aria-label="Volgende dag">→</button></div></div>
+    <button class="secondary" id="today" type="button">Vandaag</button>
+  </div>
+  <div class="layout">
+    <div>
+      <section class="panel" aria-labelledby="dayTitle">
+        <h2 id="dayTitle">Dagoverzicht</h2>
+        <div class="summary">
+          <div class="muted">Geschatte calorie-inname</div>
+          <div id="calories" class="primary">0 <span>/ 2.300 kcal</span></div>
+          <div class="meter" role="progressbar" id="calorieMeter" aria-label="Percentage van caloriedoel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="calorieFill"></div></div>
+          <div class="muted" id="calorieNote">Nog niets geregistreerd</div>
+        </div>
+        <div class="metrics" id="metrics"></div>
+        <p class="muted">Dit is je <strong>geregistreerde</strong> inname, niet automatisch je volledige dag. Voedingswaarden van recepten zijn schattingen; bij losse invoer zijn lege macrovelden onbekend en tellen ze niet mee.</p>
+      </section>
+      <section class="panel" aria-labelledby="entryTitle">
+        <h2 id="entryTitle">Geregistreerde maaltijden</h2>
+        <p id="emptyEntries" class="muted">Voor deze dag zijn nog geen maaltijden toegevoegd.</p>
+        <ul class="entry-list" id="entries"></ul>
+      </section>
+      <section class="panel" aria-labelledby="recipeTitle" id="recipeSection">
+        <h2 id="recipeTitle">Voeg een kookboekrecept toe</h2>
+        <p class="muted">De waarden worden per standaardportie uit het kookboek overgenomen, inclusief de gekozen variant. Je kunt ook een halve portie registreren.</p>
+        <form id="recipeForm">
+          <div class="field"><label for="recipeSelect">Recept</label><select id="recipeSelect" required><option value="">Recepten laden…</option></select></div>
+          <div class="grid2">
+            <div class="field"><label for="recipeQty">Gegeten porties</label><input type="number" min="0.25" max="20" step="0.25" id="recipeQty" value="1" required inputmode="decimal"></div>
+            <div class="field"><label>Geschatte energie</label><div id="recipePreview" class="help">Kies een recept om de calorieën te zien.</div></div>
+          </div>
+          <button type="submit" id="addRecipe">Recept registreren</button>
+        </form>
+      </section>
+      <section class="panel" aria-labelledby="manualTitle">
+        <h2 id="manualTitle">Voeg zelf eten of drinken toe</h2>
+        <p class="muted">Gebruik de voedingswaarden van een verpakking of een eigen schatting voor de hoeveelheid die je daadwerkelijk hebt gegeten.</p>
+        <form id="manualForm">
+          <div class="field"><label for="manualName">Omschrijving</label><input id="manualName" required maxlength="120" placeholder="Bijv. ontbijt: kwark en banaan"></div>
+          <div class="grid3">
+            <div class="field"><label for="manualKcal">Calorieën (kcal) *</label><input id="manualKcal" required type="number" min="0" max="10000" step="1" inputmode="numeric"></div>
+            <div class="field"><label for="manualProtein">Eiwit (g)</label><input id="manualProtein" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
+            <div class="field"><label for="manualCarbs">Koolhydraten (g)</label><input id="manualCarbs" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
+            <div class="field"><label for="manualFat">Vet (g)</label><input id="manualFat" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
+            <div class="field"><label for="manualFiber">Vezels (g)</label><input id="manualFiber" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
+          </div>
+          <p class="muted">* Alleen calorieën zijn verplicht. Lege velden betekenen 'niet bekend', niet nul.</p>
+          <button type="submit">Voeg toe aan deze dag</button>
+        </form>
+      </section>
+    </div>
+    <div>
+      <section class="panel" aria-labelledby="goalsTitle">
+        <h2 id="goalsTitle">Jouw richtwaarden</h2>
+        <p class="muted">Startwaarden voor geleidelijk vetverlies. Ze zijn gebaseerd op je eerder berekende voedingsdoelen en kunnen hier worden aangepast.</p>
+        <ul class="goal-list" id="goalsList"></ul>
+        <details id="editGoals"><summary style="cursor:pointer;font-weight:700;color:#294935;padding:7px 0">Richtwaarden aanpassen</summary>
+          <form id="goalsForm" style="padding-top:15px">
+            <div class="grid2">
+              <div class="field"><label for="goalKcal">Calorieën (kcal)</label><input type="number" id="goalKcal" min="500" max="10000" required></div>
+              <div class="field"><label for="goalProtein">Eiwit (g)</label><input type="number" id="goalProtein" min="0" max="1000" required></div>
+              <div class="field"><label for="goalCarbs">Koolhydraten (g)</label><input type="number" id="goalCarbs" min="0" max="1200" required></div>
+              <div class="field"><label for="goalFat">Vet (g)</label><input type="number" id="goalFat" min="0" max="500" required></div>
+              <div class="field"><label for="goalFiber">Vezels (g)</label><input type="number" id="goalFiber" min="0" max="150" required></div>
+            </div>
+            <button type="submit">Bewaar richtwaarden</button>
+          </form>
+        </details>
+      </section>
+      <section class="panel">
+        <h2>Richtlijn avondeten</h2>
+        <ul class="goal-list"><li><span>Energie</span><strong>650–800 kcal</strong></li><li><span>Eiwit</span><strong>40–55 g</strong></li><li><span>Koolhydraten</span><strong>65–95 g</strong></li><li><span>Vet</span><strong>18–28 g</strong></li><li><span>Vezels</span><strong>Min. 10 g</strong></li><li><span>Groenten</span><strong>Min. 250 g</strong></li></ul>
+        <p class="muted">Praktische streefwaarden, geen harde grenzen. De groentehoeveelheid wordt nog niet automatisch bijgehouden.</p>
+      </section>
+      <section class="panel">
+        <h2>Laatste 7 dagen</h2>
+        <div id="weekOverview"></div>
+        <p class="muted">Alleen dagen met registraties tellen mee in het gemiddelde. Een lege dag betekent niet dat je niets hebt gegeten.</p>
+      </section>
+      <section class="panel">
+        <h2>Privacy en back-up</h2>
+        <p class="muted">Je registraties en aangepaste doelen worden uitsluitend in deze browser op dit apparaat opgeslagen, niet in de openbare GitHub-repository. Er is geen automatische synchronisatie met andere apparaten.</p>
+        <div class="actions"><button type="button" id="export" class="secondary">Exporteer dagboek</button><button type="button" id="importButton" class="secondary">Importeer dagboek</button></div>
+        <input id="importFile" type="file" accept=".json,application/json" hidden aria-label="Importeer voedingsdagboek">
+        <p class="muted">Bewaar het exportbestand veilig. Dit dagboek heeft een eigen back-up, apart van de algemene kookboek-back-up. Importeren vervangt de bestaande voedingsregistraties en doelen.</p>
+      </section>
+    </div>
+  </div>
+  <p role="status" id="status" class="status" aria-live="polite"></p>
+</main>
+<footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden</footer>
+<script>
+'use strict';
+(function(){
+ const KEY='mijn-kookboek-voedingsdagboek';
+ const DEFAULTS={kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5};
+ const KEYS=['kcal','proteinG','carbsG','fatG','fiberG'];
+ const LABELS=['Calorieën','Eiwitten','Koolhydraten','Vetten','Vezels'];
+ const el=id=>document.getElementById(id);
+ const fmt=(n,d=0)=>Number(n).toLocaleString('nl-NL',{maximumFractionDigits:d});
+ const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const validNum=n=>typeof n==='number'&&Number.isFinite(n)&&n>=0;
+ const today=()=>new Date().toLocaleDateString('sv-SE');
+ const dateValid=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&new Date(s+'T12:00:00').toLocaleDateString('sv-SE')===s;
+ const newState=()=>({goals:{...DEFAULTS},days:{}});
+ let state=newState(),recipeOptions=[],selectedDay=today();
+ function status(message,error=false){el('status').textContent=message;el('status').classList.toggle('error',error);}
+ function cleanData(data){
+  if(!data||typeof data!=='object'||Array.isArray(data)||!data.goals||!data.days||typeof data.days!=='object'||Array.isArray(data.days))throw Error('Ongeldige gegevens.');
+  const goals={};
+  for(const key of KEYS){
+   if(!validNum(data.goals[key])||data.goals[key]>(key==='kcal'?10000:1500))throw Error('Ongeldige richtwaarden.');
+   goals[key]=data.goals[key];
+  }
+  if(goals.kcal<500)throw Error('Ongeldig caloriedoel.');
+  const days={};
+  const dates=Object.keys(data.days);
+  if(dates.length>3650)throw Error('Te veel geregistreerde dagen.');
+  for(const day of dates){
+   if(!dateValid(day)||!Array.isArray(data.days[day])||data.days[day].length>100)throw Error('Ongeldige dagregistratie.');
+   days[day]=data.days[day].map(item=>{
+    if(!item||typeof item!=='object'||typeof item.id!=='string'||item.id.length>150||
+       typeof item.title!=='string'||item.title.length<1||item.title.length>200||
+       !item.nutrition||!validNum(item.nutrition.kcal)||item.nutrition.kcal>20000||
+       !KEYS.slice(1).every(key=>item.nutrition[key]===null||validNum(item.nutrition[key])&&item.nutrition[key]<=2000)){
+      throw Error('Ongeldige maaltijdgegevens.');
+    }
+    return {id:item.id,title:item.title.slice(0,200),source:item.source==='recipe'?'recipe':'manual',
+     nutrition:Object.fromEntries(KEYS.map(key=>[key,item.nutrition[key]]))};
+   });
+  }
+  return {goals,days};
+ }
+ try{
+  const stored=localStorage.getItem(KEY);
+  if(stored)state=cleanData(JSON.parse(stored));
+ }catch(e){status('Bestaande voedingsgegevens konden niet worden ingelezen: '+e.message,true);}
+ function commit(action){
+  const previous=JSON.stringify(state);
+  action();
+  try{localStorage.setItem(KEY,JSON.stringify(state));}
+  catch(e){state=JSON.parse(previous);status('Opslaan is mislukt. Controleer de browseropslag.',true);return false;}
+  render();return true;
+ }
+ function shiftDay(amount){
+  const date=new Date(selectedDay+'T12:00:00');date.setDate(date.getDate()+amount);
+  selectedDay=date.toLocaleDateString('sv-SE');el('selectedDate').value=selectedDay;render();
+ }
+ function currentEntries(){return state.days[selectedDay]||[];}
+ function addEntry(entry){
+  if(commit(()=>{if(!state.days[selectedDay])state.days[selectedDay]=[];state.days[selectedDay].push(entry);}))
+   status('Maaltijd opgeslagen voor '+selectedDay+'.');
+ }
+ function totals(entries){
+  const out={};const missing={};
+  for(const key of KEYS){
+   out[key]=entries.reduce((n,e)=>n+(validNum(e.nutrition[key])?e.nutrition[key]:0),0);
+   missing[key]=entries.some(e=>!validNum(e.nutrition[key]));
+  }
+  return {out,missing};
+ }
+ function render(){
+  const entries=currentEntries();
+  const result=totals(entries),kcal=result.out.kcal,goal=state.goals.kcal;
+  el('calories').innerHTML=fmt(kcal)+' <span>/ '+fmt(goal)+' kcal</span>';
+  const percentage=Math.round(kcal/goal*100);
+  el('calorieFill').style.width=Math.min(100,percentage)+'%';
+  el('calorieFill').classList.toggle('over',kcal>goal);
+  el('calorieMeter').setAttribute('aria-valuenow',Math.min(100,percentage));
+  el('calorieMeter').setAttribute('aria-valuetext',percentage+' procent van het dagdoel geregistreerd');
+  el('calorieNote').textContent=entries.length===0?'Nog niets geregistreerd':kcal<=goal?
+   fmt(goal-kcal)+' kcal tot je dagdoel (op basis van geregistreerde maaltijden)':
+   fmt(kcal-goal)+' kcal boven je dagdoel (op basis van geregistreerde maaltijden)';
+  el('metrics').innerHTML=KEYS.slice(1).map((key,i)=>
+   '<div class="metric"><strong>'+fmt(result.out[key],1)+(result.missing[key]?'*':'')+' g</strong><span>'+LABELS[i+1]+' · doel '+fmt(state.goals[key],1)+' g</span></div>').join('');
+  el('emptyEntries').hidden=entries.length>0;
+  el('entries').innerHTML=entries.map(e=>
+   '<li><div><div class="entry-title">'+esc(e.title)+'</div><div class="entry-details">'+(e.source==='recipe'?'Kookboekrecept · geschat':'Eigen invoer')+
+   ' · E '+(e.nutrition.proteinG===null?'onbekend':fmt(e.nutrition.proteinG,1)+' g')+
+   ' · KH '+(e.nutrition.carbsG===null?'onbekend':fmt(e.nutrition.carbsG,1)+' g')+
+   ' · V '+(e.nutrition.fatG===null?'onbekend':fmt(e.nutrition.fatG,1)+' g')+'</div></div>'+
+   '<div class="entry-right"><strong>'+fmt(e.nutrition.kcal)+' kcal</strong><button type="button" class="danger" data-remove="'+esc(e.id)+'" aria-label="Verwijder '+esc(e.title)+'">Wissen</button></div></li>').join('');
+  el('goalsList').innerHTML=KEYS.map((key,i)=>'<li><span>'+LABELS[i]+'</span><strong>'+fmt(state.goals[key],1)+(key==='kcal'?' kcal':' g')+'</strong></li>').join('');
+  [['goalKcal','kcal'],['goalProtein','proteinG'],['goalCarbs','carbsG'],['goalFat','fatG'],['goalFiber','fiberG']].forEach(pair=>el(pair[0]).value=state.goals[pair[1]]);
+  const day=new Date(selectedDay+'T12:00:00');const rows=[];
+  let sum=0,count=0;
+  for(let i=0;i<7;i++){
+   const d=new Date(day);d.setDate(d.getDate()-i);const iso=d.toLocaleDateString('sv-SE');
+   const logged=state.days[iso]||[],v=totals(logged).out.kcal;
+   if(logged.length){sum+=v;count++;}
+   rows.push('<div class="week-row"><span>'+d.toLocaleDateString('nl-NL',{weekday:'short',day:'numeric',month:'short'})+'</span><span>'+
+    (logged.length?fmt(v)+' kcal':'Niet geregistreerd')+'</span></div>');
+  }
+  el('weekOverview').innerHTML=rows.join('')+'<p class="muted"><strong>'+(count?fmt(sum/count)+' kcal gemiddeld over '+count+' geregistreerde '+(count===1?'dag':'dagen'):'Nog geen geregistreerde dagen')+'</strong></p>';
+ }
+ el('selectedDate').value=selectedDay;
+ el('selectedDate').addEventListener('change',event=>{if(dateValid(event.target.value)){selectedDay=event.target.value;render();}});
+ el('previousDay').onclick=()=>shiftDay(-1);
+ el('nextDay').onclick=()=>shiftDay(1);
+ el('today').onclick=()=>{selectedDay=today();el('selectedDate').value=selectedDay;render();};
+ el('entries').addEventListener('click',event=>{
+  const button=event.target.closest('button[data-remove]');if(!button)return;
+  const id=button.dataset.remove;
+  if(commit(()=>{state.days[selectedDay]=(state.days[selectedDay]||[]).filter(e=>e.id!==id);
+   if(!state.days[selectedDay].length)delete state.days[selectedDay];}))
+   status('Registratie verwijderd.');
+ });
+ function uniqueId(){return Date.now()+'-'+Math.random().toString(36).slice(2,11);}
+ function nutritionValid(n){return n&&n.per==='portie'&&KEYS.every(k=>validNum(n[k]));}
+ function recipeView(r,v){
+  return {title:r.title+(v?' — '+(v.label||v.title||v.id):r.variants?.length?' — '+(r.defaultVariantLabel||'Basisversie'):''),
+   nutrition:v&&v.nutrition?v.nutrition:r.nutrition};
+ }
+ function updatePreview(){
+  const option=recipeOptions[Number(el('recipeSelect').value)];
+  const qty=Number(el('recipeQty').value);
+  el('recipePreview').textContent=option&&qty>=0.25&&qty<=20?fmt(option.nutrition.kcal*qty)+' kcal voor '+fmt(qty,2)+' portie(s)':'Kies een recept en aantal porties.';
+ }
+ async function fetchRecipes(){
+  try{
+   const response=await fetch('recepten.json',{cache:'no-cache'});
+   if(!response.ok)throw Error('Recepten niet beschikbaar.');
+   const recipes=await response.json();
+   if(!Array.isArray(recipes))throw Error('Ongeldige receptenlijst.');
+   recipeOptions=[];
+   for(const r of recipes){
+    if(!r||!r.id||!r.title)continue;
+    if(nutritionValid(r.nutrition))recipeOptions.push({id:r.id,variant:'klassiek',...recipeView(r,null)});
+    for(const v of r.variants||[]){
+     if(v&&nutritionValid(v.nutrition))recipeOptions.push({id:r.id,variant:v.id,...recipeView(r,v)});
+    }
+   }
+   recipeOptions.sort((a,b)=>a.title.localeCompare(b.title,'nl'));
+   el('recipeSelect').innerHTML=recipeOptions.map((r,i)=>'<option value="'+i+'">'+esc(r.title)+'</option>').join('');
+   if(!recipeOptions.length){el('recipeSelect').innerHTML='<option value="">Geen recepten gevonden</option>';return;}
+   const params=new URLSearchParams(location.search);
+   const selected=recipeOptions.findIndex(r=>r.id===params.get('recept')&&r.variant===(params.get('variant')||'klassiek'));
+   el('recipeSelect').value=String(selected>=0?selected:0);
+   updatePreview();
+   if(selected>=0){el('recipeSelect').focus({preventScroll:true});}
+  }catch(error){
+   el('recipeSelect').innerHTML='<option value="">Recepten laden niet gelukt</option>';
+   status('Recepten konden niet worden geladen. Je kunt wel handmatig maaltijden toevoegen.',true);
+  }
+ }
+ el('recipeSelect').addEventListener('change',updatePreview);
+ el('recipeQty').addEventListener('input',updatePreview);
+ el('recipeForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const option=recipeOptions[Number(el('recipeSelect').value)],qty=Number(el('recipeQty').value);
+  if(!option||!Number.isFinite(qty)||qty<0.25||qty>20){status('Kies een geldig recept en aantal porties.',true);return;}
+  const nutrients=Object.fromEntries(KEYS.map(key=>[key,Math.round(option.nutrition[key]*qty*10)/10]));
+  addEntry({id:uniqueId(),title:option.title+' · '+fmt(qty,2)+' portie(s)',source:'recipe',nutrition:nutrients});
+ });
+ el('manualForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const title=el('manualName').value.trim(),kcal=Number(el('manualKcal').value);
+  if(!title||!el('manualKcal').value||!validNum(kcal)||kcal>10000){status('Vul een omschrijving en geldig aantal calorieën in.',true);return;}
+  const fields={proteinG:'manualProtein',carbsG:'manualCarbs',fatG:'manualFat',fiberG:'manualFiber'};
+  const nutrition={kcal};
+  for(const [key,id] of Object.entries(fields)){
+   const input=el(id),value=input.value.trim()===''?null:Number(input.value);
+   if(value!==null&&(!validNum(value)||value>1000)){status('Vul geldige niet-negatieve voedingswaarden in.',true);return;}
+   nutrition[key]=value;
+  }
+  addEntry({id:uniqueId(),title,source:'manual',nutrition});
+  el('manualForm').reset();
+ });
+ el('goalsForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const fields={kcal:'goalKcal',proteinG:'goalProtein',carbsG:'goalCarbs',fatG:'goalFat',fiberG:'goalFiber'};
+  const next={};
+  for(const [key,id] of Object.entries(fields)){
+   next[key]=Number(el(id).value);
+   if(!Number.isFinite(next[key])||next[key]<0||next[key]>1500&&key!=='kcal'||key==='kcal'&&(next[key]<500||next[key]>10000)){
+    status('Controleer de ingevulde richtwaarden.',true);return;
+   }
+  }
+  if(commit(()=>{state.goals=next;})){el('editGoals').open=false;status('Richtwaarden opgeslagen op dit apparaat.');}
+ });
+ el('export').onclick=()=>{
+  try{
+   const payload={app:'mijn-kookboek-voedingsdagboek',version:1,exportedAt:new Date().toISOString(),data:state};
+   const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+   const url=URL.createObjectURL(blob),anchor=document.createElement('a');
+   anchor.href=url;anchor.download='voedingsdagboek-'+today()+'.json';
+   document.body.appendChild(anchor);anchor.click();anchor.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),1000);
+   status('Exportbestand aangemaakt. Controleer je downloads.');
+  }catch(e){status('Exporteren is niet gelukt.',true);}
+ };
+ el('importButton').onclick=()=>el('importFile').click();
+ el('importFile').onchange=async event=>{
+  const file=event.target.files[0];event.target.value='';if(!file)return;
+  if(file.size>2*1024*1024){status('Bestand is te groot (maximaal 2 MB).',true);return;}
+  try{
+   const payload=JSON.parse(await file.text());
+   if(payload.app!=='mijn-kookboek-voedingsdagboek'||payload.version!==1)throw Error('Bestandstype wordt niet ondersteund.');
+   const imported=cleanData(payload.data);
+   if(!window.confirm('Dit vervangt al je huidige voedingsregistraties en richtwaarden op dit apparaat. Doorgaan?'))return;
+   if(commit(()=>{state=imported;}))status('Voedingsdagboek hersteld vanuit het importbestand.');
+  }catch(error){status('Importeren mislukt: '+error.message,true);}
+ };
+ render();
+ fetchRecipes();
+})();
+</script>
+</body>
+</html>
