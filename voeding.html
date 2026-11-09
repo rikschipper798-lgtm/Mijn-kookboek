@@ -180,6 +180,36 @@ main{padding-top:25px}
  .diary-view-actions .date-controls #today{padding:6px;font-size:12px}
  .diary-view-actions .date-controls input[type="date"]{padding:6px 3px}
 }
+
+/* Accountstatus: feitelijke cloudstatus zichtbaar zonder beheerpanelen te openen. */
+.account-status-bar[hidden]{display:none!important}
+.account-status-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid #dce7dc;border-left:4px solid #8b9a88;background:#fff;border-radius:15px;padding:16px 19px;margin:0 0 18px;box-shadow:0 4px 18px #203b2710}
+.account-status-bar[data-state="synced"]{border-left-color:#4f8160}
+.account-status-bar[data-state="pending"]{border-left-color:#b98a4b}
+.account-status-bar[data-state="attention"]{border-left-color:#ad6746}
+.account-status-copy{flex:1;min-width:0}
+.account-status-eyebrow{display:block;font-size:10px;font-weight:800;letter-spacing:.12em;color:#87735b;margin-bottom:5px}
+.account-status-copy strong{display:block;color:#294935;font-size:16px;line-height:1.4}
+.account-status-detail{font-size:13px;color:#405d49;margin:3px 0 0;line-height:1.5;overflow-wrap:anywhere}
+.account-status-scope{font-size:12px;color:#68796c;line-height:1.55;margin:7px 0 0}
+.account-status-button{flex:none;min-height:44px;white-space:nowrap}
+.account-utility:not([open]){display:none}
+.account-utility[open]{margin:0 0 18px}
+.account-storage-summary{background:#fbfcfa;border:1px solid #e3ebe0;border-radius:12px;padding:16px 17px;margin:15px 0 0}
+.account-storage-summary h3{margin:0 0 12px;color:#2c4d35;font-size:16px}
+.account-storage-summary dl{margin:0}
+.account-storage-summary dl>div{display:grid;grid-template-columns:minmax(120px,.36fr) minmax(0,1fr);gap:13px;padding:10px 0;border-bottom:1px solid #e5ebe2}
+.account-storage-summary dt{font-weight:750;color:#345a3e;font-size:13px}
+.account-storage-summary dd{margin:0;font-size:13px;color:#516453;line-height:1.5}
+.account-storage-summary>p{margin:13px 0 0;font-size:12px;color:#576a5a;line-height:1.65}
+.account-storage-summary a{color:#285e3b;text-underline-offset:2px;font-weight:700}
+@media(max-width:650px){
+ .account-status-bar{padding:14px;align-items:stretch;flex-direction:column;gap:11px}
+ .account-status-button{width:100%}
+ .account-storage-summary{padding:13px 12px}
+ .account-storage-summary dl>div{grid-template-columns:1fr;gap:4px}
+}
+@media print{.account-status-bar,.account-utility{display:none!important}}
 </style>
 </head>
 <body>
@@ -195,6 +225,60 @@ main{padding-top:25px}
   <p>Registreer je maaltijden, bekijk je geschatte calorieën en vergelijk je dag met je persoonlijke richtwaarden.</p>
 </header>
 <main>
+ <section class="account-status-bar" id="accountStatusBar" aria-label="Account en synchronisatie" hidden>
+   <div class="account-status-copy">
+    <span class="account-status-eyebrow">MIJN GEGEVENS</span>
+    <strong id="accountStateLabel">Accountstatus controleren…</strong>
+    <p class="account-status-detail" id="accountStateDetail" role="status" aria-live="polite"></p>
+    <p class="account-status-scope" id="accountStorageNote">Je voedingsdagboek gebruikt je persoonlijke cloudaccount. Favorieten, boodschappen en kooknotities blijven alleen in deze browser.</p>
+   </div>
+   <button type="button" class="secondary account-status-button" id="openAccountTools" aria-controls="accountTools" aria-expanded="false">Inloggen</button>
+  </section>
+ <details class="diary-utility account-utility" id="accountTools" hidden>
+  <summary><span><strong>Account en synchronisatie</strong><small>Inloggen, gegevens synchroniseren en accountbeheer</small></span></summary>
+  <div class="diary-utility-body">
+  <section class="panel" id="cloudPanel" hidden aria-labelledby="cloudPanelTitle">
+    <h2 id="cloudPanelTitle">Mijn persoonlijke account</h2>
+    <div id="cloudLogin">
+      <p class="muted">Log in met je e-mailadres. Je ontvangt een eenmalige inloglink. Je voedingsdoelen en registraties zijn per account gescheiden.</p>
+      <form id="cloudLoginForm" class="cloud-box">
+        <div class="field"><label for="cloudEmail">E-mailadres</label><input id="cloudEmail" required type="email" autocomplete="email" placeholder="jij@voorbeeld.nl"></div>
+        <button id="cloudSignIn" type="submit">Stuur inloglink</button>
+      </form>
+    </div>
+    <div id="cloudUser" hidden>
+      <p class="muted">Ingelogd als <span id="cloudEmailLabel"></span></p>
+      <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudBackup" type="button" class="secondary">Versleutelde back-upopties</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
+      <details id="cloudHistorySection" class="muted">
+        <summary>Eerdere dagboekversies terughalen</summary>
+        <p>Supabase bewaart maximaal drie eerdere versies. Sla eerst eventuele huidige wijzigingen op. Bij het terugzetten blijft de huidige cloudversie als herstelversie beschikbaar.</p>
+        <div class="actions"><button id="cloudHistoryLoad" type="button" class="secondary">Laad eerdere versies</button></div>
+        <div id="cloudHistoryOptions" hidden>
+          <label for="cloudHistorySelect">Kies een eerdere versie</label>
+          <select id="cloudHistorySelect"></select>
+          <button id="cloudHistoryRestore" class="secondary" type="button">Herstel geselecteerde versie</button>
+        </div>
+        <p id="cloudHistoryStatus" class="muted" role="status" aria-live="polite"></p>
+      </details>
+      <details class="muted"><summary>Mijn account en persoonsgegevens verwijderen</summary>
+        <p>Je kunt je account en cloudgegevens definitief verwijderen. Maak eerst een back-up als je iets wilt bewaren. Voor deze handeling wordt tweemaal om bevestiging gevraagd.</p>
+        <button id="cloudDeleteAccount" class="danger" type="button">Account en cloudgegevens definitief verwijderen</button>
+      </details>
+    </div>
+    <p id="cloudStatus" role="status" aria-live="polite"></p>
+  </section>
+
+  <div class="account-storage-summary" aria-label="Opslag van persoonlijke gegevens">
+   <h3>Waar worden mijn gegevens bewaard?</h3>
+   <dl>
+    <div><dt>Persoonlijk account</dt><dd>Je voedingsdagboek, voedingsdoelen en vaste maaltijden worden in de cloud gesynchroniseerd. Een nog niet gesynchroniseerde wijziging wordt eerst lokaal als herstelkopie bewaard.</dd></div>
+    <div><dt>Alleen deze browser</dt><dd>Favorieten, boodschappen, standaardvoorraad, kooknotities en kookvoortgang worden niet tussen apparaten gesynchroniseerd.</dd></div>
+    <div><dt>Recepten</dt><dd>Recepten en afbeeldingen staan in de gedeelde kookboekcollectie, los van je persoonlijke account.</dd></div>
+   </dl>
+   <p>Een back-up van je voedingsdagboek maak je via <strong>Instellingen en beheer</strong> hieronder. De andere persoonlijke gegevens kun je exporteren via <strong>Mijn gegevens · back-up en herstel</strong> onderaan de <a href="./">receptenpagina</a>.</p>
+  </div>
+  </div>
+ </details>
  <div id="diaryContent">
   <div class="diary-view-actions">
   <div class="datebar" role="group" aria-label="Dag selecteren">
@@ -346,41 +430,7 @@ main{padding-top:25px}
    </details>
   </div>
  </div>
- <details class="diary-utility account-utility" id="accountTools" hidden>
-  <summary><span><strong>Account en synchronisatie</strong><small>Inloggen, gegevens synchroniseren en accountbeheer</small></span></summary>
-  <div class="diary-utility-body">
-  <section class="panel" id="cloudPanel" hidden aria-labelledby="cloudPanelTitle">
-    <h2 id="cloudPanelTitle">Mijn persoonlijke account</h2>
-    <div id="cloudLogin">
-      <p class="muted">Log in met je e-mailadres. Je ontvangt een eenmalige inloglink. Je voedingsdoelen en registraties zijn per account gescheiden.</p>
-      <form id="cloudLoginForm" class="cloud-box">
-        <div class="field"><label for="cloudEmail">E-mailadres</label><input id="cloudEmail" required type="email" autocomplete="email" placeholder="jij@voorbeeld.nl"></div>
-        <button id="cloudSignIn" type="submit">Stuur inloglink</button>
-      </form>
-    </div>
-    <div id="cloudUser" hidden>
-      <p class="muted">Ingelogd als <span id="cloudEmailLabel"></span></p>
-      <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudBackup" type="button" class="secondary">Versleutelde back-upopties</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
-      <details id="cloudHistorySection" class="muted">
-        <summary>Eerdere dagboekversies terughalen</summary>
-        <p>Supabase bewaart maximaal drie eerdere versies. Sla eerst eventuele huidige wijzigingen op. Bij het terugzetten blijft de huidige cloudversie als herstelversie beschikbaar.</p>
-        <div class="actions"><button id="cloudHistoryLoad" type="button" class="secondary">Laad eerdere versies</button></div>
-        <div id="cloudHistoryOptions" hidden>
-          <label for="cloudHistorySelect">Kies een eerdere versie</label>
-          <select id="cloudHistorySelect"></select>
-          <button id="cloudHistoryRestore" class="secondary" type="button">Herstel geselecteerde versie</button>
-        </div>
-        <p id="cloudHistoryStatus" class="muted" role="status" aria-live="polite"></p>
-      </details>
-      <details class="muted"><summary>Mijn account en persoonsgegevens verwijderen</summary>
-        <p>Je kunt je account en cloudgegevens definitief verwijderen. Maak eerst een back-up als je iets wilt bewaren. Voor deze handeling wordt tweemaal om bevestiging gevraagd.</p>
-        <button id="cloudDeleteAccount" class="danger" type="button">Account en cloudgegevens definitief verwijderen</button>
-      </details>
-    </div>
-    <p id="cloudStatus" role="status" aria-live="polite"></p>
-  </section>
-  </div>
- </details>
+
 </main>
 
 <footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden · <a href="./privacy.html">Privacy en gegevensbeheer</a></footer>
@@ -413,6 +463,42 @@ main{padding-top:25px}
  let cloudReady=!cloudMode;
  el('accountTools').hidden=!cloudMode;
  el('accountTools').open=cloudMode&&!cloudReady;
+ function updateAccountStatus(snapshot){
+  const {loggedIn,ready,pending,conflict,error,message}=snapshot;
+  const bar=el('accountStatusBar');
+  let label='Dagboek gesynchroniseerd',tone='synced';
+  if(!cloudMode){label='Gegevens op dit apparaat';tone='neutral';}
+  else if(!loggedIn){label='Niet ingelogd';tone=error?'attention':'neutral';}
+  else if(conflict){label='Synchronisatie vraagt aandacht';tone='attention';}
+  else if(pending){label=error?'Synchronisatie niet voltooid':'Wijzigingen wachten op synchronisatie';tone=error?'attention':'pending';}
+  else if(!ready){label='Persoonlijk dagboek laden';tone='pending';}
+  else if(error){label='Controleer de cloudverbinding';tone='attention';}
+  bar.hidden=false;
+  bar.dataset.state=tone;
+  el('accountStateLabel').textContent=label;
+  el('accountStateDetail').textContent=message||'';
+  el('openAccountTools').textContent=cloudMode?(loggedIn?'Account beheren':'Inloggen'):'Gegevens beheren';
+ }
+ updateAccountStatus({loggedIn:false,ready:!cloudMode,pending:false,conflict:false,error:false,
+  message:cloudMode?'Inlogstatus controleren…':'Je dagboek en voedingsdoelen staan alleen in deze browser.'});
+ if(!cloudMode){
+  el('accountStorageNote').textContent='Je dagboek, favorieten, boodschappen en kooknotities blijven in deze browser. Maak regelmatig een back-up.';
+  el('openAccountTools').setAttribute('aria-controls','settingsMenu');
+ }
+ el('openAccountTools').onclick=()=>{
+  const target=el(cloudMode?'accountTools':'settingsMenu');
+  target.open=true;
+  el('openAccountTools').setAttribute('aria-expanded','true');
+  if(typeof target.scrollIntoView==='function')target.scrollIntoView({block:'start',behavior:'auto'});
+  if(cloudMode){
+   const focus=el('cloudLogin').hidden?el('cloudRefresh'):el('cloudEmail');
+   if(typeof focus.focus==='function')focus.focus({preventScroll:true});
+  }
+ };
+ el('accountTools').addEventListener('toggle',()=>{
+  if(cloudMode)el('openAccountTools').setAttribute('aria-expanded',String(el('accountTools').open));
+ });
+
  if(cloudMode)el('privacyDescription').textContent='Als je bent ingelogd, staan je persoonlijke voedingsdoelen, vaste maaltijden en dagregistraties in de beveiligde clouddatabase van de gekoppelde inlogdienst. Ze worden niet in GitHub gepubliceerd. Gegevens worden per account gescheiden via databasebeveiliging. Houd rekening met een internetverbinding om wijzigingen te synchroniseren.';
  let state=newState(),recipeOptions=[],selectedDay=today(),presetLinkHandled=false;
  function status(message,error=false){el('status').textContent=message;el('status').classList.toggle('error',error);}
@@ -890,10 +976,11 @@ main{padding-top:25px}
    onData(data){
     const wasLocked=!cloudReady;
     state=data?cleanData(data):newState();cloudReady=true;
-    if(wasLocked)el('accountTools').open=false;
+    if(wasLocked){el('accountTools').open=false;el('openAccountTools').setAttribute('aria-expanded','false');}
     render();loadWeekdayForm();processPresetLink();
    },
-   onLogout(){cloudReady=false;state=newState();el('accountTools').open=true;render();}
+   onLogout(){cloudReady=false;state=newState();el('accountTools').open=true;el('openAccountTools').setAttribute('aria-expanded','true');render();},
+   onStatus(snapshot){updateAccountStatus(snapshot);}
   });
  }
 })();
