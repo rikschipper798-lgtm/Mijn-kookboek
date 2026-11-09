@@ -71,8 +71,9 @@ Naast de persoonlijke, met wachtzin beveiligde dagboekexport is nu een
 **dagelijkse workflow voor een aparte, versleutelde PostgreSQL-back-up**
 voorbereid. Deze is nog **niet actief**, omdat de GitHub Actions-secrets
 `SUPABASE_BACKUP_DB_URL` en `BACKUP_ENCRYPTION_KEY_BASE64` nog niet
-zijn ingesteld. De workflow markeert een ontbrekende back-up als fout
-en slaat nooit een onversleutelde dump als artifact op.
+zijn ingesteld. De workflow markeert een ontbrekende back-up als fout en slaat nooit een
+onversleutelde dump als artifact op. De dagelijkse planning staat voorlopig
+uit totdat een handmatige back-up en een herstelcontrole zijn geslaagd.
 
 In [BACKUP-AUTOMATION.md](BACKUP-AUTOMATION.md) staan de twee secrets,
 het geplande tijdstip (03.17 UTC), de 30-daagse artifactretentie,
