@@ -39,7 +39,7 @@ async function encrypt(input,output){
     transform(chunk,encoding,done){done(null,chunk);},
     flush(done){this.push(cipher.getAuthTag());done();}
   });
-  const target=fs.createWriteStream(output,{flags:'wx',mode:0o600});
+  const target=fs.createWriteStream(output,{fd:fs.openSync(output,'wx',0o600),autoClose:true});
   target.write(MAGIC);target.write(iv);
   try{
     await pipeline(input==='-'?process.stdin:fs.createReadStream(input),cipher,tagAppender,target);
@@ -53,7 +53,7 @@ async function openBackup(input,output){
   const decipher=crypto.createDecipheriv('aes-256-gcm',key,iv);
   decipher.setAuthTag(tag);
   const source=fs.createReadStream(input,{start:HEADER_BYTES,end});
-  const sink=output?fs.createWriteStream(output,{flags:'wx',mode:0o600}):
+  const sink=output?fs.createWriteStream(output,{fd:fs.openSync(output,'wx',0o600),autoClose:true}):
     new Writable({write(chunk,encoding,done){done();}});
   try{
     await pipeline(source,decipher,sink);
