@@ -42,6 +42,12 @@ jobs:
         run: node --test tests/nutrition.test.cjs
       - name: Accountisolatie en synchronisatie van voedingsdagboek testen
         run: node --test tests/cloud-diary.test.cjs
+      - name: Accountbeveiliging, herstelgeschiedenis en privacy testen
+        run: node --test tests/cloud-governance.test.cjs
+      - name: JavaScript-syntax van cloudmodules controleren
+        run: |
+          node --check voeding-cloud.js
+          node --check cloud-config.js
       - name: Recepten en afbeeldingen controleren
         run: node scripts/validate-recipes.cjs
       - name: Receptversies tegen vorige Git-versie controleren
