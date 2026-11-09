@@ -127,6 +127,8 @@ function harness(db,account,storage,{local=null}={}){
   Date,Math,JSON,Error,Promise,Number,String},{filename:'voeding-cloud.js',timeout:1500});
  const cloud=win.CookbookCloud;
  callbacks.current=null;
+ callbacks.uiStatus=null;
+ callbacks.onStatus=info=>{callbacks.uiStatus={...info};};
  callbacks.onData=data=>{callbacks.current=data?copy(data):null;};
  callbacks.onLogout=()=>{callbacks.current=null;};
  callbacks.validateData=data=>data?copy(data):null;
@@ -158,6 +160,30 @@ test('Configuratie en toegangsregels zijn in overeenstemming met productie',()=>
  assert.match(schema,/enable row level security/);
  assert.match(schema,/revoke all privileges on table public\.nutrition_diaries from anon, authenticated, public/);
  assert.match(schema,/with check \(user_id = \(select auth\.uid\(\)\)\)/);
+});
+
+
+test('Accountbalk maakt cloudstatus en lokale opslag ondubbelzinnig zichtbaar',async()=>{
+ assert.match(html,/id="accountStatusBar"/);
+ assert.match(html,/id="accountStateLabel"/);
+ assert.match(html,/id="accountStorageNote"/);
+ assert.match(html,/Favorieten, boodschappen, standaardvoorraad, kooknotities/);
+ assert.ok(html.indexOf('id="accountTools"')<html.indexOf('id="diaryContent"'),
+  'Inloggen moet boven het afgeschermde dagoverzicht staan');
+ assert.match(html,/onStatus\(snapshot\)\{updateAccountStatus\(snapshot\);\}/);
+ const db=makeDb(),storage=makeStorage(),account=harness(db,'account-status',storage);
+ await account.start();
+ assert.equal(account.callbacks.uiStatus.loggedIn,true);
+ assert.equal(account.callbacks.uiStatus.pending,false);
+ assert.equal(account.callbacks.uiStatus.conflict,false);
+ assert.match(account.callbacks.uiStatus.message,/gesynchroniseerd/i);
+ account.enqueue(diary(410));
+ assert.equal(account.callbacks.uiStatus.pending,true);
+ assert.match(account.callbacks.uiStatus.message,/lokaal bewaard/i);
+ await account.flush();
+ assert.equal(account.callbacks.uiStatus.pending,false);
+ assert.equal(account.callbacks.uiStatus.conflict,false);
+ assert.match(account.callbacks.uiStatus.message,/gesynchroniseerd/i);
 });
 
 test('Lokale herstelkopie staat synchroon op schijf vóór verzending',async()=>{
