@@ -1,0 +1,74 @@
+name: Versleutelde databaseback-up
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  encrypted-backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_BACKUP_DB_URL: ${{ secrets.SUPABASE_BACKUP_DB_URL }}
+      BACKUP_ENCRYPTION_KEY_BASE64: ${{ secrets.BACKUP_ENCRYPTION_KEY_BASE64 }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Controleer of de twee vereiste GitHub Secrets zijn ingesteld
+        id: config
+        shell: bash
+        run: |
+          if [[ -n "$SUPABASE_BACKUP_DB_URL" && -n "$BACKUP_ENCRYPTION_KEY_BASE64" ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Automatische back-up is nog niet actief. Stel de twee repositorysecrets in volgens supabase/BACKUP-AUTOMATION.md."
+          fi
+
+      - name: Controleer encryptiesleutel en verbinding
+        if: steps.config.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node -e "const x=process.env.BACKUP_ENCRYPTION_KEY_BASE64||''; if(!/^[A-Za-z0-9+/]{43}=$/.test(x)||Buffer.from(x,'base64').length!==32){ console.error('Encryptiesleutel is ongeldig.'); process.exit(1); }"
+          if [[ "$SUPABASE_BACKUP_DB_URL" != postgresql://* && "$SUPABASE_BACKUP_DB_URL" != postgres://* ]]; then
+            echo "::error::De databaseverbinding moet een PostgreSQL connection string zijn."
+            exit 1
+          fi
+
+      - name: Maak een streaming PostgreSQL-dump en versleutel deze
+        id: backup
+        if: steps.config.outputs.ready == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          mkdir -p "$RUNNER_TEMP/kookboek-backup"
+          backup="$RUNNER_TEMP/kookboek-backup/mijn-kookboek-$(date -u +%Y%m%dT%H%M%SZ).mkbak"
+          docker run --rm --network=host \
+            -e SUPABASE_BACKUP_DB_URL \
+            postgres:17.11 \
+            sh -ec 'exec pg_dump -d "$SUPABASE_BACKUP_DB_URL" --format=custom --no-owner --no-privileges --schema=public --schema=auth --schema=storage' \
+            | node scripts/backup-database.cjs encrypt - "$backup"
+          node scripts/backup-database.cjs verify "$backup"
+          echo "path=$backup" >> "$GITHUB_OUTPUT"
+          echo "size_bytes=$(stat -c '%s' "$backup")" >> "$GITHUB_OUTPUT"
+
+      - name: Bewaar alleen het versleutelde bestand buiten Supabase
+        if: steps.config.outputs.ready == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mijn-kookboek-versleutelde-db-${{ github.run_id }}
+          path: ${{ steps.backup.outputs.path }}
+          retention-days: 30
+          if-no-files-found: error
+          compression-level: 0
+
+      - name: Bevestig gereedmelding
+        if: steps.config.outputs.ready == 'true'
+        run: echo "De versleutelde databaseback-up is gemaakt en als GitHub Actions-artifact opgeslagen. Bewaar de decryptiesleutel afzonderlijk."
