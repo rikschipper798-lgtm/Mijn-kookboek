@@ -6,6 +6,10 @@ name: Versleutelde databaseback-up
 #   schedule:
 #     - cron: '17 3 * * *'
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/backup-database.yml'
   workflow_dispatch:
 
 permissions:
