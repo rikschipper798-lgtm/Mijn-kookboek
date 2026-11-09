@@ -2,9 +2,12 @@
 
 **Status: technisch voorbereid, maar niet geactiveerd.**
 
-De repo bevat een geplande GitHub Actions-workflow die, nadat de twee vereiste
-GitHub Actions-secrets zijn ingesteld, iedere dag om **03.17 UTC** een
-PostgreSQL-dump maakt van de Supabase-schema's `public`, `auth` en `storage`.
+De repo bevat een GitHub Actions-workflow die, zodra beide vereiste
+GitHub Actions-secrets zijn ingesteld **en een eerste handmatige test is
+geslaagd**, kan worden ingepland om iedere dag om **03.17 UTC** een
+PostgreSQL-dump te maken van de Supabase-schema's `public`, `auth` en `storage`.
+Tot die test is de dagelijkse planning bewust uitgeschakeld om geen
+mislukte of schijnbaar geslaagde geplande back-ups te suggereren.
 De dump wordt tijdens het streamen met AES-256-GCM versleuteld en alleen
 **als versleuteld GitHub Actions-artifact** bewaard, 30 dagen lang.
 De originele database en het voedingsdagboek worden niet gewijzigd.
@@ -60,7 +63,10 @@ bestaande gebruikersgegevens.
    **niet versleuteld** en bevat mogelijk accounts en gevoelig database-inhoud.
 7. Test desgewenst de herstelbaarheid in een **tijdelijk gescheiden Supabase-
    testproject**. Voer geen ongeteste `pg_restore` uit op de live database.
-8. Controleer wekelijks of er daadwerkelijk recente artifacts zijn.
+8. Laat na een geslaagde handmatige test de twee uitgecommentarieerde
+   `schedule`-regels in `.github/workflows/backup-database.yml`
+   activeren. De workflow draait vanaf dan dagelijks op de standaardbranch.
+9. Controleer wekelijks of er daadwerkelijk recente artifacts zijn.
    GitHub kan geplande workflows vertragen of bij langdurige inactiviteit
    uitschakelen. Als die controle uitblijft, zijn de back-ups niet gegarandeerd.
 
@@ -92,7 +98,8 @@ tabellen na restore correct werken.
   ze zijn bedoeld als tussentijdse, onafhankelijke herstelkopie.
 - Gratis gebruik is onderworpen aan GitHub Actions-opslag- en gebruikslimieten.
 - Er staat **nog geen werkende automatische back-up** aan zolang de secrets
-  niet zijn ingesteld en de eerste workflowrun niet is gecontroleerd.
+  niet zijn ingesteld, de eerste workflowrun niet is gecontroleerd en de
+  dagelijkse planning niet is ingeschakeld.
 - Voor langdurige en onafhankelijke dataretentie of een hogere
   herstelgarantie kies je later een externe storageprovider of Supabase Pro,
   met expliciete kosten- en privacyafspraken.
