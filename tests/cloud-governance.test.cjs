@@ -53,3 +53,30 @@ test('Privacy-uitleg beschrijft persoonlijke opslag en de beperking van browserb
  assert.match(page,/verwijder/);
  assert.match(html,/href="\.\/privacy\.html"/);
 });
+
+test('Directe instelpagina verwijst na controle naar voedingsdagboek zonder zelf te schrijven',()=>{
+ const page=read('instellen-vaste-maaltijden.html');
+ const match=page.match(/<script>([\s\S]*?)<\/script>/);
+ assert.ok(match);
+ const values={
+  app:'mijn-kookboek-vaste-maaltijden',version:1,
+  weekdayPresets:{
+   ontbijt:{title:'Twee boterhammen',enabled:true,startDate:'2026-11-09',nutrition:{kcal:276,proteinG:10,carbsG:37.1,fatG:8.1,fiberG:6.2}},
+   lunch:{title:'Vier boterhammen',enabled:true,startDate:'2026-11-09',nutrition:{kcal:516,proteinG:19,carbsG:64.8,fatG:17.6,fiberG:11}}
+  }
+ };
+ const nodes={};let redirected=null;
+ const el=id=>nodes[id]??={textContent:'',disabled:true,innerHTML:'',classList:{toggle(){}},onclick:null};
+ const location={
+  hash:'#gegevens='+encodeURIComponent(JSON.stringify(values)),
+  assign(url){redirected=url;}
+ };
+ const vm=require('node:vm');
+ vm.runInNewContext(match[1],{document:{getElementById:el},location,Date,JSON,Error,Number,String},{timeout:1500});
+ assert.equal(el('apply').disabled,false);
+ el('apply').onclick();
+ assert.match(redirected,/^\.\/voeding\.html#vaste-maaltijden=/);
+ const forwarded=JSON.parse(decodeURIComponent(redirected.split('=')[1]));
+ assert.equal(forwarded.weekdayPresets.ontbijt.nutrition.kcal,276);
+ assert.equal(forwarded.weekdayPresets.lunch.nutrition.kcal,516);
+});
