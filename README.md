@@ -61,7 +61,8 @@ onafhankelijke off-site back-up aan. Zie
 Een dagelijkse, buiten Supabase opgeslagen en versleutelde back-upworkflow
 staat klaar in [GitHub Actions](.github/workflows/backup-database.yml).
 **Automatische back-ups zijn nog niet actief** totdat twee repositorysecrets
-veilig zijn ingesteld en de eerste hersteltest slaagt. Zie
+veilig zijn ingesteld, de eerste hersteltest slaagt en de dagelijkse planning
+expliciet wordt ingeschakeld. Zie
 [BACKUP-AUTOMATION.md](supabase/BACKUP-AUTOMATION.md).
 
 Voor inloggen door externe gebruikers is ook een eigen SMTP-provider nodig.
