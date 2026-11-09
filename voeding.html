@@ -115,8 +115,12 @@ header h1{font-size:clamp(32px,4.5vw,45px)}
 header p{margin-top:7px;font-size:14px;max-width:720px}
 main{padding-top:25px}
 .diary-view-actions{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-bottom:10px}
-.diary-view-actions .datebar{margin:0;display:flex;align-items:end;gap:12px}
-.diary-view-actions .datebar label{font-size:13px}
+.diary-view-actions .datebar{margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.diary-view-actions .date-label{font-size:13px}
+.diary-view-actions .date-controls{display:grid;grid-template-columns:44px minmax(155px,1fr) 44px auto;align-items:center;gap:8px}
+.diary-view-actions .date-controls .arrow{min-width:0;width:44px;min-height:44px;padding:0;border-radius:11px;font-size:24px;line-height:1}
+.diary-view-actions .date-controls input[type="date"]{width:100%;max-width:none;min-width:0;min-height:44px;padding:8px 10px;font-size:16px;font-variant-numeric:tabular-nums}
+.diary-view-actions .date-controls #today{min-height:44px;padding:8px 13px}
 .diary-add-trigger{min-height:46px;padding:12px 20px;white-space:nowrap}
 .diary-status{margin:2px 0 15px}
 .dashboard-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:20px;align-items:start}
@@ -152,16 +156,29 @@ main{padding-top:25px}
 @media(max-width:820px){
  .dashboard-grid{grid-template-columns:1fr}
  .diary-utilities{grid-template-columns:1fr}
- .diary-view-actions{align-items:stretch}
+ .diary-view-actions{align-items:stretch;gap:11px}
+ .diary-view-actions .datebar{width:100%;gap:0}
+ .diary-view-actions .date-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+ .diary-view-actions .date-controls{width:100%;grid-template-columns:40px minmax(0,1fr) 40px auto;gap:6px}
+ .diary-view-actions .date-controls .arrow{width:40px;min-height:42px}
+ .diary-view-actions .date-controls input[type="date"],.diary-view-actions .date-controls #today{min-height:42px}
+ .diary-view-actions .date-controls #today{padding:7px 10px;font-size:13px}
  .diary-add-trigger{width:100%}
 }
 @media(max-width:450px){
- .diary-view-actions .datebar{width:100%;justify-content:space-between}
- .diary-view-actions .datebar>.row{width:100%}
- .diary-view-actions .datebar input{max-width:unset}
+ .diary-view-actions .date-controls{grid-template-columns:37px minmax(0,1fr) 37px auto;gap:5px}
+ .diary-view-actions .date-controls .arrow{width:37px}
+ .diary-view-actions .date-controls input[type="date"]{padding:7px 6px}
+ .diary-view-actions .date-controls #today{padding:7px 9px}
  .meal-entry-editor{padding:17px}
  .meal-editor-heading h2{font-size:22px}
  .diary-utility-body{padding:0 10px 10px}
+}
+@media(max-width:350px){
+ .diary-view-actions .date-controls{grid-template-columns:34px minmax(0,1fr) 34px auto;gap:4px}
+ .diary-view-actions .date-controls .arrow{width:34px}
+ .diary-view-actions .date-controls #today{padding:6px;font-size:12px}
+ .diary-view-actions .date-controls input[type="date"]{padding:6px 3px}
 }
 </style>
 </head>
@@ -180,9 +197,14 @@ main{padding-top:25px}
 <main>
  <div id="diaryContent">
   <div class="diary-view-actions">
-  <div class="datebar">
-    <div><label for="selectedDate">Welke dag wil je bekijken?</label><div class="row"><button class="secondary arrow" type="button" id="previousDay" aria-label="Vorige dag">←</button><input type="date" id="selectedDate"><button class="secondary arrow" type="button" id="nextDay" aria-label="Volgende dag">→</button></div></div>
+  <div class="datebar" role="group" aria-label="Dag selecteren">
+   <label class="date-label" for="selectedDate">Welke dag wil je bekijken?</label>
+   <div class="date-controls">
+    <button class="secondary arrow" type="button" id="previousDay" aria-label="Vorige dag">‹</button>
+    <input type="date" id="selectedDate">
+    <button class="secondary arrow" type="button" id="nextDay" aria-label="Volgende dag">›</button>
     <button class="secondary" id="today" type="button">Vandaag</button>
+   </div>
   </div>
    <button type="button" id="addMealButton" class="diary-add-trigger" aria-expanded="false" aria-controls="mealEntryPanel">+ Maaltijd toevoegen</button>
   </div>
