@@ -30,7 +30,7 @@ function makeStorage(){
 }
 function makeDb(){
  const rows=new Map();
- let failWrite=false,failRead=false,holdRead=false,releaseRead=null,loseAcknowledgement=false;
+ let failWrite=false,failRead=false,holdRead=false,releaseRead=null,loseAcknowledgement=false,holdWrite=false,releaseWrite=null;
  const result=async(account,kind,body,filters)=>{
   if(kind==='select'){
    if(failRead){failRead=false;return {data:null,error:{code:'NETWORK',message:'No internet'}};}
@@ -47,6 +47,10 @@ function makeDb(){
    if(body.user_id!==account)return {data:null,error:{code:'RLS',message:'forbidden'}};
    if(rows.has(account))return {data:null,error:{code:'23505',message:'duplicate key'}};
    rows.set(account,copy(body));
+   if(holdWrite){
+    holdWrite=false;
+    return new Promise(resolve=>{releaseWrite=()=>resolve({data:{revision:body.revision},error:null});});
+   }
    if(loseAcknowledgement){
     loseAcknowledgement=false;return {data:null,error:{code:'NETWORK',message:'Lost HTTP acknowledgement'}};
    }
@@ -55,13 +59,17 @@ function makeDb(){
   const old=rows.get(account);
   if(!old||old.revision!==filters.revision)return {data:null,error:null};
   rows.set(account,{...old,...copy(body)});
+  if(holdWrite){
+   holdWrite=false;
+   return new Promise(resolve=>{releaseWrite=()=>resolve({data:{revision:body.revision},error:null});});
+  }
   if(loseAcknowledgement){
    loseAcknowledgement=false;return {data:null,error:{code:'NETWORK',message:'Lost HTTP acknowledgement'}};
   }
   return {data:{revision:body.revision},error:null};
  };
  return {
-  rows,failNextWrite(){failWrite=true;},failNextRead(){failRead=true;},loseNextAcknowledgement(){loseAcknowledgement=true;},holdNextRead(){holdRead=true;},
+  rows,failNextWrite(){failWrite=true;},failNextRead(){failRead=true;},loseNextAcknowledgement(){loseAcknowledgement=true;},holdNextRead(){holdRead=true;},holdNextWriteResponse(){holdWrite=true;},releaseWriteResponse(){assert.equal(typeof releaseWrite,'function');releaseWrite();releaseWrite=null;},
   release(){assert.equal(typeof releaseRead,'function');releaseRead();releaseRead=null;},
   client(account){
    return {from(name){
@@ -340,6 +348,23 @@ test('Verloren netwerkbevestiging bij update laat geen schijnconflict achter',as
  await client.flush();
  assert.equal(db.rows.get('lost-update').diary.days['2026-11-09'][0].nutrition.kcal,540);
  assert.equal(db.rows.get('lost-update').revision,2);
+ assert.equal(countPending(store),0);
+ assert.doesNotMatch(client.status,/conflict/i);
+});
+
+test('Wijziging tijdens een lopende upload blijft behouden en wordt daarna apart gesynchroniseerd',async()=>{
+ const db=makeDb(),store=makeStorage(),client=harness(db,'mid-flight',store);
+ await client.start();
+ db.holdNextWriteResponse();
+ assert.equal(client.enqueue(diary(140)),true);
+ await wait();
+ assert.equal(db.rows.get('mid-flight').diary.days['2026-11-09'][0].nutrition.kcal,140);
+ assert.equal(client.enqueue(diary(680)),true);
+ assert.equal(countPending(store),1);
+ db.releaseWriteResponse();
+ await wait();
+ assert.equal(db.rows.get('mid-flight').diary.days['2026-11-09'][0].nutrition.kcal,680);
+ assert.equal(db.rows.get('mid-flight').revision,2);
  assert.equal(countPending(store),0);
  assert.doesNotMatch(client.status,/conflict/i);
 });
