@@ -111,6 +111,10 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
     <div id="cloudUser" hidden>
       <p class="muted">Ingelogd als <span id="cloudEmailLabel"></span></p>
       <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudBackup" type="button" class="secondary">Download dagboekback-up</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
+      <details class="muted"><summary>Mijn account en persoonsgegevens verwijderen</summary>
+        <p>Je kunt je account en cloudgegevens definitief verwijderen. Maak eerst een back-up als je iets wilt bewaren. Voor deze handeling wordt tweemaal om bevestiging gevraagd.</p>
+        <button id="cloudDeleteAccount" class="danger" type="button">Account en cloudgegevens definitief verwijderen</button>
+      </details>
     </div>
     <p id="cloudStatus" role="status" aria-live="polite"></p>
   </section>
@@ -228,7 +232,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   <p role="status" id="status" class="status" aria-live="polite"></p>
   </div>
 </main>
-<footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden</footer>
+<footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden · <a href="./privacy.html">Privacy en gegevensbeheer</a></footer>
 <script src="./cloud-config.js"></script>
 <script src="./voeding-cloud.js"></script>
 <script>
