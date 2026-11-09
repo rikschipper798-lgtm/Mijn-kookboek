@@ -82,6 +82,35 @@
   stopTimer();
   timer=setTimeout(()=>{timer=null;void flush();},ms);
  }
+
+ function isSameDiary(first,second){
+  if(!first||!second)return false;
+  return JSON.stringify(hooks.validateData(first))===JSON.stringify(hooks.validateData(second));
+ }
+ function acknowledge(sent,newRevision,account){
+  revision=newRevision;
+  let stored;
+  try{stored=readLocal(account);}
+  catch(err){conflict=true;notify('Herstelkopie controleren is mislukt: '+err.message,true);return false;}
+  if(!stored||stored.nonce!==draft?.nonce){
+   conflict=true;
+   notify('Een ander tabblad heeft de herstelkopie veranderd. Er wordt niets gewist.',true);
+   return false;
+  }
+  if(draft.nonce===sent.nonce){
+   if(!deleteLocal(sent))return false;
+   draft=null;
+  }else{
+   const next={...draft,baseRevision:revision};
+   if(!writeLocal(next)){
+    conflict=true;
+    notify('Een nieuwere wijziging blijft lokaal bewaard; herstelstatus kon niet worden bijgewerkt.',true);
+    return false;
+   }
+   draft=next;
+  }
+  return true;
+ }
  function enqueue(data){
   if(!enabled||!user||!ready)return false;
   let previous;
@@ -145,36 +174,28 @@
     }
     if(token!==generation||user?.id!==account)return;
     if(response.error||!response.data){
-     const collision=!response.error||response.error.code==='23505'||response.error.code==='409';
-     if(collision){
-      conflict=true;
-      notify('Cloudconflict: je lokale versie is veilig opgeslagen. Exporteer een back-up en kies daarna bewust Cloud opnieuw laden.',true);
-     }else{
-      notify('De cloud kon de wijziging niet opslaan. Je gegevens staan veilig op dit apparaat en worden bij een nieuwe verbinding opnieuw geprobeerd.',true);
-     }
-     return;
-    }
-    revision=response.data.revision;
-    let stored;
-    try{stored=readLocal(account);}
-    catch(err){conflict=true;notify(err.message,true);return;}
-    if(!stored||stored.nonce!==draft?.nonce){
-     conflict=true;
-     notify('Er is ook een wijziging vanuit een ander tabblad. De herstelkopie wordt niet overschreven.',true);
-     return;
-    }
-    if(draft.nonce===sent.nonce){
-     if(!deleteLocal(sent))return;
-     draft=null;
-    }else{
-     const revised={...draft,baseRevision:revision};
-     if(!writeLocal(revised)){
-      conflict=true;
-      notify('Nieuwe wijzigingen zijn lokaal behouden, maar de herstelstatus kan niet worden bijgewerkt. Exporteer je dagboek.',true);
+     // A request can commit remotely but lose its HTTP acknowledgement.
+     // Read the server version before declaring a conflict or retrying.
+     let live;
+     try{live=await fetchRow({id:account});}
+     catch(err){
+      notify('Cloudresultaat is onzeker door een verbindingsfout. Je herstelkopie blijft staan. Probeer later opnieuw.',true);
       return;
      }
-     draft=revised;
+     if(token!==generation||user?.id!==account)return;
+     if(live&&isSameDiary(live.diary,sent.diary)){
+      if(!acknowledge(sent,live.revision,account))return;
+      continue;
+     }
+     if((live?.revision||0)!==sent.baseRevision){
+      conflict=true;
+      notify('Cloudconflict: de server heeft een andere versie. Je lokale dagboek is behouden. Maak een back-up en kies daarna bewust Cloud opnieuw laden.',true);
+     }else{
+      notify('De cloud heeft de wijziging niet opgeslagen. Je herstelkopie blijft veilig op dit apparaat. Probeer opnieuw zodra de verbinding werkt.',true);
+     }
+     return;
     }
+    if(!acknowledge(sent,response.data.revision,account))return;
    }
    if(token===generation&&!draft&&!conflict)notify('Gesynchroniseerd met je persoonlijke account.');
   }catch(err){
@@ -266,7 +287,7 @@
    const remote=await fetchRow(user);
    if(token!==generation||user?.id!==account)return;
    // A cloud read must never win over an edit saved while it was in flight.
-   if(edits!==editMark||sending||(draft&&!force)){
+   if(edits!==editMark||sending||conflict||(draft&&!force)){
     notify('Cloudantwoord genegeerd: ondertussen zijn er lokale wijzigingen opgeslagen.',true);
     return;
    }
