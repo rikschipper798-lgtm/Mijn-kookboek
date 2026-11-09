@@ -74,7 +74,7 @@ function appBrowser(){
   const x={
    id,hidden:false,checked:false,value:'',textContent:'',dataset:{},style:{},
    classList:{add(){},remove(){},toggle(){}},
-   add(){},addEventListener(type,fn){this['on'+type]=fn;},setAttribute(){},
+   add(){},addEventListener(type,fn){this['on'+type]=fn;},setAttribute(){},removeAttribute(){},
    contains(y){return y===this;},focus(){},scrollIntoView(){},
    querySelectorAll(selector){
     if(id!=='basket')return [];
