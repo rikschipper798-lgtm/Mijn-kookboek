@@ -249,7 +249,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  const cloudMode=Boolean(window.CookbookCloud&&window.CookbookCloud.enabled);
  let cloudReady=!cloudMode;
  if(cloudMode)el('privacyDescription').textContent='Als je bent ingelogd, staan je persoonlijke voedingsdoelen, vaste maaltijden en dagregistraties in de beveiligde clouddatabase van de gekoppelde inlogdienst. Ze worden niet in GitHub gepubliceerd. Gegevens worden per account gescheiden via databasebeveiliging. Houd rekening met een internetverbinding om wijzigingen te synchroniseren.';
- let state=newState(),recipeOptions=[],selectedDay=today();
+ let state=newState(),recipeOptions=[],selectedDay=today(),presetLinkHandled=false;
  function status(message,error=false){el('status').textContent=message;el('status').classList.toggle('error',error);}
  function cleanData(data){
   if(!data||typeof data!=='object'||Array.isArray(data)||!data.goals||!data.days||typeof data.days!=='object'||Array.isArray(data.days))throw Error('Ongeldige gegevens.');
@@ -524,7 +524,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
       throw Error('Dit is geen geldig bestand met twee vaste maaltijden.');
    const checked=cleanData({...state,weekdayPresets:payload.weekdayPresets});
    if(SLOTS.some(slot=>state.weekdayPresets[slot])&&
-      !window.confirm('Vaste ontbijt- en lunchgegevens vervangen? De geselecteerde werkdag wordt bijgewerkt; overige zelf ingevoerde maaltijden blijven bestaan.'))return;
+      !window.confirm('Vaste ontbijt- en lunchgegevens vervangen? De geselecteerde werkdag wordt bijgewerkt; overige zelf ingevoerde maaltijden blijven bestaan.'))return false;
    if(commit(()=>{
     state.weekdayPresets=checked.weekdayPresets;
     const ref=new Date(selectedDay+'T12:00:00');
@@ -537,13 +537,31 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
     loadWeekdayForm();
     presetMessage('Geïmporteerd: ontbijt '+fmt(checked.weekdayPresets.ontbijt.nutrition.kcal)+' kcal, lunch '+
       fmt(checked.weekdayPresets.lunch.nutrition.kcal)+' kcal. Het dagoverzicht is bijgewerkt.');
+    return true;
    }
+   return false;
   }
   async function readPresetFile(file){
    if(!file)return;
    if(file.size>2*1024*1024){presetMessage('Bestand te groot (maximaal 2 MB).',true);return;}
    try{importPresets(JSON.parse(await file.text()));}
    catch(e){presetMessage('Importeren mislukt: '+e.message,true);}
+  }
+  function processPresetLink(){
+   if(presetLinkHandled||!cloudReady)return;
+   const prefix='#vaste-maaltijden=';
+   if(!location.hash||!location.hash.startsWith(prefix))return;
+   presetLinkHandled=true;
+   try{
+    const encoded=location.hash.slice(prefix.length);
+    if(encoded.length>18000)throw Error('De instellink is te groot.');
+    const payload=JSON.parse(decodeURIComponent(encoded));
+    const completed=importPresets(payload);
+    if(completed){
+     history.replaceState(null,'',location.pathname+location.search);
+     status('Je vaste ontbijt en lunch zijn via je persoonlijke voedingsdagboek overgenomen.');
+    }else status('De standaardmaaltijden zijn niet overgenomen; je bestaande dagboek blijft behouden.',true);
+   }catch(error){status('Instellink kon niet worden verwerkt: '+error.message,true);}
   }
   el('importPresetButton').onclick=()=>el('importPresetFile').click();
   el('importPresetFile').onchange=async event=>{
@@ -618,13 +636,14 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  render();
  loadWeekdayForm();
  fetchRecipes();
+ if(!cloudMode)processPresetLink();
  if(cloudMode){
   window.CookbookCloud.start({
    hasLocal(){return Boolean(localStorage.getItem(KEY));},
    getLocal(){return cleanData(JSON.parse(localStorage.getItem(KEY)));},
    getState(){return state;},
    validateData(data){return data?cleanData(data):null;},
-   onData(data){state=data?cleanData(data):newState();cloudReady=true;render();loadWeekdayForm();},
+   onData(data){state=data?cleanData(data):newState();cloudReady=true;render();loadWeekdayForm();processPresetLink();},
    onLogout(){cloudReady=false;state=newState();render();}
   });
  }
