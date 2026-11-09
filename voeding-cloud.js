@@ -8,7 +8,7 @@
  const panel=()=>document.getElementById('cloudPanel');
  const el=id=>document.getElementById(id);
  let client=null,user=null,revision=0,ready=false,loading=false,loadId=0;
- let pending=null,sending=false,conflict=false,flushTimer=null,hooks=null,onlineSyncing=false;
+ let pending=null,inFlight=null,sending=false,conflict=false,flushTimer=null,hooks=null,onlineSyncing=false;
  function setStatus(message,isError=false){
   const e=el('cloudStatus');if(!e)return;
   e.textContent=message;e.classList.toggle('error',isError);
@@ -25,7 +25,7 @@
   if(window.supabase&&typeof window.supabase.createClient==='function')return Promise.resolve(window.supabase);
   return new Promise((resolve,reject)=>{
    const script=document.createElement('script');
-   script.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+   script.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0';
    script.async=true;
    script.onload=()=>window.supabase&&window.supabase.createClient?resolve(window.supabase):
     reject(Error('Supabase is niet geladen.'));
@@ -36,7 +36,7 @@
  function reset(){
   loadId++;
   user=null;ready=false;loading=false;revision=0;
-  pending=null;sending=false;conflict=false;
+  pending=null;inFlight=null;sending=false;conflict=false;
   if(flushTimer!==null){clearTimeout(flushTimer);flushTimer=null;}
   if(hooks)hooks.onLogout();
   display();
@@ -101,7 +101,7 @@
   const account=user.id;
   try{
    while(pending&&ready&&user?.id===account&&!conflict){
-    const value=pending;pending=null;
+    const value=pending;pending=null;inFlight=value;
     let result;
     if(revision===0){
      result=await client.from('nutrition_diaries')
@@ -117,6 +117,7 @@
     if(result.error||!result.data){
      // Keep newer edits if the user changed something while the request was pending.
      if(!pending)pending=value;
+     inFlight=null;
      const likelyConflict=!result.error||result.error.code==='23505';
      if(likelyConflict){
       conflict=true;
@@ -127,9 +128,12 @@
      return;
     }
     revision=result.data.revision;
+    inFlight=null;
    }
    if(ready&&user?.id===account)setStatus('Gesynchroniseerd met je persoonlijke account.');
   }catch(err){
+   if(!pending&&inFlight)pending=inFlight;
+   inFlight=null;
    setStatus('Geen verbinding met de cloud. Probeer opnieuw te synchroniseren.',true);
   }finally{sending=false;}
  }
@@ -145,13 +149,13 @@
   try{
    const record=await remoteRow(user);
    if(!record){
-    if(force){hooks.onData(null);revision=0;pending=null;conflict=false;}
+    if(force){revision=0;pending=null;conflict=false;hooks.onData(null);}
     return;
    }
    if(record.revision!==revision||force){
-    hooks.onData(record.diary);
     revision=record.revision;
     if(force){pending=null;conflict=false;}
+    hooks.onData(record.diary);
     setStatus('Nieuwste cloudversie geladen.');
    }else if(force)setStatus('Je dagboek was al bijgewerkt.');
   }catch(error){
