@@ -339,7 +339,12 @@
    if(r.error)notify('Uitloggen mislukt: '+r.error.message,true);
    else{reset();notify('Uitgelogd. Eventuele herstelkopie blijft bewaard voor het juiste account.');}
   };
-  el('cloudBackup').onclick=()=>el('export').click();
+  el('cloudBackup').onclick=()=>{
+   const options=el('secureBackupOptions');
+   options.open=true;
+   if(options.scrollIntoView)options.scrollIntoView({behavior:'smooth',block:'center'});
+   el('backupPass').focus();
+  };
   el('cloudDeleteAccount').onclick=async()=>{
    if(!client||!user||!ready){notify('Log eerst in om het account te verwijderen.',true);return;}
    const typed=window.prompt('Dit verwijdert je account en alle cloudregistraties definitief. Typ VERWIJDER om door te gaan.');
