@@ -436,6 +436,34 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   addEntry({id:uniqueId(),title,source:'manual',nutrition});
   el('manualForm').reset();
  });
+  el('weekdaySlot').onchange=loadWeekdayForm;
+ el('weekdayForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const slot=el('weekdaySlot').value,title=el('weekdayTitleInput').value.trim(),rawKcal=el('weekdayKcal').value;
+  const kcal=Number(rawKcal);
+  if(!SLOTS.includes(slot)||!title||rawKcal===''||!validNum(kcal)||kcal>10000){
+   status('Vul een omschrijving en geldig aantal calorieën in.',true);return;
+  }
+  const nutrition={kcal};
+  for(const [key,id] of Object.entries({proteinG:'weekdayProtein',carbsG:'weekdayCarbs',fatG:'weekdayFat',fiberG:'weekdayFiber'})){
+   const raw=el(id).value,value=raw===''?null:Number(raw);
+   if(value!==null&&(!validNum(value)||value>1000)){status('Controleer de voedingswaarden.',true);return;}
+   nutrition[key]=value;
+  }
+  const previous=state.weekdayPresets[slot];
+  if(commit(()=>{state.weekdayPresets[slot]={title,enabled:el('weekdayEnabled').checked,
+   startDate:previous?.startDate||today(),nutrition};})){
+   loadWeekdayForm();status('Standaard '+slot+' opgeslagen. Nieuwe werkdagen worden automatisch ingevuld.');
+  }
+ });
+ el('weekdayDelete').onclick=()=>{
+  const slot=el('weekdaySlot').value;
+  if(!state.weekdayPresets[slot])return;
+  if(!window.confirm('Vaste '+slot+' verwijderen? Bestaande dagregistraties blijven behouden.'))return;
+  if(commit(()=>{delete state.weekdayPresets[slot];})){
+   loadWeekdayForm();status('Standaard '+slot+' verwijderd.');
+  }
+ };
  el('goalsForm').addEventListener('submit',event=>{
   event.preventDefault();
   const fields={kcal:'goalKcal',proteinG:'goalProtein',carbsG:'goalCarbs',fatG:'goalFat',fiberG:'goalFiber'};
@@ -472,6 +500,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   }catch(error){status('Importeren mislukt: '+error.message,true);}
  };
  render();
+ loadWeekdayForm();
  fetchRecipes();
 })();
 </script>
