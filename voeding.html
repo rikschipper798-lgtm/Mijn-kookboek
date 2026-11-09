@@ -251,6 +251,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
         </div>
         <input id="importFile" type="file" accept=".json,application/json" hidden aria-label="Importeer voedingsdagboek">
         <p class="muted">Een gewone JSON-export is <strong>niet versleuteld</strong>. Bewaar die daarom afgeschermd. Een versleutelde back-up kun je later met je wachtzin importeren. Importeren vervangt pas na jouw bevestiging de bestaande registraties en doelen.</p>
+        <p class="muted" id="storageCapacity" aria-live="polite"></p>
       </section>
     </div>
   </div>
@@ -267,6 +268,13 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
  const KEY='mijn-kookboek-voedingsdagboek';
  const DEFAULTS={kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5};
  const KEYS=['kcal','proteinG','carbsG','fatG','fiberG'];
+ const MAX_DIARY_BYTES=1800000; // Conservative buffer below the 2 MiB database constraint.
+ function utf8Bytes(str){
+  let bytes=0;
+  for(const c of str){const x=c.codePointAt(0);bytes+=x<128?1:x<2048?2:x<65536?3:4;}
+  return bytes;
+ }
+ function diarySize(data){return utf8Bytes(JSON.stringify(data));}
  const LABELS=['Calorieën','Eiwitten','Koolhydraten','Vetten','Vezels'];
  const el=id=>document.getElementById(id);
  const fmt=(n,d=0)=>Number(n).toLocaleString('nl-NL',{maximumFractionDigits:d});
@@ -338,6 +346,12 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   if(!cloudReady){status('Log eerst in om gegevens te bewerken.',true);return false;}
   const previous=JSON.stringify(state);
   action();
+  if(diarySize(state)>MAX_DIARY_BYTES){
+   state=JSON.parse(previous);
+   render();
+   status('Het dagboek nadert de veilige opslaglimiet. Maak eerst een export of gebruik een compactere registratie.',true);
+   return false;
+  }
   if(cloudMode){
    // Store the complete change in the account-specific local recovery journal
    // BEFORE it is shown as successfully entered.
@@ -373,6 +387,11 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
    }
   }
   if(changed){
+   if(diarySize(state)>MAX_DIARY_BYTES){
+    state=JSON.parse(snapshot);
+    status('Automatische invoer overgeslagen: de veilige opslaglimiet is bereikt.',true);
+    return;
+   }
    if(cloudMode){
     if(!window.CookbookCloud.enqueue(state)){
      state=JSON.parse(snapshot);
@@ -414,6 +433,8 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   el('diaryContent').hidden=!cloudReady;
   if(!cloudReady)return;
   autoWeekdays();showWeekdays();
+  const used=diarySize(state);
+  el('storageCapacity').textContent='Dagboekgrootte: '+fmt(used/1024,1)+' KB van ongeveer '+fmt(MAX_DIARY_BYTES/1024,0)+' KB veilige applicatielimiet.'+(used>1200000?' Maak regelmatig een back-up en beperk grote imports.':'');
   const entries=currentEntries();
   const result=totals(entries),kcal=result.out.kcal,goal=state.goals.kcal;
   el('calories').innerHTML=fmt(kcal)+' <span>/ '+fmt(goal)+' kcal</span>';
