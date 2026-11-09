@@ -15,7 +15,11 @@ de herstelstatus van accounts gescheiden blijft.
    Niet bevestigde wijzigingen blijven lokaal aanwezig.
 3. Na bevestigde upload wordt de lokale kopie pas gewist als de juiste
    opgeslagen versie nog dezelfde is. Verandert de inhoud tijdens de upload,
-   dan wordt de nieuwe versie opnieuw veilig ingepland.
+   dan wordt de nieuwe versie opnieuw veilig ingepland. Wanneer een upload
+   wel in Supabase is opgeslagen maar de browser de HTTP-bevestiging mist,
+   wordt eerst de serverversie opgehaald en met de verzonden dagboekstand
+   vergeleken. Alleen bij overeenkomst wordt de verzending bevestigd; een
+   afwijkende revisie wordt als conflict behandeld.
 4. Na een browserherstart leest de app eerst de cloudversie en kijkt daarna
    naar een bestaande herstelkopie van dit account. Bij een verschil tussen
    server- en lokale revisie wordt geen automatische overschrijving gedaan.
@@ -37,7 +41,7 @@ een nieuwere lokale kopie zonder waarschuwing te vervangen.
 De oplossing werkt zonder nieuwe database- of API-tabellen en behoudt
 de bestaande RLS-rechten. Dit beperkt het risico bij bestaande accounts.
 
-**Tests:** `tests/cloud-diary.test.cjs` bevat scenario's voor opslagfouten,
+**Tests (17 scenario's):** `tests/cloud-diary.test.cjs` bevat scenario's voor opslagfouten,
 tijdelijke netwerkuitval, herstart tijdens offline gebruik, oude revisies,
 twee apparaten, twee tabbladen, accountisolatie en browsercrashes na
 serverbevestiging. Deze tests gebruiken een gesimuleerde Supabase-client;
