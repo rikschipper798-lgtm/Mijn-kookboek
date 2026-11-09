@@ -665,6 +665,69 @@ body.cook-active{overflow:hidden}
  .basket-page-heading .btn,.basket-support,.basket-extras,.basket-product-row .basket-house-btn{display:none!important}
  .basket-primary{border:0;background:#fff;padding:0}
 }
+
+/* Taakgerichte receptpagina: direct koken en boodschappen, context op aanvraag. */
+.recipe-intro{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(250px,.92fr);align-items:start;gap:28px;margin-bottom:17px}
+.recipe-intro-main{min-width:0}
+.recipe-intro-main>h2{margin:7px 0 12px}
+.recipe-intro-main>.description{font-size:16px;line-height:1.55;margin:0 0 13px}
+.recipe-key-facts{margin:0 0 13px!important}
+.recipe-intro .variants{margin:12px 0}
+.recipe-intro .servings{margin:13px 0;gap:11px}
+.recipe-intro .servings button{width:44px;height:44px;min-width:44px;border-radius:10px;font-size:20px}
+.recipe-intro .servings strong{min-width:26px;text-align:center;font-variant-numeric:tabular-nums}
+.recipe-intro-image{min-width:0}
+.recipe-intro-image .hero-photo{width:100%;height:350px;max-height:none;margin:0;border-radius:15px;object-fit:cover}
+.recipe-intro .recipe-time-note{margin:12px 0}
+.recipe-primary-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:17px 0 8px}
+.recipe-primary-actions>.btn{min-height:50px;display:flex;align-items:center;justify-content:center;padding:11px 13px;text-align:center;font-size:14px;line-height:1.35}
+.recipe-minor-actions{display:flex;align-items:center;flex-wrap:wrap;gap:3px 16px;margin:0 0 3px}
+.recipe-inline-action{font:inherit;font-size:13px;font-weight:700;color:#315a3c;background:transparent;border:0;padding:11px 0;min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.recipe-inline-action:hover{color:#173c27}
+.recipe-minor-actions .recipe-more-actions{margin:0}
+.recipe-minor-actions .recipe-more-actions>summary{font-size:13px;font-weight:700;background:transparent;border:0;border-radius:0;color:#315a3c;text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:11px 0;display:flex;align-items:center}
+.recipe-minor-actions .recipe-more-actions>summary:after{content:' ▾';white-space:pre}
+.recipe-minor-actions .recipe-more-actions[open]>summary:after{content:' ▴'}
+.recipe-minor-actions .recipe-more-actions[open]{flex-basis:100%}
+.recipe-minor-actions .recipe-secondary-actions{padding:7px 0 10px;margin:0}
+.recipe-extra-details{margin:26px 0 18px;background:#fff;border:1px solid #dfe8dc;border-radius:14px;overflow:hidden}
+.recipe-extra-details>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:65px;padding:15px 20px;cursor:pointer;color:#294b35}
+.recipe-extra-details>summary::-webkit-details-marker{display:none}
+.recipe-extra-details>summary strong{display:block;font-size:15px}
+.recipe-extra-details>summary small{display:block;font-size:12px;color:#617467;font-weight:400;margin-top:4px}
+.recipe-extra-details>summary:after{content:'›';font-size:27px;color:#637f69;line-height:1}
+.recipe-extra-details[open]>summary:after{transform:rotate(90deg)}
+.recipe-extra-details>summary:hover{background:#f7faf5}
+.recipe-extra-body{padding:3px 20px 19px;border-top:1px solid #e9eee6}
+.recipe-extra-body .time-breakdown{margin:16px 0}
+.recipe-extra-body .nutrition-panel{margin:16px 0}
+.recipe-extra-revisions{margin:15px 0 0}
+.recipe-extra-revisions>.meta{margin:0 0 8px}
+.recipe-tips{margin:26px 0 0}
+.recipe-tips h3{margin-top:0}
+@media(max-width:920px){
+ .recipe-intro{grid-template-columns:minmax(0,1fr) minmax(205px,.75fr);gap:20px}
+ .recipe-primary-actions{grid-template-columns:1fr}
+ .recipe-intro-image .hero-photo{height:285px}
+}
+@media(max-width:650px){
+ .recipe-intro{grid-template-columns:1fr;gap:14px;margin-bottom:8px}
+ .recipe-intro-main>h2{margin:6px 0 10px}
+ .recipe-intro-main>.description{font-size:15px}
+ .recipe-key-facts{margin-bottom:10px!important}
+ .recipe-primary-actions{grid-template-columns:1fr;gap:8px;margin:14px 0 7px}
+ .recipe-primary-actions>.btn{min-height:48px}
+ .recipe-intro-image .hero-photo{height:225px;border-radius:12px}
+ .recipe-minor-actions{gap:0 14px}
+ .recipe-jumps{top:63px}
+ .recipe-layout>section{scroll-margin-top:136px}
+ .recipe-extra-details>summary{padding:14px}
+ .recipe-extra-body{padding:3px 13px 13px}
+}
+@media print{
+ .recipe-intro{grid-template-columns:1fr}
+ .recipe-intro-image,.recipe-primary-actions,.recipe-minor-actions,.recipe-extra-details{display:none!important}
+}
 </style>
 </head>
 <body>
@@ -2277,29 +2340,43 @@ function renderDetail(){
  const remarks=[...tips,...(view.portions_note?[view.portions_note]:[])];
  const scaleNote=current!==original?'<p class="scale-note">Ingrediënten en gekoppelde hoeveelheden in de bereidingsstappen zijn omgerekend naar '+safe(portionsLabel(view,current))+'. Temperaturen, tijden en afmetingen blijven gelijk. Bij grotere porties kan een grotere pan of bereiding in meerdere batches nodig zijn. Vaste hoeveelheden per stuk, zoals garnering per glas, blijven gelijk.'+(view.servingUnit==='stokbroden'?' Gebruik bij stokbrood circa 150 ml stoomwater per ovenronde; bak extra broden zo nodig in een tweede ronde.':'')+'</p>':'';
  const jumpNav='<nav class="recipe-jumps" aria-label="Direct naar receptonderdelen"><span>Ga naar</span><button type="button" id="jumpIngredients">Ingrediënten</button><button type="button" id="jumpSteps">Bereiding</button></nav>';
- const actions='<div class="actions recipe-actions">'+
- '<button class="btn cook-start-button" id="startCooking">Start kookmodus</button>'+
- '<button class="btn alt" id="addBasket">Voeg toe aan boodschappenlijst</button>'+
- '<button class="btn alt" id="goBasket">Bekijk boodschappenlijst</button>'+
- '<a class="btn alt" href="./voeding.html?recept='+encodeURIComponent(r.id)+'&variant='+encodeURIComponent(variantId)+'">Registreer maaltijd</a>'+
- '<button class="btn alt" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button>'+
+ const actions='<div class="recipe-primary-actions" aria-label="Belangrijkste acties">'+
+ '<button type="button" class="btn cook-start-button" id="startCooking">Start met koken</button>'+
+ '<button type="button" class="btn alt" id="addBasket">Voeg toe aan boodschappenlijst</button></div>'+
+ '<div class="recipe-minor-actions" aria-label="Overige receptacties">'+
+ '<button type="button" class="recipe-inline-action" id="goBasket">Bekijk boodschappenlijst</button>'+
+ '<button type="button" class="recipe-inline-action" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button>'+
+ '<a class="recipe-inline-action" href="./voeding.html?recept='+encodeURIComponent(r.id)+'&variant='+encodeURIComponent(variantId)+'">Registreer maaltijd</a>'+
  '<details class="recipe-more-actions"><summary>Meer acties</summary><div class="recipe-secondary-actions">'+
- '<button class="btn alt" id="copy">Kopieer recept</button>'+
- '<button class="btn alt" id="whatsapp">Deel via WhatsApp</button>'+
- '<button class="btn alt" id="print">Print</button>'+
+ '<button type="button" class="btn alt" id="copy">Kopieer recept</button>'+
+ '<button type="button" class="btn alt" id="whatsapp">Deel via WhatsApp</button>'+
+ '<button type="button" class="btn alt" id="print">Print</button>'+
  '</div></details></div>';
+ const extraDetails='<details class="recipe-extra-details">'+
+ '<summary><span><strong>Voedingswaarden en extra informatie</strong><small>Tijdsverdeling en receptgeschiedenis</small></span></summary>'+
+ '<div class="recipe-extra-body">'+timeBreakdown(view)+nutritionPanel(view,current)+
+ '<div class="recipe-extra-revisions"><div class="meta">'+recipeRevisionMeta(view)+'</div>'+revisionHistory(view)+'</div></div></details>';
  el('detail').innerHTML='<button class="back" id="back">← Alle recepten</button>'+
- '<div class="eyebrow">'+safe(view.category||'Recept')+' · '+safe(recipeTypeLabel(view))+'</div><h2>'+safe(title(view))+'</h2>'+chocolateChoices+'<p class="description">'+safe(description(view))+'</p>'+ '<section class="experience-overview" id="experienceOverview" aria-label="Mijn kookervaring">'+personalDetailSummary(key)+'</section>'+jumpNav+
- (view.image?'<div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div>':'')+
- '<div class="meta"><span class="tag">'+safe(portionsLabel(view,current))+'</span>'+timeBadges(view)+(view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+(view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+(view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+recipeRevisionMeta(view)+'</div>'+
-  (view.recipeType==='onderdeel'?'<p class="recipe-type-hint">Dit is een basisrecept of gerechtsonderdeel. Combineer het eventueel met andere gerechten voor een complete maaltijd.</p>':'')+
-  (view.timeNote?'<p class="ingredient-helper">'+safe(view.timeNote)+'</p>':'')+
- timeBreakdown(view)+choices+revisionHistory(view)+
- (canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong>'+current+'</strong><button id="plus" aria-label="Meer">+</button></div>':'')+
- scaleNote+nutritionPanel(view,current)+actions+
- '<div class="recipe-layout"><section class="recipe-ingredients" id="recipeIngredients"><h3>Ingrediënten</h3><p class="ingredient-helper">Vink aan wat je al in huis hebt. Dit ingrediënt wordt dan voor dit recept niet op je boodschappenlijst gezet.</p><ul class="ingredients recipe-ingredient-list">'+checkableIngredientRows(items,mult,key)+'</ul></section>'+
- '<section class="recipe-steps" id="recipeSteps"><h3>Bereiding</h3><ol class="steps">'+steps+'</ol></section></div>'+
- (remarks.length?'<h3>Kooktips</h3>'+(current!==original?'<p class="ingredient-helper">Deze kooktips beschrijven het basisrecept voor '+safe(portionsLabel(view,original))+'. Gebruik hierboven de omgerekende ingrediënten en bereidingsstappen.</p>':'')+'<div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div>':'')+
+ '<section class="recipe-intro" aria-label="Recept in het kort"><div class="recipe-intro-main">'+
+ '<div class="eyebrow">'+safe(view.category||'Recept')+' · '+safe(recipeTypeLabel(view))+'</div>'+
+ '<h2>'+safe(title(view))+'</h2><p class="description">'+safe(description(view))+'</p>'+
+ '<div class="meta recipe-key-facts"><span class="tag">'+safe(portionsLabel(view,current))+'</span>'+timeBadges(view)+
+ (view.difficulty?'<span class="tag">'+safe(view.difficulty)+'</span>':'')+
+ (view.heat?'<span class="tag">'+safe(view.heat)+'</span>':'')+
+ (view.kind?'<span class="tag">'+safe(view.kind)+'</span>':'')+'</div>'+
+ chocolateChoices+choices+
+ (canScale?'<div class="servings"><span>Aantal '+safe(unitLabel(view,current))+'</span><button id="minus" type="button" aria-label="Minder"'+(current<=1?' disabled':'')+'>−</button><strong aria-live="polite">'+current+'</strong><button id="plus" type="button" aria-label="Meer">+</button></div>':'')+
+ scaleNote+
+ (view.recipeType==='onderdeel'?'<p class="recipe-type-hint">Dit is een basisrecept of gerechtsonderdeel. Combineer het eventueel met andere gerechten voor een complete maaltijd.</p>':'')+
+ (view.timeNote?'<p class="ingredient-helper recipe-time-note">'+safe(view.timeNote)+'</p>':'')+
+ actions+'</div>'+
+ (view.image?'<div class="recipe-intro-image"><div class="recipe-image-wrap"><img class="hero-photo" src="'+safe(view.image)+'" alt="'+safe(title(view))+'" decoding="async">'+imageLabel(view)+'</div></div>':'')+
+ '</section>'+jumpNav+
+ '<div class="recipe-layout"><section class="recipe-ingredients" id="recipeIngredients" tabindex="-1"><h3>Ingrediënten</h3><p class="ingredient-helper">Vink aan wat je al in huis hebt. Dit ingrediënt wordt dan voor dit recept niet op je boodschappenlijst gezet.</p><ul class="ingredients recipe-ingredient-list">'+checkableIngredientRows(items,mult,key)+'</ul></section>'+
+ '<section class="recipe-steps" id="recipeSteps" tabindex="-1"><h3>Bereiding</h3><ol class="steps">'+steps+'</ol></section></div>'+
+ (remarks.length?'<section class="recipe-tips"><h3>Kooktips</h3>'+(current!==original?'<p class="ingredient-helper">Deze kooktips beschrijven het basisrecept voor '+safe(portionsLabel(view,original))+'. Gebruik hierboven de omgerekende ingrediënten en bereidingsstappen.</p>':'')+'<div class="note">'+remarks.map(x=>'<p>'+safe(x)+'</p>').join('')+'</div></section>':'')+
+ extraDetails+
+ '<section class="experience-overview" id="experienceOverview" aria-label="Mijn kookervaring">'+personalDetailSummary(key)+'</section>'+
  notesPanel(key);
  el('back').onclick=()=>location.hash='';
  el('favorite').onclick=()=>toggleFav(r.id);
