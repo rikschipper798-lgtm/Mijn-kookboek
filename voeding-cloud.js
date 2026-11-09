@@ -210,6 +210,7 @@
   if(user?.id===account.id&&(loading||ready))return;
   const token=++generation;
   stopTimer();user=account;ready=false;loading=true;draft=null;
+  historyRows.clear();el('cloudHistoryOptions').hidden=true;
   revision=0;conflict=false;sending=false;refreshing=false;edits=0;needsVerification=false;
   if(hooks)hooks.onLogout();
   view();notify('Persoonlijk dagboek en lokale herstelkopie laden…');
