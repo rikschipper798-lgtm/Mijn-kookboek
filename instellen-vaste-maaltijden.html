@@ -37,16 +37,13 @@ button:hover{background:#1a3f28}
 <p class="note">Deze instelpagina brengt je naar het voedingsdagboek, waar de standaarden via dezelfde beveiligde opslag als je andere registraties worden overgenomen. Ben je nog niet ingelogd, dan wordt eerst gevraagd om aan te melden. Je bestaande handmatige maaltijden en doelen blijven behouden. De gegevens staan uitsluitend in de URL-fragmentcode van je browser en worden niet als GitHub-recept gepubliceerd.</p>
 <button id="apply" type="button" disabled>Neem ontbijt en lunch over in het voedingsdagboek</button>
 <div id="result" role="status" aria-live="polite"></div>
-<p id="continue" hidden><a class="btn" href="./voeding.html?v=20261109">Open mijn voedingsdagboek</a></p>
 </section></main>
 <script>
 'use strict';
 (function(){
- const KEY='mijn-kookboek-voedingsdagboek',SLOTS=['ontbijt','lunch'],MACROS=['kcal','proteinG','carbsG','fatG','fiberG'];
+ const SLOTS=['ontbijt','lunch'],MACROS=['kcal','proteinG','carbsG','fatG','fiberG'];
  const $=id=>document.getElementById(id);
- const defaults={kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5};
  const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const date=()=>new Date().toLocaleDateString('sv-SE');
  const validDate=v=>typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)&&new Date(v+'T12:00:00').toLocaleDateString('sv-SE')===v;
  let payload;
  function message(s,error=false){$('result').textContent=s;$('result').classList.toggle('error',error);}
