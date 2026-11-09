@@ -30,9 +30,10 @@ function makeStorage(){
 }
 function makeDb(){
  const rows=new Map();
- let failWrite=false,holdRead=false,releaseRead=null;
+ let failWrite=false,failRead=false,holdRead=false,releaseRead=null;
  const result=async(account,kind,body,filters)=>{
   if(kind==='select'){
+   if(failRead){failRead=false;return {data:null,error:{code:'NETWORK',message:'No internet'}};}
    const row=rows.get(account);
    const value=row?{diary:copy(row.diary),revision:row.revision}:null;
    if(holdRead){
@@ -54,7 +55,7 @@ function makeDb(){
   return {data:{revision:body.revision},error:null};
  };
  return {
-  rows,failNextWrite(){failWrite=true;},holdNextRead(){holdRead=true;},
+  rows,failNextWrite(){failWrite=true;},failNextRead(){failRead=true;},holdNextRead(){holdRead=true;},
   release(){assert.equal(typeof releaseRead,'function');releaseRead();releaseRead=null;},
   client(account){
    return {from(name){
@@ -210,4 +211,42 @@ test('Na bevestigde cloudschrijfactie en browsercrash wordt de herstelkopie herk
  assert.equal(reopened.state.days['2026-11-09'][0].nutrition.kcal,410);
  assert.equal(countPending(store),0);
  assert.doesNotMatch(reopened.status,/conflict/i);
+});
+
+test('Herstelkopie is ook tijdens offline herstart beschikbaar en wordt later veilig geüpload',async()=>{
+ const db=makeDb(),store=makeStorage(),a=harness(db,'offline',store);
+ await a.start();db.failNextWrite();a.enqueue(diary(210));await a.flush();
+ assert.equal(countPending(store),1);
+ db.failNextRead();
+ const reopened=harness(db,'offline',store);await reopened.start();
+ assert.equal(reopened.state.days['2026-11-09'][0].nutrition.kcal,210);
+ assert.match(reopened.status,/Geen cloudverbinding/);
+ reopened.enqueue(diary(360));
+ await reopened.flush();
+ assert.equal(db.rows.get('offline').diary.days['2026-11-09'][0].nutrition.kcal,360);
+ assert.equal(countPending(store),0);
+});
+
+test('Twee tabbladen kunnen niet stilzwijgend dezelfde lokale herstelkopie overschrijven',async()=>{
+ const db=makeDb(),store=makeStorage();
+ const left=harness(db,'a',store),right=harness(db,'a',store);
+ await left.start();await right.start();
+ assert.equal(left.enqueue(diary(350)),true);
+ assert.equal(right.enqueue(diary(750)),false);
+ const saved=JSON.parse([...store.data.values()][0]);
+ assert.equal(saved.diary.days['2026-11-09'][0].nutrition.kcal,350);
+ assert.match(right.status,/ander tabblad/i);
+});
+
+test('Cloudconflict op herstart houdt het ongesynchroniseerde dagboek intact',async()=>{
+ const db=makeDb(),store=makeStorage(),one=harness(db,'a',makeStorage());
+ await one.start();one.enqueue(diary(200));await one.flush();
+ const oldRevision=db.rows.get('a').revision;
+ const draft={version:1,userId:'a',baseRevision:oldRevision,nonce:'stale-draft',diary:diary(800),savedAt:new Date().toISOString()};
+ store.setItem('mijn-kookboek-cloud-herstel-v1:https://sample.supabase.co:a',JSON.stringify(draft));
+ one.enqueue(diary(250));await one.flush();
+ const recovered=harness(db,'a',store);await recovered.start();
+ assert.equal(recovered.state.days['2026-11-09'][0].nutrition.kcal,800);
+ assert.equal(countPending(store),1);
+ assert.match(recovered.status,/cloud is op een ander apparaat gewijzigd/i);
 });
