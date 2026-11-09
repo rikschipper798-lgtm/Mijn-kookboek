@@ -27,7 +27,8 @@ function bumpRecipe(data,recipeId,description,options={}){
  const date=options.date||todayAmsterdam();
  if(!dateValid(date))throw Error('Gebruik een echte datum in YYYY-MM-DD.');
  if(!Number.isInteger(target.version)||target.version<1||
-    !Array.isArray(target.changeLog)||target.changeLog.length!==target.version-1)
+    !Array.isArray(target.changeLog)||
+    target.changeLog.length!==target.version-1+(target.changeLog[0]?.version===1?1:0))
   throw Error('Revisiegegevens zijn onvolledig of inconsistent.');
  if(date<recipe.date||target.updatedAt&&date<target.updatedAt)
   throw Error('Wijzigingsdatum mag niet vóór de opnamedatum of vorige wijziging vallen.');
