@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="robots" content="noindex,nofollow">
+<title>Back-upsleutel aanmaken · Mijn Kookboek</title>
+<style>
+:root{color-scheme:light;font:16px/1.6 system-ui,sans-serif;color:#273d2d;background:#f7f9f5}
+*{box-sizing:border-box}body{margin:0}
+header{padding:30px 20px;background:#294935;color:white}
+header h1{font:500 clamp(27px,5vw,40px) Georgia,serif;margin:0}
+main{max-width:690px;margin:28px auto;padding:0 20px 48px}
+.card{border:1px solid #dce7da;padding:22px;background:white;border-radius:15px}
+a{color:#245c3e}
+button{border:0;border-radius:10px;padding:13px 18px;background:#294935;color:white;font-weight:700;cursor:pointer;margin:5px 7px 5px 0}
+button:disabled{opacity:.4;cursor:not-allowed}
+textarea{display:block;width:100%;font:16px/1.4 ui-monospace,monospace;min-height:80px;resize:none;border:1px solid #a6bba9;border-radius:10px;padding:11px;background:#f7faf7;overflow-wrap:anywhere}
+.notice{color:#7b352b}
+small{color:#5f6e61}
+</style></head>
+<body><header><h1>Maak je back-upsleutel aan</h1></header>
+<main><div class="card">
+<p>Met deze geheime sleutel versleutelt GitHub je databaseback-ups. De sleutel wordt <strong>alleen op dit apparaat gegenereerd</strong> met de cryptografisch veilige browserfunctie. Hij wordt niet naar GitHub, Supabase of een andere server gestuurd.</p>
+<p class="notice"><strong>Belangrijk:</strong> bewaar de sleutel zelf in een wachtwoordbeheerder. Zonder deze sleutel kun je later geen databaseback-up ontsleutelen. Deel de waarde niet in deze chat of via screenshots.</p>
+<p><button type="button" id="generate">Genereer veilige sleutel</button></p>
+<label for="result"><strong>Je sleutel (alleen zichtbaar in deze sessie)</strong></label>
+<textarea id="result" spellcheck="false" autocomplete="off" autocapitalize="off" readonly placeholder="Klik op ‘Genereer veilige sleutel’"></textarea>
+<p><button type="button" id="copy" disabled>Kopieer sleutel</button><button type="button" id="clear" disabled>Wis van scherm</button></p>
+<p id="status" role="status" aria-live="polite"></p>
+<p><small>De sleutel bevat 32 cryptografisch willekeurige bytes, gecodeerd als Base64. Dit past bij de GitHub Secret <code>BACKUP_ENCRYPTION_KEY_BASE64</code>.</small></p>
+<p><a href="https://github.com/rikschipper798-lgtm/Mijn-kookboek/settings/secrets/actions">Ga naar GitHub Actions Secrets</a></p>
+</div></main>
+<script>
+'use strict';
+(function(){
+ const generate=document.getElementById('generate');
+ const copy=document.getElementById('copy');
+ const clear=document.getElementById('clear');
+ const result=document.getElementById('result');
+ const status=document.getElementById('status');
+ function wipe(){result.value='';copy.disabled=true;clear.disabled=true;status.textContent='Sleutel uit het invoerveld gewist. Heb je hem veilig opgeslagen?';}
+ generate.onclick=()=>{
+  if(!window.isSecureContext||!window.crypto||!window.crypto.getRandomValues){
+   status.textContent='Veilige generatie is niet beschikbaar: open deze pagina via HTTPS in een actuele browser.';return;
+  }
+  if(result.value&&!window.confirm('Je bestaande sleutel vervangen? Bestaande back-ups met de oude sleutel kunnen daarna alleen met die oude sleutel worden hersteld.'))return;
+  const bytes=new Uint8Array(32);
+  window.crypto.getRandomValues(bytes);
+  result.value=btoa(String.fromCharCode(...bytes));
+  bytes.fill(0);
+  copy.disabled=false;clear.disabled=false;
+  status.textContent='Sleutel aangemaakt. Kopieer hem naar GitHub Secrets en bewaar een aparte kopie in je wachtwoordbeheerder.';
+ };
+ copy.onclick=async()=>{
+  if(!result.value)return;
+  try{await navigator.clipboard.writeText(result.value);status.textContent='Gekopieerd. Plak de sleutel in de GitHub Secret en bewaar hem veilig.';}
+  catch{result.focus();result.select();status.textContent='Automatisch kopiëren lukte niet. Selecteer en kopieer de sleutel handmatig.';}
+ };
+ clear.onclick=wipe;
+ window.addEventListener('pagehide',wipe);
+})();
+</script></body></html>
