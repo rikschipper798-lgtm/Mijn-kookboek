@@ -1,13 +1,16 @@
 # Onafhankelijke versleutelde database-back-ups
 
-**Status: technisch voorbereid, maar niet geactiveerd.**
+**Status 9 november 2026: dagelijkse back-upplanning geactiveerd na een
+succesvolle eerste back-up.**
 
-De repo bevat een GitHub Actions-workflow die, zodra beide vereiste
-GitHub Actions-secrets zijn ingesteld **en een eerste handmatige test is
-geslaagd**, kan worden ingepland om iedere dag om **03.17 UTC** een
-PostgreSQL-dump te maken van de Supabase-schema's `public`, `auth` en `storage`.
-Tot die test is de dagelijkse planning bewust uitgeschakeld om geen
-mislukte of schijnbaar geslaagde geplande back-ups te suggereren.
+De repo heeft een GitHub Actions-workflow die iedere dag om **03.17 UTC**
+een PostgreSQL-dump maakt van de Supabase-schema's `public`, `auth` en
+`storage`. De eerste uitvoering
+[42685890232](https://github.com/rikschipper798-lgtm/Mijn-kookboek/actions/runs/42685890232)
+is geslaagd na het corrigeren van de Session Pooler-URI; het versleutelde
+artifact is aangetroffen en het archief is met `pg_restore --list` gecontroleerd.
+De eerste werkelijk geplande uitvoering moet nog slagen; een volledige restore
+in een afzonderlijke database is nog **niet** uitgevoerd.
 De dump wordt tijdens het streamen met AES-256-GCM versleuteld en alleen
 **als versleuteld GitHub Actions-artifact** bewaard, 30 dagen lang.
 De originele database en het voedingsdagboek worden niet gewijzigd.
@@ -73,7 +76,7 @@ Laat `SUPABASE_BACKUP_DB_URL` uitsluitend via de geheime GitHub Secrets-
 instellingen invullen; stuur de volledige connection string, het
 databasewachtwoord of de encryptiesleutel niet via ChatGPT.
 
-## Eerste test en activeren
+## Eerste back-up gelukt; herstel en controle
 
 1. Open [Actions > Versleutelde databaseback-up](https://github.com/rikschipper798-lgtm/Mijn-kookboek/actions/workflows/backup-database.yml).
 2. Kies **Run workflow**, nadat beide secrets zijn ingesteld.
@@ -92,9 +95,8 @@ databasewachtwoord of de encryptiesleutel niet via ChatGPT.
    **niet versleuteld** en bevat mogelijk accounts en gevoelig database-inhoud.
 7. Test desgewenst de herstelbaarheid in een **tijdelijk gescheiden Supabase-
    testproject**. Voer geen ongeteste `pg_restore` uit op de live database.
-8. Laat na een geslaagde handmatige test de twee uitgecommentarieerde
-   `schedule`-regels in `.github/workflows/backup-database.yml`
-   activeren. De workflow draait vanaf dan dagelijks op de standaardbranch.
+8. De dagelijkse planning is ingeschakeld op 9 november 2026. Controleer
+   vanaf de eerste geplande uitvoering of het artifact daadwerkelijk verschijnt.
 9. Controleer wekelijks of er daadwerkelijk recente artifacts zijn.
    GitHub kan geplande workflows vertragen of bij langdurige inactiviteit
    uitschakelen. Als die controle uitblijft, zijn de back-ups niet gegarandeerd.
@@ -126,9 +128,9 @@ tabellen na restore correct werken.
 - GitHub Actions-artifacts hebben een tijdelijke bewaartermijn, hier 30 dagen;
   ze zijn bedoeld als tussentijdse, onafhankelijke herstelkopie.
 - Gratis gebruik is onderworpen aan GitHub Actions-opslag- en gebruikslimieten.
-- Er staat **nog geen werkende automatische back-up** aan zolang de secrets
-  niet zijn ingesteld, de eerste workflowrun niet is gecontroleerd en de
-  dagelijkse planning niet is ingeschakeld.
+- De dagelijkse planning **staat aan**. De eerste succesvolle export en
+  archiefcontrole zijn bevestigd. De eerste geplande run en een volledige
+  testrestore op een afzonderlijke database blijven nog te controleren.
 - Voor langdurige en onafhankelijke dataretentie of een hogere
   herstelgarantie kies je later een externe storageprovider of Supabase Pro,
   met expliciete kosten- en privacyafspraken.
