@@ -86,7 +86,7 @@
   if(!enabled||!user||!ready)return false;
   let previous;
   try{previous=readLocal(user.id);}
-  catch(err){conflict=true;notify(err.message,true);return false;}
+  catch(err){conflict=true;notify('De browseropslag is niet beschikbaar; deze wijziging is niet opgeslagen. '+err.message,true);return false;}
   if(previous&&(!draft||previous.nonce!==draft.nonce)){
    conflict=true;
    notify('Een ander tabblad heeft gegevens gewijzigd. Deze invoer is niet opgeslagen; open het dagboek opnieuw en controleer de herstelkopie.',true);
@@ -126,12 +126,12 @@
     }
     if(token!==generation||user?.id!==account)return;
     if(response.error||!response.data){
-     const collision=!response.data||response.error?.code==='23505';
+     const collision=!response.error||response.error.code==='23505'||response.error.code==='409';
      if(collision){
       conflict=true;
       notify('Cloudconflict: je lokale versie is veilig opgeslagen. Exporteer een back-up en kies daarna bewust Cloud opnieuw laden.',true);
      }else{
-      notify('Verbinding of cloudopslag mislukt. Je laatste wijzigingen blijven veilig op dit apparaat staan. Gebruik Opnieuw synchroniseren.',true);
+      notify('De cloud kon de wijziging niet opslaan. Je gegevens staan veilig op dit apparaat en worden bij een nieuwe verbinding opnieuw geprobeerd.',true);
      }
      return;
     }
