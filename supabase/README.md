@@ -24,7 +24,10 @@ de herstelstatus van accounts gescheiden blijft.
    naar een bestaande herstelkopie van dit account. Bij een verschil tussen
    server- en lokale revisie wordt geen automatische overschrijving gedaan.
 5. Als de cloud niet bereikbaar is maar er een geldige opgeslagen sessie én
-   herstelkopie zijn, kan het lokale dagboek worden geopend. Voor de
+   herstelkopie zijn, kan het lokale dagboek worden geopend. De PWA slaat
+   de gepinde publieke Supabase-inlogbibliotheek bij een online installatie
+   zo mogelijk op. Zonder eerdere geslaagde PWA-installatie is offline
+   starten niet gegarandeerd. Voor de
    eerstvolgende upload wordt de serverrevisie opnieuw gecontroleerd.
 6. Bij een conflict exporteert de gebruiker eerst het dagboek en kan daarna
    bewust de cloudversie herstellen. De knop **Download dagboekback-up**
