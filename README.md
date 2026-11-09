@@ -19,6 +19,7 @@ standaardmaaltijden instellen, zonder ze aan `recepten.json` toe te voegen.
   gegeten maaltijd handmatig toe. De verwijderde standaard wordt die dag niet
   opnieuw toegevoegd.
 - Aanpassen of uitschakelen van een standaard wijzigt **bestaande dagregistraties niet**.
+- Er is een knop **Laad vaste maaltijden uit bestand** die uitsluitend ontbijt- en lunchstandaarden importeert vanuit een privé JSON-bestand van het type `mijn-kookboek-vaste-maaltijden` versie 1. De bestaande dagregistraties en caloriedoelen blijven daarbij behouden. Hierdoor hoeven persoonlijke standaardmaaltijden niet als publieke voorbeeldwaarden in de broncode te staan.
 - De twee standaarden en de reeds verwerkte werkdagen worden uitsluitend lokaal
   in hetzelfde dagboek opgeslagen en zijn inbegrepen bij de afzonderlijke export/import.
   Oude dagboekback-ups blijven te importeren.
