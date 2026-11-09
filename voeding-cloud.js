@@ -181,7 +181,14 @@
    if(saved){
     draft=saved;
     diary=saved.diary;
-    if(saved.baseRevision!==remoteRevision)conflict=true;
+    if(saved.baseRevision!==remoteRevision){
+     // Network reply may have reached Supabase just before browser/tab closed.
+     // If its exact draft is already in the cloud, acknowledge it after reload.
+     if(remote&&JSON.stringify(hooks.validateData(remote.diary))===JSON.stringify(hooks.validateData(saved.diary))){
+      if(!deleteLocal(saved)){ready=false;loading=false;return;}
+      draft=null;diary=remote.diary;
+     }else conflict=true;
+    }
    }else if(!remote&&hooks.hasLocal()){
     if(window.confirm('Je hebt al een lokaal voedingsdagboek. Wil je dit eenmalig overnemen in je persoonlijke cloudaccount?')){
      diary=hooks.getLocal();
@@ -229,9 +236,11 @@
     return;
    }
    if(remote?.revision===revision&&!force)return;
+   // Verify incoming data BEFORE discarding any locally saved recovery copy.
+   const validated=hooks.validateData(remote?.diary||null);
    if(force&&draft&&!deleteLocal(draft))return;
    revision=remote?.revision||0;draft=null;conflict=false;
-   hooks.onData(remote?.diary||null);
+   hooks.onData(validated);
    notify('Nieuwste cloudversie geladen.');
   }catch(err){
    if(token===generation)notify('Cloudgegevens ophalen mislukt; lokale gegevens zijn niet overschreven.',true);
