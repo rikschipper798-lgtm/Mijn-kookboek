@@ -1,12 +1,13 @@
 'use strict';
 // Bestandsversie: verhoog deze waarde bij wijzigingen aan offline infrastructuur.
 // index.html en recepten.json worden online altijd opnieuw opgehaald.
-const CACHE_VERSION='2026-11-09-diary-durable-recovery-v11';
+const CACHE_VERSION='2026-11-09-diary-durable-recovery-v12';
 const CORE_CACHE='mijn-kookboek-pwa-core-'+CACHE_VERSION;
 const IMAGE_CACHE='mijn-kookboek-pwa-images-'+CACHE_VERSION;
 const CACHE_PREFIX='mijn-kookboek-pwa-';
 const SCOPE=self.registration.scope;
 const ROOT=new URL('./',SCOPE);
+const CLOUD_SDK_URL='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0';
 const CORE_ASSETS=['index.html','voeding.html','voeding-cloud.js','cloud-config.js','instellen-vaste-maaltijden.html','pantry.js','recepten.json','manifest.webmanifest',
  'icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png'];
 // Afbeeldingen komen uit dezelfde receptenlijst die de website gebruikt.
@@ -58,11 +59,22 @@ async function syncRecipeImagesFromResponse(response){
  }
 }
 
+async function cacheCloudSdk(){
+ // Offline hervatten vereist ook de inlogbibliotheek. Dit is best-effort:
+ // CDN-storingen mogen de installatie van de bestaande recepten-PWA niet blokkeren.
+ try{
+  const cache=await caches.open(CORE_CACHE);
+  const request=new Request(CLOUD_SDK_URL,{mode:'no-cors'});
+  const response=await fetch(request);
+  if(response.ok||response.type==='opaque')await cache.put(request,response.clone());
+ }catch(error){console.warn('De inlogbibliotheek is nog niet offline opgeslagen.',error);}
+}
 self.addEventListener('install',event=>{
  event.waitUntil((async()=>{
   // Zonder volledig basisscherm en recepten activeren we niet als offline app.
   const core=await caches.open(CORE_CACHE);
   await core.addAll(CORE_ASSETS.map(path=>new Request(new URL(path,ROOT),{cache:'reload'})));
+  await cacheCloudSdk();
   // Gebruik de zojuist opgeslagen receptgegevens als bron voor alle foto's.
   // Bij een ontbrekende foto werkt het kookboek offline verder.
   const recipeResponse=await core.match(new URL('recepten.json',ROOT));
@@ -110,6 +122,20 @@ async function cacheFirst(request,cacheName){
   return new Response('',{status:503,statusText:'Offline'});
  }
 }
+async function cacheFirstCloudSdk(request){
+ const cache=await caches.open(CORE_CACHE);
+ const stored=await cache.match(request);
+ if(stored)return stored;
+ try{
+  const response=await fetch(request);
+  if(response.ok||response.type==='opaque'){
+   try{await cache.put(request,response.clone())}catch(e){}
+  }
+  return response;
+ }catch(error){
+  return new Response('',{status:503,statusText:'Inlogbibliotheek is offline nog niet opgeslagen'});
+ }
+}
 async function imageWithRefresh(event){
  const request=event.request;
  const cache=await caches.open(IMAGE_CACHE);
@@ -131,6 +157,11 @@ self.addEventListener('fetch',event=>{
  const request=event.request;
  if(request.method!=='GET')return;
  const url=new URL(request.url);
+ // Alleen de exact gepinde, publieke inlogbibliotheek valt onder deze cross-origin cache.
+ if(url.href===CLOUD_SDK_URL){
+  event.respondWith(cacheFirstCloudSdk(request));
+  return;
+ }
  if(url.origin!==ROOT.origin||!url.pathname.startsWith(ROOT.pathname))return;
  const pathname=url.pathname.slice(ROOT.pathname.length);
  if(request.mode==='navigate'||pathname===''||pathname==='index.html'){
