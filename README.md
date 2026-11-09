@@ -50,9 +50,13 @@ standaardmaaltijden instellen, zonder ze aan `recepten.json` toe te voegen.
 
 De website bevat een voorbereide Supabase-koppeling voor persoonlijke
 e-mailaccounts en synchronisatie van voedingsdoelen, vaste maaltijden en
-dagregistraties. De Supabase-database, Row Level Security en publieke browserconfiguratie zijn ingericht. Op 9 november 2026 is de accountfunctie **geactiveerd na bevestiging van de Auth Redirect URL door de eigenaar**. De daadwerkelijke e-mailaanmelding en apparaatoverschrijdende synchronisatie moeten nog met een gebruikersaccount worden gecontroleerd. De bestaande lokale opslag wordt niet automatisch verwijderd; bij de eerste aanmelding wordt gevraagd of je de lokale registraties wilt overnemen.
+dagregistraties. De Supabase-database, RLS en persoonlijke cloudlogin zijn ingericht. In het voedingsdagboek kun je nu maximaal drie eerdere cloudversies herstellen of het eigen account definitief verwijderen. De directe pagina voor vaste maaltijden gebruikt dezelfde beveiligde dagboekopslag. De code- en gesimuleerde regressietests zijn uitgebreid; de echte e-mailaanmelding, synchronisatie op twee apparaten en verwijdering zijn nog niet onafhankelijk end-to-end getest. De oude lokale dagboekgegevens worden pas na toestemming overgenomen.
 Zie [instellen van accounts, RLS en migratie](supabase/README.md).
 Favorieten, voorraad, boodschappen en kooknotities blijven voorlopig lokaal.
+Voor de actuele groeikeuzes en het migratiepad, zie
+[schaalbaar datamodel](supabase/SCALING.md). Voor het gebruik van accounts door
+andere personen moet nog een eigen SMTP-provider en formele contactinformatie
+voor privacyverzoeken worden ingericht.
 
 ### Herstelbare synchronisatie (9 november 2026)
 
