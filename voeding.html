@@ -282,6 +282,39 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   const date=new Date(selectedDay+'T12:00:00');date.setDate(date.getDate()+amount);
   selectedDay=date.toLocaleDateString('sv-SE');el('selectedDate').value=selectedDay;render();
  }
+ function autoWeekdays(){
+  const snapshot=JSON.stringify(state),reference=new Date(selectedDay+'T12:00:00');
+  let changed=false;
+  for(let i=0;i<7;i++){
+   const d=new Date(reference);d.setDate(d.getDate()-i);
+   const day=d.toLocaleDateString('sv-SE'),wd=d.getDay();
+   if(day>today()||wd<1||wd>5)continue;
+   for(const slot of SLOTS){
+    const preset=state.weekdayPresets[slot],done=state.weekdayApplied[day]||[];
+    if(!preset||!preset.enabled||day<preset.startDate||done.includes(slot))continue;
+    if(!state.days[day])state.days[day]=[];
+    state.days[day].push({id:uniqueId(),source:'preset',title:'Standaard '+slot+': '+preset.title,nutrition:{...preset.nutrition}});
+    state.weekdayApplied[day]=[...done,slot];changed=true;
+   }
+  }
+  if(changed)try{localStorage.setItem(KEY,JSON.stringify(state));}
+  catch(e){state=JSON.parse(snapshot);status('Automatisch invullen kon niet worden opgeslagen.',true);}
+ }
+ function showWeekdays(){
+  el('weekdaySummary').innerHTML=SLOTS.map(slot=>{
+   const p=state.weekdayPresets[slot];
+   return '<div class="preset-card"><strong>'+(slot==='ontbijt'?'Ontbijt':'Lunch')+'</strong><span>'+
+     (p?esc(p.title)+' · '+fmt(p.nutrition.kcal)+' kcal · '+(p.enabled?'ma–vr actief':'automatisch uit'):'Nog niet ingesteld')+'</span></div>';
+  }).join('');
+ }
+ function loadWeekdayForm(){
+  const p=state.weekdayPresets[el('weekdaySlot').value];
+  el('weekdayTitleInput').value=p?.title||'';
+  el('weekdayEnabled').checked=p?p.enabled:true;
+  for(const [id,key] of [['weekdayKcal','kcal'],['weekdayProtein','proteinG'],['weekdayCarbs','carbsG'],['weekdayFat','fatG'],['weekdayFiber','fiberG']])
+   el(id).value=p&&p.nutrition[key]!==null?p.nutrition[key]:'';
+  el('weekdayDelete').disabled=!p;
+ }
  function currentEntries(){return state.days[selectedDay]||[];}
  function addEntry(entry){
   if(commit(()=>{if(!state.days[selectedDay])state.days[selectedDay]=[];state.days[selectedDay].push(entry);}))
@@ -296,6 +329,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
   return {out,missing};
  }
  function render(){
+  autoWeekdays();showWeekdays();
   const entries=currentEntries();
   const result=totals(entries),kcal=result.out.kcal,goal=state.goals.kcal;
   el('calories').innerHTML=fmt(kcal)+' <span>/ '+fmt(goal)+' kcal</span>';
@@ -311,7 +345,7 @@ footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
    '<div class="metric"><strong>'+fmt(result.out[key],1)+(result.missing[key]?'*':'')+' g</strong><span>'+LABELS[i+1]+' · doel '+fmt(state.goals[key],1)+' g</span></div>').join('');
   el('emptyEntries').hidden=entries.length>0;
   el('entries').innerHTML=entries.map(e=>
-   '<li><div><div class="entry-title">'+esc(e.title)+'</div><div class="entry-details">'+(e.source==='recipe'?'Kookboekrecept · geschat':'Eigen invoer')+
+   '<li><div><div class="entry-title">'+esc(e.title)+'</div><div class="entry-details">'+(e.source==='recipe'?'Kookboekrecept · geschat':e.source==='preset'?'Werkdagstandaard · automatisch (aanname)':'Eigen invoer')+
    ' · E '+(e.nutrition.proteinG===null?'onbekend':fmt(e.nutrition.proteinG,1)+' g')+
    ' · KH '+(e.nutrition.carbsG===null?'onbekend':fmt(e.nutrition.carbsG,1)+' g')+
    ' · V '+(e.nutrition.fatG===null?'onbekend':fmt(e.nutrition.fatG,1)+' g')+'</div></div>'+
