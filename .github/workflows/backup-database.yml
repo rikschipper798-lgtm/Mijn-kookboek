@@ -6,10 +6,6 @@ name: Versleutelde databaseback-up
 #   schedule:
 #     - cron: '17 3 * * *'
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/backup-database.yml'
   workflow_dispatch:
 
 permissions:
@@ -48,6 +44,28 @@ jobs:
             echo "::error::De databaseverbinding moet een PostgreSQL connection string zijn."
             exit 1
           fi
+          # Toon nooit de URI of het wachtwoord in logs. Controleer alleen de
+          # structuur van de Session Pooler-identiteit voordat pg_dump start.
+          node <<'NODE'
+          const raw=process.env.SUPABASE_BACKUP_DB_URL||'';
+          let parsed;
+          try{parsed=new URL(raw);}
+          catch{console.error('::error::De PostgreSQL-URI is ongeldig. Kopieer de volledige Session Pooler URI uit Supabase > Connect.');process.exit(1);}
+          if(parsed.hostname.endsWith('.pooler.supabase.com')){
+            if(parsed.username==='postgres'){
+              console.error('::error::De Session Pooler verwacht postgres.usppeputwknbxayekufe in plaats van postgres. Kopieer de Session Pooler URI uit Supabase > Connect opnieuw.');
+              process.exit(1);
+            }
+            if(parsed.port!=='5432'){
+              console.error('::error::Kies de Session Pooler op poort 5432 (niet Transaction Pooler 6543).');
+              process.exit(1);
+            }
+          }
+          if(!parsed.password||parsed.password.includes('YOUR-PASSWORD')||parsed.password.includes('%5B')){
+            console.error('::error::Vul het echte databasewachtwoord in de URI in; laat geen [YOUR-PASSWORD]-placeholder staan.');
+            process.exit(1);
+          }
+          NODE
 
       - name: Maak een streaming PostgreSQL-dump en versleutel deze
         id: backup
