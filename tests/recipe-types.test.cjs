@@ -66,7 +66,7 @@ function browser(){
   if(elements.has(id))return elements.get(id);
   const e={id,value:'',textContent:'',hidden:false,open:false,checked:false,dataset:{},innerHTML:'',style:{},
    classList:{add(){},remove(){},toggle(){}},add(){},querySelectorAll(){return []},
-   contains(x){return x===this},setAttribute(name,value){this['attr_'+name]=value},
+   contains(x){return x===this},setAttribute(name,value){this['attr_'+name]=value},removeAttribute(name){delete this['attr_'+name]},
    addEventListener(type,listener){this['on'+type]=listener},focus(){},scrollIntoView(){}};
   elements.set(id,e);return e;
  }
