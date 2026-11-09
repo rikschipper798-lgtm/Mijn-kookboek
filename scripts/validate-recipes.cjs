@@ -75,7 +75,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
     fail(loc,'moet een wijzigingsobject zijn');return;
    }
    if(change.version!==index+(hasCreationLog?1:2))
-    fail(loc+'.version','revisies moeten opeenvolgend vanaf versie '+(hasCreationLog?1:2)+' zijn');
+    fail(loc+'.version','revisies moeten oplopend en opeenvolgend vanaf versie '+(hasCreationLog?1:2)+' zijn');
    if(hasCreationLog&&index===0&&change.date!==created)
     fail(loc+'.date','oorspronkelijke v1-opname moet gelijk zijn aan de receptdatum');
    if(!date(change.date))fail(loc+'.date','ongeldige wijzigingsdatum');
