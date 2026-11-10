@@ -85,6 +85,6 @@ async function withPage(width,fn){
   server.kill();
   fs.writeFileSync(output+'/metingen.json',JSON.stringify(steps,null,2));
   console.log('AUDIT '+steps.length+' schermen, totaal '+steps.reduce((n,s)=>n+s.small.length,0)+' kleine targets');
-  if(steps.length!==14)process.exitCode=2;
+  if(steps.length!==16)process.exitCode=2;
  }
 })().catch(e=>{console.log(e.stack);process.exitCode=2;server.kill();});
