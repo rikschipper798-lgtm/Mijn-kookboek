@@ -2650,6 +2650,39 @@ function restorePersonalBackup(){
  route();
  backupStatus('Gegevens hersteld op dit apparaat. Je favorieten, notities en boodschappen zijn bijgewerkt.'+
   (data.pantry===null?' Je bestaande voorraad is behouden.':' Je standaardvoorraad is ook hersteld.'));
+ if(window.CookbookPersonalCloud?.enabled)window.CookbookPersonalCloud.changed();
+}
+// De cloud gebruikt dezelfde strenge datavalidatie als de lokale JSON-back-up.
+ // Alles wordt eerst lokaal opgeslagen; bij een fout blijft de oude verzameling bewaard.
+function applyPersonalCloudData(data){
+ const checkedData=validBackup({app:BACKUP_APP,version:BACKUP_VERSION,exportedAt:new Date().toISOString(),data}).data;
+ if(checkedData.pantry===null)throw Error('In de accountgegevens ontbreekt de standaardvoorraad.');
+ const changes={
+  fav:checkedData.favorites,checked:checkedData.ingredientChecks,
+  basket:checkedData.basket,basketChecked:checkedData.basketChecks,
+  notes:checkedData.notes,cook:checkedData.cookProgress,pantry:checkedData.pantry
+ };
+ const previous={};
+ try{
+  for(const name of Object.keys(changes))previous[name]=localStorage.getItem(STORAGE[name]);
+  for(const [name,value] of Object.entries(changes))localStorage.setItem(STORAGE[name],JSON.stringify(value));
+ }catch(error){
+  let restored=true;
+  for(const [name,value] of Object.entries(previous)){
+   try{if(value===null)localStorage.removeItem(STORAGE[name]);else localStorage.setItem(STORAGE[name],value);}
+   catch(e){restored=false;}
+  }
+  throw Error(restored?'Accountgegevens konden niet veilig op dit apparaat worden opgeslagen.':
+   'Opslagfout: niet alle oude browsergegevens konden worden teruggezet. Bewaar je lokale back-up.');
+ }
+ favorites=new Set(checkedData.favorites);
+ checked=checkedData.ingredientChecks;
+ basket=checkedData.basket;
+ basketChecked=checkedData.basketChecks;
+ personalNotes=checkedData.notes;
+ cookProgress=checkedData.cookProgress;
+ pantry.restore(checkedData.pantry);
+ route();
 }
 el('downloadBackup').addEventListener('click',downloadPersonalBackup);
 el('backupFile').addEventListener('change',event=>readBackupFile(event.target.files[0]));
@@ -2856,6 +2889,20 @@ document.addEventListener('focusout',event=>{
   setTimeout(applyDeferredRecipeUpdate,0);
  }
 });
+if(window.CookbookPersonalCloud?.enabled){
+ window.CookbookPersonalCloud.start({
+  getLocal:backupData,
+  validate(data){return validBackup({app:BACKUP_APP,version:BACKUP_VERSION,exportedAt:new Date().toISOString(),data}).data;},
+  apply:applyPersonalCloudData,
+  canApply(){
+   if(activeCook||recipeEditorFocused())return false;
+   const focused=document.activeElement;
+   if(focused&&typeof focused.closest==='function'&&focused.closest('#personalNotes, #pantryPanel'))return false;
+   return true;
+  },
+  download:downloadPersonalBackup
+ });
+}
 refreshRecipeCollection(true);
 </script>
 </body>
