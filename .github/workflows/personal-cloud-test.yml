@@ -29,3 +29,16 @@ jobs:
           node --test tests/personal-experience.test.cjs
           node --test tests/cloud-diary.test.cjs
           node --test tests/backup-database.test.cjs
+      - name: Installeer testbrowser
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Test twee browsers met lokale nepaccountgegevens
+        run: node tests/personal-cloud-browser.cjs
+      - name: Bewaar schermafbeeldingen en testresultaten
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: persoonlijke-cloud-browser
+          path: persoonlijke-cloud-testresultaten/
+          if-no-files-found: warn
