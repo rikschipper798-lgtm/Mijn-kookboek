@@ -496,6 +496,7 @@
    // geen onopgeslagen formulierinhoud en vermijden we onnodige requests.
    setInterval(()=>{
     if(document.visibilityState!=='visible'||!user||!ready||loading||sending||refreshing||draft||conflict)return;
+    if(el('settingsMenu')?.open||el('accountTools')?.open||el('mealEntryPanel')?.hidden===false)return;
     const focus=document.activeElement;
     if(focus&&typeof focus.closest==='function'&&focus.closest('#manualForm,#recipeForm,#weekdayForm,#goalsForm'))return;
     void refresh();
