@@ -86,6 +86,7 @@ function localCloudConfig(page){
     assert.ok(await checkbox.isChecked(),'Afvinken werkt niet');
     const house=page.locator('#basket [data-house]').first();
     await house.click();
+    await page.locator('#basketHomePanel>summary').click();
     assert.ok(await page.getByRole('button',{name:/Toch kopen/}).count()>0,'In huis markeren werkt niet');
     await page.screenshot({path:shots+'/desktop-boodschappen.png'});
     return {boodschappen:(await page.locator('#basket [data-basket-item]').count()),inHuis:true};
