@@ -435,7 +435,7 @@ main{padding-top:25px}
 
 <footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden · <a href="./privacy.html">Privacy en gegevensbeheer</a></footer>
 <script src="./cloud-config.js"></script>
-<script src="./voeding-cloud.js?v=20261110-status-v2"></script>
+<script src="./voeding-cloud.js?v=20261110-status-v3"></script>
 <script src="./voeding-backup.js"></script>
 <script>
 'use strict';
@@ -468,7 +468,7 @@ main{padding-top:25px}
   const bar=el('accountStatusBar');
   let label='Dagboek gesynchroniseerd',tone='synced';
   if(!cloudMode){label='Gegevens op dit apparaat';tone='neutral';}
-  else if(loggedIn===null){label='Inlogstatus controleren…';tone='pending';}
+  else if(loggedIn===null){label=error?'Accountstatus niet beschikbaar':'Inlogstatus controleren…';tone=error?'attention':'pending';}
   else if(!loggedIn){label='Niet ingelogd';tone=error?'attention':'neutral';}
   else if(conflict){label='Synchronisatie vraagt aandacht';tone='attention';}
   else if(pending){label=error?'Synchronisatie niet voltooid':'Wijzigingen wachten op synchronisatie';tone=error?'attention':'pending';}
@@ -478,7 +478,7 @@ main{padding-top:25px}
   bar.dataset.state=tone;
   el('accountStateLabel').textContent=label;
   el('accountStateDetail').textContent=message||'';
-  el('openAccountTools').textContent=cloudMode?(loggedIn?'Account beheren':'Inloggen'):'Gegevens beheren';
+  el('openAccountTools').textContent=cloudMode?(loggedIn===null?'Account bekijken':loggedIn?'Account beheren':'Inloggen'):'Gegevens beheren';
  }
  updateAccountStatus({loggedIn:cloudMode?null:false,ready:!cloudMode,pending:false,conflict:false,error:false,
   message:cloudMode?'Inlogstatus controleren…':'Je dagboek en voedingsdoelen staan alleen in deze browser.'});
