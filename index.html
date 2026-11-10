@@ -759,6 +759,19 @@ body.cook-active{overflow:hidden}
  #pantryNew{min-height:44px}
  .recipe-jumps button,.recipe-more-actions summary,.recipe-secondary-actions .btn{min-height:44px}
 }
+
+/* Stap 8: WCAG AA tekstcontrast bij kleine labels, knoppen en detailinformatie.
+   De bestaande groentinten en warme accenten blijven behouden. */
+.section-label{color:#875332}
+.eyebrow{color:#81502e}
+#count{color:#556354}
+#startCooking.cook-start-button{background:#854c2c;color:#fff}
+.experience-pending,.experience-empty{color:#536753}
+.personal-notes-privacy{color:#47604e}
+.cook-kicker{color:#875332}
+.cook-timer-note{color:#526653}
+.basket-heading-count{color:#516653}
+footer{color:#526454}
 </style>
 </head>
 <body>
@@ -1306,9 +1319,15 @@ function setRecipeTypeFilter(value){
 function findRecipe(id){return recipes.find(r=>r.id===id||(r.aliases||[]).includes(id))}
 function basketCount(){el('basketCount').textContent=Object.keys(basket).length}
 function toggleFav(id){
+ const focusCard=document.activeElement?.dataset?.fav===id;
+ const focusDetail=document.activeElement?.id==='favorite';
  if(favorites.has(id))favorites.delete(id);else favorites.add(id);
  save(STORAGE.fav,[...favorites]);renderCards();
  if(!el('detail').hidden)renderDetail();
+ if(focusCard){
+  const button=[...document.querySelectorAll('#cards [data-fav]')].find(b=>b.dataset.fav===id);
+  if(button)button.focus({preventScroll:true});
+ }else if(focusDetail&&el('favorite'))el('favorite').focus({preventScroll:true});
 }
 function normalizeSearch(text){
  return String(text||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('nl-NL').replace(/[-_/]+/g,' ').replace(/\s+/g,' ').trim();
@@ -1372,7 +1391,7 @@ function renderCards(){
  el('favorites').setAttribute('aria-pressed',favoriteOnly);
   el('cookedOnly').setAttribute('aria-pressed',cookedOnly);
  el('cards').innerHTML=shown.map(r=>
-  '<div class="card" data-recipe="'+safe(r.id)+'" role="link" tabindex="0" aria-label="Open recept: '+safe(title(r))+'">'+
+  '<div class="card" data-recipe="'+safe(r.id)+'">'+
   (r.image?'<div class="card-art with-photo"><img loading="lazy" decoding="async" src="'+safe(r.image)+'" alt="'+safe(title(r))+'">'+imageLabel(r)+'</div>':'<div class="card-art" aria-hidden="true">'+emoji(r)+'</div>')+
   '<div class="card-body"><div class="eyebrow">'+safe(r.category||'Recept')+' · '+safe(recipeTypeLabel(r))+'</div><h2>'+safe(title(r))+'</h2>'+
   '<p>'+safe(description(r))+'</p><div class="meta"><span class="tag">'+safe(portionsLabel(r,portions(r)))+'</span>'+
@@ -1381,18 +1400,13 @@ function renderCards(){
   (r.cuisine?'<span class="tag card-cuisine">'+safe(r.cuisine)+'</span>':'')+
    (hasRecordedChanges(r)?'<span class="tag">Bijgewerkt '+safe(revisionDateLabel(latestRevisionDate(r)))+'</span>':'')+'</div>'+personalCardSummary(r)+
   '<div class="card-actions"><a class="btn" href="#recept/'+encodeURIComponent(r.id)+'" aria-label="Bekijk recept: '+safe(title(r))+'">Bekijk recept</a>'+
-  '<button class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet aanpassen: '+safe(title(r))+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>'
+  '<button type="button" class="fav '+(favorites.has(r.id)?'active':'')+'" aria-label="Favoriet: '+safe(title(r))+'" aria-pressed="'+favorites.has(r.id)+'" data-fav="'+safe(r.id)+'">'+(favorites.has(r.id)?'♥':'♡')+'</button></div></div></div>'
  ).join('')||
  '<div class="empty-results"><h3>Geen recepten gevonden</h3><p>Probeer een andere zoekterm of maak de filters minder specifiek.</p><button type="button" class="btn alt" id="resetEmpty">Wis filters</button></div>';
  document.querySelectorAll('#cards [data-fav]').forEach(b=>b.addEventListener('click',()=>toggleFav(b.dataset.fav)));
  document.querySelectorAll('#cards .card[data-recipe]').forEach(card=>{
   card.addEventListener('click',event=>{
    if(event.target.closest('a,button'))return;
-   location.hash='#recept/'+encodeURIComponent(card.dataset.recipe);
-  });
-  card.addEventListener('keydown',event=>{
-   if(event.target!==card || (event.key!=='Enter'&&event.key!==' '))return;
-   event.preventDefault();
    location.hash='#recept/'+encodeURIComponent(card.dataset.recipe);
   });
  });
@@ -2138,6 +2152,10 @@ document.addEventListener('visibilitychange',()=>{
  }
 });
 
+function setCookModalBackgroundInert(enabled){
+ document.querySelectorAll('body > nav, body > header, body > main, body > footer')
+  .forEach(node=>{node.inert=enabled;});
+}
 function openCookMode(recipe,view,variantId,servings){
  const steps=cookSteps(view,servings/portions(view));
  if(!steps.length)return;
@@ -2146,6 +2164,7 @@ function openCookMode(recipe,view,variantId,servings){
  activeCook.timerDraft=cookStepTimerMinutes(steps[activeCook.index])??'';
  cookStopTools();
  el('cookOverlay').hidden=false;
+ setCookModalBackgroundInert(true);
  document.body.classList.add('cook-active');
  renderCookMode();
 }
@@ -2160,6 +2179,7 @@ function closeCookMode(restoreFocus=true){
  activeCook=null;
  el('cookOverlay').hidden=true;
  el('cookOverlay').innerHTML='';
+ setCookModalBackgroundInert(false);
  document.body.classList.remove('cook-active');
  if(restoreFocus&&el('startCooking')&&!el('detail').hidden)el('startCooking').focus();
  // Werk recepten pas bij nadat de kookmodus echt gesloten is.
@@ -2192,7 +2212,10 @@ function finishWithoutSaving(){
  persistCookStep(true);
  closeCookMode(false);
  const notes=el('personalNotes');
- if(notes)notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+ if(notes){
+  notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  notes.setAttribute('tabindex','-1');notes.focus({preventScroll:true});
+ }
 }
 function finishSave(){
  const c=activeCook;
@@ -2235,6 +2258,7 @@ function finishSave(){
  if(notes){
   el('notesSaveStatus').textContent='Kookdatum, beoordeling en feedback zijn opgeslagen op dit apparaat.';
   notes.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  notes.setAttribute('tabindex','-1');notes.focus({preventScroll:true});
  }
 }
 function renderCookCompletion(){
@@ -2365,7 +2389,9 @@ document.addEventListener('keydown',event=>{
  if(event.key==='Escape'){event.preventDefault();if(activeCook.phase==='finish')finishWithoutSaving();else closeCookMode();return}
  // Houd tabfocus binnen het kookvenster voor toetsenbordgebruik.
  if(event.key==='Tab'){
-  const targets=[...el('cookOverlay').querySelectorAll('button:not([disabled]),input:not([disabled])')];
+  const targets=[...el('cookOverlay').querySelectorAll(
+   'button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),a[href]'
+  )].filter(node=>node.getClientRects().length&&!node.closest('[hidden]'));
   if(!targets.length)return;
   const index=targets.indexOf(document.activeElement);
   if(event.shiftKey&&index<=0){event.preventDefault();targets[targets.length-1].focus()}
@@ -2804,7 +2830,17 @@ if('serviceWorker' in navigator&&window.isSecureContext){
  pwaUpdateStatus();
 }
 
-window.addEventListener('hashchange',route);
+// Schermwissels binnen de eenpagina-app geven schermlezers en toetsenbordgebruikers
+// een duidelijke startpositie. De kop staat niet in de normale Tab-volgorde.
+window.addEventListener('hashchange',()=>{
+ route();
+ const target=location.hash==='#boodschappenlijst'?
+  el('basket').querySelector('.basket-page-heading h2'):
+  location.hash.startsWith('#recept/')?
+   el('detail').querySelector('.recipe-intro-main h2'):
+   el('overview').querySelector('.intro h2');
+ if(target){target.setAttribute('tabindex','-1');target.focus({preventScroll:true});}
+});
 /* Recepten synchroniseren bij openen, terugkeren en herstelde verbinding.
    De serviceworker bewaart een offline kopie maar probeert online eerst het
    actuele recepten.json op te halen. Een actieve kookmodus of bewerking van

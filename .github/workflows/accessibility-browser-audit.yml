@@ -1,0 +1,31 @@
+name: Toegankelijkheidsaudit kookboek
+on:
+  push:
+    branches: 
+      - improve/accessibility-keyboard-screenreaders-2026-11-10
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    name: WCAG en toetsenbord in Chromium
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Testbrowser en WCAG-controle installeren
+        run: |
+          npm install --no-save playwright@1.56.1 axe-core@4.10.3
+          npx playwright install --with-deps chromium
+      - name: Voer toegankelijkheidstest uit
+        run: node tests/accessibility-browser-audit.cjs
+      - name: Bewaar auditmetingen en screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: toegankelijkheidstest
+          path: accessibility-audit-results/
+          if-no-files-found: warn

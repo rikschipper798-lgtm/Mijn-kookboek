@@ -113,6 +113,7 @@ function harness(db,account,storage,{local=null,search=''}={}){
  const el=id=>elements[id]??={
   value:'',textContent:'',hidden:id==='editEntryPanel',disabled:false,
   classList:{toggle(){}},addEventListener(type,fn){this[type]=fn;},
+  querySelectorAll(){return [];},setAttribute(){},focus(){},
   checkValidity(){return true;}
  };
  const win={
@@ -426,6 +427,7 @@ test('Dagboekformulier toont een wijziging pas na een bevestigde lokale opslag',
   const node=id=>nodes[id]??={
    id,value:'',checked:false,hidden:false,disabled:false,style:{},dataset:{},
    textContent:'',innerHTML:'',classList:{toggle(){}},setAttribute(){},
+   querySelectorAll(){return [];},
    addEventListener(name,fn){(listeners[id]??={})[name]=fn;},
    focus(){},reset(){}
   };
