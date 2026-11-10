@@ -174,3 +174,21 @@ Officiële referenties:
 - [Supabase Auth: redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls)
 - [Supabase: Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security)
 - [Supabase JS installeren](https://supabase.com/docs/reference/javascript/installing)
+
+## Persoonlijke receptgegevens (optionele synchronisatie, november 2026)
+
+De accountkoppeling op de receptenpagina bewaart favorieten, afgevinkte ingrediënten,
+boodschappenlijst, standaardvoorraad, persoonlijke notities en kookvoortgang apart van
+het voedingsdagboek, in `public.cookbook_personal_data`.
+
+- RLS beperkt lezen, toevoegen en wijzigen tot `user_id = auth.uid()`.
+- De browser heeft geen direct DELETE-recht.
+- Lokale browsergegevens blijven bestaan; bij eerste koppeling kiest de gebruiker bewust
+  of de gegevens van dit apparaat of die uit het account moeten worden gebruikt.
+- De nieuwe sync bewaart veranderingen eerst in een lokale, accountgebonden herstelkopie.
+  Daarna volgt een revisie-gecontroleerde upload. Een gelijktijdige afwijkende versie
+  wordt als conflict gemeld; er wordt niets automatisch samengevoegd.
+- Dezelfde bestaande persoonlijke JSON-export blijft beschikbaar. Het bestand is niet versleuteld.
+- De eerste live koppeling met een echt account wordt apart als praktijktest uitgevoerd.
+
+De database-inrichting staat in [cookbook-personal-data.sql](cookbook-personal-data.sql).
