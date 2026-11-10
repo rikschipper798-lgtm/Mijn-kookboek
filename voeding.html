@@ -183,16 +183,17 @@ main{padding-top:25px}
 
 /* Accountstatus: feitelijke cloudstatus zichtbaar zonder beheerpanelen te openen. */
 .account-status-bar[hidden]{display:none!important}
-.account-status-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid #dce7dc;border-left:4px solid #8b9a88;background:#fff;border-radius:15px;padding:16px 19px;margin:0 0 18px;box-shadow:0 4px 18px #203b2710}
+.account-status-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:14px;row-gap:3px;border:1px solid #dce7dc;border-left:4px solid #8b9a88;background:#fff;border-radius:11px;padding:7px 11px;margin:0 0 12px}
 .account-status-bar[data-state="synced"]{border-left-color:#4f8160}
 .account-status-bar[data-state="pending"]{border-left-color:#b98a4b}
 .account-status-bar[data-state="attention"]{border-left-color:#ad6746}
 .account-status-copy{flex:1;min-width:0}
-.account-status-eyebrow{display:block;font-size:10px;font-weight:800;letter-spacing:.12em;color:#87735b;margin-bottom:5px}
-.account-status-copy strong{display:block;color:#294935;font-size:16px;line-height:1.4}
-.account-status-detail{font-size:13px;color:#405d49;margin:3px 0 0;line-height:1.5;overflow-wrap:anywhere}
-.account-status-scope{font-size:12px;color:#68796c;line-height:1.55;margin:7px 0 0}
-.account-status-button{flex:none;min-height:44px;white-space:nowrap}
+.account-status-eyebrow{display:none}
+.account-status-copy strong{display:block;color:#294935;font-size:13px;line-height:1.35}
+.account-status-detail{font-size:12px;color:#405d49;margin:2px 0 0;line-height:1.35;overflow-wrap:anywhere}
+.account-status-scope{display:none}
+.account-status-bar[data-state="synced"] .account-status-detail,.account-status-bar[data-state="neutral"] .account-status-detail{display:none}
+.account-status-button{flex:none;min-height:40px;white-space:nowrap;padding:8px 11px!important;font-size:12px!important}
 .account-utility:not([open]){display:none}
 .account-utility[open]{margin:0 0 18px}
 .account-storage-summary{background:#fbfcfa;border:1px solid #e3ebe0;border-radius:12px;padding:16px 17px;margin:15px 0 0}
@@ -204,8 +205,8 @@ main{padding-top:25px}
 .account-storage-summary>p{margin:13px 0 0;font-size:12px;color:#576a5a;line-height:1.65}
 .account-storage-summary a{color:#285e3b;text-underline-offset:2px;font-weight:700}
 @media(max-width:650px){
- .account-status-bar{padding:14px;align-items:stretch;flex-direction:column;gap:11px}
- .account-status-button{width:100%}
+ .account-status-bar{padding:6px 9px;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+ .account-status-button{width:auto;min-height:40px;padding:8px 10px!important}
  .account-storage-summary{padding:13px 12px}
  .account-storage-summary dl>div{grid-template-columns:1fr;gap:4px}
 }
@@ -478,7 +479,9 @@ main{padding-top:25px}
   bar.dataset.state=tone;
   el('accountStateLabel').textContent=label;
   el('accountStateDetail').textContent=message||'';
-  el('openAccountTools').textContent=cloudMode?(loggedIn===null?'Account bekijken':loggedIn?'Account beheren':'Inloggen'):'Gegevens beheren';
+  const accountButton=el('openAccountTools');
+  accountButton.textContent=cloudMode?(loggedIn===null?'Account':loggedIn?'Account':'Inloggen'):'Beheer';
+  accountButton.setAttribute('aria-label',cloudMode?(loggedIn?'Account en synchronisatie beheren':loggedIn===null?'Accountstatus bekijken':'Inloggen op je account'):'Lokale gegevens beheren');
  }
  updateAccountStatus({loggedIn:cloudMode?null:false,ready:!cloudMode,pending:false,conflict:false,error:false,
   message:cloudMode?'Inlogstatus controleren…':'Je dagboek en voedingsdoelen staan alleen in deze browser.'});
