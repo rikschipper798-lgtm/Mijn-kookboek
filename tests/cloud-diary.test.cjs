@@ -250,6 +250,7 @@ test('Gekozen recept wordt na inloggen automatisch ingevuld en de tijdelijke ops
  };
  const sample={id:'hutspot-rookworst-spek-gebakken-ui',title:'Hutspot met rookworst',
   nutrition:{per:'portie',kcal:700,proteinG:31,carbsG:60,fatG:28,fiberG:10}};
+ el('recipeQty').value='1';
  const sandbox={
   window:{CookbookCloud:{enabled:true,start(hooks){hooks.onData(null);}},confirm(){return true;}},
   document:{getElementById:el},location:{search:'',pathname:'/Mijn-kookboek/voeding.html',hash:''},
