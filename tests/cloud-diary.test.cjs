@@ -111,7 +111,7 @@ function harness(db,account,storage,{local=null,search=''}={}){
  const client=db.client(account);
  client.auth.signInWithOtp=async payload=>{signIns.push(payload);return {error:null};};
  const el=id=>elements[id]??={
-  value:'',textContent:'',hidden:false,disabled:false,
+  value:'',textContent:'',hidden:id==='editEntryPanel',disabled:false,
   classList:{toggle(){}},addEventListener(type,fn){this[type]=fn;},
   checkValidity(){return true;}
  };
