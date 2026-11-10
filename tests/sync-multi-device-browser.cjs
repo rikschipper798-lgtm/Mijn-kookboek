@@ -76,6 +76,7 @@ async function newDevice(account,device,options={}){
   }};
  },{account,device});
  const page=await context.newPage();
+ if(options.clock)await page.clock.install();
  await page.goto(BASE+'/voeding.html',{waitUntil:'domcontentloaded'});
  await page.locator('#diaryContent').waitFor({state:'visible',timeout:15000});
  await page.locator('#selectedDate').fill(date);
@@ -236,9 +237,8 @@ async function goReady(){
   await run('6. Actieve tweede browser ziet nieuwe cloudgegevens automatisch',async()=>{
    const account='automatische-update';seed(account);
    const a=await newDevice(account,'auto-eerste');
-   const b=await newDevice(account,'auto-tweede');
+   const b=await newDevice(account,'auto-tweede',{clock:true});
    try{
-    await b.page.clock.install();
     await addMeal(a.page,'Automatisch zichtbaar',360);
     await awaitRemote(account,r=>r.revision===2,'nieuwe maaltijd op eerste apparaat');
     await b.page.clock.fastForward(62000);
