@@ -315,17 +315,25 @@
    if(token===generation)notify('Cloudgegevens ophalen mislukt; lokale gegevens zijn niet overschreven.',true);
   }finally{if(token===generation)refreshing=false;}
  }
- // Bewaar uitsluitend de interne receptkeuze in de magic-link redirect.
- // Geen willekeurige URL-parameters of door de gebruiker ingestelde bestemmingen.
- function loginRedirectUrl(){
-  const base=location.origin+location.pathname;
+ // De productie-redirect is exact toegestaan door Supabase, zonder querystring.
+ // Bewaar de niet-gevoelige receptkeuze kort lokaal, ook voor een nieuw tabblad.
+ const PENDING_RECIPE_KEY='mijn-kookboek-inlogselectie-v1';
+ function rememberLoginRecipe(){
   const query=new URLSearchParams(location.search||'');
   const recipe=query.get('recept');
-  if(!recipe||!/^[a-zA-Z0-9_-]{1,150}$/.test(recipe))return base;
-  const selection=new URLSearchParams({recept:recipe});
-  const variant=query.get('variant');
-  if(variant&&/^[a-zA-Z0-9_-]{1,150}$/.test(variant))selection.set('variant',variant);
-  return base+'?'+selection.toString();
+  const validSlug=value=>typeof value==='string'&&/^[a-zA-Z0-9_-]{1,150}$/.test(value);
+  try{
+   if(!validSlug(recipe)){
+    window.localStorage.removeItem(PENDING_RECIPE_KEY);
+    return 'none';
+   }
+   const variant=query.get('variant');
+   window.localStorage.setItem(PENDING_RECIPE_KEY,JSON.stringify({
+    recept:recipe,variant:validSlug(variant)?variant:'klassiek',
+    expiresAt:Date.now()+30*60*1000
+   }));
+   return 'saved';
+  }catch(error){return 'error';}
  }
  function loadSdk(){
   if(window.supabase&&typeof window.supabase.createClient==='function')return Promise.resolve(window.supabase);
@@ -349,9 +357,12 @@
    if(!email||!el('cloudEmail').checkValidity()){notify('Vul een geldig e-mailadres in.',true);return;}
    el('cloudSignIn').disabled=true;
    try{
-    const r=await client.auth.signInWithOtp({email,options:{emailRedirectTo:loginRedirectUrl()}});
+    const r=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});
     if(r.error)throw r.error;
-    notify('De eenmalige inloglink is verstuurd. Open deze via je e-mail.');
+    const selection=rememberLoginRecipe();
+    notify(selection==='error'
+     ?'De inloglink is verstuurd, maar deze browser kon de receptkeuze niet bewaren. Open na inloggen het recept eventueel opnieuw.'
+     :'De eenmalige inloglink is verstuurd. Open deze via je e-mail.',selection==='error');
    }catch(err){notify('Inloglink verzenden mislukt: '+err.message,true);}
    finally{el('cloudSignIn').disabled=false;}
   });
