@@ -1,0 +1,43 @@
+name: UX gebruikerstest (browser)
+
+on:
+  push:
+    branches:
+      - test/ux-browser-2026-11-10
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'voeding.html'
+      - 'voeding-cloud.js'
+      - 'tests/ux-browser-audit.cjs'
+      - '.github/workflows/ux-browser-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-audit:
+    name: Recept, boodschappen, mobiel en dagboek
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Code ophalen
+        uses: actions/checkout@v4
+      - name: Node.js instellen
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Browseromgeving installeren
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Zeven gesimuleerde gebruikerstaken uitvoeren
+        run: node tests/ux-browser-audit.cjs
+      - name: Testresultaten en schermafbeeldingen beschikbaar stellen
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ux-gebruikerstest
+          path: ux-artifacts/
+          if-no-files-found: warn
