@@ -228,6 +228,27 @@ main{padding-top:25px}
  .account-storage-summary dl>div{grid-template-columns:1fr;gap:4px}
 }
 @media print{.account-status-bar,.account-utility{display:none!important}}
+
+/* Stap 6: voldoende grote mobiele bediening, ook op smalle schermen. */
+@media(max-width:650px){
+ input:not([type="checkbox"]):not([type="radio"]),select,
+ .entry-expanded button,.account-status-button,
+ .diary-view-actions .date-controls .arrow,
+ .diary-view-actions .date-controls input[type="date"],
+ .diary-view-actions .date-controls #today,
+ #secureBackupOptions>summary{min-height:44px}
+ .account-status-button{min-height:44px}
+ .diary-view-actions .date-controls{
+  grid-template-columns:44px minmax(0,1fr) 44px auto;gap:6px
+ }
+ .diary-view-actions .date-controls .arrow{width:44px;min-width:44px;height:44px}
+ .diary-view-actions .date-controls #today{min-height:44px}
+ #secureBackupOptions>summary{display:flex;align-items:center}
+}
+@media(max-width:350px){
+ .diary-view-actions .date-controls{grid-template-columns:44px minmax(0,1fr) 44px;gap:6px}
+ .diary-view-actions .date-controls #today{grid-column:1/-1;width:100%;min-height:44px}
+}
 </style>
 </head>
 <body>
