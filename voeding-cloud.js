@@ -13,7 +13,7 @@
  const makeNonce=()=>Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,13);
  let client=null,hooks=null,user=null,revision=0,ready=false,loading=false,authChecked=false;
  let draft=null,conflict=false,sending=false,refreshing=false,timer=null;
- let generation=0,edits=0,needsVerification=false;
+ let generation=0,edits=0,needsVerification=false,refreshFailed=false;
  let historyRows=new Map();
 
  function notify(message,error=false){
@@ -78,7 +78,7 @@
   authChecked=true;
   generation++;stopTimer();
   user=null;revision=0;ready=false;loading=false;draft=null;
-  sending=false;refreshing=false;conflict=false;edits=0;needsVerification=false;
+  sending=false;refreshing=false;conflict=false;edits=0;needsVerification=false;refreshFailed=false;
   historyRows.clear();
   if(hooks)hooks.onLogout();
   view();
@@ -221,7 +221,7 @@
   const token=++generation;
   stopTimer();user=account;ready=false;loading=true;draft=null;
   historyRows.clear();el('cloudHistoryOptions').hidden=true;
-  revision=0;conflict=false;sending=false;refreshing=false;edits=0;needsVerification=false;
+  revision=0;conflict=false;sending=false;refreshing=false;edits=0;needsVerification=false;refreshFailed=false;
   if(hooks)hooks.onLogout();
   view();notify('Persoonlijk dagboek en lokale herstelkopie laden…');
   try{
@@ -304,15 +304,18 @@
     notify('Cloudantwoord genegeerd: ondertussen zijn er lokale wijzigingen opgeslagen.',true);
     return;
    }
-   if(remote?.revision===revision&&!force)return;
+   if(remote?.revision===revision&&!force){
+    if(refreshFailed){refreshFailed=false;notify('Gesynchroniseerd met je persoonlijke account.');}
+    return;
+   }
    // Verify incoming data BEFORE discarding any locally saved recovery copy.
    const validated=hooks.validateData(remote?.diary||null);
    if(force&&draft&&!deleteLocal(draft))return;
-   revision=remote?.revision||0;draft=null;conflict=false;
+   revision=remote?.revision||0;draft=null;conflict=false;refreshFailed=false;
    hooks.onData(validated);
    notify('Nieuwste cloudversie geladen.');
   }catch(err){
-   if(token===generation)notify('Cloudgegevens ophalen mislukt; lokale gegevens zijn niet overschreven.',true);
+   if(token===generation){refreshFailed=true;notify('Cloudgegevens ophalen mislukt; lokale gegevens zijn niet overschreven.',true);}
   }finally{if(token===generation)refreshing=false;}
  }
  // De productie-redirect is exact toegestaan door Supabase, zonder querystring.
@@ -487,6 +490,16 @@
      }
     }catch(err){conflict=true;notify(err.message,true);}
    });
+   // Een tweede apparaat kan wijzigen terwijl dit tabblad geopend blijft.
+   // Controleer ieder minuut alleen wanneer er geen lokale wijzigingen,
+   // synchronisatie/conflict of actieve invoer zijn. Zo overschrijven we
+   // geen onopgeslagen formulierinhoud en vermijden we onnodige requests.
+   setInterval(()=>{
+    if(document.visibilityState!=='visible'||!user||!ready||loading||sending||refreshing||draft||conflict)return;
+    const focus=document.activeElement;
+    if(focus&&typeof focus.closest==='function'&&focus.closest('#manualForm,#recipeForm,#weekdayForm,#goalsForm'))return;
+    void refresh();
+   },60000);
   }catch(err){notify('Persoonlijke accounts konden niet worden gestart: '+err.message,true);}
  }
  window.CookbookCloud={enabled,start,enqueue,retry(){if(draft&&!conflict)void flush();else void refresh(Boolean(conflict));}};
