@@ -213,3 +213,24 @@ test('Versleutelde back-upmodule blijft offline beschikbaar in de PWA',async()=>
  assert.equal(response.status,200);
  assert.match(await response.text(),/voeding-backup\.js/);
 });
+
+test('Cloudmodule blijft actueel en werkt na de installatie ook offline',async()=>{
+ const html=fs.readFileSync(path.join(root,'voeding.html'),'utf8');
+ const match=html.match(/<script src="\.{1}\/voeding-cloud\.js\?v=([\w-]+)"><\/script>/);
+ assert.ok(match,'De pagina moet een versiequery voor de cloudmodule gebruiken');
+ const pwa=createWorker([catalog[0]]);
+ await pwa.install();
+ const path='voeding-cloud.js?v='+match[1],request=new Request(baseUrl+path);
+ const first=await pwa.dispatch('fetch',request);
+ assert.equal(first.status,200);
+ assert.match(await first.text(),/bestand:voeding-cloud\.js/);
+ assert.ok(pwa.state.requests.includes('voeding-cloud.js'),'De huidige code wordt online opgehaald');
+ pwa.state.online=false;
+ const offlineResponse=await pwa.dispatch('fetch',request);
+ assert.equal(offlineResponse.status,200);
+ assert.match(await offlineResponse.text(),/voeding-cloud\.js/);
+ // Nog niet eerder bezochte versiequery moet via het basisbestand offline kunnen starten.
+ const offlineUnknown=await pwa.dispatch('fetch',new Request(baseUrl+'voeding-cloud.js?v=niet-eerder-gebruikt'));
+ assert.equal(offlineUnknown.status,200);
+ assert.match(await offlineUnknown.text(),/bestand:voeding-cloud\.js/);
+});
