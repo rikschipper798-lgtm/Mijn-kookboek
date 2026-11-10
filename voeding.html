@@ -705,9 +705,20 @@ footer,footer a{color:#516153}
   el('weekdayDelete').disabled=!p;
  }
  function currentEntries(){return state.days[selectedDay]||[];}
+ // Na bevestigen, corrigeren en verwijderen wordt de lijst opnieuw opgebouwd.
+ // Herstel de focus naar dezelfde maaltijd of een nabije regel.
+ function focusEntryAfterUpdate(id,index=0){
+  const list=el('entries');
+  const rows=[...list.querySelectorAll('details[data-entry-id]')];
+  const row=rows.find(node=>node.dataset.entryId===id)||rows[Math.min(index,rows.length-1)];
+  const target=row?row.querySelector('summary'):el('entryTitle');
+  if(target===el('entryTitle'))target.setAttribute('tabindex','-1');
+  if(target&&typeof target.focus==='function')target.focus({preventScroll:true});
+ }
  function addEntry(entry){
   if(commit(()=>{if(!state.days[selectedDay])state.days[selectedDay]=[];state.days[selectedDay].push(entry);})){
    showMealEntry(null);
+   focusEntryAfterUpdate(entry.id,currentEntries().length-1);
    status('Maaltijd geregistreerd voor '+selectedDay+(cloudMode?'. Controleer de synchronisatiestatus bij Account en synchronisatie.':'.'));
   }
  }
@@ -752,7 +763,7 @@ footer,footer a{color:#516153}
   el('emptyEntries').hidden=entries.length>0;
   el('entries').innerHTML=entries.map(e=>{
    const pending=pendingEntry(e),preset=e.source==='preset';
-   return '<li><details class="entry-disclosure'+(pending?' entry-pending-row':'')+'"'+(pending?' open':'')+'><summary><span class="entry-title">'+esc(e.title)+
+   return '<li><details data-entry-id="'+esc(e.id)+'" class="entry-disclosure'+(pending?' entry-pending-row':'')+'"'+(pending?' open':'')+'><summary><span class="entry-title">'+esc(e.title)+
     (pending?' <span class="entry-pending">Nog bevestigen</span>':
      preset?' <span class="entry-automatic entry-confirmed">'+(e.adjusted?'Aangepast':'Automatisch · meegeteld')+'</span>':'')+'</span>'+
     '<strong class="entry-kcal">'+fmt(e.nutrition.kcal)+' kcal'+(pending?' · voorlopig':'')+'</strong></summary>'+
@@ -815,7 +826,11 @@ footer,footer a{color:#516153}
   el('editEntryPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
   el('editEntryName').focus({preventScroll:true});
  }
- el('editEntryCancel').onclick=()=>{closeEntryEditor();status('Aanpassen geannuleerd.');};
+ el('editEntryCancel').onclick=()=>{
+  const id=editingEntryId;
+  closeEntryEditor();focusEntryAfterUpdate(id);
+  status('Aanpassen geannuleerd.');
+ };
  el('editEntryForm').addEventListener('submit',event=>{
   event.preventDefault();
   if(!editingEntryId||editingEntryDay!==selectedDay)return;
@@ -838,7 +853,9 @@ footer,footer a{color:#516153}
    }
    item.title=title;item.nutrition=nutrition;item.confirmed=true;item.adjusted=true;
   })){
-   closeEntryEditor();status('Maaltijd aangepast, bevestigd en meegeteld.');
+   const id=editingEntryId;
+   closeEntryEditor();focusEntryAfterUpdate(id);
+   status('Maaltijd aangepast, bevestigd en meegeteld.');
   }
  });
  el('entries').addEventListener('click',event=>{
@@ -854,14 +871,17 @@ footer,footer a{color:#516153}
    if(!pendingEntry(entry))return;
    if(commit(()=>{entry.confirmed=true;})){
     if(editingEntryId===id)closeEntryEditor();
+    focusEntryAfterUpdate(id,currentEntries().findIndex(item=>item.id===id));
     status('Automatische maaltijd bevestigd en meegeteld.');
    }
    return;
   }
   if(button.hasAttribute('data-remove')){
+   const removedIndex=currentEntries().findIndex(item=>item.id===id);
    if(commit(()=>{state.days[selectedDay]=(state.days[selectedDay]||[]).filter(e=>e.id!==id);
     if(!state.days[selectedDay].length)delete state.days[selectedDay];})){
     if(editingEntryId===id)closeEntryEditor();
+    focusEntryAfterUpdate(null,removedIndex);
     status(pendingEntry(entry)?'Automatische aanname verwijderd; de maaltijd telt niet mee.':'Registratie verwijderd.');
    }
   }
