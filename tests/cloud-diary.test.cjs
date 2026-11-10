@@ -113,6 +113,7 @@ function harness(db,account,storage,{local=null,search=''}={}){
  const el=id=>elements[id]??={
   value:'',textContent:'',hidden:id==='editEntryPanel',disabled:false,
   classList:{toggle(){}},addEventListener(type,fn){this[type]=fn;},
+  querySelectorAll(){return [];},setAttribute(){},focus(){},
   checkValidity(){return true;}
  };
  const win={
