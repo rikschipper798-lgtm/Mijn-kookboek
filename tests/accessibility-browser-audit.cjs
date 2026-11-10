@@ -28,12 +28,17 @@ async function scan(page,name){
   return {
    violations:output.violations.map(v=>({
     id:v.id,impact:v.impact,description:v.help,
-    nodes:v.nodes.slice(0,8).map(n=>({target:n.target,html:n.html.slice(0,300),summary:n.failureSummary?.slice(0,240)})),
+    nodes:v.nodes.slice(0,70).map(n=>({target:n.target,html:n.html.slice(0,300),summary:n.failureSummary?.slice(0,240)})),
     total:v.nodes.length
    })),incomplete:output.incomplete.map(v=>({id:v.id,impact:v.impact,count:v.nodes.length})),
    passes:output.passes.length
   };
  });
+ if(['receptoverzicht','receptdetail','boodschappen','voedingsdagboek'].includes(name)){
+  for(const issue of result.violations){
+   for(const n of issue.nodes)console.log('DETAIL '+name+' '+issue.id+' '+JSON.stringify({selector:n.target,summary:n.summary?.replace(/\s+/g,' ').slice(0,240)}));
+  }
+ }
  const severe=result.violations.filter(v=>v.impact==='critical'||v.impact==='serious');
  console.log('AUDIT '+name+' | violations='+result.violations.length+' serious='+severe.length+
   ' | '+JSON.stringify(result.violations.map(v=>({id:v.id,impact:v.impact,n:v.total,targets:v.nodes.slice(0,3).map(n=>n.target)}))));
