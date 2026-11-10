@@ -177,7 +177,6 @@ async function run(name,action){
     assert.equal(await p.locator('[data-confirm]').count(),0);
     const loaded=await readState(p);
     assert.equal(todayRows(loaded).length,1);
-    await p.locator('#export').click({force:true}).catch(()=>{});
     return {legacyCounted:true,confirmationNotRequired:true};
    }finally{await d.close();}
   });
