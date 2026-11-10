@@ -165,6 +165,7 @@ test('Configuratie en toegangsregels zijn in overeenstemming met productie',()=>
 
 test('Accountbalk maakt cloudstatus en lokale opslag ondubbelzinnig zichtbaar',async()=>{
  assert.match(html,/id="accountStatusBar"/);
+ assert.match(html,/loggedIn:cloudMode\?null:false/,'Tijdens sessieherstel geen uitlogstatus tonen');
  assert.match(html,/id="accountStateLabel"/);
  assert.match(html,/id="accountStorageNote"/);
  assert.match(html,/Favorieten, boodschappen, standaardvoorraad, kooknotities/);
