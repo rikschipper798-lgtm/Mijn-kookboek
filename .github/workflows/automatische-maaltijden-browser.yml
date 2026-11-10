@@ -1,0 +1,36 @@
+name: Test automatische maaltijden bevestigen
+
+on:
+  push:
+    branches:
+      - test/automatische-maaltijden-bevestigen-2026-11-10
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-test:
+    name: Bevestigen, corrigeren, niet gegeten en cloudsync
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Code ophalen
+        uses: actions/checkout@v4
+      - name: Node.js instellen
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Chromium installeren
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Browserproeven met fictieve voedingsregistraties
+        run: node tests/automatische-maaltijden-browser.cjs
+      - name: Testresultaten opslaan
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automatische-maaltijden-testresultaten
+          path: automatische-maaltijden-testresultaten/
+          if-no-files-found: warn
