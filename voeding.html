@@ -403,10 +403,10 @@ main{padding-top:25px}
           <form id="goalsForm" style="padding-top:15px">
             <div class="grid2">
               <div class="field"><label for="goalKcal">Calorieën (kcal)</label><input type="number" id="goalKcal" min="500" max="10000" required></div>
-              <div class="field"><label for="goalProtein">Eiwit (g)</label><input type="number" id="goalProtein" min="0" max="1000" required></div>
-              <div class="field"><label for="goalCarbs">Koolhydraten (g)</label><input type="number" id="goalCarbs" min="0" max="1200" required></div>
-              <div class="field"><label for="goalFat">Vet (g)</label><input type="number" id="goalFat" min="0" max="500" required></div>
-              <div class="field"><label for="goalFiber">Vezels (g)</label><input type="number" id="goalFiber" min="0" max="150" required></div>
+              <div class="field"><label for="goalProtein">Eiwit (g)</label><input type="number" id="goalProtein" min="0" max="1000" step="0.1" inputmode="decimal" required></div>
+              <div class="field"><label for="goalCarbs">Koolhydraten (g)</label><input type="number" id="goalCarbs" min="0" max="1200" step="0.1" inputmode="decimal" required></div>
+              <div class="field"><label for="goalFat">Vet (g)</label><input type="number" id="goalFat" min="0" max="500" step="0.1" inputmode="decimal" required></div>
+              <div class="field"><label for="goalFiber">Vezels (g)</label><input type="number" id="goalFiber" min="0" max="150" step="0.1" inputmode="decimal" required></div>
             </div>
             <button type="submit">Bewaar richtwaarden</button>
           </form>
