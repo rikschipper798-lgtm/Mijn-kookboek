@@ -728,6 +728,12 @@ body.cook-active{overflow:hidden}
  .recipe-intro{grid-template-columns:1fr}
  .recipe-intro-image,.recipe-primary-actions,.recipe-minor-actions,.recipe-extra-details{display:none!important}
 }
+/* Persoonlijk accountpaneel, compact en mobiel bruikbaar. */
+.personal-cloud-panel{background:#f7faf6;border:1px solid #d7e4d6;border-radius:12px;padding:17px;margin:10px 0 22px}
+.personal-cloud-panel h3{margin:0 0 8px;font-family:Georgia,serif;font-size:20px;color:#23422e}
+.personal-cloud-panel .backup-actions{margin:10px 0}
+#personalCloudStatus.is-error{color:#a13c33}
+#personalCloudShort{font-size:12px;margin:8px 0;color:#496a4c}
 </style>
 </head>
 <body>
@@ -785,6 +791,7 @@ body.cook-active{overflow:hidden}
   <h2 id="offlineFeaturesTitle">Mijn Kookboek als app</h2>
   <p id="offlineState" role="status" aria-live="polite">Offline gebruik wordt voorbereid. Open deze pagina eerst met internet om recepten op te slaan.</p>
   <p id="recipeSyncStatus" class="recipe-sync-status" role="status" aria-live="polite"></p>
+  <p id="personalCloudShort" role="status" aria-live="polite">Persoonlijke gegevens: status controleren…</p>
  </div>
  <div class="offline-actions">
   <button type="button" class="btn" id="appInstall" hidden>Installeer de app</button>
@@ -798,9 +805,28 @@ body.cook-active{overflow:hidden}
  </div>
 </section>
 <details id="personalDataPanel" class="backup-panel">
- <summary>Mijn gegevens · back-up en herstel</summary>
+ <summary>Mijn gegevens · back-up en synchronisatie</summary>
  <div class="backup-panel-content">
-  <p>Favorieten, afgevinkte ingrediënten, boodschappenlijsten, je standaardvoorraad, kooknotities en de voortgang van de kookmodus staan alleen in deze browser. Ze worden niet automatisch gesynchroniseerd met andere apparaten.</p>
+  <section id="personalCloudPanel" class="personal-cloud-panel" aria-labelledby="personalCloudTitle">
+   <h3 id="personalCloudTitle">Persoonlijke gegevens op al je apparaten</h3>
+   <p>Favorieten, boodschappen, afvinkstatussen, standaardvoorraad, kooknotities en kookvoortgang kun je via je account synchroniseren. Je voedingsdagboek blijft afzonderlijk bewaard.</p>
+   <p id="personalCloudAccount" class="muted">Account controleren…</p>
+   <p id="personalCloudStatus" class="backup-status" role="status" aria-live="polite">De verbinding wordt gecontroleerd. Lokale gegevens blijven beschikbaar.</p>
+   <p id="personalCloudSignIn" hidden>Je kunt <a href="./voeding.html">inloggen via het voedingsdagboek</a> en daarna terugkeren naar deze pagina.</p>
+   <div id="personalCloudChoices" hidden>
+    <p><strong>Eenmalige keuze bij eerste koppeling:</strong> bestaande gegevens worden niet automatisch samengevoegd of overschreven. Download bij twijfel eerst een back-up van dit apparaat.</p>
+    <div class="backup-actions">
+     <button type="button" class="btn" id="personalCloudUpload">Dit apparaat naar account</button>
+     <button type="button" class="btn alt" id="personalCloudLoad">Gegevens uit account laden</button>
+    </div>
+   </div>
+   <div class="backup-actions">
+    <button type="button" class="btn alt" id="personalCloudSync">Nu synchroniseren</button>
+    <button type="button" class="btn alt" id="personalCloudBackup">Download lokale back-up</button>
+   </div>
+   <p class="muted">Bij gelijktijdige wijzigingen wordt niets stilzwijgend overschreven. De lokale herstelkopie blijft beschikbaar totdat het account de wijziging bevestigt.</p>
+  </section>
+  <p>Je persoonlijke gegevens blijven ook in deze browser beschikbaar. Zonder accountkoppeling synchroniseren ze niet; de eenmalige keuze hierboven voorkomt het overschrijven van al bestaande lokale gegevens.</p>
   <p><strong>Bewaar een back-up:</strong> download één JSON-bestand en bewaar het op een veilige plek, bijvoorbeeld in je eigen beveiligde cloudopslag. Het bestand bevat ook je persoonlijke notities.</p>
   <div class="backup-actions">
    <button type="button" class="btn" id="downloadBackup">Download back-up</button>
@@ -821,6 +847,8 @@ body.cook-active{overflow:hidden}
 </main>
 <div id="cookOverlay" class="cook-overlay" hidden></div>
 <footer>Mijn Kookboek · Bewaren, koken en delen</footer>
+<script src="./cloud-config.js"></script>
+<script src="./personal-cloud.js"></script>
 <script src="./pantry.js"></script>
 <script>
 'use strict';
@@ -830,7 +858,13 @@ const number=x=>Number(x)||0;
 const fmt=n=>new Intl.NumberFormat('nl-NL',{maximumFractionDigits:3}).format(n);
 const STORAGE={fav:'mijn-kookboek-favorieten',checked:'mijn-kookboek-receptchecks',basket:'mijn-kookboek-boodschappen',basketChecked:'mijn-kookboek-boodschappenchecks',pantry:'mijn-kookboek-voorraad',notes:'mijn-kookboek-persoonlijke-notities',cook:'mijn-kookboek-kookvoortgang'};
 function load(k,defaultValue){try{const v=JSON.parse(localStorage.getItem(k));return v&&typeof v==='object'?v:defaultValue}catch(e){return defaultValue}}
-function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function save(k,v){
+ try{
+  localStorage.setItem(k,JSON.stringify(v));
+  if(window.CookbookPersonalCloud?.enabled)window.CookbookPersonalCloud.changed();
+  return true;
+ }catch(e){return false;}
+}
 let recipes=[],favoriteOnly=false,quickOnly=false,cookedOnly=false,recipeTypeFilter='';
 let favorites=new Set(Array.isArray(load(STORAGE.fav,[]))?load(STORAGE.fav,[]):[]);
 let checked=load(STORAGE.checked,{}),basket=load(STORAGE.basket,{}),basketChecked=load(STORAGE.basketChecked,{});
@@ -1392,7 +1426,8 @@ const SHOP_PIECE_WEIGHTS={paprika:160,courgette:300,ui:130,'rode ui':120,sjalot:
 const SHOP_SPICES=new Set('chilipoeder|dille|gerookt paprikapoeder|gedroogde basilicum|knoflookpoeder|uienpoeder|komijn|komijnzaad|korianderblad|kaneel|kerrie|kurkuma|laurierblad|marjoraan|oregano|paprikapoeder|peterselie (gedroogd)|rozemarijn|tijm|zwarte peper|zout'.split('|'));
 // Herken namen vanuit de receptregels: eenzelfde product kan meerdere schrijfwijzen hebben.
 const pantry=window.CookbookPantry.create(localStorage,STORAGE.pantry,
- name=>{const normalized=basketName(name);return SHOP_ALIASES[normalized]||normalized;});
+ name=>{const normalized=basketName(name);return SHOP_ALIASES[normalized]||normalized;},
+ ()=>{if(window.CookbookPersonalCloud?.enabled)window.CookbookPersonalCloud.changed();});
 let pantryExpanded=false;
 let basketRecipesExpanded=false;
 let basketHomeExpanded=false;
@@ -1865,7 +1900,7 @@ function savePersonalNote(key){
  const record={...noteRecord(key),notes:el('noteText').value,feedback:el('feedbackText').value,rating:Number(el('recipeRating').value)||0};
  personalNotes[key]=record;
  save(STORAGE.notes,personalNotes);
- el('notesSaveStatus').textContent='Op dit apparaat opgeslagen.';
+ el('notesSaveStatus').textContent='Op dit apparaat bewaard. Bij een gekoppeld account volgt synchronisatie.';
  updateExperienceOverview(key);
  return record;
 }
@@ -2168,6 +2203,7 @@ function finishSave(){
  }
  personalNotes=nextNotes;
  cookProgress=nextProgress;
+ if(window.CookbookPersonalCloud?.enabled)window.CookbookPersonalCloud.changed();
  closeCookMode(false);
  renderDetail();
  const notes=el('personalNotes');
