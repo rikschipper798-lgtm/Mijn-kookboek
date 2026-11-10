@@ -8,7 +8,7 @@
  ];
  const allowedGroups=new Set([...groups.map(g=>g[0]),'Zelf toegevoegd']);
  const reserved=new Set(['__proto__','constructor','prototype']);
- function create(storage,key,canonical){
+ function create(storage,key,canonical,onChange){
   const canonicalId=name=>canonical(String(name||'').trim());
   function defaults(){
    return groups.flatMap(([group,names])=>names.map(name=>({id:canonicalId(name),name,group,have:true})));
@@ -33,7 +33,13 @@
    }catch(e){return defaults();}
   }
   let items=load();
-  function persist(){try{storage.setItem(key,JSON.stringify(items))}catch(e){}}
+  function persist(){
+   try{
+    storage.setItem(key,JSON.stringify(items));
+    if(typeof onChange==='function')onChange();
+    return true;
+   }catch(e){return false;}
+  }
   function get(){return items.map(p=>({...p}));}
   function isHome(name){const id=canonicalId(name);return items.some(p=>p.id===id&&p.have);}
   function set(id,have){
