@@ -133,7 +133,7 @@ async function run(name,fn){
     await a.page.waitForFunction(()=>document.querySelector('#personalCloudShort')?.textContent.includes('account gekoppeld'));
     await b.page.waitForFunction(()=>document.querySelector('#personalCloudShort')?.textContent.includes('account gekoppeld'));
     const old=rows.get('user-a').revision;
-    await a.page.evaluate(()=>toggleFav('bruschetta'));
+    await a.page.evaluate(()=>toggleFav('hutspot-rookworst-spek-gebakken-ui'));
     await awaitRow('user-a',r=>r.revision===old+1,'first writer');
     await b.page.evaluate(()=>toggleFav('bruschetta'));
     await b.page.waitForFunction(()=>document.querySelector('#personalCloudShort')?.textContent.includes('conflict'),null,{timeout:12000});
