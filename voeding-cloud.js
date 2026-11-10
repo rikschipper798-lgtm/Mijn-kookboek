@@ -315,6 +315,18 @@
    if(token===generation)notify('Cloudgegevens ophalen mislukt; lokale gegevens zijn niet overschreven.',true);
   }finally{if(token===generation)refreshing=false;}
  }
+ // Bewaar uitsluitend de interne receptkeuze in de magic-link redirect.
+ // Geen willekeurige URL-parameters of door de gebruiker ingestelde bestemmingen.
+ function loginRedirectUrl(){
+  const base=location.origin+location.pathname;
+  const query=new URLSearchParams(location.search||'');
+  const recipe=query.get('recept');
+  if(!recipe||!/^[a-zA-Z0-9_-]{1,150}$/.test(recipe))return base;
+  const selection=new URLSearchParams({recept:recipe});
+  const variant=query.get('variant');
+  if(variant&&/^[a-zA-Z0-9_-]{1,150}$/.test(variant))selection.set('variant',variant);
+  return base+'?'+selection.toString();
+ }
  function loadSdk(){
   if(window.supabase&&typeof window.supabase.createClient==='function')return Promise.resolve(window.supabase);
   return new Promise((resolve,reject)=>{
@@ -337,7 +349,7 @@
    if(!email||!el('cloudEmail').checkValidity()){notify('Vul een geldig e-mailadres in.',true);return;}
    el('cloudSignIn').disabled=true;
    try{
-    const r=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});
+    const r=await client.auth.signInWithOtp({email,options:{emailRedirectTo:loginRedirectUrl()}});
     if(r.error)throw r.error;
     notify('De eenmalige inloglink is verstuurd. Open deze via je e-mail.');
    }catch(err){notify('Inloglink verzenden mislukt: '+err.message,true);}
