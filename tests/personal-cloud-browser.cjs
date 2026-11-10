@@ -130,13 +130,13 @@ async function run(name,fn){
     await b.page.evaluate(()=>window.confirm=()=>true);
     await a.page.locator('#personalCloudLoad').click();
     await b.page.locator('#personalCloudLoad').click();
-    await a.page.waitForFunction(()=>favorites.has('bruschetta'));
-    await b.page.waitForFunction(()=>favorites.has('bruschetta'));
+    await a.page.waitForFunction(()=>document.querySelector('#personalCloudShort')?.textContent.includes('account gekoppeld'));
+    await b.page.waitForFunction(()=>document.querySelector('#personalCloudShort')?.textContent.includes('account gekoppeld'));
     const old=rows.get('user-a').revision;
     await a.page.evaluate(()=>toggleFav('bruschetta'));
     await awaitRow('user-a',r=>r.revision===old+1,'first writer');
     await b.page.evaluate(()=>toggleFav('bruschetta'));
-    await b.page.waitForFunction(()=>document.querySelector('#personalCloudStatus').textContent.includes('recentere versie'),{timeout:12000});
+    await b.page.waitForFunction(()=>document.querySelector('#personalCloudShort')?.textContent.includes('conflict'),null,{timeout:12000});
     assert.equal(rows.get('user-a').revision,old+1);
     const key='mijn-kookboek-persoonlijk-herstel-v1:user-a';
     assert.ok(await b.page.evaluate(k=>localStorage.getItem(k),key));
