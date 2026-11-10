@@ -87,7 +87,11 @@ function localCloudConfig(page){
     const house=page.locator('#basket [data-house]').first();
     await house.click();
     await page.locator('#basketHomePanel>summary').click();
-    assert.ok(await page.getByRole('button',{name:/Toch kopen/}).count()>0,'In huis markeren werkt niet');
+    const returnButton=page.locator('#basketHomePanel button.basket-house-btn').first();
+    assert.ok(await returnButton.count()>0,'In huis markeren werkt niet');
+    assert.match(await returnButton.textContent(),/Toch kopen/,'Product is niet terug te zetten');
+    await returnButton.click();
+    assert.ok(await page.locator('#basket [data-basket-item]').count()>0,'Terugzetten naar boodschappenlijst mislukt');
     await page.screenshot({path:shots+'/desktop-boodschappen.png'});
     return {boodschappen:(await page.locator('#basket [data-basket-item]').count()),inHuis:true};
    }finally{await context.close();}
