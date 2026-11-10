@@ -106,8 +106,10 @@ function makeDb(){
   }
  };
 }
-function harness(db,account,storage,{local=null}={}){
- const elements={},listeners={},callbacks={};
+function harness(db,account,storage,{local=null,search=''}={}){
+ const elements={},listeners={},callbacks={},signIns=[];
+ const client=db.client(account);
+ client.auth.signInWithOtp=async payload=>{signIns.push(payload);return {error:null};};
  const el=id=>elements[id]??={
   value:'',textContent:'',hidden:false,disabled:false,
   classList:{toggle(){}},addEventListener(type,fn){this[type]=fn;},
@@ -116,15 +118,15 @@ function harness(db,account,storage,{local=null}={}){
  const win={
   COOKBOOK_CLOUD_CONFIG:{active:true,url:'https://sample.supabase.co',
    publishableKey:'sb_publishable_example_public_key_0123456789'},
-  supabase:{createClient(){return db.client(account);}},
+  supabase:{createClient(){return client;}},
   localStorage:storage,confirm(){return true;},
   addEventListener(name,fn){listeners[name]=fn;}
  };
  const document={getElementById:el,addEventListener(name,fn){listeners[name]=fn;}};
  vm.runInNewContext(script,{window:win,document,
-  location:{origin:'https://example.org',pathname:'/voeding.html'},
+  location:{origin:'https://example.org',pathname:'/voeding.html',search},
   setTimeout:(fn,ms)=>setTimeout(fn,Math.min(ms,3)),clearTimeout,
-  Date,Math,JSON,Error,Promise,Number,String},{filename:'voeding-cloud.js',timeout:1500});
+  Date,Math,JSON,Error,Promise,Number,String,URLSearchParams},{filename:'voeding-cloud.js',timeout:1500});
  const cloud=win.CookbookCloud;
  callbacks.current=null;
  callbacks.uiStatus=null;
@@ -142,7 +144,7 @@ function harness(db,account,storage,{local=null}={}){
   return true;
  };
  return {
-  cloud,storage,callbacks,listeners,elements,
+  cloud,storage,callbacks,listeners,elements,signIns,
   start:()=>cloud.start(callbacks),
   enqueue(d){const ok=cloud.enqueue(d);if(ok)callbacks.current=copy(d);return ok;},
   async flush(){cloud.retry();await wait();},
@@ -195,6 +197,42 @@ test('Accountbalk maakt cloudstatus en lokale opslag ondubbelzinnig zichtbaar',a
  assert.equal(account.callbacks.uiStatus.pending,false);
  assert.equal(account.callbacks.uiStatus.conflict,false);
  assert.match(account.callbacks.uiStatus.message,/gesynchroniseerd/i);
+});
+
+test('Inloglink behoudt recept en variant zonder ongewenste parameters of externe redirect',async()=>{
+ const account=harness(makeDb(),'recipe-link',makeStorage(),{
+  search:'?recept=hutspot-rookworst-spek-gebakken-ui&variant=klassiek&next=https%3A%2F%2Fmalicious.example%2F'
+ });
+ await account.start();
+ account.elements.cloudEmail.value='recept@example.org';
+ await account.elements.cloudLoginForm.submit({preventDefault(){}});
+ assert.equal(account.signIns.length,1);
+ const target=new URL(account.signIns[0].options.emailRedirectTo);
+ assert.equal(target.origin,'https://example.org');
+ assert.equal(target.pathname,'/voeding.html');
+ assert.equal(target.searchParams.get('recept'),'hutspot-rookworst-spek-gebakken-ui');
+ assert.equal(target.searchParams.get('variant'),'klassiek');
+ assert.equal(target.searchParams.has('next'),false);
+ assert.equal([...target.searchParams.keys()].length,2);
+ assert.match(html,/const selected=recipeOptions\.findIndex\(r=>r\.id===params\.get\('recept'\)/,
+  'Het dagboek moet de teruggekomen receptselectie benutten');
+});
+
+test('Normaal inloggen houdt dezelfde bestemming en ongeldig recept wordt niet doorgestuurd',async()=>{
+ for(const [search,expected] of [
+  ['', ''],
+  ['?next=https%3A%2F%2Fmalicious.example%2F', ''],
+  ['?recept=https%3A%2F%2Fmalicious.example%2F&variant=klassiek', ''],
+  ['?recept=bolognese&variant=%2F%2Fevil', '?recept=bolognese']
+ ]){
+  const account=harness(makeDb(),'signin-'+search.length,makeStorage(),{search});
+  await account.start();
+  account.elements.cloudEmail.value='recept@example.org';
+  await account.elements.cloudLoginForm.submit({preventDefault(){}});
+  const target=new URL(account.signIns[0].options.emailRedirectTo);
+  assert.equal(target.origin+target.pathname,'https://example.org/voeding.html');
+  assert.equal(target.search,expected,'Onverwachte redirect bij '+search);
+ }
 });
 
 test('Lokale herstelkopie staat synchroon op schijf vóór verzending',async()=>{
