@@ -734,6 +734,31 @@ body.cook-active{overflow:hidden}
 .personal-cloud-panel .backup-actions{margin:10px 0}
 #personalCloudStatus.is-error{color:#a13c33}
 #personalCloudShort{font-size:12px;margin:8px 0;color:#496a4c}
+
+/* Stap 6: minimaal 44 x 44 px voor mobiele aanraakvlakken.
+   Alleen de bedienbare delen worden vergroot; de overige informatie blijft compact. */
+@media (max-width:650px){
+ .btn,.pill,.back,.card .btn,.browse-suggestions button,.browse-shortcuts .pill,
+ .browse-panel .reset-filters,.recipe-jumps button,.recipe-more-actions summary,
+ .recipe-secondary-actions .btn,.basket-recipe .btn,.basket-house-btn,
+ .cook-close,.cook-ingredient-toggle,.cook-finish-clear,.pantry-product button,
+ .basket-component-choice a{min-height:44px}
+ .back,.browse-panel .reset-filters,.basket-component-choice a{
+  display:inline-flex;align-items:center
+ }
+ .browse-suggestions button{min-width:44px;padding:10px 12px}
+ .browse-panel .reset-filters{padding:10px 5px}
+ .basket-shop .basket-product-row label,.basket-shop label,
+ .basket-optional,.pantry-product label{min-height:44px}
+ .basket-house-btn{min-width:66px;display:inline-flex;justify-content:center;align-items:center}
+ .pantry-product{min-height:48px;padding:3px 8px}
+ .pantry-product button{padding:9px 5px}
+ .cook-close{width:44px;height:44px;min-width:44px;flex-shrink:0}
+ .cook-finish-clear{padding:10px 9px}
+ .cook-restart{min-height:44px;padding:10px 0;display:inline-flex;align-items:center}
+ #pantryNew{min-height:44px}
+ .recipe-jumps button,.recipe-more-actions summary,.recipe-secondary-actions .btn{min-height:44px}
+}
 </style>
 </head>
 <body>
