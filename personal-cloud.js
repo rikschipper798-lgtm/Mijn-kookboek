@@ -9,6 +9,17 @@
  const KEY='mijn-kookboek-persoonlijk-account-v1';
  const JOURNAL='mijn-kookboek-persoonlijk-herstel-v1:';
  const clone=x=>JSON.parse(JSON.stringify(x));
+ // Detecteer ook wijzigingen die gemaakt zijn terwijl de inlogdienst niet
+ // beschikbaar was en waarvoor nog geen cloud-herstelkopie bestond.
+ function fingerprint(value){
+  const text=JSON.stringify(value);let a=2166136261,b=0x9e3779b9;
+  for(let i=0;i<text.length;i++){
+   const char=text.charCodeAt(i);
+   a=Math.imul(a^char,16777619);
+   b=Math.imul(b+char,2246822519);
+  }
+  return text.length+':'+(a>>>0).toString(16)+':'+(b>>>0).toString(16);
+ }
  const validRevision=n=>Number.isSafeInteger(n)&&n>=0;
  let hooks=null,client=null,user=null,revision=0,pending=null,active=false,conflict=false;
  let sending=false,refreshing=false,loading=false,dirtyBeforeReady=false,applying=false;
@@ -57,8 +68,10 @@
   if(!old||old.nonce!==value.nonce)throw Error('Een ander tabblad heeft een recentere herstelkopie opgeslagen.');
   localStorage.removeItem(journalKey(value.userId));
  }
- function bindAccount(id,rev){
-  localStorage.setItem(KEY,JSON.stringify({userId:id,revision:rev,version:1}));
+ function bindAccount(id,rev,data){
+  const verified=hooks.validate(data);
+  localStorage.setItem(KEY,JSON.stringify({userId:id,revision:rev,version:1,
+   fingerprint:fingerprint(verified)}));
  }
  function rememberDraft(){
   const data=hooks.validate(hooks.getLocal());
@@ -136,7 +149,7 @@
      }
     }
     revision=response.data.revision;
-    bindAccount(id,revision);
+    bindAccount(id,revision,sent.data);
     const stored=readJournal(id);
     if(!stored||stored.nonce!==pending?.nonce){
      conflictNotice('Een ander tabblad heeft ondertussen gegevens gewijzigd.');
@@ -168,7 +181,7 @@
    if(!row&&revision>0)throw Error('Cloudgegevens ontbreken; lokale gegevens blijven behouden.');
    if(row&&row.revision!==revision){
     safeApply(row);
-    revision=row.revision;bindAccount(id,revision);cloudRow=row;
+    revision=row.revision;bindAccount(id,revision,row.data);cloudRow=row;
     message('Nieuwste persoonlijke gegevens van je account geladen.');
    }
   }catch(error){if(token===epoch)message('Accountgegevens ophalen mislukt; lokale gegevens zijn niet overschreven: '+error.message,true);}
@@ -203,7 +216,7 @@
     pending=draft;active=true;
     if(row&&compare(hooks.validate(row.data),draft.data)){
      revision=row.revision;
-     clearJournal(draft);pending=null;bindAccount(next.id,revision);
+     clearJournal(draft);pending=null;bindAccount(next.id,revision,row.data);
      if(!dirtyBeforeReady&&hooks.canApply())safeApply(row);
      else{active=false;message('Er is ook een recente lokale wijziging. Kies bewust welke gegevens je wilt bewaren.');return;}
      message('Vorige upload was al veilig opgeslagen in je account.');
@@ -217,7 +230,12 @@
     }
     return;
    }
-   if(dirtyBeforeReady&&row&&hooks.canApply()&&compare(hooks.validate(hooks.getLocal()),hooks.validate(row.data)))
+   const localData=hooks.validate(hooks.getLocal());
+   // Controleer de volledige laatst bekende lokale stand, niet alleen
+   // wijzigingen die in de huidige paginasesie zijn gedaan.
+   if(!stored.fingerprint||stored.fingerprint!==fingerprint(localData))
+    dirtyBeforeReady=true;
+   if(dirtyBeforeReady&&row&&hooks.canApply()&&compare(localData,hooks.validate(row.data)))
     dirtyBeforeReady=false;
    if(dirtyBeforeReady||!hooks.canApply()){
     message('De lokale gegevens zijn gewijzigd of worden bewerkt. Kies bewust een versie voordat je synchroniseert.');
@@ -231,7 +249,7 @@
    else if(revision===0){
     // Nieuwe lege accountkoppeling: pas upload bij de eerstvolgende wijziging.
    }
-   revision=row?.revision||0;bindAccount(next.id,revision);
+   revision=row?.revision||0;bindAccount(next.id,revision,row?row.data:hooks.getLocal());
    active=true;
    message('Persoonlijke kookboekgegevens zijn gekoppeld en actueel.');
   }catch(error){
@@ -253,7 +271,7 @@
    safeApply(row);
    if(pending)clearJournal(pending);
    pending=null;conflict=false;revision=row.revision;
-   bindAccount(id,revision);active=true;dirtyBeforeReady=false;
+   bindAccount(id,revision,row.data);active=true;dirtyBeforeReady=false;
    message('Accountgegevens geladen. Toekomstige wijzigingen worden gesynchroniseerd.');
   }catch(error){message('Accountgegevens laden mislukt; de lokale versie blijft behouden: '+error.message,true);}
   finally{loading=false;}
@@ -275,7 +293,7 @@
    const prior=readJournal(id);
    pending=prior?{...prior,baseRevision:revision}:null;
    if(!rememberDraft()){active=false;return;}
-   bindAccount(id,revision);
+   bindAccount(id,revision,pending.data);
    schedule(0);
   }catch(error){message('Lokale gegevens konden niet naar je account: '+error.message,true);}
   finally{loading=false;}
