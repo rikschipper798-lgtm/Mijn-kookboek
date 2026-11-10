@@ -290,6 +290,9 @@
  }
  async function refresh(force=false){
   if(!user||!ready||loading||sending||refreshing)return;
+  if(el('editEntryPanel')?.hidden===false){
+   notify('Sluit eerst het bewerkformulier om nieuwe cloudgegevens te laden.');return;
+  }
   if(draft&&!force){
    notify('Er staan nog lokale wijzigingen klaar. Synchroniseer eerst of exporteer voordat je de cloudversie laadt.',true);return;
   }
@@ -303,6 +306,9 @@
    if(edits!==editMark||sending||(conflict&&!force)||(draft&&!force)){
     notify('Cloudantwoord genegeerd: ondertussen zijn er lokale wijzigingen opgeslagen.',true);
     return;
+   }
+   if(el('editEntryPanel')?.hidden===false){
+    notify('Sluit eerst het formulier waarmee je een maaltijd aanpast om nieuwe cloudgegevens te laden.');return;
    }
    if(remote?.revision===revision&&!force){
     if(refreshFailed){refreshFailed=false;notify('Gesynchroniseerd met je persoonlijke account.');}
@@ -496,7 +502,8 @@
    // geen onopgeslagen formulierinhoud en vermijden we onnodige requests.
    setInterval(()=>{
     if(document.visibilityState!=='visible'||!user||!ready||loading||sending||refreshing||draft||conflict)return;
-    if(el('settingsMenu')?.open||el('accountTools')?.open||el('mealEntryPanel')?.hidden===false)return;
+    if(el('settingsMenu')?.open||el('accountTools')?.open||el('mealEntryPanel')?.hidden===false||
+       el('editEntryPanel')?.hidden===false)return;
     const focus=document.activeElement;
     if(focus&&typeof focus.closest==='function'&&focus.closest('#manualForm,#recipeForm,#weekdayForm,#goalsForm'))return;
     void refresh();
