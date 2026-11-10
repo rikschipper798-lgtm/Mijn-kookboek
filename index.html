@@ -801,7 +801,7 @@ body.cook-active{overflow:hidden}
  <div id="appInstallGuide" class="offline-guidance" hidden>
   <p><strong>Android (Chrome):</strong> open het browsermenu en kies ‘App installeren’ of ‘Toevoegen aan startscherm’.</p>
   <p><strong>iPhone (Safari):</strong> tik op ‘Delen’ en kies ‘Zet op beginscherm’.</p>
-  <p>Bezoek de website eerst online en zorg dat de offline status ‘klaar’ aangeeft. Nieuwe recepten en wijzigingen worden opgehaald zodra je de website weer online opent. Je persoonlijke notities blijven op dit apparaat; maak regelmatig een back-up.</p>
+  <p>Bezoek de website eerst online en zorg dat de offline status ‘klaar’ aangeeft. Nieuwe recepten en wijzigingen worden opgehaald zodra je de website weer online opent. Je persoonlijke gegevens blijven lokaal beschikbaar. Na een bewuste accountkoppeling kun je ze ook tussen apparaten synchroniseren; maak regelmatig een back-up.</p>
  </div>
 </section>
 <details id="personalDataPanel" class="backup-panel">
@@ -1845,7 +1845,7 @@ function personalDetailSummary(key){
  const feedback=typeof note.feedback==='string'?note.feedback.trim():'';
  const notes=typeof note.notes==='string'?note.notes.trim():'';
  const snippet=(text,max=175)=>text.length>max?text.slice(0,max).trimEnd()+'…':text;
- return '<div class="experience-overview-head"><div><span class="section-label">ALLEEN OP DIT APPARAAT</span>'+
+ return '<div class="experience-overview-head"><div><span class="section-label">PRIVÉ · ALLEEN VOOR JOU</span>'+
   '<h3>Mijn kookervaring</h3></div><button type="button" class="btn alt" id="jumpExperience">'+
   (rating||cooked||feedback||notes?'Bewerk mijn ervaring':'Beoordeel dit recept')+'</button></div>'+
   '<div class="experience-overview-data">'+
@@ -1879,7 +1879,7 @@ function notesPanel(key){
  const rating=Number(note.rating)||0;
  return '<section class="personal-notes" id="personalNotes" aria-labelledby="personalNotesTitle">'+
  '<div class="personal-notes-head"><div><span class="section-label">JOUW VERSIE</span><h3 id="personalNotesTitle">Mijn kookervaring vastleggen</h3></div>'+
- '<span class="personal-notes-privacy">Alleen op dit apparaat</span></div>'+
+ '<span class="personal-notes-privacy">Privé · optioneel gesynchroniseerd</span></div>'+
  '<p class="personal-notes-intro">Geef je eigen beoordeling en noteer wat je na het koken hebt ervaren. Dit verandert het oorspronkelijke recept niet.</p>'+
  '<div class="personal-notes-fields">'+
  '<label for="noteText">Mijn aanpassingen en tips</label>'+
