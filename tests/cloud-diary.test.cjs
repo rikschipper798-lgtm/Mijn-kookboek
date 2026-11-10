@@ -427,6 +427,7 @@ test('Dagboekformulier toont een wijziging pas na een bevestigde lokale opslag',
   const node=id=>nodes[id]??={
    id,value:'',checked:false,hidden:false,disabled:false,style:{},dataset:{},
    textContent:'',innerHTML:'',classList:{toggle(){}},setAttribute(){},
+   querySelectorAll(){return [];},
    addEventListener(name,fn){(listeners[id]??={})[name]=fn;},
    focus(){},reset(){}
   };
