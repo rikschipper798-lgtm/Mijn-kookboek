@@ -402,7 +402,7 @@ main{padding-top:25px}
     <div class="diary-utility-body">
       <section class="panel" aria-labelledby="weekdayTitle">
         <h2 id="weekdayTitle">Vast ontbijt en lunch</h2>
-        <p class="muted">Leg je vaste werkdagmaaltijden vast, zonder ze als recept toe te voegen. Maandag t/m vrijdag worden ze vanaf de insteldatum automatisch ingevuld.</p>
+        <p class="muted">Leg je vaste werkdagmaaltijden vast, zonder ze als recept toe te voegen. Maandag t/m vrijdag worden ze vanaf de insteldatum als voorlopige maaltijd ingevuld. Bevestig ze na het eten; tot die tijd tellen ze niet mee in je dagtotaal.</p>
         <div id="weekdaySummary"></div>
         <div class="actions"><button type="button" class="secondary" id="importPresetButton">Laad vaste maaltijden uit bestand</button></div>
         <input id="importPresetFile" type="file" accept=".json,application/json" hidden aria-label="Bestand met vaste maaltijden">
@@ -807,11 +807,11 @@ main{padding-top:25px}
    nutrition[key]=value;
   }
   if(commit(()=>{
-   item.title=title;item.nutrition=nutrition;item.confirmed=true;item.adjusted=true;
    if(!item.presetSlot){
     item.presetSlot=SLOTS.find(slot=>item.title.startsWith('Standaard '+slot+':'))||
      SLOTS.find(slot=>(state.weekdayPresets[slot]&&item.title.includes(state.weekdayPresets[slot].title)))||undefined;
    }
+   item.title=title;item.nutrition=nutrition;item.confirmed=true;item.adjusted=true;
   })){
    closeEntryEditor();status('Maaltijd aangepast, bevestigd en meegeteld.');
   }
