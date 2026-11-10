@@ -373,10 +373,13 @@
    else{reset();notify('Uitgelogd. Eventuele herstelkopie blijft bewaard voor het juiste account.');}
   };
   el('cloudBackup').onclick=()=>{
-   const options=el('secureBackupOptions');
+   // Het back-upformulier staat in het inklapbare instellingenpaneel.
+   // Open beide niveaus voordat we erheen navigeren of de invoer focussen.
+   const settings=el('settingsMenu'),options=el('secureBackupOptions');
+   settings.open=true;
    options.open=true;
    if(options.scrollIntoView)options.scrollIntoView({behavior:'smooth',block:'center'});
-   el('backupPass').focus();
+   el('backupPass').focus({preventScroll:true});
   };
   el('cloudDeleteAccount').onclick=async()=>{
    if(!client||!user||!ready){notify('Log eerst in om het account te verwijderen.',true);return;}
