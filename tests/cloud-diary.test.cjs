@@ -199,40 +199,71 @@ test('Accountbalk maakt cloudstatus en lokale opslag ondubbelzinnig zichtbaar',a
  assert.match(account.callbacks.uiStatus.message,/gesynchroniseerd/i);
 });
 
-test('Inloglink behoudt recept en variant zonder ongewenste parameters of externe redirect',async()=>{
- const account=harness(makeDb(),'recipe-link',makeStorage(),{
+test('Magic link gebruikt vaste toegestane terugkeer-URL en bewaart receptkeuze tijdelijk',async()=>{
+ const storage=makeStorage();
+ const account=harness(makeDb(),'recipe-link',storage,{
   search:'?recept=hutspot-rookworst-spek-gebakken-ui&variant=klassiek&next=https%3A%2F%2Fmalicious.example%2F'
  });
  await account.start();
  account.elements.cloudEmail={value:'recept@example.org',checkValidity(){return true;}};
  await account.elements.cloudLoginForm.submit({preventDefault(){}});
  assert.equal(account.signIns.length,1);
- const target=new URL(account.signIns[0].options.emailRedirectTo);
- assert.equal(target.origin,'https://example.org');
- assert.equal(target.pathname,'/voeding.html');
- assert.equal(target.searchParams.get('recept'),'hutspot-rookworst-spek-gebakken-ui');
- assert.equal(target.searchParams.get('variant'),'klassiek');
- assert.equal(target.searchParams.has('next'),false);
- assert.equal([...target.searchParams.keys()].length,2);
- assert.match(html,/const selected=recipeOptions\.findIndex\(r=>r\.id===params\.get\('recept'\)/,
-  'Het dagboek moet de teruggekomen receptselectie benutten');
+ assert.equal(account.signIns[0].options.emailRedirectTo,'https://example.org/voeding.html');
+ const choice=JSON.parse(storage.getItem('mijn-kookboek-inlogselectie-v1'));
+ assert.equal(choice.recept,'hutspot-rookworst-spek-gebakken-ui');
+ assert.equal(choice.variant,'klassiek');
+ assert.ok(choice.expiresAt>Date.now()&&choice.expiresAt<=Date.now()+30*60*1000);
+ assert.match(html,/function restoreLoginRecipe\(/);
 });
 
-test('Normaal inloggen houdt dezelfde bestemming en ongeldig recept wordt niet doorgestuurd',async()=>{
- for(const [search,expected] of [
-  ['', ''],
-  ['?next=https%3A%2F%2Fmalicious.example%2F', ''],
-  ['?recept=https%3A%2F%2Fmalicious.example%2F&variant=klassiek', ''],
-  ['?recept=bolognese&variant=%2F%2Fevil', '?recept=bolognese']
+test('Normaal inloggen bewaart geen receptkeuze en weigert ongeldige parameters',async()=>{
+ for(const search of [
+  '',
+  '?next=https%3A%2F%2Fmalicious.example%2F',
+  '?recept=https%3A%2F%2Fmalicious.example%2F&variant=klassiek'
  ]){
-  const account=harness(makeDb(),'signin-'+search.length,makeStorage(),{search});
+  const storage=makeStorage(),account=harness(makeDb(),'signin-'+search.length,storage,{search});
   await account.start();
   account.elements.cloudEmail={value:'recept@example.org',checkValidity(){return true;}};
   await account.elements.cloudLoginForm.submit({preventDefault(){}});
-  const target=new URL(account.signIns[0].options.emailRedirectTo);
-  assert.equal(target.origin+target.pathname,'https://example.org/voeding.html');
-  assert.equal(target.search,expected,'Onverwachte redirect bij '+search);
+  assert.equal(account.signIns[0].options.emailRedirectTo,'https://example.org/voeding.html');
+  assert.equal(storage.getItem('mijn-kookboek-inlogselectie-v1'),null);
  }
+});
+
+test('Gekozen recept wordt na inloggen automatisch ingevuld en de tijdelijke opslag wordt gewist',async()=>{
+ const source=html.match(/<script>\s*'use strict';[\s\S]*?<\/script>/);
+ assert.ok(source,'Dagboekscript moet beschikbaar zijn');
+ const inline=source[0].replace(/^<script>/,'').replace(/<\/script>$/,'');
+ const key='mijn-kookboek-inlogselectie-v1';
+ const data=new Map([[key,JSON.stringify({recept:'hutspot-rookworst-spek-gebakken-ui',variant:'klassiek',expiresAt:Date.now()+1000*60})]]);
+ const localStorage={
+  getItem(k){return data.has(k)?data.get(k):null;},
+  setItem(k,v){data.set(k,v);},
+  removeItem(k){data.delete(k);}
+ };
+ const elements={};
+ const el=id=>elements[id]??={
+  value:'',checked:false,hidden:false,disabled:false,open:false,style:{},dataset:{},
+  innerHTML:'',textContent:'',classList:{toggle(){}},
+  setAttribute(){},addEventListener(){},focus(){},reset(){}
+ };
+ const sample={id:'hutspot-rookworst-spek-gebakken-ui',title:'Hutspot met rookworst',
+  nutrition:{per:'portie',kcal:700,proteinG:31,carbsG:60,fatG:28,fiberG:10}};
+ const sandbox={
+  window:{CookbookCloud:{enabled:true,start(hooks){hooks.onData(null);}},confirm(){return true;}},
+  document:{getElementById:el},location:{search:'',pathname:'/Mijn-kookboek/voeding.html',hash:''},
+  localStorage,fetch:async()=>({ok:true,json:async()=>[sample]}),
+  URLSearchParams,Date,Math,JSON,Error,Promise,Number,String,setTimeout(){return 0;}
+ };
+ vm.runInNewContext(inline,sandbox,{timeout:1600});
+ await new Promise(resolve=>setImmediate(resolve));
+ assert.equal(elements.recipeSelect.value,'0');
+ assert.equal(elements.mealEntryPanel.hidden,false,'Het receptformulier moet zichtbaar zijn');
+ assert.equal(elements.recipeSection.hidden,false);
+ assert.match(elements.recipePreview.textContent,/700 kcal/);
+ assert.match(elements.status.textContent,/geselecteerde recept staat klaar/);
+ assert.equal(data.has(key),false,'De tijdelijke keuze hoort na herstel gewist te worden');
 });
 
 test('Lokale herstelkopie staat synchroon op schijf vóór verzending',async()=>{
