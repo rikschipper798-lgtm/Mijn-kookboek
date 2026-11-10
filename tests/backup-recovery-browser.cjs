@@ -56,8 +56,14 @@ const current=async p=>p.evaluate(key=>JSON.parse(localStorage.getItem(key)),KEY
 const payload=data=>({app:'mijn-kookboek-voedingsdagboek',version:1,exportedAt:new Date().toISOString(),data});
 async function showSettings(p){await p.locator('#settingsMenu>summary').click();}
 function cloudStub(){
- const initial=mkDiary('Actuele cloudmaaltijd',920);
- const previous=mkDiary('Vorige cloudmaaltijd',530);
+ const mk=(title,kcal)=>({
+  goals:{kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5},
+  days:{'2026-11-07':[{id:'demo-'+kcal,source:'manual',title,
+   nutrition:{kcal,proteinG:20,carbsG:44,fatG:12,fiberG:5}}]},
+  weekdayPresets:{},weekdayApplied:{}
+ });
+ const initial=mk('Actuele cloudmaaltijd',920);
+ const previous=mk('Vorige cloudmaaltijd',530);
  // Function runs as init script in a real browser. Keep all state local.
  window.__testCloud={row:{diary:initial,revision:2},history:[
   {revision:1,saved_at:new Date(Date.now()-86400000).toISOString(),diary:previous}
@@ -186,6 +192,7 @@ function cloudStub(){
    try{
     await p.addInitScript(cloudStub);
     await open(p);
+    await p.locator('#selectedDate').fill('2026-11-07');
     await p.locator('#entries .entry-disclosure').first().waitFor();
     await p.locator('#openAccountTools').click();
     await p.locator('#cloudHistorySection>summary').click();
@@ -215,6 +222,7 @@ function cloudStub(){
    try{
     await p.addInitScript(cloudStub);
     await open(p);
+    await p.locator('#selectedDate').fill('2026-11-07');
     await p.locator('#entries .entry-disclosure').first().waitFor();
     await p.locator('#openAccountTools').click();
     await p.locator('#cloudBackup').click();
