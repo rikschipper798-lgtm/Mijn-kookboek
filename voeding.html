@@ -737,6 +737,32 @@ main{padding-top:25px}
   const qty=Number(el('recipeQty').value);
   el('recipePreview').textContent=option&&qty>=0.25&&qty<=20?fmt(option.nutrition.kcal*qty)+' kcal voor '+fmt(qty,2)+' portie(s)':'Kies een recept en aantal porties.';
  }
+ // Na inloggen via e-mail blijft de eerder gekozen maaltijd beschikbaar,
+ // ook wanneer de inloglink in een nieuw tabblad op hetzelfde apparaat opent.
+ function restoreLoginRecipe(){
+  if(!cloudMode||!cloudReady||!recipeOptions.length)return;
+  const key='mijn-kookboek-inlogselectie-v1';
+  try{
+   if(new URLSearchParams(location.search).has('recept')){
+    localStorage.removeItem(key);
+    return;
+   }
+   const raw=localStorage.getItem(key);
+   if(!raw)return;
+   const choice=JSON.parse(raw);
+   localStorage.removeItem(key);
+   if(!choice||typeof choice.recept!=='string'||typeof choice.variant!=='string'||
+      !Number.isFinite(choice.expiresAt)||choice.expiresAt<Date.now())return;
+   const index=recipeOptions.findIndex(r=>r.id===choice.recept&&r.variant===choice.variant);
+   if(index<0)return;
+   el('recipeSelect').value=String(index);
+   updatePreview();
+   showMealEntry('recipe');
+   status('Je geselecteerde recept staat klaar om te registreren.');
+  }catch(error){
+   // Een geblokkeerde browseropslag mag het laden van het dagboek niet blokkeren.
+  }
+ }
  async function fetchRecipes(){
   try{
    const response=await fetch('recepten.json',{cache:'no-cache'});
@@ -759,6 +785,7 @@ main{padding-top:25px}
    el('recipeSelect').value=String(selected>=0?selected:0);
    updatePreview();
    if(selected>=0){el('recipeSelect').focus({preventScroll:true});}
+   restoreLoginRecipe();
   }catch(error){
    el('recipeSelect').innerHTML='<option value="">Recepten laden niet gelukt</option>';
    status('Recepten konden niet worden geladen. Je kunt wel handmatig maaltijden toevoegen.',true);
@@ -993,7 +1020,7 @@ main{padding-top:25px}
     const wasLocked=!cloudReady;
     state=data?cleanData(data):newState();cloudReady=true;
     if(wasLocked){el('accountTools').open=false;el('openAccountTools').setAttribute('aria-expanded','false');}
-    render();loadWeekdayForm();processPresetLink();
+    render();loadWeekdayForm();processPresetLink();restoreLoginRecipe();
    },
    onLogout(){cloudReady=false;state=newState();el('accountTools').open=true;el('openAccountTools').setAttribute('aria-expanded','true');render();},
    onStatus(snapshot){updateAccountStatus(snapshot);}
