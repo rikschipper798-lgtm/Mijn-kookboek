@@ -82,7 +82,8 @@
  function changed(){
   if(applying)return;
   if(!hooks||!active||!user){dirtyBeforeReady=true;return;}
-  rememberDraft();
+  try{rememberDraft();}
+  catch(error){conflictNotice('Lokale herstelkopie kon niet worden bijgewerkt: '+error.message);}
  }
  async function fetchRow(id){
   const r=await client.from('cookbook_personal_data').select('data,revision').eq('user_id',id).maybeSingle();
@@ -216,6 +217,8 @@
     }
     return;
    }
+   if(dirtyBeforeReady&&row&&hooks.canApply()&&compare(hooks.validate(hooks.getLocal()),hooks.validate(row.data)))
+    dirtyBeforeReady=false;
    if(dirtyBeforeReady||!hooks.canApply()){
     message('De lokale gegevens zijn gewijzigd of worden bewerkt. Kies bewust een versie voordat je synchroniseert.');
     return;
@@ -266,9 +269,13 @@
    if(row){
     if(root.prompt('Je account bevat al persoonlijke gegevens. Dit apparaat vervangt die accountversie. Download eerst zo nodig je bestaande back-ups. Typ OVERSCHRIJF om door te gaan.')!=='OVERSCHRIJF')return;
    }else if(!window.confirm('Persoonlijke favorieten, boodschappen, voorraad en notities van dit apparaat voor het eerst opslaan in je account?'))return;
-   revision=row?.revision||0;active=true;conflict=false;pending=null;dirtyBeforeReady=false;
-   bindAccount(id,revision);
+   revision=row?.revision||0;active=true;conflict=false;dirtyBeforeReady=false;
+   // Een oude herstelkopie blijft bestaan totdat de nieuwe veilig is weggeschreven.
+   // Het vervangen ervan is uitsluitend na een expliciete keuze toegestaan.
+   const prior=readJournal(id);
+   pending=prior?{...prior,baseRevision:revision}:null;
    if(!rememberDraft()){active=false;return;}
+   bindAccount(id,revision);
    schedule(0);
   }catch(error){message('Lokale gegevens konden niet naar je account: '+error.message,true);}
   finally{loading=false;}
