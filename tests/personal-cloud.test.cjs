@@ -195,6 +195,35 @@ test('Open kook- of notitiebewerking blokkeert ongevraagde cloudvervanging',asyn
  assert.deepEqual(h.local().favorites,['oude-lokale-versie']);
  assert.match(h.node('personalCloudStatus').textContent,/bewerkt|bewerking|kies bewust/i);
 });
+test('Na herstart wordt offline gewijzigde browserdata niet stilzwijgend door cloud overschreven',async()=>{
+ const db=new FakeDatabase(),store=storage();
+ const first=harness(db,'a',{local:data(['begin']),store});
+ await first.ready();first.chooseLocal();await first.wait();
+ assert.equal(db.records.get('a').revision,1);
+ const changed=data(['begin','offline gewijzigd']);
+ const disconnected=harness(db,'a',{store,local:changed,signedIn:false});
+ await disconnected.ready();
+ const reopened=harness(db,'a',{store,local:changed});
+ await reopened.ready();
+ assert.deepEqual(reopened.local().favorites,['begin','offline gewijzigd']);
+ assert.equal(reopened.node('personalCloudChoices').hidden,false);
+ assert.equal(db.records.get('a').revision,1);
+});
+
+test('Tijdens herstart wordt een nog niet bevestigde herstelkopie bewaard',async()=>{
+ const db=new FakeDatabase(),store=storage(),first=harness(db,'a',{store,local:data(['begin'])});
+ await first.ready();first.chooseLocal();await first.wait();
+ db.online=false;
+ first.setLocal(data(['begin','zonder verbinding']));
+ await first.wait();
+ assert.ok(store.getItem('mijn-kookboek-persoonlijk-herstel-v1:a'));
+ db.online=true;
+ const reopened=harness(db,'a',{store,local:data(['begin','zonder verbinding'])});
+ await reopened.ready();await reopened.wait();
+ assert.deepEqual(db.records.get('a').data.favorites,['begin','zonder verbinding']);
+ assert.equal(store.getItem('mijn-kookboek-persoonlijk-herstel-v1:a'),null);
+});
+
 test('Koppeling is geïntegreerd met dezelfde lokale sleutels, back-up en PWA',()=>{
  assert.match(html,/id="personalCloudPanel"/);
  assert.match(html,/CookbookPersonalCloud\.start\(/);
