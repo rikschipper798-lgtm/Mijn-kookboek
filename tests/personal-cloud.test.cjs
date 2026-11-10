@@ -67,7 +67,7 @@ function harness(db,id='user-1',{local=data(),store=storage(),signedIn=true}={})
   };
   nodes.set(key,x);return x;
  }
- const document={getElementById:node,visibilityState:'visible'};
+ const document={getElementById:node,visibilityState:'visible',addEventListener(){}};
  const user=signedIn?{id,email:id+'@example.invalid'}:null;
  const events={};
  const context={
