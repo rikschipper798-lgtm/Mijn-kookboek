@@ -11,7 +11,7 @@
  const storageKey=id=>keyPrefix+id;
  const clone=value=>JSON.parse(JSON.stringify(value));
  const makeNonce=()=>Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,13);
- let client=null,hooks=null,user=null,revision=0,ready=false,loading=false;
+ let client=null,hooks=null,user=null,revision=0,ready=false,loading=false,authChecked=false;
  let draft=null,conflict=false,sending=false,refreshing=false,timer=null;
  let generation=0,edits=0,needsVerification=false;
  let historyRows=new Map();
@@ -23,7 +23,7 @@
   // Geen afzonderlijke UI-gissingen over succesvolle uploads.
   if(hooks&&typeof hooks.onStatus==='function'){
    hooks.onStatus({
-    loggedIn:Boolean(user),ready,pending:Boolean(draft),conflict,
+    loggedIn:user?true:authChecked?false:null,ready,pending:Boolean(draft),conflict,
     error,message
    });
   }
@@ -75,6 +75,7 @@
   if(timer!==null){clearTimeout(timer);timer=null;}
  }
  function reset(){
+  authChecked=true;
   generation++;stopTimer();
   user=null;revision=0;ready=false;loading=false;draft=null;
   sending=false;refreshing=false;conflict=false;edits=0;needsVerification=false;
@@ -215,6 +216,7 @@
  async function loadSession(session){
   const account=session?.user;
   if(!account){reset();return;}
+  authChecked=true;
   if(user?.id===account.id&&(loading||ready))return;
   const token=++generation;
   stopTimer();user=account;ready=false;loading=true;draft=null;
@@ -436,6 +438,7 @@
    });
    const {data,error}=await client.auth.getSession();
    if(error)throw error;
+   authChecked=true;
    if(data.session?.user)await loadSession(data.session);
    else{view();notify('Log in om je persoonlijke voedingsdagboek te openen.');}
    window.addEventListener('online',()=>{
