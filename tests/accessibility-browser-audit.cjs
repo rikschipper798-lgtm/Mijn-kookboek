@@ -147,6 +147,48 @@ async function probe(name,fn){
    await scan(page,'vaste-maaltijden');
    await load(page,'privacy.html');
    await scan(page,'privacy');
+   // Fictieve lokale dagboekgegevens: controleer focus na DOM-hertekening.
+   await page.addInitScript(()=>{
+    const key='mijn-kookboek-voedingsdagboek';
+    const date=new Date().toLocaleDateString('sv-SE');
+    if(localStorage.getItem(key))return;
+    localStorage.setItem(key,JSON.stringify({
+     goals:{kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5},
+     days:{[date]:[{id:'fixture-ontbijt',source:'preset',presetSlot:'ontbijt',confirmed:false,
+      title:'Standaard ontbijt: kwark',
+      nutrition:{kcal:350,proteinG:28,carbsG:43,fatG:6,fiberG:6}}]},
+     weekdayPresets:{},weekdayApplied:{}
+    }));
+   });
+   await load(page,'voeding.html');
+   await page.locator('#entries [data-confirm]').first().waitFor({state:'visible'});
+   await scan(page,'voorlopige-maaltijd');
+   await probe('Maaltijd bevestigen behoudt focus in de lijst',async()=>{
+    await page.locator('#entries [data-confirm]').first().focus();
+    await page.keyboard.press('Enter');
+    const focused=await page.evaluate(()=>({
+     tag:document.activeElement?.tagName,
+     match:document.activeElement?.matches('[data-entry-id="fixture-ontbijt"] > summary')
+    }));
+    assert.equal(focused.match,true);
+    return focused;
+   });
+   await probe('Aanpassen annuleren behoudt focus bij de maaltijd',async()=>{
+    await page.locator('[data-entry-id="fixture-ontbijt"] > summary').click();
+    await page.locator('#entries [data-edit]').first().click();
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'editEntryName');
+    await page.locator('#editEntryCancel').click();
+    const match=await page.evaluate(()=>document.activeElement?.matches('[data-entry-id="fixture-ontbijt"] > summary'));
+    assert.equal(match,true);
+    return {focusRestored:match};
+   });
+   await probe('Maaltijd verwijderen zet focus op de lijstkop',async()=>{
+    await page.locator('[data-entry-id="fixture-ontbijt"] > summary').click();
+    await page.locator('#entries [data-remove]').first().click();
+    const focused=await page.evaluate(()=>document.activeElement?.id);
+    assert.equal(focused,'entryTitle');
+    return {focus:focused};
+   });
   }finally{await c.close();}
  }catch(e){results.push({type:'infrastructure',error:e.stack});console.log('INFRASTRUCTUUR '+e.stack);process.exitCode=2;}
  finally{
@@ -159,7 +201,7 @@ async function probe(name,fn){
    keyboardFailed:results.filter(r=>r.type==='keyboard'&&!r.ok).length}));
   // Geen automatische WCAG A/AA-schendingen of mislukte toetsenbordproeven
   // in de geteste pagina's en toestanden.
-  if(results.filter(r=>r.type==='axe').length!==11||
+  if(results.filter(r=>r.type==='axe').length!==12||
      results.some(r=>r.type==='axe'&&r.violations.length)||
      results.some(r=>r.type==='keyboard'&&!r.ok))process.exitCode=1;
  }
