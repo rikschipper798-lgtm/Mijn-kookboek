@@ -128,7 +128,8 @@ function harness(db,account,storage,{local=null}={}){
  const cloud=win.CookbookCloud;
  callbacks.current=null;
  callbacks.uiStatus=null;
- callbacks.onStatus=info=>{callbacks.uiStatus={...info};};
+ callbacks.statusHistory=[];
+ callbacks.onStatus=info=>{callbacks.uiStatus={...info};callbacks.statusHistory.push({...info});};
  callbacks.onData=data=>{callbacks.current=data?copy(data):null;};
  callbacks.onLogout=()=>{callbacks.current=null;};
  callbacks.validateData=data=>data?copy(data):null;
@@ -162,6 +163,15 @@ test('Configuratie en toegangsregels zijn in overeenstemming met productie',()=>
  assert.match(schema,/with check \(user_id = \(select auth\.uid\(\)\)\)/);
 });
 
+
+test('Tijdens sessieherstel wordt een geldige gebruiker niet kort als uitgelogd getoond',async()=>{
+ const db=makeDb(),storage=makeStorage(),account=harness(db,'known-session',storage);
+ const pending=account.start();
+ assert.equal(account.callbacks.uiStatus.loggedIn,null);
+ await pending;
+ assert.equal(account.callbacks.uiStatus.loggedIn,true);
+ assert.equal(account.callbacks.statusHistory.some(entry=>entry.loggedIn===false),false);
+});
 
 test('Accountbalk maakt cloudstatus en lokale opslag ondubbelzinnig zichtbaar',async()=>{
  assert.match(html,/id="accountStatusBar"/);
