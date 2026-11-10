@@ -59,14 +59,21 @@ button:disabled{opacity:.45;cursor:default}
 .goal-list{list-style:none;padding:0;margin:12px 0}
 .goal-list li{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #e9eee7}
 .goal-list strong{white-space:nowrap}
-.entry-list{list-style:none;padding:0;margin:12px 0}
-.entry-list li{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #edf0e9;padding:13px 0}
-.entry-list li:last-child{border:0}
-.entry-title{font-weight:700;overflow-wrap:anywhere}
-.entry-details{font-size:12px;color:#69776c;margin-top:4px;line-height:1.5}
-.entry-right{display:flex;align-items:center;gap:9px;flex:none}
-.entry-right strong{white-space:nowrap}
-.entry-right button{min-height:35px;padding:7px 10px;font-size:12px}
+.entry-list{list-style:none;padding:0;margin:8px 0 0}
+.entry-list li{border-bottom:1px solid #edf0e9}
+.entry-list li:last-child{border-bottom:0}
+.entry-disclosure{margin:0}
+.entry-disclosure>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:9px 1px;list-style:none;cursor:pointer;border-radius:6px}
+.entry-disclosure>summary::-webkit-details-marker{display:none}
+.entry-disclosure>summary:hover{background:#f8faf7}
+.entry-disclosure>summary:after{content:"›";font-size:23px;line-height:1;color:#6c7f6c;flex:none;transition:transform .2s}
+.entry-disclosure[open]>summary:after{transform:rotate(90deg)}
+.entry-title{font-size:14px;font-weight:700;overflow-wrap:anywhere;min-width:0}
+.entry-kcal{white-space:nowrap;font-size:13px;color:#294935;margin-left:auto}
+.entry-automatic{display:inline-block;margin-left:6px;padding:2px 5px;font-size:10px;line-height:1.3;color:#795831;background:#fcf1df;border-radius:5px;font-weight:650;vertical-align:middle}
+.entry-expanded{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:0 0 12px}
+.entry-details{font-size:12px;color:#69776c;line-height:1.6;max-width:100%}
+.entry-expanded button{min-height:40px;padding:8px 11px;font-size:12px}
 .help{padding:12px 14px;background:#f9f4ea;border-radius:9px;color:#655d4d;font-size:13px;line-height:1.55}
 .actions{display:flex;flex-wrap:wrap;gap:10px}
 .actions button{flex:1}
@@ -88,7 +95,7 @@ button:disabled{opacity:.45;cursor:default}
 
 footer{text-align:center;color:#728073;font-size:12px;padding:0 20px 25px}
 @media(max-width:760px){.layout{grid-template-columns:1fr}.panel{padding:18px}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.datebar{justify-content:flex-start}}
-@media(max-width:450px){.grid2{grid-template-columns:1fr}.entry-list li{align-items:flex-start}.entry-right{flex-direction:column;align-items:flex-end}.datebar input{max-width:165px}}
+@media(max-width:450px){.grid2{grid-template-columns:1fr}.datebar input{max-width:165px}}
 
 /* Primaire navigatie: recepten, boodschappen en dagboek zijn gelijkwaardige bestemmingen. */
 .primary-nav{position:sticky;top:0;z-index:80;background:#fffdf9;border-bottom:1px solid #dce4d8;box-shadow:0 3px 15px #1d382415}
@@ -669,11 +676,16 @@ main{padding-top:25px}
    '<div class="metric"><strong>'+fmt(result.out[key],1)+(result.missing[key]?'*':'')+' g</strong><span>'+LABELS[i+1]+' · doel '+fmt(state.goals[key],1)+' g</span></div>').join('');
   el('emptyEntries').hidden=entries.length>0;
   el('entries').innerHTML=entries.map(e=>
-   '<li><div><div class="entry-title">'+esc(e.title)+'</div><div class="entry-details">'+(e.source==='recipe'?'Kookboekrecept · geschat':e.source==='preset'?'Werkdagstandaard · automatisch (aanname)':'Eigen invoer')+
+   '<li><details class="entry-disclosure"><summary><span class="entry-title">'+esc(e.title)+
+   (e.source==='preset'?' <span class="entry-automatic">Automatisch</span>':'')+'</span>'+
+   '<strong class="entry-kcal">'+fmt(e.nutrition.kcal)+' kcal</strong></summary>'+
+   '<div class="entry-expanded"><div class="entry-details">'+
+   (e.source==='recipe'?'Kookboekrecept · geschat':e.source==='preset'?'Werkdagstandaard · automatisch (aanname)':'Eigen invoer')+
    ' · E '+(e.nutrition.proteinG===null?'onbekend':fmt(e.nutrition.proteinG,1)+' g')+
    ' · KH '+(e.nutrition.carbsG===null?'onbekend':fmt(e.nutrition.carbsG,1)+' g')+
-   ' · V '+(e.nutrition.fatG===null?'onbekend':fmt(e.nutrition.fatG,1)+' g')+'</div></div>'+
-   '<div class="entry-right"><strong>'+fmt(e.nutrition.kcal)+' kcal</strong><button type="button" class="danger" data-remove="'+esc(e.id)+'" aria-label="Verwijder '+esc(e.title)+'">Wissen</button></div></li>').join('');
+   ' · V '+(e.nutrition.fatG===null?'onbekend':fmt(e.nutrition.fatG,1)+' g')+
+   ' · Vezels '+(e.nutrition.fiberG===null?'onbekend':fmt(e.nutrition.fiberG,1)+' g')+'</div>'+
+   '<button type="button" class="danger" data-remove="'+esc(e.id)+'" aria-label="Verwijder '+esc(e.title)+'">Verwijderen</button></div></details></li>').join('');
   el('goalsList').innerHTML=KEYS.map((key,i)=>'<li><span>'+LABELS[i]+'</span><strong>'+fmt(state.goals[key],1)+(key==='kcal'?' kcal':' g')+'</strong></li>').join('');
   [['goalKcal','kcal'],['goalProtein','proteinG'],['goalCarbs','carbsG'],['goalFat','fatG'],['goalFiber','fiberG']].forEach(pair=>el(pair[0]).value=state.goals[pair[1]]);
   const day=new Date(selectedDay+'T12:00:00');const rows=[];
