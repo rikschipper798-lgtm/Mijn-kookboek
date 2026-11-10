@@ -246,12 +246,32 @@ async function goReady(){
     return {automaticRefresh:true};
    }finally{await a.close();await b.close();}
   });
+  await run('7. Open invoerformulier blijft intact tijdens automatische verversing',async()=>{
+   const account='formulier-beschermen';seed(account);
+   const a=await newDevice(account,'formulier-a');
+   const b=await newDevice(account,'formulier-b',{clock:true});
+   try{
+    await b.page.locator('#settingsMenu>summary').click();
+    await b.page.locator('#editGoals>summary').click();
+    await b.page.locator('#goalKcal').fill('2700');
+    await addMeal(a.page,'Nieuw elders',430);
+    await awaitRemote(account,r=>r.revision===2,'nieuwe cloudmaaltijd');
+    await b.page.clock.fastForward(62000);
+    assert.equal(await b.page.locator('#goalKcal').inputValue(),'2700','Open invoer is overschreven');
+    assert.equal((await b.page.locator('#entries').textContent()).includes('Nieuw elders'),false,'Automatische update mag open formulier niet verstoren');
+    await b.page.locator('#editGoals>summary').click();
+    await b.page.locator('#settingsMenu>summary').click();
+    await b.page.clock.fastForward(62000);
+    await awaitBrowser(b.page,()=>document.querySelector('#entries')?.textContent.includes('Nieuw elders'),'verversing na sluiten van editor');
+    return {draftKeptWhileEditing:true,refreshedWhenClosed:true};
+   }finally{await a.close();await b.close();}
+  });
  }catch(e){console.log('INFRASTRUCTUURFOUT '+e.stack);process.exitCode=2;}
  finally{
   if(browser)await browser.close();
   server.kill();
   fs.writeFileSync(ART+'/resultaten.json',JSON.stringify(results,null,2));
   console.log('SYNCHRONISATIETEST '+results.filter(x=>x.ok).length+'/'+results.length+' geslaagd');
-  if(results.length<6||results.some(x=>!x.ok))process.exitCode=1;
+  if(results.length<7||results.some(x=>!x.ok))process.exitCode=1;
  }
 })().catch(e=>{console.log(e.stack);process.exitCode=2;server.kill();});
