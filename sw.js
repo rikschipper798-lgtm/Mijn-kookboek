@@ -1,7 +1,7 @@
 'use strict';
 // Bestandsversie: verhoog deze waarde bij wijzigingen aan offline infrastructuur.
 // index.html en recepten.json worden online altijd opnieuw opgehaald.
-const CACHE_VERSION='2026-11-09-diary-secure-backup-v15';
+const CACHE_VERSION='2026-11-10-account-status-v16';
 const CORE_CACHE='mijn-kookboek-pwa-core-'+CACHE_VERSION;
 const IMAGE_CACHE='mijn-kookboek-pwa-images-'+CACHE_VERSION;
 const CACHE_PREFIX='mijn-kookboek-pwa-';
@@ -177,7 +177,11 @@ self.addEventListener('fetch',event=>{
  }else if(pathname==='cloud-config.js'){
   // Public client configuration must refresh when the cloud backend is enabled.
   event.respondWith(networkFirst(request,CORE_CACHE));
- }else if(pathname==='voeding-cloud.js'||pathname==='voeding-backup.js'||pathname==='pantry.js'||pathname==='manifest.webmanifest'||pathname.startsWith('icons/')){
+ }else if(pathname==='voeding-cloud.js'||pathname==='voeding-backup.js'){
+  // Pagina en cloudmodule moeten dezelfde versie gebruiken. De versiequery
+  // voorkomt een cachetreffer op een oudere module; fallback werkt ook offline.
+  event.respondWith(networkFirst(request,CORE_CACHE,new URL(pathname,ROOT)));
+ }else if(pathname==='pantry.js'||pathname==='manifest.webmanifest'||pathname.startsWith('icons/')){
   event.respondWith(cacheFirst(request,CORE_CACHE));
  }
 });
