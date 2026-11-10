@@ -220,7 +220,7 @@ test('Cloudmodule blijft actueel en werkt na de installatie ook offline',async()
  assert.ok(match,'De pagina moet een versiequery voor de cloudmodule gebruiken');
  const pwa=createWorker([catalog[0]]);
  await pwa.install();
- const path='voeding-cloud.js?v='+match[1],request=new Request(baseUrl+path);
+ const scriptPath='voeding-cloud.js?v='+match[1],request=new Request(baseUrl+scriptPath);
  const first=await pwa.dispatch('fetch',request);
  assert.equal(first.status,200);
  assert.match(await first.text(),/bestand:voeding-cloud\.js/);
