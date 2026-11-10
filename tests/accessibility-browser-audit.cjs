@@ -89,6 +89,26 @@ async function probe(name,fn){
     assert.equal(focused,'startCooking');
     return {focus:focused};
    });
+   await probe('Kookmodus: alle stappen en afrondformulier zonder muis',async()=>{
+    await page.locator('#startCooking').click();
+    for(let i=0;i<20;i++){
+     if(await page.locator('#finishSave').count())break;
+     await page.locator('#cookNext').click();
+    }
+    await page.locator('#finishSave').waitFor();
+    await scan(page,'kookervaring-afronden');
+    await page.locator('#finishNotes').focus();
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'finishFeedback');
+    await page.keyboard.press('Shift+Tab');
+    assert.equal(await page.evaluate(()=>document.activeElement?.id),'finishNotes');
+    const original=await page.locator('#finishNotes').inputValue();
+    await page.keyboard.press('Escape');
+    await page.locator('#cookOverlay').waitFor({state:'hidden'});
+    const focus=await page.evaluate(()=>document.activeElement?.id);
+    assert.equal(focus,'personalNotes');
+    return {formKeyboard:true,original,focus};
+   });
    await load(page,'index.html#recept/bruschetta');
    await page.locator('#addBasket').waitFor();
    await page.locator('#addBasket').click();
@@ -139,7 +159,7 @@ async function probe(name,fn){
    keyboardFailed:results.filter(r=>r.type==='keyboard'&&!r.ok).length}));
   // Geen automatische WCAG A/AA-schendingen of mislukte toetsenbordproeven
   // in de geteste pagina's en toestanden.
-  if(results.filter(r=>r.type==='axe').length!==10||
+  if(results.filter(r=>r.type==='axe').length!==11||
      results.some(r=>r.type==='axe'&&r.violations.length)||
      results.some(r=>r.type==='keyboard'&&!r.ok))process.exitCode=1;
  }
