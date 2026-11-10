@@ -183,7 +183,8 @@ async function probe(name,fn){
     return {focusRestored:match};
    });
    await probe('Maaltijd verwijderen zet focus op de lijstkop',async()=>{
-    await page.locator('[data-entry-id="fixture-ontbijt"] > summary').click();
+    const row=page.locator('[data-entry-id="fixture-ontbijt"]');
+    if(!await row.evaluate(node=>node.open))await row.locator('summary').click();
     await page.locator('#entries [data-remove]').first().click();
     const focused=await page.evaluate(()=>document.activeElement?.id);
     assert.equal(focused,'entryTitle');
