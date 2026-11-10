@@ -204,7 +204,7 @@ test('Inloglink behoudt recept en variant zonder ongewenste parameters of extern
   search:'?recept=hutspot-rookworst-spek-gebakken-ui&variant=klassiek&next=https%3A%2F%2Fmalicious.example%2F'
  });
  await account.start();
- account.elements.cloudEmail.value='recept@example.org';
+ account.elements.cloudEmail={value:'recept@example.org',checkValidity(){return true;}};
  await account.elements.cloudLoginForm.submit({preventDefault(){}});
  assert.equal(account.signIns.length,1);
  const target=new URL(account.signIns[0].options.emailRedirectTo);
@@ -227,7 +227,7 @@ test('Normaal inloggen houdt dezelfde bestemming en ongeldig recept wordt niet d
  ]){
   const account=harness(makeDb(),'signin-'+search.length,makeStorage(),{search});
   await account.start();
-  account.elements.cloudEmail.value='recept@example.org';
+  account.elements.cloudEmail={value:'recept@example.org',checkValidity(){return true;}};
   await account.elements.cloudLoginForm.submit({preventDefault(){}});
   const target=new URL(account.signIns[0].options.emailRedirectTo);
   assert.equal(target.origin+target.pathname,'https://example.org/voeding.html');
