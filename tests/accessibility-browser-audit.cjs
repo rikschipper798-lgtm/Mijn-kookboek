@@ -23,6 +23,7 @@ async function load(page,route){
  await page.addScriptTag({content:axe.source});
 }
 async function scan(page,name){
+ await page.waitForTimeout(350);
  const result=await page.evaluate(async()=>{
   const output=await window.axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']},rules:{'region':{enabled:true}}});
   return {
@@ -76,6 +77,11 @@ async function probe(name,fn){
     assert.equal(second.inside,true);
     return {fromClose:first,afterTab:second};
    });
+   await probe('Kookmodus schermt achtergrond af voor toetsenbord en schermlezers',async()=>{
+    const hidden=await page.evaluate(()=>[...document.querySelectorAll('body > nav, body > header, body > main, body > footer')].every(n=>n.inert));
+    assert.equal(hidden,true);
+    return {backgroundInert:true};
+   });
    await probe('Escape sluit kookmodus en zet focus terug',async()=>{
     await page.keyboard.press('Escape');
     await page.locator('#cookOverlay').waitFor({state:'hidden'});
@@ -94,11 +100,12 @@ async function probe(name,fn){
    await probe('Van receptenlijst via toetsenbord naar recept',async()=>{
     await load(page,'index.html');
     await page.locator('#cards .card').first().waitFor();
-    await page.locator('#cards .card').first().focus();
+    await page.locator('#cards .card a.btn').first().focus();
     await page.keyboard.press('Enter');
     await page.locator('#startCooking').waitFor();
-    const focus=await page.evaluate(()=>({tag:document.activeElement?.tagName,id:document.activeElement?.id,visible:!!document.activeElement&&!document.activeElement.closest('[hidden]')}));
-    assert.ok(focus.visible,'Focus verdween in verborgen scherm');
+    await page.waitForFunction(()=>document.activeElement?.matches('.recipe-intro-main h2'));
+    const focus=await page.evaluate(()=>({tag:document.activeElement?.tagName,text:document.activeElement?.textContent}));
+    assert.equal(focus.tag,'H2','Bij schermwissel moet de focus naar de recepttitel');
     return focus;
    });
    await load(page,'voeding.html');
@@ -130,5 +137,10 @@ async function probe(name,fn){
    violations:results.filter(r=>r.type==='axe').reduce((n,r)=>n+r.violations.length,0),
    serious:results.filter(r=>r.type==='axe').reduce((n,r)=>n+r.violations.filter(v=>['serious','critical'].includes(v.impact)).length,0),
    keyboardFailed:results.filter(r=>r.type==='keyboard'&&!r.ok).length}));
+  // Geen automatische WCAG A/AA-schendingen of mislukte toetsenbordproeven
+  // in de geteste pagina's en toestanden.
+  if(results.filter(r=>r.type==='axe').length!==10||
+     results.some(r=>r.type==='axe'&&r.violations.length)||
+     results.some(r=>r.type==='keyboard'&&!r.ok))process.exitCode=1;
  }
 })().catch(e=>{console.log('FOUT '+e.stack);process.exitCode=2;server.kill();});
