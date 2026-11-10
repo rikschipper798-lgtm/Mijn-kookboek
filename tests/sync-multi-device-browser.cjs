@@ -134,6 +134,15 @@ async function goReady(){
     await b.page.locator('#editGoals>summary').click();
     await b.page.locator('#goalKcal').fill('2450');
     await b.page.locator('#goalsForm button[type=submit]').click();
+    await sleep(1150);
+    const debug=await b.page.evaluate(()=>({
+     status:document.querySelector('#status')?.textContent,
+     cloud:document.querySelector('#cloudStatus')?.textContent,
+     account:document.querySelector('#accountStateLabel')?.textContent,
+     goalKcal:document.querySelector('#goalKcal')?.value,
+     pending:Object.keys(localStorage).filter(k=>k.startsWith('mijn-kookboek-cloud-herstel-v1:')).length
+    }));
+    console.log('DIAGNOSTIEK DOELEN '+JSON.stringify(debug)+' server '+JSON.stringify(store.get(account)));
     await awaitRemote(account,r=>r.revision===3&&r.diary.goals.kcal===2450,'gewijzigd caloriedoel');
     await forceRefresh(a.page);
     await awaitBrowser(a.page,()=>document.querySelector('#calories')?.textContent.includes('2.450 kcal'),'nieuw caloriedoel op telefoon');
