@@ -9,7 +9,7 @@ const server=spawn('python3',['-m','http.server','8777','--bind','127.0.0.1'],{s
 let browser;
 async function scan(page,label,viewport){
  const items=await page.evaluate(()=>{
-  const selectors='button, a.btn, a.primary-nav-link, .pill, input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]), select, summary, .shop label, .basket-product-row label, .pantry-product label, .recipe-ingredient-list label';
+  const selectors='button, header a, a.btn, a.primary-nav-link, .pill, input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="file"]), select, summary, .shop label, .basket-product-row label, .pantry-product label, .recipe-ingredient-list label';
   const nodes=[...new Set([...document.querySelectorAll(selectors)])];
   return nodes.filter(e=>{
    const s=getComputedStyle(e),r=e.getBoundingClientRect();
@@ -85,6 +85,6 @@ async function withPage(width,fn){
   server.kill();
   fs.writeFileSync(output+'/metingen.json',JSON.stringify(steps,null,2));
   console.log('AUDIT '+steps.length+' schermen, totaal '+steps.reduce((n,s)=>n+s.small.length,0)+' kleine targets');
-  if(steps.length!==16)process.exitCode=2;
+  if(steps.length!==16||steps.some(s=>s.small.length||s.scroll.scrollWidth>s.scroll.width+2))process.exitCode=1;
  }
 })().catch(e=>{console.log(e.stack);process.exitCode=2;server.kill();});
