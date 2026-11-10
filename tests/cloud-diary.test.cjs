@@ -126,6 +126,7 @@ function harness(db,account,storage,{local=null,search=''}={}){
  vm.runInNewContext(script,{window:win,document,
   location:{origin:'https://example.org',pathname:'/voeding.html',search},
   setTimeout:(fn,ms)=>setTimeout(fn,Math.min(ms,3)),clearTimeout,
+  setInterval(){return 0;},clearInterval(){},
   Date,Math,JSON,Error,Promise,Number,String,URLSearchParams},{filename:'voeding-cloud.js',timeout:1500});
  const cloud=win.CookbookCloud;
  callbacks.current=null;
