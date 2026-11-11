@@ -172,6 +172,7 @@ function cloudStub(){
     assert.equal(JSON.stringify(encrypted).includes('Oorspronkelijke testmaaltijd'),false);
     await p.evaluate(()=>window.confirm=()=>true);
     await importFile(p,payload(target));
+    await waitFor(p,()=>document.querySelector('#status').textContent.includes('Voedingsdagboek hersteld'));
     assert.deepEqual(await current(p),target);
     await importFile(p,encrypted);
     await waitFor(p,()=>!document.querySelector('#backupDecryptBox').hidden);
