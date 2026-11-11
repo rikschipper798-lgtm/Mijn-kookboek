@@ -10864,5 +10864,900 @@
       "fiberG": 2.2,
       "estimated": true
     }
+  },
+  {
+    "id": "kerstmenu-18-personen-ofyr-bavette-varkenshaas",
+    "title": "Kerstdiner voor 18 personen – carpaccio, OFYR mixed grill en chocolademousse",
+    "subtitle": "Feestelijk glutenvrij uit te voeren driegangenmenu: rundercarpaccio, royaal gegrilde bavette en varkenshaas met twee sauzen, kruidenaardappeltjes uit de grote OFYR-pan, honing-tijmwortelen en luchtige chocolademousse met frambozen.",
+    "category": "Rundvlees",
+    "kind": "Driegangenmenu",
+    "cuisine": "Europees, klassiek kerstmenu",
+    "minutes": 240,
+    "prep": 150,
+    "cook": 90,
+    "servings": 18,
+    "servingUnit": "personen",
+    "heat": "Mild kruidig",
+    "difficulty": "Gemiddeld (met 2–3 keukenhelpers)",
+    "date": "2026-11-11",
+    "updatedAt": "2026-11-11",
+    "version": 1,
+    "recipeType": "maaltijd",
+    "featured": false,
+    "tags": [
+      "Kerstdiner",
+      "Kerst",
+      "Drie gangen",
+      "OFYR",
+      "Bavette",
+      "Varkenshaas",
+      "Carpaccio",
+      "Chocolademousse",
+      "Glutenvrij te maken",
+      "18 personen"
+    ],
+    "timeNote": "Over twee dagen verdeeld: circa 3–4 uur voorbereiding de dag ervoor en circa 2 uur organisatie en bereiding op de kerstdag, deels gelijktijdig. Chocolademousse minstens 4 uur laten opstijven. OFYR 45–60 minuten voorverwarmen.",
+    "ingredients": [
+      {
+        "name": "Voorgesneden rundercarpaccio",
+        "qty": 1260,
+        "unit": "g",
+        "group": "Voorgerecht – carpaccio"
+      },
+      {
+        "name": "Rucola",
+        "qty": 225,
+        "unit": "g",
+        "group": "Voorgerecht – carpaccio"
+      },
+      {
+        "name": "Parmezaanse kaas, geschaafd",
+        "qty": 180,
+        "unit": "g",
+        "group": "Voorgerecht – carpaccio"
+      },
+      {
+        "name": "Pijnboompitten",
+        "qty": 110,
+        "unit": "g",
+        "group": "Voorgerecht – carpaccio"
+      },
+      {
+        "name": "Glutenvrije truffelmayonaise",
+        "qty": 270,
+        "unit": "g",
+        "group": "Voorgerecht – carpaccio"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 35,
+        "unit": "ml",
+        "group": "Voorgerecht – carpaccio"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 30,
+        "unit": "ml",
+        "group": "Voorgerecht – carpaccio"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Voorgerecht – carpaccio"
+      },
+      {
+        "name": "Sjalotten",
+        "qty": 250,
+        "unit": "g",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 3,
+        "unit": "teentjes",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 25,
+        "unit": "ml",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Tomatenpuree",
+        "qty": 25,
+        "unit": "g",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Droge rode wijn",
+        "qty": 750,
+        "unit": "ml",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Glutenvrije runderbouillon, bereid",
+        "qty": 900,
+        "unit": "ml",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Gedroogde tijm",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Koude roomboter",
+        "qty": 40,
+        "unit": "g",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Maizena",
+        "qty": 15,
+        "unit": "g",
+        "group": "Saus 1 – sjalotten-rodewijnjus",
+        "optional": true
+      },
+      {
+        "name": "Koud water",
+        "qty": 30,
+        "unit": "ml",
+        "group": "Saus 1 – sjalotten-rodewijnjus",
+        "optional": true
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus 1 – sjalotten-rodewijnjus"
+      },
+      {
+        "name": "Kastanjechampignons",
+        "qty": 500,
+        "unit": "g",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Sjalotten",
+        "qty": 150,
+        "unit": "g",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 3,
+        "unit": "teentjes",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Roomboter",
+        "qty": 40,
+        "unit": "g",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 20,
+        "unit": "ml",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Slagroom, ongezoet",
+        "qty": 350,
+        "unit": "ml",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Glutenvrije runderbouillon, bereid",
+        "qty": 400,
+        "unit": "ml",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Glutenvrije Dijonmosterd",
+        "qty": 30,
+        "unit": "g",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Gedroogde tijm",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 15,
+        "unit": "ml",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Saus 2 – champignonroomsaus"
+      },
+      {
+        "name": "Bavette",
+        "qty": 3000,
+        "unit": "g",
+        "group": "Hoofdgerecht – bavette van de OFYR"
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 50,
+        "unit": "ml",
+        "group": "Hoofdgerecht – bavette van de OFYR"
+      },
+      {
+        "name": "Zout",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Hoofdgerecht – bavette van de OFYR"
+      },
+      {
+        "name": "Grof gemalen zwarte peper",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Hoofdgerecht – bavette van de OFYR"
+      },
+      {
+        "name": "Varkenshaas",
+        "qty": 3000,
+        "unit": "g",
+        "group": "Hoofdgerecht – varkenshaas van de OFYR"
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 50,
+        "unit": "ml",
+        "group": "Hoofdgerecht – varkenshaas van de OFYR"
+      },
+      {
+        "name": "Zout",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Hoofdgerecht – varkenshaas van de OFYR"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Hoofdgerecht – varkenshaas van de OFYR"
+      },
+      {
+        "name": "Gedroogde tijm",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Hoofdgerecht – varkenshaas van de OFYR"
+      },
+      {
+        "name": "Krieltjes, vastkokend en met schil",
+        "qty": 3200,
+        "unit": "g",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 140,
+        "unit": "ml",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Roomboter",
+        "qty": 40,
+        "unit": "g",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Gedroogde rozemarijn",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Gedroogde tijm",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Zout",
+        "qty": 2.5,
+        "unit": "tl",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Bijgerecht – kruidenaardappeltjes uit de OFYR-pan"
+      },
+      {
+        "name": "Wortelen",
+        "qty": 2200,
+        "unit": "g",
+        "group": "Bijgerecht – honing-tijmwortelen"
+      },
+      {
+        "name": "Roomboter",
+        "qty": 75,
+        "unit": "g",
+        "group": "Bijgerecht – honing-tijmwortelen"
+      },
+      {
+        "name": "Honing",
+        "qty": 60,
+        "unit": "g",
+        "group": "Bijgerecht – honing-tijmwortelen"
+      },
+      {
+        "name": "Verse tijm",
+        "qty": 6,
+        "unit": "takjes",
+        "group": "Bijgerecht – honing-tijmwortelen"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 30,
+        "unit": "ml",
+        "group": "Bijgerecht – honing-tijmwortelen"
+      },
+      {
+        "name": "Zout",
+        "qty": 1.5,
+        "unit": "tl",
+        "group": "Bijgerecht – honing-tijmwortelen"
+      },
+      {
+        "name": "Pure chocolade 60–70% cacao, glutenvrij",
+        "qty": 450,
+        "unit": "g",
+        "group": "Nagerecht – chocolademousse met frambozen"
+      },
+      {
+        "name": "Slagroom voor chocoladebasis",
+        "qty": 450,
+        "unit": "ml",
+        "group": "Nagerecht – chocolademousse met frambozen"
+      },
+      {
+        "name": "Slagroom voor opkloppen",
+        "qty": 900,
+        "unit": "ml",
+        "group": "Nagerecht – chocolademousse met frambozen"
+      },
+      {
+        "name": "Vanille-extract",
+        "qty": 6,
+        "unit": "ml",
+        "group": "Nagerecht – chocolademousse met frambozen"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Nagerecht – chocolademousse met frambozen"
+      },
+      {
+        "name": "Verse frambozen",
+        "qty": 360,
+        "unit": "g",
+        "group": "Nagerecht – chocolademousse met frambozen"
+      },
+      {
+        "name": "Extra pure chocolade voor garnering",
+        "qty": 45,
+        "unit": "g",
+        "group": "Nagerecht – chocolademousse met frambozen",
+        "optional": true
+      },
+      {
+        "name": "Poedersuiker",
+        "qty": 20,
+        "unit": "g",
+        "group": "Nagerecht – chocolademousse met frambozen",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "title": "Dag ervoor – rodewijnjus bereiden",
+        "body": "Snipper 250 g sjalotten en hak 3 teentjes knoflook fijn. Bak de sjalotten 7–8 minuten op middelhoog vuur in 25 ml zonnebloemolie tot ze kleuren. Voeg de knoflook en 25 g tomatenpuree toe en bak 2 minuten mee. Schenk 750 ml droge rode wijn erbij en laat in een brede pan ongeveer tot een derde inkoken (circa 20 minuten). Voeg 900 ml glutenvrije runderbouillon, bereid en 1.5 tl gedroogde tijm toe; laat nog 15–25 minuten rustig inkoken tot ongeveer 900 ml. Zeef eventueel voor een gladde jus. Roer bij het afmaken 40 g koude roomboter in blokjes erdoor; proef met 0.5 tl zout en 0.5 tl zwarte peper.",
+        "ingredientIndices": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          18,
+          19
+        ],
+        "quantityRefs": [
+          {
+            "text": "250 g sjalotten",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "3 teentjes knoflook",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "25 ml zonnebloemolie",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "25 g tomatenpuree",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "750 ml droge rode wijn",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "900 ml glutenvrije runderbouillon, bereid",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "1.5 tl gedroogde tijm",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "40 g koude roomboter",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "0.5 tl zout",
+            "ingredientIndex": 18
+          },
+          {
+            "text": "0.5 tl zwarte peper",
+            "ingredientIndex": 19
+          }
+        ],
+        "duration": "circa 50–65 min"
+      },
+      {
+        "title": "Dag ervoor – saus eventueel licht binden",
+        "body": "Is de rodewijnjus te dun, meng dan optioneel 15 g maizena met 30 ml koud water tot een papje. Roer eerst de helft door de zacht kokende saus, laat 1 minuut garen en voeg alleen meer toe als dat nodig is. Koel de jus snel in een ondiepe bak en bewaar afgesloten bij maximaal 4 °C.",
+        "ingredientIndices": [
+          16,
+          17
+        ],
+        "quantityRefs": [
+          {
+            "text": "15 g maizena",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "30 ml koud water",
+            "ingredientIndex": 17
+          }
+        ],
+        "duration": "5 min"
+      },
+      {
+        "title": "Dag ervoor – champignonroomsaus",
+        "body": "Snipper 150 g sjalotten, hak 3 teentjes knoflook en snijd 500 g kastanjechampignons in plakjes. Verhit 20 ml olijfolie met 40 g roomboter. Bak de champignons in twee porties op hoog vuur tot ze bruin zijn en hun vocht grotendeels kwijt zijn. Voeg de sjalot toe en bak 3 minuten. Voeg knoflook en 1 tl gedroogde tijm toe en bak 30 seconden. Roer 30 g glutenvrije dijonmosterd erdoor en schenk 400 ml glutenvrije runderbouillon, bereid en 350 ml slagroom, ongezoet erbij. Laat 10–15 minuten zacht inkoken tot een lepelbare saus van ongeveer 900 ml, met champignonstukjes. Werk af met 15 ml citroensap, 1 tl zwarte peper en 0.5 tl zout; proef of zuur en zout in balans zijn. Koel snel terug en bewaar bij maximaal 4 °C.",
+        "ingredientIndices": [
+          21,
+          22,
+          20,
+          24,
+          23,
+          28,
+          27,
+          26,
+          25,
+          29,
+          30,
+          31
+        ],
+        "quantityRefs": [
+          {
+            "text": "150 g sjalotten",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "3 teentjes knoflook",
+            "ingredientIndex": 22
+          },
+          {
+            "text": "500 g kastanjechampignons",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "20 ml olijfolie",
+            "ingredientIndex": 24
+          },
+          {
+            "text": "40 g roomboter",
+            "ingredientIndex": 23
+          },
+          {
+            "text": "1 tl gedroogde tijm",
+            "ingredientIndex": 28
+          },
+          {
+            "text": "30 g glutenvrije dijonmosterd",
+            "ingredientIndex": 27
+          },
+          {
+            "text": "400 ml glutenvrije runderbouillon, bereid",
+            "ingredientIndex": 26
+          },
+          {
+            "text": "350 ml slagroom, ongezoet",
+            "ingredientIndex": 25
+          },
+          {
+            "text": "15 ml citroensap",
+            "ingredientIndex": 29
+          },
+          {
+            "text": "1 tl zwarte peper",
+            "ingredientIndex": 30
+          },
+          {
+            "text": "0.5 tl zout",
+            "ingredientIndex": 31
+          }
+        ],
+        "duration": "35–45 min"
+      },
+      {
+        "title": "Dag ervoor – chocolademousse maken",
+        "body": "Hak 450 g pure chocolade 60–70% cacao, glutenvrij fijn. Verwarm 450 ml slagroom voor chocoladebasis tot heet maar niet kokend, haal van het vuur en roer de chocolade erdoor tot glad. Meng 6 ml vanille-extract en 0.125 tl zout erdoor. Laat afkoelen tot ongeveer 28–30 °C. Klop 900 ml slagroom voor opkloppen gekoeld tot zachte pieken en spatel eerst een derde en daarna de rest door de chocoladebasis. Verdeel over 18 kleine dessertglaasjes, dek af en laat minimaal 4 uur opstijven in de koelkast (liefst een nacht).",
+        "ingredientIndices": [
+          56,
+          57,
+          59,
+          60,
+          58
+        ],
+        "quantityRefs": [
+          {
+            "text": "450 g pure chocolade 60–70% cacao, glutenvrij",
+            "ingredientIndex": 56
+          },
+          {
+            "text": "450 ml slagroom voor chocoladebasis",
+            "ingredientIndex": 57
+          },
+          {
+            "text": "6 ml vanille-extract",
+            "ingredientIndex": 59
+          },
+          {
+            "text": "0.125 tl zout",
+            "ingredientIndex": 60
+          },
+          {
+            "text": "900 ml slagroom voor opkloppen",
+            "ingredientIndex": 58
+          }
+        ],
+        "duration": "30–40 min actief, minimaal 4 uur koelen"
+      },
+      {
+        "title": "Dag ervoor – extra zoetheid indien gewenst",
+        "body": "Voor een iets zoetere mousse kun je optioneel 20 g poedersuiker aan de koude slagroom toevoegen tijdens het kloppen; bij een niet te bittere chocolade is dit niet nodig.",
+        "ingredientIndices": [
+          63
+        ],
+        "quantityRefs": [
+          {
+            "text": "20 g poedersuiker",
+            "ingredientIndex": 63
+          }
+        ]
+      },
+      {
+        "title": "Dag ervoor – toppings en bijgerechten voorbereiden",
+        "body": "Rooster 110 g pijnboompitten 4–5 minuten goudbruin in een droge koekenpan; laat afkoelen en bewaar luchtdicht. Was en droog 225 g rucola en schaaf 180 g parmezaanse kaas, geschaafd. Schil en snijd 2200 g wortelen in gelijke schuine stukken; blancheer 7–9 minuten tot bijna beetgaar, koel direct terug en bewaar gekoeld. Halveer zo nodig 3200 g krieltjes, vastkokend en met schil, kook ze in gezouten water 8–10 minuten voor tot de randen zacht worden, giet af, laat goed droogstomen en koel snel terug. Bewaar gekoeld op schalen of in ondiepe bakken, niet urenlang op het aanrecht.",
+        "ingredientIndices": [
+          3,
+          1,
+          2,
+          50,
+          41
+        ],
+        "quantityRefs": [
+          {
+            "text": "110 g pijnboompitten",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "225 g rucola",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "180 g parmezaanse kaas, geschaafd",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "2200 g wortelen",
+            "ingredientIndex": 50
+          },
+          {
+            "text": "3200 g krieltjes, vastkokend en met schil",
+            "ingredientIndex": 41
+          }
+        ],
+        "duration": "50–65 min, deels parallel"
+      },
+      {
+        "title": "Kerstdag – OFYR en werkstations voorbereiden",
+        "body": "Steek de OFYR 100 rond 18.00 uur aan. Controleer of de grote pan stevig en hittebestendig boven het vuur staat en of op de plancha voldoende ruimte overblijft voor beide vleessoorten. Zet een vlees- en een aardappelkok in, met een keukenhulp binnen. Zet twee schone serveerplanken, een kerntemperatuurmeter en warme schalen klaar. Houd de voorgekookte aardappelen, rauw vlees en toppings gekoeld tot gebruik.",
+        "ingredientIndices": [],
+        "quantityRefs": []
+      },
+      {
+        "title": "Kerstdag – carpaccio opmaken",
+        "body": "Verdeel vlak voor het serveren 1260 g voorgesneden rundercarpaccio over gekoelde borden. Meng 35 ml olijfolie met 30 ml citroensap; verdeel de dressing erover. Garneer met de voorbereide rucola, Parmezaanse kaas, pijnboompitten, 270 g glutenvrije truffelmayonaise en 1 tl zwarte peper. Serveer direct. Houd rekening met gasten voor wie rauw vlees niet geschikt is.",
+        "ingredientIndices": [
+          0,
+          5,
+          6,
+          4,
+          7,
+          1,
+          2,
+          3
+        ],
+        "quantityRefs": [
+          {
+            "text": "1260 g voorgesneden rundercarpaccio",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "35 ml olijfolie",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "30 ml citroensap",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "270 g glutenvrije truffelmayonaise",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "1 tl zwarte peper",
+            "ingredientIndex": 7
+          }
+        ],
+        "duration": "15–20 min"
+      },
+      {
+        "title": "Kerstdag – aardappeltjes in de grote OFYR-pan",
+        "body": "Verhit de grote pan boven het vuur en voeg 140 ml zonnebloemolie toe. Bak de voorgekookte krieltjes vanaf circa 19.10–19.15 uur op middelhoog tot hoog vuur in een zo dun mogelijke laag. Schep geregeld om, niet voortdurend, en geef ze 30–40 minuten om goudbruin te worden. Is de pan toch te vol, werk dan in twee gedeelten en houd de eerste portie kort op een bakplaat in de oven warm. Voeg de laatste 8 minuten 40 g roomboter, 2 tl gedroogde rozemarijn, 1.5 tl gedroogde tijm en 2 tl knoflookpoeder toe. Meng vlak voor het serveren 1 tl gerookt paprikapoeder, 2.5 tl zout en 1 tl zwarte peper erdoor; proef op zout en krokantheid.",
+        "ingredientIndices": [
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          41
+        ],
+        "quantityRefs": [
+          {
+            "text": "140 ml zonnebloemolie",
+            "ingredientIndex": 42
+          },
+          {
+            "text": "40 g roomboter",
+            "ingredientIndex": 43
+          },
+          {
+            "text": "2 tl gedroogde rozemarijn",
+            "ingredientIndex": 44
+          },
+          {
+            "text": "1.5 tl gedroogde tijm",
+            "ingredientIndex": 45
+          },
+          {
+            "text": "2 tl knoflookpoeder",
+            "ingredientIndex": 46
+          },
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 47
+          },
+          {
+            "text": "2.5 tl zout",
+            "ingredientIndex": 48
+          },
+          {
+            "text": "1 tl zwarte peper",
+            "ingredientIndex": 49
+          }
+        ],
+        "duration": "30–40 min, afhankelijk van pan en vuur"
+      },
+      {
+        "title": "Kerstdag – varkenshaas kruiden en grillen",
+        "body": "Dep 3000 g varkenshaas droog. Wrijf in met 50 ml zonnebloemolie en bestrooi vlak voor het grillen met 2 tl zout, 1 tl zwarte peper en 2 tl gedroogde tijm. Leg de hele varkenshazen rond 19.10–19.20 uur op een middelhete zone van de OFYR en braad rondom bruin. Verplaats naar een minder hete zone en gaar rustig verder; keer regelmatig. Richt op 63–65 °C kerntemperatuur, afhankelijk van voorkeur en kwetsbare gasten, en laat minimaal 3–5 minuten rusten. Gebruik de kerntemperatuur, niet de klok, om te bepalen wanneer het vlees klaar is.",
+        "ingredientIndices": [
+          36,
+          37,
+          38,
+          39,
+          40
+        ],
+        "quantityRefs": [
+          {
+            "text": "3000 g varkenshaas",
+            "ingredientIndex": 36
+          },
+          {
+            "text": "50 ml zonnebloemolie",
+            "ingredientIndex": 37
+          },
+          {
+            "text": "2 tl zout",
+            "ingredientIndex": 38
+          },
+          {
+            "text": "1 tl zwarte peper",
+            "ingredientIndex": 39
+          },
+          {
+            "text": "2 tl gedroogde tijm",
+            "ingredientIndex": 40
+          }
+        ],
+        "duration": "circa 20–35 min, dikte-afhankelijk"
+      },
+      {
+        "title": "Kerstdag – bavette grillen",
+        "body": "Dep 3000 g bavette droog en verdeel zo nodig in grote stukken die goed op de plaat passen. Bestrijk met 50 ml zonnebloemolie en bestrooi vlak voor het grillen met 2 tl zout en 1.5 tl grof gemalen zwarte peper. Grill vanaf circa 19.30 uur op een hete zone van de OFYR tot zich een mooie bruine korst vormt; verplaats dikke stukken naar een mildere zone. Controleer de kerntemperatuur: voor rosé bavette bijvoorbeeld rond 54–57 °C na het rusten, met volledig doorbakken porties apart voor wie dat nodig heeft. Laat 8–10 minuten rusten en snijd daarna dun dwars op de draad.",
+        "ingredientIndices": [
+          32,
+          33,
+          34,
+          35
+        ],
+        "quantityRefs": [
+          {
+            "text": "3000 g bavette",
+            "ingredientIndex": 32
+          },
+          {
+            "text": "50 ml zonnebloemolie",
+            "ingredientIndex": 33
+          },
+          {
+            "text": "2 tl zout",
+            "ingredientIndex": 34
+          },
+          {
+            "text": "1.5 tl grof gemalen zwarte peper",
+            "ingredientIndex": 35
+          }
+        ],
+        "duration": "circa 10–25 min, dikte-afhankelijk + rusten"
+      },
+      {
+        "title": "Kerstdag – sauzen veilig opwarmen",
+        "body": "Verwarm de gekoelde rodewijnjus en champignonroomsaus in aparte pannen vanaf circa 19.20 uur op middellaag vuur, onder regelmatig roeren, tot beide door en door stomend heet zijn. Laat niet hard doorkoken, zeker de roomsaus niet. Verdun indien nodig met een klein scheutje water en proef nogmaals. Houd goed heet tot het serveren.",
+        "ingredientIndices": [
+          13,
+          26
+        ],
+        "quantityRefs": [],
+        "duration": "15–25 min"
+      },
+      {
+        "title": "Kerstdag – honing-tijmwortelen glaceren",
+        "body": "Smelt 75 g roomboter op middelhoog vuur. Voeg 60 g honing en de blaadjes van 6 takjes verse tijm toe; verwarm kort. Schep de voorgegaarde wortelen erdoor en glaceer 5–8 minuten tot ze heet en glanzend zijn. Maak af met 30 ml citroensap en 1.5 tl zout. Proef: de wortelen moeten lichtzoet zijn, met voldoende frisheid.",
+        "ingredientIndices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          50
+        ],
+        "quantityRefs": [
+          {
+            "text": "75 g roomboter",
+            "ingredientIndex": 51
+          },
+          {
+            "text": "60 g honing",
+            "ingredientIndex": 52
+          },
+          {
+            "text": "6 takjes verse tijm",
+            "ingredientIndex": 53
+          },
+          {
+            "text": "30 ml citroensap",
+            "ingredientIndex": 54
+          },
+          {
+            "text": "1.5 tl zout",
+            "ingredientIndex": 55
+          }
+        ],
+        "duration": "8–10 min"
+      },
+      {
+        "title": "Kerstdag – hoofdgerecht uitserveren",
+        "body": "Snijd de gerustte varkenshaas in medaillons en de bavette in dunne plakken dwars op de draad. Verdeel beide vleessoorten over warme schalen en zet de krokante aardappeltjes, honingwortelen en twee sauzen apart op tafel. Serveer rond 20.00 uur: zo kan iedere gast van beide vleessoorten nemen en blijven de aardappelen zo krokant mogelijk.",
+        "ingredientIndices": [
+          36,
+          32,
+          41,
+          50
+        ],
+        "quantityRefs": [],
+        "duration": "10 min"
+      },
+      {
+        "title": "Kerstdag – nagerecht",
+        "body": "Haal de glaasjes pas vlak voor het dessert uit de koelkast. Verdeel 360 g verse frambozen over de mousse en rasp desgewenst 45 g extra pure chocolade voor garnering erover. Serveer rond 21.00 uur. De mousse bevat geen rauw ei.",
+        "ingredientIndices": [
+          61,
+          62
+        ],
+        "quantityRefs": [
+          {
+            "text": "360 g verse frambozen",
+            "ingredientIndex": 61
+          },
+          {
+            "text": "45 g extra pure chocolade voor garnering",
+            "ingredientIndex": 62
+          }
+        ],
+        "duration": "5–10 min"
+      }
+    ],
+    "tips": "Definitief kerstmenu voor 18 personen. Kies aantoonbaar geschikte glutenvrije truffelmayonaise, bouillon, mosterd en chocolade; gebruik schoon gereedschap en voorkom kruiscontact op de OFYR. Rauwe carpaccio is niet geschikt voor onder meer zwangeren, jonge kinderen en personen met een verminderde weerstand; bied zo nodig een alternatief. De 6 kg vlees (3 kg bavette en 3 kg varkenshaas) is bewust royaal voor grotere vleeseters. Reken niet op exact gelijktijdige bereidingstijden op de OFYR: stuur op kerntemperatuur en werk met een apart gaarheidsniveau voor kwetsbare gasten. De grote pan boven het vuur is door de gebruiker al met succes gebruikt voor aardappelen. Controleer wel dat 3,2 kg krieltjes niet gaan stomen; werk desnoods in twee porties. Voorbereiden: dag ervoor sauzen, mousse, pijnboompitten, voorgekookte krieltjes en geblancheerde wortelen. Draaiboek kerstdag: 18.00 OFYR aan; 19.00 carpaccio; 19.10–19.15 aardappelen en varkenshaas; circa 19.30 bavette; 19.20 sauzen warmen; 19.45–19.55 wortelen en vlees afmaken; circa 20.00 hoofdgerecht; 21.00 dessert. Zorg voor voldoende koelruimte en koel warme bereidingen snel in ondiepe bakken tot maximaal 4 °C. Gekookte producten maximaal één keer opnieuw verhitten en restjes direct terugkoelen. Rauwe vleessoorten en gegaarde producten gescheiden houden. Voedingswaarden niet opgenomen omdat een driegangenmenu met vlees naar eetlust en twee sauzen sterk per portie varieert.",
+    "image": "",
+    "image_source": "",
+    "changeLog": [
+      {
+        "version": 1,
+        "date": "2026-11-11",
+        "description": "Definitief kerstmenu voor 18 personen toegevoegd, inclusief OFYR 100, 6 kg vlees, twee sauzen, aardappeltjes in de vuurpan, glutenvrije aandachtspunten en draaiboek."
+      }
+    ]
   }
 ]
