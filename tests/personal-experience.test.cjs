@@ -43,7 +43,7 @@ function app(initialNotes={}){
   elements.set(id,element);return element;
  }
  const location={hash:'',href:''},navigator={onLine:true};
- const window={
+ const window={CookbookScaling:require('../recipe-scaling.js'),
   location,navigator,CookbookPantry,isSecureContext:false,
   matchMedia:()=>({matches:false}),addEventListener(){},
   confirm:()=>true,scrollTo(){},print(){}
@@ -176,3 +176,4 @@ test('Persoonlijke notities blijven lokaal en worden niet in recepten.json gezet
  assert.equal(catalog.some(r=>r.personalNotes||r.rating||r.lastCookedOn),false);
  assert.match(html,/mijn-kookboek-persoonlijke-notities/);
 });
+
