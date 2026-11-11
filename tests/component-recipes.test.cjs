@@ -57,7 +57,7 @@ function browser(){
   createElement:()=>({click(){},remove(){}})
  };
  const location={hash:'',href:''},navigator={onLine:true};
- const window={location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),addEventListener(){},confirm:()=>true,scrollTo(){},print(){}};
+ const window={CookbookScaling:require('../recipe-scaling.js'),location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),addEventListener(){},confirm:()=>true,scrollTo(){},print(){}};
  const localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)};
  const api=new Function('document','window','navigator','localStorage','location','fetch','Option','setInterval','clearInterval','queueMicrotask','setTimeout',
   js+'\nreturn {refreshRecipeCollection,route,renderBasket,basketItems,getBasket:()=>basket,getChecks:()=>checked,getRecipes:()=>recipes};')(
@@ -181,3 +181,4 @@ rejects('Circulaire receptkoppelingen worden afgekeurd',r=>{
  r.find(x=>x.id===child).ingredients[0].componentRecipeId=parent;
  r.find(x=>x.id===child).ingredients[0].readyMadeName='Boter';
 },/cirkel in basisrecepten/);
+
