@@ -43,7 +43,7 @@ async function withPage(width,fn){
 }
 (async()=>{
  try{
-  for(let i=0;i<50;i++){try{if((await fetch(host+'/index.html')).ok)break;}catch(error){}if(i===49)throw Error('Server niet bereikbaar');await delay(200);}
+  for(let i=0;i<50;i++){try{if((await fetch(host+'/index.html',{method:'HEAD'})).ok)break;}catch(error){}if(i===49)throw Error('Server niet bereikbaar');await delay(200);}
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});
   for(const width of [390,320]){
    await withPage(width,async page=>{

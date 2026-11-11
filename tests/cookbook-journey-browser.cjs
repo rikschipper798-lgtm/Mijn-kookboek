@@ -18,7 +18,7 @@ const results = [];
 
 async function ready() {
   for (let i = 0; i < 50; i++) {
-    try { if ((await fetch(url)).ok) return; } catch {}
+    try { if ((await fetch(url, { method: 'HEAD' })).ok) return; } catch {}
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   throw new Error('Het publicatiepakket is niet bereikbaar.');

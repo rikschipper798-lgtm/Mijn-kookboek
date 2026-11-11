@@ -16,7 +16,9 @@ const mkDiary=(title,kcal)=>({
  goals:{kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5},
  days:{'2026-11-07':[{id:'demo-'+kcal,source:'manual',title,
   nutrition:{kcal,proteinG:20,carbsG:44,fatG:12,fiberG:5}}]},
- weekdayPresets:{},weekdayApplied:{}
+ weekdayPresets:{},weekdayApplied:{},
+ quickMeals:[{id:'quick-'+kcal,title:'Standaard '+title,
+  nutrition:{kcal,proteinG:20,carbsG:44,fatG:12,fiberG:5}}]
 });
 const seed=mkDiary('Oorspronkelijke testmaaltijd',410);
 const target=mkDiary('Herstelde testmaaltijd',720);
@@ -47,7 +49,7 @@ async function context(local=true){
  return {c,p};
 }
 const open=async p=>p.goto(BASE+'/voeding.html',{waitUntil:'domcontentloaded'});
-const waitFor=async(p,predicate)=>p.waitForFunction(predicate,{timeout:10000});
+const waitFor=async(p,predicate)=>p.waitForFunction(predicate,null,{timeout:10000});
 const importFile=(p,obj)=>p.locator('#importFile').setInputFiles({
  name:'test-dagboek.json',mimeType:'application/json',
  buffer:Buffer.from(typeof obj==='string'?obj:JSON.stringify(obj))
@@ -105,7 +107,7 @@ function cloudStub(){
 (async()=>{
  try{
   for(let i=0;i<60;i++){
-   try{const r=await fetch(BASE+'/voeding.html');if(r.ok)break;}catch(e){}
+   try{const r=await fetch(BASE+'/voeding.html',{method:'HEAD'});if(r.ok)break;}catch(e){}
    if(i===59)throw Error('Testserver start niet');
    await sleep(150);
   }
@@ -233,12 +235,26 @@ function cloudStub(){
     return {visible:true};
    }finally{await c.close();}
   });
+  await run('7. Oudere back-up zonder standaardgerechten blijft te herstellen',async()=>{
+   const {c,p}=await context();
+   try{
+    await open(p);
+    await p.evaluate(()=>window.confirm=()=>true);
+    const legacy=clone(target);delete legacy.quickMeals;
+    await importFile(p,payload(legacy));
+    await waitFor(p,()=>document.querySelector('#status').textContent.includes('hersteld'));
+    assert.deepEqual(await current(p),{...target,quickMeals:[]});
+    await p.reload({waitUntil:'domcontentloaded'});
+    assert.deepEqual(await current(p),{...target,quickMeals:[]});
+    return {legacyRestored:true,quickMeals:0};
+   }finally{await c.close();}
+  });
  }catch(err){console.error('INFRASTRUCTUURFOUT',err.stack);process.exitCode=2;}
  finally{
   if(browser)await browser.close();
   server.kill();
   fs.writeFileSync(output+'/resultaten.json',JSON.stringify(tests,null,2));
   console.log('HERSTELTEST '+tests.filter(x=>x.ok).length+'/'+tests.length+' geslaagd');
-  if(tests.length!==6||tests.some(x=>!x.ok))process.exitCode=1;
+  if(tests.length!==7||tests.some(x=>!x.ok))process.exitCode=1;
  }
 })();
