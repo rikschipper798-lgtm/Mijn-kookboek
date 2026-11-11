@@ -63,7 +63,7 @@ jobs:
   portions-browser:
     name: Porties in browser en offline
     needs: validate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 7
     steps:
       - uses: actions/checkout@v4
