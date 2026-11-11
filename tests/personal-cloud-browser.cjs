@@ -72,7 +72,7 @@ async function run(name,fn){
 }
 (async()=>{
  try{
-  for(let i=0;i<80;i++){try{if((await fetch(host+'/index.html')).ok)break;}catch(e){}if(i===79)throw Error('Server not ready');await sleep(150);}
+  for(let i=0;i<80;i++){try{if((await fetch(host+'/index.html',{method:'HEAD'})).ok)break;}catch(e){}if(i===79)throw Error('Server not ready');await sleep(150);}
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});
   await run('1. Bestaande favorieten op eerste apparaat worden pas na keuze geüpload',async()=>{
    const a=await device('user-a','mobiel-a',['bruschetta']);

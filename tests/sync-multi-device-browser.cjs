@@ -112,7 +112,7 @@ async function run(name,fn){
 }
 async function goReady(){
  for(let i=0;i<80;i++){
-  try{const r=await fetch(BASE+'/voeding.html');if(r.ok)return;}catch(e){}
+  try{const r=await fetch(BASE+'/voeding.html',{method:'HEAD'});if(r.ok)return;}catch(e){}
   await sleep(150);
  }
  throw Error('Lokale server start niet');

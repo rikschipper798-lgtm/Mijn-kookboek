@@ -69,6 +69,8 @@ async function device(data=base(),cloud=false){
   }};
  },data);
  const page=await context.newPage();
+ // Dezelfde werkdag moet ook na herladen actief blijven, ongeacht de CI-datum.
+ await page.clock.setFixedTime(new Date(DATE+'T12:00:00+01:00'));
  await page.goto(BASE+'/voeding.html',{waitUntil:'domcontentloaded'});
  await page.locator('#diaryContent').waitFor({state:'visible'});
  if((await page.locator('#selectedDate').inputValue())!==DATE)await page.locator('#selectedDate').fill(DATE);
@@ -86,7 +88,7 @@ async function run(name,action){
 (async()=>{
  try{
   for(let tries=0;tries<60;tries++){
-   try{if((await fetch(BASE+'/voeding.html')).ok)break;}catch(error){}
+   try{if((await fetch(BASE+'/voeding.html',{method:'HEAD'})).ok)break;}catch(error){}
    if(tries===59)throw Error('Testwebsite niet bereikbaar');await sleep(150);
   }
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});

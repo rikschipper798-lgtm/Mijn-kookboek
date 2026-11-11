@@ -53,7 +53,7 @@ async function probe(name,fn){
 (async()=>{
  try{
   for(let i=0;i<70;i++){
-   try{const r=await fetch(BASE+'/index.html');if(r.ok)break;}catch(e){}
+   try{const r=await fetch(BASE+'/index.html',{method:'HEAD'});if(r.ok)break;}catch(e){}
    if(i===69)throw Error('Server niet bereikbaar');await sleep(150);
   }
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});

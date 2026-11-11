@@ -6,7 +6,7 @@ const origin='http://127.0.0.1:8779';
 const server=spawn('python3',['-m','http.server','8779','--bind','127.0.0.1'],{stdio:'ignore'});
 let browser;
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-async function ready(){for(let i=0;i<50;i++){try{if((await fetch(origin)).ok)return;}catch{}await pause(100);}throw Error('Testserver start niet');}
+async function ready(){for(let i=0;i<50;i++){try{if((await fetch(origin,{method:'HEAD'})).ok)return;}catch{}await pause(100);}throw Error('Testserver start niet');}
 async function four(page){
  await page.locator('#plus').waitFor();
  while(Number(await page.locator('.servings strong').innerText())<4)await page.locator('#plus').click();

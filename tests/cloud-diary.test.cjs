@@ -426,12 +426,16 @@ test('Dagboekformulier toont een wijziging pas na een bevestigde lokale opslag',
   const nodes={},listeners={};
   const node=id=>nodes[id]??={
    id,value:'',checked:false,hidden:false,disabled:false,style:{},dataset:{},
-   textContent:'',innerHTML:'',classList:{toggle(){}},setAttribute(){},
+   textContent:'',innerHTML:'',classList:{
+    values:new Set(),
+    toggle(name,force){const on=force??!this.values.has(name);if(on)this.values.add(name);else this.values.delete(name);return on;},
+    contains(name){return this.values.has(name);}
+   },setAttribute(){},
    querySelectorAll(){return [];},
    addEventListener(name,fn){(listeners[id]??={})[name]=fn;},
-   focus(){},reset(){}
+   focus(){},reset(){if(id==='manualForm')resets++;}
   };
-  let saved=null;
+  let saved=null,resets=0;
   const cloud={enabled:true,start(callbacks){callbacks.onData(null);},
    enqueue(data){if(!allow)return false;saved=copy(data);return true;}};
   const sandbox={
@@ -447,15 +451,17 @@ test('Dagboekformulier toont een wijziging pas na een bevestigde lokale opslag',
   node('manualName').value='Test voor opslag';
   node('manualKcal').value='350';
   listeners.manualForm.submit({preventDefault(){}});
-  return {saved,html:node('entries').innerHTML,message:node('status').textContent};
+  return {saved,resets,html:node('entries').innerHTML,message:node('status').textContent};
  }
  const failed=formCase(false);
  assert.equal(failed.saved,null);
  assert.doesNotMatch(failed.html,/Test voor opslag/);
  assert.match(failed.message,/niet opgeslagen/);
+ assert.equal(failed.resets,0,'Bij een opslagfout blijft het invoerformulier behouden.');
  const succeeded=formCase(true);
  assert.equal(succeeded.saved.days[Object.keys(succeeded.saved.days)[0]][0].nutrition.kcal,350);
  assert.match(succeeded.html,/Test voor opslag/);
+ assert.equal(succeeded.resets,1,'Na succesvolle opslag wordt het invoerformulier gewist.');
 });
 
 test('Verloren netwerkbevestiging bij eerste upload wordt veilig als geslaagd herkend',async()=>{

@@ -98,7 +98,11 @@ test('Dagboek wijst te grote nieuwe wijzigingen af vóór cloudupload',()=>{
   days,weekdayPresets:{},weekdayApplied:{}};
  let cloudWrites=0;const elements={},events={};
  const el=id=>elements[id]??={value:'',checked:false,disabled:false,hidden:false,
-  style:{},innerHTML:'',textContent:'',dataset:{},classList:{toggle(){}},
+  style:{},innerHTML:'',textContent:'',dataset:{},classList:{
+   values:new Set(),
+   toggle(name,force){const on=force??!this.values.has(name);if(on)this.values.add(name);else this.values.delete(name);return on;},
+   contains(name){return this.values.has(name);}
+  },
   setAttribute(){},addEventListener(k,fn){(events[id]??={})[k]=fn;},
   focus(){},reset(){}};
  const sandbox={
