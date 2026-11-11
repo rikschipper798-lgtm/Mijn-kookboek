@@ -171,12 +171,14 @@ nodig de variant). Leg de inhoudelijke wijziging vast via de bestaande
 
 ## Automatische receptcontrole
 
-Bij iedere push naar `main`, iedere pull request en via `workflow_dispatch` in GitHub Actions draait de workflow [Controleer kookboekrecepten](.github/workflows/validate-recipes.yml).
+Bij iedere push naar `main`, iedere pull request en via `workflow_dispatch` in GitHub Actions draait de workflow [Kwaliteitscontrole en publicatie](.github/workflows/validate-recipes.yml).
 
-De controle bestaat uit twee delen:
+De controle omvat:
 
-1. **Regressietests:** `node --test tests/validate-recipes.test.cjs` — controleert met goede én bewust foutieve testgegevens of de validator correct werkt.
+1. **Alle regressietests:** `node --test tests/*.test.cjs`, inclusief persoonlijke synchronisatie, receptporties en de publicatieblokkade.
 2. **Receptvalidatie:** `node scripts/validate-recipes.cjs` — controleert alle recepten en varianten in `recepten.json`, inclusief afbeeldingsbestanden.
+3. **Acht browseronderdelen:** de volledige gebruikersroute, porties en offline gebruik, synchronisatie, herstel, automatische maaltijden, toegankelijkheid en mobiele bediening.
+4. **Websitepakket:** alleen publieke appbestanden en afbeeldingen worden klaargezet. De volledige gebruikersroute wordt op dit pakket getest.
 
 De validator keurt onder andere af: dubbele recept-ID's of conflicterende aliases, ontbrekende velden, ongeldige porties of hoeveelheden, onbekende eenheden, onjuiste ingrediëntverwijzingen in stappen, ontbrekende afbeeldingen, foutieve varianten, onlogische tijdsgegevens en ongeldige afrondstappen bij schaalbare ingrediënten.
 
@@ -187,15 +189,15 @@ Een **fout** laat de GitHub Actions-job mislukken. Een **waarschuwing** maakt ee
 Vereist: Node.js 22 of nieuwer. Er zijn geen npm-packages nodig.
 
 ```bash
-node --test tests/validate-recipes.test.cjs
+node --test tests/*.test.cjs
 node scripts/validate-recipes.cjs
 ```
 
 ### Wijzigingen veilig publiceren
 
-Gebruik bij voorkeur een **pull request** en controleer of de status `Receptvalidatie` geslaagd is voordat je samenvoegt. Om een foutieve pull request technisch te blokkeren moet je in GitHub een branch protection rule/ruleset instellen met **Require status checks to pass** en deze statuscheck als verplicht kiezen.
+Gebruik een **pull request** en vereis de vaste eindstatus **Kwaliteitscontrole**. Deze slaagt alleen als alle controles en het websitepakket zijn geslaagd; ook afgebroken of overgeslagen controles blokkeren de eindstatus.
 
-**Let op:** de workflow controleert een rechtstreekse push naar `main` pas **nadat** die push is gedaan. Zonder verplichte branch protection voorkomt de workflow dus niet dat een foutieve wijziging rechtstreeks wordt gepubliceerd.
+De publicatieworkflow staat klaar, maar moet afzonderlijk worden geactiveerd: bescherm `main`, zet de Pages-publicatiebron op **GitHub Actions** en stel **COOKBOOK_PAGES_ENABLED=true** in. Tot die instellingen zijn gecontroleerd, is publicatie nog niet volledig afgeschermd. Zie [activering, foutafhandeling en testinstructies](docs/kwaliteitscontrole.md).
 
 Als je bewust een nieuwe ingrediënteenheid introduceert, pas dan ook de ondersteunde lijst `UNITS` in de validator aan.
 

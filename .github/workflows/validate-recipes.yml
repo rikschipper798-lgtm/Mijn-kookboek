@@ -1,78 +1,178 @@
-name: Controleer kookboekrecepten
+name: Kwaliteitscontrole en publicatie
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: kwaliteit-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   validate:
-    name: Receptvalidatie
-    runs-on: ubuntu-latest
+    name: Receptvalidatie en regressietests
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - name: Node.js instellen
-        uses: actions/setup-node@v4
+          persist-credentials: false
+      - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Regressietests uitvoeren
-        run: node --test tests/validate-recipes.test.cjs
-      - name: Hoeveelheden in bereidingsstappen testen
-        run: node --test tests/recipe-scaling.test.cjs
-      - name: Offline afbeeldingen en synchronisatie testen
-        run: node --test tests/offline-images.test.cjs
-      - name: Gekoppelde basisrecepten testen
-        run: node --test tests/component-recipes.test.cjs
-      - name: Persoonlijke voorraad en back-ups testen
-        run: node --test tests/pantry.test.cjs
-      - name: Receptversies en wijzigingsgeschiedenis testen
-        run: node --test tests/recipe-revisions.test.cjs
-      - name: Persoonlijke beoordelingen en kookervaringen testen
-        run: node --test tests/personal-experience.test.cjs
-      - name: Receptgroepen en filters testen
-        run: node --test tests/recipe-types.test.cjs
-      - name: Voedingswaarden en porties testen
-        run: node --test tests/nutrition.test.cjs
-      - name: Accountisolatie en synchronisatie van voedingsdagboek testen
-        run: node --test tests/cloud-diary.test.cjs
-      - name: Accountbeveiliging, herstelgeschiedenis en privacy testen
-        run: node --test tests/cloud-governance.test.cjs
-      - name: Versleutelde dagboekback-ups testen
-        run: node --test tests/secure-backup.test.cjs
-      - name: Versleutelde onafhankelijke databaseback-ups testen
-        run: node --test tests/backup-database.test.cjs
-      - name: JavaScript-syntax van cloudmodules controleren
+      - name: Alle regressietests uitvoeren
+        run: node --test tests/*.test.cjs
+      - name: JavaScript-syntax controleren
         run: |
-          node --check voeding-cloud.js
-          node --check cloud-config.js
+          for file in *.js scripts/*.cjs tests/*.cjs; do
+            node --check "$file"
+          done
       - name: Recepten en afbeeldingen controleren
         run: node scripts/validate-recipes.cjs
       - name: Receptversies tegen vorige Git-versie controleren
         run: node scripts/check-recipe-revisions.cjs
 
-
-  portions-browser:
-    name: Porties in browser en offline
+  browser:
+    name: Browser — ${{ matrix.name }}
     needs: validate
     runs-on: ubuntu-24.04
-    timeout-minutes: 7
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - id: gebruikersroute
+            name: Complete gebruikersroute
+            script: tests/cookbook-journey-browser.cjs
+            report: gebruikersroute-testresultaten/
+          - id: porties
+            name: Porties en offline
+            script: tests/recipe-scaling-browser.cjs
+            report: ''
+          - id: persoonlijke-cloud
+            name: Persoonlijke gegevens
+            script: tests/personal-cloud-browser.cjs
+            report: persoonlijke-cloud-testresultaten/
+          - id: synchronisatie
+            name: Meerdere apparaten
+            script: tests/sync-multi-device-browser.cjs
+            report: sync-testresultaten/
+          - id: herstel
+            name: Back-ups herstellen
+            script: tests/backup-recovery-browser.cjs
+            report: herstel-testresultaten/
+          - id: vaste-maaltijden
+            name: Automatische maaltijden
+            script: tests/automatische-maaltijden-browser.cjs
+            report: automatische-maaltijden-testresultaten/
+          - id: toegankelijkheid
+            name: Toegankelijkheid
+            script: tests/accessibility-browser-audit.cjs
+            report: accessibility-audit-results/
+          - id: mobiel
+            name: Mobiele bediening
+            script: tests/mobile-touch-targets.cjs
+            report: mobile-touch-audit/
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Browser installeren
+      - name: Testbrowser en toegankelijkheidscontrole installeren
         run: |
-          npm install --no-save playwright@1.56.1
+          npm install --no-save playwright@1.56.1 axe-core@4.10.3
           npx playwright install --with-deps chromium
-      - name: Recepten, kookmodus, kopiëren en offline testen
-        run: node tests/recipe-scaling-browser.cjs
+      - name: Publicatiepakket voor gebruikstest maken
+        if: matrix.id == 'gebruikersroute'
+        run: node scripts/build-site.cjs
+      - name: Browsertest uitvoeren
+        run: node "${{ matrix.script }}"
+      - name: Testrapport en screenshots bewaren
+        if: ${{ always() && matrix.report != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-${{ matrix.id }}
+          path: ${{ matrix.report }}
+          if-no-files-found: warn
+          retention-days: 7
+
+  site:
+    name: Websitepakket
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Alleen publieke appbestanden verzamelen
+        run: node scripts/build-site.cjs
+      - name: Exact dit websitepakket bewaren
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+          retention-days: 1
+
+  quality:
+    # Kies precies deze stabiele statusnaam als verplichte branchcontrole.
+    name: Kwaliteitscontrole
+    needs: [validate, browser, site]
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Alle vereiste resultaten controleren
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: node scripts/check-quality-gate.cjs
+
+  deploy:
+    name: Publiceer website
+    needs: [quality, site]
+    # Eerst Pages omschakelen naar GitHub Actions; zie docs/kwaliteitscontrole.md.
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      vars.COOKBOOK_PAGES_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    steps:
+      - name: Verouderde heruitvoeringen niet publiceren
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          current_sha="$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq '.sha')"
+          if [ "$current_sha" != "$GITHUB_SHA" ]; then
+            echo "::error::main is inmiddels gewijzigd. Voer de controle uit op de nieuwste versie."
+            exit 1
+          fi
+      - name: Publiceer het gecontroleerde websitepakket
+        id: deployment
+        uses: actions/deploy-pages@v4
