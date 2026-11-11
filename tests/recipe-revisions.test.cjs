@@ -54,7 +54,7 @@ test('V1-opnamelog blijft bewaard als een nieuwere versie wordt geregistreerd',(
  const input=clone();
  const oldHistory=JSON.stringify(catalogRecipe.changeLog);
  const next=input.find(r=>r.id===catalogRecipe.id);
- const result=bumpRecipe(input,catalogRecipe.id,'Receptmetadata en oorspronkelijke versie gecontroleerd.',{date:'2026-11-09'});
+ const result=bumpRecipe(input,catalogRecipe.id,'Receptmetadata en oorspronkelijke versie gecontroleerd.',{date:catalogRecipe.updatedAt||catalogRecipe.date});
  assert.equal(result.version,catalogRecipe.version+1);
  assert.equal(JSON.stringify(next.changeLog.slice(0,-1)),oldHistory);
  assert.equal(next.changeLog.at(-1).version,result.version);
@@ -169,7 +169,7 @@ test('Revisiehulpmiddel verhoogt versie en registreert datum en omschrijving',()
 test('Revisiehulpmiddel kan een variant onafhankelijk verhogen',()=>{
  const d=clone(),r=d.find(x=>x.variants?.length);
  const result=bumpRecipe(d,r.id,'De romige saus wat rijker en milder gemaakt.',{
-  variantId:r.variants[0].id,date:REVISION_DATE
+  variantId:r.variants[0].id,date:r.variants[0].updatedAt||r.date
  });
  assert.equal(result.version,catalog.find(x=>x.id===r.id).variants[0].version+1);
  assert.equal(r.version,catalog.find(x=>x.id===r.id).version);
@@ -195,3 +195,4 @@ test('Een gewijzigde variant bepaalt de datum bij recent gewijzigd',()=>{
  assert.equal(ui.recipeRevisionMeta(r).includes('Bijgewerkt'),false);
  assert.equal(ui.recipeRevisionMeta({...r,...r.variants[0]}).includes('Bijgewerkt'),true);
 });
+
