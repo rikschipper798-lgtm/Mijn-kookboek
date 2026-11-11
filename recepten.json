@@ -11343,6 +11343,10 @@
           {
             "text": "0.5 tl zwarte peper",
             "ingredientIndex": 19
+          },
+          {
+            "text": "900 ml",
+            "perServing": 50
           }
         ],
         "duration": "circa 50–65 min"
@@ -11431,6 +11435,10 @@
           {
             "text": "0.5 tl zout",
             "ingredientIndex": 31
+          },
+          {
+            "text": "900 ml",
+            "perServing": 50
           }
         ],
         "duration": "35–45 min"
