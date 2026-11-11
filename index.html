@@ -888,6 +888,7 @@ footer{color:#526454}
 <script src="./cloud-config.js"></script>
 <script src="./personal-cloud.js"></script>
 <script src="./pantry.js"></script>
+<script src="./recipe-scaling.js?v=2026-11-11-porties-v1"></script>
 <script>
 'use strict';
 const el=id=>document.getElementById(id);
@@ -1085,13 +1086,12 @@ function fmtQty(n,u){
  return hit?(whole?String(whole):'')+hit[1]:fmt(n);
 }
 function displayUnit(u,n){
- const plural={stuk:'stuks',teentje:'teentjes',plantje:'plantjes',blaadje:'blaadjes',plak:'plakken',snee:'sneetjes',blad:'bladen',portie:'porties'};
- const singular={stuks:'stuk',teentjes:'teentje',plantjes:'plantje',blaadjes:'blaadje',plakken:'plak',sneetjes:'snee',bladen:'blad',porties:'portie'};
+ const plural={plakje:'plakjes',stuk:'stuks',teentje:'teentjes',plantje:'plantjes',blaadje:'blaadjes',plak:'plakken',snee:'sneetjes',blad:'bladen',portie:'porties'};
+ const singular={plakjes:'plakje',stuks:'stuk',teentjes:'teentje',plantjes:'plantje',blaadjes:'blaadje',plakken:'plak',sneetjes:'snee',bladen:'blad',porties:'portie'};
  return n<=1?(singular[u]||u):(plural[u]||u);
 }
 function scaledIngredientQty(item,mult){
- const n=Number(item.qty),roundTo=Number(item.scaleRoundTo)||0;
- return roundTo>0?Math.ceil((n*mult-1e-9)/roundTo)*roundTo:n*mult;
+ return window.CookbookScaling.ingredientQty(item,mult);
 }
 function amount(i,mult){
  if(i.qty===null)return i.unit||'naar smaak';
@@ -1179,7 +1179,9 @@ function scaledEggDirections(mult){
   fmtQty(18*mult,'g')+' g eidooier af. Meng de afgewogen hoeveelheden.';
 }
 function scaledStepBody(view,step,mult){
- let body=scaleStep(typeof step==='string'?step:step.body||'',scalingIngredients(view,step),mult,portions(view));
+ let body=Array.isArray(step.quantityRefs)
+  ?window.CookbookScaling.renderStep({...view,servings:portions(view)},step,mult,fmtQty)
+  :scaleStep(typeof step==='string'?step:step.body||'',scalingIngredients(view,step),mult,portions(view));
  if(Math.abs(mult-1)<1e-9||typeof step!=='object')return body;
  if(step.scaleEggMixture){
   body=body.replace(/Neem \d+[⅛¼⅓⅜½⅝⅔¾⅞]* eieren: gebruik 1 heel ei en alleen de dooier van het tweede ei\./u,scaledEggDirections(mult));
@@ -1616,8 +1618,9 @@ function basketItems(){
     row.optional=row.optional&&Boolean(ingredient.optional);
     if(p.id==='paprika'&&basketName(ingredient.name)==='rode paprika')row.name='Paprika (rood)';
     if(ingredient.qty===null||ingredient.qty===undefined){row.text=true;return}
-    const qty=basketSourceAmount(ingredient.scaleRoundTo?{...ingredient,qty:scaledIngredientQty(ingredient,mult)}:ingredient,p);
-    if(qty!==null){row.qty+=ingredient.scaleRoundTo?qty:qty*mult;row.numeric=true}
+    const scaled=ingredient.scaleRoundTo||ingredient.scaleFixed;
+    const qty=basketSourceAmount(scaled?{...ingredient,qty:scaledIngredientQty(ingredient,mult)}:ingredient,p);
+    if(qty!==null){row.qty+=scaled?qty:qty*mult;row.numeric=true}
     else row.text=true;
    });
   }
@@ -2968,3 +2971,4 @@ refreshRecipeCollection(true);
 </script>
 </body>
 </html>
+
