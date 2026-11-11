@@ -317,7 +317,7 @@ In het receptenoverzicht zijn twee sorteermogelijkheden beschikbaar: **Mijn beoo
 
 Kooknotities en persoonlijke beoordelingen blijven meegenomen worden in de bestaande lokale back-up. Er is **geen** publiek ratingsysteem, geen onzichtbare automatische kookregistratie en geen synchronisatie tussen apparaten.
 
-Tests: \`node --test tests/personal-experience.test.cjs\`. Deze regressietests worden ook uitgevoerd in de workflow \`Controleer kookboekrecepten\`.
+Tests: `node --test tests/personal-experience.test.cjs`. Deze regressietests worden ook uitgevoerd in de workflow **Kwaliteitscontrole en publicatie**.
 
 ## Maaltijden, overige recepten en basisrecepten (punt 9)
 
