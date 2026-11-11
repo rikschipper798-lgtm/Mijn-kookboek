@@ -357,6 +357,16 @@ footer,footer a{color:#516153}
       <section class="meal-mode" aria-labelledby="manualTitle" id="manualSection" hidden>
         <h3 id="manualTitle">Zelf invoeren</h3>
         <p class="muted">Gebruik de voedingswaarden van een verpakking of een eigen schatting voor de hoeveelheid die je daadwerkelijk hebt gegeten.</p>
+        <div class="field" aria-label="Mijn standaardgerechten">
+          <label for="quickMealSelect">Mijn standaardgerechten</label>
+          <select id="quickMealSelect"><option value="">Kies een standaardgerecht</option></select>
+          <div class="actions">
+            <button type="button" id="quickMealAdd">Registreer geselecteerd gerecht</button>
+            <button type="button" id="quickMealEdit" class="secondary">Neem over in formulier</button>
+            <button type="button" id="quickMealDelete" class="secondary">Verwijder standaardgerecht</button>
+          </div>
+          <p class="muted">Persoonlijke snelkeuzes. Deze gerechten worden niet automatisch ingevuld, vervangen je vaste ontbijt of lunch niet en tellen pas mee wanneer je ze registreert.</p>
+        </div>
         <form id="manualForm">
           <div class="field"><label for="manualName">Omschrijving</label><input id="manualName" required maxlength="120" placeholder="Bijv. ontbijt: kwark en banaan"></div>
           <div class="grid3">
@@ -367,6 +377,7 @@ footer,footer a{color:#516153}
             <div class="field"><label for="manualFiber">Vezels (g)</label><input id="manualFiber" type="number" min="0" max="1000" step="0.1" inputmode="decimal"></div>
           </div>
           <p class="muted">* Alleen calorieën zijn verplicht. Lege velden betekenen 'niet bekend', niet nul.</p>
+          <label class="preset-check"><input id="manualSaveQuick" type="checkbox"> Bewaar dit gerecht ook als standaardgerecht voor later</label>
           <button type="submit">Voeg toe aan deze dag</button>
         </form>
       </section>
@@ -518,7 +529,7 @@ footer,footer a{color:#516153}
  const today=()=>new Date().toLocaleDateString('sv-SE');
  const dateValid=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&new Date(s+'T12:00:00').toLocaleDateString('sv-SE')===s;
  const SLOTS=['ontbijt','lunch'];
- const newState=()=>({goals:{...DEFAULTS},days:{},weekdayPresets:{},weekdayApplied:{}});
+ const newState=()=>({goals:{...DEFAULTS},days:{},weekdayPresets:{},weekdayApplied:{},quickMeals:[]});
  const cloudMode=Boolean(window.CookbookCloud&&window.CookbookCloud.enabled);
  let cloudReady=!cloudMode;
  el('accountTools').hidden=!cloudMode;
@@ -621,7 +632,21 @@ footer,footer a{color:#516153}
       throw Error('Ongeldige werkdag.');
     weekdayApplied[day]=[...new Set(slots)];
    }
-   return {goals,days,weekdayPresets,weekdayApplied};
+   const quickMeals=[];
+   const storedQuick=data.quickMeals===undefined?[]:data.quickMeals;
+   if(!Array.isArray(storedQuick)||storedQuick.length>50)throw Error('Ongeldige lijst standaardgerechten.');
+   const quickIds=new Set();
+   for(const meal of storedQuick){
+    if(!meal||typeof meal.id!=='string'||!/^[a-z0-9-]{1,100}$/.test(meal.id)||quickIds.has(meal.id)||
+       typeof meal.title!=='string'||!meal.title.trim()||meal.title.length>120||
+       !meal.nutrition||!validNum(meal.nutrition.kcal)||meal.nutrition.kcal>10000||
+       !KEYS.slice(1).every(k=>meal.nutrition[k]===null||validNum(meal.nutrition[k])&&meal.nutrition[k]<=1000))
+     throw Error('Ongeldig standaardgerecht.');
+    quickIds.add(meal.id);
+    quickMeals.push({id:meal.id,title:meal.title.trim(),
+     nutrition:Object.fromEntries(KEYS.map(k=>[k,meal.nutrition[k]]))});
+   }
+   return {goals,days,weekdayPresets,weekdayApplied,quickMeals};
  }
  if(!cloudMode){
   try{
@@ -696,6 +721,15 @@ footer,footer a{color:#516153}
      (p?esc(p.title)+' · '+fmt(p.nutrition.kcal)+' kcal · '+(p.enabled?'ma–vr actief':'automatisch uit'):'Nog niet ingesteld')+'</span></div>';
   }).join('');
  }
+ function renderQuickMeals(){
+  const select=el('quickMealSelect'),selected=select.value;
+  select.innerHTML='<option value="">Kies een standaardgerecht</option>'+
+   state.quickMeals.map(meal=>'<option value="'+esc(meal.id)+'">'+esc(meal.title)+' · '+fmt(meal.nutrition.kcal)+' kcal</option>').join('');
+  if(state.quickMeals.some(meal=>meal.id===selected))select.value=selected;
+  for(const id of ['quickMealAdd','quickMealEdit','quickMealDelete'])
+   el(id).disabled=!select.value;
+ }
+ function selectedQuickMeal(){return state.quickMeals.find(meal=>meal.id===el('quickMealSelect').value);}
  function loadWeekdayForm(){
   const p=state.weekdayPresets[el('weekdaySlot').value];
   el('weekdayTitleInput').value=p?.title||'';
@@ -715,8 +749,20 @@ footer,footer a{color:#516153}
   if(target===el('entryTitle'))target.setAttribute('tabindex','-1');
   if(target&&typeof target.focus==='function')target.focus({preventScroll:true});
  }
- function addEntry(entry){
-  if(commit(()=>{if(!state.days[selectedDay])state.days[selectedDay]=[];state.days[selectedDay].push(entry);})){
+ function addEntry(entry,saveQuick=false){
+  if(saveQuick&&state.quickMeals.length>=50&&!state.quickMeals.some(meal=>meal.title.toLowerCase()===entry.title.toLowerCase())){
+   status('Je kunt maximaal 50 standaardgerechten bewaren.',true);return;
+  }
+  if(commit(()=>{
+   if(!state.days[selectedDay])state.days[selectedDay]=[];
+   state.days[selectedDay].push(entry);
+   if(saveQuick){
+    const existing=state.quickMeals.find(meal=>meal.title.toLowerCase()===entry.title.toLowerCase());
+    if(existing)existing.nutrition={...entry.nutrition};
+    else state.quickMeals.push({id:'gerecht-'+uniqueId().toLowerCase().replace(/[^a-z0-9-]/g,'-'),
+      title:entry.title,nutrition:{...entry.nutrition}});
+   }
+  })){
    showMealEntry(null);
    focusEntryAfterUpdate(entry.id,currentEntries().length-1);
    status('Maaltijd geregistreerd voor '+selectedDay+(cloudMode?'. Controleer de synchronisatiestatus bij Account en synchronisatie.':'.'));
@@ -735,7 +781,7 @@ footer,footer a{color:#516153}
  function render(){
   el('diaryContent').hidden=!cloudReady;
   if(!cloudReady)return;
-  autoWeekdays();showWeekdays();
+  autoWeekdays();showWeekdays();renderQuickMeals();
   const used=diarySize(state);
   el('storageCapacity').textContent='Dagboekgrootte: '+fmt(used/1024,1)+' KB van ongeveer '+fmt(MAX_DIARY_BYTES/1024,0)+' KB veilige applicatielimiet.'+(used>1200000?' Maak regelmatig een back-up en beperk grote imports.':'');
   const entries=currentEntries();
@@ -960,6 +1006,26 @@ footer,footer a{color:#516153}
   const nutrients=Object.fromEntries(KEYS.map(key=>[key,Math.round(option.nutrition[key]*qty*10)/10]));
   addEntry({id:uniqueId(),title:option.title+' · '+fmt(qty,2)+' portie(s)',source:'recipe',nutrition:nutrients});
  });
+ el('quickMealSelect').addEventListener('change',()=>renderQuickMeals());
+ el('quickMealAdd').addEventListener('click',()=>{
+  const meal=selectedQuickMeal();
+  if(!meal)return;
+  addEntry({id:uniqueId(),title:meal.title,source:'manual',nutrition:{...meal.nutrition}});
+ });
+ el('quickMealEdit').addEventListener('click',()=>{
+  const meal=selectedQuickMeal();
+  if(!meal)return;
+  el('manualName').value=meal.title;
+  for(const [key,id] of [['kcal','manualKcal'],['proteinG','manualProtein'],['carbsG','manualCarbs'],['fatG','manualFat'],['fiberG','manualFiber']])
+   el(id).value=meal.nutrition[key]===null?'':meal.nutrition[key];
+  el('manualName').focus();
+ });
+ el('quickMealDelete').addEventListener('click',()=>{
+  const meal=selectedQuickMeal();
+  if(!meal||!window.confirm('Standaardgerecht '+meal.title+' verwijderen? Bestaande dagregistraties blijven staan.'))return;
+  if(commit(()=>{state.quickMeals=state.quickMeals.filter(item=>item.id!==meal.id);}))
+   status('Standaardgerecht verwijderd. Eerdere dagregistraties zijn behouden.');
+ });
  el('manualForm').addEventListener('submit',event=>{
   event.preventDefault();
   const title=el('manualName').value.trim(),kcal=Number(el('manualKcal').value);
@@ -971,8 +1037,9 @@ footer,footer a{color:#516153}
    if(value!==null&&(!validNum(value)||value>1000)){status('Vul geldige niet-negatieve voedingswaarden in.',true);return;}
    nutrition[key]=value;
   }
-  addEntry({id:uniqueId(),title,source:'manual',nutrition});
-  el('manualForm').reset();
+  const saveQuick=el('manualSaveQuick').checked;
+  addEntry({id:uniqueId(),title,source:'manual',nutrition},saveQuick);
+  if(!el('status').classList.contains('error'))el('manualForm').reset();
  });
   function presetMessage(message,isError=false){
     el('weekdayImportStatus').textContent=message;
