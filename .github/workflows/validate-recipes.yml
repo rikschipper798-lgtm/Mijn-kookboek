@@ -26,6 +26,8 @@ jobs:
           node-version: '22'
       - name: Regressietests uitvoeren
         run: node --test tests/validate-recipes.test.cjs
+      - name: Hoeveelheden in bereidingsstappen testen
+        run: node --test tests/recipe-scaling.test.cjs
       - name: Offline afbeeldingen en synchronisatie testen
         run: node --test tests/offline-images.test.cjs
       - name: Gekoppelde basisrecepten testen
@@ -56,3 +58,21 @@ jobs:
         run: node scripts/validate-recipes.cjs
       - name: Receptversies tegen vorige Git-versie controleren
         run: node scripts/check-recipe-revisions.cjs
+
+
+  portions-browser:
+    name: Porties in browser en offline
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Browser installeren
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Recepten, kookmodus, kopiëren en offline testen
+        run: node tests/recipe-scaling-browser.cjs
