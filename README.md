@@ -4,6 +4,12 @@ Persoonlijk online kookboek met recepten, kookmodus en boodschappenlijst.
 
 **Website:** https://rikschipper798-lgtm.github.io/Mijn-kookboek/
 
+## Persoonlijke standaardgerechten
+
+Op `voeding.html` kun je onder **Maaltijd toevoegen → Zelf invoeren → Mijn standaardgerechten** eerder opgeslagen maaltijden met één klik registreren. Standaardgerechten zijn een persoonlijke snelkeuzelijst in het voedingsdagboek en worden niet in het openbare `recepten.json` geplaatst. Een standaardgerecht telt pas mee voor de gekozen dag nadat je op **Registreer geselecteerd gerecht** klikt.
+
+Via **Neem over in formulier** pas je de gegevens voor een losse dag aan. Met **Bewaar dit gerecht ook als standaardgerecht voor later** voeg je bij een handmatige registratie een nieuwe snelkeuze toe (of werk je een bestaande met dezelfde naam bij). Je kunt standaardgerechten ook verwijderen zonder eerdere dagregistraties te wissen. Er is ruimte voor maximaal 50 standaardgerechten. De bestaande automatische ontbijt- en lunchinstellingen staan hier los van.
+
 ## Vaste maaltijden op werkdagen
 
 De optionele pagina `instellen-vaste-maaltijden.html` ondersteunt een directe
