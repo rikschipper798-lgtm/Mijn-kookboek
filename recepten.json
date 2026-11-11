@@ -202,6 +202,16 @@
         "title": "Kip voorbereiden",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "350 g kipfilet horizontaal",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "twee dunne schnitzels",
+            "perServing": 1
+          }
         ]
       },
       {
@@ -212,6 +222,20 @@
           16,
           17,
           18
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ rode ui",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "1 klein snufje zout",
+            "ingredientIndex": 18
+          }
         ]
       },
       {
@@ -228,6 +252,44 @@
           11,
           0,
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "½ tl uienpoeder",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "¼ tl tijm",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "½ tl zout",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "60 g panko",
+            "ingredientIndex": 3
+          }
         ]
       },
       {
@@ -238,6 +300,16 @@
           1,
           2,
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "3 el bloem",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 losgeklopt ei",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -249,6 +321,28 @@
           24,
           25,
           26
+        ],
+        "quantityRefs": [
+          {
+            "text": "3 el mayonaise",
+            "ingredientIndex": 22
+          },
+          {
+            "text": "2 tl sriracha",
+            "ingredientIndex": 23
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 24
+          },
+          {
+            "text": "⅛ tl knoflookpoeder",
+            "ingredientIndex": 26
+          },
+          {
+            "text": "½ tl honing",
+            "ingredientIndex": 25
+          }
         ]
       },
       {
@@ -261,6 +355,28 @@
           14,
           19,
           20
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ paprika",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "1 tl olijfolie",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "4 slablaadjes",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "¼ komkommer",
+            "ingredientIndex": 19
+          },
+          {
+            "text": "½ tomaat",
+            "ingredientIndex": 20
+          }
         ]
       },
       {
@@ -270,6 +386,12 @@
         "ingredientIndices": [
           12,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 el zonnebloemolie",
+            "ingredientIndex": 12
+          }
         ]
       },
       {
@@ -278,6 +400,12 @@
         "duration": "1–2 min",
         "ingredientIndices": [
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 broodjes",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -292,14 +420,15 @@
           19,
           20,
           16
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Panko is hier de standaard: de grotere kruimels geven een luchtiger, krokanter korstje. Marineer de rode ui tijdens het voorbereiden en laat hem goed uitlekken. Beperk komkommer en tomaat om een zompig broodje te voorkomen. Met brioche is extra honing in de saus niet nodig; bij minder zoete broodjes is ½ tl honing optioneel. Laat de kipschnitzel op een rooster uitlekken en beleg pas vlak voor het eten. Werk hygiënisch met rauwe kip en gebruik schone materialen bij het beleggen.",
     "image": "images/broodje-crispy-kipschnitzel-sriracha-mayo.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor het broodje crispy kipschnitzel met rode ui",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -310,6 +439,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -443,6 +577,12 @@
         "title": "Kipfilet platslaan",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee grote, dunne schnitzels krijgt",
+            "perServing": 1
+          }
         ]
       },
       {
@@ -458,6 +598,44 @@
           10,
           11,
           12
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "½ tl uienpoeder",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "¼ tl tijm",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "½ tl zout",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "½ tl gedroogde peterselie apart",
+            "ingredientIndex": 9
+          }
         ]
       },
       {
@@ -474,6 +652,16 @@
           8,
           10,
           11
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ tl gedroogde peterselie",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "60 g panko",
+            "ingredientIndex": 3
+          }
         ]
       },
       {
@@ -484,6 +672,16 @@
           1,
           3,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "3 el bloem",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 losgeklopt ei",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -493,6 +691,12 @@
         "ingredientIndices": [
           13,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 el zonnebloemolie",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -502,14 +706,24 @@
         "ingredientIndices": [
           0,
           14
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "twee schnitzels of geef het citroensap ernaast",
+            "perServing": 1
+          }
         ]
       }
     ],
     "tips": "Gebruik panko in plaats van gewoon paneermeel voor een luchtiger, krokanter korstje. De ½ tl gedroogde peterselie gaat in de panko; de overige kruiden worden verdeeld over de kip en de panko. Houd de pan op middelhoog vuur, zodat het korstje goudbruin wordt voordat de kip gaar is. Controleer de kerntemperatuur (74 °C). Laat uitlekken op een rooster in plaats van keukenpapier. Serveer met 1 tl citroensap voor een frisse afwerking en combineer eventueel met aardappeltjes en groenten voor een complete maaltijd.",
     "image": "images/gekruide-kipschnitzel.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor de krokante, kruidige kipschnitzel met aardappeltjes en salade",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -520,6 +734,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als basisrecept of gerechtsonderdeel voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "onderdeel"
@@ -692,7 +911,8 @@
           8,
           6,
           9
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Gehakt goed bruin bakken",
@@ -701,6 +921,16 @@
         "ingredientIndices": [
           11,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -712,7 +942,8 @@
           6,
           5,
           4
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Smaakbasis opbouwen",
@@ -726,6 +957,12 @@
           13,
           14,
           15
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl gedroogde basilicum",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -739,6 +976,12 @@
           16,
           17,
           18
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl balsamicoazijn",
+            "ingredientIndex": 18
+          }
         ]
       },
       {
@@ -747,6 +990,12 @@
         "body": "Breng een grote pan gezouten water aan de kook. Kook de pasta volgens de verpakking al dente. Bewaar 100 ml kookwater voordat je de pasta afgiet.",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "100 ml kookwater voordat je de pasta afgiet",
+            "fixed": true
+          }
         ]
       },
       {
@@ -756,6 +1005,20 @@
         "ingredientIndices": [
           0,
           19
+        ],
+        "quantityRefs": [
+          {
+            "text": "2–3 eetlepels pastakookwater",
+            "fixed": true
+          },
+          {
+            "text": "vier borden",
+            "perServing": 1
+          },
+          {
+            "text": "30 g Parmezaanse kaas",
+            "ingredientIndex": 19
+          }
         ]
       }
     ],
@@ -936,7 +1199,8 @@
               6,
               7,
               8
-            ]
+            ],
+            "quantityRefs": []
           },
           {
             "body": "Verhit de olijfolie in een grote pan. Bak het gehakt op vrij hoog vuur bruin en rul en haal het indien nodig even uit de pan.",
@@ -944,7 +1208,8 @@
             "ingredientIndices": [
               20,
               0
-            ]
+            ],
+            "quantityRefs": []
           },
           {
             "body": "Bak de ui en wortel circa 4 minuten; voeg de paprika toe en bak mee.",
@@ -954,7 +1219,8 @@
               2,
               4,
               5
-            ]
+            ],
+            "quantityRefs": []
           },
           {
             "body": "Voeg de courgette toe en bak circa 2 minuten mee. Schuif de groenten naar de rand van de pan (of haal ze tijdelijk uit de pan). Zet het vuur iets hoger en bak de 250 g champignons 5–7 minuten in het midden van de pan, bij voorkeur in een niet te dikke laag, totdat het vocht verdampt en de champignons duidelijk bruin kleuren.",
@@ -963,6 +1229,12 @@
             "ingredientIndices": [
               6,
               7
+            ],
+            "quantityRefs": [
+              {
+                "text": "250 g champignons 5–7 minuten",
+                "ingredientIndex": 7
+              }
             ]
           },
           {
@@ -972,7 +1244,8 @@
             "ingredientIndices": [
               3,
               10
-            ]
+            ],
+            "quantityRefs": []
           },
           {
             "body": "Roer 2 tl oregano, 1 tl basilicum, ½ tl gerookt paprikapoeder, ½ tl tijm, ¼ tl rozemarijn en eventueel ¼ tl chilipoeder door de groenten en bak 30 seconden al roerend mee.",
@@ -985,6 +1258,32 @@
               15,
               16,
               19
+            ],
+            "quantityRefs": [
+              {
+                "text": "2 tl oregano",
+                "ingredientIndex": 12
+              },
+              {
+                "text": "1 tl basilicum",
+                "ingredientIndex": 13
+              },
+              {
+                "text": "½ tl gerookt paprikapoeder",
+                "ingredientIndex": 14
+              },
+              {
+                "text": "½ tl tijm",
+                "ingredientIndex": 15
+              },
+              {
+                "text": "¼ tl rozemarijn",
+                "ingredientIndex": 16
+              },
+              {
+                "text": "¼ tl chilipoeder",
+                "ingredientIndex": 19
+              }
             ]
           },
           {
@@ -995,7 +1294,8 @@
               9,
               0,
               17
-            ]
+            ],
+            "quantityRefs": []
           },
           {
             "body": "Laat de saus 15–20 minuten rustig pruttelen; roer af en toe. Laat inkoken als hij nog waterig is.",
@@ -1004,7 +1304,8 @@
             "ingredientIndices": [
               0,
               9
-            ]
+            ],
+            "quantityRefs": []
           },
           {
             "body": "Voeg 100 ml kookroom toe nadat de saus voldoende is ingekookt. Breng op smaak met ⅛ tl nootmuskaat en peper en zout. Proef: de saus moet hartig en tomatig blijven, niet overheersend romig of kruidig.",
@@ -1013,6 +1314,16 @@
               11,
               18,
               21
+            ],
+            "quantityRefs": [
+              {
+                "text": "100 ml kookroom",
+                "ingredientIndex": 11
+              },
+              {
+                "text": "⅛ tl nootmuskaat",
+                "ingredientIndex": 18
+              }
             ]
           },
           {
@@ -1021,14 +1332,16 @@
             "duration": "volgens verpakking",
             "ingredientIndices": [
               1
-            ]
+            ],
+            "quantityRefs": []
           },
           {
             "body": "Verwijder het laurierblad. Voeg zonodig een beetje pastawater toe om de saus mooi te binden.",
             "title": "Saus controleren en afwerken",
             "ingredientIndices": [
               17
-            ]
+            ],
+            "quantityRefs": []
           },
           {
             "body": "Meng de pasta met de saus of schep de saus erover. Serveer direct.",
@@ -1036,14 +1349,15 @@
             "ingredientIndices": [
               1,
               9
-            ]
+            ],
+            "quantityRefs": []
           }
         ],
         "tips": "Bak de 250 g champignons op voldoende hoog vuur tot het vocht grotendeels verdampt is en ze goudbruin kleuren. Voeg de 100 ml kookroom pas toe nadat de saus is ingekookt. Minder gerookt paprikapoeder en slechts ⅛ tl nootmuskaat houden de tomaat, het gehakt en de Italiaanse kruiden in balans.",
         "image": "images/bolognese.webp",
         "image_source": "AI-afbeelding uit eerdere kookboekversie",
-        "version": 3,
-        "updatedAt": "2026-11-08",
+        "version": 4,
+        "updatedAt": "2026-11-11",
         "changeLog": [
           {
             "version": 2,
@@ -1054,13 +1368,18 @@
             "version": 3,
             "date": "2026-11-08",
             "description": "Receptindeling van de variant vastgelegd als maaltijd."
+          },
+          {
+            "version": 4,
+            "date": "2026-11-11",
+            "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
           }
         ]
       }
     ],
     "image_source": "Herkomst afbeelding uit eerdere kookboekversie niet vastgelegd",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -1071,6 +1390,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -1230,6 +1554,28 @@
           6,
           7,
           8
+        ],
+        "quantityRefs": [
+          {
+            "text": "125 g mozzarella uitlekken",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "400 g kipdijfilet",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "2 paprika's",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "600 g verse tomaten",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "3 teentjes knoflook",
+            "ingredientIndex": 7
+          }
         ]
       },
       {
@@ -1243,6 +1589,27 @@
           14,
           15,
           17
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl oregano",
+            "ingredientIndex": 12,
+            "factor": 0.5
+          },
+          {
+            "text": "¼ tl gerookt paprikapoeder",
+            "ingredientIndex": 13,
+            "factor": 0.5
+          },
+          {
+            "text": "½ tl zwarte peper",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "1½ el olijfolie",
+            "ingredientIndex": 17,
+            "factor": 0.75
+          }
         ]
       },
       {
@@ -1256,6 +1623,12 @@
           7,
           8,
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "1½ el tomatenpuree",
+            "ingredientIndex": 3
+          }
         ]
       },
       {
@@ -1267,6 +1640,22 @@
           12,
           13,
           14
+        ],
+        "quantityRefs": [
+          {
+            "text": "600 g verse tomaten",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 tl oregano",
+            "ingredientIndex": 12,
+            "factor": 0.5
+          },
+          {
+            "text": "¼ tl gerookt paprikapoeder",
+            "ingredientIndex": 13,
+            "factor": 0.5
+          }
         ]
       },
       {
@@ -1275,6 +1664,21 @@
         "ingredientIndices": [
           0,
           17
+        ],
+        "quantityRefs": [
+          {
+            "text": "800 g gnocchi",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "½ el olijfolie",
+            "ingredientIndex": 17,
+            "factor": 0.25
+          },
+          {
+            "text": "twee porties circa 5–8 minuten",
+            "fixed": true
+          }
         ]
       },
       {
@@ -1284,6 +1688,12 @@
         "ingredientIndices": [
           1,
           16
+        ],
+        "quantityRefs": [
+          {
+            "text": "100 ml kookroom",
+            "ingredientIndex": 16
+          }
         ]
       },
       {
@@ -1291,8 +1701,15 @@
         "title": "Gnocchi en saus mengen",
         "ingredientIndices": [
           0,
+          9,
           14,
           15
+        ],
+        "quantityRefs": [
+          {
+            "text": "15 g verse basilicum apart",
+            "ingredientIndex": 9
+          }
         ]
       },
       {
@@ -1302,6 +1719,16 @@
         "ingredientIndices": [
           10,
           11
+        ],
+        "quantityRefs": [
+          {
+            "text": "125 g mozzarella",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "50 g Parmezaanse kaas erover",
+            "ingredientIndex": 11
+          }
         ]
       },
       {
@@ -1309,14 +1736,20 @@
         "title": "Verse basilicum toevoegen",
         "ingredientIndices": [
           9
+        ],
+        "quantityRefs": [
+          {
+            "text": "15 g verse basilicumblaadjes",
+            "ingredientIndex": 9
+          }
         ]
       }
     ],
     "tips": "Bak de 1½ el tomatenpuree kort mee voor meer diepte en laat de verse tomaten 10–12 minuten zonder deksel inkoken: zo blijft de ovenschotel minder waterig. Laat de mozzarella goed uitlekken en dep droog. Kies bij voorkeur gnocchi die je volgens de verpakking kunt aanbakken; kookgnocchi kun je ook gebruiken mits goed uitgelekt. De kookroom blijft optioneel. Voeg alle verse basilicum pas na het bakken toe. Werk schoon met rauwe kip en controleer op 74 °C kerntemperatuur.",
     "image": "images/gnocchi.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -1327,6 +1760,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -1525,6 +1963,44 @@
           7,
           8,
           9
+        ],
+        "quantityRefs": [
+          {
+            "text": "450 g kipdijfilet",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 el citroensap",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "2 tl gerookt paprikapoeder",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "1 tl oregano",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "1 tl knoflookpoeder",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "½ tl chilipoeder",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "¾ tl zout",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "½ tl zwarte peper",
+            "ingredientIndex": 9
+          }
         ]
       },
       {
@@ -1539,6 +2015,36 @@
           15,
           14,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "250 g courgette",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "180 g paprika",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "120 g rode ui",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "225 g tomaten",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "2 tenen knoflook",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "1 rode peper",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "300 g rijst volgens de verpakking",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -1547,6 +2053,12 @@
         "duration": "6–8 min",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee porties elk circa 3–4 minuten",
+            "fixed": true
+          }
         ]
       },
       {
@@ -1562,6 +2074,20 @@
           14,
           17,
           18
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 19
+          },
+          {
+            "text": "½ tl gerookt paprikapoeder",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 18
+          }
         ]
       },
       {
@@ -1573,6 +2099,25 @@
           12,
           20,
           23
+        ],
+        "quantityRefs": [
+          {
+            "text": "1½ el tomatenpuree",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "225 g verse tomatenblokjes",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "¼ tl zout",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "1–2 el",
+            "ingredientIndex": 23,
+            "factor": 0.5
+          }
         ]
       },
       {
@@ -1583,11 +2128,21 @@
           0,
           21,
           22
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "½ tl honing",
+            "ingredientIndex": 22
+          }
         ]
       },
       {
         "title": "Serveren en porties bewaren",
-        "body": "Verdeel de rijst en de kip met kruidige groenten over vier porties; vijf kleinere porties kan ook. Bewaar de porties voor later snel afgekoeld in afgesloten ondiepe bakjes, zet binnen 2 uur in de koelkast (maximaal 2 dagen bij 4 °C) of vries in. Warm een portie later één keer goed door en door op.",
+        "body": "Verdeel de rijst en de kip met kruidige groenten over vier porties; desgewenst iets meer kleinere porties. Bewaar de porties voor later snel afgekoeld in afgesloten ondiepe bakjes, zet binnen 2 uur in de koelkast (maximaal 2 dagen bij 4 °C) of vries in. Warm een portie later één keer goed door en door op.",
         "ingredientIndices": [
           1,
           0,
@@ -1595,7 +2150,16 @@
           11,
           12
         ],
-        "scaleServingSummary": true
+        "quantityRefs": [
+          {
+            "text": "vier porties",
+            "perServing": 1
+          },
+          {
+            "text": "een portie",
+            "fixed": true
+          }
+        ]
       }
     ],
     "tips": "Met 450 g kipdijfilet is dit een gerecht voor 4 gewone of 5 kleinere porties. Gebruik ongeveer 250 g courgette, 180 g paprika, 225 g tomaat en 120 g rode ui zodat de groenten de kip niet overheersen. Bak de kip in porties om een korstje te krijgen, bak de tomatenpuree kort mee en laat de tomaten zonder extra water inkoken. Voeg het laatste citroensap na het garen toe voor frisse piri-pirismaak. ½ tl honing is alleen nodig als de tomaten te zuur smaken. Bewaar rijst en kip met groenten bij voorkeur apart; laat snel afkoelen, zet binnen 2 uur in de koelkast en bewaar maximaal 2 dagen bij 4 °C. Vries porties voor later in en warm één keer door en door op.",
@@ -1604,8 +2168,8 @@
     "image_source": "AI-afbeelding uit eerdere kookboekversie",
     "marinateTiming": "parallel",
     "timeNote": "De 10 minuten marineren vallen samen met het snijden van de groenten. Ze komen niet bovenop de totale bereidingstijd.",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -1616,6 +2180,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -1701,6 +2270,12 @@
         "duration": "ca. 5 min uitlekken",
         "ingredientIndices": [
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "1.100 g rijpe tomaten",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -1708,6 +2283,16 @@
         "title": "Oven voorverwarmen en brood snijden",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "3 stokbroden",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "50–60 plakjes",
+            "perServing": 2.5
+          }
         ]
       },
       {
@@ -1717,6 +2302,17 @@
         "ingredientIndices": [
           3,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "15 ml",
+            "ingredientIndex": 3,
+            "factor": 0.23076923076923078
+          },
+          {
+            "text": "65 ml extra vierge olijfolie heel dun",
+            "ingredientIndex": 3
+          }
         ]
       },
       {
@@ -1726,6 +2322,13 @@
           1,
           3,
           6
+        ],
+        "quantityRefs": [
+          {
+            "text": "50 ml extra vierge olijfolie",
+            "ingredientIndex": 3,
+            "factor": 0.7692307692307693
+          }
         ]
       },
       {
@@ -1734,6 +2337,12 @@
         "ingredientIndices": [
           4,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 teentjes knoflook",
+            "ingredientIndex": 4
+          }
         ]
       },
       {
@@ -1743,6 +2352,12 @@
           2,
           5,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 basilicumplantje",
+            "ingredientIndex": 2
+          }
         ]
       },
       {
@@ -1751,15 +2366,16 @@
         "ingredientIndices": [
           0,
           1
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Voor een borrelhapje voor 20 personen is 1,0–1,2 kg rijpe tomaat voldoende; de huidige hoeveelheid van 1.100 g sluit aan op de eerdere kookfeedback. Eén basilicumplantje is genoeg. Drie stokbroden leveren afhankelijk van formaat en plakdikte ongeveer 50–60 hapjes op. Verwijder de natte zaadlijsten, laat de tomaten 5 minuten uitlekken en voeg basilicum en zout pas vlak voor het serveren toe. Verdeel de 65 ml olijfolie in 15 ml voor het brood en 50 ml voor de topping; beleg pas vlak voor het uitserveren.",
     "image": "images/bruschetta.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie",
     "timeNote": "De totale tijd bevat circa 5 minuten speling voor voorverwarmen, het beleggen en het uitserveren van de bruschetta. Tomaten uitlekken en oven voorverwarmen kunnen tegelijk.",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -1770,6 +2386,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als hapje, dessert of drank voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "overig"
@@ -1886,6 +2507,34 @@
           2,
           5,
           4
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ komkommer",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "¼ komkommer",
+            "ingredientIndex": 3,
+            "factor": 0.5
+          },
+          {
+            "text": "½ rode ui",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "½ paprika",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "150 g tomaten",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "¼ in dunne plakjes",
+            "ingredientIndex": 3,
+            "factor": 0.5
+          }
         ]
       },
       {
@@ -1898,6 +2547,24 @@
           8,
           9,
           10
+        ],
+        "quantityRefs": [
+          {
+            "text": "120 g Griekse yoghurt",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "½ tl gedroogde dille",
+            "ingredientIndex": 9
+          }
         ]
       },
       {
@@ -1907,6 +2574,20 @@
         "ingredientIndices": [
           11,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "350 g gekruide kipgyros",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -1915,6 +2596,12 @@
         "duration": "30–60 sec per kant",
         "ingredientIndices": [
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 flatbreads volgens de verpakking",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -1928,14 +2615,15 @@
           4,
           5,
           6
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Door een kwart komkommer te raspen en goed uit te knijpen krijg je een dikkere, frisse saus met dille en knoflook; gebruik de andere kwart in plakjes op het flatbread. Een halve rode ui, een halve paprika en 150 g tomaat zijn voldoende voor vier goedgevulde flatbreads. Gebruik kant-en-klaar gekruide kipgyros zonder extra kruiden toe te voegen. Bak de kip op middelhoog tot hoog vuur in 1 el olijfolie en volg bij voorgegaarde gyros de verpakking. Voeg de koude toppings pas bij het serveren toe.",
     "image": "images/gyros.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -1946,6 +2634,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -2103,7 +2796,7 @@
     ],
     "steps": [
       {
-        "body": "Dep de 750 g runderstoofvlees goed droog en snijd in blokken van circa 3–4 cm. Snipper de 2 uien, hak 3 teentjes knoflook fijn en snijd de grote tomaat in blokjes. Snijd de eerste rode paprika in kleine stukken en de tweede in wat grovere repen; houd ze apart. Kneus de ½ tl komijnzaad eventueel licht met een vijzel.",
+        "body": "Dep de 750 g runderstoofvlees goed droog en snijd in blokken van circa 3–4 cm. Snipper de 2 uien, hak 3 teentjes knoflook fijn en snijd de grote tomaat in blokjes. Snijd de helft van de rode paprika in kleine stukken en de andere helft in wat grovere repen; houd ze apart. Kneus de ½ tl komijnzaad eventueel licht met een vijzel.",
         "title": "Vlees en groenten voorbereiden",
         "ingredientIndices": [
           0,
@@ -2112,6 +2805,24 @@
           5,
           3,
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "750 g runderstoofvlees goed droog",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "2 uien",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "3 teentjes knoflook",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "½ tl komijnzaad eventueel licht",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -2121,10 +2832,20 @@
         "ingredientIndices": [
           9,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 el olijfolie",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
-        "body": "Verlaag naar middelhoog vuur en bak de gesnipperde uien 8–10 minuten in het achtergebleven bakvet tot ze zacht, licht goudbruin en zoetig worden. Voeg de eerste fijngesneden rode paprika toe en bak 3 minuten mee. Voeg de knoflook en 2 el tomatenpuree toe en bak al roerend nog 1 minuut.",
+        "body": "Verlaag naar middelhoog vuur en bak de gesnipperde uien 8–10 minuten in het achtergebleven bakvet tot ze zacht, licht goudbruin en zoetig worden. Voeg de fijngesneden helft van de rode paprika toe en bak 3 minuten mee. Voeg de knoflook en 2 el tomatenpuree toe en bak al roerend nog 1 minuut.",
         "title": "Ui en paprika zacht bakken",
         "duration": "11–13 min",
         "ingredientIndices": [
@@ -2132,6 +2853,12 @@
           3,
           4,
           6
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 el tomatenpuree",
+            "ingredientIndex": 6
+          }
         ]
       },
       {
@@ -2147,6 +2874,40 @@
           16,
           6,
           7
+        ],
+        "quantityRefs": [
+          {
+            "text": "1½ el bloem",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "4 tl gewoon paprikapoeder",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "½ tl gekneusd komijnzaad",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "1½ tl marjoraan",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "½ tl tijm",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "½ tl chilipoeder",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "450 ml runderbouillon",
+            "ingredientIndex": 7
+          }
         ]
       },
       {
@@ -2159,6 +2920,25 @@
           10,
           17,
           18
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 laurierblaadjes",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "1 tl zwarte peper",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "½ tl",
+            "ingredientIndex": 18,
+            "factor": 0.6666666666666666
+          },
+          {
+            "text": "¾ tl zout",
+            "ingredientIndex": 18
+          }
         ]
       },
       {
@@ -2167,15 +2947,22 @@
         "duration": "2½–3 uur",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "50–100 ml heet water",
+            "fixed": true
+          }
         ]
       },
       {
-        "body": "Voeg de tweede paprika circa 30 minuten vóór het einde van het stoven toe, zodra het vlees bijna zacht is. Laat meekoken tot de paprika zacht is maar nog enige structuur heeft en het vlees volledig mals is. Verwijder de laurierblaadjes. Is de saus te dun, laat dan enkele minuten zonder deksel inkoken; is hij te dik, voeg een scheutje water toe.",
+        "body": "Voeg de grovere repen paprika circa 30 minuten vóór het einde van het stoven toe, zodra het vlees bijna zacht is. Laat meekoken tot de paprika zacht is maar nog enige structuur heeft en het vlees volledig mals is. Verwijder de laurierblaadjes. Is de saus te dun, laat dan enkele minuten zonder deksel inkoken; is hij te dik, voeg een scheutje water toe.",
         "title": "Tweede paprika toevoegen",
         "duration": "laatste 30 min",
         "ingredientIndices": [
           3
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Proef de goulash op zout, rook, pittigheid en frisheid. Voeg desgewenst het resterende zout toe en eventueel 1 tl balsamico als de saus wat vlak of zwaar smaakt. Voeg de balsamico alleen naar smaak toe.",
@@ -2183,6 +2970,12 @@
         "ingredientIndices": [
           18,
           19
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl balsamico",
+            "ingredientIndex": 19
+          }
         ]
       },
       {
@@ -2191,14 +2984,20 @@
         "duration": "laatste 15 min",
         "ingredientIndices": [
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "300 g witte rijst of basmatirijst volgens de verpakking",
+            "ingredientIndex": 1
+          }
         ]
       }
     ],
     "tips": "Braad het vlees in porties voor diepe smaak en laat de uien 8–10 minuten rustig kleuren. Verlaag het vuur vóór je paprikapoeder toevoegt en blus na 20–30 seconden af: verbrand paprikapoeder wordt bitter. Start met 450 ml bouillon; controleer tijdens het stoven geregeld en vul zo nodig met heet water aan. Voeg de tweede rode paprika pas circa 30 minuten vóór het einde toe voor wat beet. De totale tijd is een richtlijn (ongeveer 3 uur en 45 minuten); het soort stoofvlees bepaalt of het na 2½ uur al mals is of langer nodig heeft. Bij minder zacht vlees langer stoven, niet hoger verhitten.",
     "image": "images/goulash.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor rundergoulash met rijst",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -2209,6 +3008,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -2397,6 +3201,12 @@
         "duration": "30–60 sec komijn roosteren",
         "ingredientIndices": [
           12
+        ],
+        "quantityRefs": [
+          {
+            "text": "1½ tl komijnzaad 30–60 seconden",
+            "ingredientIndex": 12
+          }
         ]
       },
       {
@@ -2409,6 +3219,28 @@
           3,
           4,
           7
+        ],
+        "quantityRefs": [
+          {
+            "text": "¼ courgette",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "1 ui",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "2 teentjes knoflook",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "½ rode peper",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "2 el verse peterselie",
+            "ingredientIndex": 7
+          }
         ]
       },
       {
@@ -2433,6 +3265,53 @@
           17,
           18,
           19
+        ],
+        "quantityRefs": [
+          {
+            "text": "450 g rundergehakt kort",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "1 el tomatenpuree",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "½ el olijfolie",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "1½ tl gekneusd komijnzaad",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "1 tl paprikapoeder",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "½ tl gerookt paprikapoeder",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "1 tl gedroogd korianderblad",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "¼ tl kaneel",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "¾ tl",
+            "ingredientIndex": 17,
+            "factor": 0.75
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 19
+          }
         ]
       },
       {
@@ -2442,6 +3321,12 @@
         "ingredientIndices": [
           1,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "6 pitabroodjes voorzichtig open",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -2451,6 +3336,12 @@
         "ingredientIndices": [
           11,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 11
+          }
         ]
       },
       {
@@ -2460,7 +3351,8 @@
         "ingredientIndices": [
           1,
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Meng ondertussen 250 g Griekse yoghurt met 1 fijngehakt teentje knoflook, 2 tl citroensap en 1 tl olijfolie. Breng de saus op smaak met de resterende circa ¼ tl zout en zwarte peper. Proef en serveer de krokante arayes direct met de koude yoghurtsaus.",
@@ -2472,6 +3364,29 @@
           23,
           17,
           18
+        ],
+        "quantityRefs": [
+          {
+            "text": "250 g Griekse yoghurt",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "1 fijngehakt teentje knoflook",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 22
+          },
+          {
+            "text": "1 tl olijfolie",
+            "ingredientIndex": 23
+          },
+          {
+            "text": "¼ tl zout",
+            "ingredientIndex": 17,
+            "factor": 0.25
+          }
         ]
       }
     ],
@@ -2481,8 +3396,8 @@
     "optionalWaitMinMinutes": 15,
     "optionalWaitMaxMinutes": 30,
     "optionalWaitType": "rusten",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -2493,6 +3408,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -2609,6 +3529,36 @@
           4,
           5,
           6
+        ],
+        "quantityRefs": [
+          {
+            "text": "300 g rundergehakt losjes",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "½ tl komijn",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "½ tl paprikapoeder",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "¼ tl gerookt paprikapoeder",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "¼ tl knoflookpoeder",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "¼ tl uienpoeder",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "½ tl zwarte peper",
+            "ingredientIndex": 6
+          }
         ]
       },
       {
@@ -2616,6 +3566,16 @@
         "title": "Burgers vormen",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 gelijke porties",
+            "perServing": 1
+          },
+          {
+            "text": "150 g",
+            "fixed": true
+          }
         ]
       },
       {
@@ -2624,7 +3584,8 @@
         "duration": "optioneel 15–30 min",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Verhit een koekenpan of grillpan 2–3 minuten op middelhoog tot hoog vuur met 1 el olie. Strooi vlak vóór het bakken de totale ½ tl zout gelijkmatig over beide kanten van de twee burgers.",
@@ -2634,6 +3595,20 @@
           8,
           7,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olie",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "½ tl zout gelijkmatig",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "twee burgers",
+            "perServing": 1
+          }
         ]
       },
       {
@@ -2642,7 +3617,8 @@
         "duration": "4–6 min per kant",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Leg desgewenst in de laatste minuut een plak cheddar op elke burger. Serveer direct, eventueel op licht geroosterde hamburgerbroodjes met garnituur naar keuze.",
@@ -2651,7 +3627,8 @@
         "ingredientIndices": [
           10,
           9
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "De kruidenmix is bewust ongewijzigd gebleven. Meng het gehakt kort en strooi de ½ tl zout pas vlak voor het bakken op de buitenkant, zodat de structuur mals blijft. Bak in een goed voorverwarmde pan, zonder de burgers plat te drukken. De 15–30 minuten rusten in de koelkast is optioneel en telt niet als verplichte wachttijd mee. Controleer bij rundergehakt een kerntemperatuur van 71 °C. Rooster de optionele broodjes kort en laat de cheddar desgewenst op het laatst smelten.",
@@ -2660,8 +3637,8 @@
     "optionalWaitMinMinutes": 15,
     "optionalWaitMaxMinutes": 30,
     "optionalWaitType": "rusten",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -2672,6 +3649,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -2949,6 +3931,76 @@
           15,
           16,
           17
+        ],
+        "quantityRefs": [
+          {
+            "text": "400 g kipdijfilet",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "2 el Griekse yoghurt",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 tl tomatenpuree",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "1 el citroensap",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "2 geperste tenen knoflook",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "1 tl gemalen komijn",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "¾ tl gemalen korianderzaad",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "½ tl marjoraan",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "½ tl uienpoeder",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "¼ tl kurkuma",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "¼ tl kaneel",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "¾ tl zout",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 17
+          }
         ]
       },
       {
@@ -2962,6 +4014,28 @@
           22,
           23,
           24
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 el mayonaise",
+            "ingredientIndex": 18
+          },
+          {
+            "text": "3 el Griekse yoghurt",
+            "ingredientIndex": 19
+          },
+          {
+            "text": "1 geperst teentje knoflook",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "¼ tl gedroogde peterselie",
+            "ingredientIndex": 22
+          }
         ]
       },
       {
@@ -2974,6 +4048,32 @@
           26,
           27,
           28
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ rode ui",
+            "ingredientIndex": 25
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 29
+          },
+          {
+            "text": "½ tl sumak",
+            "ingredientIndex": 30
+          },
+          {
+            "text": "2 tomaten",
+            "ingredientIndex": 26
+          },
+          {
+            "text": "½ komkommer klein",
+            "ingredientIndex": 27
+          },
+          {
+            "text": "80 g ijsbergsla",
+            "ingredientIndex": 28
+          }
         ]
       },
       {
@@ -2982,6 +4082,12 @@
         "duration": "6–8 min per portie",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -2993,6 +4099,28 @@
           33,
           34,
           35
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el tomatenpuree",
+            "ingredientIndex": 31
+          },
+          {
+            "text": "2 tl olijfolie",
+            "ingredientIndex": 32
+          },
+          {
+            "text": "2 tl water",
+            "ingredientIndex": 33
+          },
+          {
+            "text": "¼ tl gerookt paprikapoeder",
+            "ingredientIndex": 34
+          },
+          {
+            "text": "⅛ tl chilipoeder",
+            "ingredientIndex": 35
+          }
         ]
       },
       {
@@ -3007,7 +4135,8 @@
           26,
           27,
           28
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Wraps krokant bakken",
@@ -3020,7 +4149,8 @@
           33,
           34,
           35
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Serveren",
@@ -3032,7 +4162,8 @@
           28,
           18,
           19
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Reken op circa 15 minuten voorbereiden, 30 minuten marineren (intussen kunnen saus en groenten worden klaargemaakt) en ongeveer 25 minuten bakken en afronden; totaal circa 60–70 minuten. Marineer altijd afgedekt in de koelkast. Gemalen korianderzaad geeft de typische warme, citrusachtige shawarmasmaak; gedroogd korianderblad is geen gelijkwaardige vervanger. Stampt komijnzaad fijn als je geen gemalen komijn hebt. De rode coating dun aanbrengen en kort bakken om verbranden te voorkomen. Snijd de groenten klein, dep ze droog en gebruik niet te veel vulling voor stevige, krokante wraps. Optioneel: serveer met 150 g krokante airfryerfriet voor een stevigere streetfoodvariant. Niet door de gebruiker als getest aangemerkt.",
@@ -3041,8 +4172,8 @@
     "marinateMinutes": 30,
     "marinateTiming": "included",
     "timeNote": "De 30 minuten marineren vallen binnen de 70 minuten totaaltijd. Maak de saus en snijd de groenten terwijl de kip in de koelkast marineert.",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -3053,6 +4184,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -3223,6 +4359,40 @@
           7,
           8,
           5
+        ],
+        "quantityRefs": [
+          {
+            "text": "300 g kipdijfilet",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "1 paprika",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "½ courgette",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "1 wortel",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "1 rode ui",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "2 teentjes knoflook",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "½ rode peper",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "2 verse tomaten",
+            "ingredientIndex": 5
+          }
         ]
       },
       {
@@ -3231,6 +4401,12 @@
         "duration": "volgens rijstverpakking",
         "ingredientIndices": [
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "170 g rijst volgens de aanwijzingen",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -3243,6 +4419,24 @@
           15,
           16,
           17
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl paprikapoeder",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "½ tl gerookt paprikapoeder",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "½ tl komijn",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 16
+          }
         ]
       },
       {
@@ -3252,6 +4446,21 @@
         "ingredientIndices": [
           19,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "¾ el",
+            "ingredientIndex": 19,
+            "factor": 0.5
+          },
+          {
+            "text": "1½ el olijfolie",
+            "ingredientIndex": 19
+          },
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -3264,6 +4473,13 @@
           4,
           2,
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "¾ el olijfolie",
+            "ingredientIndex": 19,
+            "factor": 0.5
+          }
         ]
       },
       {
@@ -3274,6 +4490,12 @@
           7,
           8,
           9
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el tomatenpuree",
+            "ingredientIndex": 9
+          }
         ]
       },
       {
@@ -3282,7 +4504,8 @@
         "duration": "2–3 min",
         "ingredientIndices": [
           5
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Roer 1½ el sojasaus en 2 el ketjap door de groenten en laat ongeveer 1 minuut zachtjes pruttelen tot de saus licht glanst. Voeg alleen als de saus te stroperig wordt een klein scheutje water toe.",
@@ -3291,6 +4514,16 @@
         "ingredientIndices": [
           10,
           11
+        ],
+        "quantityRefs": [
+          {
+            "text": "1½ el sojasaus",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "2 el ketjap",
+            "ingredientIndex": 11
+          }
         ]
       },
       {
@@ -3299,7 +4532,8 @@
         "duration": "2–3 min",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Zet het vuur uit en voeg 1 tl citroensap toe. Proef de saus: is hij te zout, voeg een klein scheutje water toe; mist hij hartigheid, voeg een paar druppels sojasaus toe. Breng zo nodig met zwarte peper op smaak en voeg alleen zout toe als het echt nodig is.",
@@ -3308,6 +4542,12 @@
           12,
           10,
           17
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 12
+          }
         ]
       },
       {
@@ -3320,14 +4560,15 @@
           3,
           4,
           5
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Bak de gekruide kip op voldoende hoog vuur en schep haar eerst uit de wok, zodat de groenten kunnen kleuren zonder te stoven. Verwijder de natste zaadlijsten van de tomaten en laat het vocht verdampen voordat de soja en ketjap erbij gaan. De 1 el tomatenpuree ondersteunt nu de ketjap-sojasaus in plaats van te overheersen. De oregano is bewust weggelaten voor een duidelijke, kruidige ketjapsmaak. Voeg 1 tl citroensap pas na het bakken toe voor frisheid. Proef vóór je zout toevoegt; sojasaus is al zout.",
     "image": "images/kiprijst.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor kruidige kip met rijst en groenten",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -3338,6 +4579,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -3566,7 +4812,8 @@
       {
         "body": "Verwarm de oven voor op 210 °C hetelucht (230 °C boven-/onderwarmte). Bekleed twee bakplaten met bakpapier: één voor de groenten en één voor de rösti. Controleer de verpakking van de rösti op oventemperatuur en baktijd; pas zo nodig de temperatuur aan en houd de groenten goed in de gaten.",
         "title": "Oven en bakplaten voorbereiden",
-        "ingredientIndices": []
+        "ingredientIndices": [],
+        "quantityRefs": []
       },
       {
         "body": "Schil of schrap 1 wortel en snijd in dunne halve plakjes. Snijd 1 paprika, ½ courgette, 1 rode ui en ½ rode peper in stukken. Snijd 1 tomaat in parten en verwijder de natste zaadlijsten. Meng 1 tl gerookt paprikapoeder, ½ tl knoflookpoeder, ½ tl oregano, ½ tl tijm en peper en zout naar smaak voor de groenten.",
@@ -3584,6 +4831,48 @@
           25,
           26,
           27
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 wortel",
+            "ingredientIndex": 18
+          },
+          {
+            "text": "1 paprika",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "½ courgette",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "1 rode ui",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "½ rode peper",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "1 tomaat",
+            "ingredientIndex": 19
+          },
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 22
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 23
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 24
+          },
+          {
+            "text": "½ tl tijm",
+            "ingredientIndex": 25
+          }
         ]
       },
       {
@@ -3602,6 +4891,12 @@
           16,
           20,
           21
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 28
+          }
         ]
       },
       {
@@ -3612,6 +4907,12 @@
           17,
           19,
           15
+        ],
+        "quantityRefs": [
+          {
+            "text": "325 g rösti rondjes",
+            "ingredientIndex": 15
+          }
         ]
       },
       {
@@ -3627,6 +4928,48 @@
           10,
           11,
           12
+        ],
+        "quantityRefs": [
+          {
+            "text": "350 g kipfilet horizontaal",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "2 dunne schnitzels",
+            "perServing": 1
+          },
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "½ tl uienpoeder",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "¼ tl tijm",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "½ tl zout",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 12
+          }
         ]
       },
       {
@@ -3638,6 +4981,28 @@
           2,
           1,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "60 g panko",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "½ tl gedroogde peterselie",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "drie borden klaar",
+            "fixed": true
+          },
+          {
+            "text": "3 el bloem",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 losgeklopt ei",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -3647,6 +5012,12 @@
         "ingredientIndices": [
           13,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 el zonnebloemolie",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -3662,6 +5033,26 @@
           19,
           20,
           21
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl honing",
+            "ingredientIndex": 29
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 30,
+            "occurrence": 0
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 14,
+            "occurrence": 1
+          },
+          {
+            "text": "twee kipschnitzels",
+            "perServing": 1
+          }
         ]
       },
       {
@@ -3675,14 +5066,20 @@
           18,
           19,
           20
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee borden",
+            "perServing": 1
+          }
         ]
       }
     ],
     "tips": "De kipschnitzel is volledig gebaseerd op het aparte recept ‘Krokante, kruidige kipschnitzel’, inclusief dezelfde kruidenhoeveelheden en 60 g panko. Bak de rösti op een aparte bakplaat en volg daarvoor de verpakking. Wortel krijgt het langste oventijd; paprika en ui gaan later erbij, courgette nog later en tomaat alleen de laatste 8 minuten. Verdeel de dressing uitsluitend over de groenten. Voor het bakken van de schnitzels wordt dezelfde 4 el zonnebloemolie gebruikt als in het basisrecept; de 1 el olijfolie is alleen voor de groenten. Gebruik twee ovenniveaus en wissel de bakplaten zo nodig halverwege. Controleer kip op 74 °C en serveer zodra alles klaar is.",
     "image": "images/traybake.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor zelfgemaakte kipschnitzel met rösti en ovengroenten",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -3693,6 +5090,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -3881,6 +5283,12 @@
         "duration": "7–8 min voorkoken",
         "ingredientIndices": [
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "475 g krieltjes",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -3895,6 +5303,41 @@
           17,
           18,
           19
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el",
+            "ingredientIndex": 20,
+            "factor": 0.6666666666666666
+          },
+          {
+            "text": "1½ el olijfolie",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "¾ tl rozemarijn",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "½ tl tijm",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "½ tl zout",
+            "ingredientIndex": 18
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 19
+          }
         ]
       },
       {
@@ -3904,6 +5347,21 @@
           21,
           20,
           23
+        ],
+        "quantityRefs": [
+          {
+            "text": "250 g wortels",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "½ el olijfolie",
+            "ingredientIndex": 20,
+            "factor": 0.3333333333333333
+          },
+          {
+            "text": "1 tl honing",
+            "ingredientIndex": 23
+          }
         ]
       },
       {
@@ -3912,6 +5370,12 @@
         "duration": "12–15 min",
         "ingredientIndices": [
           22
+        ],
+        "quantityRefs": [
+          {
+            "text": "200 g sperziebonen schoon",
+            "ingredientIndex": 22
+          }
         ]
       },
       {
@@ -3922,6 +5386,21 @@
           1,
           2,
           12
+        ],
+        "quantityRefs": [
+          {
+            "text": "375 g varkenshaas goed droog",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "10 g",
+            "ingredientIndex": 12,
+            "factor": 0.6666666666666666
+          },
+          {
+            "text": "15 g boter",
+            "ingredientIndex": 12
+          }
         ]
       },
       {
@@ -3933,6 +5412,25 @@
           4,
           5,
           12
+        ],
+        "quantityRefs": [
+          {
+            "text": "200 g kastanjechampignons",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "2 teentjes knoflook",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "5 g boter",
+            "ingredientIndex": 12,
+            "factor": 0.3333333333333333
+          },
+          {
+            "text": "1 sjalot",
+            "ingredientIndex": 4
+          }
         ]
       },
       {
@@ -3945,6 +5443,20 @@
           10,
           11,
           8
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ tl tijm",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "¾ tl grofgemalen zwarte peper",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "1 tl Dijonmosterd",
+            "ingredientIndex": 8
+          }
         ]
       },
       {
@@ -3955,6 +5467,20 @@
           7,
           6,
           9
+        ],
+        "quantityRefs": [
+          {
+            "text": "100 ml runderbouillon",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "125 ml kookroom",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "1 tl balsamico",
+            "ingredientIndex": 9
+          }
         ]
       },
       {
@@ -3965,14 +5491,20 @@
           13,
           21,
           22
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee borden",
+            "perServing": 1
+          }
         ]
       }
     ],
     "tips": "Kook de krieltjes 7–8 minuten voor, laat ze goed droogstomen en schud de pan zodat ze ruwe randjes krijgen. Verdeel de 1½ el olijfolie in 1 el voor de krieltjes en ½ el voor de wortels; voeg de 1 tl honing pas in de laatste 10 ovenminuten toe. Bak de champignons 5–7 minuten stevig bruin voordat je sjalot en knoflook toevoegt; laat de bouillon inkoken vóór de room erbij gaat. De balsamico is optioneel en gaat pas na het proeven in de saus. Gaar de varkenshaas tot 63–65 °C kerntemperatuur en laat minimaal 5 minuten rusten. Bereid vlees, saus en sperziebonen terwijl de krieltjes in de oven staan om binnen circa 60 minuten te blijven.",
     "image": "images/varkenshaas.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor varkenshaas met champignon-pepersaus, krieltjes, honingwortels en sperziebonen",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -3983,6 +5515,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -4168,6 +5705,20 @@
           1,
           2,
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "550 g runderriblappen goed droog",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "250 g ui",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "1 teentje knoflook",
+            "ingredientIndex": 2
+          }
         ]
       },
       {
@@ -4178,6 +5729,25 @@
           12,
           11,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "10 g",
+            "ingredientIndex": 11,
+            "factor": 0.4
+          },
+          {
+            "text": "25 g boter",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -4188,6 +5758,17 @@
           1,
           11,
           2
+        ],
+        "quantityRefs": [
+          {
+            "text": "15 g boter",
+            "ingredientIndex": 11,
+            "factor": 0.6
+          },
+          {
+            "text": "250 g ui circa 20–25 minuten",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -4199,6 +5780,44 @@
           4,
           7,
           8
+        ],
+        "quantityRefs": [
+          {
+            "text": "100 ml",
+            "ingredientIndex": 3,
+            "factor": 0.3333333333333333
+          },
+          {
+            "text": "300 ml La Trappe Dubbel",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "200 ml bier",
+            "ingredientIndex": 3,
+            "factor": 0.6666666666666666
+          },
+          {
+            "text": "50 ml",
+            "ingredientIndex": 4,
+            "factor": 0.6666666666666666
+          },
+          {
+            "text": "75 ml runderbouillon",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "2 laurierblaadjes",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "1 tl tijm",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "25 ml bouillon apart",
+            "ingredientIndex": 4,
+            "factor": 0.3333333333333333
+          }
         ]
       },
       {
@@ -4207,6 +5826,16 @@
         "ingredientIndices": [
           5,
           6
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 snee bruin brood aan één kant",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "1 el Franse mosterd",
+            "ingredientIndex": 6
+          }
         ]
       },
       {
@@ -4216,6 +5845,13 @@
         "ingredientIndices": [
           0,
           4
+        ],
+        "quantityRefs": [
+          {
+            "text": "25 ml bouillon",
+            "ingredientIndex": 4,
+            "factor": 0.3333333333333333
+          }
         ]
       },
       {
@@ -4225,6 +5861,16 @@
           9,
           10,
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl balsamico",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "1 tl optionele appelstroop",
+            "ingredientIndex": 10
+          }
         ]
       },
       {
@@ -4233,6 +5879,12 @@
         "duration": "volgens verpakking",
         "ingredientIndices": [
           14
+        ],
+        "quantityRefs": [
+          {
+            "text": "475 g diepvrieskrulfriet volgens de aanwijzingen",
+            "ingredientIndex": 14
+          }
         ]
       },
       {
@@ -4247,6 +5899,40 @@
           20,
           21,
           22
+        ],
+        "quantityRefs": [
+          {
+            "text": "125 g cherrytomaten",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "⅓ komkommer",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "¼ rode ui",
+            "ingredientIndex": 18
+          },
+          {
+            "text": "75 g gemengde sla",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 19
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "½ tl mosterd",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "½ tl honing",
+            "ingredientIndex": 22
+          }
         ]
       },
       {
@@ -4256,14 +5942,15 @@
           0,
           14,
           15
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Braad de 550 g runderriblappen in twee porties goed bruin en bak de 250 g ui 20–25 minuten rustig goudbruin voor een diepe smaak. Gebruik eerst 50 ml van de 75 ml bouillon; houd 25 ml achter de hand en voeg tijdens het stoven zo nodig extra heet water toe. Laat de saus aan het einde zonder deksel inkoken wanneer het vlees al mals is. Balsamico en appelstroop zijn optioneel: proef eerst de balans tussen de bitterheid van het donkere bier, de zoetheid van de uien en de mosterd. Laat stoofvlees niet hard koken. Reken circa 4 uur en 15 minuten totaal, maar langer stoven kan nodig zijn. De friet en salade maak je pas tegen het einde.",
     "image": "images/vlaams-stoofvlees.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -4274,6 +5961,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -4405,7 +6097,8 @@
       {
         "body": "Verwarm de oven voor op 200 °C boven-/onderwarmte (190 °C hetelucht). Zet een ovenschaal klaar en verwarm de airfryer voor als de verpakking van de friet dit voorschrijft.",
         "title": "Oven en airfryer voorverwarmen",
-        "ingredientIndices": []
+        "ingredientIndices": [],
+        "quantityRefs": []
       },
       {
         "body": "Schil en snijd 400 g wortels in gelijkmatige, niet te dikke stukken. Kook ze circa 6–8 minuten voor in licht kokend water tot ze net wat zachter zijn, maar nog beet hebben. Giet goed af en laat uitstomen.",
@@ -4413,6 +6106,12 @@
         "duration": "6–8 min",
         "ingredientIndices": [
           7
+        ],
+        "quantityRefs": [
+          {
+            "text": "400 g wortels",
+            "ingredientIndex": 7
+          }
         ]
       },
       {
@@ -4424,7 +6123,38 @@
           2,
           3,
           4,
-          5
+          5,
+          6
+        ],
+        "quantityRefs": [
+          {
+            "text": "330 g zalmfilets droog",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "2 tl olijfolie",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "1 tl gedroogde dille",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "¼ tl knoflookpoeder",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "¼ tl zout",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 6
+          }
         ]
       },
       {
@@ -4433,6 +6163,12 @@
         "duration": "ca. 15 min, zie verpakking",
         "ingredientIndices": [
           14
+        ],
+        "quantityRefs": [
+          {
+            "text": "400 g Lamb Weston Rustic Fries",
+            "ingredientIndex": 14
+          }
         ]
       },
       {
@@ -4441,7 +6177,8 @@
         "duration": "12–15 min",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Verhit tijdens de laatste circa 5 minuten van de oventijd 10 g boter in een koekenpan op middelhoog vuur. Voeg de goed uitgelekte wortels toe en bak 2–3 minuten. Schep er ½ tl tijm, ¼ tl knoflookpoeder en peper en zout naar smaak door.",
@@ -4453,6 +6190,20 @@
           10,
           11,
           12
+        ],
+        "quantityRefs": [
+          {
+            "text": "10 g boter",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "½ tl tijm",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "¼ tl knoflookpoeder",
+            "ingredientIndex": 11
+          }
         ]
       },
       {
@@ -4463,6 +6214,16 @@
           9,
           13,
           7
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl honing",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -4472,14 +6233,20 @@
           6,
           0,
           14
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 6
+          }
         ]
       }
     ],
     "tips": "Dep de zalm droog en gebruik slechts 2 tl olijfolie; de vis bevat van zichzelf al vet. Gebruik 1 tl gedroogde dille voor een duidelijke kruidensmaak. Controleer de gaarheid vanaf ongeveer 12 minuten, afhankelijk van de dikte, en houd voor een voedselveilige bereiding 63 °C kerntemperatuur aan. Voeg de 2 tl citroensap pas ná het bakken aan de zalm toe. Kook de wortels 6–8 minuten voor, laat uitlekken en glaceer ze kort in 10 g boter met 1 tl honing; de extra 1 tl citroensap hoort bij de wortels. Plan zalm en friet gelijktijdig en maak de wortels als laatste af.",
     "image": "images/zalm.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor ovenzalm met citroen en dille, rustieke friet en geglaceerde wortels",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -4490,6 +6257,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -4553,7 +6325,8 @@
         "name": "Heet water voor stoom",
         "qty": 150,
         "unit": "ml",
-        "group": "Oven"
+        "group": "Oven",
+        "scaleFixed": true
       }
     ],
     "steps": [
@@ -4565,6 +6338,24 @@
           1,
           2,
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "350 g tarwebloem",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "245 ml water",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "2 g instantgist",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "7 g zout",
+            "ingredientIndex": 3
+          }
         ]
       },
       {
@@ -4573,7 +6364,8 @@
         "duration": "20 min rusten",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Laat opnieuw 20 minuten afgedekt rusten en herhaal het rekken en vouwen aan alle vier de kanten. Het deeg moet iets steviger en elastischer aanvoelen.",
@@ -4581,7 +6373,8 @@
         "duration": "20 min rusten",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Zet het deeg goed afgedekt minimaal 8 uur en bij voorkeur 10–14 uur in de koelkast; 12 uur is een praktisch uitgangspunt voor de totale tijd.",
@@ -4589,14 +6382,21 @@
         "duration": "minimaal 8 uur, liefst 10–14 uur",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
-        "body": "Haal het deeg uit de koelkast en stort het voorzichtig op een licht bebloemd werkvlak. Verdeel in twee gelijke stukken en vorm beide zonder veel druk tot een kort, los rolletje. Dek af en laat 10–15 minuten ontspannen, zodat het deeg niet terugveert bij het definitieve vormen.",
+        "body": "Haal het deeg uit de koelkast en stort het voorzichtig op een licht bebloemd werkvlak. Verdeel in twee gelijke stukken en vorm elk stuk zonder veel druk tot een kort, los rolletje. Dek af en laat 10–15 minuten ontspannen, zodat het deeg niet terugveert bij het definitieve vormen.",
         "title": "Deeg verdelen en laten ontspannen",
         "duration": "10–15 min rusten",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee gelijke stukken",
+            "perServing": 1
+          }
         ]
       },
       {
@@ -4604,13 +6404,20 @@
         "title": "Stokbrood vormen",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Rol met lichte druk uit tot twee stokbroden van ongeveer 25–30 cm. Leg ze met de naad naar beneden op bakpapier, met voldoende ruimte ertussen, en dek losjes af.",
         "title": "Stokbroden uitrollen en neerleggen",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee stokbroden",
+            "perServing": 1
+          }
         ]
       },
       {
@@ -4619,7 +6426,8 @@
         "duration": "60–90 min narijzen",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Snijd in ieder stokbrood drie licht overlappende inkepingen, vrijwel in de lengterichting en circa ½–1 cm diep. Schuif de broden in de oven en giet voorzichtig 150 ml heet water in de hete metalen schaal. Houd je gezicht en handen uit de opstijgende stoom; gebruik geen glazen schaal.",
@@ -4627,6 +6435,12 @@
         "ingredientIndices": [
           0,
           4
+        ],
+        "quantityRefs": [
+          {
+            "text": "150 ml heet water",
+            "fixed": true
+          }
         ]
       },
       {
@@ -4635,7 +6449,8 @@
         "duration": "20–25 min bakken",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "De ingrediëntenverhouding blijft 350 g tarwebloem, 245 ml water, 2 g instantgist en 7 g zout (70% hydratatie). Vouw twee keer aan vier kanten, laat de gevormde voorrolletjes 10–15 minuten ontspannen en geef de stokbroden 60–90 minuten narijs. Het deeg is klaar voor de oven als het na een lichte vingerdruk langzaam terugveert. Snijd drie licht overlappende inkepingen bijna in de lengterichting. Gebruik een metalen schaal voor de stoom en laat na circa 10 minuten de stoom veilig ontsnappen. Koel de broden 20–30 minuten af op een rooster. De totale richttijd van circa 15 uur en 40 minuten omvat 12 uur nachtrijs; met een andere nachtrijs verandert de tijd.",
@@ -4653,8 +6468,8 @@
     "coolMinutes": 25,
     "totalTimeEstimated": true,
     "benchRestMinutes": 15,
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -4665,6 +6480,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als basisrecept of gerechtsonderdeel voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "onderdeel"
@@ -4843,6 +6663,48 @@
           17,
           18,
           19
+        ],
+        "quantityRefs": [
+          {
+            "text": "300 g kipdijfilet",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "1 tl paprikapoeder",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "½ tl gerookt paprikapoeder",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "1 tl oregano",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "¾ tl komijn",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "½ tl uienpoeder",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "½ tl zwarte peper",
+            "ingredientIndex": 18
+          },
+          {
+            "text": "½ tl zout",
+            "ingredientIndex": 19
+          }
         ]
       },
       {
@@ -4854,6 +6716,28 @@
           4,
           5,
           6
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 paprika",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "¾ courgette",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "1 rode ui",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "2 teentjes knoflook",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "1 tomaat",
+            "ingredientIndex": 5
+          }
         ]
       },
       {
@@ -4863,6 +6747,21 @@
         "ingredientIndices": [
           20,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ el",
+            "ingredientIndex": 20,
+            "factor": 0.5
+          },
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -4874,6 +6773,13 @@
           4,
           2,
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ el olijfolie",
+            "ingredientIndex": 20,
+            "factor": 0.5
+          }
         ]
       },
       {
@@ -4883,6 +6789,12 @@
         "ingredientIndices": [
           6,
           7
+        ],
+        "quantityRefs": [
+          {
+            "text": "1½ el tomatenpuree",
+            "ingredientIndex": 7
+          }
         ]
       },
       {
@@ -4894,6 +6806,16 @@
           9,
           8,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ tl honing",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "25 ml water",
+            "ingredientIndex": 8
+          }
         ]
       },
       {
@@ -4901,6 +6823,16 @@
         "title": "Vulling fris op smaak brengen",
         "ingredientIndices": [
           10
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "een wrap",
+            "fixed": true
+          }
         ]
       },
       {
@@ -4914,14 +6846,24 @@
           3,
           4,
           5
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 grote wraps",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       }
     ],
     "tips": "Voor een evenwichtige smaak bevat de kip nu 1 tl gewoon paprikapoeder en ½ tl gerookt paprikapoeder; de overige kruiden blijven gelijk. Bak kip en courgette stevig aan en verwijder de natte zaadlijsten uit de tomaat, zodat de wrapvulling niet waterig wordt. Voeg de 25 ml water alleen toe als de saus te droog is. Houd de honing op ½ tl en voeg de 1 tl citroensap pas op het einde toe. Laat de saus voldoende inkoken en bak de gevouwen wraps circa 2 minuten per kant in een droge koekenpan.",
     "image": "images/kipwraps.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -4932,6 +6874,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -5015,6 +6962,32 @@
           1,
           2,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "17 g ongezoet cacaopoeder",
+            "ingredientIndex": 1,
+            "factor": 0.9444444444444444
+          },
+          {
+            "text": "16 g suiker",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 g cacaopoeder apart",
+            "ingredientIndex": 1,
+            "factor": 0.05555555555555555
+          },
+          {
+            "text": "3 el",
+            "ingredientIndex": 0,
+            "factor": 0.006
+          },
+          {
+            "text": "45 ml",
+            "ingredientIndex": 0,
+            "factor": 0.09
+          }
         ]
       },
       {
@@ -5023,6 +6996,12 @@
         "duration": "1–5 min, afhankelijk van hulpmiddel",
         "ingredientIndices": [
           5
+        ],
+        "quantityRefs": [
+          {
+            "text": "75 ml goed koude slagroom",
+            "ingredientIndex": 5
+          }
         ]
       },
       {
@@ -5031,6 +7010,13 @@
         "duration": "3–4 min",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "455 ml melk",
+            "ingredientIndex": 0,
+            "factor": 0.91
+          }
         ]
       },
       {
@@ -5039,7 +7025,8 @@
         "ingredientIndices": [
           1,
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Verwarm nog 1–2 minuten op laag vuur en blijf roeren totdat de cacao volledig is verdeeld. Voeg desgewenst ¼ tl kaneel en/of 20 g fijngehakte pure chocolade toe; roer tot de chocolade is gesmolten.",
@@ -5049,24 +7036,45 @@
           3,
           4,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "¼ tl kaneel",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "20 g fijngehakte pure chocolade",
+            "ingredientIndex": 4
+          }
         ]
       },
       {
-        "body": "Proef de chocolademelk. Voeg voor een zoetere smaak eventueel een beetje extra suiker of honing toe. Verdeel over 2 mokken, schep op elke mok de helft van de geklopte slagroom en bestuif met de apart gehouden 1 g cacaopoeder. Serveer direct.",
+        "body": "Proef de chocolademelk. Voeg voor een zoetere smaak eventueel een beetje extra suiker of honing toe. Verdeel over 2 mokken, verdeel de geklopte slagroom gelijkmatig over de mokken en bestuif met de apart gehouden 1 g cacaopoeder. Serveer direct.",
         "title": "Proeven, inschenken en garneren",
         "ingredientIndices": [
           0,
           5,
           1,
           2
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 mokken",
+            "perServing": 1
+          },
+          {
+            "text": "1 g cacaopoeder",
+            "ingredientIndex": 1,
+            "factor": 0.05555555555555555
+          }
         ]
       }
     ],
     "tips": "Dit recept gaat uit van ongezoet bakcacaopoeder. Gebruik je instant cacaodrankpoeder (bijvoorbeeld Nesquik), volg dan de aanwijzingen op de verpakking en voeg niet automatisch 16 g suiker toe. Een glad cacaopapje voorkomt klontjes. De slagroom is ongezoet, omdat de chocolademelk al suiker bevat; zo blijft het geheel in balans. Gebruik eventueel spuitslagroom als snelle vervanger voor de zelfgeklopte topping. Voor een rijkere chocoladesmaak kun je 20 g pure chocolade toevoegen.",
     "image": "images/chocolademelk.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor zelfgemaakte warme chocolademelk met slagroomtopping",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -5077,6 +7085,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als hapje, dessert of drank voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "overig"
@@ -5166,6 +7179,20 @@
           0,
           2,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "40 g ongezouten roomboter",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "2 tl verse peterselie heel",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "½ klein teentje knoflook",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -5179,6 +7206,24 @@
           4,
           5,
           6
+        ],
+        "quantityRefs": [
+          {
+            "text": "¼ tl citroensap",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "⅛ tl zout",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "⅛ tl zwarte peper er volledig",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "⅛ tl oregano",
+            "ingredientIndex": 6
+          }
         ]
       },
       {
@@ -5187,7 +7232,8 @@
         "ingredientIndices": [
           4,
           3
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Schep de boter in een klein bakje, dek af en zet bij voorkeur 30 minuten in de koelkast zodat de smaken zich mengen. Haal ongeveer 10 minuten vóór het serveren uit de koelkast als je de boter goed smeerbaar wilt hebben.",
@@ -5195,7 +7241,8 @@
         "duration": "bij voorkeur 30 min koelen",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Dit recept behoudt de oorspronkelijke kleine portie van 40 g roomboter en ½ klein teentje knoflook. Gebruik 2 tl fijngehakte verse peterselie voor een frisse kruidensmaak; als vervanger kan ½ tl gedroogde peterselie worden gebruikt. De optionele oregano kan worden vervangen door 1 tl fijngeknipte bieslook. De actieve bereiding duurt 5 minuten; 30 minuten koelen is optioneel en komt daar eventueel bij. Haal de boter voor gebruik zo nodig ongeveer 10 minuten vooraf uit de koelkast. Serveer op vers stokbrood, bij een biefstuk of gegrilde groenten. Bewaar afgedekt in de koelkast en gebruik binnen 2–3 dagen.",
@@ -5205,8 +7252,8 @@
     "timeNote": "Direct klaar in 5 minuten zodra de boter zacht is. Voor meer smaak kun je de kruidenboter daarna optioneel 30 minuten in de koelkast laten rusten; dat is niet meegerekend.",
     "outputQty": 40,
     "outputUnit": "g",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -5217,6 +7264,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als basisrecept of gerechtsonderdeel voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "onderdeel"
@@ -5348,6 +7400,16 @@
         "ingredientIndices": [
           0,
           5
+        ],
+        "quantityRefs": [
+          {
+            "text": "400 g kipdijfilet",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "½ tl komijnzaad",
+            "ingredientIndex": 5
+          }
         ]
       },
       {
@@ -5365,6 +7427,48 @@
           9,
           10,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 tl olijfolie",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "1 el ketjap manis",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 tl paprikapoeder",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "1 tl kerrie",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "½ tl gekneusd komijnzaad",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "½ tl uienpoeder",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "¼ tl zout",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 10
+          }
         ]
       },
       {
@@ -5373,7 +7477,8 @@
         "duration": "optioneel 10–20 min marineren",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "body": "Kook voor een volledige maaltijd desgewenst 150 g rijst volgens de verpakking en maak 300 g sperziebonen schoon. Kook de sperziebonen in circa 10–12 minuten gaar maar nog beetgaar. Bereid dit tegelijk met de kip.",
@@ -5382,6 +7487,16 @@
         "ingredientIndices": [
           12,
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "150 g rijst volgens de verpakking",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "300 g sperziebonen schoon",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -5390,6 +7505,12 @@
         "duration": "8–10 min",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -5397,6 +7518,12 @@
         "title": "Satésaus rustig opwarmen",
         "ingredientIndices": [
           11
+        ],
+        "quantityRefs": [
+          {
+            "text": "120 g reeds bereide satésaus",
+            "ingredientIndex": 11
+          }
         ]
       },
       {
@@ -5407,6 +7534,12 @@
           11,
           12,
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee borden",
+            "perServing": 1
+          }
         ]
       }
     ],
@@ -5416,8 +7549,8 @@
     "optionalWaitMinMinutes": 10,
     "optionalWaitMaxMinutes": 20,
     "optionalWaitType": "marineren",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -5428,6 +7561,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -5625,6 +7763,48 @@
           15,
           16,
           8
+        ],
+        "quantityRefs": [
+          {
+            "text": "375 g kipdijfilet",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "¾ tl komijnzaad",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "1 tl paprikapoeder",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "½ tl gerookt paprikapoeder",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "½ tl zout",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 8
+          }
         ]
       },
       {
@@ -5636,6 +7816,28 @@
           4,
           5,
           6
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 rode paprika",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "1 ui",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "150 g mais goed uitlekken",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "1 tomaat",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "70 g ijsbergsla",
+            "ingredientIndex": 6
+          }
         ]
       },
       {
@@ -5648,6 +7850,24 @@
           20,
           21,
           22
+        ],
+        "quantityRefs": [
+          {
+            "text": "60 g Griekse yoghurt",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "1 el mayonaise",
+            "ingredientIndex": 18
+          },
+          {
+            "text": "½ fijngeraspt teentje knoflook",
+            "ingredientIndex": 19
+          },
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 20
+          }
         ]
       },
       {
@@ -5656,6 +7876,12 @@
         "duration": "6–8 min",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -5668,6 +7894,12 @@
           4,
           0,
           23
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ tl citroensap",
+            "ingredientIndex": 23
+          }
         ]
       },
       {
@@ -5685,6 +7917,16 @@
           7,
           17,
           18
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 wraps kort",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "80 g geraspte kaas",
+            "ingredientIndex": 7
+          }
         ]
       },
       {
@@ -5698,14 +7940,15 @@
           6,
           5,
           17
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Gebaseerd op het eerdere Mexicaanse wraprecept van 8 augustus 2026, waarin voor twee personen 350–400 g kipdij, paprika, ui, mais, sla, tomaat, geraspte kaas en een saus van yoghurt en mayonaise werden gebruikt. In deze versie is 375 g kip gekozen, is het gerookte paprikapoeder teruggebracht van 1 naar ½ tl en het komijnzaad verhoogd naar ¾ tl voor een beter evenwicht. Gebruik 1 tl citroensap in de knoflooksaus in plaats van de eerder genoemde limoen. Laat mais uitlekken en voeg vochtige ingrediënten pas na krokant bakken toe. Als je geen Griekse yoghurt hebt, kun je crème fraîche gebruiken; gebruik geen gezoete vanillekwark.",
     "image": "images/mexicaanse-kipwraps.webp",
     "image_source": "AI-afbeelding speciaal gemaakt voor Mexicaanse kipwraps met mais en knoflooksaus",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -5716,6 +7959,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -5851,6 +8099,28 @@
           7,
           5,
           2
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ rode paprika",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "¼ rode ui",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "35 g champignons",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "½ tomaat",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "45 g salami eventueel",
+            "ingredientIndex": 2
+          }
         ]
       },
       {
@@ -5860,6 +8130,12 @@
         "ingredientIndices": [
           0,
           12
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl olijfolie",
+            "ingredientIndex": 12
+          }
         ]
       },
       {
@@ -5877,6 +8153,46 @@
           10,
           11,
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "1½ el groene pesto dun",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "30 g",
+            "ingredientIndex": 3,
+            "factor": 0.4
+          },
+          {
+            "text": "75 g geraspte kaas",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "45 g salami erop",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "¼ tl knoflookpoeder",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "1 snufje chilipoeder",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "45 g kaas",
+            "ingredientIndex": 3,
+            "factor": 0.6
+          }
         ]
       },
       {
@@ -5887,7 +8203,8 @@
           0,
           3,
           2
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Afwerken met verse basilicum",
@@ -5895,14 +8212,20 @@
         "duration": "1 min rusten",
         "ingredientIndices": [
           8
+        ],
+        "quantityRefs": [
+          {
+            "text": "5 blaadjes verse basilicum",
+            "ingredientIndex": 8
+          }
         ]
       }
     ],
     "tips": "Deze hoeveelheden zijn bedoeld voor één groot Perzisch flatbread: één royale lunch of twee kleine porties. Bak het brood eerst kort voor voor een krokante bodem. Verwijder natte tomatenzaadlijsten en snijd champignons dun; door de kleine hoeveelheid van 35 g hoef je de champignons niet vooraf te bakken. Gebruik pesto met mate om een vette of zompige bodem te voorkomen. Kaas in twee lagen helpt het beleg bijeenhouden. Voeg geen extra zout toe: pesto, salami en kaas zijn al zout. Voeg verse basilicum pas na het bakken toe. Voor een mildere variant kun je circa 20 g salami vervangen door 25 g ham. Serveer bij gebruik als hoofdgerecht eventueel met een salade.",
     "image": "images/italiaanse-pesto-salamipizza-flatbread.webp",
     "image_source": "AI-gegenereerde afbeelding speciaal gemaakt voor deze pesto-salamipizza met champignons en verse basilicum",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -5913,6 +8236,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -5990,6 +8318,20 @@
           0,
           1,
           2
+        ],
+        "quantityRefs": [
+          {
+            "text": "180 ml prosecco",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "120 ml Aperol",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "60 ml bruiswater goed koud zijn",
+            "ingredientIndex": 2
+          }
         ]
       },
       {
@@ -5997,6 +8339,16 @@
         "body": "Neem 2 grote wijnglazen en vul elk glas met circa 100 g ijsblokjes.",
         "ingredientIndices": [
           4
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 grote wijnglazen",
+            "perServing": 1
+          },
+          {
+            "text": "100 g ijsblokjes",
+            "fixed": true
+          }
         ]
       },
       {
@@ -6004,6 +8356,16 @@
         "body": "Verdeel de 180 ml prosecco over de glazen: 90 ml per glas.",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "180 ml prosecco",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "90 ml",
+            "fixed": true
+          }
         ]
       },
       {
@@ -6011,6 +8373,16 @@
         "body": "Schenk voorzichtig 60 ml Aperol in elk glas (120 ml in totaal).",
         "ingredientIndices": [
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "60 ml Aperol",
+            "fixed": true
+          },
+          {
+            "text": "120 ml",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -6018,6 +8390,16 @@
         "body": "Voeg per glas 30 ml bruiswater toe (60 ml in totaal) en roer één keer voorzichtig door, zodat de bubbels behouden blijven.",
         "ingredientIndices": [
           2
+        ],
+        "quantityRefs": [
+          {
+            "text": "30 ml bruiswater",
+            "fixed": true
+          },
+          {
+            "text": "60 ml",
+            "ingredientIndex": 2
+          }
         ]
       },
       {
@@ -6025,14 +8407,20 @@
         "body": "Voeg aan elk glas 1 schijfje verse sinaasappel toe en serveer meteen.",
         "ingredientIndices": [
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 schijfje verse sinaasappel",
+            "fixed": true
+          }
         ]
       }
     ],
     "tips": "De klassieke 3-2-1-verhouding geeft een goede balans tussen frisheid, bitterheid en zoetheid. Kies droge prosecco (Brut) om het drankje niet te zoet te maken. Gebruik royaal ijs om de cocktail koud te houden en verdunning te beperken. Voor een iets minder bittere variant gebruik je per glas 100 ml prosecco, 50 ml Aperol en 30 ml bruiswater. Sodawater kan het bruiswater vervangen; tonic geeft een duidelijk bitterdere smaak.",
     "image": "images/aperol-spritz.webp",
     "image_source": "AI-gegenereerde afbeelding speciaal gemaakt voor Aperol Spritz met twee glazen, sinaasappel en ijsblokjes",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -6043,6 +8431,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als hapje, dessert of drank voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "overig"
@@ -6167,6 +8560,24 @@
         "ingredientIndices": [
           7,
           8
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 ovenbestendige ramequins",
+            "perServing": 1
+          },
+          {
+            "text": "150 ml",
+            "fixed": true
+          },
+          {
+            "text": "5 g roomboter",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "2 g ongezoet cacaopoeder",
+            "ingredientIndex": 8
+          }
         ]
       },
       {
@@ -6176,6 +8587,16 @@
         "ingredientIndices": [
           0,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "70 g pure chocolade",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "55 g roomboter rustig au bain-marie",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -6186,7 +8607,16 @@
           2,
           3
         ],
-        "scaleEggMixture": true
+        "quantityRefs": [
+          {
+            "text": "Neem 2 eieren: gebruik 1 heel ei en alleen de dooier van het tweede ei.",
+            "eggMixture": 2
+          },
+          {
+            "text": "30 g suiker circa 2 minuten",
+            "ingredientIndex": 3
+          }
+        ]
       },
       {
         "title": "Chocoladebeslag maken",
@@ -6200,6 +8630,28 @@
           5,
           6,
           9
+        ],
+        "quantityRefs": [
+          {
+            "text": "15 g bloem",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "5 g ongezoet cacaopoeder boven",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "1 klein snufje zout",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "¼ tl oploskoffie",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "½ tl warm water",
+            "perServing": 0.25
+          }
         ]
       },
       {
@@ -6214,6 +8666,12 @@
           4,
           5,
           6
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 ingevette vormpjes",
+            "perServing": 1
+          }
         ]
       },
       {
@@ -6223,6 +8681,16 @@
         "ingredientIndices": [
           10,
           11
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 bolletje vanille-ijs",
+            "fixed": true
+          },
+          {
+            "text": "25 g frambozen",
+            "fixed": true
+          }
         ]
       }
     ],
@@ -6334,6 +8802,24 @@
             "ingredientIndices": [
               7,
               8
+            ],
+            "quantityRefs": [
+              {
+                "text": "2 ovenbestendige ramequins",
+                "perServing": 1
+              },
+              {
+                "text": "150 ml",
+                "fixed": true
+              },
+              {
+                "text": "5 g roomboter",
+                "ingredientIndex": 7
+              },
+              {
+                "text": "2 g ongezoet cacaopoeder",
+                "ingredientIndex": 8
+              }
             ]
           },
           {
@@ -6343,6 +8829,16 @@
             "ingredientIndices": [
               0,
               1
+            ],
+            "quantityRefs": [
+              {
+                "text": "70 g melkchocolade",
+                "ingredientIndex": 0
+              },
+              {
+                "text": "55 g roomboter rustig au bain-marie",
+                "ingredientIndex": 1
+              }
             ]
           },
           {
@@ -6353,7 +8849,16 @@
               2,
               3
             ],
-            "scaleEggMixture": true
+            "quantityRefs": [
+              {
+                "text": "Neem 2 eieren: gebruik 1 heel ei en alleen de dooier van het tweede ei.",
+                "eggMixture": 2
+              },
+              {
+                "text": "10 g suiker circa 1–2 minuten",
+                "ingredientIndex": 3
+              }
+            ]
           },
           {
             "title": "Chocoladebeslag maken",
@@ -6367,6 +8872,28 @@
               5,
               6,
               9
+            ],
+            "quantityRefs": [
+              {
+                "text": "12 g bloem",
+                "ingredientIndex": 4
+              },
+              {
+                "text": "8 g ongezoet cacaopoeder boven",
+                "ingredientIndex": 5
+              },
+              {
+                "text": "1 klein snufje zout",
+                "ingredientIndex": 6
+              },
+              {
+                "text": "¼ tl oploskoffie",
+                "ingredientIndex": 9
+              },
+              {
+                "text": "½ tl warm water",
+                "perServing": 0.25
+              }
             ]
           },
           {
@@ -6381,6 +8908,12 @@
               4,
               5,
               6
+            ],
+            "quantityRefs": [
+              {
+                "text": "2 ingevette vormpjes",
+                "perServing": 1
+              }
             ]
           },
           {
@@ -6390,12 +8923,22 @@
             "ingredientIndices": [
               10,
               11
+            ],
+            "quantityRefs": [
+              {
+                "text": "1 bolletje vanille-ijs",
+                "fixed": true
+              },
+              {
+                "text": "25 g frambozen",
+                "fixed": true
+              }
             ]
           }
         ],
         "tips": "Omdat melkchocolade zoeter is, bevat deze variant slechts 10 g toegevoegde suiker en 8 g ongezoet cacaopoeder. Gebruik liever melkchocolade met een redelijk hoog cacaopercentage voor een vollere smaak. De baktijd is cruciaal: de randen stevig, het midden nog zacht. Verander de baktijd na de eerste proef met stappen van 1 minuut. Beslag kan afgedekt tot 24 uur in de koelkast worden bewaard; koud beslag heeft vaak 1–3 minuten extra oventijd nodig. De zachte kern is deels ongaar en bevat ei: gebruik bij voorkeur gepasteuriseerde eieren en serveer dit niet aan mensen die ongegaarde eieren moeten vermijden. Frambozen of vanille-ijs zijn optioneel.",
-        "version": 3,
-        "updatedAt": "2026-11-08",
+        "version": 4,
+        "updatedAt": "2026-11-11",
         "changeLog": [
           {
             "version": 2,
@@ -6406,6 +8949,11 @@
             "version": 3,
             "date": "2026-11-08",
             "description": "Receptindeling van de variant vastgelegd als hapje, dessert of drank."
+          },
+          {
+            "version": 4,
+            "date": "2026-11-11",
+            "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
           }
         ]
       }
@@ -6413,8 +8961,8 @@
     "variantPrompt": "Kies je chocoladesoort",
     "image": "images/chocolade-lavacake.avif",
     "image_source": "AI-afbeelding speciaal gegenereerd voor de chocolade lavacake met vloeibare chocoladekern",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -6425,6 +8973,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als hapje, dessert of drank voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "overig"
@@ -6567,6 +9120,20 @@
         "duration": "5 min",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "350 g kipfilet",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "2 filets",
+            "perServing": 1
+          },
+          {
+            "text": "150–175 g horizontaal",
+            "fixed": true
+          }
         ]
       },
       {
@@ -6578,6 +9145,25 @@
           1,
           2,
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "60 g jong belegen kaas",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "50 g achterham",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "2 plakken",
+            "ingredientIndex": 1,
+            "factor": 0.04
+          },
+          {
+            "text": "½ tl Dijonmosterd",
+            "fixed": true
+          }
         ]
       },
       {
@@ -6595,6 +9181,49 @@
           11,
           12,
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "30 g bloem",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "1 losgeklopt ei",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "30 g",
+            "ingredientIndex": 6,
+            "occurrence": 1
+          },
+          {
+            "text": "30 g panko",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "½ tl knoflookpoeder",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "½ tl gedroogde peterselie",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "¼ tl gerookt paprikapoeder",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "¼ tl uienpoeder",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "¼ tl zout",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -6607,7 +9236,8 @@
           5,
           6,
           7
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Goudbruin bakken en gaarheid controleren",
@@ -6617,6 +9247,16 @@
           0,
           14,
           15
+        ],
+        "quantityRefs": [
+          {
+            "text": "3 el zonnebloemolie",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "10 g roomboter",
+            "ingredientIndex": 15
+          }
         ]
       },
       {
@@ -6625,14 +9265,15 @@
         "duration": "2 min",
         "ingredientIndices": [
           0
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Vouw de kaas zorgvuldig in de achterham, laat minimaal 1 cm ruimte tot de kipranden en sluit de kip goed om lekkage te beperken. Een mengsel van fijn paneermeel en panko geeft tegelijk een egale en luchtig krokante korst. Bak niet te heet: de korst mag niet verbranden voordat de kip gaar is. Bereid eventueel enkele uren vooraf voor en bewaar de ongegaarde, gepaneerde kip afgedekt in de koelkast. Gaar bereide restjes maximaal 2 dagen afgesloten gekoeld bewaren; opnieuw verwarmen in de oven op 170 °C boven- en onderwarmte tot door en door heet. Serveer bijvoorbeeld met geroosterde rozemarijnaardappeltjes en sperziebonen met wortel; bijgerechten vallen buiten de 45 minuten.",
     "image": "images/klassieke-krokante-kip-cordon-bleu.webp",
     "image_source": "AI-gegenereerde foto speciaal gemaakt voor klassieke krokante kip cordon bleu met ham, gesmolten kaas, aardappelpartjes, sperziebonen en wortel",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -6643,6 +9284,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als maaltijd voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -6716,6 +9362,12 @@
         "body": "Verwarm de oven voor op 200 °C boven- en onderwarmte (180 °C hetelucht). Snijd 1 afbakstokbrood ongeveer elke 2 cm schuin in, maar niet helemaal door: de onderkant moet heel blijven. Leg het brood op een met bakpapier beklede bakplaat.",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 afbakstokbrood",
+            "ingredientIndex": 0
+          }
         ]
       },
       {
@@ -6723,6 +9375,12 @@
         "body": "Gebruik 40 g zachte knoflook-kruidenboter. Maak deze volgens het afzonderlijke basisrecept in het kookboek of kies kant-en-klare kruidenboter. Verdeel de boter gelijkmatig tussen alle inkepingen en smeer eventueel een klein beetje over de bovenkant.",
         "ingredientIndices": [
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "40 g zachte knoflook-kruidenboter",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -6731,6 +9389,16 @@
         "ingredientIndices": [
           2,
           3
+        ],
+        "quantityRefs": [
+          {
+            "text": "30 g geraspte jong belegen kaas gelijkmatig",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "½ tl gedroogde oregano",
+            "ingredientIndex": 3
+          }
         ]
       },
       {
@@ -6742,14 +9410,15 @@
           1,
           2,
           3
-        ]
+        ],
+        "quantityRefs": []
       }
     ],
     "tips": "Gebruik het bestaande basisrecept ‘Zelfgemaakte knoflook-kruidenboter (40 g)’ voor de vulling, of gebruik kant-en-klare kruidenboter. Met 30 g kaas blijft de kruidenboter de belangrijkste smaakmaker en ontstaat toch een licht krokant kaaskorstje. Laat de onderkant van het stokbrood heel zodat het gemakkelijk te delen is. Dit brood is direct uit de oven het lekkerst. Bewaar restjes maximaal 2 dagen afgedekt in de koelkast en warm ongeveer 5 minuten op bij 180 °C boven- en onderwarmte.",
     "image": "images/gevuld-kruidenboterstokbrood-kaas-oregano.avif",
     "image_source": "AI-afbeelding speciaal gemaakt voor het gevulde kruidenboterstokbrood met kaas en oregano",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
@@ -6760,6 +9429,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Ingedeeld als hapje, dessert of drank voor een duidelijker receptenoverzicht."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "overig"
@@ -6984,6 +9658,56 @@
           8,
           9,
           10
+        ],
+        "quantityRefs": [
+          {
+            "text": "60 g rode ui",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "2 tenen knoflook",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "300 g rundergehakt",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "1 tl gemalen komijn",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "½ tl gemalen korianderzaad",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "½ tl peterselie",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "⅛ tl kaneel",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "½ tl zout",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "zes gelijke porties",
+            "perServing": 3
+          }
         ]
       },
       {
@@ -6998,6 +9722,36 @@
           17,
           18,
           13
+        ],
+        "quantityRefs": [
+          {
+            "text": "150 g Griekse yoghurt",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "½ tl gedroogde dille",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "1 tl olijfolie",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "¼ tl zout",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "⅛ tl zwarte peper",
+            "ingredientIndex": 18
+          },
+          {
+            "text": "1 teen knoflook",
+            "ingredientIndex": 13
+          }
         ]
       },
       {
@@ -7009,6 +9763,24 @@
           21,
           22,
           23
+        ],
+        "quantityRefs": [
+          {
+            "text": "150 g komkommer",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "160 g tomaten",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "40 g rode ui",
+            "ingredientIndex": 22
+          },
+          {
+            "text": "50 g gemengde sla",
+            "ingredientIndex": 23
+          }
         ]
       },
       {
@@ -7018,6 +9790,20 @@
         "ingredientIndices": [
           11,
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olijfolie",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "zes kofta's",
+            "perServing": 3
+          },
+          {
+            "text": "twee porties",
+            "fixed": true
+          }
         ]
       },
       {
@@ -7033,6 +9819,28 @@
           26,
           27,
           19
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 24
+          },
+          {
+            "text": "1 tl olijfolie",
+            "ingredientIndex": 25
+          },
+          {
+            "text": "⅛ tl zout",
+            "ingredientIndex": 26
+          },
+          {
+            "text": "⅛ tl zwarte peper",
+            "ingredientIndex": 27
+          },
+          {
+            "text": "2 grote flatbreads",
+            "ingredientIndex": 19
+          }
         ]
       },
       {
@@ -7045,19 +9853,34 @@
           0,
           12,
           14
+        ],
+        "quantityRefs": [
+          {
+            "text": "50 g sla",
+            "ingredientIndex": 23
+          },
+          {
+            "text": "zes kofta's",
+            "perServing": 3
+          }
         ]
       }
     ],
     "tips": "Gebruik niet te mager rundergehakt (circa 15% vet) voor sappige kofta's. Knijp geraspte ui goed uit en kneed het vlees slechts kort. Bak eerst bruin, daarna op middelhoog vuur volledig gaar tot 71 °C in de kern. Breng komkommer en tomaat pas vlak voor het serveren op smaak om het flatbread droog te houden. Als alternatief voor 1 tl gemalen komijn kun je 1¼ tl komijnzaad kort roosteren en fijnstampen. De gemalen koriander is optioneel. De voedingswaarden zijn grove schattingen op basis van gemiddeld rundergehakt, volle Griekse yoghurt en twee grote flatbreads; merk en broodformaat maken verschil. De kofta's kunnen maximaal één dag van tevoren afgedekt in de koelkast worden gevormd.",
     "image": "images/runderkofta-flatbread.webp",
     "image_source": "AI-gegenereerde fotorealistische afbeelding van runderkofta met flatbread, groenten en knoflook-yoghurtsaus.",
-    "version": 2,
-    "updatedAt": "2026-11-08",
+    "version": 3,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 2,
         "date": "2026-11-08",
         "description": "De eerdere vectorillustratie vervangen door een fotorealistische, AI-gegenereerde afbeelding die aansluit bij het recept."
+      },
+      {
+        "version": 3,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "recipeType": "maaltijd"
@@ -7190,6 +10013,31 @@
           0,
           1,
           2
+        ],
+        "quantityRefs": [
+          {
+            "text": "500 g kruimige aardappelen",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "400 g winterwortel",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "250 g uien",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "75 g",
+            "ingredientIndex": 2,
+            "factor": 0.3,
+            "occurrence": 0
+          },
+          {
+            "text": "175 g",
+            "ingredientIndex": 2,
+            "factor": 0.7
+          }
         ]
       },
       {
@@ -7201,7 +10049,18 @@
           2,
           12
         ],
-        "duration": "20–25 min koken; spek parallel"
+        "duration": "20–25 min koken; spek parallel",
+        "quantityRefs": [
+          {
+            "text": "75 g grofgesneden ui",
+            "ingredientIndex": 2,
+            "factor": 0.3
+          },
+          {
+            "text": "75 g spekreepjes",
+            "ingredientIndex": 12
+          }
+        ]
       },
       {
         "title": "Uien goudbruin bakken",
@@ -7212,13 +10071,48 @@
           7,
           13
         ],
-        "duration": "18–22 min, parallel aan het koken"
+        "duration": "18–22 min, parallel aan het koken",
+        "quantityRefs": [
+          {
+            "text": "2 tl spekvet achter",
+            "fixed": true
+          },
+          {
+            "text": "5 g",
+            "ingredientIndex": 5,
+            "factor": 0.3333333333333333,
+            "occurrence": 0
+          },
+          {
+            "text": "15 g boter",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "1 tl olijfolie",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "175 g uienringen",
+            "ingredientIndex": 2,
+            "factor": 0.7
+          },
+          {
+            "text": "¼ tl tijm",
+            "ingredientIndex": 7
+          }
+        ]
       },
       {
         "title": "Rookworst verwarmen",
         "body": "Verwarm 250 g rookworst volgens de aanwijzingen op de verpakking. Begin op tijd, zodat hij tegelijk met de hutspot klaar is. Moet de worst in heet water worden verwarmd, houd het water dan onder het kookpunt.",
         "ingredientIndices": [
           11
+        ],
+        "quantityRefs": [
+          {
+            "text": "250 g rookworst volgens de aanwijzingen",
+            "ingredientIndex": 11
+          }
         ]
       },
       {
@@ -7229,7 +10123,8 @@
           1,
           2
         ],
-        "duration": "1–2 min uitdampen"
+        "duration": "1–2 min uitdampen",
+        "quantityRefs": []
       },
       {
         "title": "Hutspot stampen",
@@ -7244,6 +10139,37 @@
           6,
           8,
           9
+        ],
+        "quantityRefs": [
+          {
+            "text": "50 ml melk",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "10 g boter",
+            "ingredientIndex": 5,
+            "factor": 0.6666666666666666
+          },
+          {
+            "text": "2 tl grove mosterd",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "⅛ tl nootmuskaat",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "25 ml extra melk beetje",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "een eetlepel",
+            "fixed": true
+          }
         ]
       },
       {
@@ -7255,7 +10181,8 @@
           10,
           12,
           14
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Serveren met de krokante topping",
@@ -7264,12 +10191,18 @@
           2,
           11,
           12
+        ],
+        "quantityRefs": [
+          {
+            "text": "twee borden",
+            "perServing": 1
+          }
         ]
       }
     ],
     "tips": "Twee royale porties. Benodigd: kookpan, koekenpan, aardappelstamper en eventueel een aparte pan voor de rookworst. Reken op 40–45 minuten totaal; kook de groenten, bak de ui en verwarm de rookworst gelijktijdig. Voeg geen bouillon toe: spek, rookworst en mosterd geven al veel hartigheid en zout. De hoeveelheid benodigde melk hangt af van de aardappelen en hoeveel vocht na het afgieten achterblijft. Houd het spek apart tot het serveren zodat het knapperig blijft. Bij meer porties kan een grotere of tweede koekenpan nodig zijn om de ui goed te laten kleuren. Voedingswaarden zijn een schatting per persoon (de helft van het recept), met gewone varkensrookworst en halfvolle melk, zonder optionele extra melk, olie of mosterd. Alle vetten uit de ingrediënten zijn meegerekend; weggegooid spekvet kan de werkelijke hoeveelheid vet en calorieën verlagen. Merken en het type rookworst kunnen de waarden beïnvloeden.",
-    "version": 3,
-    "updatedAt": "2026-11-08",
+    "version": 4,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 1,
@@ -7285,6 +10218,11 @@
         "version": 3,
         "date": "2026-11-08",
         "description": "Geschatte voedingswaarden per portie toegevoegd, inclusief uitgangspunten."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "image": "images/hutspot-rookworst-spek.webp",
@@ -7400,6 +10338,12 @@
         "duration": "5–10 min, parallel aan de vulling",
         "ingredientIndices": [
           0
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 plakjes bladerdeeg ongeveer 5–10 minuten ontdooien",
+            "ingredientIndex": 0
+          }
         ]
       },
       {
@@ -7415,6 +10359,45 @@
           7,
           8,
           9
+        ],
+        "quantityRefs": [
+          {
+            "text": "20 g paneermeel",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "25 ml melk",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "2 tl middelfijne mosterd",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "10 g",
+            "ingredientIndex": 4,
+            "factor": 5
+          },
+          {
+            "text": "½ tl uienpoeder",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "¼ tl knoflookpoeder",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "⅓ tl zwarte peper",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "¼ tl nootmuskaat",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "2 g",
+            "ingredientIndex": 9
+          }
         ]
       },
       {
@@ -7430,6 +10413,12 @@
           7,
           8,
           9
+        ],
+        "quantityRefs": [
+          {
+            "text": "250 g half-om-halfgehakt",
+            "ingredientIndex": 1
+          }
         ]
       },
       {
@@ -7439,7 +10428,8 @@
           1,
           4,
           7
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Broodjes vullen en sluiten",
@@ -7447,15 +10437,22 @@
         "ingredientIndices": [
           0,
           1
+        ],
+        "quantityRefs": [
+          {
+            "text": "4 gelijke porties",
+            "ingredientIndex": 0
+          }
         ]
       },
       {
         "title": "Bovenkant bestrijken",
-        "body": "Leg de broodjes met enkele centimeters tussenruimte op de bakplaat. Is het deeg inmiddels slap of plakkerig? Zet de broodjes dan eerst 10 minuten in de koelkast; deze extra koeltijd komt boven op de totale tijd. Klop het ei los en bestrijk de bovenkant dun; ongeveer de helft van het ei is voldoende. Voorkom dat het ei langs de snijranden naar beneden loopt, omdat dit het rijzen kan belemmeren. Maak met een scherp mes 2 kleine, oppervlakkige sneetjes in de bovenkant, net door het deeg.",
+        "body": "Leg de broodjes met enkele centimeters tussenruimte op de bakplaat. Is het deeg inmiddels slap of plakkerig? Zet de broodjes dan eerst 10 minuten in de koelkast; deze extra koeltijd komt boven op de totale tijd. Klop de aangegeven hoeveelheid ei los en bestrijk de bovenkant dun; ongeveer de helft van het losgeklopte ei is voldoende. Voorkom dat het ei langs de snijranden naar beneden loopt, omdat dit het rijzen kan belemmeren. Maak met een scherp mes 2 kleine, oppervlakkige sneetjes in de bovenkant, net door het deeg.",
         "ingredientIndices": [
           0,
           10
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Krokant en gaar bakken",
@@ -7465,18 +10462,20 @@
           0,
           1,
           10
-        ]
+        ],
+        "quantityRefs": []
       },
       {
         "title": "Kort laten rusten",
         "body": "Leg de broodjes op een rooster en laat ze 5 minuten rusten. Zo kan stoom ontsnappen en blijft de onderkant beter krokant.",
         "duration": "5 min rusten",
-        "ingredientIndices": []
+        "ingredientIndices": [],
+        "quantityRefs": []
       }
     ],
     "tips": "De basishoeveelheid levert 4 saucijzenbroodjes op voor 2 personen als lunch. Totale tijd: 45–50 minuten, inclusief 5 minuten rusten; eventueel 10 minuten extra koeltijd als het bladerdeeg slap wordt. Benodigd: metalen bakplaat, bakpapier en bij voorkeur een keukenkwastje en kernthermometer. Half-om-halfgehakt houdt de vulling sappig; een ei door de vulling is bij deze verhouding niet nodig. Aanvullende boodschappen ten opzichte van de standaardvoorraad: bladerdeeg, half-om-halfgehakt, melk, mosterd en ei. Als lunch past een frisse salade van tomaat en komkommer erbij. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. De magnetron maakt het bladerdeeg zacht. Voedingswaarden zijn grove schattingen per portie van 2 broodjes (de basishoeveelheid levert 4 broodjes). Berekend met 4 plakjes roomboterbladerdeeg van elk 45 g, half-om-halfgehakt met circa 20% vet, halfvolle melk en een half ei van circa 25 g voor het bestrijken. Alle vulling en het bakvet zijn meegerekend; eventuele vetverliezen tijdens het bakken niet. Exclusief bijgerechten en optionele extra chili. Merk, plakjesgewicht en vetgehalte kunnen de waarden veranderen.",
-    "version": 4,
-    "updatedAt": "2026-11-08",
+    "version": 5,
+    "updatedAt": "2026-11-11",
     "changeLog": [
       {
         "version": 1,
@@ -7497,6 +10496,11 @@
         "version": 4,
         "date": "2026-11-08",
         "description": "Geschatte voedingswaarden toegevoegd per portie van 2 broodjes, inclusief rekenaannames."
+      },
+      {
+        "version": 5,
+        "date": "2026-11-11",
+        "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
       }
     ],
     "defaultVariantLabel": "Klassiek",
@@ -7626,6 +10630,16 @@
             "ingredientIndices": [
               2,
               3
+            ],
+            "quantityRefs": [
+              {
+                "text": "40 g ui",
+                "ingredientIndex": 2
+              },
+              {
+                "text": "50 g rode paprika",
+                "ingredientIndex": 3
+              }
             ]
           },
           {
@@ -7636,7 +10650,13 @@
               3,
               4
             ],
-            "duration": "6–8 min"
+            "duration": "6–8 min",
+            "quantityRefs": [
+              {
+                "text": "1 tl zonnebloemolie",
+                "ingredientIndex": 4
+              }
+            ]
           },
           {
             "title": "Tomatenpuree en kruiden meebakken",
@@ -7648,7 +10668,29 @@
               10,
               11
             ],
-            "duration": "1–2 min + 15 sec"
+            "duration": "1–2 min + 15 sec",
+            "quantityRefs": [
+              {
+                "text": "10 g tomatenpuree",
+                "ingredientIndex": 5
+              },
+              {
+                "text": "1½ tl zoet paprikapoeder",
+                "ingredientIndex": 8
+              },
+              {
+                "text": "½ tl knoflookpoeder",
+                "ingredientIndex": 9
+              },
+              {
+                "text": "⅛ tl gemalen komijn",
+                "ingredientIndex": 10
+              },
+              {
+                "text": "⅛ tl chilipoeder",
+                "ingredientIndex": 11
+              }
+            ]
           },
           {
             "title": "Smaakbasis volledig afkoelen",
@@ -7658,7 +10700,8 @@
               3,
               5
             ],
-            "duration": "10–15 min afkoelen"
+            "duration": "10–15 min afkoelen",
+            "quantityRefs": []
           },
           {
             "title": "Oven, deeg en paneermeel voorbereiden",
@@ -7668,7 +10711,21 @@
               6,
               7
             ],
-            "duration": "Tijdens het afkoelen"
+            "duration": "Tijdens het afkoelen",
+            "quantityRefs": [
+              {
+                "text": "15 g paneermeel",
+                "ingredientIndex": 6
+              },
+              {
+                "text": "15 ml melk",
+                "ingredientIndex": 7
+              },
+              {
+                "text": "4 plakjes bladerdeeg tegen het einde",
+                "ingredientIndex": 0
+              }
+            ]
           },
           {
             "title": "Vulling mengen en smaak controleren",
@@ -7687,6 +10744,24 @@
               12,
               13,
               14
+            ],
+            "quantityRefs": [
+              {
+                "text": "200 g half-om-halfgehakt",
+                "ingredientIndex": 1
+              },
+              {
+                "text": "¼ tl zwarte peper",
+                "ingredientIndex": 13
+              },
+              {
+                "text": "2 g zout",
+                "ingredientIndex": 14
+              },
+              {
+                "text": "⅛ tl chilipoeder",
+                "ingredientIndex": 12
+              }
             ]
           },
           {
@@ -7695,14 +10770,30 @@
             "ingredientIndices": [
               0,
               1
+            ],
+            "quantityRefs": [
+              {
+                "text": "4 gelijke porties",
+                "ingredientIndex": 0
+              },
+              {
+                "text": "een portie",
+                "fixed": true
+              }
             ]
           },
           {
             "title": "Zo nodig koelen en bestrijken",
-            "body": "Leg de broodjes met enkele centimeters tussenruimte op de bakplaat. Voelt het deeg slap of vettig aan? Zet de gevormde broodjes dan 10 minuten in de koelkast; die tijd komt boven op de totale tijd. Klop het ei los en bestrijk de bovenkant dun; ongeveer de helft van het ei is voldoende. Laat het ei niet over de snijranden lopen, zodat het bladerdeeg goed kan rijzen. Maak bovenop ieder broodje 2 kleine sneetjes, net door het deeg.",
+            "body": "Leg de broodjes met enkele centimeters tussenruimte op de bakplaat. Voelt het deeg slap of vettig aan? Zet de gevormde broodjes dan 10 minuten in de koelkast; die tijd komt boven op de totale tijd. Klop de aangegeven hoeveelheid ei los en bestrijk de bovenkant dun; ongeveer de helft van het losgeklopte ei is voldoende. Laat het ei niet over de snijranden lopen, zodat het bladerdeeg goed kan rijzen. Maak bovenop ieder broodje 2 kleine sneetjes, net door het deeg.",
             "ingredientIndices": [
               0,
               15
+            ],
+            "quantityRefs": [
+              {
+                "text": "2 kleine sneetjes",
+                "fixed": true
+              }
             ]
           },
           {
@@ -7713,18 +10804,20 @@
               1,
               15
             ],
-            "duration": "25–30 min, zo nodig langer"
+            "duration": "25–30 min, zo nodig langer",
+            "quantityRefs": []
           },
           {
             "title": "Kort laten rusten",
             "body": "Leg de broodjes op een rooster en laat 5 minuten rusten. Zo ontsnapt de stoom en blijft de onderkant beter krokant. Serveer warm.",
             "ingredientIndices": [],
-            "duration": "5 min rusten"
+            "duration": "5 min rusten",
+            "quantityRefs": []
           }
         ],
         "tips": "De basishoeveelheid levert 4 royale broodjes voor 2 personen als lunch. Reken op 60–70 minuten totaal: circa 20 minuten voorbereiding, 10–15 minuten afkoelen, 25–30 minuten bakken en 5 minuten rusten; eventueel 10 minuten extra koelen als het deeg slap wordt. Benodigd: koekenpan, metalen bakplaat, bakpapier, rooster en bij voorkeur een keukenkwastje en kernthermometer. Aanvullende boodschappen: bladerdeeg, gehakt, ui, paprika, melk, ei en zoet paprikapoeder. Komijnzaad uit de voorraad kun je fijnstampen; meet daarvan ⅛ tl af. Gebruik zoet paprikapoeder als basis: gerookt paprikapoeder geeft een duidelijk andere smaak. Voeg geen extra paneermeel toe zolang dat niet nodig is; goed drooggebakken groenten houden de vulling stevig en te veel paneermeel maakt haar broodachtig. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. Vermijd de magnetron als je het bladerdeeg krokant wilt houden. Voedingswaarden zijn grove schattingen per portie van 2 broodjes (de basishoeveelheid levert 4 broodjes). Berekend met 4 plakjes roomboterbladerdeeg van elk 45 g, half-om-halfgehakt met circa 20% vet, halfvolle melk en een half ei van circa 25 g voor het bestrijken. Alle vulling en het bakvet zijn meegerekend; eventuele vetverliezen tijdens het bakken niet. Exclusief bijgerechten en optionele extra chili. Merk, plakjesgewicht en vetgehalte kunnen de waarden veranderen.",
-        "version": 3,
-        "updatedAt": "2026-11-08",
+        "version": 4,
+        "updatedAt": "2026-11-11",
         "changeLog": [
           {
             "version": 1,
@@ -7740,6 +10833,11 @@
             "version": 3,
             "date": "2026-11-08",
             "description": "Geschatte voedingswaarden toegevoegd per portie van 2 broodjes, inclusief rekenaannames."
+          },
+          {
+            "version": 4,
+            "date": "2026-11-11",
+            "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
           }
         ],
         "image": "images/kruidige-poestabroodjes.webp",

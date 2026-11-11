@@ -330,3 +330,57 @@ Voeg bij een nieuw hoofdrecept de passende `recipeType` toe; ontbrekende of onbe
 Voor de invoering van de indeling zijn de versienummers van alle 27 recepten en de 2 varianten volgens het bestaande revisiebeleid verhoogd en van een nieuwe logregel voorzien. Inhoud, recept-ID's, porties en boodschappen blijven ongewijzigd. Toekomstige inhoudelijke aanpassingen volgen dezelfde versieregels.
 
 Automatische tests: `node --test tests/recipe-types.test.cjs`; opgenomen in GitHub Actions, naast de bestaande tests voor recepten, varianten, offline gebruik en boodschappen.
+
+
+
+## Betrouwbaar aanpassen van porties
+
+De ingrediëntenlijst, bereidingsstappen, kookmodus en gekopieerde recepttekst
+gebruiken dezelfde portiefactor. Sinds 11 november 2026 zijn de hoeveelheden in
+alle bestaande stappen expliciet vastgelegd in `quantityRefs`. De oude
+tekstherkenning is uitsluitend een terugval voor oudere opgeslagen receptdata.
+
+Elke stap heeft een `quantityRefs`-lijst; gebruik `[]` wanneer er geen concrete
+hoeveelheden in de stap staan. Een verwijzing bevat het exacte `text`-fragment
+uit `body` en precies één bron:
+
+- `ingredientIndex`: index in de ingrediëntenlijst van de gekozen receptvariant.
+  Met `factor` kan een deelhoeveelheid of een expliciete eenheidsomrekening
+  worden vastgelegd. Bijvoorbeeld 15 ml van 65 ml olie: `factor: 15 / 65`
+  (in JSON als getal opslaan).
+- `perServing`: aantal per standaardportie, bijvoorbeeld drie kofta's of één bord.
+- `fixed: true`: een vaste maat, een hoeveelheid per stuk of een kleine toevoeging
+  naar behoefte. Bijvoorbeeld een ramequin van 150 ml of 90 ml prosecco per glas.
+- `eggMixture`: ingrediëntindex voor het bestaande lavacakebeslag met één heel ei
+  en één dooier. Vereist twee eieren met `scaleRoundTo: 2` en de bijbehorende
+  standaardzin. Bij halve portiefactoren worden heel ei en dooier afgewogen.
+
+```json
+{
+  "body": "Meng 250 g gehakt en verdeel in 4 gelijke porties.",
+  "ingredientIndices": [0],
+  "quantityRefs": [
+    {"text": "250 g gehakt", "ingredientIndex": 0},
+    {"text": "4 gelijke porties", "perServing": 2}
+  ]
+}
+```
+
+Bovenstaand voorbeeld gaat uit van twee standaardporties en ingrediënt 0 met
+`qty: 250` en `unit: "g"`. Gebruik bij herhaalde tekstankers `occurrence` (vanaf 0),
+of maak het tekstanker uniek door de ingrediëntnaam op te nemen. Een bereik
+zoals `50–60 plakjes` gebruikt de bron voor de ondergrens en behoudt de verhouding.
+Een ingrediënt met `scaleFixed: true`, zoals ovenwater voor stoom, behoudt zijn
+hoeveelheid in de lijst, stappen en boodschappenlijst.
+
+Bij een receptwijziging moeten de tekstankers en eventuele deelverhoudingen
+worden bijgewerkt. De validator keurt ontbrekende, overlappende of verouderde
+koppelingen, ongeldige bronnen en afwijkende basishoeveelheden af. Controleer ook
+gewone taal zoals 'de helft op elke mok': dat kan bij meer porties onjuist worden.
+Tijden, temperaturen, diktes en hoeveelheden per persoon schalen niet automatisch.
+Bij grotere hoeveelheden kunnen meer pannen of bakrondes nodig zijn.
+
+Gerichte regressietests: `node --test tests/recipe-scaling.test.cjs`.
+Deze controleert alle recepten en varianten voor 1, 2, 3, 4 en 6 porties en bevat
+vaste verwachte uitkomsten voor onder meer saucijzenbroodjes, kofta, verdeelde
+melk en boter, cocktails, paneerborden, stoomwater en lavacake-eieren.

@@ -103,7 +103,7 @@ function appBrowser(){
   createElement:()=>({click(){},remove(){}})
  };
  const location={hash:'',href:''},navigator={onLine:true};
- const window={location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),
+ const window={CookbookScaling:require('../recipe-scaling.js'),location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),
   addEventListener(){},confirm:()=>true,scrollTo(){},print(){}};
  const script=new Function('document','window','navigator','localStorage','location','fetch','Option','setInterval','clearInterval','queueMicrotask','setTimeout',
   code+'\nreturn {refreshRecipeCollection,route,renderBasket,basketItems,isAlreadyHome,backupData,validBackup,getBasket:()=>basket,pantry};');
@@ -181,3 +181,4 @@ test('Bewerkte voorraad wordt veilig uit nieuwe back-up gelezen',async()=>{
  data.pantry[0].id='ander-product';
  assert.throws(()=>b.api.validBackup({app:'mijn-kookboek',version:1,exportedAt:new Date().toISOString(),data}));
 });
+

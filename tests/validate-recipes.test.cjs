@@ -31,7 +31,7 @@ test('Los ingrediënt zonder stapverwijzing is waarschuwing',()=>{
 });
 test('Null is toegestaan bij kruiden naar smaak',()=>{
  const data=clone();
- data[0].ingredients[0]={name:'Zout',qty:null,unit:'naar smaak',group:'Kruiden'};
+ data[0].ingredients.push({name:'Extra zout',qty:null,unit:'naar smaak',group:'Kruiden'});
  assert.equal(check(data).errors.length,0);
 });
 test('Tips ondersteunen tekst en een lijst',()=>{
@@ -87,3 +87,4 @@ rejects('Ontbrekende revisie in v1-geschiedenis wordt afgekeurd',data=>{
  const r=data.find(x=>x.id==='klassieke-saucijzenbroodjes');
  r.changeLog.splice(1,1);
 },/precies één wijzigingsregel/);
+

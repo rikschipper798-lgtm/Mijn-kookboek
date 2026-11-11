@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
+const {validateStep}=require('../recipe-scaling.js');
 const UNITS=new Set('g|kg|ml|l|tl|el|stuk|stuks|teentje|teentjes|snee|snufje|klein snufje|plakken|plakjes|blad|blaadjes|plantje|schijfjes|bolletjes|grote|naar smaak'.split('|'));
 const TIME_KEYS='minutes prep cook marinateMinutes restMinutes activeMinutes optionalWaitMinMinutes optionalWaitMaxMinutes initialRestMinutes coldRiseMinutes coldRiseMinimumMinutes coldRiseRecommendedMinMinutes coldRiseRecommendedMaxMinutes benchRestMinutes finalProofMinutes finalProofMinMinutes finalProofMaxMinutes coolMinutes'.split(' ');
 const ID=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -118,6 +119,8 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
    if(i.qty===null){if(i.unit!=='naar smaak')fail(loc+'.qty','null alleen bij naar smaak');}
    else if(typeof i.qty!=='number'||!Number.isFinite(i.qty)||i.qty<=0)fail(loc+'.qty','positief getal vereist');
    if(i.optional!==undefined&&typeof i.optional!=='boolean')fail(loc+'.optional','true/false vereist');
+   if(i.scaleFixed!==undefined&&typeof i.scaleFixed!=='boolean')fail(loc+'.scaleFixed','true/false vereist');
+   if(i.scaleFixed&&i.scaleRoundTo)fail(loc+'.scaleFixed','vaste hoeveelheid mag niet worden afgerond');
    if(i.scaleRoundTo!==undefined){
     if(!Number.isInteger(i.scaleRoundTo)||i.scaleRoundTo<=0)fail(loc+'.scaleRoundTo','positief geheel getal vereist');
     else if(typeof i.qty!=='number'||Math.abs(i.qty/i.scaleRoundTo-Math.round(i.qty/i.scaleRoundTo))>1e-8)fail(loc+'.scaleRoundTo','hoeveelheid niet deelbaar door afrondstap');
@@ -139,6 +142,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
      else{if(local.has(index))fail(loc+'.ingredientIndices['+k+']','dubbele ingrediëntverwijzing');local.add(index);used.add(index);}
     });
    }
+   for(const message of validateStep(r,step))fail(loc,message);
    for(const flag of ['scaleEggMixture','scaleServingSummary'])if(step[flag]!==undefined&&typeof step[flag]!=='boolean')fail(loc+'.'+flag,'true/false vereist');
   });
   if(Array.isArray(ingredients))ingredients.forEach((i,j)=>{
@@ -254,3 +258,4 @@ if(require.main===module){
  }
 }
 module.exports={validateRecipes};
+
