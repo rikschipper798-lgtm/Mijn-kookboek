@@ -10880,8 +10880,8 @@
     "heat": "Mild kruidig",
     "difficulty": "Gemiddeld (OFYR voor 18 personen; grotendeels ingekocht en voorbereid)",
     "date": "2026-11-11",
-    "updatedAt": "2026-11-11",
-    "version": 3,
+    "updatedAt": "2026-11-12",
+    "version": 4,
     "recipeType": "maaltijd",
     "featured": false,
     "tags": [
@@ -11151,7 +11151,7 @@
     "steps": [
       {
         "title": "Vrijdag 18 of zaterdag 19 december – inkopen controleren",
-        "body": "Controleer of 18 porties kant-en-klare carpaccio inclusief alle garnituren en dressing aanwezig zijn, plus 1000 ml glutenvrije kant-en-klare rodewijnsaus of rodewijnjus en 950 ml glutenvrije kant-en-klare champignonroomsaus. Voorbeelden van verpakkingen zijn 9 tweepersoonsporties carpaccio en 5 sausverpakkingen van 190 ml, maar kijk naar het werkelijke gewicht en het actuele etiket. Koop alleen producten die geschikt zijn voor de betreffende glutenallergie of coeliakie en bewaar gekoelde producten volgens de verpakking. Voor gasten die geen rauw vlees mogen eten, is een apart, veilig voorgerecht nodig.",
+        "body": "Controleer of 18 porties kant-en-klare carpaccio inclusief alle garnituren en dressing aanwezig zijn, plus 1000 ml glutenvrije kant-en-klare rodewijnsaus of rodewijnjus en 950 ml glutenvrije kant-en-klare champignonroomsaus. Carpaccio is bijvoorbeeld verkrijgbaar per twee personen en saus per verpakking van 190 ml. Kijk naar het werkelijke gewicht en het actuele etiket. Koop alleen producten die geschikt zijn voor de betreffende glutenallergie of coeliakie en bewaar gekoelde producten volgens de verpakking. Voor gasten die geen rauw vlees mogen eten, is een apart, veilig voorgerecht nodig.",
         "ingredientIndices": [
           0,
           3,
@@ -11169,13 +11169,17 @@
           {
             "text": "950 ml",
             "ingredientIndex": 5
+          },
+          {
+            "text": "190 ml",
+            "fixed": true
           }
         ],
         "duration": "10 min controleren, exclusief winkelen"
       },
       {
         "title": "Vrijdag 18 december – chocolademousse maken",
-        "body": "Hak 450 g pure chocolade 60–70% cacao, glutenvrij fijn. Verwarm 450 ml slagroom voor chocoladebasis tot heet maar niet kokend, haal van het vuur en roer de chocolade erdoor tot glad. Meng 6 ml vanille-extract en 0.125 tl zout erdoor. Laat afkoelen tot ongeveer 28–30 °C. Klop 900 ml slagroom voor opkloppen gekoeld tot zachte pieken en spatel eerst een derde en daarna de rest door de chocoladebasis. Verdeel over 18 kleine dessertglaasjes, dek af en laat minimaal 4 uur opstijven in de koelkast (liefst een nacht).",
+        "body": "Hak 450 g pure chocolade 60–70% cacao, glutenvrij fijn. Verwarm 450 ml slagroom voor chocoladebasis tot heet maar niet kokend, haal van het vuur en roer de chocolade erdoor tot glad. Meng 6 ml vanille-extract en ⅛ tl zout erdoor. Laat afkoelen tot ongeveer 28–30 °C. Klop 900 ml slagroom voor opkloppen gekoeld tot zachte pieken en spatel eerst een derde en daarna de rest door de chocoladebasis. Verdeel over 18 kleine dessertglaasjes, dek af en laat minimaal 4 uur opstijven in de koelkast (liefst een nacht).",
         "ingredientIndices": [
           32,
           33,
@@ -11197,12 +11201,16 @@
             "ingredientIndex": 35
           },
           {
-            "text": "0.125 tl zout",
+            "text": "⅛ tl zout",
             "ingredientIndex": 36
           },
           {
             "text": "900 ml slagroom voor opkloppen",
             "ingredientIndex": 34
+          },
+          {
+            "text": "18 kleine dessertglaasjes",
+            "perServing": 1
           }
         ],
         "duration": "30–40 min actief, minimaal 4 uur koelen"
@@ -11484,7 +11492,7 @@
       }
     ],
     "tips": "Definitief driegangen-kerstmenu op zaterdag 19 december 2026 voor 18 personen. Carpaccio en beide sauzen worden kant-en-klaar ingekocht: 18 complete carpaccioporties, 1 liter rodewijnjus/-saus en circa 950 ml champignonroomsaus. Controleer de actuele allergeneninformatie van ALLE verpakte onderdelen, inclusief carpacciotoppings en sauzen. Een product dat geschikt is voor coeliakie is niet automatisch geschikt bij tarweallergie. Voorkom kruiscontact op de OFYR, borden, pannen en serveerbestek. Rauwe carpaccio is niet geschikt voor onder meer zwangeren, jonge kinderen en personen met een verminderde weerstand; bied zo nodig een alternatief. De 6 kg vlees (3 kg bavette en 3 kg varkenshaas) is bewust royaal voor grotere vleeseters. Stuur garing op kerntemperatuur; voor kwetsbare gasten aparte volledig doorbakken porties voorzien. De ruime, eerder beproefde pan boven het OFYR-vuur is voor de krieltjes, maar zorg dat 3,2 kg krieltjes niet gaan stomen; bak eventueel in twee rondes met de oven als korte warmhoudmogelijkheid. Vrijdag 18 december: maak mousse, kook aardappelen voor en blancheer wortelen; koel snel in ondiepe bakken en bewaar bij maximaal 4 °C. Bewaar carpaccio en gekochte sauzen zoals op de verpakking aangegeven. Zaterdag 19 december: 18.00 OFYR aan; ca. 18.45 carpaccioborden voorbereiden; 19.00 voorgerecht; 19.10–19.15 aardappelen en varkenshaas; circa 19.30 bavette; 19.25 kant-en-klare sauzen opwarmen; 19.45–19.55 wortelen en vlees afmaken; circa 20.00 hoofdgerecht; 21.00 dessert. Zorg voor minimaal twee mensen bij de OFYR (vlees en aardappelen) plus één keukenhulp. Voedingswaarden niet berekend vanwege merkafhankelijke kant-en-klare producten en individuele vleesporties.",
-    "image": "",
+    "image": null,
     "image_source": "",
     "changeLog": [
       {
@@ -11501,7 +11509,15 @@
         "version": 3,
         "date": "2026-11-11",
         "description": "Kerstmenu vereenvoudigd: 18 complete ingekochte carpaccioporties, 1 l kant-en-klare rodewijnjus, 950 ml champignonroomsaus; vrijdag 18 december voorbereiding, zaterdag 19 december diner. Bestaande OFYR-bereiding en 6 kg vlees behouden."
+      },
+      {
+        "version": 4,
+        "date": "2026-11-12",
+        "description": "Technische receptgegevens hersteld: vaste verpakkingsmaat, schaalbare dessertglaasjes en zoutnotatie; ontbrekende foto en niet berekende voedingswaarden expliciet toegelicht."
       }
-    ]
+    ],
+    "imageNote": "Nog geen afbeelding van dit complete driegangenmenu beschikbaar.",
+    "nutrition": null,
+    "nutritionNote": "Niet berekend vanwege merkafhankelijke kant-en-klare producten en individuele vleesporties."
   }
 ]

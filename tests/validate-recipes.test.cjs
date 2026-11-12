@@ -44,6 +44,15 @@ rejects('Alias die een ander recept overschrijft wordt afgekeurd',data=>{data[0]
 rejects('Lege titel wordt afgekeurd',data=>{data[0].title='';},/verplicht niet-leeg/);
 rejects('Ongeldige datum wordt afgekeurd',data=>{data[0].date='2026-02-31';},/ongeldige datum/);
 rejects('Ontbrekende voedingswaarden worden afgekeurd',data=>{delete data[0].nutrition;},/voedingswaarden per portie ontbreken/);
+rejects('Null voedingswaarden zonder reden worden afgekeurd',data=>{data[0].nutrition=null;delete data[0].nutritionNote;},/voedingswaarden per portie ontbreken/);
+rejects('Null afbeelding zonder reden wordt afgekeurd',data=>{data[0].image=null;delete data[0].imageNote;},/afbeelding ontbreekt/);
+test('Bewust niet beschikbare foto en voedingswaarden vereisen een expliciete reden',()=>{
+ const data=clone();
+ data[0].image=null;data[0].imageNote='Nog geen passende foto beschikbaar.';
+ data[0].nutrition=null;data[0].nutritionNote='Niet berekend: merk en portie zijn onbekend.';
+ assert.deepEqual(check(data).errors,[]);
+ assert.equal(check(data).stats.images,check(catalog).stats.images-1);
+});
 rejects('Een negatieve voedingswaarde wordt afgekeurd',data=>{data[0].nutrition.proteinG=-5;},/voedingswaarde moet een niet-negatief getal zijn/);
 rejects('Elke variant moet eigen voedingswaarden hebben',data=>{
  const r=data.find(x=>x.variants?.length);delete r.variants[0].nutrition;

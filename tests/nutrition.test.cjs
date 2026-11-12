@@ -15,17 +15,24 @@ const show=new Function('safe','portionsLabel',source+'\nreturn nutritionPanel;'
  (recipe,n)=>n+' '+(recipe.servingUnit==='stokbroden'?'stokbroden':'personen')
 );
 
-test('Alle actuele recepten en varianten bevatten complete geschatte voedingswaarden',()=>{
+test('Alle actuele recepten en varianten bevatten voedingswaarden of een expliciete toelichting',()=>{
  assert.ok(recipes.length>=30);
  const all=recipes.flatMap(r=>[r,...r.variants||[]]);
  assert.equal(all.length,recipes.length+recipes.reduce((n,r)=>n+(r.variants||[]).length,0));
  for(const recipe of all){
+  if(recipe.nutrition===null){assert.ok(recipe.nutritionNote?.trim(),recipe.id+': toelichting ontbreekt');continue;}
   assert.equal(recipe.nutrition.per,'portie');
   assert.equal(recipe.nutrition.estimated,true);
   for(const name of ['kcal','proteinG','carbsG','fatG','fiberG'])
    assert.ok(Number.isFinite(recipe.nutrition[name])&&recipe.nutrition[name]>=0,recipe.id+': '+name);
   assert.ok(recipe.nutrition.kcal>0);
  }
+});
+
+test('Niet berekende voedingswaarden worden toegelicht zonder nulwaarden te verzinnen',()=>{
+ const out=show({nutrition:null,nutritionNote:'Niet berekend: merk en portie zijn onbekend.'},18);
+ assert.match(out,/Niet berekend/);
+ assert.doesNotMatch(out,/0 kcal/);
 });
 
 test('Detail toont alle vijf voedingswaarden en schaalt alleen het recepttotaal',()=>{
