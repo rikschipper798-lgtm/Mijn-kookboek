@@ -9,7 +9,7 @@ controles op bijvoorbeeld een wijziging aan HTML of recepten overslaan.
 - Alle `tests/*.test.cjs`, inclusief persoonlijke synchronisatie en de controle
   die publicatie blokkeert. Nieuwe testbestanden worden automatisch meegenomen.
 - JavaScript-syntax, receptgegevens, afbeeldingen en receptversies.
-- Acht browseronderdelen: de volledige gebruikersroute, schaalbare porties en
+- Negen browseronderdelen: de volledige gebruikersroute, receptlinks delen, schaalbare porties en
   offline gebruik, persoonlijke gegevens, synchronisatie tussen apparaten,
   back-upherstel, automatische maaltijden, toegankelijkheid en mobiele bediening.
 - Het websitepakket bevat alleen de expliciet geselecteerde publieke appbestanden
@@ -85,6 +85,6 @@ npx playwright install --with-deps chromium
 node tests/cookbook-journey-browser.cjs
 ```
 
-De zeven overige browserscripts staan in de matrix van de workflow. De vroegere
+De acht overige browserscripts staan in de matrix van de workflow. De vroegere
 workflows die alleen op specifieke ontwikkelbranches draaiden zijn daarin
 samengevoegd. De aparte dagelijkse databaseback-up blijft ongewijzigd.

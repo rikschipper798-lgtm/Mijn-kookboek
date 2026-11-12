@@ -681,6 +681,16 @@ body.cook-active{overflow:hidden}
 .recipe-intro .recipe-time-note{margin:12px 0}
 .recipe-primary-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:17px 0 8px}
 .recipe-primary-actions>.btn{min-height:50px;display:flex;align-items:center;justify-content:center;padding:11px 13px;text-align:center;font-size:14px;line-height:1.35}
+.recipe-sharing{margin:10px 0 5px}
+.recipe-sharing>.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.recipe-share-panel{margin-top:10px;padding:16px;background:#f3f7ef;border:1px solid #d6e0d1;border-radius:12px}
+.recipe-share-panel p{margin:0 0 12px;font-size:14px;color:#31513a}
+.recipe-share-buttons{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.recipe-share-buttons .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;text-align:center}
+.recipe-share-panel label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#31513a}
+.recipe-share-panel input{display:block;box-sizing:border-box;width:100%;min-width:0;min-height:44px;padding:10px;border:1px solid #b7c6b0;border-radius:8px;background:#fff;color:#253b2b;font:inherit;font-size:14px}
+.recipe-share-panel .recipe-share-status{margin:8px 0 0}
+@media print{.recipe-sharing{display:none!important}}
 .recipe-minor-actions{display:flex;align-items:center;flex-wrap:wrap;gap:3px 16px;margin:0 0 3px}
 .recipe-inline-action{font:inherit;font-size:13px;font-weight:700;color:#315a3c;background:transparent;border:0;padding:11px 0;min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .recipe-inline-action:hover{color:#173c27}
@@ -946,6 +956,7 @@ function unitLabel(r,n){
 function portionsLabel(r,n){return fmt(n)+' '+unitLabel(r,n)}
 function nutritionPanel(r,current){
  const n=r.nutrition;
+ if(n===null&&r.nutritionNote)return '<section class="nutrition-panel" aria-label="Voedingswaarden"><h3>Voedingswaarden</h3><p class="nutrition-note">'+safe(r.nutritionNote)+'</p></section>';
  if(!n||n.per!=='portie')return '';
  const perUnit=r.servingUnit==='stokbroden'?'stokbrood':'persoon';
  const values=[
@@ -1435,6 +1446,61 @@ function recipeText(r,mult){
 async function copyText(text,button){
  try{await navigator.clipboard.writeText(text);if(button)button.textContent='Gekopieerd'}
  catch(e){window.prompt('Kopieer de tekst',text)}
+}
+// Publieke receptlinks bevatten alleen de receptkeuze, variant en porties.
+function parseRecipeLink(hash){
+ if(!hash.startsWith('#recept/'))return null;
+ const raw=hash.slice(8),split=raw.indexOf('?');
+ try{
+  const id=decodeURIComponent(split<0?raw:raw.slice(0,split));
+  if(!id)return null;
+  const params=new URLSearchParams(split<0?'':raw.slice(split+1));
+  const value=params.get('porties'),servings=Number(value);
+  return {id,variant:params.get('variant'),servings:value&&/^[1-9]\d*$/.test(value)&&Number.isSafeInteger(servings)?servings:null};
+ }catch(error){return null;}
+}
+function recipeShareUrl(recipe,variantId,current,baseHref=location.href){
+ // Begin bij het appadres; neem nooit account- of andere URL-parameters over.
+ const url=new URL('./',baseHref),params=new URLSearchParams();
+ if(variantId!=='klassiek')params.set('variant',variantId);
+ params.set('porties',String(current));
+ url.hash='recept/'+encodeURIComponent(recipe.id)+'?'+params.toString();
+ return url.href;
+}
+function setupRecipeSharing(recipe,view,variantId,current){
+ const toggle=el('shareRecipe'),panel=el('recipeSharePanel');
+ // Maak de link pas bij openen. Ook na schalen of wisselen is dit de actuele keuze.
+ toggle.onclick=()=>{
+  panel.hidden=!panel.hidden;
+  toggle.setAttribute('aria-expanded',String(!panel.hidden));
+  if(panel.hidden)return;
+  const url=recipeShareUrl(recipe,variantId,current);
+  const text=title(view)+' · '+portionsLabel(view,current);
+  const input=el('recipeShareLink'),status=el('recipeShareStatus');
+  input.value=url;
+  el('whatsapp').href='https://wa.me/?text='+encodeURIComponent(text+'\n'+url);
+  input.onclick=()=>input.select();
+  el('copyRecipeLink').onclick=async()=>{
+   try{
+    await navigator.clipboard.writeText(url);
+    status.textContent='Link gekopieerd. Je kunt hem nu in WhatsApp of een ander bericht plakken.';
+   }catch(error){
+    input.focus();input.select();
+    status.textContent='Automatisch kopiëren lukt niet. Kopieer de geselecteerde link hierboven.';
+   }
+  };
+  const native=el('nativeShareRecipe');
+  native.hidden=typeof navigator.share!=='function';
+  native.onclick=async()=>{
+   native.disabled=true;status.textContent='';
+   try{await navigator.share({title:title(view),text,url});}
+   catch(error){if(error.name!=='AbortError')status.textContent='Delen via je apparaat lukt niet. Gebruik WhatsApp of kopieer de link.';}
+   finally{native.disabled=false;}
+  };
+ };
+ panel.addEventListener('keydown',event=>{
+  if(event.key==='Escape'){panel.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();}
+ });
 }
 // Houd bestaande winkelmandjes en afvinkgegevens intact; koophoeveelheden zijn afzonderlijk van receptmaten.
 function normalizedUnit(u){
@@ -2403,13 +2469,15 @@ document.addEventListener('keydown',event=>{
 });
 el('cookOverlay').addEventListener('click',event=>{if(event.target===el('cookOverlay')){if(activeCook?.phase==='finish')finishWithoutSaving();else closeCookMode()}});
 function renderDetail(){
- const id=decodeURIComponent(location.hash.slice(8)),r=findRecipe(id);
+ const link=parseRecipeLink(location.hash),id=link?.id,r=id&&findRecipe(id);
  if(!r){location.hash='';return}
  const baseVariant=id==='bolognese'?'romig':id==='chocolade-lavacake-melkchocolade'?'melkchocolade':'klassiek';
- const variantId=el('detail').dataset.routeId===id?(el('detail').dataset.variantId||baseVariant):baseVariant;
+ const sameRoute=el('detail').dataset.routeId===location.hash;
+ const requestedVariant=sameRoute?el('detail').dataset.variantId:(link.variant||baseVariant);
+ const variantId=requestedVariant==='klassiek'||(r.variants||[]).some(v=>v.id===requestedVariant)?requestedVariant:baseVariant;
  const view=viewFor(r,variantId),original=portions(view),prior=number(el('detail').dataset.currentServings);
- const current=el('detail').dataset.recipeId===r.id&&prior?prior:original;
- el('detail').dataset.recipeId=r.id;el('detail').dataset.routeId=id;el('detail').dataset.variantId=variantId;el('detail').dataset.currentServings=current;
+ const current=sameRoute&&prior?prior:(link.servings||original);
+ el('detail').dataset.recipeId=r.id;el('detail').dataset.routeId=location.hash;el('detail').dataset.variantId=variantId;el('detail').dataset.currentServings=current;
  el('overview').hidden=true;el('basket').hidden=true;el('detail').hidden=false;
  const mult=current/original,items=allIngredients(view),key=listKey(r.id,variantId);
  const canScale=items.some(i=>typeof i.qty==='number');
@@ -2433,13 +2501,21 @@ function renderDetail(){
  const actions='<div class="recipe-primary-actions" aria-label="Belangrijkste acties">'+
  '<button type="button" class="btn cook-start-button" id="startCooking">Start met koken</button>'+
  '<button type="button" class="btn alt" id="addBasket">Voeg toe aan boodschappenlijst</button></div>'+
+ '<div class="recipe-sharing">'+
+ '<button type="button" class="btn alt" id="shareRecipe" aria-expanded="false" aria-controls="recipeSharePanel"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/></svg>Deel recept</button>'+
+ '<section id="recipeSharePanel" class="recipe-share-panel" aria-label="Recept delen" hidden>'+
+ '<p>Deel dit recept voor '+safe(portionsLabel(view,current))+'. De ontvanger kan het zonder account openen.</p>'+
+ '<div class="recipe-share-buttons"><a class="btn" id="whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>'+
+ '<button type="button" class="btn alt" id="copyRecipeLink">Kopieer link</button>'+
+ '<button type="button" class="btn alt" id="nativeShareRecipe" hidden>Meer deelopties</button></div>'+
+ '<label for="recipeShareLink">Link naar dit recept</label><input id="recipeShareLink" type="url" readonly spellcheck="false">'+
+ '<p id="recipeShareStatus" class="recipe-share-status" role="status" aria-live="polite"></p></section></div>'+
  '<div class="recipe-minor-actions" aria-label="Overige receptacties">'+
  '<button type="button" class="recipe-inline-action" id="goBasket">Bekijk boodschappenlijst</button>'+
  '<button type="button" class="recipe-inline-action" id="favorite">'+(favorites.has(r.id)?'♥ Favoriet':'♡ Bewaar favoriet')+'</button>'+
- '<a class="recipe-inline-action" href="./voeding.html?recept='+encodeURIComponent(r.id)+'&variant='+encodeURIComponent(variantId)+'">Registreer maaltijd</a>'+
+ (view.nutrition?'<a class="recipe-inline-action" href="./voeding.html?recept='+encodeURIComponent(r.id)+'&variant='+encodeURIComponent(variantId)+'">Registreer maaltijd</a>':'')+
  '<details class="recipe-more-actions"><summary>Meer acties</summary><div class="recipe-secondary-actions">'+
  '<button type="button" class="btn alt" id="copy">Kopieer recept</button>'+
- '<button type="button" class="btn alt" id="whatsapp">Deel via WhatsApp</button>'+
  '<button type="button" class="btn alt" id="print">Print</button>'+
  '</div></details></div>';
  const extraDetails='<details class="recipe-extra-details">'+
@@ -2506,7 +2582,7 @@ function renderDetail(){
  el('jumpIngredients').onclick=()=>jumpTo('recipeIngredients');
  el('jumpSteps').onclick=()=>jumpTo('recipeSteps');
  el('copy').onclick=()=>copyText(recipeText(view,mult),el('copy'));
- el('whatsapp').onclick=()=>location.href='https://wa.me/?text='+encodeURIComponent(recipeText(view,mult));
+ setupRecipeSharing(r,view,variantId,current);
  el('print').onclick=()=>window.print();
  el('addBasket').onclick=()=>{
   const basketKey=listKey(r.id,variantId),previous=basket[basketKey];

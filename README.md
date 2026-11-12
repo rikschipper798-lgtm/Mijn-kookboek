@@ -4,6 +4,31 @@ Persoonlijk online kookboek met recepten, kookmodus en boodschappenlijst.
 
 **Website:** https://rikschipper798-lgtm.github.io/Mijn-kookboek/
 
+## Recept delen via een link
+
+Op iedere receptpagina staat **Deel recept**, direct onder de knoppen voor koken
+en boodschappen. Kies **WhatsApp** voor een bericht met de receptnaam en een
+directe link, of **Kopieer link** om de link zelf te plakken. Op ondersteunde
+apparaten opent **Meer deelopties** het deelmenu van het apparaat.
+
+De ontvanger opent het openbare recept zonder account of app-installatie. De
+link bewaart de gekozen variant en het aantal porties, bijvoorbeeld
+`#recept/klassieke-saucijzenbroodjes?variant=poesta&porties=4`. Persoonlijke
+notities, favorieten, boodschappen en accountgegevens worden niet meegenomen.
+Een gedeelde link toont steeds de actuele receptversie. Bestaande receptlinks
+zonder extra parameters en de oude receptaliases blijven werken.
+
+Ontbrekende foto's of niet berekende voedingswaarden kunnen expliciet worden
+vastgelegd met respectievelijk `image: null` + `imageNote` en `nutrition: null` +
+`nutritionNote`. Zonder een niet-lege toelichting blijven ontbrekende gegevens
+een validatiefout. De app toont de voedingswaardentoelichting en biedt voor zo'n
+recept geen registratie met verzonnen calorieën aan. Dit is toegepast op het
+kerstmenu, waarvoor nog geen foto of voedingswaardenschatting beschikbaar is.
+
+Als automatisch kopiëren niet beschikbaar is, blijft de link zichtbaar en wordt
+hij geselecteerd om handmatig te kopiëren. **Kopieer recept** onder **Meer acties**
+blijft beschikbaar voor de volledige recepttekst.
+
 ## Persoonlijke standaardgerechten
 
 Op `voeding.html` kun je onder **Maaltijd toevoegen → Zelf invoeren → Mijn standaardgerechten** eerder opgeslagen maaltijden met één klik registreren. Standaardgerechten zijn een persoonlijke snelkeuzelijst in het voedingsdagboek en worden niet in het openbare `recepten.json` geplaatst. Een standaardgerecht telt pas mee voor de gekozen dag nadat je op **Registreer geselecteerd gerecht** klikt.
@@ -177,7 +202,7 @@ De controle omvat:
 
 1. **Alle regressietests:** `node --test tests/*.test.cjs`, inclusief persoonlijke synchronisatie, receptporties en de publicatieblokkade.
 2. **Receptvalidatie:** `node scripts/validate-recipes.cjs` — controleert alle recepten en varianten in `recepten.json`, inclusief afbeeldingsbestanden.
-3. **Acht browseronderdelen:** de volledige gebruikersroute, porties en offline gebruik, synchronisatie, herstel, automatische maaltijden, toegankelijkheid en mobiele bediening.
+3. **Negen browseronderdelen:** de volledige gebruikersroute, receptlinks delen, porties en offline gebruik, synchronisatie, herstel, automatische maaltijden, toegankelijkheid en mobiele bediening.
 4. **Websitepakket:** alleen publieke appbestanden en afbeeldingen worden klaargezet. De volledige gebruikersroute wordt op dit pakket getest.
 
 De validator keurt onder andere af: dubbele recept-ID's of conflicterende aliases, ontbrekende velden, ongeldige porties of hoeveelheden, onbekende eenheden, onjuiste ingrediëntverwijzingen in stappen, ontbrekende afbeeldingen, foutieve varianten, onlogische tijdsgegevens en ongeldige afrondstappen bij schaalbare ingrediënten.

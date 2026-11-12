@@ -2,7 +2,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const {validateStep}=require('../recipe-scaling.js');
-const UNITS=new Set('g|kg|ml|l|tl|el|stuk|stuks|teentje|teentjes|snee|snufje|klein snufje|plakken|plakjes|blad|blaadjes|plantje|schijfjes|bolletjes|grote|naar smaak'.split('|'));
+const UNITS=new Set('g|kg|ml|l|tl|el|stuk|stuks|teentje|teentjes|snee|snufje|klein snufje|plakken|plakjes|blad|blaadjes|plantje|schijfjes|bolletjes|grote|porties|takjes|naar smaak'.split('|'));
 const TIME_KEYS='minutes prep cook marinateMinutes restMinutes activeMinutes optionalWaitMinMinutes optionalWaitMaxMinutes initialRestMinutes coldRiseMinutes coldRiseMinimumMinutes coldRiseRecommendedMinMinutes coldRiseRecommendedMaxMinutes benchRestMinutes finalProofMinutes finalProofMinMinutes finalProofMaxMinutes coolMinutes'.split(' ');
 const ID=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const RECIPE_TYPES=new Set(['maaltijd','overig','onderdeel']);
@@ -22,6 +22,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
   else seenIds.set(v,p);
  };
  const image=(v,p)=>{
+  if(v.image===null&&isText(v.imageNote))return;
   if(!isText(v.image)){fail(p+'.image','afbeelding ontbreekt');return;}
   if(!IMG.test(v.image)||v.image.includes('//')||v.image.split('/').includes('..'))fail(p+'.image','ongeldig afbeeldingspad');
   else if(!existsFile(v.image))fail(p+'.image','afbeelding bestaat niet: '+v.image);
@@ -95,7 +96,8 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
   if(version>1&&latest&&latest.date!==view.updatedAt)
    fail(p+'.updatedAt','moet overeenkomen met de nieuwste wijzigingsregel');
  }
- function nutrition(n,p){
+ function nutrition(n,p,note){
+  if(n===null&&isText(note))return;
   if(!n||typeof n!=='object'||Array.isArray(n)){
    fail(p+'.nutrition','voedingswaarden per portie ontbreken');return;
   }
@@ -170,7 +172,7 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
   else if(new Set(r.tags.map(t=>t.trim().toLowerCase())).size!==r.tags.length)fail(loc+'.tags','dubbele tags');
   if(!Number.isInteger(r.servings)||r.servings<=0)fail(loc+'.servings','positief geheel aantal porties vereist');
   for(const flag of ['featured','totalTimeEstimated'])if(r[flag]!==undefined&&typeof r[flag]!=='boolean')fail(loc+'.'+flag,'true/false vereist');
-  revisions(r,loc,r.date);time(r,loc);image(r,loc);nutrition(r.nutrition,loc);images++;contents(r,loc);
+  revisions(r,loc,r.date);time(r,loc);image(r,loc);nutrition(r.nutrition,loc,r.nutritionNote);if(isText(r.image))images++;contents(r,loc);
   if(r.variants!==undefined){
    if(!Array.isArray(r.variants)||!r.variants.length)fail(loc+'.variants','niet-lege variantenlijst vereist');
    else{
@@ -183,10 +185,10 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
      seen.add(v.id);required(v,'label',p);
      if(Object.prototype.hasOwnProperty.call(v,'recipeType')&&v.recipeType!==r.recipeType)
       fail(p+'.recipeType','varianten delen het type van hun hoofdrecept');
-     revisions(v,p,r.date);nutrition(v.nutrition,p);const merged={...r,...v};time(merged,p);contents(merged,p);
+     revisions(v,p,r.date);nutrition(v.nutrition,p,v.nutritionNote);const merged={...r,...v};time(merged,p);contents(merged,p);
      if(v.image!==undefined){
-      image({...merged,image_source:v.image_source||r.image_source},p);images++;
-      if(v.image!==r.image&&!isText(v.image_source))fail(p+'.image_source','eigen herkomst voor variantafbeelding vereist');
+      image({...merged,image_source:v.image_source||r.image_source},p);if(isText(v.image))images++;
+      if(v.image&&v.image!==r.image&&!isText(v.image_source))fail(p+'.image_source','eigen herkomst voor variantafbeelding vereist');
      }
      variants++;
     });
