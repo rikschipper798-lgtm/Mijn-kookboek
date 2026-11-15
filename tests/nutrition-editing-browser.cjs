@@ -15,7 +15,7 @@ const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.
 let browser,page;
 const seed=()=>({goals:{kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5},
  days:{[DATE]:[
-  {id:'manual',title:'Eigen lunch',source:'manual',nutrition:{kcal:361,proteinG:12.3,carbsG:40,fatG:15,fiberG:null}},
+  {id:'manual',title:'Eigen lunch',source:'manual',nutrition:{kcal:361,proteinG:12.345,carbsG:40,fatG:15,fiberG:null}},
   {id:'legacy',title:'Oud recept · 0,5 portie(s)',source:'recipe',nutrition:{kcal:333,proteinG:10,carbsG:25,fatG:20,fiberG:null}}
  ]},weekdayPresets:{},weekdayApplied:{},quickMeals:[]});
 const stored=p=>p.evaluate(key=>JSON.parse(localStorage.getItem(key)),KEY);
@@ -45,7 +45,11 @@ async function context(width,data){
    const {c,p}=await context(width,seed());page=p;const errors=[];p.on('pageerror',e=>errors.push(e.message));
    try{
     await p.goto(BASE+'voeding.html');await p.locator('#entries > li').first().waitFor();
-    await editor(p,'manual');await p.locator('#editEntryQty').fill('0.5');
+    await editor(p,'manual');
+    assert.equal(await p.locator('#editEntryForm').evaluate(n=>n.checkValidity()),true,'Bestaande nauwkeurige voedingswaarden blijven aanpasbaar');
+    const position=await p.evaluate(()=>({heading:document.querySelector('#editEntryTitle').getBoundingClientRect().top,nav:document.querySelector('.primary-nav').getBoundingClientRect().bottom}));
+    assert.ok(position.heading>=position.nav,'Formulierkop wordt afgedekt door navigatie');
+    await p.locator('#editEntryQty').fill('0.5');
     assert.equal(await p.locator('#editEntryKcal').inputValue(),'180.5');
     assert.equal(await p.locator('#editEntryFiber').inputValue(),'');
     await p.locator('#editEntryDate').fill(OTHER);await save(p);
@@ -77,6 +81,7 @@ async function context(width,data){
     await c.route('**/recepten.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(newer)}));
     await p.reload();await editor(p,registered.id);
     assert.match(await p.locator('#editEntryPortion').innerText(),/2 poestabroodjes/);
+    assert.equal(await p.locator('#editEntryName').inputValue(),registered.recipe.title);
     assert.equal(await p.locator('#editEntryKcal').getAttribute('readonly'),'');
     await p.locator('#editEntryQty').fill('1');assert.equal(await p.locator('#editEntryKcal').inputValue(),'710');
     await p.locator('#editEntryDate').fill(OTHER);

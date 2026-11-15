@@ -78,7 +78,7 @@ button:disabled{opacity:.45;cursor:default}
 .pending-note{font-size:13px;color:#735229;background:#fff7e9;border-radius:9px;padding:9px 12px;margin:8px 0}
 .entry-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;width:100%}
 .entry-actions button{min-height:44px}
-.entry-edit{margin-top:12px;border:1px solid #d9e4da;border-radius:10px;padding:15px;background:#f8fbf8}
+.entry-edit{scroll-margin-top:80px;margin-top:12px;border:1px solid #d9e4da;border-radius:10px;padding:15px;background:#f8fbf8}
 .entry-edit .grid3{margin:10px 0}
 .entry-edit .field{min-width:0}
 .entry-edit .actions button{min-height:44px}
@@ -412,10 +412,10 @@ footer,footer a{color:#516153}
             <div class="field"><label for="editEntryName">Omschrijving</label><input id="editEntryName" required maxlength="200"></div>
             <div class="grid3">
               <div class="field"><label for="editEntryKcal">Calorieën (kcal) *</label><input id="editEntryKcal" type="number" min="0" max="20000" step="any" required inputmode="decimal"></div>
-              <div class="field"><label for="editEntryProtein">Eiwit (g)</label><input id="editEntryProtein" type="number" min="0" max="2000" step="0.1" inputmode="decimal"></div>
-              <div class="field"><label for="editEntryCarbs">Koolhydraten (g)</label><input id="editEntryCarbs" type="number" min="0" max="2000" step="0.1" inputmode="decimal"></div>
-              <div class="field"><label for="editEntryFat">Vet (g)</label><input id="editEntryFat" type="number" min="0" max="2000" step="0.1" inputmode="decimal"></div>
-              <div class="field"><label for="editEntryFiber">Vezels (g)</label><input id="editEntryFiber" type="number" min="0" max="2000" step="0.1" inputmode="decimal"></div>
+              <div class="field"><label for="editEntryProtein">Eiwit (g)</label><input id="editEntryProtein" type="number" min="0" max="2000" step="any" inputmode="decimal"></div>
+              <div class="field"><label for="editEntryCarbs">Koolhydraten (g)</label><input id="editEntryCarbs" type="number" min="0" max="2000" step="any" inputmode="decimal"></div>
+              <div class="field"><label for="editEntryFat">Vet (g)</label><input id="editEntryFat" type="number" min="0" max="2000" step="any" inputmode="decimal"></div>
+              <div class="field"><label for="editEntryFiber">Vezels (g)</label><input id="editEntryFiber" type="number" min="0" max="2000" step="any" inputmode="decimal"></div>
             </div>
             <p class="muted">De voedingswaarden hierboven gelden voor de gekozen hoeveelheid. Lege velden blijven onbekend. Je vaste standaardmaaltijd wordt niet gewijzigd.</p>
             <div class="actions"><button type="submit" id="editEntrySave">Opslaan</button><button type="button" class="secondary" id="editEntryCancel">Annuleren</button></div>
@@ -873,12 +873,12 @@ footer,footer a{color:#516153}
   el('editEntryQty').value=editingPortion.quantity;
   el('editEntryQtyLabel').textContent=recipe?'Gegeten porties':'Hoeveelheid';
   el('editEntryPortion').textContent='1 '+(recipe?'portie':'hoeveelheid')+' = '+editingPortion.label+'.';
-  el('editEntryName').value=entry.title;
+  el('editEntryName').value=entry.recipe?entry.recipe.title:entry.title;
   el('editEntryName').readOnly=recipe;
   for(const [,id] of EDIT_FIELDS)el(id).readOnly=recipe;
   showEditNutrition(entry.nutrition);
   el('editEntryPanel').hidden=false;
-  el('editEntryPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  el('editEntryPanel').scrollIntoView({behavior:'auto',block:'start'});
   el(recipe?'editEntryQty':'editEntryName').focus({preventScroll:true});
  }
  el('editEntryQty').addEventListener('input',()=>{
