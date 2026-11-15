@@ -11519,5 +11519,308 @@
     "imageNote": "Nog geen afbeelding van dit complete driegangenmenu beschikbaar.",
     "nutrition": null,
     "nutritionNote": "Niet berekend vanwege merkafhankelijke kant-en-klare producten en individuele vleesporties."
+  },
+  {
+    "id": "kaiserschmarrn-klassiek-koekenpan",
+    "title": "Kaiserschmarrn uit de koekenpan",
+    "subtitle": "Luchtige Oostenrijkse Kaiserschmarrn met zachte binnenkant en boterig gekaramelliseerde randjes. Helemaal in een gewone koekenpan bereid en geserveerd met appelmoes.",
+    "category": "Desserts",
+    "kind": "Nagerecht of zoet hoofdgerecht",
+    "cuisine": "Oostenrijks",
+    "minutes": 30,
+    "prep": 12,
+    "cook": 18,
+    "servings": 2,
+    "servingUnit": "personen",
+    "nutrition": {
+      "per": "portie",
+      "kcal": 620,
+      "proteinG": 17,
+      "carbsG": 81,
+      "fatG": 25,
+      "fiberG": 2.5,
+      "estimated": true
+    },
+    "heat": "Niet pittig",
+    "difficulty": "Gemiddeld",
+    "featured": false,
+    "date": "2026-11-15",
+    "recipeType": "overig",
+    "tags": [
+      "Kaiserschmarrn",
+      "Oostenrijks",
+      "Dessert",
+      "Pannenkoek",
+      "Koekenpan",
+      "Vanille",
+      "Appelmoes",
+      "Vegetarisch"
+    ],
+    "timeNote": "Circa 30–35 minuten in totaal. Eventueel 15 minuten rozijnen weken; dit kan parallel aan het maken van het beslag. Geen ovenbestendige pan of oven nodig.",
+    "ingredients": [
+      {
+        "name": "Bloem",
+        "qty": 105,
+        "unit": "g",
+        "group": "Beslag"
+      },
+      {
+        "name": "Eieren",
+        "qty": 3,
+        "unit": "stuks",
+        "group": "Beslag"
+      },
+      {
+        "name": "Volle melk",
+        "qty": 180,
+        "unit": "ml",
+        "group": "Beslag"
+      },
+      {
+        "name": "Suiker voor het eiwit",
+        "qty": 20,
+        "unit": "g",
+        "group": "Beslag"
+      },
+      {
+        "name": "Vanillesuiker",
+        "qty": 8,
+        "unit": "g",
+        "group": "Beslag"
+      },
+      {
+        "name": "Zout",
+        "qty": 1,
+        "unit": "klein snufje",
+        "group": "Beslag"
+      },
+      {
+        "name": "Ongezouten roomboter",
+        "qty": 35,
+        "unit": "g",
+        "group": "Bakken en karamelliseren"
+      },
+      {
+        "name": "Suiker voor het karamelliseren",
+        "qty": 15,
+        "unit": "g",
+        "group": "Bakken en karamelliseren"
+      },
+      {
+        "name": "Poedersuiker",
+        "qty": 10,
+        "unit": "g",
+        "group": "Serveren"
+      },
+      {
+        "name": "Appelmoes (of pruimencompote)",
+        "qty": 150,
+        "unit": "g",
+        "group": "Serveren"
+      },
+      {
+        "name": "Rozijnen",
+        "qty": 25,
+        "unit": "g",
+        "group": "Optioneel",
+        "optional": true
+      },
+      {
+        "name": "Donkere rum om rozijnen in te weken",
+        "qty": 15,
+        "unit": "ml",
+        "group": "Optioneel",
+        "optional": true
+      },
+      {
+        "name": "Kaneel voor de appelmoes",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Optioneel",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "title": "Eieren splitsen en eventueel rozijnen weken",
+        "body": "Splits 3 eieren: doe de eiwitten in een volledig schone, vetvrije kom en de eidooiers in een tweede kom. Gebruik je rozijnen? Laat 25 g rozijnen circa 15 minuten weken in 15 ml donkere rum of wat lauwwarm water; laat ze daarna uitlekken. Het weken kan tegelijk met de volgende stappen.",
+        "duration": "3 min; optioneel 15 min weken (parallel)",
+        "ingredientIndices": [
+          1,
+          10,
+          11
+        ],
+        "quantityRefs": [
+          {
+            "text": "3 eieren",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "25 g rozijnen",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "15 ml donkere rum",
+            "ingredientIndex": 11
+          }
+        ]
+      },
+      {
+        "title": "Glad basisbeslag maken",
+        "body": "Klop de 3 eidooiers los met 180 ml volle melk, 8 g vanillesuiker en 1 klein snufje zout. Voeg geleidelijk 105 g bloem toe en klop tot een glad, vrij vloeibaar beslag zonder klontjes.",
+        "duration": "3 min",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "quantityRefs": [
+          {
+            "text": "3 eidooiers",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "180 ml volle melk",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "8 g vanillesuiker",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "1 klein snufje zout",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "105 g bloem",
+            "ingredientIndex": 0
+          }
+        ]
+      },
+      {
+        "title": "Eiwitten stevig opkloppen",
+        "body": "Klop de 3 eiwitten met een handmixer of garde tot schuim. Voeg tijdens het kloppen geleidelijk 20 g suiker toe. Klop door tot het schuim stevige, glanzende pieken vormt; het moet zijn vorm behouden.",
+        "duration": "3–5 min",
+        "ingredientIndices": [
+          1,
+          3
+        ],
+        "quantityRefs": [
+          {
+            "text": "3 eiwitten",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "20 g suiker",
+            "ingredientIndex": 3
+          }
+        ]
+      },
+      {
+        "title": "Luchtig beslag afmaken",
+        "body": "Spatel eerst een derde van het eiwitschuim door het eidooierbeslag om het losser te maken. Spatel daarna de rest voorzichtig door het beslag, tot het net gemengd is. Roer niet stevig: daarmee verlies je de luchtigheid. Bak direct na het mengen.",
+        "duration": "1–2 min",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "quantityRefs": []
+      },
+      {
+        "title": "Eerste zijde rustig bakken",
+        "body": "Smelt 15 g van de 35 g roomboter in een ruime koekenpan met antiaanbaklaag (liefst 26–28 cm) op middellaag vuur. Schenk al het beslag erin en verdeel eventueel de uitgelekte rozijnen erover. Leg een deksel op de pan en bak circa 5–7 minuten op middellaag vuur. De onderkant moet goudbruin zijn en de bovenkant grotendeels gestold. Verlaag het vuur als de onderkant te snel bruint.",
+        "duration": "5–7 min",
+        "ingredientIndices": [
+          6,
+          10
+        ],
+        "quantityRefs": [
+          {
+            "text": "15 g",
+            "ingredientIndex": 6,
+            "factor": 0.42857142857142855
+          },
+          {
+            "text": "35 g roomboter",
+            "ingredientIndex": 6
+          }
+        ]
+      },
+      {
+        "title": "In kwarten keren en gaar bakken",
+        "body": "Snijd de dikke pannenkoek met een spatel in 4 kwarten. Keer ieder kwart voorzichtig om; zo hoef je de hele pannenkoek niet tegelijk om te draaien. Bak nog 4–5 minuten op middellaag vuur, zo nodig met het deksel erop. Controleer in het dikste stuk: de binnenkant moet luchtig en zacht zijn, maar niet vloeibaar of rauw.",
+        "duration": "4–5 min",
+        "ingredientIndices": [],
+        "quantityRefs": []
+      },
+      {
+        "title": "In stukken scheuren en karamelliseren",
+        "body": "Scheur de gare kwarten met twee spatels in onregelmatige stukken van ongeveer 3–5 cm. Voeg de resterende 20 g roomboter toe en strooi 15 g suiker voor het karamelliseren erover. Verhoog het vuur naar middelhoog en bak onder voorzichtig omscheppen circa 2–3 minuten, tot de randjes goudbruin en licht krokant zijn. Proef een stukje: de buitenkant mag karamellig zijn, de binnenkant moet zacht blijven.",
+        "duration": "2–3 min",
+        "ingredientIndices": [
+          6,
+          7
+        ],
+        "quantityRefs": [
+          {
+            "text": "20 g roomboter",
+            "ingredientIndex": 6,
+            "factor": 0.5714285714285714
+          },
+          {
+            "text": "15 g suiker",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "3–5 cm",
+            "fixed": true
+          }
+        ]
+      },
+      {
+        "title": "Direct serveren",
+        "body": "Verdeel de warme Kaiserschmarrn over 2 borden, bestuif met in totaal 10 g poedersuiker en serveer met 150 g appelmoes of pruimencompote. Meng eventueel ¼ tl kaneel door de appelmoes. Serveer meteen, zolang de gekaramelliseerde randjes nog krokant zijn.",
+        "duration": "1 min",
+        "ingredientIndices": [
+          8,
+          9,
+          12
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 borden",
+            "perServing": 1
+          },
+          {
+            "text": "10 g poedersuiker",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "150 g appelmoes",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "¼ tl kaneel",
+            "ingredientIndex": 12
+          }
+        ]
+      }
+    ],
+    "tips": "Gebruik bij voorkeur een koekenpan met antiaanbaklaag van 26–28 cm en een passend deksel. Een pan van 24 cm geeft een dikkere Kaiserschmarrn; bak dan op lager vuur en houd rekening met enkele minuten extra, of bak het beslag in twee porties. Klop het eiwit tot stevige pieken en spatel voorzichtig zodat het beslag luchtig blijft. Laat de eerste zijde langzaam garen om verbranden te voorkomen; controleer vooral het midden voordat je karamelliseert. Karamelliseer pas op het einde: zo blijft de binnenkant zacht en krijgen de stukjes een licht krokant randje. Rozijnen en rum zijn optioneel; zonder rozijnen is het recept ook klassiek. Appelmoes is de toegankelijke keuze, Oostenrijkse pruimencompote een traditioneel alternatief. Serveer direct; opgewarmde restjes verliezen wat luchtigheid en krokantheid.",
+    "version": 1,
+    "updatedAt": "2026-11-15",
+    "changeLog": [
+      {
+        "version": 1,
+        "date": "2026-11-15",
+        "description": "Definitieve Kaiserschmarrn voor twee personen, zonder citroenrasp en volledig bereid in een gewone koekenpan. Luchtig eiwitschuim en karamellisatie met roomboter."
+      }
+    ]
   }
 ]
