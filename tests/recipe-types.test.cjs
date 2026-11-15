@@ -115,7 +115,8 @@ test('Tabbladen tonen alle groepstellingen en standaard alle recepten',async()=>
 test('Receptgroepfilter toont uitsluitend geselecteerde soort',async()=>{
  const b=browser();await b.ready();
  b.select('onderdeel');
- assert.deepEqual(b.ids().sort(),['gekruide-kipschnitzel','kruidenboter','stokbrood'].sort());
+ assert.deepEqual(b.ids().sort(),recipes.filter(r=>r.recipeType==='onderdeel').map(r=>r.id).sort());
+ assert.ok(b.ids().includes('vlaamse-friet-kruidenzout-mayonaise'));
  assert.equal(b.buttons.get('onderdeel')['attr_aria-pressed'],'true');
  assert.equal(b.buttons.get('maaltijd')['attr_aria-pressed'],'false');
  assert.equal(b.element('resetFilters').hidden,false);
