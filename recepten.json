@@ -11919,14 +11919,14 @@
       },
       {
         "name": "Gedroogde peterselie",
-        "qty": 1,
-        "unit": "snuf",
+        "qty": 0.125,
+        "unit": "tl",
         "group": "Kruidenzout"
       },
       {
         "name": "Chilipoeder",
-        "qty": 1,
-        "unit": "snuf",
+        "qty": 0.125,
+        "unit": "tl",
         "group": "Kruidenzout",
         "optional": true
       },
@@ -11962,8 +11962,8 @@
       },
       {
         "name": "Zwarte peper",
-        "qty": 1,
-        "unit": "snuf",
+        "qty": 0.125,
+        "unit": "tl",
         "group": "Zelfgemaakte mayonaise"
       }
     ],
@@ -11998,7 +11998,7 @@
       },
       {
         "title": "Frieten op lage temperatuur voorbakken",
-        "body": "Verdeel de 800 g gesneden aardappelen over circa drie kleine porties. Bak elke portie 6–8 minuten bij 145–150 °C en geef de olie tussendoor tijd om weer op temperatuur te komen. De frieten moeten zacht en gaar zijn maar nog nauwelijks verkleuren. Controleer eventueel een doorgesneden friet: er mag geen harde kern meer aanwezig zijn. Schep met een schuimspaan uit de olie en leg ze op het rooster.",
+        "body": "Verdeel de 800 g gesneden aardappelen over kleine porties. Bak elke portie 6–8 minuten bij 145–150 °C en geef de olie tussendoor tijd om weer op temperatuur te komen. De frieten moeten zacht en gaar zijn maar nog nauwelijks verkleuren. Controleer eventueel een doorgesneden friet: er mag geen harde kern meer aanwezig zijn. Schep met een schuimspaan uit de olie en leg ze op het rooster.",
         "duration": "18–30 min, afhankelijk van temperatuurherstel",
         "ingredientIndices": [
           0
@@ -12019,7 +12019,7 @@
       },
       {
         "title": "Subtiel kruidenzout mengen",
-        "body": "Meng ½ tl fijn zeezout, ¼ tl gerookt paprikapoeder, ¼ tl knoflookpoeder en 1 snuf gedroogde peterselie in een kommetje. Voeg eventueel 1 snuf chilipoeder toe. Zet het kruidenzout apart: voeg het pas na het afbakken toe, want kruiden kunnen in hete olie verbranden.",
+        "body": "Meng ½ tl fijn zeezout, ¼ tl gerookt paprikapoeder, ¼ tl knoflookpoeder en ⅛ tl gedroogde peterselie in een kommetje. Voeg eventueel ⅛ tl chilipoeder toe. Zet het kruidenzout apart: voeg het pas na het afbakken toe, want kruiden kunnen in hete olie verbranden.",
         "duration": "2 min; tijdens afkoelen",
         "ingredientIndices": [
           2,
@@ -12042,18 +12042,18 @@
             "ingredientIndex": 4
           },
           {
-            "text": "1 snuf gedroogde peterselie",
+            "text": "⅛ tl gedroogde peterselie",
             "ingredientIndex": 5
           },
           {
-            "text": "1 snuf chilipoeder",
+            "text": "⅛ tl chilipoeder",
             "ingredientIndex": 6
           }
         ]
       },
       {
         "title": "Huisgemaakte citroenmayonaise zonder azijn",
-        "body": "Klop 1 gepasteuriseerde eidooier met 1 tl Dijonmosterd en 1 tl van de 2 tl citroensap los. Voeg 150 ml zonnebloemolie eerst druppelsgewijs en daarna in een heel dun straaltje toe, terwijl je voortdurend klopt, totdat een dikke en gladde mayonaise ontstaat. Roer de resterende 1 tl citroensap, ¼ tl fijn zout en 1 snuf zwarte peper erdoor. Proef: de mayonaise moet romig en fris zijn. Dek af en zet direct in de koelkast. Je houdt waarschijnlijk mayonaise over.",
+        "body": "Klop 1 gepasteuriseerde eidooier met 1 tl Dijonmosterd en 1 tl van de 2 tl citroensap los. Voeg 150 ml zonnebloemolie eerst druppelsgewijs en daarna in een heel dun straaltje toe, terwijl je voortdurend klopt, totdat een dikke en gladde mayonaise ontstaat. Roer 1 tl resterend citroensap, ¼ tl fijn zout en ⅛ tl zwarte peper erdoor. Proef: de mayonaise moet romig en fris zijn. Dek af en zet direct in de koelkast. Je houdt waarschijnlijk mayonaise over.",
         "duration": "5–8 min; tijdens afkoelen",
         "ingredientIndices": [
           7,
@@ -12082,7 +12082,7 @@
             "ingredientIndex": 8
           },
           {
-            "text": "resterende 1 tl citroensap",
+            "text": "1 tl resterend citroensap",
             "ingredientIndex": 10,
             "factor": 0.5
           },
@@ -12091,14 +12091,14 @@
             "ingredientIndex": 11
           },
           {
-            "text": "1 snuf zwarte peper",
+            "text": "⅛ tl zwarte peper",
             "ingredientIndex": 12
           }
         ]
       },
       {
         "title": "Frieten goudgeel en krokant afbakken",
-        "body": "Verwarm de olie opnieuw, nu tot 175 °C. Bak de volledig afgekoelde frieten in circa drie kleine porties, telkens 2–4 minuten tot ze goudgeel en krokant zijn. Laat de olie tussendoor opnieuw op temperatuur komen. Bak ze niet donkerbruin. Schep met de schuimspaan uit de olie en laat kort uitlekken op een rooster.",
+        "body": "Verwarm de olie opnieuw, nu tot 175 °C. Bak de volledig afgekoelde frieten in kleine porties, telkens 2–4 minuten tot ze goudgeel en krokant zijn. Laat de olie tussendoor opnieuw op temperatuur komen. Bak ze niet donkerbruin. Schep met de schuimspaan uit de olie en laat kort uitlekken op een rooster.",
         "duration": "9–15 min plus opwarmen",
         "ingredientIndices": [
           0,
@@ -12128,7 +12128,7 @@
     ],
     "tips": "Gebruik bij voorkeur Bintje- of Agria-aardappelen en snijd de frieten circa 12 mm dik. Benodigd: hoge stevige pan met dikke bodem, frituurthermometer, schuimspaan, rooster, garde en kom. Houd de olie op 145–150 °C bij het voorbakken en op 175 °C bij het afbakken; kleine porties geven de beste structuur. Vul de pan nooit verder dan een derde met olie en blijf bij het frituren. Houd een passend deksel paraat; blus een oliebrand nooit met water. Het kruidenzout hoort pas na de tweede bakronde op de frieten. De mayonaise wordt gemaakt met gepasteuriseerde eidooier en citroensap, zonder wittewijnazijn; bewaar afgedekt bij maximaal 4 °C en gebruik bij voorkeur binnen 24 uur. Aanvullende boodschappen: Bintje- of Agria-aardappelen, gepasteuriseerde eidooier en Dijonmosterd; controleer of er voldoende zonnebloemolie is. De 1200 ml frituurolie is een vulhoeveelheid en geen geconsumeerde hoeveelheid. Voedingswaarden zijn een zeer grove schatting per persoon op basis van 400 g rauwe aardappelen, circa 30 g opgenomen frituurvet en 30 g mayonaise. De werkelijk opgenomen olie varieert flink; niet alle gemaakte mayonaise wordt meegeteld.",
     "version": 1,
-    "updatedAt": "2026-11-15",
+    "updatedAt": null,
     "changeLog": [
       {
         "version": 1,
