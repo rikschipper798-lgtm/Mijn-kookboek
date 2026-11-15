@@ -106,7 +106,7 @@ test('Dagboek wijst te grote nieuwe wijzigingen af vóór cloudupload',()=>{
   setAttribute(){},addEventListener(k,fn){(events[id]??={})[k]=fn;},
   focus(){},reset(){}};
  const sandbox={
-  window:{CookbookCloud:{enabled:true,start(callbacks){callbacks.onData(oversized)},
+  window:{CookbookNutrition:require('../nutrition-entries.js'),CookbookCloud:{enabled:true,start(callbacks){callbacks.onData(oversized)},
    enqueue(){cloudWrites++;return true;}},confirm(){return true;}},
   document:{getElementById:el},location:{search:'',hash:''},
   localStorage:{getItem(){return null},setItem(){}},

@@ -102,6 +102,8 @@ function validateRecipes(data,{rootDir=path.resolve(__dirname,'..'),existsFile=(
    fail(p+'.nutrition','voedingswaarden per portie ontbreken');return;
   }
   if(n.per!=='portie')fail(p+'.nutrition.per','verwacht portie');
+  if(n.portionLabel!==undefined&&(!isText(n.portionLabel)||n.portionLabel.length>200))
+   fail(p+'.nutrition.portionLabel','korte omschrijving vereist van één voedingsportie (maximaal 200 tekens)');
   if(n.estimated!==true)fail(p+'.nutrition.estimated','verwacht geschatte voedingswaarden (true)');
   for(const k of ['kcal','proteinG','carbsG','fatG','fiberG']){
    if(typeof n[k]!=='number'||!Number.isFinite(n[k])||n[k]<0)
@@ -260,4 +262,5 @@ if(require.main===module){
  }
 }
 module.exports={validateRecipes};
+
 
