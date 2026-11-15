@@ -123,6 +123,11 @@ test('Gelijktijdig gewijzigde registratie wordt niet overschreven met een oud fo
  assert.equal(a.writes,0);assert.equal(a.state.days[DATE][0].nutrition.kcal,500);
  assert.match(a.el('status').textContent,/intussen gewijzigd/);
 });
+test('Verplaatsen maakt geen dubbele identiteit als een import hetzelfde ID bevat',()=>{
+ const before=diary();before.days[OTHER]=[{...manual(),title:'Eerdere geïmporteerde lunch'}];
+ const a=app(before);a.open('manual');a.el('editEntryDate').value=OTHER;a.submit();
+ assert.deepEqual(a.state,before);assert.equal(a.saved,null);assert.match(a.el('status').textContent,/hetzelfde kenmerk/);
+});
 test('Annuleren en uitloggen kunnen geen wijziging achteraf opslaan',()=>{
  const a=app();a.open('manual');a.quantity(2);a.el('editEntryCancel').onclick();a.submit();
  assert.equal(a.writes,0);assert.equal(a.state.days[DATE][0].nutrition.kcal,361);

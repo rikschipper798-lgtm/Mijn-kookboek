@@ -921,6 +921,7 @@ footer,footer a{color:#516153}
   if(commit(()=>{
    if(targetDay===sourceDay)state.days[sourceDay]=state.days[sourceDay].map(e=>e.id===id?updated:e);
    else{
+    if((state.days[targetDay]||[]).some(e=>e.id===id))throw Error('Op de gekozen datum staat al een registratie met hetzelfde kenmerk. Kies een andere datum.');
     state.days[sourceDay]=state.days[sourceDay].filter(e=>e.id!==id);
     if(!state.days[sourceDay].length)delete state.days[sourceDay];
     if(!state.days[targetDay])state.days[targetDay]=[];
