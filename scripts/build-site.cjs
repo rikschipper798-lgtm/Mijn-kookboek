@@ -7,7 +7,7 @@ const PUBLIC_FILES = [
   'index.html', 'voeding.html', 'privacy.html', 'instellen-vaste-maaltijden.html',
   'backup-sleutel.html', 'recepten.json', 'manifest.webmanifest', 'sw.js',
   'recipe-scaling.js', 'pantry.js', 'personal-cloud.js', 'voeding-cloud.js',
-  'voeding-backup.js', 'cloud-config.js'
+  'voeding-backup.js', 'cloud-config.js', 'nutrition-entries.js'
 ];
 const IMAGE_EXTENSION = /\.(?:avif|webp|png|jpe?g|svg|gif|ico)$/i;
 

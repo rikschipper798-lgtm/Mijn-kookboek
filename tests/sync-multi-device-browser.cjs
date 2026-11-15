@@ -257,12 +257,40 @@ async function goReady(){
     return {draftKeptWhileEditing:true,refreshedWhenClosed:true};
    }finally{await a.close();await b.close();}
   });
+  await run('8. Receptportie en herkomst blijven behouden bij aanpassen op een ander apparaat',async()=>{
+   const account='recept-aanpassen';seed(account);
+   const a=await newDevice(account,'recept-a');let b;
+   try{
+    await a.page.goto(BASE+'/voeding.html?recept=klassieke-saucijzenbroodjes&variant=poesta',{waitUntil:'domcontentloaded'});
+    await a.page.locator('#diaryContent').waitFor({state:'visible'});
+    await a.page.locator('#selectedDate').fill(date);
+    await a.page.locator('#recipePortion').filter({hasText:'2 poestabroodjes'}).waitFor();
+    await a.page.locator('#recipeQty').fill('0.5');await a.page.locator('#addRecipe').click();
+    await awaitRemote(account,r=>r.diary.days[date].some(e=>e.recipe?.variantId==='poesta'),'nieuwe receptregistratie');
+    const original=copy(store.get(account).diary.days[date].find(e=>e.recipe?.variantId==='poesta'));
+    assert.equal(original.nutrition.kcal,355);assert.equal(original.portion.quantity,0.5);
+    b=await newDevice(account,'recept-b',{mobile:true});
+    const row=b.page.locator('details[data-entry-id="'+original.id+'"]');
+    await row.locator('summary').click();await row.locator('[data-edit]').click();
+    await b.page.locator('#editEntryQty').fill('1.5');
+    await b.page.locator('#editEntryDate').fill('2026-11-09');await b.page.locator('#editEntrySave').click();
+    await awaitRemote(account,r=>r.diary.days['2026-11-09']?.some(e=>e.id===original.id),'verplaatste receptregistratie');
+    const saved=store.get(account).diary.days['2026-11-09'].find(e=>e.id===original.id);
+    assert.equal(saved.nutrition.kcal,1065);assert.equal(saved.portion.quantity,1.5);
+    assert.deepEqual(saved.recipe,original.recipe);assert.deepEqual(saved.portion.nutrition,original.portion.nutrition);
+    assert.equal(store.get(account).diary.days[date].some(e=>e.id===original.id),false);
+    await a.page.reload({waitUntil:'domcontentloaded'});await a.page.locator('#diaryContent').waitFor({state:'visible'});
+    await a.page.locator('#selectedDate').fill('2026-11-09');
+    assert.match(await a.page.locator('details[data-entry-id="'+original.id+'"] .entry-kcal').innerText(),/1[.\s]?065 kcal/);
+    return {sameId:true,recipeSnapshotPreserved:true,quantity:1.5,calories:1065};
+   }finally{await a.close();if(b)await b.close();}
+  });
  }catch(e){console.log('INFRASTRUCTUURFOUT '+e.stack);process.exitCode=2;}
  finally{
   if(browser)await browser.close();
   server.kill();
   fs.writeFileSync(ART+'/resultaten.json',JSON.stringify(results,null,2));
   console.log('SYNCHRONISATIETEST '+results.filter(x=>x.ok).length+'/'+results.length+' geslaagd');
-  if(results.length<7||results.some(x=>!x.ok))process.exitCode=1;
+  if(results.length<8||results.some(x=>!x.ok))process.exitCode=1;
  }
 })().catch(e=>{console.log(e.stack);process.exitCode=2;server.kill();});

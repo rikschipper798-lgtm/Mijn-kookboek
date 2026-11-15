@@ -141,6 +141,13 @@ verschillende apparaten. Zie [technische werking](supabase/README.md).
 
 Via **Voedingsdagboek** op de startpagina, of **Registreer maaltijd** op een receptdetail, open je [het voedingsdagboek](https://rikschipper798-lgtm.github.io/Mijn-kookboek/voeding.html).
 
+Elke registratie heeft na openklappen een knop **Aanpassen** voor hoeveelheid en
+datum. Bij eigen invoer kun je ook de omschrijving en voedingswaarden corrigeren.
+Nieuwe receptregistraties bewaren hun portieomschrijving, receptversie en
+voedingswaarden, zodat latere receptwijzigingen je historie niet veranderen.
+Zie [voedingsregistraties aanpassen](docs/voedingsregistraties.md) voor het gedrag
+van oudere registraties, het gegevensmodel en de controles.
+
 - Persoonlijke, aanpasbare dagdoelen: 2.300 kcal, 160 g eiwit, 246 g koolhydraten, 75 g vet en 37,5 g vezels als startpunt.
 - Avondmaaltijd-richtwaarden: 650–800 kcal, 40–55 g eiwit, 65–95 g koolhydraten, 18–28 g vet, minimaal 10 g vezels en 250 g groente.
 - Per datum kookboekrecepten (inclusief varianten en fracties van een portie) of eigen voeding registreren.
@@ -417,3 +424,4 @@ Gerichte regressietests: `node --test tests/recipe-scaling.test.cjs`.
 Deze controleert alle recepten en varianten voor 1, 2, 3, 4 en 6 porties en bevat
 vaste verwachte uitkomsten voor onder meer saucijzenbroodjes, kofta, verdeelde
 melk en boter, cocktails, paneerborden, stoomwater en lavacake-eieren.
+

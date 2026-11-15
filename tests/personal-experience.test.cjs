@@ -43,7 +43,7 @@ function app(initialNotes={}){
   elements.set(id,element);return element;
  }
  const location={hash:'',href:''},navigator={onLine:true};
- const window={CookbookScaling:require('../recipe-scaling.js'),
+ const window={CookbookNutrition:require('../nutrition-entries.js'),CookbookScaling:require('../recipe-scaling.js'),
   location,navigator,CookbookPantry,isSecureContext:false,
   matchMedia:()=>({matches:false}),addEventListener(){},
   confirm:()=>true,scrollTo(){},print(){}

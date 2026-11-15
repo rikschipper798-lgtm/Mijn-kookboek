@@ -899,6 +899,7 @@ footer{color:#526454}
 <script src="./personal-cloud.js"></script>
 <script src="./pantry.js"></script>
 <script src="./recipe-scaling.js?v=2026-11-11-porties-v1"></script>
+<script src="./nutrition-entries.js"></script>
 <script>
 'use strict';
 const el=id=>document.getElementById(id);
@@ -973,7 +974,7 @@ function nutritionPanel(r,current){
   '<div class="nutrition-values">'+values.map(([name,value,unit])=>
    '<div class="nutrition-item"><strong>'+pretty(value)+' '+unit+'</strong><span>'+name+'</span></div>'
   ).join('')+'</div>'+
-  '<p class="nutrition-note">Bij '+safe(portionsLabel(r,current))+' is dat circa '+pretty(n.kcal*current)+' kcal in totaal. '+
+  '<p class="nutrition-note">1 portie = '+safe(window.CookbookNutrition.portionLabel(r))+'. Bij '+safe(portionsLabel(r,current))+' is dat circa '+pretty(n.kcal*current)+' kcal in totaal. '+
   'Berekend op basis van standaardingrediënten; optionele ingrediënten zijn niet meegeteld. '+
   'De werkelijk gegeten hoeveelheid bakolie en merkverschillen kunnen de waarden beïnvloeden.</p></section>';
 }
@@ -3047,4 +3048,5 @@ refreshRecipeCollection(true);
 </script>
 </body>
 </html>
+
 

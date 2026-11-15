@@ -214,6 +214,12 @@ test('Versleutelde back-upmodule blijft offline beschikbaar in de PWA',async()=>
  assert.match(await response.text(),/voeding-backup\.js/);
 });
 
+test('Porties en historische voedingswaarden blijven offline beschikbaar',async()=>{
+ const pwa=createWorker([catalog[0]]);await pwa.install();pwa.state.online=false;
+ const response=await pwa.dispatch('fetch',new Request(baseUrl+'nutrition-entries.js'));
+ assert.equal(response.status,200);assert.match(await response.text(),/nutrition-entries\.js/);
+});
+
 test('Cloudmodule blijft actueel en werkt na de installatie ook offline',async()=>{
  const html=fs.readFileSync(path.join(root,'voeding.html'),'utf8');
  const match=html.match(/<script src="\.{1}\/voeding-cloud\.js\?v=([\w-]+)"><\/script>/);

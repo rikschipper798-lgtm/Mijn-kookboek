@@ -344,9 +344,10 @@ footer,footer a{color:#516153}
    </div>
       <section class="meal-mode" aria-labelledby="recipeTitle" id="recipeSection">
         <h3 id="recipeTitle">Uit mijn kookboek</h3>
-        <p class="muted">De waarden worden per standaardportie uit het kookboek overgenomen, inclusief de gekozen variant. Je kunt ook een halve portie registreren.</p>
+        <p class="muted">Kies wat je daadwerkelijk hebt gegeten. De portiegrootte en geschatte voedingswaarden worden bij je registratie bewaard.</p>
         <form id="recipeForm">
           <div class="field"><label for="recipeSelect">Recept</label><select id="recipeSelect" required><option value="">Recepten laden…</option></select></div>
+          <p id="recipePortion" class="help" aria-live="polite"></p>
           <div class="grid2">
             <div class="field"><label for="recipeQty">Gegeten porties</label><input type="number" min="0.25" max="20" step="0.25" id="recipeQty" value="1" required inputmode="decimal"></div>
             <div class="field"><label>Geschatte energie</label><div id="recipePreview" class="help">Kies een recept om de calorieën te zien.</div></div>
@@ -400,19 +401,24 @@ footer,footer a{color:#516153}
         <p id="pendingSummary" class="pending-note" hidden role="status" aria-live="polite"></p>
         <ul class="entry-list" id="entries"></ul>
         <section class="entry-edit" id="editEntryPanel" hidden aria-labelledby="editEntryTitle">
-          <h3 id="editEntryTitle">Automatische maaltijd aanpassen</h3>
-          <p class="muted">Vul de hoeveelheden in die je daadwerkelijk hebt gegeten. Na opslaan wordt deze maaltijd bevestigd en meegeteld.</p>
+          <h3 id="editEntryTitle">Maaltijd aanpassen</h3>
+          <p class="muted" id="editEntryHelp"></p>
           <form id="editEntryForm">
+            <div class="grid2">
+              <div class="field"><label for="editEntryDate">Gegeten op</label><input id="editEntryDate" type="date" required></div>
+              <div class="field"><label for="editEntryQty" id="editEntryQtyLabel">Hoeveelheid</label><input id="editEntryQty" type="number" min="0.25" max="20" step="0.25" required inputmode="decimal" aria-describedby="editEntryPortion"></div>
+            </div>
+            <p id="editEntryPortion" class="help"></p>
             <div class="field"><label for="editEntryName">Omschrijving</label><input id="editEntryName" required maxlength="200"></div>
             <div class="grid3">
-              <div class="field"><label for="editEntryKcal">Calorieën (kcal) *</label><input id="editEntryKcal" type="number" min="0" max="10000" step="1" required inputmode="numeric"></div>
+              <div class="field"><label for="editEntryKcal">Calorieën (kcal) *</label><input id="editEntryKcal" type="number" min="0" max="20000" step="any" required inputmode="decimal"></div>
               <div class="field"><label for="editEntryProtein">Eiwit (g)</label><input id="editEntryProtein" type="number" min="0" max="2000" step="0.1" inputmode="decimal"></div>
               <div class="field"><label for="editEntryCarbs">Koolhydraten (g)</label><input id="editEntryCarbs" type="number" min="0" max="2000" step="0.1" inputmode="decimal"></div>
               <div class="field"><label for="editEntryFat">Vet (g)</label><input id="editEntryFat" type="number" min="0" max="2000" step="0.1" inputmode="decimal"></div>
               <div class="field"><label for="editEntryFiber">Vezels (g)</label><input id="editEntryFiber" type="number" min="0" max="2000" step="0.1" inputmode="decimal"></div>
             </div>
-            <p class="muted">Lege voedingsvelden blijven onbekend. Je vaste standaardmaaltijd wordt niet gewijzigd.</p>
-            <div class="actions"><button type="submit">Opslaan en bevestigen</button><button type="button" class="secondary" id="editEntryCancel">Annuleren</button></div>
+            <p class="muted">De voedingswaarden hierboven gelden voor de gekozen hoeveelheid. Lege velden blijven onbekend. Je vaste standaardmaaltijd wordt niet gewijzigd.</p>
+            <div class="actions"><button type="submit" id="editEntrySave">Opslaan</button><button type="button" class="secondary" id="editEntryCancel">Annuleren</button></div>
           </form>
         </section>
       </section>
@@ -508,12 +514,14 @@ footer,footer a{color:#516153}
 <script src="./cloud-config.js"></script>
 <script src="./voeding-cloud.js?v=20261110-status-v3"></script>
 <script src="./voeding-backup.js"></script>
+<script src="./nutrition-entries.js"></script>
 <script>
 'use strict';
 (function(){
  const KEY='mijn-kookboek-voedingsdagboek';
  const DEFAULTS={kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.5};
  const KEYS=['kcal','proteinG','carbsG','fatG','fiberG'];
+ const Nutrition=window.CookbookNutrition;
  const MAX_DIARY_BYTES=1800000; // Conservative buffer below the 2 MiB database constraint.
  function utf8Bytes(str){
   let bytes=0;
@@ -575,7 +583,8 @@ footer,footer a{color:#516153}
 
  if(cloudMode)el('privacyDescription').textContent='Als je bent ingelogd, staan je persoonlijke voedingsdoelen, vaste maaltijden en dagregistraties in de beveiligde clouddatabase van de gekoppelde inlogdienst. Ze worden niet in GitHub gepubliceerd. Gegevens worden per account gescheiden via databasebeveiliging. Houd rekening met een internetverbinding om wijzigingen te synchroniseren.';
  let state=newState(),recipeOptions=[],selectedDay=today(),presetLinkHandled=false;
- let editingEntryId=null,editingEntryDay=null;
+ let editingEntryId=null,editingEntryDay=null,editingOriginal=null,editingPortion=null;
+ const EDIT_FIELDS=[['kcal','editEntryKcal'],['proteinG','editEntryProtein'],['carbsG','editEntryCarbs'],['fatG','editEntryFat'],['fiberG','editEntryFiber']];
  function status(message,error=false){el('status').textContent=message;el('status').classList.toggle('error',error);}
  function cleanData(data){
   if(!data||typeof data!=='object'||Array.isArray(data)||!data.goals||!data.days||typeof data.days!=='object'||Array.isArray(data.days))throw Error('Ongeldige gegevens.');
@@ -590,26 +599,7 @@ footer,footer a{color:#516153}
   if(dates.length>3650)throw Error('Te veel geregistreerde dagen.');
   for(const day of dates){
    if(!dateValid(day)||!Array.isArray(data.days[day])||data.days[day].length>100)throw Error('Ongeldige dagregistratie.');
-   days[day]=data.days[day].map(item=>{
-    if(!item||typeof item!=='object'||typeof item.id!=='string'||item.id.length>150||
-       typeof item.title!=='string'||item.title.length<1||item.title.length>200||
-       !item.nutrition||!validNum(item.nutrition.kcal)||item.nutrition.kcal>20000||
-       !KEYS.slice(1).every(key=>item.nutrition[key]===null||validNum(item.nutrition[key])&&item.nutrition[key]<=2000)){
-      throw Error('Ongeldige maaltijdgegevens.');
-    }
-    if(item.confirmed!==undefined&&typeof item.confirmed!=='boolean'||
-       item.adjusted!==undefined&&typeof item.adjusted!=='boolean'||
-       item.presetSlot!==undefined&&!SLOTS.includes(item.presetSlot))throw Error('Ongeldige bevestigingsstatus.');
-    const source=item.source==='recipe'?'recipe':item.source==='preset'?'preset':'manual';
-    return {id:item.id,title:item.title.slice(0,200),source,
-     nutrition:Object.fromEntries(KEYS.map(key=>[key,item.nutrition[key]])),
-     ...(source==='preset'?{
-      // Ontbrekende status in oudere back-ups betekent: al meegeteld.
-      confirmed:item.confirmed!==false,
-      ...(item.adjusted===true?{adjusted:true}:{}),
-      ...(item.presetSlot?{presetSlot:item.presetSlot}:{})
-     }:{})};
-   });
+   days[day]=data.days[day].map(item=>Nutrition.cleanEntry(item));
   }
   const weekdayPresets={};
    const raw=data.weekdayPresets===undefined?{}:data.weekdayPresets;
@@ -657,7 +647,8 @@ footer,footer a{color:#516153}
  function commit(action){
   if(!cloudReady){status('Log eerst in om gegevens te bewerken.',true);return false;}
   const previous=JSON.stringify(state);
-  action();
+  try{action();state=cleanData(state);}
+  catch(error){state=JSON.parse(previous);status('Wijziging niet opgeslagen: '+error.message,true);return false;}
   if(diarySize(state)>MAX_DIARY_BYTES){
    state=JSON.parse(previous);
    render();
@@ -818,10 +809,14 @@ footer,footer a{color:#516153}
     ' · E '+(e.nutrition.proteinG===null?'onbekend':fmt(e.nutrition.proteinG,1)+' g')+
     ' · KH '+(e.nutrition.carbsG===null?'onbekend':fmt(e.nutrition.carbsG,1)+' g')+
     ' · V '+(e.nutrition.fatG===null?'onbekend':fmt(e.nutrition.fatG,1)+' g')+
-    ' · Vezels '+(e.nutrition.fiberG===null?'onbekend':fmt(e.nutrition.fiberG,1)+' g')+'</div>'+
+    ' · Vezels '+(e.nutrition.fiberG===null?'onbekend':fmt(e.nutrition.fiberG,1)+' g')+
+    (e.portion?'<br>'+esc(fmt(e.portion.quantity,2))+' × '+esc(e.portion.label):'')+
+    (e.recipe?'<br>Vastgelegd bij receptversie '+e.recipe.version+(e.recipe.variantId!=='klassiek'?' · basisreceptversie '+e.recipe.baseVersion:'')+
+     ' · <a href="./index.html#recept/'+encodeURIComponent(e.recipe.id)+(e.recipe.variantId!=='klassiek'?'?variant='+encodeURIComponent(e.recipe.variantId):'')+'">Bekijk huidig recept</a>':
+     e.source==='recipe'?'<br>Oudere registratie: oorspronkelijke receptversie en portiegrootte niet vastgelegd.':'')+'</div>'+
     '<div class="entry-actions">'+
     (pending?'<button type="button" data-confirm="'+esc(e.id)+'" aria-label="Bevestig gegeten: '+esc(e.title)+'">Gegeten · bevestigen</button>':'')+
-    (preset?'<button type="button" class="secondary" data-edit="'+esc(e.id)+'" aria-label="Pas aan: '+esc(e.title)+'">Aanpassen</button>':'')+
+    '<button type="button" class="secondary" data-edit="'+esc(e.id)+'" aria-label="Pas aan: '+esc(e.title)+'">Aanpassen</button>'+
     '<button type="button" class="danger" data-remove="'+esc(e.id)+'" aria-label="'+(pending?'Niet gegeten: ':'Verwijder ')+esc(e.title)+'">'+(pending?'Niet gegeten':'Verwijderen')+'</button>'+
     '</div></div></details></li>';
   }).join('');
@@ -859,19 +854,44 @@ footer,footer a{color:#516153}
  el('nextDay').onclick=()=>shiftDay(1);
  el('today').onclick=()=>{selectedDay=today();el('selectedDate').value=selectedDay;render();};
  function closeEntryEditor(){
-  editingEntryId=null;editingEntryDay=null;el('editEntryPanel').hidden=true;
+  editingEntryId=null;editingEntryDay=null;editingOriginal=null;editingPortion=null;el('editEntryPanel').hidden=true;
+ }
+ function showEditNutrition(nutrition){
+  for(const [field,id] of EDIT_FIELDS)el(id).value=nutrition[field]===null?'':nutrition[field];
  }
  function editEntry(entry){
   editingEntryId=entry.id;editingEntryDay=selectedDay;
+  editingOriginal=JSON.stringify(entry);editingPortion=Nutrition.portionOf(entry);
+  const recipe=Boolean(entry.recipe),pending=pendingEntry(entry);
+  el('editEntryTitle').textContent=recipe?'Receptregistratie aanpassen':'Maaltijd aanpassen';
+  el('editEntryHelp').textContent=recipe?
+   'Je past de gegeten hoeveelheid en datum aan. We rekenen met de voedingswaarden die bij deze registratie zijn bewaard.':
+   entry.source==='recipe'?'Bij deze oudere registratie zijn receptversie en portiegrootte niet bewaard. Hoeveelheid 1 staat voor de volledige opgeslagen maaltijd; 0,5 voor de helft daarvan.':
+   'Pas de hoeveelheid, datum of voedingswaarden aan. Hoeveelheid 1 staat voor de oorspronkelijke maaltijd.';
+  el('editEntrySave').textContent=pending?'Opslaan en bevestigen':'Opslaan';
+  el('editEntryDate').value=selectedDay;
+  el('editEntryQty').value=editingPortion.quantity;
+  el('editEntryQtyLabel').textContent=recipe?'Gegeten porties':'Hoeveelheid';
+  el('editEntryPortion').textContent='1 '+(recipe?'portie':'hoeveelheid')+' = '+editingPortion.label+'.';
   el('editEntryName').value=entry.title;
-  for(const [field,id] of [['kcal','editEntryKcal'],['proteinG','editEntryProtein'],['carbsG','editEntryCarbs'],
-    ['fatG','editEntryFat'],['fiberG','editEntryFiber']]){
-   el(id).value=entry.nutrition[field]===null?'':entry.nutrition[field];
-  }
+  el('editEntryName').readOnly=recipe;
+  for(const [,id] of EDIT_FIELDS)el(id).readOnly=recipe;
+  showEditNutrition(entry.nutrition);
   el('editEntryPanel').hidden=false;
   el('editEntryPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
-  el('editEntryName').focus({preventScroll:true});
+  el(recipe?'editEntryQty':'editEntryName').focus({preventScroll:true});
  }
+ el('editEntryQty').addEventListener('input',()=>{
+  if(!editingPortion)return;
+  try{showEditNutrition(Nutrition.scaleNutrition(editingPortion.nutrition,Number(el('editEntryQty').value)));}
+  catch(error){status(error.message,true);}
+ });
+ for(const [,id] of EDIT_FIELDS)el(id).addEventListener('input',()=>{
+  const item=currentEntries().find(e=>e.id===editingEntryId),quantity=Number(el('editEntryQty').value);
+  if(!item||item.recipe||!editingPortion||!Nutrition.quantityValid(quantity))return;
+  const values=Object.fromEntries(EDIT_FIELDS.map(([field,input])=>[field,el(input).value.trim()===''?null:Number(el(input).value)]));
+  if(Nutrition.nutritionValid(values))editingPortion.nutrition=Object.fromEntries(KEYS.map(key=>[key,values[key]===null?null:values[key]/quantity]));
+ });
  el('editEntryCancel').onclick=()=>{
   const id=editingEntryId;
   closeEntryEditor();focusEntryAfterUpdate(id);
@@ -880,28 +900,40 @@ footer,footer a{color:#516153}
  el('editEntryForm').addEventListener('submit',event=>{
   event.preventDefault();
   if(!editingEntryId||editingEntryDay!==selectedDay)return;
-  const item=currentEntries().find(e=>e.id===editingEntryId&&e.source==='preset');
+  const item=currentEntries().find(e=>e.id===editingEntryId);
   if(!item){closeEntryEditor();status('Deze maaltijd is niet meer beschikbaar.',true);return;}
-  const title=el('editEntryName').value.trim(),kcal=Number(el('editEntryKcal').value);
-  if(!title||title.length>200||!el('editEntryKcal').value||!validNum(kcal)||kcal>10000){
-   status('Vul een omschrijving en geldig aantal calorieën in.',true);return;
+  if(JSON.stringify(item)!==editingOriginal){
+   status('Deze registratie is intussen gewijzigd. Annuleer en open Aanpassen opnieuw om de nieuwste gegevens te gebruiken.',true);return;
   }
-  const nutrition={kcal};
-  for(const [key,id] of [['proteinG','editEntryProtein'],['carbsG','editEntryCarbs'],['fatG','editEntryFat'],['fiberG','editEntryFiber']]){
-   const raw=el(id).value.trim(),value=raw===''?null:Number(raw);
-   if(value!==null&&(!validNum(value)||value>2000)){status('Controleer de voedingswaarden.',true);return;}
-   nutrition[key]=value;
+  const targetDay=el('editEntryDate').value,quantity=Number(el('editEntryQty').value);
+  if(!dateValid(targetDay)){status('Kies een geldige datum.',true);return;}
+  const nutrition=Object.fromEntries(EDIT_FIELDS.map(([field,id])=>[field,el(id).value.trim()===''?null:Number(el(id).value)]));
+  let updated;
+  try{
+   Nutrition.scaleNutrition(editingPortion.nutrition,quantity);
+   updated=Nutrition.adjustedEntry(item,{quantity,title:el('editEntryName').value.trim(),nutrition});
+  }catch(error){status(error.message,true);return;}
+  if(updated.source==='preset'&&!updated.presetSlot){
+   updated.presetSlot=SLOTS.find(slot=>item.title.startsWith('Standaard '+slot+':'))||
+    SLOTS.find(slot=>(state.weekdayPresets[slot]&&item.title.includes(state.weekdayPresets[slot].title)))||undefined;
   }
+  const id=item.id,sourceDay=selectedDay,wasPending=pendingEntry(item);
   if(commit(()=>{
-   if(!item.presetSlot){
-    item.presetSlot=SLOTS.find(slot=>item.title.startsWith('Standaard '+slot+':'))||
-     SLOTS.find(slot=>(state.weekdayPresets[slot]&&item.title.includes(state.weekdayPresets[slot].title)))||undefined;
+   if(targetDay===sourceDay)state.days[sourceDay]=state.days[sourceDay].map(e=>e.id===id?updated:e);
+   else{
+    state.days[sourceDay]=state.days[sourceDay].filter(e=>e.id!==id);
+    if(!state.days[sourceDay].length)delete state.days[sourceDay];
+    if(!state.days[targetDay])state.days[targetDay]=[];
+    state.days[targetDay].push(updated);
+    if(updated.source==='preset'&&updated.presetSlot){
+     state.weekdayApplied[targetDay]=[...new Set([...(state.weekdayApplied[targetDay]||[]),updated.presetSlot])];
+    }
    }
-   item.title=title;item.nutrition=nutrition;item.confirmed=true;item.adjusted=true;
   })){
-   const id=editingEntryId;
-   closeEntryEditor();focusEntryAfterUpdate(id);
-   status('Maaltijd aangepast, bevestigd en meegeteld.');
+   selectedDay=targetDay;el('selectedDate').value=targetDay;
+   closeEntryEditor();render();focusEntryAfterUpdate(id);
+   status(wasPending?'Maaltijd aangepast, bevestigd en meegeteld.':
+    targetDay!==sourceDay?'Maaltijd aangepast en verplaatst naar '+new Date(targetDay+'T12:00:00').toLocaleDateString('nl-NL')+'.':'Maaltijd aangepast.');
   }
  });
  el('entries').addEventListener('click',event=>{
@@ -910,7 +942,7 @@ footer,footer a{color:#516153}
   const id=button.dataset.confirm||button.dataset.edit||button.dataset.remove;
   const entry=currentEntries().find(e=>e.id===id);if(!entry)return;
   if(button.hasAttribute('data-edit')){
-   if(entry.source==='preset')editEntry(entry);
+   editEntry(entry);
    return;
   }
   if(button.hasAttribute('data-confirm')){
@@ -936,12 +968,14 @@ footer,footer a{color:#516153}
  function nutritionValid(n){return n&&n.per==='portie'&&KEYS.every(k=>validNum(n[k]));}
  function recipeView(r,v){
   return {title:r.title+(v?' — '+(v.label||v.title||v.id):r.variants?.length?' — '+(r.defaultVariantLabel||'Basisversie'):''),
-   nutrition:v&&v.nutrition?v.nutrition:r.nutrition};
+   nutrition:v&&v.nutrition?v.nutrition:r.nutrition,
+   version:v?.version||r.version||1,baseVersion:r.version||1,portionLabel:Nutrition.portionLabel({...r,...v})};
  }
  function updatePreview(){
   const option=recipeOptions[Number(el('recipeSelect').value)];
   const qty=Number(el('recipeQty').value);
   el('recipePreview').textContent=option&&qty>=0.25&&qty<=20?fmt(option.nutrition.kcal*qty)+' kcal voor '+fmt(qty,2)+' portie(s)':'Kies een recept en aantal porties.';
+  el('recipePortion').textContent=option?'1 portie = '+option.portionLabel+'.':'';
  }
  // Na inloggen via e-mail blijft de eerder gekozen maaltijd beschikbaar,
  // ook wanneer de inloglink in een nieuw tabblad op hetzelfde apparaat opent.
@@ -1003,8 +1037,8 @@ footer,footer a{color:#516153}
   event.preventDefault();
   const option=recipeOptions[Number(el('recipeSelect').value)],qty=Number(el('recipeQty').value);
   if(!option||!Number.isFinite(qty)||qty<0.25||qty>20){status('Kies een geldig recept en aantal porties.',true);return;}
-  const nutrients=Object.fromEntries(KEYS.map(key=>[key,Math.round(option.nutrition[key]*qty*10)/10]));
-  addEntry({id:uniqueId(),title:option.title+' · '+fmt(qty,2)+' portie(s)',source:'recipe',nutrition:nutrients});
+  try{addEntry(Nutrition.fromRecipe(option,qty,uniqueId()));}
+  catch(error){status(error.message,true);}
  });
  el('quickMealSelect').addEventListener('change',()=>renderQuickMeals());
  el('quickMealAdd').addEventListener('click',()=>{
@@ -1255,7 +1289,7 @@ footer,footer a{color:#516153}
     if(wasLocked){el('accountTools').open=false;el('openAccountTools').setAttribute('aria-expanded','false');}
     render();loadWeekdayForm();processPresetLink();restoreLoginRecipe();
    },
-   onLogout(){cloudReady=false;state=newState();el('accountTools').open=true;el('openAccountTools').setAttribute('aria-expanded','true');render();},
+   onLogout(){closeEntryEditor();cloudReady=false;state=newState();el('accountTools').open=true;el('openAccountTools').setAttribute('aria-expanded','true');render();},
    onStatus(snapshot){updateAccountStatus(snapshot);}
   });
  }

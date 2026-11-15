@@ -10474,8 +10474,8 @@
       }
     ],
     "tips": "De basishoeveelheid levert 4 saucijzenbroodjes op voor 2 personen als lunch. Totale tijd: 45–50 minuten, inclusief 5 minuten rusten; eventueel 10 minuten extra koeltijd als het bladerdeeg slap wordt. Benodigd: metalen bakplaat, bakpapier en bij voorkeur een keukenkwastje en kernthermometer. Half-om-halfgehakt houdt de vulling sappig; een ei door de vulling is bij deze verhouding niet nodig. Aanvullende boodschappen ten opzichte van de standaardvoorraad: bladerdeeg, half-om-halfgehakt, melk, mosterd en ei. Als lunch past een frisse salade van tomaat en komkommer erbij. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. De magnetron maakt het bladerdeeg zacht. Voedingswaarden zijn grove schattingen per portie van 2 broodjes (de basishoeveelheid levert 4 broodjes). Berekend met 4 plakjes roomboterbladerdeeg van elk 45 g, half-om-halfgehakt met circa 20% vet, halfvolle melk en een half ei van circa 25 g voor het bestrijken. Alle vulling en het bakvet zijn meegerekend; eventuele vetverliezen tijdens het bakken niet. Exclusief bijgerechten en optionele extra chili. Merk, plakjesgewicht en vetgehalte kunnen de waarden veranderen.",
-    "version": 5,
-    "updatedAt": "2026-11-11",
+    "version": 6,
+    "updatedAt": "2026-11-15",
     "changeLog": [
       {
         "version": 1,
@@ -10501,6 +10501,11 @@
         "version": 5,
         "date": "2026-11-11",
         "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
+      },
+      {
+        "version": 6,
+        "date": "2026-11-15",
+        "description": "Expliciet vastgelegd dat één voedingsportie uit twee broodjes bestaat; voedingswaarden ongewijzigd."
       }
     ],
     "defaultVariantLabel": "Klassiek",
@@ -10816,8 +10821,8 @@
           }
         ],
         "tips": "De basishoeveelheid levert 4 royale broodjes voor 2 personen als lunch. Reken op 60–70 minuten totaal: circa 20 minuten voorbereiding, 10–15 minuten afkoelen, 25–30 minuten bakken en 5 minuten rusten; eventueel 10 minuten extra koelen als het deeg slap wordt. Benodigd: koekenpan, metalen bakplaat, bakpapier, rooster en bij voorkeur een keukenkwastje en kernthermometer. Aanvullende boodschappen: bladerdeeg, gehakt, ui, paprika, melk, ei en zoet paprikapoeder. Komijnzaad uit de voorraad kun je fijnstampen; meet daarvan ⅛ tl af. Gebruik zoet paprikapoeder als basis: gerookt paprikapoeder geeft een duidelijk andere smaak. Voeg geen extra paneermeel toe zolang dat niet nodig is; goed drooggebakken groenten houden de vulling stevig en te veel paneermeel maakt haar broodachtig. Opwarmen: circa 10–12 minuten op 170 °C hetelucht, tot de vulling goed heet is. Vermijd de magnetron als je het bladerdeeg krokant wilt houden. Voedingswaarden zijn grove schattingen per portie van 2 broodjes (de basishoeveelheid levert 4 broodjes). Berekend met 4 plakjes roomboterbladerdeeg van elk 45 g, half-om-halfgehakt met circa 20% vet, halfvolle melk en een half ei van circa 25 g voor het bestrijken. Alle vulling en het bakvet zijn meegerekend; eventuele vetverliezen tijdens het bakken niet. Exclusief bijgerechten en optionele extra chili. Merk, plakjesgewicht en vetgehalte kunnen de waarden veranderen.",
-        "version": 4,
-        "updatedAt": "2026-11-11",
+        "version": 5,
+        "updatedAt": "2026-11-15",
         "changeLog": [
           {
             "version": 1,
@@ -10838,6 +10843,11 @@
             "version": 4,
             "date": "2026-11-11",
             "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
+          },
+          {
+            "version": 5,
+            "date": "2026-11-15",
+            "description": "Expliciet vastgelegd dat één voedingsportie uit twee broodjes bestaat; voedingswaarden ongewijzigd."
           }
         ],
         "image": "images/kruidige-poestabroodjes.webp",
@@ -10849,7 +10859,8 @@
           "carbsG": 44,
           "fatG": 46,
           "fiberG": 3.5,
-          "estimated": true
+          "estimated": true,
+          "portionLabel": "2 poestabroodjes"
         }
       }
     ],
@@ -10862,7 +10873,8 @@
       "carbsG": 43,
       "fatG": 49,
       "fiberG": 2.2,
-      "estimated": true
+      "estimated": true,
+      "portionLabel": "2 saucijzenbroodjes"
     }
   },
   {

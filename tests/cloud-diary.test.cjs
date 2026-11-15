@@ -254,7 +254,7 @@ test('Gekozen recept wordt na inloggen automatisch ingevuld en de tijdelijke ops
   nutrition:{per:'portie',kcal:700,proteinG:31,carbsG:60,fatG:28,fiberG:10}};
  el('recipeQty').value='1';
  const sandbox={
-  window:{CookbookCloud:{enabled:true,start(hooks){hooks.onData(null);}},confirm(){return true;}},
+  window:{CookbookNutrition:require('../nutrition-entries.js'),CookbookCloud:{enabled:true,start(hooks){hooks.onData(null);}},confirm(){return true;}},
   document:{getElementById:el},location:{search:'',pathname:'/Mijn-kookboek/voeding.html',hash:''},
   localStorage,fetch:async()=>({ok:true,json:async()=>[sample]}),
   URLSearchParams,Date,Math,JSON,Error,Promise,Number,String,setTimeout(){return 0;}
@@ -439,7 +439,7 @@ test('Dagboekformulier toont een wijziging pas na een bevestigde lokale opslag',
   const cloud={enabled:true,start(callbacks){callbacks.onData(null);},
    enqueue(data){if(!allow)return false;saved=copy(data);return true;}};
   const sandbox={
-   window:{CookbookCloud:cloud,confirm(){return true;}},
+   window:{CookbookNutrition:require('../nutrition-entries.js'),CookbookCloud:cloud,confirm(){return true;}},
    document:{getElementById:node},
    location:{search:''},
    localStorage:{getItem(){return null},setItem(){}},
@@ -533,7 +533,7 @@ test('Ingelogde instellink loopt via dezelfde commit- en cloudroute',()=>{
  };
  const cloud={enabled:true,start(callbacks){callbacks.onData(null);},enqueue(data){cloudWrites++;saved=copy(data);return true;}};
  const sandbox={
-  window:{CookbookCloud:cloud,confirm(){return true;}},
+  window:{CookbookNutrition:require('../nutrition-entries.js'),CookbookCloud:cloud,confirm(){return true;}},
   document:{getElementById:el},
   location:{search:'',pathname:'/Mijn-kookboek/voeding.html',
    hash:'#vaste-maaltijden='+encodeURIComponent(JSON.stringify(preset))},

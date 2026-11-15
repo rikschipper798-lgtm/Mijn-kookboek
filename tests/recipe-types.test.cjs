@@ -88,7 +88,7 @@ function browser(){
   createElement:()=>({click(){},remove(){}})
  };
  const location={hash:'',href:''},navigator={onLine:true};
- const window={CookbookScaling:require('../recipe-scaling.js'),location,navigator,CookbookPantry,isSecureContext:false,
+ const window={CookbookNutrition:require('../nutrition-entries.js'),CookbookScaling:require('../recipe-scaling.js'),location,navigator,CookbookPantry,isSecureContext:false,
   addEventListener(){},matchMedia:()=>({matches:false}),scrollTo(){},confirm:()=>true,print(){}};
  const localStorage={getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
  const app=new Function('document','window','navigator','localStorage','location','fetch','Option',

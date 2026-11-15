@@ -10,9 +10,10 @@ const start=html.indexOf('function nutritionPanel(');
 const end=html.indexOf('// Versies vanaf november 2026',start);
 assert.ok(start>=0&&end>start,'Voedingswaardenfunctie ontbreekt in de website');
 const source=html.slice(start,end);
-const show=new Function('safe','portionsLabel',source+'\nreturn nutritionPanel;')(
+const show=new Function('safe','portionsLabel','window',source+'\nreturn nutritionPanel;')(
  value=>String(value),
- (recipe,n)=>n+' '+(recipe.servingUnit==='stokbroden'?'stokbroden':'personen')
+ (recipe,n)=>n+' '+(recipe.servingUnit==='stokbroden'?'stokbroden':'personen'),
+ {CookbookNutrition:require('../nutrition-entries.js')}
 );
 
 test('Alle actuele recepten en varianten bevatten voedingswaarden of een expliciete toelichting',()=>{
@@ -63,3 +64,4 @@ test('De toelichting maakt de onzekerheid en optionele ingrediënten duidelijk',
  assert.match(out,/optionele ingrediënten/);
  assert.match(out,/bakolie/);
 });
+
