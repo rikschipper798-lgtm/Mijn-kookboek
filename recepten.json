@@ -12308,10 +12308,6 @@
         ],
         "quantityRefs": [
           {
-            "text": "wortel",
-            "ingredientIndex": 3
-          },
-          {
             "text": "½ el olijfolie",
             "ingredientIndex": 6,
             "factor": 0.25
@@ -12335,26 +12331,6 @@
           11
         ],
         "quantityRefs": [
-          {
-            "text": "courgette",
-            "ingredientIndex": 0
-          },
-          {
-            "text": "paprika",
-            "ingredientIndex": 1
-          },
-          {
-            "text": "ui",
-            "ingredientIndex": 2
-          },
-          {
-            "text": "rode peper",
-            "ingredientIndex": 4
-          },
-          {
-            "text": "knoflook",
-            "ingredientIndex": 5
-          },
           {
             "text": "1½ el olijfolie",
             "ingredientIndex": 6,
