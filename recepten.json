@@ -12390,11 +12390,17 @@
       }
     ],
     "tips": "Snijd wortel dunner dan courgette: deze krijgt eerst 10 minuten oventijd. Rooster de groenten ruim uitgespreid zodat ze kleuren in plaats van stomen. Gebruik 5 g rode peper voor milder of maximaal 10 g voor pittiger; de basis gebruikt 7 g. De honing-citroenafwerking gaat pas na het roosteren erbij. Optioneel: 50 g feta voor een zoute, romige tegenhanger; deze is niet meegerekend in de voedingswaarden. Aanvullende boodschappen: courgette, paprika, gele ui, wortel, rode peper en verse knoflook; eventueel feta. De overige smaakmakers komen uit de standaardvoorraad. Voedingswaarden zijn schattingen per persoon, exclusief feta. Bewaar restjes afgedekt maximaal 2 dagen gekoeld en warm ze 8–10 minuten op in een hete oven.",
-    "image": null,
-    "imageNote": "Voor deze groentetraybake is nog geen eigen receptafbeelding gemaakt.",
-    "version": 1,
-    "updatedAt": null,
-    "changeLog": [],
-    "recipeType": "onderdeel"
+    "image": "images/kruidige-groentetraybake-courgette-paprika-wortel.avif",
+    "version": 2,
+    "updatedAt": "2026-11-16",
+    "changeLog": [
+      {
+        "version": 2,
+        "date": "2026-11-16",
+        "description": "Eigen AI-gegenereerde receptafbeelding toegevoegd, geoptimaliseerd als AVIF."
+      }
+    ],
+    "recipeType": "onderdeel",
+    "image_source": "AI-gegenereerde afbeelding van deze kruidige groentetraybake met optionele feta, gemaakt voor het kookboek"
   }
 ]
