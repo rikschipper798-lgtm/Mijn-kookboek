@@ -9955,12 +9955,6 @@
         "group": "Hutspot"
       },
       {
-        "name": "Gedroogde tijm",
-        "qty": 0.25,
-        "unit": "tl",
-        "group": "Hutspot"
-      },
-      {
         "name": "Nootmuskaat",
         "qty": 0.125,
         "unit": "tl",
@@ -10047,7 +10041,7 @@
           0,
           1,
           2,
-          12
+          11
         ],
         "duration": "20–25 min koken; spek parallel",
         "quantityRefs": [
@@ -10058,18 +10052,17 @@
           },
           {
             "text": "75 g spekreepjes",
-            "ingredientIndex": 12
+            "ingredientIndex": 11
           }
         ]
       },
       {
         "title": "Uien goudbruin bakken",
-        "body": "Laat circa 2 tl spekvet achter in de koekenpan en voeg 5 g van de 15 g boter toe. Geeft het spek nauwelijks vet af, voeg dan eventueel 1 tl olijfolie toe. Bak de 175 g uienringen op middellaag vuur 18–22 minuten, onder regelmatig omscheppen, tot ze zacht en goudbruin zijn. Voeg de laatste 2 minuten ¼ tl tijm toe. Kleurt de ui te snel, zet het vuur lager en voeg een klein scheutje water toe.",
+        "body": "Laat circa 2 tl spekvet achter in de koekenpan en voeg 5 g van de 15 g boter toe. Geeft het spek nauwelijks vet af, voeg dan eventueel 1 tl olijfolie toe. Bak de 175 g uienringen op middellaag vuur 18–22 minuten, onder regelmatig omscheppen, tot ze zacht en goudbruin zijn. Kleurt de ui te snel, zet het vuur lager en voeg een klein scheutje water toe.",
         "ingredientIndices": [
           2,
           5,
-          7,
-          13
+          12
         ],
         "duration": "18–22 min, parallel aan het koken",
         "quantityRefs": [
@@ -10089,16 +10082,12 @@
           },
           {
             "text": "1 tl olijfolie",
-            "ingredientIndex": 13
+            "ingredientIndex": 12
           },
           {
             "text": "175 g uienringen",
             "ingredientIndex": 2,
             "factor": 0.7
-          },
-          {
-            "text": "¼ tl tijm",
-            "ingredientIndex": 7
           }
         ]
       },
@@ -10106,12 +10095,12 @@
         "title": "Rookworst verwarmen",
         "body": "Verwarm 250 g rookworst volgens de aanwijzingen op de verpakking. Begin op tijd, zodat hij tegelijk met de hutspot klaar is. Moet de worst in heet water worden verwarmd, houd het water dan onder het kookpunt.",
         "ingredientIndices": [
-          11
+          10
         ],
         "quantityRefs": [
           {
             "text": "250 g rookworst volgens de aanwijzingen",
-            "ingredientIndex": 11
+            "ingredientIndex": 10
           }
         ]
       },
@@ -10137,8 +10126,8 @@
           4,
           5,
           6,
-          8,
-          9
+          7,
+          8
         ],
         "quantityRefs": [
           {
@@ -10156,11 +10145,11 @@
           },
           {
             "text": "⅛ tl nootmuskaat",
-            "ingredientIndex": 8
+            "ingredientIndex": 7
           },
           {
             "text": "¼ tl zwarte peper",
-            "ingredientIndex": 9
+            "ingredientIndex": 8
           },
           {
             "text": "25 ml extra melk beetje",
@@ -10177,10 +10166,10 @@
         "body": "Schep de helft van de gebakken ui door de hutspot. Proef een hapje met een stukje spek erbij en voeg alleen indien nodig wat zout of extra peper toe. Voor een duidelijkere mosterdtoets kun je optioneel eerst de helft van de extra grove mosterd toevoegen, proeven en daarna eventueel de rest gebruiken.",
         "ingredientIndices": [
           2,
+          8,
           9,
-          10,
-          12,
-          14
+          11,
+          13
         ],
         "quantityRefs": []
       },
@@ -10189,8 +10178,8 @@
         "body": "Verdeel de hutspot over twee borden en leg de rookworst erbij. Verdeel de resterende gebakken ui en al het krokante spek erover, vlak voordat je gaat eten.",
         "ingredientIndices": [
           2,
-          11,
-          12
+          10,
+          11
         ],
         "quantityRefs": [
           {
@@ -10201,8 +10190,8 @@
       }
     ],
     "tips": "Twee royale porties. Benodigd: kookpan, koekenpan, aardappelstamper en eventueel een aparte pan voor de rookworst. Reken op 40–45 minuten totaal; kook de groenten, bak de ui en verwarm de rookworst gelijktijdig. Voeg geen bouillon toe: spek, rookworst en mosterd geven al veel hartigheid en zout. De hoeveelheid benodigde melk hangt af van de aardappelen en hoeveel vocht na het afgieten achterblijft. Houd het spek apart tot het serveren zodat het knapperig blijft. Bij meer porties kan een grotere of tweede koekenpan nodig zijn om de ui goed te laten kleuren. Voedingswaarden zijn een schatting per persoon (de helft van het recept), met gewone varkensrookworst en halfvolle melk, zonder optionele extra melk, olie of mosterd. Alle vetten uit de ingrediënten zijn meegerekend; weggegooid spekvet kan de werkelijke hoeveelheid vet en calorieën verlagen. Merken en het type rookworst kunnen de waarden beïnvloeden.",
-    "version": 4,
-    "updatedAt": "2026-11-11",
+    "version": 5,
+    "updatedAt": "2026-11-16",
     "changeLog": [
       {
         "version": 1,
@@ -10223,6 +10212,11 @@
         "version": 4,
         "date": "2026-11-11",
         "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
+      },
+      {
+        "version": 5,
+        "date": "2026-11-16",
+        "description": "Na het koken door Rik: tijm weggelaten omdat de smaak niet beviel."
       }
     ],
     "image": "images/hutspot-rookworst-spek.webp",
