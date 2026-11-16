@@ -12126,5 +12126,275 @@
     "changeLog": [],
     "image": "images/vlaamse-friet-kruidenzout.webp",
     "image_source": "AI-gegenereerde afbeelding speciaal gemaakt voor dit Vlaamse-frietrecept"
+  },
+  {
+    "id": "kruidige-groentetraybake-courgette-paprika-wortel",
+    "title": "Kruidige groentetraybake met courgette, paprika en wortel",
+    "subtitle": "Geroosterde courgette, paprika, gele ui, wortel en rode peper met knoflook, warme kruiden en een frisse honing-citroenafwerking.",
+    "category": "Groenten",
+    "kind": "Bijgerecht",
+    "cuisine": "Mediterraan geïnspireerd",
+    "minutes": 40,
+    "prep": 10,
+    "cook": 30,
+    "servings": 2,
+    "servingUnit": "personen",
+    "nutrition": {
+      "per": "portie",
+      "kcal": 230,
+      "proteinG": 3.5,
+      "carbsG": 24,
+      "fatG": 14,
+      "fiberG": 5.5,
+      "estimated": true
+    },
+    "heat": "Gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-11-16",
+    "tags": [
+      "Groenten",
+      "Traybake",
+      "Oven",
+      "Courgette",
+      "Paprika",
+      "Wortel",
+      "Bijgerecht"
+    ],
+    "ingredients": [
+      {
+        "name": "Courgette",
+        "qty": 200,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Paprika",
+        "qty": 150,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Gele ui",
+        "qty": 100,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Wortel",
+        "qty": 150,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Rode peper",
+        "qty": 7,
+        "unit": "g",
+        "group": "Groenten"
+      },
+      {
+        "name": "Verse knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Groenten"
+      },
+      {
+        "name": "Olijfolie",
+        "qty": 2,
+        "unit": "el",
+        "group": "Roosteren"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Komijnpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Honing",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Afwerking"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Afwerking"
+      },
+      {
+        "name": "Feta",
+        "qty": 50,
+        "unit": "g",
+        "group": "Optionele topping",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "title": "Oven en bakplaat voorbereiden",
+        "body": "Verwarm de oven voor op 210 °C hetelucht. Bekleed een ruime bakplaat met bakpapier. Zorg dat de groenten straks in één losse laag liggen.",
+        "ingredientIndices": [],
+        "quantityRefs": []
+      },
+      {
+        "title": "Groenten snijden",
+        "body": "Snijd 150 g wortel in schuine plakjes van circa 5 mm. Snijd 200 g courgette in stukken van ongeveer 2 cm, 150 g paprika in grove stukken en 100 g gele ui in parten. Hak 7 g rode peper en 2 teentjes verse knoflook fijn.",
+        "ingredientIndices": [
+          3,
+          0,
+          1,
+          2,
+          4,
+          5
+        ],
+        "quantityRefs": [
+          {
+            "text": "150 g wortel",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "200 g courgette",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "150 g paprika",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "100 g gele ui",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "7 g rode peper",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "2 teentjes verse knoflook",
+            "ingredientIndex": 5
+          }
+        ]
+      },
+      {
+        "title": "Wortel voorroosteren",
+        "body": "Meng de gesneden wortel met ½ el olijfolie en verdeel over de bakplaat. Rooster 10 minuten in de hete oven; zo kan de stevigere wortel gelijktijdig met de andere groenten gaar worden.",
+        "duration": "10 min",
+        "ingredientIndices": [
+          3,
+          6
+        ],
+        "quantityRefs": [
+          {
+            "text": "½ el olijfolie",
+            "ingredientIndex": 6,
+            "factor": 0.25
+          }
+        ]
+      },
+      {
+        "title": "Overige groenten kruiden",
+        "body": "Meng de courgette, paprika, ui en rode peper met de fijngehakte knoflook, de resterende 1½ el olijfolie, 1 tl gerookt paprikapoeder, ½ tl oregano, ¼ tl komijnpoeder, ½ tl zout en ¼ tl zwarte peper. Schep goed om, zodat alle stukken een dun laagje olie en kruiden krijgen.",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "quantityRefs": [
+          {
+            "text": "1½ el olijfolie",
+            "ingredientIndex": 6,
+            "factor": 0.75
+          },
+          {
+            "text": "1 tl gerookt paprikapoeder",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "¼ tl komijnpoeder",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "½ tl zout",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 11
+          }
+        ]
+      },
+      {
+        "title": "Alles goudbruin roosteren",
+        "body": "Voeg de gekruide groenten toe aan de bakplaat met wortel. Verdeel in een enkele laag en rooster nog 18–22 minuten op 210 °C hetelucht. Schep halverwege om. De wortel moet beetgaar zijn en de paprika en courgette krijgen licht gekaramelliseerde randjes. Spreid de groenten over twee bakplaten als ze te dicht op elkaar liggen.",
+        "duration": "18–22 min",
+        "ingredientIndices": [],
+        "quantityRefs": []
+      },
+      {
+        "title": "Fris afwerken en serveren",
+        "body": "Meng 1 tl honing met 2 tl citroensap. Schep direct na het roosteren door de hete groenten. Proef en voeg alleen indien nodig extra zout of citroensap toe. Verkruimel eventueel 50 g feta over de traybake. Serveer als groentebijgerecht bij bijvoorbeeld kip, rijst of aardappeltjes.",
+        "ingredientIndices": [
+          12,
+          13,
+          14
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl honing",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "50 g feta",
+            "ingredientIndex": 14
+          }
+        ]
+      }
+    ],
+    "tips": "Snijd wortel dunner dan courgette: deze krijgt eerst 10 minuten oventijd. Rooster de groenten ruim uitgespreid zodat ze kleuren in plaats van stomen. Gebruik 5 g rode peper voor milder of maximaal 10 g voor pittiger; de basis gebruikt 7 g. De honing-citroenafwerking gaat pas na het roosteren erbij. Optioneel: 50 g feta voor een zoute, romige tegenhanger; deze is niet meegerekend in de voedingswaarden. Aanvullende boodschappen: courgette, paprika, gele ui, wortel, rode peper en verse knoflook; eventueel feta. De overige smaakmakers komen uit de standaardvoorraad. Voedingswaarden zijn schattingen per persoon, exclusief feta. Bewaar restjes afgedekt maximaal 2 dagen gekoeld en warm ze 8–10 minuten op in een hete oven.",
+    "image": null,
+    "imageNote": "Voor deze groentetraybake is nog geen eigen receptafbeelding gemaakt.",
+    "version": 1,
+    "updatedAt": null,
+    "changeLog": [],
+    "recipeType": "onderdeel"
   }
 ]
