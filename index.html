@@ -783,12 +783,14 @@ body.cook-active{overflow:hidden}
 .basket-heading-count{color:#516653}
 footer{color:#526454}
 </style>
+<link rel="stylesheet" href="./account.css">
 </head>
 <body>
 <nav class="primary-nav" aria-label="Hoofdnavigatie"><div class="primary-nav-inner">
  <a class="primary-nav-link" id="recipesNav" href="./" aria-current="page">Recepten</a>
  <a class="primary-nav-link" id="shoppingNav" href="./#boodschappenlijst"><span class="nav-desktop">Boodschappenlijst</span><span class="nav-mobile">Boodschappen</span><span class="primary-nav-count" id="basketCount">0</span></a>
  <a class="primary-nav-link" href="./voeding.html"><span class="nav-desktop">Voedingsdagboek</span><span class="nav-mobile">Dagboek</span></a>
+ <a class="primary-nav-link" href="./voeding.html#account">Mijn gegevens</a>
 </div></nav>
 <header class="top"><div class="top-inner">
 <div class="hero-copy"><div class="kicker">THUIS KOKEN, OP SMAAK VERZAMELD</div>
@@ -853,14 +855,15 @@ footer{color:#526454}
  </div>
 </section>
 <details id="personalDataPanel" class="backup-panel">
- <summary>Mijn gegevens · back-up en synchronisatie</summary>
+ <summary>Losse kookboekback-up en herstel</summary>
  <div class="backup-panel-content">
+  <p><a class="btn" href="./voeding.html#account">Mijn account en gegevens</a> — bekijk beide synchronisatiestatussen en maak één gezamenlijke back-up. Hieronder blijven de losse kookboekopties beschikbaar.</p>
   <section id="personalCloudPanel" class="personal-cloud-panel" aria-labelledby="personalCloudTitle">
    <h3 id="personalCloudTitle">Persoonlijke gegevens op al je apparaten</h3>
    <p>Favorieten, boodschappen, afvinkstatussen, standaardvoorraad, kooknotities en kookvoortgang kun je via je account synchroniseren. Je voedingsdagboek blijft afzonderlijk bewaard.</p>
    <p id="personalCloudAccount" class="muted">Account controleren…</p>
    <p id="personalCloudStatus" class="backup-status" role="status" aria-live="polite">De verbinding wordt gecontroleerd. Lokale gegevens blijven beschikbaar.</p>
-   <p id="personalCloudSignIn" hidden>Je kunt <a href="./voeding.html">inloggen via het voedingsdagboek</a> en daarna terugkeren naar deze pagina.</p>
+   <p id="personalCloudSignIn" hidden>Je kunt <a href="./voeding.html#account">inloggen via Mijn account en gegevens</a> en daarna terugkeren naar deze pagina.</p>
    <div id="personalCloudChoices" hidden>
     <p><strong>Eenmalige keuze bij eerste koppeling:</strong> bestaande gegevens worden niet automatisch samengevoegd of overschreven. Download bij twijfel eerst een back-up van dit apparaat.</p>
     <div class="backup-actions">
@@ -872,6 +875,7 @@ footer{color:#526454}
     <button type="button" class="btn alt" id="personalCloudSync">Nu synchroniseren</button>
     <button type="button" class="btn alt" id="personalCloudBackup">Download lokale back-up</button>
    </div>
+   <div id="personalConflictReview" class="conflict-review" hidden></div>
    <p class="muted">Bij gelijktijdige wijzigingen wordt niets stilzwijgend overschreven. De lokale herstelkopie blijft beschikbaar totdat het account de wijziging bevestigt.</p>
   </section>
   <p>Je persoonlijke gegevens blijven ook in deze browser beschikbaar. Zonder accountkoppeling synchroniseren ze niet; de eenmalige keuze hierboven voorkomt het overschrijven van al bestaande lokale gegevens.</p>
@@ -896,6 +900,9 @@ footer{color:#526454}
 <div id="cookOverlay" class="cook-overlay" hidden></div>
 <footer>Mijn Kookboek · Bewaren, koken en delen</footer>
 <script src="./cloud-config.js"></script>
+<script src="./account-data.js"></script>
+<script src="./cloud-client.js"></script>
+<script src="./conflict-review.js"></script>
 <script src="./personal-cloud.js"></script>
 <script src="./pantry.js"></script>
 <script src="./recipe-scaling.js?v=2026-11-11-porties-v1"></script>
@@ -1516,25 +1523,12 @@ function basketConversion(u){
  if(units[unit]){const [group,base,factor]=units[unit];return {group,unit:base,factor,sourceUnit:unit}}
  return {group:'eenheid:'+unit,unit:normalizedUnit(u),factor:1,sourceUnit:unit};
 }
-const SHOP_ALIASES={
- 'rode paprika':'paprika',
- 'verse tomaat':'tomaat','verse tomaten':'tomaat','rijpe tomaten':'tomaat','eieren':'ei','gedroogde oregano':'oregano',
- 'wortels':'wortel','verse rode peper':'rode peper',
- 'knoflookpoeder voor de saus':'knoflookpoeder','zout voor de rode ui':'zout',
- 'grofgemalen zwarte peper':'zwarte peper',
- 'gedroogde dille':'dille','gedroogde peterselie':'peterselie (gedroogd)',
- 'marjoraan (gedroogd)':'marjoraan','korianderblad (gedroogd)':'korianderblad',
- 'olijfolie voor de pitabroodjes':'olijfolie','extra vierge olijfolie':'olijfolie',
- 'balsamico':'balsamicoazijn','ketjap manis':'ketjap',
- 'griekse yoghurt (naturel)':'griekse yoghurt',
- 'witte of basmatirijst':'rijst','rijst (ongekookt)':'rijst',
- 'pasta (penne of fusilli)':'pasta','tarwebloem':'bloem'
-};
+const SHOP_ALIASES=window.CookbookPantry.aliases;
 const SHOP_PIECE_WEIGHTS={paprika:160,courgette:300,ui:130,'rode ui':120,sjalot:45,tomaat:120,wortel:100,komkommer:350,'rode peper':20,ei:55};
 const SHOP_SPICES=new Set('chilipoeder|dille|gerookt paprikapoeder|gedroogde basilicum|knoflookpoeder|uienpoeder|komijn|komijnzaad|korianderblad|kaneel|kerrie|kurkuma|laurierblad|marjoraan|oregano|paprikapoeder|peterselie (gedroogd)|rozemarijn|tijm|zwarte peper|zout'.split('|'));
 // Herken namen vanuit de receptregels: eenzelfde product kan meerdere schrijfwijzen hebben.
 const pantry=window.CookbookPantry.create(localStorage,STORAGE.pantry,
- name=>{const normalized=basketName(name);return SHOP_ALIASES[normalized]||normalized;},
+ window.CookbookPantry.canonical,
  ()=>{if(window.CookbookPersonalCloud?.enabled)window.CookbookPersonalCloud.changed();});
 let pantryExpanded=false;
 let basketRecipesExpanded=false;
@@ -2668,57 +2662,7 @@ function downloadPersonalBackup(){
   backupStatus('Back-up downloaden is niet gelukt: '+e.message,true);
  }
 }
-function backupObject(value){
- return value!==null&&typeof value==='object'&&!Array.isArray(value);
-}
-function backupKey(key){
- return typeof key==='string'&&key.length>0&&key.length<=500&&!['__proto__','constructor','prototype'].includes(key);
-}
-function backupMap(value,label,validate,maximum=2000){
- if(!backupObject(value)||Object.keys(value).length>maximum)throw Error('Ongeldige '+label+'.');
- const entries=Object.entries(value);
- for(const [key,item] of entries){
-  if(!backupKey(key)||!validate(item,key))throw Error('Ongeldige '+label+'; dit bestand kan niet worden hersteld.');
- }
- // Object.fromEntries houdt ook bijzondere namen als gewone eigen sleutels.
- return Object.fromEntries(entries);
-}
-function validBackup(payload){
- if(!backupObject(payload)||payload.app!==BACKUP_APP||payload.version!==BACKUP_VERSION||
-    !backupObject(payload.data)||typeof payload.exportedAt!=='string'||!Number.isFinite(Date.parse(payload.exportedAt))) {
-  throw Error('Dit is geen ondersteund Mijn Kookboek-back-upbestand (versie 1).');
- }
- if(!BACKUP_FIELDS.every(name=>Object.prototype.hasOwnProperty.call(payload.data,name))){
-  throw Error('Het bestand is onvolledig; er ontbreken persoonlijke gegevens.');
- }
- const data=payload.data;
- if(!Array.isArray(data.favorites)||data.favorites.length>2000||
-    !data.favorites.every(x=>typeof x==='string'&&backupKey(x))){
-  throw Error('Ongeldige favorieten in het back-upbestand.');
- }
- const favoritesList=[...new Set(data.favorites)];
- const ingredientChecks=backupMap(data.ingredientChecks,'ingrediëntstatussen',value=>
-  Array.isArray(value)&&value.length<=1000&&value.every(x=>Number.isInteger(x)&&x>=0&&x<=10000));
- const basketData=backupMap(data.basket,'boodschappenrecepten',value=>
-  backupObject(value)&&typeof value.id==='string'&&backupKey(value.id)&&
-  (value.variantId===undefined||typeof value.variantId==='string'&&value.variantId.length<=200)&&
-  Number.isFinite(value.servings)&&value.servings>=1&&value.servings<=1000&&
-  (value.includeOptional===undefined||typeof value.includeOptional==='boolean'),1000);
- const basketChecks=backupMap(data.basketChecks,'boodschappenstatussen',value=>typeof value==='boolean',5000);
- const notes=backupMap(data.notes,'kooknotities',value=>
-  backupObject(value)&&
-  (value.notes===undefined||typeof value.notes==='string'&&value.notes.length<=5000)&&
-  (value.feedback===undefined||typeof value.feedback==='string'&&value.feedback.length<=5000)&&
-  (value.rating===undefined||Number.isInteger(value.rating)&&value.rating>=0&&value.rating<=5)&&
-  (value.lastCookedOn===undefined||typeof value.lastCookedOn==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value.lastCookedOn)));
- const cookProgressData=backupMap(data.cookProgress,'kookvoortgang',value=>
-  backupObject(value)&&Number.isInteger(value.step)&&value.step>=0&&value.step<=1000&&typeof value.done==='boolean');
- const pantryData=data.pantry===undefined?null:pantry.validate(data.pantry);
- return {
-  exportedAt:payload.exportedAt,
-  data:{favorites:favoritesList,ingredientChecks,basket:basketData,basketChecks,notes,cookProgress:cookProgressData,pantry:pantryData}
- };
-}
+function validBackup(payload){return window.CookbookData.validPersonal(payload,pantry);}
 function cancelBackupImport(){
  pendingBackup=null;
  el('backupPreview').hidden=true;
@@ -3041,7 +2985,9 @@ if(window.CookbookPersonalCloud?.enabled){
    if(focused&&typeof focused.closest==='function'&&focused.closest('#personalNotes, #pantryPanel'))return false;
    return true;
   },
-  download:downloadPersonalBackup
+  download:downloadPersonalBackup,
+  review:(local,remote)=>window.CookbookCompare.show('personalConflictReview','personal',local,remote),
+  cancelReview(){window.CookbookCompare.cancel('personalConflictReview');}
  });
 }
 refreshRecipeCollection(true);

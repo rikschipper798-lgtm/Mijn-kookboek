@@ -162,11 +162,13 @@ async function goReady(){
     await b.page.evaluate(()=>window.confirm=()=>false);
     await b.page.locator('#openAccountTools').click();
     await b.page.locator('#cloudRefresh').click();
+    await b.page.locator('#diaryConflictReview [data-choice="cancel"]').click();
     assert.equal(store.get(account).revision,2);
     const stillSaved=await b.page.evaluate(()=>Object.keys(localStorage).some(k=>k.startsWith('mijn-kookboek-cloud-herstel-v1:')));
     assert.equal(stillSaved,true);
     await b.page.evaluate(()=>window.confirm=()=>true);
     await b.page.locator('#cloudRefresh').click();
+    await b.page.locator('#diaryConflictReview [data-choice="cloud"]').click();
     await awaitBrowser(b.page,()=>document.querySelector('#accountStateLabel')?.textContent==='Dagboek gesynchroniseerd','bewuste cloudversie na conflict');
     assert.equal(await b.page.evaluate(()=>Object.keys(localStorage).some(k=>k.startsWith('mijn-kookboek-cloud-herstel-v1:'))),false);
     return {revision:2,localRecoveryPreserved:true,explicitConfirmationRequired:true};

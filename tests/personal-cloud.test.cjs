@@ -54,7 +54,7 @@ function storage(initial){
   removeItem:key=>map.delete(key)
  };
 }
-function harness(db,id='user-1',{local=data(),store=storage(),signedIn=true}={}){
+function harness(db,id='user-1',{local=data(),store=storage(),signedIn=true,review=undefined}={}){
  let current=clone(local),canApply=true;
  const nodes=new Map(),logs=[];
  function node(key){
@@ -92,6 +92,7 @@ function harness(db,id='user-1',{local=data(),store=storage(),signedIn=true}={})
  vm.runInNewContext(code,context,{filename:'personal-cloud.js',timeout:1000});
  const cloud=context.window.CookbookPersonalCloud;
  cloud.start({
+  review,
   getLocal:()=>clone(current),
   validate:value=>{
    assert.ok(value&&Array.isArray(value.favorites)&&Array.isArray(value.pantry),'Invalid test data');
@@ -233,4 +234,18 @@ test('Koppeling is geïntegreerd met dezelfde lokale sleutels, back-up en PWA',(
  assert.match(sw,/personal-cloud\.js/);
  assert.match(schema,/alter table public\.cookbook_personal_data enable row level security/i);
  assert.match(schema,/user_id = \(select auth\.uid\(\)\)/i);
+});
+
+test('Vergelijking wijzigt niets voordat de gebruiker kiest en weigert een verouderde cloudversie',async()=>{
+ const db=new FakeDatabase();db.records.set('a',{data:data(['cloud']),revision:1});let choose,shown;
+ const h=harness(db,'a',{local:data(['local']),review:(local,cloud)=>{shown={local,cloud};return new Promise(r=>choose=r);}});
+ await h.ready();const task=h.cloud.review();await pause(10);
+ assert.deepEqual(clone(shown.local.favorites),['local']);assert.deepEqual(clone(shown.cloud.favorites),['cloud']);assert.equal(db.records.get('a').revision,1);
+ db.records.set('a',{data:data(['nieuwere-cloud']),revision:2});choose('cloud');await task;
+ assert.deepEqual(h.local().favorites,['local']);assert.match(h.node('personalCloudStatus').textContent,/intussen gewijzigd/);
+});
+test('Gecontroleerde lokale keuze gebruikt revision check en slaat dezelfde gegevens op',async()=>{
+ const db=new FakeDatabase();db.records.set('a',{data:data(['cloud']),revision:1});
+ const h=harness(db,'a',{local:data(['local']),review:async()=> 'local'});await h.ready();await h.cloud.review();await h.wait();
+ assert.equal(db.records.get('a').revision,2);assert.deepEqual(db.records.get('a').data.favorites,['local']);
 });
