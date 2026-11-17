@@ -257,7 +257,15 @@
    active=true;
    message('Persoonlijke kookboekgegevens zijn gekoppeld en actueel.');
   }catch(error){
-   if(token===epoch)message('Persoonlijke cloudgegevens konden niet worden geladen. Je lokale gegevens blijven staan: '+error.message,true);
+   if(token!==epoch)return;
+   try{
+    const binding=bound(),saved=readJournal(next.id);
+    if(binding?.userId===next.id&&saved&&compare(hooks.validate(hooks.getLocal()),saved.data)){
+     pending=saved;revision=saved.baseRevision;active=true;conflict=false;dirtyBeforeReady=false;
+     message('Geen cloudverbinding. Je lokale herstelkopie blijft beschikbaar; synchronisatie hervat bij verbinding.',true);return;
+    }
+   }catch(recoveryError){/* Keep unreadable or divergent browser data untouched. */}
+   message('Persoonlijke cloudgegevens konden niet worden geladen. Je lokale gegevens blijven staan: '+error.message,true);
   }finally{if(token===epoch){loading=false;message(lastMessage,lastError);}}
  }
  async function chooseCloud(){

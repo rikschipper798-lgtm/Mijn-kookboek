@@ -249,3 +249,17 @@ test('Gecontroleerde lokale keuze gebruikt revision check en slaat dezelfde gege
  const h=harness(db,'a',{local:data(['local']),review:async()=> 'local'});await h.ready();await h.cloud.review();await h.wait();
  assert.equal(db.records.get('a').revision,2);assert.deepEqual(db.records.get('a').data.favorites,['local']);
 });
+
+test('Een geldige persoonlijke herstelkopie blijft na offline herladen beschikbaar',async()=>{
+ const db=new FakeDatabase(),s=storage();const first=harness(db,'a',{store:s,local:data(['start'])});await first.ready();first.chooseLocal();await first.wait();
+ db.online=false;first.setLocal(data(['offline']));await first.wait();
+ const second=harness(db,'a',{store:s,local:data(['offline'])});await second.ready();
+ assert.equal(second.cloud.snapshot().ready,true);assert.equal(second.cloud.snapshot().pending,true);assert.deepEqual(second.local().favorites,['offline']);
+ db.online=true;second.sync();await second.wait();assert.deepEqual(db.records.get('a').data.favorites,['offline']);
+});
+test('Offline herstel overschrijft geen afwijkende lokale persoonlijke gegevens',async()=>{
+ const db=new FakeDatabase(),s=storage();const first=harness(db,'a',{store:s,local:data(['start'])});await first.ready();first.chooseLocal();await first.wait();
+ db.online=false;first.setLocal(data(['journal']));await first.wait();
+ const second=harness(db,'a',{store:s,local:data(['nieuwe lokale invoer'])});await second.ready();
+ assert.equal(second.cloud.snapshot().ready,false);assert.deepEqual(second.local().favorites,['nieuwe lokale invoer']);
+});
