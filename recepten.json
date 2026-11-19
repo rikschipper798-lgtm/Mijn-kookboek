@@ -12747,12 +12747,17 @@
       "Optioneel: 6 verse basilicumblaadjes vlak voor het serveren toevoegen. Parmezaanse kaas en extra room zijn hier niet nodig.",
       "Laat restjes snel afkoelen, bewaar maximaal 2 dagen afgedekt in de koelkast en verwarm voorzichtig met een scheutje water tot de zalm door en door heet is."
     ],
-    "image": null,
-    "image_source": "",
-    "version": 1,
-    "updatedAt": null,
-    "changeLog": [],
-    "recipeType": "maaltijd",
-    "imageNote": "Er is nog geen passende foto van dit gerecht beschikbaar."
+    "image": "images/romige-pasta-zalm-spinazie-zongedroogde-tomaat.avif",
+    "image_source": "AI-gegenereerde foodfoto van deze romige pasta met zalm, spinazie en zongedroogde tomaat, 19 november 2026.",
+    "version": 2,
+    "updatedAt": "2026-11-19",
+    "changeLog": [
+      {
+        "version": 2,
+        "date": "2026-11-19",
+        "description": "AI-gegenereerde foto van het gerecht toegevoegd; afbeelding geoptimaliseerd voor het online kookboek."
+      }
+    ],
+    "recipeType": "maaltijd"
   }
 ]
