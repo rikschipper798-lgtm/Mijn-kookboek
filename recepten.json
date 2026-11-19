@@ -12402,5 +12402,352 @@
     ],
     "recipeType": "onderdeel",
     "image_source": "AI-gegenereerde afbeelding van deze kruidige groentetraybake met optionele feta, gemaakt voor het kookboek"
+  },
+  {
+    "id": "romige-pasta-zalm-spinazie-zongedroogde-tomaat",
+    "title": "Romige pasta met zalm, spinazie en zongedroogde tomaat",
+    "subtitle": "Sappige zalm en verse spinazie in een romige roomkaassaus met zongedroogde tomaat, knoflook, oregano, een vleugje chili en frisse citroen.",
+    "category": "Pasta",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Italiaans geïnspireerd",
+    "minutes": 35,
+    "prep": 10,
+    "cook": 25,
+    "servings": 2,
+    "servingUnit": "personen",
+    "nutrition": {
+      "per": "portie",
+      "kcal": 850,
+      "proteinG": 44,
+      "carbsG": 76,
+      "fatG": 38,
+      "fiberG": 9,
+      "estimated": true
+    },
+    "heat": "Mild tot gemiddeld pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-11-19",
+    "tags": [
+      "Pasta",
+      "Zalm",
+      "Spinazie",
+      "Zongedroogde tomaat",
+      "Romig",
+      "Citroen"
+    ],
+    "ingredients": [
+      {
+        "name": "Pasta (rigatoni of penne)",
+        "qty": 180,
+        "unit": "g",
+        "group": "Pasta en groenten"
+      },
+      {
+        "name": "Zalmfilet zonder graat",
+        "qty": 250,
+        "unit": "g",
+        "group": "Pasta en groenten"
+      },
+      {
+        "name": "Verse spinazie",
+        "qty": 300,
+        "unit": "g",
+        "group": "Pasta en groenten"
+      },
+      {
+        "name": "Zongedroogde tomaten op olie (uitgelekt)",
+        "qty": 60,
+        "unit": "g",
+        "group": "Pasta en groenten"
+      },
+      {
+        "name": "Gele ui",
+        "qty": 60,
+        "unit": "g",
+        "group": "Pasta en groenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Pasta en groenten"
+      },
+      {
+        "name": "Naturel roomkaas",
+        "qty": 90,
+        "unit": "g",
+        "group": "Romige saus"
+      },
+      {
+        "name": "Pastakookwater (bewaren)",
+        "qty": 125,
+        "unit": "ml",
+        "group": "Romige saus"
+      },
+      {
+        "name": "Olie uit de pot zongedroogde tomaten",
+        "qty": 1,
+        "unit": "el",
+        "group": "Bakken"
+      },
+      {
+        "name": "Gedroogde oregano",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Chilipoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Afwerking"
+      },
+      {
+        "name": "Citroenrasp",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Afwerking"
+      },
+      {
+        "name": "Zout",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Kruiden"
+      },
+      {
+        "name": "Verse basilicum",
+        "qty": 6,
+        "unit": "blaadjes",
+        "group": "Afwerking",
+        "optional": true
+      }
+    ],
+    "steps": [
+      {
+        "title": "Ingrediënten voorbereiden",
+        "duration": "5 minuten",
+        "body": "Snipper 60 g gele ui, hak 2 teentjes knoflook fijn en snijd 60 g uitgelekte zongedroogde tomaten in smalle reepjes. Was de spinazie indien nodig. Rasp ½ tl citroenschil (alleen het gele deel) en pers 2 tl citroensap uit. Dep de 250 g zalmfilet droog met keukenpapier.",
+        "ingredientIndices": [
+          4,
+          5,
+          3,
+          2,
+          13,
+          12,
+          1
+        ],
+        "quantityRefs": [
+          {
+            "text": "60 g gele ui",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "2 teentjes knoflook",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "60 g uitgelekte zongedroogde tomaten",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "½ tl citroenschil",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "250 g zalmfilet",
+            "ingredientIndex": 1
+          }
+        ]
+      },
+      {
+        "title": "Pasta koken",
+        "duration": "10–12 minuten (tegelijk met zalm en saus)",
+        "body": "Breng een ruime pan water met een beetje zout aan de kook. Kook 180 g pasta circa 1 minuut korter dan de verpakking aangeeft. Schep vóór het afgieten 125 ml pastakookwater uit de pan en bewaar dit. Laat de pasta uitlekken. Begin terwijl het water opwarmt met de zalm.",
+        "ingredientIndices": [
+          0,
+          7,
+          14
+        ],
+        "quantityRefs": [
+          {
+            "text": "180 g pasta",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "125 ml pastakookwater",
+            "ingredientIndex": 7
+          }
+        ]
+      },
+      {
+        "title": "Zalm kort aanbakken",
+        "duration": "4–6 minuten",
+        "body": "Verhit 1 el olie uit de tomatenpot in een ruime koekenpan op middelhoog vuur. Kruid 250 g zalmfilet met ¼ tl zwarte peper en een klein beetje zout. Bak de zalm ongeveer 2–3 minuten per kant, afhankelijk van de dikte, zodat de buitenzijde licht kleurt maar de kern nog niet helemaal gaar is. Schep op een schoon bord en verdeel in grove stukken. De zalm gaart straks volledig door in de saus; bewaar het bakvet.",
+        "ingredientIndices": [
+          8,
+          1,
+          11,
+          14
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el olie",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "250 g zalmfilet",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 11
+          }
+        ]
+      },
+      {
+        "title": "Smaakbasis opbouwen",
+        "duration": "4 minuten",
+        "body": "Zet het vuur middellaag. Fruit de 60 g gesnipperde ui 3 minuten in het achtergebleven bakvet. Voeg 2 teentjes fijngehakte knoflook, 60 g zongedroogde tomaten, ½ tl oregano en ¼ tl chilipoeder toe. Bak circa 1 minuut mee tot het geurt, zonder de knoflook te laten bruinen.",
+        "ingredientIndices": [
+          4,
+          5,
+          3,
+          9,
+          10
+        ],
+        "quantityRefs": [
+          {
+            "text": "60 g gesnipperde ui",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "2 teentjes fijngehakte knoflook",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "60 g zongedroogde tomaten",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "½ tl oregano",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 10
+          }
+        ]
+      },
+      {
+        "title": "Spinazie laten slinken",
+        "duration": "3–4 minuten",
+        "body": "Voeg 300 g verse spinazie in 2–3 porties toe. Schep steeds om tot de vorige portie is geslonken. Zet het vuur zo nodig iets hoger en laat vrijgekomen vocht grotendeels verdampen: een te natte spinaziebasis verdunt de roomsaus.",
+        "ingredientIndices": [
+          2
+        ],
+        "quantityRefs": [
+          {
+            "text": "300 g verse spinazie",
+            "ingredientIndex": 2
+          }
+        ]
+      },
+      {
+        "title": "Saus romig maken",
+        "duration": "2 minuten",
+        "body": "Zet het vuur laag. Roer 90 g naturel roomkaas met eerst 75 ml van het bewaarde pastakookwater door de groenten tot een gladde saus. Voeg van de resterende 50 ml alleen iets toe als de saus te dik is. De saus moet aan de pasta blijven kleven, niet waterig worden. Proef eerst en voeg alleen zo nodig zout toe: zongedroogde tomaten zijn vaak zout.",
+        "ingredientIndices": [
+          6,
+          7,
+          14
+        ],
+        "quantityRefs": [
+          {
+            "text": "90 g naturel roomkaas",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "75 ml",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "50 ml",
+            "ingredientIndex": 7
+          }
+        ]
+      },
+      {
+        "title": "Pasta en zalm afmaken",
+        "duration": "3–4 minuten",
+        "body": "Voeg de pasta toe en schep ongeveer 1 minuut om op laag vuur, zodat hij de saus opneemt. Leg de grove stukken zalm erbij en verwarm voorzichtig nog 2–3 minuten, afhankelijk van de dikte, tot de zalm ook binnenin gaar is (controleer bij voorkeur 63 °C kerntemperatuur). Schep voorzichtig zodat de zalm niet uiteenvalt. Voeg indien nodig nog een scheutje van het bewaarde pastakookwater toe.",
+        "ingredientIndices": [
+          0,
+          1,
+          7
+        ],
+        "quantityRefs": []
+      },
+      {
+        "title": "Fris afwerken en serveren",
+        "duration": "1 minuut",
+        "body": "Zet het vuur uit. Roer 2 tl citroensap en ½ tl citroenrasp door de pasta. Proef en corrigeer eventueel met een beetje zout of citroensap. Verdeel over 2 warme borden. Scheur er desgewenst 6 verse basilicumblaadjes overheen en serveer direct.",
+        "ingredientIndices": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "½ tl citroenrasp",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "6 verse basilicumblaadjes",
+            "ingredientIndex": 15
+          }
+        ]
+      }
+    ],
+    "tips": [
+      "Bak de zalm bewust kort aan: hij gaart verder in de saus. Schep de stukken pas aan het einde voorzichtig door de pasta en controleer dat ze volledig gaar zijn.",
+      "De olie uit de tomatenpot versterkt de smaak. Bevat de pot onvoldoende olie, vervang deze dan door olijfolie.",
+      "Laat vocht uit de spinazie voldoende verdampen voordat je de roomkaas toevoegt. Voeg het pastakookwater stapsgewijs toe voor een romige, gebonden saus.",
+      "Citroensap en -rasp pas toevoegen nadat het vuur is uitgezet; proef op frisheid en zout.",
+      "Optioneel: 6 verse basilicumblaadjes vlak voor het serveren toevoegen. Parmezaanse kaas en extra room zijn hier niet nodig.",
+      "Laat restjes snel afkoelen, bewaar maximaal 2 dagen afgedekt in de koelkast en verwarm voorzichtig met een scheutje water tot de zalm door en door heet is."
+    ],
+    "image": null,
+    "image_source": "",
+    "version": 1,
+    "updatedAt": "2026-11-19",
+    "changeLog": [
+      {
+        "version": 1,
+        "date": "2026-11-19",
+        "description": "Definitief recept toegevoegd met verbeterde balans van tomaat en roomkaas, zonder gerookt paprikapoeder, met citroenrasp en veiligere bereiding van de zalm."
+      }
+    ],
+    "recipeType": "maaltijd"
   }
 ]
