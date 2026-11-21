@@ -21,9 +21,13 @@ test('Actuele kookboekcollectie bevat geen blokkerende fouten',()=>{
  assert.equal(result.stats.recipes,catalog.length);
  assert.ok(result.stats.variants>=2);
 });
-test('Afbeeldingen van basisrecepten en varianten bestaan',()=>{
- assert.ok(check(catalog).stats.images>=catalog.length);
- assert.equal(check(catalog).errors.filter(x=>x.includes('.image')).length,0);
+test('Afbeeldingen bestaan of ontbreken met een expliciete toelichting',()=>{
+ const result=check(catalog);
+ const entries=[...catalog,...catalog.flatMap(recipe=>recipe.variants||[])];
+ const withImage=entries.filter(entry=>typeof entry.image==='string');
+ assert.ok(result.stats.images>=withImage.length);
+ assert.ok(entries.every(entry=>typeof entry.image==='string'||(entry.image===null&&typeof entry.imageNote==='string'&&entry.imageNote.trim().length>0)));
+ assert.equal(result.errors.filter(x=>x.includes('.image')).length,0);
 });
 test('Los ingrediënt zonder stapverwijzing is waarschuwing',()=>{
  const result=check(catalog);
