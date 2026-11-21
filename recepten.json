@@ -12759,5 +12759,363 @@
       }
     ],
     "recipeType": "maaltijd"
+  },
+  {
+    "id": "pangasius-tuinkruiden-sperziebonen-citroen-rosti",
+    "title": "Pangasius met tuinkruiden, sperziebonen en rösti",
+    "subtitle": "Licht krokante pangasius met een zelfgemaakte peterselie-dillekruidenkorst, sperziebonen in knoflook-citroenboter en kant-en-klare AH-rösti.",
+    "category": "Vis",
+    "kind": "Hoofdgerecht",
+    "cuisine": "Nederlands geïnspireerd",
+    "minutes": 35,
+    "prep": 10,
+    "cook": 25,
+    "servings": 2,
+    "servingUnit": "personen",
+    "nutrition": {
+      "per": "portie",
+      "kcal": 680,
+      "proteinG": 33,
+      "carbsG": 53,
+      "fatG": 37,
+      "fiberG": 8,
+      "estimated": true
+    },
+    "heat": "Niet pittig",
+    "difficulty": "Makkelijk",
+    "date": "2026-11-21",
+    "tags": [
+      "Vis",
+      "Pangasius",
+      "Tuinkruiden",
+      "Sperziebonen",
+      "Citroen",
+      "Knoflook",
+      "Rösti",
+      "AH"
+    ],
+    "ingredients": [
+      {
+        "name": "Pangasiusfilets (naturel, ontdooid)",
+        "qty": 320,
+        "unit": "g",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Bloem",
+        "qty": 15,
+        "unit": "g",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Gedroogde peterselie",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Gedroogde dille",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Gedroogde basilicum",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Knoflookpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Uienpoeder",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 1,
+        "unit": "el",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Ongezouten roomboter",
+        "qty": 10,
+        "unit": "g",
+        "group": "Pangasius met tuinkruiden"
+      },
+      {
+        "name": "Sperziebonen",
+        "qty": 400,
+        "unit": "g",
+        "group": "Sperziebonen met citroen-knoflookboter"
+      },
+      {
+        "name": "Ongezouten roomboter",
+        "qty": 20,
+        "unit": "g",
+        "group": "Sperziebonen met citroen-knoflookboter"
+      },
+      {
+        "name": "Verse knoflook",
+        "qty": 2,
+        "unit": "teentjes",
+        "group": "Sperziebonen met citroen-knoflookboter"
+      },
+      {
+        "name": "Gedroogde peterselie",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Sperziebonen met citroen-knoflookboter"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Sperziebonen met citroen-knoflookboter"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Sperziebonen met citroen-knoflookboter"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.125,
+        "unit": "tl",
+        "group": "Sperziebonen met citroen-knoflookboter"
+      },
+      {
+        "name": "AH rösti (kant-en-klaar, bijvoorbeeld rösti-rondjes)",
+        "qty": 325,
+        "unit": "g",
+        "group": "Rösti"
+      }
+    ],
+    "steps": [
+      {
+        "title": "AH-rösti bereiden",
+        "body": "Verwarm oven of airfryer zoals aangegeven op de verpakking van de AH rösti. Bereid 325 g kant-en-klare AH-rösti goudbruin en krokant. Keer of schud halverwege wanneer de verpakking dat aangeeft. Plan de bereiding zo dat de rösti tegelijk met de vis klaar is; de rösti hoef je niet zelf te maken.",
+        "duration": "volgens verpakking",
+        "ingredientIndices": [
+          18
+        ],
+        "quantityRefs": [
+          {
+            "text": "325 g",
+            "ingredientIndex": 18
+          }
+        ]
+      },
+      {
+        "title": "Sperziebonen voorkoken",
+        "body": "Maak 400 g sperziebonen schoon. Kook ze in licht gezouten water 6–7 minuten, tot ze bijna gaar zijn maar nog wat beet hebben. Giet af en laat goed uitdampen; de bonen bakken straks nog kort mee.",
+        "duration": "6–7 minuten",
+        "ingredientIndices": [
+          11
+        ],
+        "quantityRefs": [
+          {
+            "text": "400 g sperziebonen",
+            "ingredientIndex": 11
+          }
+        ]
+      },
+      {
+        "title": "Pangasius en kruidenmix voorbereiden",
+        "body": "Dep 2 pangasiusfilets (samen circa 320 g) goed droog en bestrooi ze met ¼ tl zout. Meng 1 tl gedroogde peterselie, ½ tl gedroogde dille en ¼ tl gedroogde basilicum; verdeel dit mengsel in twee gelijke helften. Meng één helft door 15 g bloem, samen met ¼ tl knoflookpoeder, ¼ tl uienpoeder en ¼ tl zwarte peper. Bewaar de andere helft voor de kruidenboter.",
+        "duration": "3 minuten",
+        "ingredientIndices": [
+          0,
+          8,
+          2,
+          3,
+          4,
+          1,
+          5,
+          6,
+          7
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 pangasiusfilets",
+            "perServing": 1
+          },
+          {
+            "text": "320 g",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "¼ tl zout",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "1 tl gedroogde peterselie",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "½ tl gedroogde dille",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "¼ tl gedroogde basilicum",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "15 g bloem",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "¼ tl knoflookpoeder",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "¼ tl uienpoeder",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 7
+          }
+        ]
+      },
+      {
+        "title": "Vis dun bebloemen",
+        "body": "Haal de filets aan beide kanten vlak voor het bakken door het gekruide bloemmengsel. Schud overtollige bloem af. Een dun laagje geeft een licht krokant korstje zonder de vis te overheersen.",
+        "duration": "1 minuut",
+        "ingredientIndices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "quantityRefs": []
+      },
+      {
+        "title": "Vis bakken",
+        "body": "Begin circa 9 minuten voordat de rösti klaar is. Verhit 1 el zonnebloemolie in een koekenpan op middelhoog vuur. Bak de filets circa 3–4 minuten aan de eerste kant zonder ze te verschuiven. Keer één keer voorzichtig met een brede spatel en bak de andere kant nog circa 3–4 minuten, afhankelijk van de dikte. Verlaag het vuur als de kruiden te donker worden; controleer volledige gaarheid (richtwaarde 63 °C in het dikste deel).",
+        "duration": "6–9 minuten",
+        "ingredientIndices": [
+          9,
+          0
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 el zonnebloemolie",
+            "ingredientIndex": 9
+          }
+        ]
+      },
+      {
+        "title": "Bonen bakken in knoflookboter",
+        "body": "Begin tijdens de laatste 3–4 minuten van het bakken van de vis. Smelt 20 g ongezouten roomboter in een tweede koekenpan op middelhoog vuur. Bak de uitgelekte bonen 2 minuten. Voeg 2 fijngehakte teentjes verse knoflook en 1 tl gedroogde peterselie toe, verlaag het vuur iets en bak nog 1 minuut mee. Laat de knoflook geuren maar niet bruin worden.",
+        "duration": "3 minuten, tegelijk met vis",
+        "ingredientIndices": [
+          12,
+          11,
+          13,
+          14
+        ],
+        "quantityRefs": [
+          {
+            "text": "20 g ongezouten roomboter",
+            "ingredientIndex": 12
+          },
+          {
+            "text": "2 fijngehakte teentjes verse knoflook",
+            "ingredientIndex": 13
+          },
+          {
+            "text": "1 tl gedroogde peterselie",
+            "ingredientIndex": 14
+          }
+        ]
+      },
+      {
+        "title": "Vis afmaken met tuinkruidenboter",
+        "body": "Voeg tijdens de laatste minuut van het visbakken 10 g ongezouten roomboter en de apart gehouden helft van de tuinkruiden toe. Laat smelten en schep de kruidenboter 30–45 seconden over de filets. De vis is gaar wanneer deze ondoorzichtig is en gemakkelijk in vlokken uiteenvalt (bij voorkeur 63 °C in het dikste deel). Haal van het vuur.",
+        "duration": "laatste minuut",
+        "ingredientIndices": [
+          10,
+          2,
+          3,
+          4,
+          0
+        ],
+        "quantityRefs": [
+          {
+            "text": "10 g ongezouten roomboter",
+            "ingredientIndex": 10
+          }
+        ]
+      },
+      {
+        "title": "Bonen fris afmaken en opdienen",
+        "body": "Zet het vuur onder de bonen uit. Schep er 1 tl citroensap en ¼ tl zwarte peper door. Proef en voeg alleen als nodig ⅛ tl zout toe of iets meer citroensap. Verdeel de vis, sperziebonen en krokante AH-rösti over 2 borden. Schep resterende kruidenboter uit de vispan over de vis, niet over de rösti, zodat die krokant blijft.",
+        "duration": "1 minuut",
+        "ingredientIndices": [
+          15,
+          16,
+          17,
+          11,
+          0,
+          18
+        ],
+        "quantityRefs": [
+          {
+            "text": "1 tl citroensap",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "⅛ tl zout",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "2 borden",
+            "perServing": 1
+          }
+        ]
+      }
+    ],
+    "tips": [
+      "Gebruik naturel, volledig ontdooide pangasiusfilets. Dep droog en bebloem vlak voor het bakken voor een dun, goudbruin korstje.",
+      "De gedroogde peterselie, dille en basilicum voor de vis worden verdeeld over het bloemmengsel en de boterafwerking. Voeg de tweede helft pas in de laatste minuut toe.",
+      "Voeg het citroensap pas na het bakken toe aan de bonen. Begin met 1 tl; proef op een subtiele frisheid. Gedroogde peterselie warm je kort mee met de knoflook.",
+      "Gebruik kant-en-klare AH-rösti en volg voor tijd en temperatuur altijd de verpakking. Houd de rösti droog en krokant.",
+      "Voedingswaarden zijn grof geschat per persoon en afhankelijk van de exacte AH-rösti en hoeveel bakvet achterblijft.",
+      "Aanvullende boodschappen: naturel pangasius, sperziebonen, AH-rösti, verse knoflook en ongezouten roomboter indien niet aanwezig. Bloem, kruiden, zonnebloemolie en citroensap komen uit de standaardvoorraad."
+    ],
+    "version": 1,
+    "updatedAt": null,
+    "changeLog": [],
+    "recipeType": "maaltijd",
+    "image": null,
+    "imageNote": "Nog geen passende foto van dit specifieke gerecht toegevoegd."
   }
 ]
