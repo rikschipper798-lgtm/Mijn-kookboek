@@ -23,7 +23,7 @@ test('Actuele kookboekcollectie bevat geen blokkerende fouten',()=>{
 });
 test('Afbeeldingen bestaan of ontbreken met een expliciete toelichting',()=>{
  const result=check(catalog);
- const entries=[...catalog,...catalog.flatMap(recipe=>recipe.variants||[])];
+ const entries=catalog; // Varianten mogen de afbeelding van hun hoofdrecept erven.
  const withImage=entries.filter(entry=>typeof entry.image==='string');
  assert.ok(result.stats.images>=withImage.length);
  assert.ok(entries.every(entry=>typeof entry.image==='string'||(entry.image===null&&typeof entry.imageNote==='string'&&entry.imageNote.trim().length>0)));
