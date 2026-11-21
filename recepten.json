@@ -3019,23 +3019,23 @@
   },
   {
     "id": "arayes",
-    "title": "Arayes met kruidig rundergehakt",
-    "subtitle": "Krokant gebakken pitabroodjes gevuld met sappig, Midden-Oosters gekruid rundergehakt en een frisse Griekse yoghurtsaus.",
+    "title": "Arayes met kruidig rundergehakt en groenten",
+    "subtitle": "Krokante pitabroodjes gevuld met sappig, Midden-Oosters gekruid rundergehakt, fijngehakte groenten en een frisse knoflook-yoghurtsaus.",
     "category": "Rundvlees",
     "kind": "Hoofdgerecht",
     "cuisine": "Midden-Oosters",
-    "minutes": 45,
+    "minutes": 55,
     "prep": 20,
-    "cook": 25,
+    "cook": 35,
     "servings": 3,
     "servingUnit": "personen",
     "nutrition": {
       "per": "portie",
-      "kcal": 910,
-      "proteinG": 46,
-      "carbsG": 82,
+      "kcal": 930,
+      "proteinG": 43,
+      "carbsG": 85,
       "fatG": 44,
-      "fiberG": 6.6,
+      "fiberG": 7,
       "estimated": true
     },
     "heat": "Gemiddeld pittig",
@@ -3055,15 +3055,33 @@
         "group": "Basis"
       },
       {
-        "name": "Pitabroodjes",
+        "name": "Grote pitabroodjes (ca. 18 cm)",
         "qty": 6,
         "unit": "stuks",
         "group": "Basis"
       },
       {
-        "name": "Ui",
-        "qty": 1,
-        "unit": "stuk",
+        "name": "Gele ui",
+        "qty": 75,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Rode paprika",
+        "qty": 75,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Courgette",
+        "qty": 75,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Tomaat (zonder zaadlijsten)",
+        "qty": 50,
+        "unit": "g",
         "group": "Vulling"
       },
       {
@@ -3079,24 +3097,6 @@
         "group": "Vulling"
       },
       {
-        "name": "Courgette",
-        "qty": 0.25,
-        "unit": "stuk",
-        "group": "Vulling"
-      },
-      {
-        "name": "Tomaat",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Vulling"
-      },
-      {
-        "name": "Verse peterselie",
-        "qty": 2,
-        "unit": "el",
-        "group": "Vulling"
-      },
-      {
         "name": "Tomatenpuree",
         "qty": 1,
         "unit": "el",
@@ -3109,13 +3109,7 @@
         "group": "Vulling"
       },
       {
-        "name": "Olijfolie",
-        "qty": 0.5,
-        "unit": "el",
-        "group": "Vulling"
-      },
-      {
-        "name": "Olijfolie voor de pitabroodjes",
+        "name": "Olijfolie (voor bakken)",
         "qty": 1,
         "unit": "el",
         "group": "Bakken"
@@ -3127,20 +3121,14 @@
         "group": "Kruiden"
       },
       {
-        "name": "Paprikapoeder",
-        "qty": 1,
+        "name": "Gedroogde peterselie",
+        "qty": 2,
         "unit": "tl",
         "group": "Kruiden"
       },
       {
         "name": "Gerookt paprikapoeder",
         "qty": 0.5,
-        "unit": "tl",
-        "group": "Kruiden"
-      },
-      {
-        "name": "Korianderblad (gedroogd)",
-        "qty": 1,
         "unit": "tl",
         "group": "Kruiden"
       },
@@ -3152,14 +3140,14 @@
       },
       {
         "name": "Zout",
-        "qty": 1,
+        "qty": 0.75,
         "unit": "tl",
         "group": "Kruiden"
       },
       {
         "name": "Zwarte peper",
-        "qty": null,
-        "unit": "naar smaak",
+        "qty": 0.5,
+        "unit": "tl",
         "group": "Kruiden"
       },
       {
@@ -3192,60 +3180,78 @@
         "qty": 1,
         "unit": "tl",
         "group": "Saus"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 1,
+        "unit": "snuf",
+        "group": "Saus"
       }
     ],
     "steps": [
       {
-        "body": "Verwarm de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Rooster 1½ tl komijnzaad 30–60 seconden in een droge koekenpan op middelhoog vuur tot het geurt; laat even afkoelen en kneus fijn in een vijzel. Laat het komijnzaad niet donker worden.",
+        "body": "Verwarm de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Rooster 1½ tl komijnzaad 30–60 seconden in een droge koekenpan op middelhoog vuur tot het geurt. Laat kort afkoelen en kneus het fijn met een vijzel of de onderkant van een stevig glas. Laat het zaad niet donker worden.",
         "title": "Oven voorverwarmen en komijn roosteren",
-        "duration": "30–60 sec komijn roosteren",
+        "duration": "2 min",
         "ingredientIndices": [
-          12
+          11
         ],
         "quantityRefs": [
           {
-            "text": "1½ tl komijnzaad 30–60 seconden",
-            "ingredientIndex": 12
+            "text": "1½ tl komijnzaad",
+            "ingredientIndex": 11
           }
         ]
       },
       {
-        "body": "Rasp ¼ courgette fijn en knijp het vocht stevig uit. Verwijder de natte zaadlijsten van de tomaat en snijd het vruchtvlees klein. Snipper 1 ui, hak 2 teentjes knoflook, ½ rode peper en 2 el verse peterselie fijn.",
-        "title": "Groenten en kruiden fijnsnijden",
+        "body": "Rasp 75 g gele ui fijn en druk eventueel overtollig vocht eruit. Snijd 75 g rode paprika in blokjes van maximaal 3–4 mm. Rasp 75 g courgette fijn en knijp het vocht stevig uit in een schone theedoek. Verwijder de natte zaadlijsten uit de tomaat, dep 50 g vruchtvlees droog en snijd dit heel fijn. Hak 2 teentjes knoflook en ½ rode peper fijn.",
+        "title": "Groenten fijnsnijden en vocht verwijderen",
+        "duration": "8 min",
         "ingredientIndices": [
-          5,
-          6,
           2,
           3,
           4,
+          5,
+          6,
           7
         ],
         "quantityRefs": [
           {
-            "text": "¼ courgette",
-            "ingredientIndex": 5
-          },
-          {
-            "text": "1 ui",
+            "text": "75 g gele ui",
             "ingredientIndex": 2
           },
           {
-            "text": "2 teentjes knoflook",
+            "text": "75 g rode paprika",
             "ingredientIndex": 3
           },
           {
-            "text": "½ rode peper",
+            "text": "75 g courgette",
             "ingredientIndex": 4
           },
           {
-            "text": "2 el verse peterselie",
+            "text": "50 g vruchtvlees",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "2 teentjes knoflook",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "½ rode peper",
             "ingredientIndex": 7
           }
         ]
       },
       {
-        "body": "Meng 450 g rundergehakt kort met de ui, knoflook, rode peper, courgette, tomaat, verse peterselie, 1 el tomatenpuree, 1 tl citroensap en ½ el olijfolie. Voeg 1½ tl gekneusd komijnzaad, 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl gedroogd korianderblad, ¼ tl kaneel, ongeveer ¾ tl van het zout en zwarte peper naar smaak toe. Gebruik eventueel ¼ tl chilipoeder. Kneed niet langer dan nodig om de vulling gelijkmatig te mengen.",
-        "title": "Kruidige gehaktvulling mengen",
+        "body": "Meng 450 g rundergehakt met alle voorbereide groenten, 1 el tomatenpuree en 1 tl citroensap. Voeg het gekneusde komijnzaad, 2 tl gedroogde peterselie, ½ tl gerookt paprikapoeder, ¼ tl kaneel, ¾ tl zout en ½ tl zwarte peper toe. Gebruik eventueel ¼ tl chilipoeder. Meng kort tot alles gelijkmatig verdeeld is; kneed niet te lang. Bak een klein proefstukje volledig gaar, proef en voeg zo nodig een snuf zout of komijn toe.",
+        "title": "Kruidige gehaktvulling mengen en proeven",
+        "duration": "5 min",
         "ingredientIndices": [
           0,
           2,
@@ -3256,19 +3262,17 @@
           7,
           8,
           9,
-          10,
+          11,
           12,
           13,
           14,
           15,
           16,
-          17,
-          18,
-          19
+          17
         ],
         "quantityRefs": [
           {
-            "text": "450 g rundergehakt kort",
+            "text": "450 g rundergehakt",
             "ingredientIndex": 0
           },
           {
@@ -3280,74 +3284,65 @@
             "ingredientIndex": 9
           },
           {
-            "text": "½ el olijfolie",
-            "ingredientIndex": 10
-          },
-          {
-            "text": "1½ tl gekneusd komijnzaad",
+            "text": "2 tl gedroogde peterselie",
             "ingredientIndex": 12
           },
           {
-            "text": "1 tl paprikapoeder",
+            "text": "½ tl gerookt paprikapoeder",
             "ingredientIndex": 13
           },
           {
-            "text": "½ tl gerookt paprikapoeder",
+            "text": "¼ tl kaneel",
             "ingredientIndex": 14
           },
           {
-            "text": "1 tl gedroogd korianderblad",
+            "text": "¾ tl zout",
             "ingredientIndex": 15
           },
           {
-            "text": "¼ tl kaneel",
+            "text": "½ tl zwarte peper",
             "ingredientIndex": 16
           },
           {
-            "text": "¾ tl",
-            "ingredientIndex": 17,
-            "factor": 0.75
-          },
-          {
             "text": "¼ tl chilipoeder",
-            "ingredientIndex": 19
+            "ingredientIndex": 17
           }
         ]
       },
       {
-        "body": "Laat de vulling desgewenst 15–30 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 pitabroodjes voorzichtig open en verdeel de vulling over de binnenkanten in een dunne, gelijkmatige laag van circa ½ cm.",
+        "body": "Laat de gehaktvulling desgewenst 15 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 grote pitabroodjes van circa 18 cm voorzichtig aan één kant open. Verdeel de vulling gelijkmatig en druk deze tot een laag van ongeveer 5–6 mm. Druk de broodjes voorzichtig plat. Gebruik bij kleinere pita's liever 8–10 stuks zodat de gehaktlaag niet te dik wordt.",
         "title": "Pitabroodjes vullen",
-        "duration": "optioneel 15–30 min rusten",
+        "duration": "5 min (optioneel 15 min rusten)",
         "ingredientIndices": [
           1,
           0
         ],
         "quantityRefs": [
           {
-            "text": "6 pitabroodjes voorzichtig open",
+            "text": "6 grote pitabroodjes",
             "ingredientIndex": 1
           }
         ]
       },
       {
-        "body": "Bestrijk de buitenkant van de gevulde pitabroodjes met in totaal 1 el olijfolie. Verhit een ruime koekenpan op middelhoog vuur en bak de broodjes, eventueel in porties, circa 2–3 minuten per kant tot beide kanten goudbruin en krokant zijn.",
-        "title": "Arayes goudbruin aanbakken",
-        "duration": "2–3 min per kant",
+        "body": "Bestrijk de buitenkanten met in totaal 1 el olijfolie. Verhit een grote koekenpan of grillplaat op middelhoog vuur. Bak waar mogelijk eerst de open gehaktrand circa 1 minuut zodat die dichtschroeit. Bak vervolgens de platte zijden circa 2–3 minuten per kant, tot de pita goudbruin en krokant is. Werk in porties en leg de aangebakken broodjes op een bakplaat.",
+        "title": "Arayes krokant aanbakken",
+        "duration": "15–25 min, afhankelijk van het aantal porties",
         "ingredientIndices": [
-          11,
+          10,
           1
         ],
         "quantityRefs": [
           {
             "text": "1 el olijfolie",
-            "ingredientIndex": 11
+            "ingredientIndex": 10
           }
         ]
       },
       {
-        "body": "Leg de arayes op een bakplaat en bak nog circa 8–10 minuten in het midden van de oven. Draai ze halverwege om. Controleer of de gehaktvulling in het midden volledig gaar is (minimaal 71 °C kerntemperatuur); geef ze indien nodig enkele minuten extra.",
-        "title": "Arayes in de oven garen",
-        "duration": "8–10 min",
+        "body": "Zet de bakplaat in het midden van de voorverwarmde oven. Bak de arayes nog 8–12 minuten op 200 °C boven-/onderwarmte (180 °C hetelucht) en draai halverwege om. Controleer bij de dikste vulling of het gehakt minimaal 72 °C kerntemperatuur heeft bereikt; bak indien nodig iets langer. De pita moet krokant zijn en het gehakt volledig gaar.",
+        "title": "Arayes in de oven volledig garen",
+        "duration": "8–12 min",
         "ingredientIndices": [
           1,
           0
@@ -3355,49 +3350,53 @@
         "quantityRefs": []
       },
       {
-        "body": "Meng ondertussen 250 g Griekse yoghurt met 1 fijngehakt teentje knoflook, 2 tl citroensap en 1 tl olijfolie. Breng de saus op smaak met de resterende circa ¼ tl zout en zwarte peper. Proef en serveer de krokante arayes direct met de koude yoghurtsaus.",
-        "title": "Yoghurtsaus maken en serveren",
+        "body": "Meng ondertussen 250 g Griekse yoghurt met 1 fijn geraspt teentje knoflook, 2 tl citroensap, 1 tl olijfolie, ¼ tl zout en 1 snuf zwarte peper. Proef en voeg eventueel wat citroensap toe voor extra frisheid. Snijd de gare arayes eventueel doormidden en serveer direct met de koude yoghurtsaus.",
+        "title": "Knoflook-yoghurtsaus maken en serveren",
+        "duration": "5 min, tegelijk met het ovenbakken",
         "ingredientIndices": [
+          18,
+          19,
           20,
           21,
           22,
-          23,
-          17,
-          18
+          23
         ],
         "quantityRefs": [
           {
             "text": "250 g Griekse yoghurt",
-            "ingredientIndex": 20
+            "ingredientIndex": 18
           },
           {
-            "text": "1 fijngehakt teentje knoflook",
-            "ingredientIndex": 21
+            "text": "1 fijn geraspt teentje knoflook",
+            "ingredientIndex": 19
           },
           {
             "text": "2 tl citroensap",
-            "ingredientIndex": 22
+            "ingredientIndex": 20
           },
           {
             "text": "1 tl olijfolie",
-            "ingredientIndex": 23
+            "ingredientIndex": 21
           },
           {
             "text": "¼ tl zout",
-            "ingredientIndex": 17,
-            "factor": 0.25
+            "ingredientIndex": 22
+          },
+          {
+            "text": "1 snuf zwarte peper",
+            "ingredientIndex": 23
           }
         ]
       }
     ],
-    "tips": "Druk het vocht uit de geraspte courgette en verwijder de natte zaadlijsten van de tomaat; een droge vulling houdt de pita krokant. Verdeel het gehakt in een dunne laag van circa ½ cm en bestrijk de buitenkant met olie. Rooster en kneus komijnzaad kort voor de beste geur. Laat de vulling desgewenst 15–30 minuten gekoeld rusten; dit is niet nodig om het recept te laten slagen en telt niet mee in de basisbereidingstijd van 45 minuten. Controleer bij rauw gehakt altijd of het midden volledig gaar is (71 °C).",
+    "tips": "Gebruik grote pitabroodjes van circa 18 cm. Gebruik bij kleinere pitabroodjes 8–10 stuks om de laag gehakt dun (5–6 mm) te houden. Druk vocht uit de courgette en ui, verwijder de zaadlijsten van de tomaat en snijd de paprika zeer fijn: te veel vocht maakt het brood slap. Gehakt met circa 15–20% vet geeft een sappige vulling. De vulling mag optioneel 15 minuten gekoeld rusten; dit is niet bij de bereidingstijd inbegrepen. Controleer dat het gehakt in het midden minimaal 72 °C bereikt. Voedingswaarden zijn schattingen, afhankelijk van de grootte van de pita en het vetgehalte van vlees en yoghurt. De bestaande AI-afbeelding is behouden.",
     "image": "images/arayes.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie",
     "optionalWaitMinMinutes": 15,
-    "optionalWaitMaxMinutes": 30,
+    "optionalWaitMaxMinutes": 15,
     "optionalWaitType": "rusten",
-    "version": 4,
-    "updatedAt": "2026-11-11",
+    "version": 5,
+    "updatedAt": "2026-11-21",
     "changeLog": [
       {
         "version": 2,
@@ -3413,6 +3412,11 @@
         "version": 4,
         "date": "2026-11-11",
         "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
+      },
+      {
+        "version": 5,
+        "date": "2026-11-21",
+        "description": "Arayes vernieuwd met ui, paprika, courgette en tomaat; gedroogde in plaats van verse peterselie; zonder koriander; aangepaste kruiding, bereiding, tijds- en voedingsinschatting."
       }
     ],
     "recipeType": "maaltijd"
