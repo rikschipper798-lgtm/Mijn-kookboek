@@ -1,14 +1,14 @@
 'use strict';
 // Bestandsversie: verhoog deze waarde bij wijzigingen aan offline infrastructuur.
 // index.html en recepten.json worden online altijd opnieuw opgehaald.
-const CACHE_VERSION='2026-11-15-dagboek-aanpassen-v20';
+const CACHE_VERSION='2026-11-17-account-gegevens-v21';
 const CORE_CACHE='mijn-kookboek-pwa-core-'+CACHE_VERSION;
 const IMAGE_CACHE='mijn-kookboek-pwa-images-'+CACHE_VERSION;
 const CACHE_PREFIX='mijn-kookboek-pwa-';
 const SCOPE=self.registration.scope;
 const ROOT=new URL('./',SCOPE);
 const CLOUD_SDK_URL='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0';
-const CORE_ASSETS=['index.html','voeding.html','voeding-cloud.js','voeding-backup.js','personal-cloud.js','cloud-config.js','instellen-vaste-maaltijden.html','privacy.html','pantry.js','recipe-scaling.js','nutrition-entries.js','recepten.json','manifest.webmanifest',
+const CORE_ASSETS=['index.html','voeding.html','voeding-cloud.js','voeding-backup.js','personal-cloud.js','cloud-config.js','instellen-vaste-maaltijden.html','privacy.html','pantry.js','recipe-scaling.js','nutrition-entries.js', 'account-data.js', 'cloud-client.js', 'conflict-review.js', 'account-manager.js', 'account.css','recepten.json','manifest.webmanifest',
  'icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png'];
 // Afbeeldingen komen uit dezelfde receptenlijst die de website gebruikt.
 // Zowel basisrecepten als varianten worden meegenomen. Dubbele paden slechts één keer.
@@ -177,7 +177,7 @@ self.addEventListener('fetch',event=>{
  }else if(pathname==='cloud-config.js'){
   // Public client configuration must refresh when the cloud backend is enabled.
   event.respondWith(networkFirst(request,CORE_CACHE));
- }else if(pathname==='recipe-scaling.js'||pathname==='nutrition-entries.js'||pathname==='voeding-cloud.js'||pathname==='voeding-backup.js'||pathname==='personal-cloud.js'){
+ }else if(['account-data.js','cloud-client.js','conflict-review.js','account-manager.js','account.css'].includes(pathname)||pathname==='recipe-scaling.js'||pathname==='nutrition-entries.js'||pathname==='voeding-cloud.js'||pathname==='voeding-backup.js'||pathname==='personal-cloud.js'){
   // Pagina en cloudmodule moeten dezelfde versie gebruiken. De versiequery
   // voorkomt een cachetreffer op een oudere module; fallback werkt ook offline.
   event.respondWith(networkFirst(request,CORE_CACHE,new URL(pathname,ROOT)));

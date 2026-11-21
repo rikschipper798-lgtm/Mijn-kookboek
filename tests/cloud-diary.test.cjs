@@ -565,3 +565,23 @@ test('Eerdere dagboekversie wordt via de normale sync hersteld en bewaart de hui
  assert.equal(db.rows.get('history-user').diary.days['2026-11-09'][0].nutrition.kcal,120);
  assert.equal(db.history.get('history-user').at(-1).diary.days['2026-11-09'][0].nutrition.kcal,290);
 });
+
+test('Dagboekvergelijking bewaart beide versies en weigert een stale keuze',async()=>{
+ const db=makeDb(),storage=makeStorage();db.rows.set('a',{diary:diary(400),revision:1});const h=harness(db,'a',storage);await h.start();
+ let choose,shown;h.callbacks.review=(local,cloud)=>{shown={local,cloud};return new Promise(r=>choose=r);};
+ const task=h.cloud.review();await wait();assert.equal(shown.local.days['2026-11-09'][0].nutrition.kcal,400);
+ db.rows.set('a',{diary:diary(900),revision:2});choose('cloud');await task;
+ assert.equal(h.state.days['2026-11-09'][0].nutrition.kcal,400);assert.match(h.status,/intussen gewijzigd/);assert.equal(db.rows.get('a').revision,2);
+});
+test('Herstelvoorbereiding schrijft pas na een geslaagde gezamenlijke opslag',async()=>{
+ const db=makeDb(),storage=makeStorage();db.rows.set('a',{diary:diary(400),revision:1});const h=harness(db,'a',storage);await h.start();
+ const stage=h.cloud.prepareRestore(diary(700));assert.equal(countPending(storage),0);await wait();assert.equal(db.rows.get('a').revision,1);
+ for(const write of stage.writes)storage.setItem(write.key,write.value);stage.commit();h.callbacks.current=diary(700);await wait();
+ assert.equal(db.rows.get('a').diary.days['2026-11-09'][0].nutrition.kcal,700);assert.equal(countPending(storage),0);
+});
+test('Een ander tabblad maakt een voorbereide keuze ongeldig',async()=>{
+ const db=makeDb(),storage=makeStorage();db.rows.set('a',{diary:diary(400),revision:1});const h=harness(db,'a',storage);await h.start();
+ let choose;h.callbacks.review=()=>new Promise(r=>choose=r);const task=h.cloud.review();await wait();
+ storage.setItem('mijn-kookboek-cloud-herstel-v1:https://sample.supabase.co:a',JSON.stringify({version:1,userId:'a',baseRevision:1,nonce:'other-tab',diary:diary(800)}));
+ choose('cloud');await task;assert.equal(countPending(storage),1);assert.match(h.status,/intussen gewijzigd/);assert.equal(h.state.days['2026-11-09'][0].nutrition.kcal,400);
+});
