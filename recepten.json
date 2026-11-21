@@ -13112,8 +13112,10 @@
       "Aanvullende boodschappen: naturel pangasius, sperziebonen, AH-rösti, verse knoflook en ongezouten roomboter indien niet aanwezig. Bloem, kruiden, zonnebloemolie en citroensap komen uit de standaardvoorraad."
     ],
     "version": 1,
-    "updatedAt": "2026-11-21",
+    "updatedAt": null,
     "changeLog": [],
-    "recipeType": "maaltijd"
+    "recipeType": "maaltijd",
+    "image": null,
+    "imageNote": "Nog geen passende foto van dit specifieke gerecht toegevoegd."
   }
 ]
