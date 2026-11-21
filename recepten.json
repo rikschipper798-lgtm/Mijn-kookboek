@@ -3189,8 +3189,8 @@
       },
       {
         "name": "Zwarte peper",
-        "qty": 1,
-        "unit": "snuf",
+        "qty": null,
+        "unit": "naar smaak",
         "group": "Saus"
       }
     ],
@@ -3310,7 +3310,7 @@
         ]
       },
       {
-        "body": "Laat de gehaktvulling desgewenst 15 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 grote pitabroodjes van circa 18 cm voorzichtig aan één kant open. Verdeel de vulling gelijkmatig en druk deze tot een laag van ongeveer 5–6 mm. Druk de broodjes voorzichtig plat. Gebruik bij kleinere pita's liever 8–10 stuks zodat de gehaktlaag niet te dik wordt.",
+        "body": "Laat de gehaktvulling desgewenst 15 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 grote pitabroodjes van circa 18 cm voorzichtig aan één kant open. Verdeel de vulling gelijkmatig en druk deze tot een laag van ongeveer 5–6 mm. Druk de broodjes voorzichtig plat. Gebruik bij kleinere pita's liever meer broodjes zodat de gehaktlaag dun blijft; zie de tips.",
         "title": "Pitabroodjes vullen",
         "duration": "5 min (optioneel 15 min rusten)",
         "ingredientIndices": [
@@ -3350,7 +3350,7 @@
         "quantityRefs": []
       },
       {
-        "body": "Meng ondertussen 250 g Griekse yoghurt met 1 fijn geraspt teentje knoflook, 2 tl citroensap, 1 tl olijfolie, ¼ tl zout en 1 snuf zwarte peper. Proef en voeg eventueel wat citroensap toe voor extra frisheid. Snijd de gare arayes eventueel doormidden en serveer direct met de koude yoghurtsaus.",
+        "body": "Meng ondertussen 250 g Griekse yoghurt met 1 fijn geraspt teentje knoflook, 2 tl citroensap, 1 tl olijfolie, ¼ tl zout en een snuf zwarte peper. Proef en voeg eventueel wat citroensap toe voor extra frisheid. Snijd de gare arayes eventueel doormidden en serveer direct met de koude yoghurtsaus.",
         "title": "Knoflook-yoghurtsaus maken en serveren",
         "duration": "5 min, tegelijk met het ovenbakken",
         "ingredientIndices": [
@@ -3381,10 +3381,6 @@
           {
             "text": "¼ tl zout",
             "ingredientIndex": 22
-          },
-          {
-            "text": "1 snuf zwarte peper",
-            "ingredientIndex": 23
           }
         ]
       }
