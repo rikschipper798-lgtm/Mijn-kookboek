@@ -7746,11 +7746,11 @@
     ],
     "tips": "Geschikt voor twee personen gedurende twee avonden: verwacht circa 2 kg bereid gewicht, afhankelijk van rijst, vochtverlies en saus. Verdeel naar eetlust, bijvoorbeeld per avond 500–600 g en 300–400 g. Kies bij voorkeur 30–60 minuten marineren, waarvan de eerste 10 minuten samenvallen met de voorbereiding; de extra wachttijd is optioneel. Bak kip en groenten afzonderlijk, en warm de satésaus apart. Gebruik citroensap uit de voorraad; proef de saus voor de laatste toevoeging. Benodigd: wok, ruime koekenpan, kookpan en steelpan. Verdeel voor de tweede dag meteen over ondiepe bakjes, laat snel afkoelen en zet binnen 2 uur in de koelkast (4 °C). Bewaar rijst, kip, groenten en saus zo mogelijk apart. Verhit de volgende dag alleen de benodigde porties door en door; warm rijst slechts één keer opnieuw op. Voeg eventueel een klein scheutje water aan de rijst toe. Bewaar krokante toppings apart. Voedingswaarden zijn geschat per kwart van het recept, zonder optionele toppings en afhankelijk van de gebruikte satésaus.",
     "image": "images/kip-satesaus.webp",
-    "image_source": "AI-afbeelding speciaal gemaakt voor kruidige kipdij met satésaus, rijst en sperziebonen",
+    "image_source": "AI-afbeelding speciaal gemaakt voor kruidige kipdij met satésaus, jasmijnrijst en wokgroenten (paprika, ui en courgette), met optionele bosui, gebakken uitjes en pinda's.",
     "optionalWaitMinMinutes": 20,
     "optionalWaitMaxMinutes": 50,
     "optionalWaitType": "marineren",
-    "version": 5,
+    "version": 6,
     "updatedAt": "2026-11-28",
     "changeLog": [
       {
@@ -7772,6 +7772,11 @@
         "version": 5,
         "date": "2026-11-28",
         "description": "Vervangen door volledige maaltijd voor vier porties met 530 g kipdij, jasmijnrijst, paprika, ui en courgette. Marinade met gember en citroen verbeterd, groenten apart gewokt, satésaus gebalanceerd en voedingswaarden en bewaartips aangepast."
+      },
+      {
+        "version": 6,
+        "date": "2026-11-28",
+        "description": "Receptfoto vervangen door een AI-afbeelding die aansluit op de nieuwe bereiding met rijst, paprika, ui en courgette."
       }
     ],
     "recipeType": "maaltijd"
