@@ -57,7 +57,7 @@ function browser(){
   createElement:()=>({click(){},remove(){}})
  };
  const location={hash:'',href:''},navigator={onLine:true};
- const window={CookbookNutrition:require('../nutrition-entries.js'),CookbookScaling:require('../recipe-scaling.js'),location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),addEventListener(){},confirm:()=>true,scrollTo(){},print(){}};
+ const window={CookbookData:require('../account-data.js'),CookbookNutrition:require('../nutrition-entries.js'),CookbookScaling:require('../recipe-scaling.js'),location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),addEventListener(){},confirm:()=>true,scrollTo(){},print(){}};
  const localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)};
  const api=new Function('document','window','navigator','localStorage','location','fetch','Option','setInterval','clearInterval','queueMicrotask','setTimeout',
   js+'\nreturn {refreshRecipeCollection,route,renderBasket,basketItems,getBasket:()=>basket,getChecks:()=>checked,getRecipes:()=>recipes};')(

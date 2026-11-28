@@ -81,6 +81,7 @@ async function run(name,fn){
     assert.equal(await a.page.locator('#personalCloudUpload').isVisible(),true);
     await a.page.evaluate(()=>{window.confirm=()=>true;});
     await a.page.locator('#personalCloudUpload').click();
+    await a.page.locator('#personalConflictReview [data-choice="local"]').click();
     const row=await awaitRow('user-a',r=>r.revision===1,'eerste upload');
     assert.deepEqual(row.data.favorites,['bruschetta']);
     assert.equal(row.data.pantry.length,36);
@@ -93,6 +94,7 @@ async function run(name,fn){
     assert.equal(await a.page.evaluate(()=>favorites.has('bruschetta')),false);
     await a.page.evaluate(()=>{window.confirm=()=>true;});
     await a.page.locator('#personalCloudLoad').click();
+    await a.page.locator('#personalConflictReview [data-choice="cloud"]').click();
     await a.page.waitForFunction(()=>favorites.has('bruschetta'));
     assert.equal(await a.page.locator('#personalCloudShort').textContent(),'Persoonlijke gegevens: account gekoppeld');
     return {downloaded:true};
@@ -103,6 +105,7 @@ async function run(name,fn){
    try{
     await a.page.evaluate(()=>window.confirm=()=>true);
     await a.page.locator('#personalCloudLoad').click();
+    await a.page.locator('#personalConflictReview [data-choice="cloud"]').click();
     await a.page.waitForFunction(()=>favorites.has('bruschetta'));
     await a.page.evaluate(()=>{
      pantry.add('Havermout');
@@ -129,7 +132,9 @@ async function run(name,fn){
     await a.page.evaluate(()=>window.confirm=()=>true);
     await b.page.evaluate(()=>window.confirm=()=>true);
     await a.page.locator('#personalCloudLoad').click();
+    await a.page.locator('#personalConflictReview [data-choice="cloud"]').click();
     await b.page.locator('#personalCloudLoad').click();
+    await b.page.locator('#personalConflictReview [data-choice="cloud"]').click();
     await a.page.waitForFunction(()=>document.querySelector('#personalCloudShort')?.textContent.includes('account gekoppeld'));
     await b.page.waitForFunction(()=>document.querySelector('#personalCloudShort')?.textContent.includes('account gekoppeld'));
     const old=rows.get('user-a').revision;

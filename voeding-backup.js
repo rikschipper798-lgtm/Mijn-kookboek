@@ -36,7 +36,7 @@
   if(typeof password!=='string'||password.length<12)
    throw Error('Gebruik een eigen wachtzin van minstens 12 tekens.');
   const bytes=encode(JSON.stringify(payload));
-  if(bytes.byteLength>2*1024*1024)throw Error('Dagboek is te groot om in één bestand te exporteren.');
+  if(bytes.byteLength>4*1024*1024)throw Error('Back-up is te groot om in één bestand te exporteren.');
   const salt=window.crypto.getRandomValues(new Uint8Array(16));
   const iv=window.crypto.getRandomValues(new Uint8Array(12));
   const key=await keyFor(password,salt,ITERATIONS);
@@ -53,7 +53,7 @@
     throw Error('Dit is geen ondersteund versleuteld dagboek.');
   if(typeof password!=='string'||!password)throw Error('Vul de wachtzin in.');
   const salt=from64(payload.salt),iv=from64(payload.iv),cipher=from64(payload.ciphertext);
-  if(salt.length!==16||iv.length!==12||cipher.length<16||cipher.length>3*1024*1024)
+  if(salt.length!==16||iv.length!==12||cipher.length<16||cipher.length>4*1024*1024+16)
    throw Error('Het back-upbestand is beschadigd of onjuist.');
   const key=await keyFor(password,salt,ITERATIONS);
   let content;

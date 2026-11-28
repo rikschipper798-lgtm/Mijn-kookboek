@@ -1,6 +1,24 @@
 'use strict';
 /* Persoonlijke standaardvoorraad. Zelfstandig, zodat de receptenlogica klein blijft. */
 (function(root){
+const aliases={
+ 'rode paprika':'paprika',
+ 'verse tomaat':'tomaat','verse tomaten':'tomaat','rijpe tomaten':'tomaat','eieren':'ei','gedroogde oregano':'oregano',
+ 'wortels':'wortel','verse rode peper':'rode peper',
+ 'knoflookpoeder voor de saus':'knoflookpoeder','zout voor de rode ui':'zout',
+ 'grofgemalen zwarte peper':'zwarte peper',
+ 'gedroogde dille':'dille','gedroogde peterselie':'peterselie (gedroogd)',
+ 'marjoraan (gedroogd)':'marjoraan','korianderblad (gedroogd)':'korianderblad',
+ 'olijfolie voor de pitabroodjes':'olijfolie','extra vierge olijfolie':'olijfolie',
+ 'balsamico':'balsamicoazijn','ketjap manis':'ketjap',
+ 'griekse yoghurt (naturel)':'griekse yoghurt',
+ 'witte of basmatirijst':'rijst','rijst (ongekookt)':'rijst',
+ 'pasta (penne of fusilli)':'pasta','tarwebloem':'bloem'
+};
+ function canonical(name){
+  const normalized=String(name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().replace(/\s+/g,' ').toLocaleLowerCase('nl-NL');
+  return aliases[normalized]||normalized;
+ }
  const groups=[
   ['Kruiden en specerijen','Gedroogde basilicum|Chilipoeder|Dille|Gerookt paprikapoeder|Kurkuma|Kaneel|Kerrie|Knoflookpoeder|Komijnzaad|Korianderblad|Laurierblad|Marjoraan|Nootmuskaat|Oregano|Peterselie (gedroogd)|Uienpoeder|Rozemarijn|Tijm|Zout|Zwarte peper'.split('|')],
   ['Smaakmakers en sauzen','Honing|Sojasaus|Ketjap|Citroensap|Balsamicoazijn|Runderbouillon|Tomatenpuree'.split('|')],
@@ -90,7 +108,7 @@
   }
   return {defaults,get,isHome,set,add,remove,reset,restore,validate,html};
  }
- const library={create};
+ const library={create,canonical,aliases};
  root.CookbookPantry=library;
  if(typeof module!=='undefined'&&module.exports)module.exports=library;
 })(typeof window!=='undefined'?window:globalThis);

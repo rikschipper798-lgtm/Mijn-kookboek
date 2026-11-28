@@ -229,9 +229,9 @@ function cloudStub(){
     await p.locator('#entries .entry-disclosure').first().waitFor();
     await p.locator('#openAccountTools').click();
     await p.locator('#cloudBackup').click();
-    assert.equal(await p.locator('#settingsMenu').getAttribute('open'),'','Instellingen en beheer is nog ingeklapt');
-    assert.equal(await p.locator('#secureBackupOptions').getAttribute('open'),'','Versleutelde back-upsectie opent niet');
-    assert.equal(await p.locator('#backupPass').isVisible(),true,'Wachtzinveld niet zichtbaar');
+    assert.equal(new URL(p.url()).hash,'#account');
+    assert.equal(await p.locator('#allSecureBackup').getAttribute('open'),'','Versleutelde back-upsectie opent niet');
+    assert.equal(await p.locator('#allBackupPass').isVisible(),true,'Wachtzinveld niet zichtbaar');
     await p.screenshot({path:output+'/backup-via-account.png'});
     return {visible:true};
    }finally{await c.close();}

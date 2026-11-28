@@ -1,0 +1,39 @@
+/* Gedeelde account- en vergelijkingsweergave. */
+.account-page #diaryContent,.account-page #accountStatusBar{display:none!important}
+.account-page #accountTools{margin-top:0}
+.account-page #accountTools>summary{border-bottom:1px solid #dce4d8}
+.account-page header{padding-bottom:20px}
+.account-page .diary-utility-body{padding-top:20px}
+.data-heading{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:22px 0 10px}
+.data-heading h3{margin:0}
+.data-state{display:inline-block;padding:7px 12px;border-radius:20px;background:#edf3e9;color:#294935;font-size:13px;font-weight:700}
+.data-state[data-state=pending]{background:#f8eac9;color:#69500a}
+.data-state[data-state=attention]{background:#f9e3dc;color:#83352c}
+.data-state[data-state=neutral]{background:#edf0ed;color:#455247}
+#personalCloudPanel{padding:22px;border:1px solid #dce4d8;border-radius:16px;margin:18px 0;background:#fffdf9}
+#personalCloudPanel .data-heading{margin-top:0}
+#personalCloudStatus.is-error{color:#96382e}
+.backup-actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.all-backup{margin-top:24px}
+.all-backup input[type=file]{display:block;width:100%;max-width:100%;margin-top:10px;min-height:44px}
+.all-backup summary{min-height:44px;padding:12px 0;cursor:pointer;font-weight:700}
+.all-backup .backup-preview{padding:18px;background:#edf3e9;border:1px solid #bdcfb7;border-radius:12px;margin-top:20px}
+.all-backup button,#personalCloudPanel button,#diaryCompare{min-height:44px;white-space:normal}
+.all-backup [hidden],.conflict-review[hidden]{display:none!important}
+.conflict-review{border:2px solid #b69555;border-radius:12px;padding:18px;margin-top:20px;background:#fffaf0;max-width:100%;min-width:0}
+.conflict-review h3{margin-top:0}
+.comparison-scroll{overflow-x:auto;max-width:100%;margin:15px 0;overscroll-behavior-x:contain}
+.comparison-table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed;min-width:540px;color:#263a2d}
+.comparison-table th,.comparison-table td{text-align:left;vertical-align:top;padding:12px;border:1px solid #d7cfbb;overflow-wrap:anywhere}
+.comparison-table thead{background:#ede7d7}
+.comparison-table th:first-child{width:26%}
+.comparison-table pre{font-family:inherit;font-size:inherit;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;max-height:260px;overflow:auto}
+.conflict-review button{min-height:44px;white-space:normal}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:720px){
+ .primary-nav-inner{grid-template-columns:repeat(4,minmax(0,1fr));gap:3px}
+ .primary-nav-link{font-size:11px;padding:9px 2px;white-space:normal}
+ .primary-nav-count{display:none}
+ #personalCloudPanel,.conflict-review{padding:14px}
+ .all-backup .actions button,.backup-actions button{flex:1 1 180px}
+}

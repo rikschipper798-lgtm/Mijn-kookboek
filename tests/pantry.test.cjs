@@ -103,7 +103,7 @@ function appBrowser(){
   createElement:()=>({click(){},remove(){}})
  };
  const location={hash:'',href:''},navigator={onLine:true};
- const window={CookbookNutrition:require('../nutrition-entries.js'),CookbookScaling:require('../recipe-scaling.js'),location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),
+ const window={CookbookData:require('../account-data.js'),CookbookNutrition:require('../nutrition-entries.js'),CookbookScaling:require('../recipe-scaling.js'),location,navigator,CookbookPantry,isSecureContext:false,matchMedia:()=>({matches:false}),
   addEventListener(){},confirm:()=>true,scrollTo(){},print(){}};
  const script=new Function('document','window','navigator','localStorage','location','fetch','Option','setInterval','clearInterval','queueMicrotask','setTimeout',
   code+'\nreturn {refreshRecipeCollection,route,renderBasket,basketItems,isAlreadyHome,backupData,validBackup,getBasket:()=>basket,pantry};');

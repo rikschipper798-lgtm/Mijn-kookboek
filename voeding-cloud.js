@@ -14,7 +14,7 @@
  let client=null,hooks=null,user=null,revision=0,ready=false,loading=false,authChecked=false;
  let draft=null,conflict=false,sending=false,refreshing=false,timer=null;
  let generation=0,edits=0,needsVerification=false,refreshFailed=false;
- let historyRows=new Map();
+ let historyRows=new Map(),reviewing=false;
 
  function notify(message,error=false){
   const node=el('cloudStatus');
@@ -23,7 +23,7 @@
   // Geen afzonderlijke UI-gissingen over succesvolle uploads.
   if(hooks&&typeof hooks.onStatus==='function'){
    hooks.onStatus({
-    loggedIn:user?true:authChecked?false:null,ready,pending:Boolean(draft),conflict,
+    ...snapshot(),
     error,message
    });
   }
@@ -75,6 +75,7 @@
   if(timer!==null){clearTimeout(timer);timer=null;}
  }
  function reset(){
+  hooks?.cancelReview?.();reviewing=false;
   authChecked=true;
   generation++;stopTimer();
   user=null;revision=0;ready=false;loading=false;draft=null;
@@ -140,7 +141,7 @@
   if(!writeLocal(record))return false;
   draft=record;edits++;
   if(conflict){
-   notify('Je wijzigingen zijn lokaal bewaard, maar er is een cloudconflict. Exporteer je dagboek en kies daarna bewust Cloud opnieuw laden.',true);
+   notify('Je wijzigingen zijn lokaal bewaard, maar er is een cloudconflict. Bekijk de verschillen voordat je een versie kiest.',true);
   }else{
    notify(needsVerification?'Wijziging lokaal bewaard; bij verbinding wordt eerst de cloudversie gecontroleerd.':'Wijziging lokaal bewaard; cloudsync volgt.');
    schedule();
@@ -148,7 +149,7 @@
   return true;
  }
  async function flush(){
-  if(!user||!ready||sending||conflict||!draft)return;
+  if(!user||!ready||sending||conflict||!draft||reviewing)return;
   sending=true;const account=user.id,token=generation;
   try{
    while(draft&&!conflict&&ready&&user?.id===account&&generation===token){
@@ -166,7 +167,7 @@
        return;
       }
       conflict=true;needsVerification=false;
-      notify('De cloud is intussen gewijzigd. Je lokale dagboek blijft bewaard: exporteer een back-up en kies daarna bewust de cloudversie.',true);
+      notify('De cloud is intussen gewijzigd. Je lokale dagboek blijft bewaard: bekijk de verschillen voordat je een versie kiest.',true);
       return;
      }
      revision=liveRevision;needsVerification=false;
@@ -200,7 +201,7 @@
      }
      if((live?.revision||0)!==sent.baseRevision){
       conflict=true;
-      notify('Cloudconflict: de server heeft een andere versie. Je lokale dagboek is behouden. Maak een back-up en kies daarna bewust Cloud opnieuw laden.',true);
+      notify('Cloudconflict: de server heeft een andere versie. Je lokale dagboek is behouden. Bekijk de verschillen via Mijn account en gegevens voordat je een versie kiest.',true);
      }else{
       notify('De cloud heeft de wijziging niet opgeslagen. Je herstelkopie blijft veilig op dit apparaat. Probeer opnieuw zodra de verbinding werkt.',true);
      }
@@ -218,6 +219,7 @@
   if(!account){reset();return;}
   authChecked=true;
   if(user?.id===account.id&&(loading||ready))return;
+  hooks?.cancelReview?.();reviewing=false;
   const token=++generation;
   stopTimer();user=account;ready=false;loading=true;draft=null;
   historyRows.clear();el('cloudHistoryOptions').hidden=true;
@@ -260,7 +262,7 @@
    }
    view();
    if(conflict){
-    notify('De cloud is op een ander apparaat gewijzigd. Je niet-geüploade lokale dagboek is hersteld. Exporteer dit eerst voordat je de cloudversie kiest.',true);
+    notify('De cloud is op een ander apparaat gewijzigd. Je niet-geüploade lokale dagboek is hersteld. Bekijk de verschillen voordat je een versie kiest.',true);
    }else if(draft){
     notify('Niet-gesynchroniseerde wijzigingen uit deze browser hersteld. Ze worden opnieuw verstuurd.');
     schedule(100);
@@ -289,7 +291,8 @@
   }
  }
  async function refresh(force=false){
-  if(!user||!ready||loading||sending||refreshing)return;
+  if(force&&hooks.review)return reviewVersions();
+  if(!user||!ready||loading||sending||refreshing||reviewing)return;
   if(el('editEntryPanel')?.hidden===false){
    notify('Sluit eerst het bewerkformulier om nieuwe cloudgegevens te laden.');return;
   }
@@ -323,6 +326,55 @@
   }catch(err){
    if(token===generation){refreshFailed=true;notify('Cloudgegevens ophalen mislukt; lokale gegevens zijn niet overschreven.',true);}
   }finally{if(token===generation)refreshing=false;}
+ }
+ function snapshot(){
+  return {userId:user?.id||null,loggedIn:user?true:authChecked?false:null,ready,
+   pending:Boolean(draft),conflict,revision,busy:sending||loading||refreshing||reviewing};
+ }
+ async function reviewVersions(){
+  if(!hooks.review||!user||!ready||loading||sending||refreshing||reviewing)return;
+  const account=user.id,token=generation;reviewing=true;stopTimer();
+  try{
+   if(el('editEntryPanel')?.hidden===false)throw Error('Sluit eerst het bewerkformulier.');
+   const local=hooks.validateData(hooks.getState()),original=JSON.stringify(local);
+   const journal=readLocal(account)?.nonce||null;
+   if(journal!==(draft?.nonce||null))throw Error('Een ander tabblad heeft het dagboek gewijzigd. Herlaad eerst.');
+   const row=await fetchRow(user);
+   if(token!==generation||user?.id!==account)return;
+   const remote=hooks.validateData(row?.diary||null);
+   const choice=await hooks.review(local,remote);
+   if(!choice||token!==generation||user?.id!==account)return;
+   const latest=await fetchRow(user);
+   if(token!==generation||user?.id!==account)return;
+   if((latest?.revision||0)!==(row?.revision||0)||
+      JSON.stringify(hooks.validateData(hooks.getState()))!==original||
+      (readLocal(account)?.nonce||null)!==journal||el('editEntryPanel')?.hidden===false)
+    throw Error('De gegevens zijn intussen gewijzigd. Bekijk de verschillen opnieuw voordat je kiest.');
+   if(choice==='cloud'){
+    if(!latest)throw Error('Er staat nog geen dagboek in je account.');
+    const validated=hooks.validateData(latest.diary);
+    if(draft&&!deleteLocal(draft))return;
+    revision=latest.revision;draft=null;conflict=false;needsVerification=false;refreshFailed=false;
+    hooks.onData(validated);notify('De gecontroleerde accountversie is geladen.');
+   }else if(choice==='local'){
+    const record={version:1,userId:account,baseRevision:latest?.revision||0,
+     nonce:makeNonce(),diary:local,savedAt:new Date().toISOString()};
+    if(!writeLocal(record))return;
+    draft=record;revision=record.baseRevision;conflict=false;needsVerification=false;edits++;
+    notify('Je gekozen dagboek is lokaal bewaard; synchronisatie volgt.');
+   }
+  }catch(error){notify('Keuze niet toegepast: '+error.message,true);}
+  finally{if(token===generation){reviewing=false;if(draft&&!conflict)schedule(0);}}
+ }
+ function prepareRestore(data){
+  if(!user||!ready||conflict||sending||loading||refreshing||reviewing)throw Error('Los eerst de synchronisatie van je voedingsdagboek op.');
+  const current=readLocal(user.id);
+  if((current?.nonce||null)!==(draft?.nonce||null))throw Error('Een ander tabblad heeft het dagboek gewijzigd. Herlaad eerst.');
+  const record={version:1,userId:user.id,baseRevision:draft?draft.baseRevision:revision,
+   nonce:makeNonce(),diary:hooks.validateData(data),savedAt:new Date().toISOString()};
+  return {writes:[{key:storageKey(user.id),value:JSON.stringify(record)}],commit(){
+   draft=record;edits++;notify('Dagboek hersteld op dit apparaat; synchronisatie volgt.');schedule();
+  }};
  }
  // De productie-redirect is exact toegestaan door Supabase, zonder querystring.
  // Bewaar de niet-gevoelige receptkeuze kort lokaal, ook voor een nieuw tabblad.
@@ -382,6 +434,10 @@
    else{reset();notify('Uitgelogd. Eventuele herstelkopie blijft bewaard voor het juiste account.');}
   };
   el('cloudBackup').onclick=()=>{
+   if(window.CookbookAccount){
+    location.hash='account';el('accountTools').open=true;el('allSecureBackup').open=true;
+    el('allBackupPass').focus({preventScroll:true});el('allSecureBackup').scrollIntoView?.({block:'center'});return;
+   }
    // Het back-upformulier staat in het inklapbare instellingenpaneel.
    // Open beide niveaus voordat we erheen navigeren of de invoer focussen.
    const settings=el('settingsMenu'),options=el('secureBackupOptions');
@@ -458,10 +514,8 @@
   };
   el('cloudRefresh').onclick=()=>{if(draft&&!conflict)void flush();else void refresh(Boolean(conflict));};
   try{
-   const sdk=await loadSdk();
-   client=sdk.createClient(config.url.replace(/\/$/,''),config.publishableKey,{
-    auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
-   });
+   if(window.CookbookClient)client=await window.CookbookClient.get();
+   else{const sdk=await loadSdk();client=sdk.createClient(config.url.replace(/\/$/,''),config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});}
    client.auth.onAuthStateChange((event,session)=>{
     setTimeout(()=>{
      if(event==='SIGNED_OUT'){reset();notify('Uitgelogd. Log in om je dagboek te bekijken.');}
@@ -510,5 +564,5 @@
    },60000);
   }catch(err){notify('Persoonlijke accounts konden niet worden gestart: '+err.message,true);}
  }
- window.CookbookCloud={enabled,start,enqueue,retry(){if(draft&&!conflict)void flush();else void refresh(Boolean(conflict));}};
+ window.CookbookCloud={enabled,start,enqueue,snapshot,prepareRestore,review:reviewVersions,retry(){if(draft&&!conflict)void flush();else void refresh(Boolean(conflict));}};
 })();

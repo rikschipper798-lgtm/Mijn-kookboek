@@ -23,7 +23,7 @@
  const validRevision=n=>Number.isSafeInteger(n)&&n>=0;
  let hooks=null,client=null,user=null,revision=0,pending=null,active=false,conflict=false;
  let sending=false,refreshing=false,loading=false,dirtyBeforeReady=false,applying=false;
- let timer=null,epoch=0,edits=0,cloudRow=null;
+ let timer=null,epoch=0,edits=0,cloudRow=null,reviewing=false,lastMessage="",lastError=false;
  const bound=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(error){return null;}};
  const journalKey=id=>JOURNAL+id;
  const compare=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
@@ -37,6 +37,8 @@
  };
  const nonce=()=>Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
  function message(text,bad=false){
+  lastMessage=text;lastError=bad;
+  if(hooks?.onStatus)hooks.onStatus({...snapshot(),error:bad,message:text});
   const node=el('personalCloudStatus');
   if(node){node.textContent=text;node.classList.toggle('is-error',bad);}
   const badge=el('personalCloudShort');
@@ -117,7 +119,7 @@
   conflict=true;message(text+' De lokale versie blijft behouden. Download je back-up en kies daarna bewust welke versie je wilt gebruiken.',true);
  }
  async function flush(){
-  if(!active||!user||!pending||conflict||sending||loading)return;
+  if(!active||!user||!pending||conflict||sending||loading||reviewing)return;
   sending=true;const id=user.id,token=epoch;
   try{
    while(active&&pending&&!conflict&&epoch===token&&user?.id===id){
@@ -168,11 +170,11 @@
   }catch(error){
    if(epoch===token)message('Synchronisatie is tijdelijk mislukt. Je wijzigingen en herstelkopie blijven op dit apparaat.',true);
   }finally{
-   if(epoch===token){sending=false;if(pending&&!conflict)message('Wijzigingen wachten op synchronisatie.');}
+   if(epoch===token){sending=false;message(lastMessage,lastError);}
   }
  }
  async function refresh(){
-  if(!active||!user||pending||sending||conflict||loading||refreshing||dirtyBeforeReady||!hooks.canApply())return;
+  if(!active||!user||pending||sending||conflict||loading||refreshing||dirtyBeforeReady||reviewing||!hooks.canApply())return;
   const id=user.id,token=epoch,mark=edits;
   refreshing=true;
   try{
@@ -188,15 +190,17 @@
   finally{if(token===epoch)refreshing=false;}
  }
  function reset(){
+  hooks?.cancelReview?.();reviewing=false;
   epoch++;user=null;revision=0;pending=null;active=false;conflict=false;
   sending=false;refreshing=false;loading=false;cloudRow=null;
   if(timer!==null){clearTimeout(timer);timer=null;}
-  message('Log in via het voedingsdagboek om je persoonlijke kookboekgegevens op andere apparaten te gebruiken.');
+  message('Log in via Mijn account en gegevens om je persoonlijke kookboekgegevens op andere apparaten te gebruiken.');
  }
  async function loadSession(session){
   const next=session?.user;
   if(!next){reset();return;}
   if(user?.id===next.id&&(loading||active))return;
+  hooks?.cancelReview?.();reviewing=false;
   epoch++;const token=epoch;
   user=next;active=false;conflict=false;pending=null;loading=true;
   message('Accountgegevens en lokale herstelkopie controleren…');
@@ -253,10 +257,19 @@
    active=true;
    message('Persoonlijke kookboekgegevens zijn gekoppeld en actueel.');
   }catch(error){
-   if(token===epoch)message('Persoonlijke cloudgegevens konden niet worden geladen. Je lokale gegevens blijven staan: '+error.message,true);
-  }finally{if(token===epoch)loading=false;}
+   if(token!==epoch)return;
+   try{
+    const binding=bound(),saved=readJournal(next.id);
+    if(binding?.userId===next.id&&saved&&compare(hooks.validate(hooks.getLocal()),saved.data)){
+     pending=saved;revision=saved.baseRevision;active=true;conflict=false;dirtyBeforeReady=false;
+     message('Geen cloudverbinding. Je lokale herstelkopie blijft beschikbaar; synchronisatie hervat bij verbinding.',true);return;
+    }
+   }catch(recoveryError){/* Keep unreadable or divergent browser data untouched. */}
+   message('Persoonlijke cloudgegevens konden niet worden geladen. Je lokale gegevens blijven staan: '+error.message,true);
+  }finally{if(token===epoch){loading=false;message(lastMessage,lastError);}}
  }
  async function chooseCloud(){
+  if(hooks.review)return reviewVersions();
   if(!user||loading||sending)return;
   const id=user.id,token=epoch;loading=true;
   try{
@@ -277,7 +290,8 @@
   finally{loading=false;}
  }
  async function chooseLocal(){
-  if(!user||sending||loading)return;
+  if(hooks.review)return reviewVersions();
+  if(!user||sending||loading||reviewing)return;
   if(!hooks.canApply()){message('Sluit eerst je kookmodus of een open bewerking.',true);return;}
   const id=user.id,token=epoch;loading=true;
   try{
@@ -298,13 +312,66 @@
   }catch(error){message('Lokale gegevens konden niet naar je account: '+error.message,true);}
   finally{loading=false;}
  }
+ function snapshot(){
+  return {userId:user?.id||null,boundUserId:bound()?.userId||null,ready:active,
+   loggedIn:Boolean(user),pending:Boolean(pending),conflict,revision,
+   busy:sending||loading||refreshing||reviewing};
+ }
+ async function reviewVersions(){
+  if(!hooks.review||!user||loading||sending||refreshing||reviewing)return;
+  const id=user.id,token=epoch;reviewing=true;
+  if(timer!==null){clearTimeout(timer);timer=null;}
+  try{
+   if(!hooks.canApply())throw Error('Sluit eerst de open bewerking.');
+   const local=hooks.validate(hooks.getLocal());
+   const original=JSON.stringify(local),journal=readJournal(id)?.nonce||null;
+   if(active&&journal!==(pending?.nonce||null))throw Error('Een ander tabblad heeft gegevens gewijzigd. Herlaad eerst.');
+   const row=await fetchRow(id);
+   if(token!==epoch||user?.id!==id)return;
+   const remote=row?hooks.validate(row.data):null;
+   const choice=await hooks.review(local,remote);
+   if(!choice||token!==epoch||user?.id!==id)return;
+   const latest=await fetchRow(id);
+   if(token!==epoch||user?.id!==id)return;
+   if((latest?.revision||0)!==(row?.revision||0)||
+      JSON.stringify(hooks.validate(hooks.getLocal()))!==original||
+      (readJournal(id)?.nonce||null)!==journal||!hooks.canApply())
+    throw Error('De gegevens zijn intussen gewijzigd. Bekijk de verschillen opnieuw voordat je kiest.');
+   if(choice==='cloud'){
+    if(!latest)throw Error('Er zijn geen accountgegevens om te laden.');
+    safeApply(latest);
+    const saved=readJournal(id);if(saved)clearJournal(saved);
+    pending=null;revision=latest.revision;active=true;conflict=false;dirtyBeforeReady=false;
+    bindAccount(id,revision,latest.data);cloudRow=latest;
+    message('Accountgegevens gecontroleerd en op dit apparaat opgeslagen.');
+   }else if(choice==='local'){
+    const record={version:1,userId:id,baseRevision:latest?.revision||0,nonce:nonce(),data:local,savedAt:new Date().toISOString()};
+    localStorage.setItem(journalKey(id),JSON.stringify(record));
+    pending=record;revision=record.baseRevision;active=true;conflict=false;dirtyBeforeReady=false;edits++;
+    bindAccount(id,revision,local);
+    message('Je gekozen versie is lokaal bewaard; synchronisatie volgt.');
+   }
+  }catch(error){message('Keuze niet toegepast: '+error.message,true);}
+  finally{if(token===epoch){reviewing=false;message(lastMessage,lastError);if(pending&&!conflict)schedule(0);}}
+ }
+ function prepareRestore(data){
+  if(!active||!user||conflict||sending||loading||refreshing||reviewing)throw Error('Los eerst de synchronisatie van je kookboekgegevens op.');
+  const current=readJournal(user.id);
+  if((current?.nonce||null)!==(pending?.nonce||null))throw Error('Een ander tabblad heeft de kookboekgegevens gewijzigd. Herlaad eerst.');
+  const record={version:1,userId:user.id,baseRevision:pending?pending.baseRevision:revision,
+   nonce:nonce(),data:hooks.validate(data),savedAt:new Date().toISOString()};
+  return {writes:[{key:journalKey(user.id),value:JSON.stringify(record)}],commit(){
+   pending=record;edits++;dirtyBeforeReady=false;
+   message('Kookboekgegevens hersteld op dit apparaat; synchronisatie volgt.');schedule();
+  }};
+ }
  function start(callbacks){
   hooks=callbacks;
   if(!enabled){message('Persoonlijke cloudsynchronisatie is niet actief; lokale gegevens blijven beschikbaar.');return;}
   const load=el('personalCloudLoad'),upload=el('personalCloudUpload'),sync=el('personalCloudSync');
   if(load)load.addEventListener('click',()=>{void chooseCloud();});
   if(upload)upload.addEventListener('click',()=>{void chooseLocal();});
-  if(sync)sync.addEventListener('click',()=>{if(pending&&!conflict)void flush();else void refresh();});
+  if(sync)sync.addEventListener('click',()=>{if(conflict)void reviewVersions();else if(pending)void flush();else void refresh();});
   const download=el('personalCloudBackup');
   if(download)download.addEventListener('click',()=>hooks.download());
   message('Bestaande accounts en persoonlijke gegevens controleren…');
@@ -321,10 +388,8 @@
   }
   void (async()=>{
    try{
-    const sdk=await loadSdk();
-    client=sdk.createClient(cfg.url.replace(/\/$/,''),cfg.publishableKey,{
-     auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
-    });
+    if(root.CookbookClient)client=await root.CookbookClient.get();
+    else{const sdk=await loadSdk();client=sdk.createClient(cfg.url.replace(/\/$/,''),cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});}
     client.auth.onAuthStateChange((event,session)=>{
      setTimeout(()=>{
       if(event==='SIGNED_OUT')reset();
@@ -355,5 +420,5 @@
    }catch(error){message('Inloggen voor persoonlijke gegevens niet beschikbaar. Je bestaande gegevens blijven lokaal: '+error.message,true);}
   })();
  }
- root.CookbookPersonalCloud={start,changed,enabled};
+ root.CookbookPersonalCloud={start,changed,enabled,snapshot,prepareRestore,review:reviewVersions};
 })(window);

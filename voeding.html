@@ -254,18 +254,20 @@ main{padding-top:25px}
 /* Stap 8: verhoog contrast van kleine voettekst en privacyverwijzing. */
 footer,footer a{color:#516153}
 </style>
+<link rel="stylesheet" href="./account.css">
 </head>
 <body>
 <nav class="primary-nav" aria-label="Hoofdnavigatie"><div class="primary-nav-inner">
  <a class="primary-nav-link" href="./">Recepten</a>
  <a class="primary-nav-link" href="./#boodschappenlijst"><span class="nav-desktop">Boodschappenlijst</span><span class="nav-mobile">Boodschappen</span></a>
- <a class="primary-nav-link" href="./voeding.html" aria-current="page"><span class="nav-desktop">Voedingsdagboek</span><span class="nav-mobile">Dagboek</span></a>
+ <a id="diaryNav" class="primary-nav-link" href="./voeding.html" aria-current="page"><span class="nav-desktop">Voedingsdagboek</span><span class="nav-mobile">Dagboek</span></a>
+ <a id="accountNav" class="primary-nav-link" href="./voeding.html#account">Mijn gegevens</a>
 </div></nav>
 <header>
   <a href="./">← Terug naar Mijn Kookboek</a>
   <div class="overline">PERSOONLIJK OVERZICHT</div>
-  <h1>Mijn voedingsdagboek</h1>
-  <p>Registreer je maaltijden, bekijk je geschatte calorieën en vergelijk je dag met je persoonlijke richtwaarden.</p>
+  <h1 id="pageTitle">Mijn voedingsdagboek</h1>
+  <p id="pageIntro">Registreer je maaltijden, bekijk je geschatte calorieën en vergelijk je dag met je persoonlijke richtwaarden.</p>
 </header>
 <main>
  <section class="account-status-bar" id="accountStatusBar" aria-label="Account en synchronisatie" hidden>
@@ -273,15 +275,15 @@ footer,footer a{color:#516153}
     <span class="account-status-eyebrow">MIJN GEGEVENS</span>
     <strong id="accountStateLabel">Accountstatus controleren…</strong>
     <p class="account-status-detail" id="accountStateDetail" role="status" aria-live="polite"></p>
-    <p class="account-status-scope" id="accountStorageNote">Je voedingsdagboek gebruikt je persoonlijke cloudaccount. Favorieten, boodschappen, voorraad en kooknotities kun je afzonderlijk en bewust aan hetzelfde account koppelen via de receptenpagina.</p>
+    <p class="account-status-scope" id="accountStorageNote">Je dagboek en kookboekgegevens beheer je samen via Mijn account en gegevens.</p>
    </div>
    <button type="button" class="secondary account-status-button" id="openAccountTools" aria-controls="accountTools" aria-expanded="false">Inloggen</button>
   </section>
  <details class="diary-utility account-utility" id="accountTools" hidden>
-  <summary><span><strong>Account en synchronisatie</strong><small>Inloggen, gegevens synchroniseren en accountbeheer</small></span></summary>
+  <summary><span><strong>Mijn account en gegevens</strong><small>Inloggen, synchronisatie en gezamenlijke back-up</small></span></summary>
   <div class="diary-utility-body">
   <section class="panel" id="cloudPanel" hidden aria-labelledby="cloudPanelTitle">
-    <h2 id="cloudPanelTitle">Mijn persoonlijke account</h2>
+    <h2 id="cloudPanelTitle">Mijn account</h2>
     <div id="cloudLogin">
       <p class="muted">Log in met je e-mailadres. Je ontvangt een eenmalige inloglink. Je voedingsdoelen en registraties zijn per account gescheiden.</p>
       <form id="cloudLoginForm" class="cloud-box">
@@ -291,7 +293,7 @@ footer,footer a{color:#516153}
     </div>
     <div id="cloudUser" hidden>
       <p class="muted">Ingelogd als <span id="cloudEmailLabel"></span></p>
-      <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudBackup" type="button" class="secondary">Versleutelde back-upopties</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
+      <div class="actions"><button id="cloudRefresh" class="secondary" type="button">Cloud opnieuw laden / synchroniseren</button><button id="cloudBackup" type="button" class="secondary">Gezamenlijke back-up</button><button id="cloudSignOut" type="button" class="secondary">Uitloggen</button></div>
       <details id="cloudHistorySection" class="muted">
         <summary>Eerdere dagboekversies terughalen</summary>
         <p>Supabase bewaart maximaal drie eerdere versies. Sla eerst eventuele huidige wijzigingen op. Bij het terugzetten blijft de huidige cloudversie als herstelversie beschikbaar.</p>
@@ -308,17 +310,70 @@ footer,footer a{color:#516153}
         <button id="cloudDeleteAccount" class="danger" type="button">Account en cloudgegevens definitief verwijderen</button>
       </details>
     </div>
+    <div class="data-heading"><h3>Mijn voedingsdagboek</h3><span class="data-state" id="diaryDataState">Controleren…</span></div>
     <p id="cloudStatus" role="status" aria-live="polite"></p>
+    <button type="button" class="secondary" id="diaryCompare">Dagboekverschillen bekijken</button>
+    <div id="diaryConflictReview" class="conflict-review" hidden></div>
+  </section>
+
+  <section id="personalCloudPanel" class="personal-cloud-panel" aria-labelledby="personalCloudTitle">
+   <div class="data-heading"><h3 id="personalCloudTitle">Mijn kookboekgegevens</h3><span class="data-state" id="personalDataState">Controleren…</span></div>
+   <p>Favorieten, boodschappen, afvinkstatussen, standaardvoorraad, kooknotities en kookvoortgang kun je via je account synchroniseren. Je ziet de status van je dagboek hierboven.</p>
+   <p id="personalCloudAccount" class="muted">Account controleren…</p>
+   <p id="personalCloudStatus" class="backup-status" role="status" aria-live="polite">De verbinding wordt gecontroleerd. Lokale gegevens blijven beschikbaar.</p>
+   <p id="personalCloudSignIn" hidden>Log hierboven in om deze gegevens aan hetzelfde account te koppelen.</p>
+   <div id="personalCloudChoices" hidden>
+    <p><strong>Koppeling of synchronisatie controleren:</strong> bestaande gegevens worden niet automatisch samengevoegd of overschreven. Bekijk eerst de verschillen. Je kiest daarna welke volledige versie je wilt behouden.</p>
+    <div class="backup-actions">
+     <button type="button" class="secondary" id="personalCloudUpload">Koppeling / verschillen bekijken</button>
+     <button type="button" class="secondary" id="personalCloudLoad">Accountversie vergelijken</button>
+    </div>
+   </div>
+   <div class="backup-actions">
+    <button type="button" class="secondary" id="personalCloudSync">Nu synchroniseren</button>
+    <button type="button" class="secondary" id="personalCloudBackup">Download lokale back-up</button>
+   </div>
+   <p class="muted">Bij gelijktijdige wijzigingen wordt niets stilzwijgend overschreven. De lokale herstelkopie blijft beschikbaar totdat het account de wijziging bevestigt.</p>
+   <div id="personalConflictReview" class="conflict-review" hidden></div>
+  </section>
+
+  <section class="panel all-backup" aria-labelledby="allBackupTitle">
+   <h2 id="allBackupTitle">Eén back-up van al mijn gegevens</h2>
+   <p id="allBackupHint"></p>
+   <div class="actions"><button type="button" class="secondary" id="allBackupDownload">Download gezamenlijke back-up</button></div>
+   <p class="muted">Een gewoon JSON-bestand is niet versleuteld. Gebruik een wachtzin als je het bestand extra wilt beschermen.</p>
+   <details id="allSecureBackup">
+    <summary>Gezamenlijke back-up versleutelen</summary>
+    <p>Minimaal 12 tekens. Bewaar de wachtzin apart: zonder deze kun je het bestand niet herstellen.</p>
+    <div class="grid2">
+     <div class="field"><label for="allBackupPass">Wachtzin</label><input type="password" id="allBackupPass" autocomplete="new-password" minlength="12"></div>
+     <div class="field"><label for="allBackupPassConfirm">Herhaal wachtzin</label><input type="password" id="allBackupPassConfirm" autocomplete="new-password" minlength="12"></div>
+    </div>
+    <button type="button" class="secondary" id="allBackupEncrypted">Download gezamenlijke versleutelde back-up</button>
+   </details>
+   <h3>Een back-up herstellen</h3>
+   <label for="allBackupFile">Kies je back-upbestand (JSON, maximaal 6 MB)</label>
+   <input type="file" id="allBackupFile" accept=".json,application/json" aria-describedby="allBackupFileHint">
+   <p class="muted" id="allBackupFileHint">Ook oude losse dagboek- en kookboekback-ups werken hier. Eerst zie je wat vervangen wordt. Bewaar vooraf een back-up van de huidige gegevens.</p>
+   <div id="allBackupDecryptBox" hidden>
+    <div class="field"><label for="allBackupDecryptPass">Wachtzin van dit bestand</label><input type="password" id="allBackupDecryptPass" autocomplete="off"></div>
+    <div class="actions"><button type="button" id="allBackupDecrypt">Ontsleutelen en controleren</button><button type="button" class="secondary" id="allBackupDecryptCancel">Annuleren</button></div>
+   </div>
+   <div id="allBackupPreview" class="backup-preview" hidden>
+    <h3>Gecontroleerd back-upbestand</h3><p id="allBackupSummary"></p><p id="allBackupScope"></p>
+    <div class="actions"><button type="button" id="allBackupRestore">Herstel deze gegevens</button><button type="button" class="secondary" id="allBackupCancel">Annuleren</button></div>
+   </div>
+   <p id="allBackupStatus" role="status" aria-live="polite"></p>
   </section>
 
   <div class="account-storage-summary" aria-label="Opslag van persoonlijke gegevens">
    <h3>Waar worden mijn gegevens bewaard?</h3>
    <dl>
     <div><dt>Persoonlijk account</dt><dd>Je voedingsdagboek, voedingsdoelen en vaste maaltijden worden in de cloud gesynchroniseerd. Een nog niet gesynchroniseerde wijziging wordt eerst lokaal als herstelkopie bewaard.</dd></div>
-    <div><dt>Mijn overige kookboekgegevens</dt><dd>Favorieten, boodschappen, standaardvoorraad, kooknotities en kookvoortgang kun je via de receptenpagina afzonderlijk met je account koppelen. Zonder die keuze blijven ze alleen in deze browser.</dd></div>
+    <div><dt>Mijn overige kookboekgegevens</dt><dd>Favorieten, boodschappen, standaardvoorraad, kooknotities en kookvoortgang koppel je hierboven bewust aan hetzelfde account. Beide onderdelen hebben hun eigen synchronisatiestatus.</dd></div>
     <div><dt>Recepten</dt><dd>Recepten en afbeeldingen staan in de gedeelde kookboekcollectie, los van je persoonlijke account.</dd></div>
    </dl>
-   <p>Een back-up van je voedingsdagboek maak je via <strong>Instellingen en beheer</strong> hieronder. De andere persoonlijke gegevens kun je exporteren via <strong>Mijn gegevens · back-up en herstel</strong> onderaan de <a href="./">receptenpagina</a>.</p>
+   <p>Met de gezamenlijke back-up hierboven bewaar je beide onderdelen in één bestand. Een oude losse back-up vervangt alleen het onderdeel dat erin staat.</p>
   </div>
   </div>
  </details>
@@ -482,7 +537,8 @@ footer,footer a{color:#516153}
         </details>
       </section>
       <section class="panel">
-        <h2>Privacy en back-up</h2>
+        <h2>Privacy en losse dagboekbestanden</h2>
+        <p><a href="./voeding.html#account">Ga naar Mijn account en gegevens voor een gezamenlijke back-up of herstel.</a></p>
         <p id="privacyDescription" class="muted">Je registraties en aangepaste doelen worden uitsluitend in deze browser op dit apparaat opgeslagen, niet in de openbare GitHub-repository. Er is geen automatische synchronisatie met andere apparaten.</p>
         <div class="actions"><button type="button" id="export" class="secondary">Exporteer dagboek (JSON)</button><button type="button" id="importButton" class="secondary">Importeer dagboek</button></div>
         <details id="secureBackupOptions">
@@ -512,9 +568,15 @@ footer,footer a{color:#516153}
 
 <footer>Mijn Kookboek · Dagelijkse voeding · Geschatte waarden · <a href="./privacy.html">Privacy en gegevensbeheer</a></footer>
 <script src="./cloud-config.js"></script>
-<script src="./voeding-cloud.js?v=20261110-status-v3"></script>
+<script src="./cloud-client.js"></script>
+<script src="./voeding-cloud.js?v=20261117-account-v4"></script>
 <script src="./voeding-backup.js"></script>
 <script src="./nutrition-entries.js"></script>
+<script src="./pantry.js"></script>
+<script src="./account-data.js"></script>
+<script src="./conflict-review.js"></script>
+<script src="./personal-cloud.js"></script>
+<script src="./account-manager.js"></script>
 <script>
 'use strict';
 (function(){
@@ -539,10 +601,11 @@ footer,footer a{color:#516153}
  const SLOTS=['ontbijt','lunch'];
  const newState=()=>({goals:{...DEFAULTS},days:{},weekdayPresets:{},weekdayApplied:{},quickMeals:[]});
  const cloudMode=Boolean(window.CookbookCloud&&window.CookbookCloud.enabled);
- let cloudReady=!cloudMode;
- el('accountTools').hidden=!cloudMode;
+ let cloudReady=!cloudMode,accountManager=null;
+ el('accountTools').hidden=false;
  el('accountTools').open=cloudMode&&!cloudReady;
  function updateAccountStatus(snapshot){
+  accountManager?.status(snapshot);
   const {loggedIn,ready,pending,conflict,error,message}=snapshot;
   const bar=el('accountStatusBar');
   let label='Dagboek gesynchroniseerd',tone='synced';
@@ -1273,6 +1336,22 @@ footer,footer a{color:#516153}
   finally{el('backupDecryptPass').value='';button.disabled=false;}
  };
 
+ if(window.CookbookAccount)accountManager=window.CookbookAccount.init({
+  cloudMode,getDiary:()=>state,validateDiary:cleanData,
+  setDiary(data){closeEntryEditor();state=cleanData(data);render();loadWeekdayForm();},
+  canRestore:()=>el('editEntryPanel').hidden&&el('mealEntryPanel').hidden
+ });
+ function accountRoute(){
+  const account=location.hash==='#account';document.body.classList.toggle('account-page',account);
+  el('pageTitle').textContent=account?'Mijn account en gegevens':'Mijn voedingsdagboek';
+  el('pageIntro').textContent=account?'Eén plek voor je account, synchronisatie en back-ups. Bekijk per onderdeel wat is opgeslagen en waar actie nodig is.':'Registreer je maaltijden, bekijk je geschatte calorieën en vergelijk je dag met je persoonlijke richtwaarden.';
+  document.title=account?'Mijn account en gegevens · Mijn Kookboek':'Mijn voedingsdagboek · Mijn Kookboek';
+  el('diaryNav').removeAttribute('aria-current');el('accountNav').removeAttribute('aria-current');
+  el(account?'accountNav':'diaryNav').setAttribute('aria-current','page');
+  if(account)el('accountTools').open=true;
+ }
+ if(window.CookbookAccount){window.addEventListener('hashchange',accountRoute);accountRoute();}
+
  render();
  loadWeekdayForm();
  fetchRecipes();
@@ -1287,11 +1366,13 @@ footer,footer a{color:#516153}
    onData(data){
     const wasLocked=!cloudReady;
     state=data?cleanData(data):newState();cloudReady=true;
-    if(wasLocked){el('accountTools').open=false;el('openAccountTools').setAttribute('aria-expanded','false');}
+    if(wasLocked&&location.hash!=='#account'){el('accountTools').open=false;el('openAccountTools').setAttribute('aria-expanded','false');}
     render();loadWeekdayForm();processPresetLink();restoreLoginRecipe();
    },
-   onLogout(){closeEntryEditor();cloudReady=false;state=newState();el('accountTools').open=true;el('openAccountTools').setAttribute('aria-expanded','true');render();},
-   onStatus(snapshot){updateAccountStatus(snapshot);}
+   onLogout(){accountManager?.logout();closeEntryEditor();cloudReady=false;state=newState();el('accountTools').open=true;el('openAccountTools').setAttribute('aria-expanded','true');render();},
+   onStatus(snapshot){updateAccountStatus(snapshot);},
+   review:(local,remote)=>accountManager?.review(local,remote),
+   cancelReview(){window.CookbookCompare?.cancel('diaryConflictReview');}
   });
  }
 })();

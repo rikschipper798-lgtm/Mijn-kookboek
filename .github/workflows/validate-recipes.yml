@@ -79,6 +79,10 @@ jobs:
             name: Voedingsregistraties aanpassen
             script: tests/nutrition-editing-browser.cjs
             report: dagboek-aanpassen-testresultaten/
+          - id: account
+            name: Account en gezamenlijke back-up
+            script: tests/account-management-browser.cjs
+            report: account-testresultaten/
           - id: toegankelijkheid
             name: Toegankelijkheid
             script: tests/accessibility-browser-audit.cjs
@@ -99,7 +103,7 @@ jobs:
           npm install --no-save playwright@1.56.1 axe-core@4.10.3
           npx playwright install --with-deps chromium
       - name: Publicatiepakket voor gebruikstest maken
-        if: matrix.id == 'gebruikersroute' || matrix.id == 'delen' || matrix.id == 'dagboek-aanpassen'
+        if: matrix.id == 'gebruikersroute' || matrix.id == 'delen' || matrix.id == 'dagboek-aanpassen' || matrix.id == 'account'
         run: node scripts/build-site.cjs
       - name: Browsertest uitvoeren
         run: node "${{ matrix.script }}"
