@@ -8,13 +8,13 @@ const diary=title=>({goals:{kcal:2300,proteinG:160,carbsG:246,fatG:75,fiberG:37.
 const personal=name=>({favorites:[name],ingredientChecks:{},basket:{},basketChecks:{},notes:{gerecht:{notes:'Meer knoflook',rating:4}},cookProgress:{},pantry:[{id:'rijst',name:'Rijst',group:'Droge voorraad en basisproducten',have:true}]});
 const seed=()=>({diary:diary('Oorspronkelijke lunch'),personal:personal('bruschetta')});
 const backup=data=>({app:'mijn-kookboek-alle-gegevens',version:1,exportedAt:new Date().toISOString(),data});
-const rows=new Map(),offline=new Set(),results=[];let browser,activePage,serial=0;
+const rows=new Map(),offline=new Set(),blockedTables=new Set(),results=[];let browser,activePage,serial=0;
 fs.mkdirSync(OUT,{recursive:true});
 const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.1'],{cwd:root,stdio:'ignore'});
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 function put(account,data,revision=1){rows.set(account+':nutrition_diaries',{diary:clone(data.diary),revision});rows.set(account+':cookbook_personal_data',{data:clone(data.personal),revision});}
 function rpc({table,account,device,mode,body,filters}){
- if(offline.has(device))return {data:null,error:{message:'Geen verbinding'}};
+ if(offline.has(device)||blockedTables.has(device+':'+table))return {data:null,error:{message:'Geen verbinding'}};
  if(!account||mode==='insert'&&body.user_id!==account||mode!=='insert'&&filters.user_id!==account)return {data:null,error:{message:'RLS'}};
  if(table==='nutrition_diary_history')return {data:[],error:null};
  if(!['nutrition_diaries','cookbook_personal_data'].includes(table))throw Error(table);
@@ -84,6 +84,11 @@ async function run(name,task){
     await p.waitForFunction(()=>document.querySelector('#allBackupStatus').textContent.includes('Ontsleutelen mislukt'));assert.equal(await p.locator('#allBackupPreview').isVisible(),false);
     await p.locator('#allBackupDecryptPass').fill('Een sterke wachtzin 2026');await p.locator('#allBackupDecrypt').click();await p.locator('#allBackupPreview').waitFor({state:'visible'});
     await p.locator('#allBackupCancel').click();assert.deepEqual(rows.get(t.account+':nutrition_diaries').diary,target.diary);
+    // Change both datasets before actually restoring the encrypted export.
+    await upload(p,backup(t.data));await p.locator('#allBackupPreview').waitFor({state:'visible'});await p.locator('#allBackupRestore').click();await settled(p);
+    assert.deepEqual(rows.get(t.account+':nutrition_diaries').diary,t.data.diary);assert.deepEqual(rows.get(t.account+':cookbook_personal_data').data,t.data.personal);
+    await upload(p,encrypted);await p.locator('#allBackupDecryptPass').fill('Een sterke wachtzin 2026');await p.locator('#allBackupDecrypt').click();await p.locator('#allBackupPreview').waitFor({state:'visible'});await p.locator('#allBackupRestore').click();await settled(p);
+    assert.deepEqual(rows.get(t.account+':nutrition_diaries').diary,target.diary);assert.deepEqual(rows.get(t.account+':cookbook_personal_data').data,target.personal);
     await p.reload();await settled(p);assert.deepEqual((await downloaded(p,'#allBackupDownload')).data,target);assert.deepEqual(t.errors,[]);
    }finally{await t.context.close();}
   });
@@ -137,6 +142,28 @@ async function run(name,task){
     assert.deepEqual(rows.get(t.account+':cookbook_personal_data').data,local.personal);assert.equal(rows.get(t.account+':cookbook_personal_data').revision,3);
     assert.equal(rows.get(t.account+':nutrition_diaries').diary.days[DATE][0].title,'Nog nieuwere cloudmaaltijd');assert.deepEqual(t.errors,[]);
    }finally{offline.delete(t.id);await t.context.close();}
+  });
+  for(const failed of ['nutrition_diaries','cookbook_personal_data'])await run('Gedeeltelijke cloudstoring bij '+failed+' behoudt hersteljournal en hervat alleen het ontbrekende onderdeel',async()=>{
+   const t=await device(),p=t.page,diaryFailed=failed==='nutrition_diaries';
+   const failedState=diaryFailed?'#diaryDataState':'#personalDataState',okState=diaryFailed?'#personalDataState':'#diaryDataState';
+   const failedKey=t.account+':'+failed,okKey=t.account+':'+(diaryFailed?'cookbook_personal_data':'nutrition_diaries');
+   const target={diary:diary('Hersteld na gedeeltelijke storing'),personal:personal('hutspot')};
+   try{
+    blockedTables.add(t.id+':'+failed);
+    await upload(p,backup(target));await p.locator('#allBackupPreview').waitFor({state:'visible'});await p.locator('#allBackupRestore').click();
+    await p.waitForFunction(({failedState,okState})=>document.querySelector(failedState).textContent==='Wacht op verbinding'&&document.querySelector(okState).textContent==='Opgeslagen',{failedState,okState});
+    assert.equal(rows.get(failedKey).revision,1);assert.equal(rows.get(okKey).revision,2);
+    assert.deepEqual((await downloaded(p,'#allBackupDownload')).data,target);
+    await p.reload();await p.waitForFunction(()=>!document.querySelector('#allBackupDownload').disabled);
+    assert.deepEqual((await downloaded(p,'#allBackupDownload')).data,target);
+    const journals=await p.evaluate(()=>Object.keys(localStorage).filter(k=>k.includes('herstel-v1:')));
+    assert.equal(journals.length,1);assert.ok(journals[0].includes(diaryFailed?'cloud-herstel-v1:':'persoonlijk-herstel-v1:'));
+    blockedTables.delete(t.id+':'+failed);await p.evaluate(()=>dispatchEvent(new Event('online')));await settled(p);
+    assert.deepEqual(rows.get(t.account+':nutrition_diaries').diary,target.diary);assert.deepEqual(rows.get(t.account+':cookbook_personal_data').data,target.personal);
+    assert.equal(rows.get(failedKey).revision,2);assert.equal(rows.get(okKey).revision,2);
+    assert.equal(await p.evaluate(()=>Object.keys(localStorage).filter(k=>k.includes('herstel-v1:')).length),0);
+    assert.deepEqual(t.errors,[]);
+   }finally{blockedTables.delete(t.id+':'+failed);await t.context.close();}
   });
   await run('Accountwissel trekt de herstelpreview in en voorkomt gemengde export',async()=>{
    const t=await device(),p=t.page;
