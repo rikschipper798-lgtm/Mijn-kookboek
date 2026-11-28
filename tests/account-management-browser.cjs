@@ -62,7 +62,7 @@ async function run(name,task){
 }
 (async()=>{
  try{
-  for(let n=0;n<60;n++){try{if((await fetch(BASE+'voeding.html')).ok)break;}catch{}if(n===59)throw Error('Server niet bereikbaar');await wait(100);}
+  for(let n=0;n<60;n++){try{if((await fetch(BASE+'voeding.html',{method:'HEAD'})).ok)break;}catch{}if(n===59)throw Error('Server niet bereikbaar');await wait(100);}
   browser=await chromium.launch({headless:true,args:['--no-sandbox']});
   for(const width of [390,1280])await run('Gezamenlijke export, herstel, encryptie en toegankelijkheid op '+width,async()=>{
    const t=await device(width),p=t.page;
