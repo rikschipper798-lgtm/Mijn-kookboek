@@ -3019,23 +3019,23 @@
   },
   {
     "id": "arayes",
-    "title": "Arayes met kruidig rundergehakt",
-    "subtitle": "Krokant gebakken pitabroodjes gevuld met sappig, Midden-Oosters gekruid rundergehakt en een frisse Griekse yoghurtsaus.",
+    "title": "Arayes met kruidig rundergehakt en groenten",
+    "subtitle": "Krokante pitabroodjes gevuld met sappig, Midden-Oosters gekruid rundergehakt, fijngehakte groenten en een frisse knoflook-yoghurtsaus.",
     "category": "Rundvlees",
     "kind": "Hoofdgerecht",
     "cuisine": "Midden-Oosters",
-    "minutes": 45,
+    "minutes": 55,
     "prep": 20,
-    "cook": 25,
+    "cook": 35,
     "servings": 3,
     "servingUnit": "personen",
     "nutrition": {
       "per": "portie",
-      "kcal": 910,
-      "proteinG": 46,
-      "carbsG": 82,
+      "kcal": 930,
+      "proteinG": 43,
+      "carbsG": 85,
       "fatG": 44,
-      "fiberG": 6.6,
+      "fiberG": 7,
       "estimated": true
     },
     "heat": "Gemiddeld pittig",
@@ -3055,15 +3055,33 @@
         "group": "Basis"
       },
       {
-        "name": "Pitabroodjes",
+        "name": "Grote pitabroodjes (ca. 18 cm)",
         "qty": 6,
         "unit": "stuks",
         "group": "Basis"
       },
       {
-        "name": "Ui",
-        "qty": 1,
-        "unit": "stuk",
+        "name": "Gele ui",
+        "qty": 75,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Rode paprika",
+        "qty": 75,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Courgette",
+        "qty": 75,
+        "unit": "g",
+        "group": "Vulling"
+      },
+      {
+        "name": "Tomaat (zonder zaadlijsten)",
+        "qty": 50,
+        "unit": "g",
         "group": "Vulling"
       },
       {
@@ -3079,24 +3097,6 @@
         "group": "Vulling"
       },
       {
-        "name": "Courgette",
-        "qty": 0.25,
-        "unit": "stuk",
-        "group": "Vulling"
-      },
-      {
-        "name": "Tomaat",
-        "qty": 1,
-        "unit": "stuk",
-        "group": "Vulling"
-      },
-      {
-        "name": "Verse peterselie",
-        "qty": 2,
-        "unit": "el",
-        "group": "Vulling"
-      },
-      {
         "name": "Tomatenpuree",
         "qty": 1,
         "unit": "el",
@@ -3109,13 +3109,7 @@
         "group": "Vulling"
       },
       {
-        "name": "Olijfolie",
-        "qty": 0.5,
-        "unit": "el",
-        "group": "Vulling"
-      },
-      {
-        "name": "Olijfolie voor de pitabroodjes",
+        "name": "Olijfolie (voor bakken)",
         "qty": 1,
         "unit": "el",
         "group": "Bakken"
@@ -3127,20 +3121,14 @@
         "group": "Kruiden"
       },
       {
-        "name": "Paprikapoeder",
-        "qty": 1,
+        "name": "Gedroogde peterselie",
+        "qty": 2,
         "unit": "tl",
         "group": "Kruiden"
       },
       {
         "name": "Gerookt paprikapoeder",
         "qty": 0.5,
-        "unit": "tl",
-        "group": "Kruiden"
-      },
-      {
-        "name": "Korianderblad (gedroogd)",
-        "qty": 1,
         "unit": "tl",
         "group": "Kruiden"
       },
@@ -3152,14 +3140,14 @@
       },
       {
         "name": "Zout",
-        "qty": 1,
+        "qty": 0.75,
         "unit": "tl",
         "group": "Kruiden"
       },
       {
         "name": "Zwarte peper",
-        "qty": null,
-        "unit": "naar smaak",
+        "qty": 0.5,
+        "unit": "tl",
         "group": "Kruiden"
       },
       {
@@ -3192,60 +3180,78 @@
         "qty": 1,
         "unit": "tl",
         "group": "Saus"
+      },
+      {
+        "name": "Zout",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Saus"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": null,
+        "unit": "naar smaak",
+        "group": "Saus"
       }
     ],
     "steps": [
       {
-        "body": "Verwarm de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Rooster 1½ tl komijnzaad 30–60 seconden in een droge koekenpan op middelhoog vuur tot het geurt; laat even afkoelen en kneus fijn in een vijzel. Laat het komijnzaad niet donker worden.",
+        "body": "Verwarm de oven voor op 200 °C boven-/onderwarmte (180 °C hetelucht). Rooster 1½ tl komijnzaad 30–60 seconden in een droge koekenpan op middelhoog vuur tot het geurt. Laat kort afkoelen en kneus het fijn met een vijzel of de onderkant van een stevig glas. Laat het zaad niet donker worden.",
         "title": "Oven voorverwarmen en komijn roosteren",
-        "duration": "30–60 sec komijn roosteren",
+        "duration": "2 min",
         "ingredientIndices": [
-          12
+          11
         ],
         "quantityRefs": [
           {
-            "text": "1½ tl komijnzaad 30–60 seconden",
-            "ingredientIndex": 12
+            "text": "1½ tl komijnzaad",
+            "ingredientIndex": 11
           }
         ]
       },
       {
-        "body": "Rasp ¼ courgette fijn en knijp het vocht stevig uit. Verwijder de natte zaadlijsten van de tomaat en snijd het vruchtvlees klein. Snipper 1 ui, hak 2 teentjes knoflook, ½ rode peper en 2 el verse peterselie fijn.",
-        "title": "Groenten en kruiden fijnsnijden",
+        "body": "Rasp 75 g gele ui fijn en druk eventueel overtollig vocht eruit. Snijd 75 g rode paprika in blokjes van maximaal 3–4 mm. Rasp 75 g courgette fijn en knijp het vocht stevig uit in een schone theedoek. Verwijder de natte zaadlijsten uit de tomaat, dep 50 g vruchtvlees droog en snijd dit heel fijn. Hak 2 teentjes knoflook en ½ rode peper fijn.",
+        "title": "Groenten fijnsnijden en vocht verwijderen",
+        "duration": "8 min",
         "ingredientIndices": [
-          5,
-          6,
           2,
           3,
           4,
+          5,
+          6,
           7
         ],
         "quantityRefs": [
           {
-            "text": "¼ courgette",
-            "ingredientIndex": 5
-          },
-          {
-            "text": "1 ui",
+            "text": "75 g gele ui",
             "ingredientIndex": 2
           },
           {
-            "text": "2 teentjes knoflook",
+            "text": "75 g rode paprika",
             "ingredientIndex": 3
           },
           {
-            "text": "½ rode peper",
+            "text": "75 g courgette",
             "ingredientIndex": 4
           },
           {
-            "text": "2 el verse peterselie",
+            "text": "50 g vruchtvlees",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "2 teentjes knoflook",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "½ rode peper",
             "ingredientIndex": 7
           }
         ]
       },
       {
-        "body": "Meng 450 g rundergehakt kort met de ui, knoflook, rode peper, courgette, tomaat, verse peterselie, 1 el tomatenpuree, 1 tl citroensap en ½ el olijfolie. Voeg 1½ tl gekneusd komijnzaad, 1 tl paprikapoeder, ½ tl gerookt paprikapoeder, 1 tl gedroogd korianderblad, ¼ tl kaneel, ongeveer ¾ tl van het zout en zwarte peper naar smaak toe. Gebruik eventueel ¼ tl chilipoeder. Kneed niet langer dan nodig om de vulling gelijkmatig te mengen.",
-        "title": "Kruidige gehaktvulling mengen",
+        "body": "Meng 450 g rundergehakt met alle voorbereide groenten, 1 el tomatenpuree en 1 tl citroensap. Voeg het gekneusde komijnzaad, 2 tl gedroogde peterselie, ½ tl gerookt paprikapoeder, ¼ tl kaneel, ¾ tl zout en ½ tl zwarte peper toe. Gebruik eventueel ¼ tl chilipoeder. Meng kort tot alles gelijkmatig verdeeld is; kneed niet te lang. Bak een klein proefstukje volledig gaar, proef en voeg zo nodig een snuf zout of komijn toe.",
+        "title": "Kruidige gehaktvulling mengen en proeven",
+        "duration": "5 min",
         "ingredientIndices": [
           0,
           2,
@@ -3256,19 +3262,17 @@
           7,
           8,
           9,
-          10,
+          11,
           12,
           13,
           14,
           15,
           16,
-          17,
-          18,
-          19
+          17
         ],
         "quantityRefs": [
           {
-            "text": "450 g rundergehakt kort",
+            "text": "450 g rundergehakt",
             "ingredientIndex": 0
           },
           {
@@ -3280,74 +3284,65 @@
             "ingredientIndex": 9
           },
           {
-            "text": "½ el olijfolie",
-            "ingredientIndex": 10
-          },
-          {
-            "text": "1½ tl gekneusd komijnzaad",
+            "text": "2 tl gedroogde peterselie",
             "ingredientIndex": 12
           },
           {
-            "text": "1 tl paprikapoeder",
+            "text": "½ tl gerookt paprikapoeder",
             "ingredientIndex": 13
           },
           {
-            "text": "½ tl gerookt paprikapoeder",
+            "text": "¼ tl kaneel",
             "ingredientIndex": 14
           },
           {
-            "text": "1 tl gedroogd korianderblad",
+            "text": "¾ tl zout",
             "ingredientIndex": 15
           },
           {
-            "text": "¼ tl kaneel",
+            "text": "½ tl zwarte peper",
             "ingredientIndex": 16
           },
           {
-            "text": "¾ tl",
-            "ingredientIndex": 17,
-            "factor": 0.75
-          },
-          {
             "text": "¼ tl chilipoeder",
-            "ingredientIndex": 19
+            "ingredientIndex": 17
           }
         ]
       },
       {
-        "body": "Laat de vulling desgewenst 15–30 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 pitabroodjes voorzichtig open en verdeel de vulling over de binnenkanten in een dunne, gelijkmatige laag van circa ½ cm.",
+        "body": "Laat de gehaktvulling desgewenst 15 minuten afgedekt in de koelkast rusten; dit is optioneel. Snijd 6 grote pitabroodjes van circa 18 cm voorzichtig aan één kant open. Verdeel de vulling gelijkmatig en druk deze tot een laag van ongeveer 5–6 mm. Druk de broodjes voorzichtig plat. Gebruik bij kleinere pita's liever meer broodjes zodat de gehaktlaag dun blijft; zie de tips.",
         "title": "Pitabroodjes vullen",
-        "duration": "optioneel 15–30 min rusten",
+        "duration": "5 min (optioneel 15 min rusten)",
         "ingredientIndices": [
           1,
           0
         ],
         "quantityRefs": [
           {
-            "text": "6 pitabroodjes voorzichtig open",
+            "text": "6 grote pitabroodjes",
             "ingredientIndex": 1
           }
         ]
       },
       {
-        "body": "Bestrijk de buitenkant van de gevulde pitabroodjes met in totaal 1 el olijfolie. Verhit een ruime koekenpan op middelhoog vuur en bak de broodjes, eventueel in porties, circa 2–3 minuten per kant tot beide kanten goudbruin en krokant zijn.",
-        "title": "Arayes goudbruin aanbakken",
-        "duration": "2–3 min per kant",
+        "body": "Bestrijk de buitenkanten met in totaal 1 el olijfolie. Verhit een grote koekenpan of grillplaat op middelhoog vuur. Bak waar mogelijk eerst de open gehaktrand circa 1 minuut zodat die dichtschroeit. Bak vervolgens de platte zijden circa 2–3 minuten per kant, tot de pita goudbruin en krokant is. Werk in porties en leg de aangebakken broodjes op een bakplaat.",
+        "title": "Arayes krokant aanbakken",
+        "duration": "15–25 min, afhankelijk van het aantal porties",
         "ingredientIndices": [
-          11,
+          10,
           1
         ],
         "quantityRefs": [
           {
             "text": "1 el olijfolie",
-            "ingredientIndex": 11
+            "ingredientIndex": 10
           }
         ]
       },
       {
-        "body": "Leg de arayes op een bakplaat en bak nog circa 8–10 minuten in het midden van de oven. Draai ze halverwege om. Controleer of de gehaktvulling in het midden volledig gaar is (minimaal 71 °C kerntemperatuur); geef ze indien nodig enkele minuten extra.",
-        "title": "Arayes in de oven garen",
-        "duration": "8–10 min",
+        "body": "Zet de bakplaat in het midden van de voorverwarmde oven. Bak de arayes nog 8–12 minuten op 200 °C boven-/onderwarmte (180 °C hetelucht) en draai halverwege om. Controleer bij de dikste vulling of het gehakt minimaal 72 °C kerntemperatuur heeft bereikt; bak indien nodig iets langer. De pita moet krokant zijn en het gehakt volledig gaar.",
+        "title": "Arayes in de oven volledig garen",
+        "duration": "8–12 min",
         "ingredientIndices": [
           1,
           0
@@ -3355,49 +3350,49 @@
         "quantityRefs": []
       },
       {
-        "body": "Meng ondertussen 250 g Griekse yoghurt met 1 fijngehakt teentje knoflook, 2 tl citroensap en 1 tl olijfolie. Breng de saus op smaak met de resterende circa ¼ tl zout en zwarte peper. Proef en serveer de krokante arayes direct met de koude yoghurtsaus.",
-        "title": "Yoghurtsaus maken en serveren",
+        "body": "Meng ondertussen 250 g Griekse yoghurt met 1 fijn geraspt teentje knoflook, 2 tl citroensap, 1 tl olijfolie, ¼ tl zout en een snuf zwarte peper. Proef en voeg eventueel wat citroensap toe voor extra frisheid. Snijd de gare arayes eventueel doormidden en serveer direct met de koude yoghurtsaus.",
+        "title": "Knoflook-yoghurtsaus maken en serveren",
+        "duration": "5 min, tegelijk met het ovenbakken",
         "ingredientIndices": [
+          18,
+          19,
           20,
           21,
           22,
-          23,
-          17,
-          18
+          23
         ],
         "quantityRefs": [
           {
             "text": "250 g Griekse yoghurt",
-            "ingredientIndex": 20
+            "ingredientIndex": 18
           },
           {
-            "text": "1 fijngehakt teentje knoflook",
-            "ingredientIndex": 21
+            "text": "1 fijn geraspt teentje knoflook",
+            "ingredientIndex": 19
           },
           {
             "text": "2 tl citroensap",
-            "ingredientIndex": 22
+            "ingredientIndex": 20
           },
           {
             "text": "1 tl olijfolie",
-            "ingredientIndex": 23
+            "ingredientIndex": 21
           },
           {
             "text": "¼ tl zout",
-            "ingredientIndex": 17,
-            "factor": 0.25
+            "ingredientIndex": 22
           }
         ]
       }
     ],
-    "tips": "Druk het vocht uit de geraspte courgette en verwijder de natte zaadlijsten van de tomaat; een droge vulling houdt de pita krokant. Verdeel het gehakt in een dunne laag van circa ½ cm en bestrijk de buitenkant met olie. Rooster en kneus komijnzaad kort voor de beste geur. Laat de vulling desgewenst 15–30 minuten gekoeld rusten; dit is niet nodig om het recept te laten slagen en telt niet mee in de basisbereidingstijd van 45 minuten. Controleer bij rauw gehakt altijd of het midden volledig gaar is (71 °C).",
+    "tips": "Gebruik grote pitabroodjes van circa 18 cm. Gebruik bij kleinere pitabroodjes 8–10 stuks om de laag gehakt dun (5–6 mm) te houden. Druk vocht uit de courgette en ui, verwijder de zaadlijsten van de tomaat en snijd de paprika zeer fijn: te veel vocht maakt het brood slap. Gehakt met circa 15–20% vet geeft een sappige vulling. De vulling mag optioneel 15 minuten gekoeld rusten; dit is niet bij de bereidingstijd inbegrepen. Controleer dat het gehakt in het midden minimaal 72 °C bereikt. Voedingswaarden zijn schattingen, afhankelijk van de grootte van de pita en het vetgehalte van vlees en yoghurt. De bestaande AI-afbeelding is behouden.",
     "image": "images/arayes.webp",
     "image_source": "AI-afbeelding uit eerdere kookboekversie",
     "optionalWaitMinMinutes": 15,
-    "optionalWaitMaxMinutes": 30,
+    "optionalWaitMaxMinutes": 15,
     "optionalWaitType": "rusten",
-    "version": 4,
-    "updatedAt": "2026-11-11",
+    "version": 5,
+    "updatedAt": "2026-11-21",
     "changeLog": [
       {
         "version": 2,
@@ -3413,6 +3408,11 @@
         "version": 4,
         "date": "2026-11-11",
         "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
+      },
+      {
+        "version": 5,
+        "date": "2026-11-21",
+        "description": "Arayes vernieuwd met ui, paprika, courgette en tomaat; gedroogde in plaats van verse peterselie; zonder koriander; aangepaste kruiding, bereiding, tijds- en voedingsinschatting."
       }
     ],
     "recipeType": "maaltijd"
@@ -7275,26 +7275,26 @@
   },
   {
     "id": "kip-satesaus",
-    "title": "Kruidige kipdij met satésaus",
-    "subtitle": "Goudbruin gebakken kipdij met kerrie, paprika, komijn en ketjap, geserveerd met warme satésaus; naar wens met rijst en groenten.",
+    "title": "Kruidige kipdij met satésaus, rijst en wokgroenten",
+    "subtitle": "Goudbruin gebakken kipdij met kerrie, komijn, gember en ketjap, jasmijnrijst, romige satésaus en beetgare paprika, ui en courgette met citroensap.",
     "category": "Kip",
     "kind": "Hoofdgerecht",
     "cuisine": "Indonesisch geïnspireerd",
-    "minutes": 30,
-    "prep": 10,
-    "cook": 20,
-    "servings": 2,
+    "minutes": 45,
+    "prep": 15,
+    "cook": 30,
+    "servings": 4,
     "servingUnit": "personen",
     "nutrition": {
       "per": "portie",
-      "kcal": 485,
-      "proteinG": 41,
-      "carbsG": 16,
-      "fatG": 29,
-      "fiberG": 1.9,
+      "kcal": 700,
+      "proteinG": 35,
+      "carbsG": 73,
+      "fatG": 30,
+      "fiberG": 5,
       "estimated": true
     },
-    "heat": "Mild tot gemiddeld pittig",
+    "heat": "Gemiddeld pittig",
     "difficulty": "Makkelijk",
     "featured": false,
     "date": "2026-10-28",
@@ -7302,66 +7302,69 @@
       "Kip",
       "Satésaus",
       "Ketjap",
-      "Rijst"
+      "Rijst",
+      "Wok",
+      "Groenterijk",
+      "Mealprep"
     ],
     "ingredients": [
       {
         "name": "Kipdijfilet",
-        "qty": 400,
+        "qty": 530,
         "unit": "g",
         "group": "Kip"
       },
       {
-        "name": "Olijfolie",
-        "qty": 2,
-        "unit": "tl",
-        "group": "Marinade"
-      },
-      {
-        "name": "Ketjap manis",
+        "name": "Zonnebloemolie",
         "qty": 1,
         "unit": "el",
         "group": "Marinade"
       },
       {
-        "name": "Paprikapoeder",
-        "qty": 1,
+        "name": "Ketjap manis",
+        "qty": 4,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Gerookt paprikapoeder",
+        "qty": 0.75,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Kerrie",
-        "qty": 1,
+        "qty": 1.5,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Komijnzaad",
-        "qty": 0.5,
+        "qty": 0.75,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Knoflookpoeder",
-        "qty": 0.5,
+        "qty": 0.75,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Uienpoeder",
-        "qty": 0.5,
+        "qty": 0.75,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Zwarte peper",
-        "qty": 0.25,
+        "qty": 0.5,
         "unit": "tl",
         "group": "Marinade"
       },
       {
         "name": "Zout",
-        "qty": 0.25,
+        "qty": 0.3333333333333333,
         "unit": "tl",
         "group": "Marinade"
       },
@@ -7369,53 +7372,142 @@
         "name": "Chilipoeder",
         "qty": 0.25,
         "unit": "tl",
-        "group": "Optioneel",
+        "group": "Marinade"
+      },
+      {
+        "name": "Sojasaus",
+        "qty": 1,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Verse gember",
+        "qty": 10,
+        "unit": "g",
+        "group": "Marinade"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Marinade"
+      },
+      {
+        "name": "Jasmijnrijst (ongekookt)",
+        "qty": 250,
+        "unit": "g",
+        "group": "Rijst"
+      },
+      {
+        "name": "Paprika",
+        "qty": 270,
+        "unit": "g",
+        "group": "Wokgroenten"
+      },
+      {
+        "name": "Courgette",
+        "qty": 300,
+        "unit": "g",
+        "group": "Wokgroenten"
+      },
+      {
+        "name": "Gele ui",
+        "qty": 180,
+        "unit": "g",
+        "group": "Wokgroenten"
+      },
+      {
+        "name": "Knoflook",
+        "qty": 3,
+        "unit": "teentjes",
+        "group": "Wokgroenten"
+      },
+      {
+        "name": "Zonnebloemolie",
+        "qty": 2,
+        "unit": "el",
+        "group": "Wokgroenten"
+      },
+      {
+        "name": "Sojasaus",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Wokgroenten"
+      },
+      {
+        "name": "Citroensap",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Wokgroenten"
+      },
+      {
+        "name": "Zwarte peper",
+        "qty": 0.25,
+        "unit": "tl",
+        "group": "Wokgroenten"
+      },
+      {
+        "name": "Sesamolie",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Wokgroenten",
         "optional": true
       },
       {
         "name": "Satésaus (bereid)",
-        "qty": 120,
+        "qty": 300,
         "unit": "g",
-        "group": "Serveren"
+        "group": "Satésaus"
       },
       {
-        "name": "Rijst",
-        "qty": 150,
-        "unit": "g",
-        "group": "Optioneel bijgerecht",
+        "name": "Water",
+        "qty": 3,
+        "unit": "el",
+        "group": "Satésaus",
         "optional": true
       },
       {
-        "name": "Sperziebonen",
-        "qty": 300,
+        "name": "Sambal oelek",
+        "qty": 0.5,
+        "unit": "tl",
+        "group": "Satésaus",
+        "optional": true
+      },
+      {
+        "name": "Citroensap",
+        "qty": 2,
+        "unit": "tl",
+        "group": "Satésaus"
+      },
+      {
+        "name": "Gebakken uitjes",
+        "qty": 2,
+        "unit": "el",
+        "group": "Afwerking",
+        "optional": true
+      },
+      {
+        "name": "Bosui",
+        "qty": 2,
+        "unit": "stuks",
+        "group": "Afwerking",
+        "optional": true
+      },
+      {
+        "name": "Geroosterde ongezouten pinda's",
+        "qty": 15,
         "unit": "g",
-        "group": "Optioneel bijgerecht",
+        "group": "Afwerking",
         "optional": true
       }
     ],
     "steps": [
       {
-        "body": "Snijd 400 g kipdijfilet in gelijkmatige stukken of reepjes. Kneus ½ tl komijnzaad fijn met de achterkant van een lepel of een vijzel, zodat de smaak goed vrijkomt.",
-        "title": "Kip snijden en komijn kneuzen",
+        "title": "Kip voorbereiden en marineren",
+        "body": "Snijd 530 g kipdijfilet in stukken van circa 3 cm. Kneus ¾ tl komijnzaad en rasp 10 g verse gember. Meng met 1 el zonnebloemolie, 4 tl ketjap manis, ¾ tl gerookt paprikapoeder, 1½ tl kerrie, ¾ tl knoflookpoeder, ¾ tl uienpoeder, ½ tl zwarte peper, ⅓ tl zout, ¼ tl chilipoeder, 1 tl sojasaus en 2 tl citroensap. Schep de kip door de marinade en laat afgedekt in de koelkast minimaal 10 minuten marineren terwijl je de rijst en groenten voorbereidt. Voor meer diepgang bij voorkeur 30–60 minuten; reken dan op extra wachttijd.",
+        "duration": "5 min + 10 min marineren (parallel)",
         "ingredientIndices": [
           0,
-          5
-        ],
-        "quantityRefs": [
-          {
-            "text": "400 g kipdijfilet",
-            "ingredientIndex": 0
-          },
-          {
-            "text": "½ tl komijnzaad",
-            "ingredientIndex": 5
-          }
-        ]
-      },
-      {
-        "body": "Meng in een kom 2 tl olijfolie met 1 el ketjap manis, 1 tl paprikapoeder, 1 tl kerrie, ½ tl gekneusd komijnzaad, ½ tl knoflookpoeder, ½ tl uienpoeder, ¼ tl zwarte peper en ¼ tl zout. Voeg voor wat pit optioneel ¼ tl chilipoeder toe. Schep de kip grondig door deze kruidenmix.",
-        "title": "Marinade mengen en kip kruiden",
-        "ingredientIndices": [
           1,
           2,
           3,
@@ -7426,83 +7518,107 @@
           8,
           9,
           10,
-          0
-        ],
-        "quantityRefs": [
-          {
-            "text": "2 tl olijfolie",
-            "ingredientIndex": 1
-          },
-          {
-            "text": "1 el ketjap manis",
-            "ingredientIndex": 2
-          },
-          {
-            "text": "1 tl paprikapoeder",
-            "ingredientIndex": 3
-          },
-          {
-            "text": "1 tl kerrie",
-            "ingredientIndex": 4
-          },
-          {
-            "text": "½ tl gekneusd komijnzaad",
-            "ingredientIndex": 5
-          },
-          {
-            "text": "½ tl knoflookpoeder",
-            "ingredientIndex": 6
-          },
-          {
-            "text": "½ tl uienpoeder",
-            "ingredientIndex": 7
-          },
-          {
-            "text": "¼ tl zwarte peper",
-            "ingredientIndex": 8
-          },
-          {
-            "text": "¼ tl zout",
-            "ingredientIndex": 9
-          },
-          {
-            "text": "¼ tl chilipoeder",
-            "ingredientIndex": 10
-          }
-        ]
-      },
-      {
-        "body": "Je kunt de kip meteen bakken. Laat haar voor een wat diepere smaak eventueel eerst 10–20 minuten afgedekt in de koelkast marineren; dit is optioneel en komt boven op de bereidingstijd.",
-        "title": "Kip eventueel laten marineren",
-        "duration": "optioneel 10–20 min marineren",
-        "ingredientIndices": [
-          0
-        ],
-        "quantityRefs": []
-      },
-      {
-        "body": "Kook voor een volledige maaltijd desgewenst 150 g rijst volgens de verpakking en maak 300 g sperziebonen schoon. Kook de sperziebonen in circa 10–12 minuten gaar maar nog beetgaar. Bereid dit tegelijk met de kip.",
-        "title": "Rijst en sperziebonen bereiden",
-        "duration": "sperziebonen 10–12 min",
-        "ingredientIndices": [
+          11,
           12,
           13
         ],
         "quantityRefs": [
           {
-            "text": "150 g rijst volgens de verpakking",
+            "text": "530 g kipdijfilet",
+            "ingredientIndex": 0
+          },
+          {
+            "text": "¾ tl komijnzaad",
+            "ingredientIndex": 5
+          },
+          {
+            "text": "10 g verse gember",
             "ingredientIndex": 12
           },
           {
-            "text": "300 g sperziebonen schoon",
+            "text": "1 el zonnebloemolie",
+            "ingredientIndex": 1
+          },
+          {
+            "text": "4 tl ketjap manis",
+            "ingredientIndex": 2
+          },
+          {
+            "text": "¾ tl gerookt paprikapoeder",
+            "ingredientIndex": 3
+          },
+          {
+            "text": "1½ tl kerrie",
+            "ingredientIndex": 4
+          },
+          {
+            "text": "¾ tl knoflookpoeder",
+            "ingredientIndex": 6
+          },
+          {
+            "text": "¾ tl uienpoeder",
+            "ingredientIndex": 7
+          },
+          {
+            "text": "½ tl zwarte peper",
+            "ingredientIndex": 8
+          },
+          {
+            "text": "⅓ tl zout",
+            "ingredientIndex": 9
+          },
+          {
+            "text": "¼ tl chilipoeder",
+            "ingredientIndex": 10
+          },
+          {
+            "text": "1 tl sojasaus",
+            "ingredientIndex": 11
+          },
+          {
+            "text": "2 tl citroensap",
             "ingredientIndex": 13
           }
         ]
       },
       {
-        "body": "Verhit een ruime koekenpan of wok op middelhoog tot hoog vuur. Bak de gekruide kip in circa 8–10 minuten goudbruin en volledig gaar (74 °C kerntemperatuur). Leg de kip in één laag, roer niet voortdurend en bak zo nodig in twee porties; gebruik indien nodig iets minder vuur zodat de ketjap niet verbrandt.",
-        "title": "Kipdij goudbruin en gaar bakken",
-        "duration": "8–10 min",
+        "title": "Rijst koken en groenten snijden",
+        "body": "Spoel 250 g jasmijnrijst met koud water en kook volgens de verpakking. Laat de rijst na het koken 5–10 minuten afgedekt rusten en maak los met een vork. Snijd ondertussen 270 g paprika in reepjes, 300 g courgette in halve maantjes van circa 1 cm en 180 g gele ui in halve ringen. Hak 3 teentjes knoflook fijn. Dep de courgette zo nodig droog.",
+        "duration": "15–20 min, parallel",
+        "ingredientIndices": [
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "quantityRefs": [
+          {
+            "text": "250 g jasmijnrijst",
+            "ingredientIndex": 14
+          },
+          {
+            "text": "270 g paprika",
+            "ingredientIndex": 15
+          },
+          {
+            "text": "300 g courgette",
+            "ingredientIndex": 16
+          },
+          {
+            "text": "180 g gele ui",
+            "ingredientIndex": 17
+          },
+          {
+            "text": "3 teentjes knoflook",
+            "ingredientIndex": 18
+          }
+        ]
+      },
+      {
+        "title": "Kip goudbruin bakken",
+        "body": "Verhit een ruime koekenpan op middelhoog tot hoog vuur. Laat overtollige marinade afdruipen en gooi deze weg. Bak de kip in twee porties in één laag. Laat de eerste kant circa 2 minuten ongestoord bruinen, keer om en verlaag het vuur naar middelhoog. Bak in totaal circa 6–8 minuten per portie, zo nodig langer, tot de kip volledig gaar is (minimaal 74 °C kerntemperatuur). Voorkom dat de ketjap of kruiden verbranden. Houd de eerste portie warm op een schoon bord en laat de gebakken kip kort rusten.",
+        "duration": "12–16 min",
         "ingredientIndices": [
           0
         ],
@@ -7514,43 +7630,128 @@
         ]
       },
       {
-        "body": "Verwarm 120 g reeds bereide satésaus in een klein steelpannetje op laag vuur volgens de aanwijzingen van de saus. Roer regelmatig en laat niet hard koken; voeg eventueel een klein scheutje water toe als de saus te dik is.",
-        "title": "Satésaus rustig opwarmen",
+        "title": "Courgette afzonderlijk wokken",
+        "body": "Verhit 1 el zonnebloemolie in een ruime wok op hoog vuur. Bak tijdens het bakken van de kip de courgette 4–5 minuten in een enkele laag, eventueel in kleinere porties, zodat de snijvlakken bruinen en de courgette beetgaar blijft. Schep uit de wok en zet apart.",
+        "duration": "4–5 min",
         "ingredientIndices": [
-          11
+          16,
+          19
         ],
         "quantityRefs": [
           {
-            "text": "120 g reeds bereide satésaus",
-            "ingredientIndex": 11
+            "text": "1 el zonnebloemolie",
+            "ingredientIndex": 19,
+            "factor": 0.5
           }
         ]
       },
       {
-        "body": "Verdeel de gebakken kip over twee borden en lepel de warme satésaus erover of serveer apart. Geef er eventueel rijst en sperziebonen bij, zodat het een volledige maaltijd wordt.",
-        "title": "Kip met satésaus serveren",
+        "title": "Ui en paprika wokken en afmaken",
+        "body": "Verhit de resterende 1 el zonnebloemolie in de wok. Bak de ui 2 minuten op hoog vuur, voeg de paprika toe en bak 3–4 minuten mee. Voeg de gehakte knoflook en ¼ tl zwarte peper toe en bak nog 30 seconden. Doe de courgette terug in de wok, voeg 2 tl sojasaus toe en schep kort om. Haal van het vuur en voeg 2 tl citroensap en eventueel ½ tl sesamolie toe. Proef: de groenten moeten fris, hartig en beetgaar zijn.",
+        "duration": "6–7 min",
         "ingredientIndices": [
-          0,
-          11,
-          12,
-          13
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23
         ],
         "quantityRefs": [
           {
-            "text": "twee borden",
-            "perServing": 1
+            "text": "1 el zonnebloemolie",
+            "ingredientIndex": 19,
+            "factor": 0.5
+          },
+          {
+            "text": "¼ tl zwarte peper",
+            "ingredientIndex": 22
+          },
+          {
+            "text": "2 tl sojasaus",
+            "ingredientIndex": 20
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 21
+          },
+          {
+            "text": "½ tl sesamolie",
+            "ingredientIndex": 23
+          }
+        ]
+      },
+      {
+        "title": "Satésaus op smaak brengen",
+        "body": "Verwarm ondertussen 300 g bereide satésaus in een steelpan op laag vuur volgens de verpakking. Verdun indien nodig met maximaal 3 el water en voeg eventueel ½ tl sambal oelek toe. Laat niet hard koken. Haal de pan van het vuur en proef. Voeg naar smaak maximaal 2 tl citroensap toe; begin met de helft en proef opnieuw.",
+        "duration": "5 min, parallel",
+        "ingredientIndices": [
+          24,
+          25,
+          26,
+          27
+        ],
+        "quantityRefs": [
+          {
+            "text": "300 g bereide satésaus",
+            "ingredientIndex": 24
+          },
+          {
+            "text": "3 el water",
+            "ingredientIndex": 25
+          },
+          {
+            "text": "½ tl sambal oelek",
+            "ingredientIndex": 26
+          },
+          {
+            "text": "2 tl citroensap",
+            "ingredientIndex": 27
+          }
+        ]
+      },
+      {
+        "title": "Serveren en afwerken",
+        "body": "Verdeel rijst, kip en wokgroenten over de gewenste porties. Lepel de satésaus vooral over de kip en een deel van de rijst. Garneer eventueel met 2 el gebakken uitjes, 2 stuks fijngesneden bosui en 15 g grof gehakte geroosterde ongezouten pinda's. Voeg toppings pas bij het eten toe.",
+        "duration": "2 min",
+        "ingredientIndices": [
+          0,
+          14,
+          15,
+          16,
+          17,
+          24,
+          28,
+          29,
+          30
+        ],
+        "quantityRefs": [
+          {
+            "text": "2 el gebakken uitjes",
+            "ingredientIndex": 28
+          },
+          {
+            "text": "2 stuks fijngesneden bosui",
+            "ingredientIndex": 29
+          },
+          {
+            "text": "15 g grof gehakte geroosterde ongezouten pinda's",
+            "ingredientIndex": 30
           }
         ]
       }
     ],
-    "tips": "Deze kipkruiding is gebaseerd op het eerdere recept van 9 juli 2026. De toen aangepaste versie voor 200 g kip blijft bruikbaar: neem 1 tl olie, 1½ tl ketjap, ½ tl paprikapoeder, ½ tl kerrie en van komijn, knoflookpoeder en uienpoeder elk ¼ tl; voeg peper en zout toe en gebruik circa 3–4 el bereide satésaus (of 4–5 el als je rijst erbij eet). Optioneel kun je een klein beetje sambal gebruiken in plaats van chilipoeder. Warm de saus apart en laat deze niet hard koken; zo blijft de kip goed gebakken. Voor een complete maaltijd zijn rijst en circa 300 g groenten voor twee personen aanbevolen.",
+    "tips": "Geschikt voor twee personen gedurende twee avonden: verwacht circa 2 kg bereid gewicht, afhankelijk van rijst, vochtverlies en saus. Verdeel naar eetlust, bijvoorbeeld per avond 500–600 g en 300–400 g. Kies bij voorkeur 30–60 minuten marineren, waarvan de eerste 10 minuten samenvallen met de voorbereiding; de extra wachttijd is optioneel. Bak kip en groenten afzonderlijk, en warm de satésaus apart. Gebruik citroensap uit de voorraad; proef de saus voor de laatste toevoeging. Benodigd: wok, ruime koekenpan, kookpan en steelpan. Verdeel voor de tweede dag meteen over ondiepe bakjes, laat snel afkoelen en zet binnen 2 uur in de koelkast (4 °C). Bewaar rijst, kip, groenten en saus zo mogelijk apart. Verhit de volgende dag alleen de benodigde porties door en door; warm rijst slechts één keer opnieuw op. Voeg eventueel een klein scheutje water aan de rijst toe. Bewaar krokante toppings apart. Voedingswaarden zijn geschat per kwart van het recept, zonder optionele toppings en afhankelijk van de gebruikte satésaus.",
     "image": "images/kip-satesaus.webp",
-    "image_source": "AI-afbeelding speciaal gemaakt voor kruidige kipdij met satésaus, rijst en sperziebonen",
-    "optionalWaitMinMinutes": 10,
-    "optionalWaitMaxMinutes": 20,
+    "image_source": "AI-afbeelding speciaal gemaakt voor kruidige kipdij met satésaus, jasmijnrijst en wokgroenten (paprika, ui en courgette), met optionele bosui, gebakken uitjes en pinda's.",
+    "optionalWaitMinMinutes": 20,
+    "optionalWaitMaxMinutes": 50,
     "optionalWaitType": "marineren",
-    "version": 4,
-    "updatedAt": "2026-11-11",
+    "version": 6,
+    "updatedAt": "2026-11-28",
     "changeLog": [
       {
         "version": 2,
@@ -7566,6 +7767,16 @@
         "version": 4,
         "date": "2026-11-11",
         "description": "Hoeveelheden in bereidingsstappen expliciet gekoppeld aan ingrediënten en porties; vaste maten behouden."
+      },
+      {
+        "version": 5,
+        "date": "2026-11-28",
+        "description": "Vervangen door volledige maaltijd voor vier porties met 530 g kipdij, jasmijnrijst, paprika, ui en courgette. Marinade met gember en citroen verbeterd, groenten apart gewokt, satésaus gebalanceerd en voedingswaarden en bewaartips aangepast."
+      },
+      {
+        "version": 6,
+        "date": "2026-11-28",
+        "description": "Receptfoto vervangen door een AI-afbeelding die aansluit op de nieuwe bereiding met rijst, paprika, ui en courgette."
       }
     ],
     "recipeType": "maaltijd"
